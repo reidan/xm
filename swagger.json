@@ -1,0 +1,433 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "xM API",
+		"description": "The xM API",
+		"version": "v1"
+	},
+	"host": "api.xmatters.com",
+	"basePath": "/api/xm/v1",
+	"schemes": [
+		"https"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/groups": {
+			"post": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Add a group",
+				"description": "Add a group",
+				"operationId": "postGroups",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/NewGroup"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Group"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/groups/{groupId}": {
+			"get": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Get group information",
+				"description": "Get group information",
+				"operationId": "getGroup",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Group"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/users": {
+			"post": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Create a user",
+				"description": "Create a user",
+				"operationId": "postUsers",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/NewUser"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"NewGroup": {
+			"type": "object",
+			"description": "A group of users",
+			"properties": {
+				"targetName": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"active": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
+				"supervisors": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"targetName",
+				"name"
+			]
+		},
+		"Group": {
+			"type": "object",
+			"description": "A group of users",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"active": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string",
+							"description": "URL of this resource"
+						}
+					}
+				}
+			},
+			"required": [
+				"id",
+				"targetName",
+				"name",
+				"active"
+			]
+		},
+		"Site": {
+			"type": "object",
+			"description": "A geographic area",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string",
+							"description": "URL of this resource"
+						}
+					},
+					"required": [
+						"self"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"links"
+			]
+		},
+		"User": {
+			"type": "object",
+			"description": "A user of xMatters services",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				},
+				"language": {
+					"type": "string"
+				},
+				"timezone": {
+					"type": "string"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"webLogin": {
+					"type": "string"
+				},
+				"phoneLogin": {
+					"type": "string"
+				},
+				"site": {
+					"$ref": "#/definitions/Site"
+				},
+				"profiles": {
+					"type": "object",
+					"properties": {
+						"links": {
+							"type": "object",
+							"properties": {
+								"self": {
+									"type": "string",
+									"description": "URL of this resource"
+								}
+							},
+							"required": [
+								"self"
+							]
+						}
+					},
+					"required": [
+						"links"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"targetName",
+				"status"
+			]
+		},
+		"NewUser": {
+			"type": "object",
+			"description": "A new user",
+			"properties": {
+				"targetName": {
+					"type": "string"
+				},
+				"firstName": {
+					"type": "string"
+				},
+				"lastName": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string"
+				},
+				"language": {
+					"type": "string"
+				},
+				"timezone": {
+					"type": "string"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"webLogin": {
+					"type": "string"
+				},
+				"phoneLogin": {
+					"type": "string"
+				},
+				"roles": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"site": {
+					"type": "string"
+				},
+				"supervisors": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			},
+			"required": [
+				"targetName",
+				"status"
+			]
+		},
+		"Response": {
+			"description": "A coded API response",
+			"properties": {
+				"code": {
+					"type": "integer",
+					"format": "int32",
+					"enum": [
+						400,
+						401,
+						403,
+						404,
+						429,
+						500
+					]
+				},
+				"type": {
+					"type": "string"
+				},
+				"message": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"code",
+				"type",
+				"message"
+			]
+		}
+	}
+}
