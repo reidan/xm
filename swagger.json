@@ -126,6 +126,64 @@
 				}
 			}
 		},
+		"/groups/{groupId}/members": {
+			"get": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Get group members",
+				"description": "Get group members",
+				"operationId": "getGroupMembers",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "shift",
+						"in": "query",
+						"description": "Filter results to a specific shift",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/GroupMembers"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/users": {
 			"post": {
 				"tags": [
@@ -305,6 +363,131 @@
 				"targetName",
 				"name",
 				"active"
+			]
+		},
+		"GroupMembers": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GroupMember"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string",
+							"description": "URL of this page of the result set",
+							"format": "uri"
+						},
+						"previous": {
+							"type": "string",
+							"description": "URL of the previous page of the result set",
+							"format": "uri"
+						},
+						"next": {
+							"type": "string",
+							"description": "URL of the next page of the result set",
+							"format": "uri"
+						}
+					},
+					"required": ["self"]
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
+		"GroupMember": {
+			"type": "object",
+			"description": "Represents group membership",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/Group"
+				},
+				"member": {
+					"type": "object"
+				},
+				"shifts": {
+					"$ref": "#/definitions/Shifts"
+				}
+			},
+			"required": [
+				"group",
+				"member"
+			]
+		},
+		"Shifts": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Shift"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string",
+							"description": "URL of this page of the result set",
+							"format": "uri"
+						},
+						"previous": {
+							"type": "string",
+							"description": "URL of the previous page of the result set",
+							"format": "uri"
+						},
+						"next": {
+							"type": "string",
+							"description": "URL of the next page of the result set",
+							"format": "uri"
+						}
+					},
+					"required": ["self"]
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
+		"Shift": {
+			"type": "object",
+			"description": "A shift",
+			"properties": {
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"name"
 			]
 		},
 		"Site": {
