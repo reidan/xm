@@ -450,6 +450,7 @@
 					"$ref": "#/definitions/Group"
 				},
 				"member": {
+					"type": "object",
 					"properties": {
 						"group": {
 							"$ref": "#/definitions/Group"
