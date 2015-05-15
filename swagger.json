@@ -412,6 +412,36 @@
 				"links"
 			]
 		},
+		"Team": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"name"
+			]
+		},
+		"Device": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"name"
+			]
+		},
 		"GroupMember": {
 			"type": "object",
 			"description": "Represents group membership",
@@ -420,7 +450,20 @@
 					"$ref": "#/definitions/Group"
 				},
 				"member": {
-					"type": "object"
+					"properties": {
+						"group": {
+							"$ref": "#/definitions/Group"
+						},
+						"team": {
+							"$ref": "#/definitions/Team"
+						},
+						"user": {
+							"$ref": "#/definitions/User"
+						},
+						"device": {
+							"$ref": "#/definitions/Device"
+						}
+					}
 				},
 				"shifts": {
 					"$ref": "#/definitions/Shifts"
