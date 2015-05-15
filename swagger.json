@@ -183,6 +183,57 @@
 					}
 				}
 			}
+		},
+		"/users/{userId}": {
+			"get": {
+				"tags": [
+					"Users"
+				],
+				"summary": "Get user information",
+				"description": "Get user information",
+				"operationId": "getUser",
+				"parameters": [
+					{
+						"name": "userId",
+						"in": "path",
+						"description": "The user id or targetName",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
