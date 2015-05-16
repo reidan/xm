@@ -506,17 +506,6 @@
 				"name"
 			]
 		},
-		"Reference": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"id"
-			]
-		},
 		"NewGroupMember": {
 			"type": "object",
 			"description": "Represents group membership",
@@ -788,6 +777,17 @@
 			"required": [
 				"targetName",
 				"status"
+			]
+		},
+		"Reference": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
 			]
 		},
 		"Response": {
