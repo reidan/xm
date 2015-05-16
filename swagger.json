@@ -380,7 +380,7 @@
 				"supervisors": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/Reference"
+						"$ref": "#/definitions/IdReference"
 					}
 				}
 			},
@@ -511,29 +511,29 @@
 			"description": "Represents group membership",
 			"properties": {
 				"group": {
-					"$ref": "#/definitions/Reference"
+					"$ref": "#/definitions/IdReference"
 				},
 				"member": {
 					"type": "object",
 					"properties": {
 						"group": {
-							"$ref": "#/definitions/Reference"
+							"$ref": "#/definitions/IdReference"
 						},
 						"team": {
-							"$ref": "#/definitions/Reference"
+							"$ref": "#/definitions/IdReference"
 						},
 						"user": {
-							"$ref": "#/definitions/Reference"
+							"$ref": "#/definitions/IdReference"
 						},
 						"device": {
-							"$ref": "#/definitions/Reference"
+							"$ref": "#/definitions/IdReference"
 						}
 					}
 				},
 				"shifts": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/Reference"
+						"$ref": "#/definitions/NameReference"
 					}
 				}
 			},
@@ -770,7 +770,7 @@
 				"supervisors": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/Reference"
+						"$ref": "#/definitions/IdReference"
 					}
 				}
 			},
@@ -779,7 +779,7 @@
 				"status"
 			]
 		},
-		"Reference": {
+		"IdReference": {
 			"type": "object",
 			"properties": {
 				"id": {
@@ -788,6 +788,17 @@
 			},
 			"required": [
 				"id"
+			]
+		},
+		"NameReference": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"name"
 			]
 		},
 		"Response": {
