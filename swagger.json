@@ -466,7 +466,9 @@
 							"format": "uri"
 						}
 					},
-					"required": ["self"]
+					"required": [
+						"self"
+					]
 				}
 			},
 			"required": [
@@ -612,7 +614,9 @@
 							"format": "uri"
 						}
 					},
-					"required": ["self"]
+					"required": [
+						"self"
+					]
 				}
 			},
 			"required": [
