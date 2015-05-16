@@ -182,6 +182,69 @@
 						}
 					}
 				}
+			},
+			"post": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Add group members",
+				"description": "Add group members",
+				"operationId": "postGroupMembers",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/NewGroupMember"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/GroupMember"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
 			}
 		},
 		"/users": {
@@ -317,7 +380,7 @@
 				"supervisors": {
 					"type": "array",
 					"items": {
-						"type": "string"
+						"$ref": "#/definitions/Reference"
 					}
 				}
 			},
@@ -362,7 +425,8 @@
 				"id",
 				"targetName",
 				"name",
-				"active"
+				"active",
+				"links"
 			]
 		},
 		"GroupMembers": {
@@ -440,6 +504,53 @@
 			"required": [
 				"id",
 				"name"
+			]
+		},
+		"Reference": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"id"
+			]
+		},
+		"NewGroupMember": {
+			"type": "object",
+			"description": "Represents group membership",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/Reference"
+				},
+				"member": {
+					"type": "object",
+					"properties": {
+						"group": {
+							"$ref": "#/definitions/Reference"
+						},
+						"team": {
+							"$ref": "#/definitions/Reference"
+						},
+						"user": {
+							"$ref": "#/definitions/Reference"
+						},
+						"device": {
+							"$ref": "#/definitions/Reference"
+						}
+					}
+				},
+				"shifts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Reference"
+					}
+				}
+			},
+			"required": [
+				"group",
+				"member"
 			]
 		},
 		"GroupMember": {
@@ -670,7 +781,7 @@
 				"supervisors": {
 					"type": "array",
 					"items": {
-						"type": "string"
+						"$ref": "#/definitions/Reference"
 					}
 				}
 			},
