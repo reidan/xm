@@ -1015,24 +1015,24 @@
 		"IdAndSelfLink": {
 			"type": "object",
 			"properties": {
+				"id": {
+					"type": "string"
+				},
 				"links": {
 					"type": "object",
 					"properties": {
-						"id": {
-							"type": "string"
-						},
 						"self": {
 							"type": "string",
 							"description": "URL of this resource"
 						}
 					},
 					"required": [
-						"id",
 						"self"
 					]
 				}
 			},
 			"required": [
+				"id",
 				"links"
 			]
 		},
