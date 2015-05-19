@@ -247,21 +247,21 @@
 				}
 			}
 		},
-		"/users": {
+		"/people": {
 			"post": {
 				"tags": [
-					"Users"
+					"People"
 				],
-				"summary": "Create a user",
-				"description": "Create a user",
-				"operationId": "postUsers",
+				"summary": "Create a person",
+				"description": "Create a person",
+				"operationId": "postPeople",
 				"parameters": [
 					{
 						"name": "body",
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/NewUser"
+							"$ref": "#/definitions/NewPerson"
 						}
 					}
 				],
@@ -269,7 +269,7 @@
 					"201": {
 						"description": "Created",
 						"schema": {
-							"$ref": "#/definitions/User"
+							"$ref": "#/definitions/Person"
 						}
 					},
 					"401": {
@@ -305,19 +305,19 @@
 				}
 			}
 		},
-		"/users/{userId}": {
+		"/people/{personId}": {
 			"get": {
 				"tags": [
-					"Users"
+					"People"
 				],
-				"summary": "Get user information",
-				"description": "Get user information",
-				"operationId": "getUser",
+				"summary": "Get person information",
+				"description": "Get person information",
+				"operationId": "getPerson",
 				"parameters": [
 					{
-						"name": "userId",
+						"name": "personId",
 						"in": "path",
-						"description": "The user id or targetName",
+						"description": "The person id or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -326,7 +326,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/User"
+							"$ref": "#/definitions/Person"
 						}
 					},
 					"401": {
@@ -528,7 +528,7 @@
 						"team": {
 							"$ref": "#/definitions/IdReference"
 						},
-						"user": {
+						"person": {
 							"$ref": "#/definitions/IdReference"
 						},
 						"device": {
@@ -564,8 +564,8 @@
 						"team": {
 							"$ref": "#/definitions/Team"
 						},
-						"user": {
-							"$ref": "#/definitions/User"
+						"person": {
+							"$ref": "#/definitions/Person"
 						},
 						"device": {
 							"$ref": "#/definitions/Device"
@@ -671,7 +671,7 @@
 				"links"
 			]
 		},
-		"User": {
+		"Person": {
 			"type": "object",
 			"description": "A user of xMatters services",
 			"properties": {
@@ -735,9 +735,9 @@
 				"status"
 			]
 		},
-		"NewUser": {
+		"NewPerson": {
 			"type": "object",
-			"description": "A new user",
+			"description": "A new person",
 			"properties": {
 				"targetName": {
 					"type": "string"
