@@ -247,13 +247,195 @@
 				}
 			}
 		},
+		"/groups/{groupId}/supervisors": {
+			"get": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Get group supervisors",
+				"description": "Get group supervisors",
+				"operationId": "getGroupSupervisors",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/GroupSupervisors"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Add group supervisors",
+				"description": "Add group supervisors",
+				"operationId": "postGroupSupervisors",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/NewGroupSupervisor"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/GroupSupervisor"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Remove a group supervisor",
+				"description": "Remove a group supervisor",
+				"operationId": "deleteGroupSupervisor",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "supervisorId",
+						"in": "path",
+						"description": "The supervisor person id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/GroupSupervisor"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/people": {
 			"post": {
 				"tags": [
 					"People"
 				],
-				"summary": "Create a person",
-				"description": "Create a person",
+				"summary": "Add a person",
+				"description": "Add a person",
 				"operationId": "postPeople",
 				"parameters": [
 					{
@@ -433,6 +615,75 @@
 				"links"
 			]
 		},
+		"GroupMember": {
+			"type": "object",
+			"description": "Represents group membership",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/Group"
+				},
+				"member": {
+					"type": "object",
+					"properties": {
+						"group": {
+							"$ref": "#/definitions/Group"
+						},
+						"team": {
+							"$ref": "#/definitions/Team"
+						},
+						"person": {
+							"$ref": "#/definitions/Person"
+						},
+						"device": {
+							"$ref": "#/definitions/Device"
+						}
+					}
+				},
+				"shifts": {
+					"$ref": "#/definitions/Shifts"
+				}
+			},
+			"required": [
+				"group",
+				"member"
+			]
+		},
+		"NewGroupMember": {
+			"type": "object",
+			"description": "Represents group membership",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/IdReference"
+				},
+				"member": {
+					"type": "object",
+					"properties": {
+						"group": {
+							"$ref": "#/definitions/IdReference"
+						},
+						"team": {
+							"$ref": "#/definitions/IdReference"
+						},
+						"person": {
+							"$ref": "#/definitions/IdReference"
+						},
+						"device": {
+							"$ref": "#/definitions/IdReference"
+						}
+					}
+				},
+				"shifts": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/NameReference"
+					}
+				}
+			},
+			"required": [
+				"group",
+				"member"
+			]
+		},
 		"GroupMembers": {
 			"type": "object",
 			"description": "Group members",
@@ -482,6 +733,40 @@
 				"links"
 			]
 		},
+		"GroupSupervisors": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/GroupSupervisor"
+			}
+		},
+		"GroupSupervisor": {
+			"type": "object",
+			"description": "Represents group supervisor",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/IdReference"
+				},
+				"supervisor": {
+					"$ref": "#/definitions/Person"
+				}
+			},
+			"required": [
+				"group",
+				"supervisor"
+			]
+		},
+		"NewGroupSupervisor": {
+			"type": "object",
+			"description": "Adding a group supervisor",
+			"properties": {
+				"supervisor": {
+					"$ref": "#/definitions/IdReference"
+				}
+			},
+			"required": [
+				"supervisor"
+			]
+		},
 		"Team": {
 			"type": "object",
 			"properties": {
@@ -510,75 +795,6 @@
 			"required": [
 				"id",
 				"name"
-			]
-		},
-		"NewGroupMember": {
-			"type": "object",
-			"description": "Represents group membership",
-			"properties": {
-				"group": {
-					"$ref": "#/definitions/IdReference"
-				},
-				"member": {
-					"type": "object",
-					"properties": {
-						"group": {
-							"$ref": "#/definitions/IdReference"
-						},
-						"team": {
-							"$ref": "#/definitions/IdReference"
-						},
-						"person": {
-							"$ref": "#/definitions/IdReference"
-						},
-						"device": {
-							"$ref": "#/definitions/IdReference"
-						}
-					}
-				},
-				"shifts": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/NameReference"
-					}
-				}
-			},
-			"required": [
-				"group",
-				"member"
-			]
-		},
-		"GroupMember": {
-			"type": "object",
-			"description": "Represents group membership",
-			"properties": {
-				"group": {
-					"$ref": "#/definitions/Group"
-				},
-				"member": {
-					"type": "object",
-					"properties": {
-						"group": {
-							"$ref": "#/definitions/Group"
-						},
-						"team": {
-							"$ref": "#/definitions/Team"
-						},
-						"person": {
-							"$ref": "#/definitions/Person"
-						},
-						"device": {
-							"$ref": "#/definitions/Device"
-						}
-					}
-				},
-				"shifts": {
-					"$ref": "#/definitions/Shifts"
-				}
-			},
-			"required": [
-				"group",
-				"member"
 			]
 		},
 		"Shifts": {
