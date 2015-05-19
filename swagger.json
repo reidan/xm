@@ -373,6 +373,7 @@
 				},
 				"status": {
 					"type": "string",
+					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
 				"externalKey": {
@@ -408,6 +409,7 @@
 				},
 				"status": {
 					"type": "string",
+					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
 				"externalKey": {
