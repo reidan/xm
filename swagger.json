@@ -931,7 +931,7 @@
 					"$ref": "#/definitions/IdAndSelfLinkReference"
 				},
 				"profiles": {
-					"$ref": "#/definitions/SelfLink"
+					"$ref": "#/definitions/SelfLinkReference"
 				}
 			},
 			"required": [
@@ -992,7 +992,7 @@
 				"status"
 			]
 		},
-		"SelfLink": {
+		"SelfLinkReference": {
 			"type": "object",
 			"properties": {
 				"links": {
