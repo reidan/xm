@@ -346,6 +346,12 @@
 							"$ref": "#/definitions/Response"
 						}
 					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
 					"409": {
 						"description": "Conflict",
 						"schema": {
@@ -675,7 +681,7 @@
 				"shifts": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/NameReference"
+						"$ref": "#/definitions/IdReference"
 					}
 				}
 			},
@@ -744,7 +750,7 @@
 			"description": "Represents group supervisor",
 			"properties": {
 				"group": {
-					"$ref": "#/definitions/IdReference"
+					"$ref": "#/definitions/IdAndSelfLink"
 				},
 				"supervisor": {
 					"$ref": "#/definitions/Person"
@@ -922,27 +928,10 @@
 					"type": "string"
 				},
 				"site": {
-					"$ref": "#/definitions/Site"
+					"$ref": "#/definitions/IdAndSelfLink"
 				},
 				"profiles": {
-					"type": "object",
-					"properties": {
-						"links": {
-							"type": "object",
-							"properties": {
-								"self": {
-									"type": "string",
-									"description": "URL of this resource"
-								}
-							},
-							"required": [
-								"self"
-							]
-						}
-					},
-					"required": [
-						"links"
-					]
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
@@ -989,7 +978,7 @@
 					}
 				},
 				"site": {
-					"type": "string"
+					"$ref": "#/definitions/IdReference"
 				},
 				"supervisors": {
 					"type": "array",
@@ -1001,6 +990,50 @@
 			"required": [
 				"targetName",
 				"status"
+			]
+		},
+		"SelfLink": {
+			"type": "object",
+			"properties": {
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string",
+							"description": "URL of this resource"
+						}
+					},
+					"required": [
+						"self"
+					]
+				}
+			},
+			"required": [
+				"links"
+			]
+		},
+		"IdAndSelfLink": {
+			"type": "object",
+			"properties": {
+				"links": {
+					"type": "object",
+					"properties": {
+						"id": {
+							"type": "string"
+						},
+						"self": {
+							"type": "string",
+							"description": "URL of this resource"
+						}
+					},
+					"required": [
+						"id",
+						"self"
+					]
+				}
+			},
+			"required": [
+				"links"
 			]
 		},
 		"IdReference": {
