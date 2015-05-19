@@ -750,7 +750,7 @@
 			"description": "Represents group supervisor",
 			"properties": {
 				"group": {
-					"$ref": "#/definitions/IdAndSelfLink"
+					"$ref": "#/definitions/IdAndSelfLinkReference"
 				},
 				"supervisor": {
 					"$ref": "#/definitions/Person"
@@ -928,7 +928,7 @@
 					"type": "string"
 				},
 				"site": {
-					"$ref": "#/definitions/IdAndSelfLink"
+					"$ref": "#/definitions/IdAndSelfLinkReference"
 				},
 				"profiles": {
 					"$ref": "#/definitions/SelfLink"
@@ -1012,7 +1012,7 @@
 				"links"
 			]
 		},
-		"IdAndSelfLink": {
+		"IdAndSelfLinkReference": {
 			"type": "object",
 			"properties": {
 				"id": {
