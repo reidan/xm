@@ -737,9 +737,10 @@
 					}
 				},
 				"shifts": {
+					"description": "References to shifts, may be shift id or shift name",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReferenceByName"
+						"$ref": "#/definitions/ReferenceById"
 					}
 				}
 			},
@@ -989,17 +990,6 @@
 			"required": [
 				"id",
 				"links"
-			]
-		},
-		"ReferenceByName": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"name"
 			]
 		},
 		"ReferenceBySelfLink": {
