@@ -840,6 +840,29 @@
 				"links"
 			]
 		},
+		"PaginationLinks": {
+			"type": "object",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this page of the result set",
+					"format": "uri"
+				},
+				"previous": {
+					"type": "string",
+					"description": "URL of the previous page of the result set",
+					"format": "uri"
+				},
+				"next": {
+					"type": "string",
+					"description": "URL of the next page of the result set",
+					"format": "uri"
+				}
+			},
+			"required": [
+				"self"
+			]
+		},
 		"Person": {
 			"type": "object",
 			"description": "A user of xMatters services",
@@ -1110,29 +1133,6 @@
 				"id",
 				"name",
 				"links"
-			]
-		},
-		"PaginationLinks": {
-			"type": "object",
-			"properties": {
-				"self": {
-					"type": "string",
-					"description": "URL of this page of the result set",
-					"format": "uri"
-				},
-				"previous": {
-					"type": "string",
-					"description": "URL of the previous page of the result set",
-					"format": "uri"
-				},
-				"next": {
-					"type": "string",
-					"description": "URL of the next page of the result set",
-					"format": "uri"
-				}
-			},
-			"required": [
-				"self"
 			]
 		}
 	}
