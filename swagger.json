@@ -601,9 +601,6 @@
 				"targetName": {
 					"type": "string"
 				},
-				"name": {
-					"type": "string"
-				},
 				"description": {
 					"type": "string"
 				},
@@ -611,6 +608,9 @@
 					"type": "string",
 					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"timezone": {
+					"type": "string"
 				},
 				"externallyOwned": {
 					"type": "boolean"
@@ -626,8 +626,7 @@
 				}
 			},
 			"required": [
-				"targetName",
-				"name"
+				"targetName"
 			]
 		},
 		"Group": {
@@ -640,9 +639,6 @@
 				"targetName": {
 					"type": "string"
 				},
-				"name": {
-					"type": "string"
-				},
 				"description": {
 					"type": "string"
 				},
@@ -650,6 +646,9 @@
 					"type": "string",
 					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"timezone": {
+					"type": "string"
 				},
 				"externallyOwned": {
 					"type": "boolean"
@@ -670,7 +669,6 @@
 			"required": [
 				"id",
 				"targetName",
-				"name",
 				"status",
 				"links"
 			]
@@ -763,27 +761,7 @@
 					"description": "Total number of data items in the result set"
 				},
 				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this page of the result set",
-							"format": "uri"
-						},
-						"previous": {
-							"type": "string",
-							"description": "URL of the previous page of the result set",
-							"format": "uri"
-						},
-						"next": {
-							"type": "string",
-							"description": "URL of the next page of the result set",
-							"format": "uri"
-						}
-					},
-					"required": [
-						"self"
-					]
+					"$ref": "#/definitions/PaginationLinks"
 				}
 			},
 			"required": [
@@ -794,10 +772,33 @@
 			]
 		},
 		"GroupSupervisors": {
-			"type": "array",
-			"items": {
-				"$ref": "#/definitions/GroupSupervisor"
-			}
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GroupSupervisor"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
 		},
 		"GroupSupervisor": {
 			"type": "object",
@@ -876,27 +877,7 @@
 					"description": "Total number of data items in the result set"
 				},
 				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this page of the result set",
-							"format": "uri"
-						},
-						"previous": {
-							"type": "string",
-							"description": "URL of the previous page of the result set",
-							"format": "uri"
-						},
-						"next": {
-							"type": "string",
-							"description": "URL of the next page of the result set",
-							"format": "uri"
-						}
-					},
-					"required": [
-						"self"
-					]
+					"$ref": "#/definitions/PaginationLinks"
 				}
 			},
 			"required": [
@@ -1117,6 +1098,30 @@
 			"required": [
 				"name"
 			]
+		},
+		"PaginationLinks": {
+				"type": "object",
+				"properties": {
+					"self": {
+						"type": "string",
+						"description": "URL of this page of the result set",
+						"format": "uri"
+					},
+					"previous": {
+						"type": "string",
+						"description": "URL of the previous page of the result set",
+						"format": "uri"
+					},
+					"next": {
+						"type": "string",
+						"description": "URL of the next page of the result set",
+						"format": "uri"
+					}
+				},
+				"required": [
+					"self"
+				]
+			}
 		},
 		"Response": {
 			"description": "A coded API response",
