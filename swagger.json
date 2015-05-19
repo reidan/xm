@@ -42,6 +42,12 @@
 							"$ref": "#/definitions/Group"
 						}
 					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
 					"401": {
 						"description": "Unauthorized",
 						"schema": {
@@ -111,6 +117,12 @@
 							"$ref": "#/definitions/Response"
 						}
 					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
 					"429": {
 						"description": "Too Many Requests",
 						"schema": {
@@ -169,6 +181,12 @@
 							"$ref": "#/definitions/Response"
 						}
 					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
 					"429": {
 						"description": "Too Many Requests",
 						"schema": {
@@ -214,6 +232,12 @@
 							"$ref": "#/definitions/GroupMember"
 						}
 					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
 					"401": {
 						"description": "Unauthorized",
 						"schema": {
@@ -222,6 +246,12 @@
 					},
 					"403": {
 						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
 						"schema": {
 							"$ref": "#/definitions/Response"
 						}
@@ -332,6 +362,12 @@
 						"description": "OK",
 						"schema": {
 							"$ref": "#/definitions/GroupSupervisor"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
 						}
 					},
 					"401": {
@@ -460,6 +496,12 @@
 							"$ref": "#/definitions/Person"
 						}
 					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
 					"401": {
 						"description": "Unauthorized",
 						"schema": {
@@ -529,6 +571,12 @@
 							"$ref": "#/definitions/Response"
 						}
 					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
 					"429": {
 						"description": "Too Many Requests",
 						"schema": {
@@ -563,6 +611,9 @@
 					"type": "string",
 					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"externallyOwned": {
+					"type": "boolean"
 				},
 				"externalKey": {
 					"type": "string"
@@ -599,6 +650,9 @@
 					"type": "string",
 					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"externallyOwned": {
+					"type": "boolean"
 				},
 				"externalKey": {
 					"type": "string"
@@ -918,13 +972,16 @@
 				"timezone": {
 					"type": "string"
 				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
 				"webLogin": {
 					"type": "string"
 				},
 				"phoneLogin": {
+					"type": "string"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
 					"type": "string"
 				},
 				"site": {
@@ -962,13 +1019,16 @@
 				"timezone": {
 					"type": "string"
 				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
 				"webLogin": {
 					"type": "string"
 				},
 				"phoneLogin": {
+					"type": "string"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
 					"type": "string"
 				},
 				"roles": {
