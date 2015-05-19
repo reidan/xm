@@ -685,7 +685,7 @@
 					"properties": {
 						"group": {
 							"$ref": "#/definitions/Group"
-						}
+						},
 						"person": {
 							"$ref": "#/definitions/Person"
 						},
