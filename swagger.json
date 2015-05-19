@@ -637,13 +637,7 @@
 					"type": "string"
 				},
 				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this resource"
-						}
-					}
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
@@ -989,16 +983,7 @@
 					"type": "string"
 				},
 				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this resource"
-						}
-					},
-					"required": [
-						"self"
-					]
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
@@ -1021,16 +1006,7 @@
 			"type": "object",
 			"properties": {
 				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this resource"
-						}
-					},
-					"required": [
-						"self"
-					]
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
@@ -1064,6 +1040,18 @@
 				"code",
 				"type",
 				"message"
+			]
+		},
+		"SelfLink": {
+			"type": "object",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this resource"
+				}
+			},
+			"required": [
+				"self"
 			]
 		},
 		"Shift": {
@@ -1118,16 +1106,7 @@
 					"type": "string"
 				},
 				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this resource"
-						}
-					},
-					"required": [
-						"self"
-					]
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
