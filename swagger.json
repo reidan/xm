@@ -649,7 +649,7 @@
 		},
 		"GroupPost": {
 			"type": "object",
-			"description": "A group",
+			"description": "Adding or updating a group. Will attempt to find group by id if provided or by targetName before creating a new group in the system.",
 			"properties": {
 				"id": {
 					"type": "string"
@@ -898,14 +898,15 @@
 				"site": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
-				"profiles": {
-					"$ref": "#/definitions/ReferenceBySelfLink"
+				"links": {
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
 				"id",
 				"targetName",
-				"status"
+				"status",
+				"links"
 			]
 		},
 		"PersonPost": {
@@ -1048,12 +1049,20 @@
 			"type": "object",
 			"description": "A shift",
 			"properties": {
+				"id": {
+					"type": "string"
+				},
 				"name": {
 					"type": "string"
+				},
+				"links": {
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
-				"name"
+				"id",
+				"name",
+				"links"
 			]
 		},
 		"Shifts": {
