@@ -31,7 +31,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/NewGroup"
+							"$ref": "#/definitions/GroupPost"
 						}
 					}
 				],
@@ -221,7 +221,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/NewGroupMember"
+							"$ref": "#/definitions/GroupMemberPost"
 						}
 					}
 				],
@@ -353,7 +353,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/NewGroupSupervisor"
+							"$ref": "#/definitions/GroupSupervisorPost"
 						}
 					}
 				],
@@ -485,7 +485,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/NewPerson"
+							"$ref": "#/definitions/PersonPost"
 						}
 					}
 				],
@@ -594,39 +594,19 @@
 		}
 	},
 	"definitions": {
-		"NewGroup": {
+		"Device": {
 			"type": "object",
-			"description": "A group",
 			"properties": {
-				"targetName": {
+				"id": {
 					"type": "string"
 				},
-				"description": {
+				"name": {
 					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"default": "ACTIVE",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
-				"timezone": {
-					"type": "string"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				},
-				"supervisors": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/IdReference"
-					}
 				}
 			},
 			"required": [
-				"targetName"
+				"id",
+				"name"
 			]
 		},
 		"Group": {
@@ -673,6 +653,44 @@
 				"links"
 			]
 		},
+		"GroupPost": {
+			"type": "object",
+			"description": "A group",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"default": "ACTIVE",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"timezone": {
+					"type": "string"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
+				"supervisors": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReferenceById"
+					}
+				}
+			},
+			"required": [
+				"targetName"
+			]
+		},
 		"GroupMember": {
 			"type": "object",
 			"description": "Represents group membership",
@@ -703,31 +721,31 @@
 				"member"
 			]
 		},
-		"NewGroupMember": {
+		"GroupMemberPost": {
 			"type": "object",
 			"description": "Represents group membership",
 			"properties": {
 				"group": {
-					"$ref": "#/definitions/IdReference"
+					"$ref": "#/definitions/ReferenceById"
 				},
 				"member": {
 					"type": "object",
 					"properties": {
 						"group": {
-							"$ref": "#/definitions/IdReference"
+							"$ref": "#/definitions/ReferenceById"
 						},
 						"person": {
-							"$ref": "#/definitions/IdReference"
+							"$ref": "#/definitions/ReferenceById"
 						},
 						"device": {
-							"$ref": "#/definitions/IdReference"
+							"$ref": "#/definitions/ReferenceById"
 						}
 					}
 				},
 				"shifts": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/IdReference"
+						"$ref": "#/definitions/ReferenceByName"
 					}
 				}
 			},
@@ -765,6 +783,34 @@
 				"links"
 			]
 		},
+		"GroupSupervisor": {
+			"type": "object",
+			"description": "Represents group supervisor",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"supervisor": {
+					"$ref": "#/definitions/Person"
+				}
+			},
+			"required": [
+				"group",
+				"supervisor"
+			]
+		},
+		"GroupSupervisorPost": {
+			"type": "object",
+			"description": "Adding a group supervisor",
+			"properties": {
+				"supervisor": {
+					"$ref": "#/definitions/ReferenceById"
+				}
+			},
+			"required": [
+				"supervisor"
+			]
+		},
 		"GroupSupervisors": {
 			"type": "object",
 			"description": "A paginated result set",
@@ -791,134 +837,6 @@
 				"data",
 				"count",
 				"total",
-				"links"
-			]
-		},
-		"GroupSupervisor": {
-			"type": "object",
-			"description": "Represents group supervisor",
-			"properties": {
-				"group": {
-					"$ref": "#/definitions/IdAndSelfLinkReference"
-				},
-				"supervisor": {
-					"$ref": "#/definitions/Person"
-				}
-			},
-			"required": [
-				"group",
-				"supervisor"
-			]
-		},
-		"NewGroupSupervisor": {
-			"type": "object",
-			"description": "Adding a group supervisor",
-			"properties": {
-				"supervisor": {
-					"$ref": "#/definitions/IdReference"
-				}
-			},
-			"required": [
-				"supervisor"
-			]
-		},
-		"Team": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"id",
-				"name"
-			]
-		},
-		"Device": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"id",
-				"name"
-			]
-		},
-		"Shifts": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Shift"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"Shift": {
-			"type": "object",
-			"description": "A shift",
-			"properties": {
-				"name": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"name"
-			]
-		},
-		"Site": {
-			"type": "object",
-			"description": "A geographic area",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this resource"
-						}
-					},
-					"required": [
-						"self"
-					]
-				}
-			},
-			"required": [
-				"id",
-				"name",
 				"links"
 			]
 		},
@@ -960,10 +878,10 @@
 					"type": "string"
 				},
 				"site": {
-					"$ref": "#/definitions/IdAndSelfLinkReference"
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
 				"profiles": {
-					"$ref": "#/definitions/SelfLinkReference"
+					"$ref": "#/definitions/ReferenceBySelfLink"
 				}
 			},
 			"required": [
@@ -972,10 +890,13 @@
 				"status"
 			]
 		},
-		"NewPerson": {
+		"PersonPost": {
 			"type": "object",
-			"description": "A new person",
+			"description": "Adding or updating a person. Will attempt to find person by id if provided or by targetName before creating a new person in the system.",
 			"properties": {
+				"id": {
+					"type": "string"
+				},
 				"targetName": {
 					"type": "string"
 				},
@@ -1013,12 +934,12 @@
 					}
 				},
 				"site": {
-					"$ref": "#/definitions/IdReference"
+					"$ref": "#/definitions/ReferenceById"
 				},
 				"supervisors": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/IdReference"
+						"$ref": "#/definitions/ReferenceById"
 					}
 				}
 			},
@@ -1027,27 +948,18 @@
 				"status"
 			]
 		},
-		"SelfLinkReference": {
+		"ReferenceById": {
 			"type": "object",
 			"properties": {
-				"links": {
-					"type": "object",
-					"properties": {
-						"self": {
-							"type": "string",
-							"description": "URL of this resource"
-						}
-					},
-					"required": [
-						"self"
-					]
+				"id": {
+					"type": "string"
 				}
 			},
 			"required": [
-				"links"
+				"id"
 			]
 		},
-		"IdAndSelfLinkReference": {
+		"ReferenceByIdAndSelfLink": {
 			"type": "object",
 			"properties": {
 				"id": {
@@ -1071,18 +983,7 @@
 				"links"
 			]
 		},
-		"IdReference": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"id"
-			]
-		},
-		"NameReference": {
+		"ReferenceByName": {
 			"type": "object",
 			"properties": {
 				"name": {
@@ -1093,27 +994,24 @@
 				"name"
 			]
 		},
-		"PaginationLinks": {
+		"ReferenceBySelfLink": {
 			"type": "object",
 			"properties": {
-				"self": {
-					"type": "string",
-					"description": "URL of this page of the result set",
-					"format": "uri"
-				},
-				"previous": {
-					"type": "string",
-					"description": "URL of the previous page of the result set",
-					"format": "uri"
-				},
-				"next": {
-					"type": "string",
-					"description": "URL of the next page of the result set",
-					"format": "uri"
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string",
+							"description": "URL of this resource"
+						}
+					},
+					"required": [
+						"self"
+					]
 				}
 			},
 			"required": [
-				"self"
+				"links"
 			]
 		},
 		"Response": {
@@ -1142,6 +1040,99 @@
 				"code",
 				"type",
 				"message"
+			]
+		},
+		"Shift": {
+			"type": "object",
+			"description": "A shift",
+			"properties": {
+				"name": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"name"
+			]
+		},
+		"Shifts": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Shift"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
+		"Site": {
+			"type": "object",
+			"description": "A geographic area",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"links": {
+					"type": "object",
+					"properties": {
+						"self": {
+							"type": "string",
+							"description": "URL of this resource"
+						}
+					},
+					"required": [
+						"self"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"links"
+			]
+		},
+		"PaginationLinks": {
+			"type": "object",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this page of the result set",
+					"format": "uri"
+				},
+				"previous": {
+					"type": "string",
+					"description": "URL of the previous page of the result set",
+					"format": "uri"
+				},
+				"next": {
+					"type": "string",
+					"description": "URL of the next page of the result set",
+					"format": "uri"
+				}
+			},
+			"required": [
+				"self"
 			]
 		}
 	}
