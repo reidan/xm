@@ -591,6 +591,63 @@
 					}
 				}
 			}
+		},
+		"/sites/{siteId}": {
+			"get": {
+				"tags": [
+					"Sites"
+				],
+				"summary": "Get site information",
+				"description": "Get site information",
+				"operationId": "getSite",
+				"parameters": [
+					{
+						"name": "siteId",
+						"in": "path",
+						"description": "The site id or targetName",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Site"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
@@ -1104,6 +1161,38 @@
 				"name": {
 					"type": "string"
 				},
+				"status": {
+					"type": "string",
+					"default": "ACTIVE",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"language": {
+					"type": "string"
+				},
+				"timezone": {
+					"type": "string"
+				},
+				"address1": {
+					"type": "string"
+				},
+				"address2": {
+					"type": "string"
+				},
+				"city": {
+					"type": "string"
+				},
+				"country": {
+					"type": "string"
+				},
+				"region": {
+					"type": "string"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
 				}
@@ -1111,6 +1200,12 @@
 			"required": [
 				"id",
 				"name",
+				"status",
+				"language",
+				"timezone",
+				"country",
+				"externallyOwned",
+				"externalKey",
 				"links"
 			]
 		}
