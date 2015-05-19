@@ -685,10 +685,7 @@
 					"properties": {
 						"group": {
 							"$ref": "#/definitions/Group"
-						},
-						"team": {
-							"$ref": "#/definitions/Team"
-						},
+						}
 						"person": {
 							"$ref": "#/definitions/Person"
 						},
@@ -717,9 +714,6 @@
 					"type": "object",
 					"properties": {
 						"group": {
-							"$ref": "#/definitions/IdReference"
-						},
-						"team": {
 							"$ref": "#/definitions/IdReference"
 						},
 						"person": {
