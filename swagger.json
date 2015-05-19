@@ -1100,28 +1100,27 @@
 			]
 		},
 		"PaginationLinks": {
-				"type": "object",
-				"properties": {
-					"self": {
-						"type": "string",
-						"description": "URL of this page of the result set",
-						"format": "uri"
-					},
-					"previous": {
-						"type": "string",
-						"description": "URL of the previous page of the result set",
-						"format": "uri"
-					},
-					"next": {
-						"type": "string",
-						"description": "URL of the next page of the result set",
-						"format": "uri"
-					}
+			"type": "object",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this page of the result set",
+					"format": "uri"
 				},
-				"required": [
-					"self"
-				]
-			}
+				"previous": {
+					"type": "string",
+					"description": "URL of the previous page of the result set",
+					"format": "uri"
+				},
+				"next": {
+					"type": "string",
+					"description": "URL of the next page of the result set",
+					"format": "uri"
+				}
+			},
+			"required": [
+				"self"
+			]
 		},
 		"Response": {
 			"description": "A coded API response",
