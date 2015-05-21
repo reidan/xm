@@ -3,7 +3,7 @@
 	"info": {
 		"title": "xM API",
 		"description": "The xM API",
-		"version": "1"
+		"version": "1.0.0"
 	},
 	"host": "api.xmatters.com",
 	"basePath": "/api/xm/v1",
