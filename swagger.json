@@ -1090,18 +1090,7 @@
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
 				"member": {
-					"type": "object",
-					"properties": {
-						"group": {
-							"$ref": "#/definitions/Group"
-						},
-						"person": {
-							"$ref": "#/definitions/Person"
-						},
-						"device": {
-							"$ref": "#/definitions/Device"
-						}
-					}
+					"$ref": "#/definitions/Recipient"
 				},
 				"shifts": {
 					"$ref": "#/definitions/Shifts"
@@ -1122,19 +1111,11 @@
 				"member": {
 					"type": "object",
 					"properties": {
-						"group": {
-							"$ref": "#/definitions/ReferenceById"
-						},
-						"person": {
-							"$ref": "#/definitions/ReferenceById"
-						},
-						"device": {
-							"$ref": "#/definitions/ReferenceById"
-						}
+						"$ref": "#/definitions/RecipientPost"
 					}
 				},
 				"shifts": {
-					"description": "References to shifts, may be shift id or shift name",
+					"description": "References to shifts",
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/ReferenceById"
@@ -1256,8 +1237,8 @@
 			]
 		},
 		"Person": {
-			"type": "object",
 			"description": "A user of xMatters services",
+			"type": "object",
 			"properties": {
 				"id": {
 					"type": "string"
@@ -1364,6 +1345,36 @@
 				"status"
 			]
 		},
+		"Recipient": {
+			"type": "object",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/Group"
+				},
+				"person": {
+					"$ref": "#/definitions/Person"
+				},
+				"device": {
+					"$ref": "#/definitions/Device"
+				}
+			},
+			"required": []
+		},
+		"RecipientPost": {
+			"type": "object",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"person": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"device": {
+					"$ref": "#/definitions/ReferenceById"
+				}
+			},
+			"required": []
+		},
 		"ReferenceById": {
 			"type": "object",
 			"properties": {
@@ -1452,6 +1463,9 @@
 				"id": {
 					"type": "string"
 				},
+				"schedule": {
+					"type": "string"
+				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
 				}
@@ -1459,6 +1473,7 @@
 			"required": [
 				"group",
 				"id",
+				"schedule",
 				"links"
 			]
 		},
@@ -1471,11 +1486,15 @@
 				},
 				"id": {
 					"type": "string"
+				},
+				"schedule": {
+					"type": "string"
 				}
 			},
 			"required": [
 				"group",
-				"id"
+				"id",
+				"schedule"
 			]
 		},
 		"Shifts": {
