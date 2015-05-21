@@ -22,7 +22,7 @@
 				"tags": [
 					"Groups"
 				],
-				"summary": "Add a group",
+				"summary": "Add or update a group",
 				"description": "Add a group",
 				"operationId": "postGroups",
 				"parameters": [
@@ -405,8 +405,8 @@
 				"tags": [
 					"Shifts"
 				],
-				"summary": "Add a shift",
-				"description": "Add a shift",
+				"summary": "Add or update a shift",
+				"description": "Add or update a shift",
 				"operationId": "postShift",
 				"parameters": [
 					{
@@ -816,8 +816,8 @@
 				"tags": [
 					"People"
 				],
-				"summary": "Add a person",
-				"description": "Add a person",
+				"summary": "Add or update a person",
+				"description": "Add or update a person",
 				"operationId": "postPeople",
 				"parameters": [
 					{
