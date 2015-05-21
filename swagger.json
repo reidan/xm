@@ -277,6 +277,70 @@
 				}
 			}
 		},
+		"/groups/{groupId}/shifts/{shiftId}": {
+			"get": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Get shift information",
+				"description": "Get shift information",
+				"operationId": "getShift",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "shiftId",
+						"in": "path",
+						"description": "This is the name of the shift. e.g. 24/7. Must be URL encoded.",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Shift"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/groups/{groupId}/supervisors": {
 			"get": {
 				"tags": [
@@ -747,7 +811,7 @@
 			"description": "Represents group membership",
 			"properties": {
 				"group": {
-					"$ref": "#/definitions/Group"
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
 				"member": {
 					"type": "object",
@@ -1205,7 +1269,6 @@
 				"timezone",
 				"country",
 				"externallyOwned",
-				"externalKey",
 				"links"
 			]
 		}
