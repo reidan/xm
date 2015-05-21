@@ -396,6 +396,74 @@
 						}
 					}
 				}
+			},
+			"delete": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Remove a shift",
+				"description": "Remove a shift",
+				"operationId": "deleteShift",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "shiftId",
+						"in": "path",
+						"description": "This is the name of the shift. e.g. 24/7. Must be URL encoded.",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Shift"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
 			}
 		},
 		"/groups/{groupId}/supervisors": {
@@ -575,6 +643,12 @@
 					},
 					"404": {
 						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
 						"schema": {
 							"$ref": "#/definitions/Response"
 						}
@@ -1229,6 +1303,9 @@
 			"type": "object",
 			"description": "A shift",
 			"properties": {
+				"group": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
 				"id": {
 					"type": "string"
 				},
@@ -1240,6 +1317,7 @@
 				}
 			},
 			"required": [
+				"group",
 				"id",
 				"name",
 				"links"
