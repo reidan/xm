@@ -23,7 +23,7 @@
 					"Groups"
 				],
 				"summary": "Add or update a group",
-				"description": "Add a group",
+				"description": "Add or update a group",
 				"operationId": "postGroups",
 				"parameters": [
 					{
@@ -86,8 +86,8 @@
 				"tags": [
 					"Groups"
 				],
-				"summary": "Get group information",
-				"description": "Get group information",
+				"summary": "Retrieve group information",
+				"description": "Retrieve group information",
 				"operationId": "getGroup",
 				"parameters": [
 					{
@@ -204,8 +204,8 @@
 				"tags": [
 					"Groups"
 				],
-				"summary": "Get group members",
-				"description": "Get group members",
+				"summary": "List group members",
+				"description": "List group members",
 				"operationId": "getGroupMembers",
 				"parameters": [
 					{
@@ -343,8 +343,8 @@
 				"tags": [
 					"Shifts"
 				],
-				"summary": "Get shifts",
-				"description": "Get shifts",
+				"summary": "List shifts",
+				"description": "List shifts",
 				"operationId": "getShifts",
 				"parameters": [
 					{
@@ -482,8 +482,8 @@
 				"tags": [
 					"Shifts"
 				],
-				"summary": "Get shift information",
-				"description": "Get shift information",
+				"summary": "Retrieve shift information",
+				"description": "Retrieve shift information",
 				"operationId": "getShift",
 				"parameters": [
 					{
@@ -614,8 +614,8 @@
 				"tags": [
 					"Group Supervisors"
 				],
-				"summary": "Get group supervisors",
-				"description": "Get group supervisors",
+				"summary": "List group supervisors",
+				"description": "List group supervisors",
 				"operationId": "getGroupSupervisors",
 				"parameters": [
 					{
@@ -880,8 +880,8 @@
 				"tags": [
 					"People"
 				],
-				"summary": "Get person information",
-				"description": "Get person information",
+				"summary": "Retrieve person information",
+				"description": "Retrieve person information",
 				"operationId": "getPerson",
 				"parameters": [
 					{
@@ -937,8 +937,8 @@
 				"tags": [
 					"Sites"
 				],
-				"summary": "Get site information",
-				"description": "Get site information",
+				"summary": "Retrieve site information",
+				"description": "Retrieve site information",
 				"operationId": "getSite",
 				"parameters": [
 					{
