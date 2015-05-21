@@ -202,7 +202,7 @@
 		"/groups/{groupId}/members": {
 			"get": {
 				"tags": [
-					"Groups"
+					"Group Members"
 				],
 				"summary": "List group members",
 				"description": "List group members",
@@ -264,7 +264,7 @@
 			},
 			"post": {
 				"tags": [
-					"Groups"
+					"Group Members"
 				],
 				"summary": "Add group members",
 				"description": "Add group members",
