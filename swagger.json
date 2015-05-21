@@ -400,6 +400,81 @@
 						}
 					}
 				}
+			},
+			"post": {
+				"tags": [
+					"Shifts"
+				],
+				"summary": "Add a shift",
+				"description": "Add a shift",
+				"operationId": "postShift",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ShiftPost"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Shift"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
 			}
 		},
 		"/groups/{groupId}/shifts/{shiftId}": {
@@ -1377,9 +1452,6 @@
 				"id": {
 					"type": "string"
 				},
-				"name": {
-					"type": "string"
-				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
 				}
@@ -1387,8 +1459,23 @@
 			"required": [
 				"group",
 				"id",
-				"name",
 				"links"
+			]
+		},
+		"ShiftPost": {
+			"type": "object",
+			"description": "Adding or updating a shift. Will attempt to find shift by id if provided before creating a new shift in the system.",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"id": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"group",
+				"id"
 			]
 		},
 		"Shifts": {
