@@ -277,6 +277,63 @@
 				}
 			}
 		},
+		"/groups/{groupId}/shifts": {
+			"get": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Get shifts",
+				"description": "Get shifts",
+				"operationId": "getShifts",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Shifts"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/groups/{groupId}/shifts/{shiftId}": {
 			"get": {
 				"tags": [
