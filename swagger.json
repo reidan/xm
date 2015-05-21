@@ -1109,10 +1109,7 @@
 					"$ref": "#/definitions/ReferenceById"
 				},
 				"member": {
-					"type": "object",
-					"properties": {
-						"$ref": "#/definitions/RecipientPost"
-					}
+					"$ref": "#/definitions/RecipientPost"
 				},
 				"shifts": {
 					"description": "References to shifts",
@@ -1357,8 +1354,7 @@
 				"device": {
 					"$ref": "#/definitions/Device"
 				}
-			},
-			"required": []
+			}
 		},
 		"RecipientPost": {
 			"type": "object",
@@ -1372,8 +1368,7 @@
 				"device": {
 					"$ref": "#/definitions/ReferenceById"
 				}
-			},
-			"required": []
+			}
 		},
 		"ReferenceById": {
 			"type": "object",
