@@ -155,7 +155,7 @@
 						"type": "string"
 					},
 					{
-						"name": "shift",
+						"name": "shiftId",
 						"in": "query",
 						"description": "Filter results to a specific shift",
 						"required": false,
@@ -291,6 +291,13 @@
 						"in": "path",
 						"description": "The group id",
 						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "personId",
+						"in": "query",
+						"description": "Filter results to a specific person",
+						"required": false,
 						"type": "string"
 					}
 				],
