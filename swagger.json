@@ -537,7 +537,7 @@
 		"/groups/{groupId}/supervisors": {
 			"get": {
 				"tags": [
-					"Groups"
+					"Group Supervisors"
 				],
 				"summary": "Get group supervisors",
 				"description": "Get group supervisors",
@@ -592,7 +592,7 @@
 			},
 			"post": {
 				"tags": [
-					"Groups"
+					"Group Supervisors"
 				],
 				"summary": "Add group supervisors",
 				"description": "Add group supervisors",
@@ -669,7 +669,7 @@
 		"/groups/{groupId}/supervisors/{supervisorId}": {
 			"delete": {
 				"tags": [
-					"Groups"
+					"Group Supervisors"
 				],
 				"summary": "Remove a group supervisor",
 				"description": "Remove a group supervisor",
