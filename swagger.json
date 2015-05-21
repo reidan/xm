@@ -6,7 +6,7 @@
 		"version": "1.0.0"
 	},
 	"host": "api.xmatters.com",
-	"basePath": "/api/xm/v1",
+	"basePath": "/api/xm/1",
 	"schemes": [
 		"https"
 	],
