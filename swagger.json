@@ -280,7 +280,7 @@
 		"/groups/{groupId}/shifts": {
 			"get": {
 				"tags": [
-					"Groups"
+					"Shifts"
 				],
 				"summary": "Get shifts",
 				"description": "Get shifts",
@@ -337,7 +337,7 @@
 		"/groups/{groupId}/shifts/{shiftId}": {
 			"get": {
 				"tags": [
-					"Groups"
+					"Shifts"
 				],
 				"summary": "Get shift information",
 				"description": "Get shift information",
@@ -399,7 +399,7 @@
 			},
 			"delete": {
 				"tags": [
-					"Groups"
+					"Shifts"
 				],
 				"summary": "Remove a shift",
 				"description": "Remove a shift",
