@@ -1209,9 +1209,11 @@
 		},
 		"EmailDevice": {
 			"type": "object",
-			"allOf": {
-				"$ref": "#/definitions/Device"
-			},
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
 			"properties": {
 				"address": {
 					"type": "string"
@@ -1223,13 +1225,15 @@
 		},
 		"VoiceDevice": {
 			"type": "object",
-			"allOf": {
-				"$ref": "#/definitions/Device"
-			},
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
 			"properties": {
 				"phoneNumber": {
 					"type": "string",
-					"description": "E.164 format phone number"
+					"description": "E.164 international format phone number including country code"
 				}
 			},
 			"required": [
