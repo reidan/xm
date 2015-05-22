@@ -1207,21 +1207,26 @@
 					"type": "string"
 				},
 				"emergencyDevice": {
-					"type": "boolean"
+					"type": "boolean",
+					"default": false
 				},
 				"priorityThreshold": {
 					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"]
+					"enum": ["LOW", "MEDIUM", "HIGH"],
+					"default": "LOW"
 				},
 				"status": {
 					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"]
+					"enum": ["ACTIVE", "INACTIVE"],
+					"default": "ACTIVE"
 				},
 				"sequence": {
-					"type": "integer"
+					"type": "integer",
+					"default": -1
 				},
 				"delay": {
-					"type": "integer"
+					"type": "integer",
+					"default": 0
 				},
 				"owner": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
@@ -1231,6 +1236,7 @@
 				"deviceType",
 				"id",
 				"targetName",
+				"emergencyDevice",
 				"owner"
 			]
 		},
