@@ -1175,6 +1175,11 @@
 	"definitions": {
 		"Device": {
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Recipient"
+				}
+			],
 			"discriminator": "deviceType",
 			"properties": {
 				"deviceType": {
@@ -1193,12 +1198,6 @@
 						"BLACKBERRY_PUSH",
 						"VOICE_IVR"
 					]
-				},
-				"id": {
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
 				},
 				"description": {
 					"type": "string"
@@ -1234,9 +1233,70 @@
 			},
 			"required": [
 				"deviceType",
-				"id",
-				"targetName",
 				"emergencyDevice",
+				"owner"
+			]
+		},
+		"DevicePost": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPost"
+				}
+			],
+			"discriminator": "deviceType",
+			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"EMAIL",
+						"VOICE",
+						"TEXT_PHONE",
+						"TEXT_PAGER",
+						"NUMERIC_PAGER",
+						"IM",
+						"BROWSER",
+						"APPLE_PUSH",
+						"FAX",
+						"ANDROID_PUSH",
+						"BLACKBERRY_PUSH",
+						"VOICE_IVR"
+					]
+				},
+				"description": {
+					"type": "string"
+				},
+				"details": {
+					"type": "string"
+				},
+				"emergencyDevice": {
+					"type": "boolean",
+					"default": false
+				},
+				"priorityThreshold": {
+					"type": "string",
+					"enum": ["LOW", "MEDIUM", "HIGH"],
+					"default": "LOW"
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"],
+					"default": "ACTIVE"
+				},
+				"sequence": {
+					"type": "integer",
+					"default": -1
+				},
+				"delay": {
+					"type": "integer",
+					"default": 0
+				},
+				"owner": {
+					"$ref": "#/definitions/ReferenceById"
+				}
+			},
+			"required": [
+				"deviceType",
 				"owner"
 			]
 		},
@@ -1310,34 +1370,21 @@
 				"isTwoWay"
 			]
 		},
-		"DevicePost": {
-			"type": "object",
-			"properties": {
-				"targetName": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"targetName"
-			]
-		},
 		"Group": {
 			"type": "object",
-			"description": "A group",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Recipient"
+				}
+			],
 			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
 				"description": {
 					"type": "string"
 				},
 				"status": {
 					"type": "string",
-					"default": "ACTIVE",
-					"enum": ["ACTIVE", "INACTIVE"]
+					"enum": ["ACTIVE", "INACTIVE"],
+					"default": "ACTIVE"
 				},
 				"timezone": {
 					"type": "string"
@@ -1353,22 +1400,19 @@
 				}
 			},
 			"required": [
-				"id",
-				"targetName",
 				"status",
 				"links"
 			]
 		},
 		"GroupPost": {
-			"type": "object",
 			"description": "Adding or updating a group. Will attempt to find group by id if provided or by targetName before creating a new group in the system.",
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPost"
+				}
+			],
 			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
 				"description": {
 					"type": "string"
 				},
@@ -1394,7 +1438,6 @@
 				}
 			},
 			"required": [
-				"targetName"
 			]
 		},
 		"GroupMember": {
@@ -1549,15 +1592,13 @@
 			]
 		},
 		"Person": {
-			"description": "A user of xMatters services",
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Recipient"
+				}
+			],
 			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
 				"firstName": {
 					"type": "string"
 				},
@@ -1593,22 +1634,19 @@
 				}
 			},
 			"required": [
-				"id",
-				"targetName",
 				"status",
 				"links"
 			]
 		},
 		"PersonPost": {
-			"type": "object",
 			"description": "Adding or updating a person. Will attempt to find person by id if provided or by targetName before creating a new person in the system.",
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPost"
+				}
+			],
 			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
 				"firstName": {
 					"type": "string"
 				},
@@ -1659,31 +1697,49 @@
 		},
 		"Recipient": {
 			"type": "object",
+			"discriminator": "recipientType",
 			"properties": {
-				"group": {
-					"$ref": "#/definitions/Group"
+				"recipientType": {
+					"type": "string",
+					"enum": [
+						"PERSON",
+						"DEVICE",
+						"GROUP"
+					]
 				},
-				"person": {
-					"$ref": "#/definitions/Person"
+				"id": {
+					"type": "string"
 				},
-				"device": {
-					"$ref": "#/definitions/Device"
+				"targetName": {
+					"type": "string"
 				}
-			}
+			},
+			"required": [
+				"recipientType",
+				"id",
+				"targetName"
+			]
 		},
 		"RecipientPost": {
 			"type": "object",
+			"discriminator": "recipientType",
 			"properties": {
-				"group": {
-					"$ref": "#/definitions/ReferenceById"
+				"recipientType": {
+					"type": "string",
+					"enum": [
+						"PERSON",
+						"DEVICE",
+						"GROUP"
+					]
 				},
-				"person": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"device": {
-					"$ref": "#/definitions/ReferenceById"
+				"targetName": {
+					"type": "string"
 				}
-			}
+			},
+			"required": [
+				"recipientType",
+				"targetName"
+			]
 		},
 		"ReferenceById": {
 			"type": "object",
