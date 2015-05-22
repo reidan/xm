@@ -1199,12 +1199,39 @@
 				},
 				"targetName": {
 					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"details": {
+					"type": "string"
+				},
+				"emergencyDevice": {
+					"type": "boolean"
+				},
+				"priorityThreshold": {
+					"type": "string",
+					"enum": ["LOW", "MEDIUM", "HIGH"]
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"sequence": {
+					"type": "integer"
+				},
+				"delay": {
+					"type": "integer"
+				},
+				"owner": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				}
 			},
 			"required": [
 				"deviceType",
 				"id",
-				"targetName"
+				"targetName",
+				"owner"
 			]
 		},
 		"EmailDevice": {
@@ -1237,7 +1264,44 @@
 				}
 			},
 			"required": [
-				"address"
+				"phoneNumber"
+			]
+		},
+		"TextPhoneDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"phoneNumber": {
+					"type": "string",
+					"description": "E.164 international format phone number including country code"
+				}
+			},
+			"required": [
+				"phoneNumber"
+			]
+		},
+		"TextPagerDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"pin": {
+					"type": "string"
+				},
+				"isTwoWay": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"pin",
+				"isTwoWay"
 			]
 		},
 		"DevicePost": {
