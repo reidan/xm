@@ -17,6 +17,188 @@
 		"application/json"
 	],
 	"paths": {
+		"/devices": {
+			"post": {
+				"tags": [
+					"Devices"
+				],
+				"summary": "Add or update a device",
+				"description": "Add or update a device",
+				"operationId": "postDevices",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/DevicePost"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Device"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/devices/{deviceId}": {
+			"get": {
+				"tags": [
+					"Devices"
+				],
+				"summary": "Retrieve device information",
+				"description": "Retrieve device information",
+				"operationId": "getDevice",
+				"parameters": [
+					{
+						"name": "deviceId",
+						"in": "path",
+						"description": "The device id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Device"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Devices"
+				],
+				"summary": "Remove a device",
+				"description": "Remove a device",
+				"operationId": "deleteDevice",
+				"parameters": [
+					{
+						"name": "deviceId",
+						"in": "path",
+						"description": "The device id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Device"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/groups": {
 			"post": {
 				"tags": [
@@ -993,17 +1175,76 @@
 	"definitions": {
 		"Device": {
 			"type": "object",
+			"discriminator": "deviceType",
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"EMAIL",
+						"VOICE",
+						"TEXT_PHONE",
+						"TEXT_PAGER",
+						"NUMERIC_PAGER",
+						"IM",
+						"BROWSER",
+						"APPLE_PUSH",
+						"FAX",
+						"ANDROID_PUSH",
+						"BLACKBERRY_PUSH",
+						"VOICE_IVR"
+					]
+				},
 				"id": {
 					"type": "string"
 				},
-				"name": {
+				"targetName": {
 					"type": "string"
 				}
 			},
 			"required": [
+				"deviceType",
 				"id",
-				"name"
+				"targetName"
+			]
+		},
+		"EmailDevice": {
+			"type": "object",
+			"allOf": {
+				"$ref": "#/definitions/Device"
+			},
+			"properties": {
+				"address": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"address"
+			]
+		},
+		"VoiceDevice": {
+			"type": "object",
+			"allOf": {
+				"$ref": "#/definitions/Device"
+			},
+			"properties": {
+				"phoneNumber": {
+					"type": "string",
+					"description": "E.164 format phone number"
+				}
+			},
+			"required": [
+				"address"
+			]
+		},
+		"DevicePost": {
+			"type": "object",
+			"properties": {
+				"targetName": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"targetName"
 			]
 		},
 		"Group": {
