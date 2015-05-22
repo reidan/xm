@@ -1429,9 +1429,7 @@
 						"$ref": "#/definitions/ReferenceById"
 					}
 				}
-			},
-			"required": [
-			]
+			}
 		},
 		"GroupMember": {
 			"type": "object",
