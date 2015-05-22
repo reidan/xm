@@ -396,20 +396,13 @@
 						"description": "The group id",
 						"required": true,
 						"type": "string"
-					},
-					{
-						"name": "shiftId",
-						"in": "query",
-						"description": "Filter results to a specific shift",
-						"required": false,
-						"type": "string"
 					}
 				],
 				"responses": {
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/GroupMembers"
+							"$ref": "#/definitions/Recipients"
 						}
 					},
 					"401": {
@@ -464,7 +457,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/GroupMemberPost"
+							"$ref": "#/definitions/RecipientPost"
 						}
 					}
 				],
@@ -472,7 +465,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/GroupMember"
+							"$ref": "#/definitions/Recipient"
 						}
 					},
 					"400": {
@@ -1459,29 +1452,6 @@
 				"member"
 			]
 		},
-		"GroupMemberPost": {
-			"type": "object",
-			"description": "Represents group membership",
-			"properties": {
-				"group": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"member": {
-					"$ref": "#/definitions/RecipientPost"
-				},
-				"shifts": {
-					"description": "References to shifts",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				}
-			},
-			"required": [
-				"group",
-				"member"
-			]
-		},
 		"GroupMembers": {
 			"type": "object",
 			"description": "Group members",
@@ -1511,6 +1481,29 @@
 				"links"
 			]
 		},
+		"GroupMemberPost": {
+			"type": "object",
+			"description": "Represents group membership",
+			"properties": {
+				"group": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"member": {
+					"$ref": "#/definitions/RecipientPost"
+				},
+				"shifts": {
+					"description": "References to shifts",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReferenceById"
+					}
+				}
+			},
+			"required": [
+				"group",
+				"member"
+			]
+		},
 		"GroupSupervisor": {
 			"type": "object",
 			"description": "Represents group supervisor",
@@ -1524,18 +1517,6 @@
 			},
 			"required": [
 				"group",
-				"supervisor"
-			]
-		},
-		"GroupSupervisorPost": {
-			"type": "object",
-			"description": "Adding a group supervisor",
-			"properties": {
-				"supervisor": {
-					"$ref": "#/definitions/ReferenceById"
-				}
-			},
-			"required": [
 				"supervisor"
 			]
 		},
@@ -1566,6 +1547,18 @@
 				"count",
 				"total",
 				"links"
+			]
+		},
+		"GroupSupervisorPost": {
+			"type": "object",
+			"description": "Adding a group supervisor",
+			"properties": {
+				"supervisor": {
+					"$ref": "#/definitions/ReferenceById"
+				}
+			},
+			"required": [
+				"supervisor"
 			]
 		},
 		"PaginationLinks": {
@@ -1718,6 +1711,35 @@
 				"recipientType",
 				"id",
 				"targetName"
+			]
+		},
+		"Recipients": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Recipient"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
 			]
 		},
 		"RecipientPost": {
