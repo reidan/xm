@@ -3,7 +3,7 @@
 	"info": {
 		"title": "xM API",
 		"description": "The xM API",
-		"version": "1.0.0"
+		"version": "1.0.0-alpha"
 	},
 	"host": "api.xmatters.com",
 	"basePath": "/api/xm/1",
@@ -671,7 +671,7 @@
 					{
 						"name": "shiftId",
 						"in": "path",
-						"description": "This is the name of the shift. e.g. 24/7. Must be URL encoded.",
+						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
 						"required": true,
 						"type": "string"
 					}
@@ -733,7 +733,7 @@
 					{
 						"name": "shiftId",
 						"in": "path",
-						"description": "This is the name of the shift. e.g. 24/7. Must be URL encoded.",
+						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
 						"required": true,
 						"type": "string"
 					}
@@ -1361,6 +1361,155 @@
 			"required": [
 				"pin",
 				"isTwoWay"
+			]
+		},
+		"NumericPagerDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"pagerNumber": {
+					"type": "string"
+				},
+				"country": {
+					"type": "string"
+				},
+				"areaCode": {
+					"type": "string"
+				},
+				"pin": {
+					"type": "string"
+				},
+				"isTwoWay": {
+					"type": "boolean"
+				}
+			}
+		},
+		"IMDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"address": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"address"
+			]
+		},
+		"ApplePushDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"accountId": {
+					"type": "string"
+				},
+				"apnToken": {
+					"type": "string"
+				},
+				"alertSound": {
+					"type": "string"
+				},
+				"soundStatus": {
+					"type": "string"
+				},
+				"soundThreshold": {
+					"type": "string",
+					"enum": ["LOW", "MEDIUM", "HIGH"]
+				}
+			},
+			"required": [
+				"accountId",
+				"apnToken"
+			]
+		},
+		"AndroidPushDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"accountId": {
+					"type": "string"
+				},
+				"registrationId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"accountId",
+				"registrationId"
+			]
+		},
+		"BlackberryPushDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"accountId": {
+					"type": "string"
+				},
+				"registrationId": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"accountId",
+				"registrationId"
+			]
+		},
+		"FaxDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"faxNumber": {
+					"type": "string",
+					"pattern": "^\\d{5,20}$"
+				},
+				"country": {
+					"type": "string",
+					"enum": ["AR", "AU", "BR", "CA", "FR", "DE", "HK", "IN", "IT", "JP", "PT", "PR", "GB", "US"]
+				}
+			},
+			"required": [
+				"faxNumber"
+			]
+		},
+		"BroadcastDevice": {
+			"description": "a.k.a. Voice IVR",
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"phoneNumber": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"phoneNumber"
 			]
 		},
 		"Group": {
