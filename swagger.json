@@ -381,138 +381,6 @@
 				}
 			}
 		},
-		"/groups/{groupId}/members": {
-			"get": {
-				"tags": [
-					"Group Members"
-				],
-				"summary": "List group members",
-				"description": "List group members",
-				"operationId": "getGroupMembers",
-				"parameters": [
-					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group id",
-						"required": true,
-						"type": "string"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Recipients"
-						}
-					},
-					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"Group Members"
-				],
-				"summary": "Add group members",
-				"description": "Add group members",
-				"operationId": "postGroupMembers",
-				"parameters": [
-					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group id",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/RecipientPost"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Recipient"
-						}
-					},
-					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					}
-				}
-			}
-		},
 		"/groups/{groupId}/shifts": {
 			"get": {
 				"tags": [
@@ -527,13 +395,6 @@
 						"in": "path",
 						"description": "The group id",
 						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "personId",
-						"in": "query",
-						"description": "Filter results to a specific person",
-						"required": false,
 						"type": "string"
 					}
 				],
@@ -874,7 +735,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/RecipientPost"
+							"$ref": "#/definitions/RecipientReference"
 						}
 					}
 				],
@@ -951,7 +812,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/GroupSupervisors"
+							"$ref": "#/definitions/People"
 						}
 					},
 					"401": {
@@ -1005,8 +866,9 @@
 						"name": "body",
 						"in": "body",
 						"required": true,
+						"description": "id or targetName of a person to add as group supervisor",
 						"schema": {
-							"$ref": "#/definitions/GroupSupervisorPost"
+							"$ref": "#/definitions/ReferenceById"
 						}
 					}
 				],
@@ -1014,7 +876,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/GroupSupervisor"
+							"$ref": "#/definitions/Person"
 						}
 					},
 					"400": {
@@ -1787,134 +1649,6 @@
 				}
 			}
 		},
-		"GroupMember": {
-			"type": "object",
-			"description": "Represents group membership",
-			"properties": {
-				"group": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"member": {
-					"$ref": "#/definitions/Recipient"
-				},
-				"shifts": {
-					"$ref": "#/definitions/Shifts"
-				}
-			},
-			"required": [
-				"group",
-				"member"
-			]
-		},
-		"GroupMembers": {
-			"type": "object",
-			"description": "Group members",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/GroupMember"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"GroupMemberPost": {
-			"type": "object",
-			"description": "Represents group membership",
-			"properties": {
-				"group": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"member": {
-					"$ref": "#/definitions/RecipientPost"
-				},
-				"shifts": {
-					"description": "References to shifts",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				}
-			},
-			"required": [
-				"group",
-				"member"
-			]
-		},
-		"GroupSupervisor": {
-			"type": "object",
-			"description": "Represents group supervisor",
-			"properties": {
-				"group": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"supervisor": {
-					"$ref": "#/definitions/Person"
-				}
-			},
-			"required": [
-				"group",
-				"supervisor"
-			]
-		},
-		"GroupSupervisors": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/GroupSupervisor"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"GroupSupervisorPost": {
-			"type": "object",
-			"description": "Adding a group supervisor",
-			"properties": {
-				"supervisor": {
-					"$ref": "#/definitions/ReferenceById"
-				}
-			},
-			"required": [
-				"supervisor"
-			]
-		},
 		"PaginationLinks": {
 			"type": "object",
 			"properties": {
@@ -1982,6 +1716,35 @@
 			},
 			"required": [
 				"status",
+				"links"
+			]
+		},
+		"People": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Person"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
 				"links"
 			]
 		},
@@ -2115,6 +1878,28 @@
 			"required": [
 				"recipientType",
 				"targetName"
+			]
+		},
+		"RecipientReference": {
+			"description": "Reference to an existing recipient",
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "The recipient id or targetName"
+				},
+				"recipientType": {
+					"type": "string",
+					"enum": [
+						"PERSON",
+						"DEVICE",
+						"GROUP"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"recipientType"
 			]
 		},
 		"ReferenceById": {
