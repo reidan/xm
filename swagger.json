@@ -806,7 +806,7 @@
 						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
 						"required": true,
 						"type": "string"
-					},
+					}
 				],
 				"responses": {
 					"200": {
