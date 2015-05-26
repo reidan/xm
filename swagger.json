@@ -2199,23 +2199,23 @@
 			"type": "object",
 			"description": "A shift",
 			"properties": {
-				"group": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
 				"id": {
 					"type": "string"
 				},
-				"schedule": {
+				"name": {
 					"type": "string"
+				},
+				"group": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
-				"group",
 				"id",
-				"schedule",
+				"name",
+				"group",
 				"links"
 			]
 		},
@@ -2223,20 +2223,16 @@
 			"type": "object",
 			"description": "Adding or updating a shift. Will attempt to find shift by id if provided before creating a new shift in the system.",
 			"properties": {
-				"group": {
-					"$ref": "#/definitions/ReferenceById"
-				},
 				"id": {
 					"type": "string"
 				},
-				"schedule": {
+				"name": {
 					"type": "string"
 				}
 			},
 			"required": [
-				"group",
 				"id",
-				"schedule"
+				"name"
 			]
 		},
 		"Shifts": {
