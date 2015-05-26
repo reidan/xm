@@ -33,6 +33,13 @@
 						"schema": {
 							"$ref": "#/definitions/DevicePost"
 						}
+					},
+					{
+						"name": "ownerId",
+						"in": "query",
+						"description": "Filter results to a specific person",
+						"required": false,
+						"type": "string"
 					}
 				],
 				"responses": {
