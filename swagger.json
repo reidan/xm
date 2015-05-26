@@ -785,6 +785,68 @@
 			}
 		},
 		"/groups/{groupId}/shifts/{shiftId}/members": {
+			"get": {
+				"tags": [
+					"Shift Members"
+				],
+				"summary": "List shift members",
+				"description": "List shift members",
+				"operationId": "getShiftMembers",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "shiftId",
+						"in": "path",
+						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
+						"required": true,
+						"type": "string"
+					},
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Recipients"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
 			"post": {
 				"tags": [
 					"Shift Members"
