@@ -402,7 +402,8 @@
 						"in": "query",
 						"description": "Filter by status",
 						"required": false,
-						"type": "string"
+						"type": "string",
+						"enum": ["ACTIVE", "INACTIVE"]
 					}
 				],
 				"responses": {
@@ -680,7 +681,8 @@
 						"in": "query",
 						"description": "Filter by status",
 						"required": false,
-						"type": "string"
+						"type": "string",
+						"enum": ["ACTIVE", "INACTIVE"]
 					}
 				],
 				"responses": {
