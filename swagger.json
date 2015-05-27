@@ -381,6 +381,210 @@
 				}
 			}
 		},
+		"/groups/{groupId}/members": {
+			"get": {
+				"tags": [
+					"Group Members"
+				],
+				"summary": "List group members",
+				"description": "List group members",
+				"operationId": "getGroupMembers",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "Filter by status",
+						"required": false,
+						"type": "string",
+						"enum": ["ACTIVE", "INACTIVE"]
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Recipients"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Group Members"
+				],
+				"summary": "Add group members",
+				"description": "Add group members",
+				"operationId": "postGroupMembers",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/RecipientReference"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Recipient"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/groups/{groupId}/members/{memberId}": {
+			"delete": {
+				"tags": [
+					"Group Members"
+				],
+				"summary": "Remove group member",
+				"description": "Remove group member",
+				"operationId": "deleteGroupMember",
+				"parameters": [
+					{
+						"name": "groupId",
+						"in": "path",
+						"description": "The group id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "memberId",
+						"in": "path",
+						"description": "The id or url encoded targetName of the recipient",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Recipient"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/groups/{groupId}/shifts": {
 			"get": {
 				"tags": [
@@ -807,7 +1011,7 @@
 				}
 			}
 		},
-		"/groups/{groupId}/shifts/{shiftId}/members/memberId": {
+		"/groups/{groupId}/shifts/{shiftId}/members/{memberId}": {
 			"delete": {
 				"tags": [
 					"Shift Members"
