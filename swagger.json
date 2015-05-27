@@ -396,6 +396,13 @@
 						"description": "The group id",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "Filter by status",
+						"required": false,
+						"type": "string"
 					}
 				],
 				"responses": {
@@ -666,6 +673,13 @@
 						"in": "path",
 						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
 						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "Filter by status",
+						"required": false,
 						"type": "string"
 					}
 				],
@@ -1136,18 +1150,12 @@
 					"type": "string"
 				},
 				"emergencyDevice": {
-					"type": "boolean",
-					"default": false
+					"type": "boolean"
 				},
 				"priorityThreshold": {
 					"type": "string",
 					"enum": ["LOW", "MEDIUM", "HIGH"],
 					"default": "LOW"
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"],
-					"default": "ACTIVE"
 				},
 				"sequence": {
 					"type": "integer",
@@ -1207,11 +1215,6 @@
 					"type": "string",
 					"enum": ["LOW", "MEDIUM", "HIGH"],
 					"default": "LOW"
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"],
-					"default": "ACTIVE"
 				},
 				"sequence": {
 					"type": "integer",
@@ -1460,28 +1463,10 @@
 				"description": {
 					"type": "string"
 				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"],
-					"default": "ACTIVE"
-				},
 				"timezone": {
 					"type": "string"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				},
-				"links": {
-					"$ref": "#/definitions/SelfLink"
 				}
-			},
-			"required": [
-				"status",
-				"links"
-			]
+			}
 		},
 		"GroupPost": {
 			"description": "Adding or updating a group. Will attempt to find group by id if provided or by targetName before creating a new group in the system.",
@@ -1495,18 +1480,7 @@
 				"description": {
 					"type": "string"
 				},
-				"status": {
-					"type": "string",
-					"default": "ACTIVE",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
 				"timezone": {
-					"type": "string"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
 					"type": "string"
 				},
 				"supervisors": {
@@ -1554,9 +1528,6 @@
 				"lastName": {
 					"type": "string"
 				},
-				"status": {
-					"type": "string"
-				},
 				"language": {
 					"type": "string"
 				},
@@ -1569,23 +1540,10 @@
 				"phoneLogin": {
 					"type": "string"
 				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				},
 				"site": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"links": {
-					"$ref": "#/definitions/SelfLink"
 				}
-			},
-			"required": [
-				"status",
-				"links"
-			]
+			}
 		},
 		"People": {
 			"type": "object",
@@ -1631,9 +1589,6 @@
 				"lastName": {
 					"type": "string"
 				},
-				"status": {
-					"type": "string"
-				},
 				"language": {
 					"type": "string"
 				},
@@ -1644,12 +1599,6 @@
 					"type": "string"
 				},
 				"phoneLogin": {
-					"type": "string"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
 					"type": "string"
 				},
 				"roles": {
@@ -1667,11 +1616,7 @@
 						"$ref": "#/definitions/ReferenceById"
 					}
 				}
-			},
-			"required": [
-				"targetName",
-				"status"
-			]
+			}
 		},
 		"Recipient": {
 			"type": "object",
@@ -1690,12 +1635,28 @@
 						"DEVICE",
 						"GROUP"
 					]
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
+				"links": {
+					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
 				"id",
 				"targetName",
-				"recipientType"
+				"recipientType",
+				"status",
+				"externallyOwned",
+				"links"
 			]
 		},
 		"Recipients": {
@@ -1740,6 +1701,17 @@
 					]
 				},
 				"targetName": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"],
+					"default": "ACTIVE"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
 					"type": "string"
 				}
 			},
@@ -1858,6 +1830,10 @@
 				"name": {
 					"type": "string"
 				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
 				"group": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
@@ -1868,6 +1844,7 @@
 			"required": [
 				"id",
 				"name",
+				"status",
 				"group",
 				"links"
 			]
@@ -1881,6 +1858,11 @@
 				},
 				"name": {
 					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"default": "ACTIVE",
+					"enum": ["ACTIVE", "INACTIVE"]
 				}
 			},
 			"required": [
