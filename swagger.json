@@ -199,6 +199,188 @@
 				}
 			}
 		},
+		"/events": {
+			"post": {
+				"tags": [
+					"Events"
+				],
+				"summary": "Add or update an event",
+				"description": "Add or update an event",
+				"operationId": "postEvents",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/EventPost"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					"400": {
+						"description": "Bad Request",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/events/{eventId}": {
+			"get": {
+				"tags": [
+					"Events"
+				],
+				"summary": "Retrieve event information",
+				"description": "Retrieve event information",
+				"operationId": "getEvent",
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "path",
+						"description": "The event id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Events"
+				],
+				"summary": "Remove an event",
+				"description": "Remove an event",
+				"operationId": "deleteEvent",
+				"parameters": [
+					{
+						"name": "eventId",
+						"in": "path",
+						"description": "The event id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"409": {
+						"description": "Conflict",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/groups": {
 			"post": {
 				"tags": [
@@ -1657,6 +1839,141 @@
 			"required": [
 				"phoneNumber"
 			]
+		},
+		"Event": {
+			"type": "object",
+			"description": "An event",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Unique identifier for the event"
+				},
+				"startTime": {
+					"type": "string",
+					"description": "The start time of the event",
+					"format": "date-time"
+				},
+				"endTime": {
+					"type": "string",
+					"description": "The end time of the event",
+					"format": "date-time"
+				},
+				"status": {
+					"type": "string",
+					"description": "The status of the event",
+					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
+				},
+				"formName": {
+					"type": "string"
+				},
+				"engineName": {
+					"type": "string"
+				},
+				"senderTargetName": {
+					"type": "string"
+				},
+				"eventDomainName": {
+					"type": "string"
+				},
+				"incident": {
+					"type": "object"
+				},
+				"conferenceBridgeType": {
+					"type": "string"
+				},
+				"applicationsEvent": {
+					"type": "boolean"
+				},
+				"legacyScenario": {
+					"type": "boolean"
+				},
+				"legacyScenarioName": {
+					"type": "string"
+				},
+				"systemMessageType": {
+					"type": "string"
+				},
+				"archived": {
+					"type": "boolean"
+				},
+				"annotationCount": {
+					"type": "integer"
+				},
+				"latestAnnotationAge": {
+					"type": "integer"
+				},
+				"systemMessage": {
+					"type": "boolean"
+				}
+			},
+			"required": ["id", "startTime", "status"]
+		},
+		"EventPost": {
+			"type": "object",
+			"description": "An event",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Unique identifier for the event"
+				},
+				"startTime": {
+					"type": "string",
+					"description": "The start time of the event",
+					"format": "date-time"
+				},
+				"endTime": {
+					"type": "string",
+					"description": "The end time of the event",
+					"format": "date-time"
+				},
+				"status": {
+					"type": "string",
+					"description": "The status of the event",
+					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
+				},
+				"formName": {
+					"type": "string"
+				},
+				"engineName": {
+					"type": "string"
+				},
+				"senderTargetName": {
+					"type": "string"
+				},
+				"eventDomainName": {
+					"type": "string"
+				},
+				"incident": {
+					"type": "object"
+				},
+				"conferenceBridgeType": {
+					"type": "string"
+				},
+				"applicationsEvent": {
+					"type": "boolean"
+				},
+				"legacyScenario": {
+					"type": "boolean"
+				},
+				"legacyScenarioName": {
+					"type": "string"
+				},
+				"systemMessageType": {
+					"type": "string"
+				},
+				"archived": {
+					"type": "boolean"
+				},
+				"annotationCount": {
+					"type": "integer"
+				},
+				"latestAnnotationAge": {
+					"type": "integer"
+				},
+				"systemMessage": {
+					"type": "boolean"
+				}
+			}
 		},
 		"Group": {
 			"type": "object",
