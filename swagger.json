@@ -2243,7 +2243,7 @@
 						500
 					]
 				},
-				"type": {
+				"reason": {
 					"type": "string",
 					"enum": [
 						"Bad Request",
@@ -2261,7 +2261,7 @@
 			},
 			"required": [
 				"code",
-				"type",
+				"reason",
 				"message"
 			]
 		},
