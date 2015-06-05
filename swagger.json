@@ -2244,7 +2244,16 @@
 					]
 				},
 				"type": {
-					"type": "string"
+					"type": "string",
+					"enum": [
+						"Bad Request",
+						"Unauthorized",
+						"Forbidden",
+						"Not Found",
+						"Conflict",
+						"Too Many Requests",
+						"Internal Server Error"
+					]
 				},
 				"message": {
 					"type": "string"
