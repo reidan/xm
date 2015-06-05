@@ -1863,50 +1863,15 @@
 					"description": "The status of the event",
 					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
 				},
-				"formName": {
-					"type": "string"
+				"priority": {
+					"type": "string",
+					"enum": ["LOW", "MEDIUM", "HIGH"]
 				},
-				"engineName": {
-					"type": "string"
-				},
-				"senderTargetName": {
-					"type": "string"
-				},
-				"eventDomainName": {
-					"type": "string"
-				},
-				"incident": {
-					"type": "object"
-				},
-				"conferenceBridgeType": {
-					"type": "string"
-				},
-				"applicationsEvent": {
-					"type": "boolean"
-				},
-				"legacyScenario": {
-					"type": "boolean"
-				},
-				"legacyScenarioName": {
-					"type": "string"
-				},
-				"systemMessageType": {
-					"type": "string"
-				},
-				"archived": {
-					"type": "boolean"
-				},
-				"annotationCount": {
-					"type": "integer"
-				},
-				"latestAnnotationAge": {
-					"type": "integer"
-				},
-				"systemMessage": {
-					"type": "boolean"
+				"recipients": {
+					"$ref": "#/definitions/Recipients"
 				}
 			},
-			"required": ["id", "startTime", "status"]
+			"required": ["id", "startTime", "status", "priority"]
 		},
 		"EventPost": {
 			"type": "object",
@@ -1916,62 +1881,21 @@
 					"type": "string",
 					"description": "Unique identifier for the event"
 				},
-				"startTime": {
-					"type": "string",
-					"description": "The start time of the event",
-					"format": "date-time"
-				},
-				"endTime": {
-					"type": "string",
-					"description": "The end time of the event",
-					"format": "date-time"
-				},
 				"status": {
 					"type": "string",
 					"description": "The status of the event",
 					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
 				},
-				"formName": {
-					"type": "string"
+				"priority": {
+					"type": "string",
+					"enum": ["LOW", "MEDIUM", "HIGH"],
+					"default": "LOW"
 				},
-				"engineName": {
-					"type": "string"
-				},
-				"senderTargetName": {
-					"type": "string"
-				},
-				"eventDomainName": {
-					"type": "string"
-				},
-				"incident": {
-					"type": "object"
-				},
-				"conferenceBridgeType": {
-					"type": "string"
-				},
-				"applicationsEvent": {
-					"type": "boolean"
-				},
-				"legacyScenario": {
-					"type": "boolean"
-				},
-				"legacyScenarioName": {
-					"type": "string"
-				},
-				"systemMessageType": {
-					"type": "string"
-				},
-				"archived": {
-					"type": "boolean"
-				},
-				"annotationCount": {
-					"type": "integer"
-				},
-				"latestAnnotationAge": {
-					"type": "integer"
-				},
-				"systemMessage": {
-					"type": "boolean"
+				"recipients": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReferenceById"
+					}
 				}
 			}
 		},
