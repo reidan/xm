@@ -172,12 +172,6 @@
 							"$ref": "#/definitions/Response"
 						}
 					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
 					"409": {
 						"description": "Conflict",
 						"schema": {
@@ -354,12 +348,6 @@
 							"$ref": "#/definitions/Response"
 						}
 					},
-					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
 					"409": {
 						"description": "Conflict",
 						"schema": {
@@ -532,12 +520,6 @@
 					},
 					"403": {
 						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"404": {
-						"description": "Not Found",
 						"schema": {
 							"$ref": "#/definitions/Response"
 						}
@@ -1419,14 +1401,65 @@
 							"$ref": "#/definitions/Response"
 						}
 					},
-					"404": {
-						"description": "Not Found",
+					"409": {
+						"description": "Conflict",
 						"schema": {
 							"$ref": "#/definitions/Response"
 						}
 					},
-					"409": {
-						"description": "Conflict",
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
+		"/people/{personId}/devices": {
+			"get": {
+				"tags": [
+					"Devices"
+				],
+				"summary": "Retrieve a person's devices",
+				"description": "Retrieve a person's devices",
+				"operationId": "getPersonDevices",
+				"parameters": [
+					{
+						"name": "personId",
+						"in": "path",
+						"description": "The person id or targetName",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Devices"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"404": {
+						"description": "Not Found",
 						"schema": {
 							"$ref": "#/definitions/Response"
 						}
@@ -1561,6 +1594,35 @@
 				"deviceType",
 				"emergencyDevice",
 				"owner"
+			]
+		},
+		"Devices": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Device"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
 			]
 		},
 		"DevicePost": {
