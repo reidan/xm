@@ -1425,7 +1425,7 @@
 		"/people/{personId}/devices": {
 			"get": {
 				"tags": [
-					"Devices"
+					"People"
 				],
 				"summary": "Retrieve a person's devices",
 				"description": "Retrieve a person's devices",
