@@ -93,7 +93,7 @@
 					{
 						"name": "deviceId",
 						"in": "path",
-						"description": "The device id",
+						"description": "The device uuid or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -148,7 +148,7 @@
 					{
 						"name": "deviceId",
 						"in": "path",
-						"description": "The device id",
+						"description": "The device uuid or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -445,7 +445,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -500,7 +500,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -557,7 +557,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -620,7 +620,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -697,7 +697,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -761,7 +761,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -824,7 +824,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -901,14 +901,14 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
 					{
 						"name": "shiftId",
 						"in": "path",
-						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
+						"description": "The uuid or name of the shift. e.g. 24/7. Must be URL encoded.",
 						"required": true,
 						"type": "string"
 					}
@@ -963,7 +963,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -1033,7 +1033,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -1103,7 +1103,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -1187,7 +1187,7 @@
 					{
 						"name": "groupId",
 						"in": "path",
-						"description": "The group id",
+						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
 					},
@@ -1322,7 +1322,7 @@
 					{
 						"name": "personId",
 						"in": "path",
-						"description": "The person id or targetName",
+						"description": "The person's uuid or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -1377,7 +1377,7 @@
 					{
 						"name": "personId",
 						"in": "path",
-						"description": "The person id or targetName",
+						"description": "The person's uuid or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -1434,7 +1434,7 @@
 					{
 						"name": "personId",
 						"in": "path",
-						"description": "The person id or targetName",
+						"description": "The person's uuid or targetName",
 						"required": true,
 						"type": "string"
 					}
@@ -1491,7 +1491,7 @@
 					{
 						"name": "siteId",
 						"in": "path",
-						"description": "The site id or targetName",
+						"description": "The site uuid or name",
 						"required": true,
 						"type": "string"
 					}
@@ -2236,7 +2236,7 @@
 			"properties": {
 				"id": {
 					"type": "string",
-					"description": "The recipient id or targetName"
+					"description": "The recipient uuid or targetName"
 				},
 				"recipientType": {
 					"type": "string",
