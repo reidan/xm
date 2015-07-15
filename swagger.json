@@ -2151,10 +2151,18 @@
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
 				"externallyOwned": {
+					"description": "Externally owned = N means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = Y means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
 					"type": "boolean"
 				},
 				"externalKey": {
 					"type": "string"
+				},
+				"locked": {
+					"description": "When objects are in an externally owned state, locked controls which externally owned data fields Users can change",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
 				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
