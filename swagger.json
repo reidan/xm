@@ -1713,7 +1713,7 @@
 				"excludeHolidays"
 			]
 		},
-		"DeviceTimeframe": {
+		"DeviceTimeframes": {
 			"type": "object",
 			"description": "A paginated result set",
 			"properties": {
