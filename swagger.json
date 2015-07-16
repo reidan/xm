@@ -1683,6 +1683,65 @@
 				"owner"
 			]
 		},
+		"DeviceTimeframe": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"startTime": {
+					"type": "string"
+				},
+				"duration": {
+					"description": "",
+					"type": "integer"
+				},
+				"days": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
+					}
+				},
+				"excludeHolidays": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"name",
+				"startTime",
+				"excludeHolidays"
+			]
+		},
+		"DeviceTimeframe": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/DeviceTimeframe"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
 		"EmailDevice": {
 			"type": "object",
 			"allOf": [
@@ -2158,7 +2217,7 @@
 					"type": "string"
 				},
 				"locked": {
-					"description": "When objects are in an externally owned state, locked controls which externally owned data fields Users can change",
+					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
 					"type": "array",
 					"items": {
 						"type": "string"
