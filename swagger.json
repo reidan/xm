@@ -2338,6 +2338,9 @@
 						"GROUP"
 					]
 				},
+				"id": {
+					"type": "string"
+				},
 				"targetName": {
 					"type": "string"
 				},
