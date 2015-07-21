@@ -17,6 +17,49 @@
 		"application/json"
 	],
 	"paths": {
+		"/info": {
+			"get": {
+				"tags": [
+					"Info"
+				],
+				"summary": "Retrieve API information",
+				"description": "Retrieve API information",
+				"operationId": "getInfo",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Info"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/devices": {
 			"post": {
 				"tags": [
@@ -1538,6 +1581,24 @@
 		}
 	},
 	"definitions": {
+		"Info": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"version": {
+					"type": "string"
+				},
+				"dependencies": {
+					"type": "object"
+				}
+			},
+			"required": [
+				"name",
+				"version"
+			]
+		},
 		"Device": {
 			"type": "object",
 			"allOf": [
