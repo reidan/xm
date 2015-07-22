@@ -17,49 +17,6 @@
 		"application/json"
 	],
 	"paths": {
-		"/info": {
-			"get": {
-				"tags": [
-					"Info"
-				],
-				"summary": "Retrieve API information",
-				"description": "Retrieve API information",
-				"operationId": "getInfo",
-				"parameters": [],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Info"
-						}
-					},
-					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					}
-				}
-			}
-		},
 		"/devices": {
 			"post": {
 				"tags": [
@@ -67,7 +24,7 @@
 				],
 				"summary": "Add or update a device",
 				"description": "Add or update a device",
-				"operationId": "postDevices",
+				"operationId": "postDevice",
 				"parameters": [
 					{
 						"name": "body",
@@ -237,13 +194,71 @@
 			}
 		},
 		"/events": {
+			"get": {
+				"tags": [
+					"Events"
+				],
+				"summary": "Find events",
+				"description": "Find events",
+				"operationId": "getEvents",
+				"parameters": [
+					{
+						"name": "after",
+						"in": "query",
+						"description": "Where event start time is after this time",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"name": "before",
+						"in": "query",
+						"description": "Where event start time is before this time",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Events"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			},
 			"post": {
 				"tags": [
 					"Events"
 				],
 				"summary": "Add or update an event",
 				"description": "Add or update an event",
-				"operationId": "postEvents",
+				"operationId": "postEvent",
 				"parameters": [
 					{
 						"name": "body",
@@ -419,7 +434,7 @@
 				],
 				"summary": "Add or update a group",
 				"description": "Add or update a group",
-				"operationId": "postGroups",
+				"operationId": "postGroup",
 				"parameters": [
 					{
 						"name": "body",
@@ -658,7 +673,7 @@
 				],
 				"summary": "Add group members",
 				"description": "Add group members",
-				"operationId": "postGroupMembers",
+				"operationId": "postGroupMember",
 				"parameters": [
 					{
 						"name": "groupId",
@@ -1141,7 +1156,7 @@
 				],
 				"summary": "Add shift members",
 				"description": "Add shift members",
-				"operationId": "postShiftMembers",
+				"operationId": "postShiftMember",
 				"parameters": [
 					{
 						"name": "groupId",
@@ -1289,6 +1304,49 @@
 				}
 			}
 		},
+		"/info": {
+			"get": {
+				"tags": [
+					"Info"
+				],
+				"summary": "Retrieve API information",
+				"description": "Retrieve API information",
+				"operationId": "getInfo",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Info"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/Response"
+						}
+					}
+				}
+			}
+		},
 		"/people": {
 			"post": {
 				"tags": [
@@ -1296,7 +1354,7 @@
 				],
 				"summary": "Add or update a person",
 				"description": "Add or update a person",
-				"operationId": "postPeople",
+				"operationId": "postPerson",
 				"parameters": [
 					{
 						"name": "body",
@@ -1581,24 +1639,6 @@
 		}
 	},
 	"definitions": {
-		"Info": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"version": {
-					"type": "string"
-				},
-				"dependencies": {
-					"type": "object"
-				}
-			},
-			"required": [
-				"name",
-				"version"
-			]
-		},
 		"Device": {
 			"type": "object",
 			"allOf": [
@@ -2035,11 +2075,6 @@
 					"description": "The start time of the event",
 					"format": "date-time"
 				},
-				"endTime": {
-					"type": "string",
-					"description": "The end time of the event",
-					"format": "date-time"
-				},
 				"status": {
 					"type": "string",
 					"description": "The status of the event",
@@ -2054,6 +2089,35 @@
 				}
 			},
 			"required": ["id", "startTime", "status", "priority"]
+		},
+		"Events": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Event"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
 		},
 		"EventPost": {
 			"type": "object",
@@ -2120,6 +2184,24 @@
 					}
 				}
 			}
+		},
+		"Info": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"version": {
+					"type": "string"
+				},
+				"dependencies": {
+					"type": "object"
+				}
+			},
+			"required": [
+				"name",
+				"version"
+			]
 		},
 		"PaginationLinks": {
 			"type": "object",
