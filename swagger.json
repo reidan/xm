@@ -370,61 +370,6 @@
 						}
 					}
 				}
-			},
-			"delete": {
-				"tags": [
-					"Events"
-				],
-				"summary": "Remove an event",
-				"description": "Remove an event",
-				"operationId": "deleteEvent",
-				"parameters": [
-					{
-						"name": "eventId",
-						"in": "path",
-						"description": "The event id",
-						"required": true,
-						"type": "string"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					},
-					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					},
-					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/Response"
-						}
-					}
-				}
 			}
 		},
 		"/groups": {
