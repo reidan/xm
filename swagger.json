@@ -256,8 +256,8 @@
 				"tags": [
 					"Events"
 				],
-				"summary": "Add or update an event",
-				"description": "Add or update an event",
+				"summary": "Update an existing event",
+				"description": "Update an existing event",
 				"operationId": "postEvent",
 				"parameters": [
 					{
@@ -270,8 +270,8 @@
 					}
 				],
 				"responses": {
-					"201": {
-						"description": "Created",
+					"200": {
+						"description": "OK",
 						"schema": {
 							"$ref": "#/definitions/Event"
 						}
@@ -378,7 +378,7 @@
 					"Forms"
 				],
 				"summary": "Submit a form",
-				"description": "Submit a form",
+				"description": "Submit a form (creates an event)",
 				"operationId": "postFormSubmission",
 				"parameters": [
 					{
@@ -2168,6 +2168,13 @@
 					"type": "string",
 					"enum": ["LOW", "MEDIUM", "HIGH"]
 				},
+				"subscriptions": {
+					"description": "Subscriptions applicable to this event only",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/SubscriptionPost"
+					}
+				},
 				"conferences": {
 					"description": "Set this value to the name of an existing conference bridge, or leave it empty to create a new xMatters-hosted conference bridge.",
 					"type": "array",
@@ -2244,7 +2251,7 @@
 		},
 		"EventPost": {
 			"type": "object",
-			"description": "An event",
+			"description": "An event update",
 			"properties": {
 				"id": {
 					"type": "string",
@@ -2253,21 +2260,13 @@
 				"status": {
 					"type": "string",
 					"description": "The status of the event",
-					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"],
-					"default": "ACTIVE"
-				},
-				"priority": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"],
-					"default": "LOW"
-				},
-				"recipients": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
+					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
 				}
-			}
+			},
+			"required": [
+				"id",
+				"status"
+			]
 		},
 		"Group": {
 			"type": "object",
@@ -2808,6 +2807,48 @@
 				"country",
 				"externallyOwned",
 				"links"
+			]
+		},
+		"Subscription": {
+			"description": "Subscribe to receive updates when specific events occur",
+			"type": "object",
+			"properties": {
+				"url": {
+					"description": "Callback URL to which event updates can be posted.",
+					"type": "string",
+					"format": "uri"
+				},
+				"headers": {
+					"description": "Map of header names and values (both strings)",
+					"type": "object"
+				},
+				"eventTypes": {
+					"description": "Receive updates only for these events occur",
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"STATUS",
+							"DISCARD",
+							"DELAY",
+							"DELIVERY",
+							"RESPONSE"
+						]
+					}
+				},
+				"auditTypes": {
+					"description": "Receive updates only for these audits",
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"TBD"
+						]
+					}
+				}
+			},
+			"required": [
+				"url"
 			]
 		},
 		"BadRequestResponse": {
