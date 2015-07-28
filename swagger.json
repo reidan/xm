@@ -3019,7 +3019,7 @@
 					"type": "object"
 				},
 				"eventTypes": {
-					"description": "Receive updates only for these events occur",
+					"description": "Receive updates only for these events",
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/EventType"
@@ -3052,7 +3052,7 @@
 					"type": "object"
 				},
 				"eventTypes": {
-					"description": "Receive updates only for these events occur",
+					"description": "Receive updates only for these events",
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/EventType"
