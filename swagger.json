@@ -217,6 +217,22 @@
 						"required": false,
 						"type": "string",
 						"format": "date-time"
+					},
+					{
+						"name": "priority",
+						"in": "query",
+						"description": "Where priority is at or above this level",
+						"required": false,
+						"type": "string",
+						"enum": ["LOW", "MEDIUM", "HIGH"]
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "Where status matches the provided value",
+						"required": false,
+						"type": "string",
+						"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
 					}
 				],
 				"responses": {
