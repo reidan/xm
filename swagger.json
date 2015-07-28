@@ -2234,7 +2234,7 @@
 					"enum": ["LOW", "MEDIUM", "HIGH"]
 				},
 				"formSubmission": {
-					"$ref": "#/definitions/FormSubmission"
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
 				"recipients": {
 					"$ref": "#/definitions/Recipients"
