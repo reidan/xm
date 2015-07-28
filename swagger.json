@@ -2835,6 +2835,53 @@
 			"description": "Subscribe to receive updates when specific events occur",
 			"type": "object",
 			"properties": {
+				"id": {
+					"description": "Unique identifier",
+					"type": "string"
+				},
+				"url": {
+					"description": "Callback URL to which event updates can be posted.",
+					"type": "string",
+					"format": "uri"
+				},
+				"headers": {
+					"description": "Map of header names and values (both strings)",
+					"type": "object"
+				},
+				"eventTypes": {
+					"description": "Receive updates only for these events occur",
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"STATUS",
+							"DISCARD",
+							"DELAY",
+							"DELIVERY",
+							"RESPONSE"
+						]
+					}
+				},
+				"auditTypes": {
+					"description": "Receive updates only for these audits",
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"TBD"
+						]
+					}
+				}
+			},
+			"required": [
+				"id",
+				"url"
+			]
+		},
+		"SubscriptionPost": {
+			"description": "Subscribe to receive updates when specific events occur",
+			"type": "object",
+			"properties": {
 				"url": {
 					"description": "Callback URL to which event updates can be posted.",
 					"type": "string",
