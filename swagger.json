@@ -2123,6 +2123,9 @@
 			"type": "object",
 			"description": "A form submission",
 			"properties": {
+				"id": {
+					"type": "string"
+				},
 				"form": {
 					"$ref": "#/definitions/Form"
 				},
@@ -2214,11 +2217,14 @@
 					"type": "string",
 					"enum": ["LOW", "MEDIUM", "HIGH"]
 				},
+				"formSubmission": {
+					"$ref": "#/definitions/FormSubmission"
+				},
 				"recipients": {
 					"$ref": "#/definitions/Recipients"
 				}
 			},
-			"required": ["id", "startTime", "status", "priority"]
+			"required": ["id", "startTime", "status", "priority", "formSubmission"]
 		},
 		"Events": {
 			"type": "object",
