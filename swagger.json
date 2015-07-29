@@ -1620,6 +1620,62 @@
 					}
 				}
 			}
+		},
+		"/users/{userId}": {
+			"get": {
+				"tags": [
+					"User"
+				],
+				"summary": "Retrieve user information",
+				"description": "Retrieve user information",
+				"operationId": "getUser",
+				"parameters": [
+					{
+						"$ref": "#/parameters/userId"
+					},
+					{
+						"$ref": "#/parameters/expand"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					},
+					"401": {
+						"description": "Unauthorized",
+						"schema": {
+							"$ref": "#/definitions/UnauthorizedResponse"
+						}
+					},
+					"403": {
+						"description": "Forbidden",
+						"schema": {
+							"$ref": "#/definitions/ForbiddenResponse"
+						}
+					},
+					"404": {
+						"description": "Not Found",
+						"schema": {
+							"$ref": "#/definitions/NotFoundResponse"
+						}
+					},
+					"429": {
+						"description": "Too Many Requests",
+						"schema": {
+							"$ref": "#/definitions/TooManyRequestsResponse"
+						}
+					},
+					"500": {
+						"description": "Internal Error",
+						"schema": {
+							"$ref": "#/definitions/InternalServerErrorResponse"
+						}
+					}
+				}
+			}
 		}
 	},
 	"definitions": {
@@ -1775,6 +1831,75 @@
 				"TEAM_RECIPIENT_INACTIVE",
 				"USER_SERVICE_PROVIDER_EMPTY_OR_DISABLE",
 				"USER_SERVICE_PROVIDER_EXHAUSTED"
+			]
+		},
+		"Callback": {
+			"description": "Subscribe to receive updates when specific events occur",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "Unique identifier",
+					"type": "string"
+				},
+				"url": {
+					"description": "Callback URL to which event updates can be posted.",
+					"type": "string",
+					"format": "uri"
+				},
+				"headers": {
+					"description": "Map of header names and values (both strings)",
+					"type": "object"
+				},
+				"eventTypes": {
+					"description": "Receive updates only for these events",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/EventType"
+					}
+				},
+				"auditTypes": {
+					"description": "Receive updates only for these audits",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/AuditType"
+					}
+				}
+			},
+			"required": [
+				"id",
+				"url"
+			]
+		},
+		"CallbackPost": {
+			"description": "Subscribe to receive updates when specific events occur",
+			"type": "object",
+			"properties": {
+				"url": {
+					"description": "Callback URL to which event updates can be posted.",
+					"type": "string",
+					"format": "uri"
+				},
+				"headers": {
+					"description": "Map of header names and values (both strings)",
+					"type": "object"
+				},
+				"eventTypes": {
+					"description": "Receive updates only for these events",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/EventType"
+					}
+				},
+				"auditTypes": {
+					"description": "Receive updates only for these audits",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/AuditType"
+					}
+				}
+			},
+			"required": [
+				"url"
 			]
 		},
 		"Conference": {
@@ -2961,73 +3086,44 @@
 				"links"
 			]
 		},
-		"Callback": {
-			"description": "Subscribe to receive updates when specific events occur",
+		"User": {
 			"type": "object",
 			"properties": {
 				"id": {
-					"description": "Unique identifier",
 					"type": "string"
 				},
-				"url": {
-					"description": "Callback URL to which event updates can be posted.",
-					"type": "string",
-					"format": "uri"
-				},
-				"headers": {
-					"description": "Map of header names and values (both strings)",
-					"type": "object"
-				},
-				"eventTypes": {
-					"description": "Receive updates only for these events",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/EventType"
-					}
-				},
-				"auditTypes": {
-					"description": "Receive updates only for these audits",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/AuditType"
-					}
+				"username": {
+					"type": "string"
 				}
-			},
-			"required": [
-				"id",
-				"url"
-			]
+			}
 		},
-		"CallbackPost": {
-			"description": "Subscribe to receive updates when specific events occur",
+		"Users": {
 			"type": "object",
+			"description": "A paginated result set",
 			"properties": {
-				"url": {
-					"description": "Callback URL to which event updates can be posted.",
-					"type": "string",
-					"format": "uri"
-				},
-				"headers": {
-					"description": "Map of header names and values (both strings)",
-					"type": "object"
-				},
-				"eventTypes": {
-					"description": "Receive updates only for these events",
+				"data": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/EventType"
+						"$ref": "#/definitions/User"
 					}
 				},
-				"auditTypes": {
-					"description": "Receive updates only for these audits",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/AuditType"
-					}
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
 				}
 			},
 			"required": [
-				"url"
+				"data",
+				"count",
+				"total",
+				"links"
 			]
 		},
 		"BadRequestResponse": {
@@ -3232,6 +3328,13 @@
 			"name": "siteId",
 			"in": "path",
 			"description": "The site uuid or name",
+			"required": true,
+			"type": "string"
+		},
+		"userId": {
+			"name": "userId",
+			"in": "path",
+			"description": "The person's uuid or username",
 			"required": true,
 			"type": "string"
 		},
