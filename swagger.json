@@ -98,7 +98,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -238,7 +238,7 @@
 						"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -360,7 +360,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -548,7 +548,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -671,7 +671,7 @@
 						"enum": ["ACTIVE", "INACTIVE"]
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -878,7 +878,7 @@
 						"enum": ["ACTIVE", "INACTIVE"]
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -1020,7 +1020,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -1163,7 +1163,7 @@
 						"enum": ["ACTIVE", "INACTIVE"]
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -1483,7 +1483,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -1598,7 +1598,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -1658,7 +1658,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/query/expand"
+						"$ref": "#/parameters/expand"
 					}
 				],
 				"responses": {
@@ -3266,14 +3266,12 @@
 		}
 	},
 	"parameters": {
-		"query": {
-			"expand": {
-				"name": "expand",
-				"in": "query",
-				"description": "List of attributes to expand",
-				"required": false,
-				"type": "string"
-			}
+		"expand": {
+			"name": "expand",
+			"in": "query",
+			"description": "List of attributes to expand",
+			"required": false,
+			"type": "string"
 		}
 	}
 }
