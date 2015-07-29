@@ -96,6 +96,9 @@
 						"description": "The device uuid or targetName",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -233,6 +236,9 @@
 						"required": false,
 						"type": "string",
 						"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -352,6 +358,9 @@
 						"description": "The event id",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -537,6 +546,9 @@
 						"description": "The group uuid or targetName",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -657,6 +669,9 @@
 						"required": false,
 						"type": "string",
 						"enum": ["ACTIVE", "INACTIVE"]
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -861,6 +876,9 @@
 						"required": false,
 						"type": "string",
 						"enum": ["ACTIVE", "INACTIVE"]
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -1000,6 +1018,9 @@
 						"description": "The uuid or name of the shift. e.g. 24/7. Must be URL encoded.",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -1140,6 +1161,9 @@
 						"required": false,
 						"type": "string",
 						"enum": ["ACTIVE", "INACTIVE"]
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -1457,6 +1481,9 @@
 						"description": "The person's uuid or targetName",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -1569,6 +1596,9 @@
 						"description": "The person's uuid or targetName",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -1626,6 +1656,9 @@
 						"description": "The site uuid or name",
 						"required": true,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query/expand"
 					}
 				],
 				"responses": {
@@ -3230,6 +3263,17 @@
 				"reason",
 				"message"
 			]
+		}
+	},
+	"parameters": {
+		"query": {
+			"expand": {
+				"name": "expand",
+				"in": "query",
+				"description": "List of attributes to expand",
+				"required": false,
+				"type": "string"
+			}
 		}
 	}
 }
