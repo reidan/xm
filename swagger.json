@@ -2017,10 +2017,14 @@
 					"type": "string"
 				},
 				"startTime": {
-					"type": "string"
+					"type": "string",
+					"format": "date-time"
+				},
+				"endTime": {
+					"type": "string",
+					"format": "date-time"
 				},
 				"duration": {
-					"description": "",
 					"type": "integer"
 				},
 				"days": {
