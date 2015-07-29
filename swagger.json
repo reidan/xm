@@ -91,11 +91,7 @@
 				"operationId": "getDevice",
 				"parameters": [
 					{
-						"name": "deviceId",
-						"in": "path",
-						"description": "The device uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/deviceId"
 					},
 					{
 						"$ref": "#/parameters/expand"
@@ -149,11 +145,7 @@
 				"operationId": "deleteDevice",
 				"parameters": [
 					{
-						"name": "deviceId",
-						"in": "path",
-						"description": "The device uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/deviceId"
 					}
 				],
 				"responses": {
@@ -353,11 +345,7 @@
 				"operationId": "getEvent",
 				"parameters": [
 					{
-						"name": "eventId",
-						"in": "path",
-						"description": "The event id",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/eventId"
 					},
 					{
 						"$ref": "#/parameters/expand"
@@ -541,11 +529,7 @@
 				"operationId": "getGroup",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
 						"$ref": "#/parameters/expand"
@@ -599,11 +583,7 @@
 				"operationId": "deleteGroup",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					}
 				],
 				"responses": {
@@ -656,11 +636,7 @@
 				"operationId": "getGroupMembers",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
 						"name": "status",
@@ -722,11 +698,7 @@
 				"operationId": "postGroupMember",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
 						"name": "body",
@@ -799,18 +771,10 @@
 				"operationId": "deleteGroupMember",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
-						"name": "memberId",
-						"in": "path",
-						"description": "The id or url encoded targetName of the recipient",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/memberId"
 					}
 				],
 				"responses": {
@@ -863,11 +827,7 @@
 				"operationId": "getShifts",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
 						"name": "status",
@@ -1006,18 +966,10 @@
 				"operationId": "getShift",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
-						"name": "shiftId",
-						"in": "path",
-						"description": "The uuid or name of the shift. e.g. 24/7. Must be URL encoded.",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/shiftId"
 					},
 					{
 						"$ref": "#/parameters/expand"
@@ -1141,18 +1093,10 @@
 				"operationId": "getShiftMembers",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
-						"name": "shiftId",
-						"in": "path",
-						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/shiftId"
 					},
 					{
 						"name": "status",
@@ -1298,25 +1242,13 @@
 				"operationId": "deleteShiftMember",
 				"parameters": [
 					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/groupId"
 					},
 					{
-						"name": "shiftId",
-						"in": "path",
-						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/shiftId"
 					},
 					{
-						"name": "memberId",
-						"in": "path",
-						"description": "The id or url encoded targetName of the recipient",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/memberId"
 					}
 				],
 				"responses": {
@@ -1476,11 +1408,7 @@
 				"operationId": "getPerson",
 				"parameters": [
 					{
-						"name": "personId",
-						"in": "path",
-						"description": "The person's uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/personId"
 					},
 					{
 						"$ref": "#/parameters/expand"
@@ -1591,11 +1519,7 @@
 				"operationId": "getPersonDevices",
 				"parameters": [
 					{
-						"name": "personId",
-						"in": "path",
-						"description": "The person's uuid or targetName",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/personId"
 					},
 					{
 						"$ref": "#/parameters/expand"
@@ -1651,11 +1575,7 @@
 				"operationId": "getSite",
 				"parameters": [
 					{
-						"name": "siteId",
-						"in": "path",
-						"description": "The site uuid or name",
-						"required": true,
-						"type": "string"
+						"$ref": "#/parameters/siteId"
 					},
 					{
 						"$ref": "#/parameters/expand"
@@ -3266,6 +3186,55 @@
 		}
 	},
 	"parameters": {
+		"eventId": {
+			"name": "eventId",
+			"in": "path",
+			"description": "The event id",
+			"required": true,
+			"type": "string"
+		},
+		"groupId": {
+			"name": "groupId",
+			"in": "path",
+			"description": "The group uuid or targetName",
+			"required": true,
+			"type": "string"
+		},
+		"personId": {
+			"name": "personId",
+			"in": "path",
+			"description": "The person's uuid or targetName",
+			"required": true,
+			"type": "string"
+		},
+		"deviceId": {
+			"name": "deviceId",
+			"in": "path",
+			"description": "The device uuid or targetName",
+			"required": true,
+			"type": "string"
+		},
+		"memberId": {
+			"name": "memberId",
+			"in": "path",
+			"description": "The recipient's uuid or targetName",
+			"required": true,
+			"type": "string"
+		},
+		"shiftId": {
+			"name": "shiftId",
+			"in": "path",
+			"description": "The uuid or name of the shift. e.g. 24/7 (Must be URL encoded)",
+			"required": true,
+			"type": "string"
+		},
+		"siteId": {
+			"name": "siteId",
+			"in": "path",
+			"description": "The site uuid or name",
+			"required": true,
+			"type": "string"
+		},
 		"expand": {
 			"name": "expand",
 			"in": "query",
