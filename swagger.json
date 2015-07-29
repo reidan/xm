@@ -2347,11 +2347,11 @@
 					"type": "string",
 					"enum": ["LOW", "MEDIUM", "HIGH"]
 				},
-				"subscriptions": {
-					"description": "Subscriptions applicable to this event only",
+				"callbacks": {
+					"description": "Callbacks applicable to this event only",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/SubscriptionPost"
+						"$ref": "#/definitions/CallbackPost"
 					}
 				},
 				"conferences": {
@@ -3001,7 +3001,7 @@
 				"links"
 			]
 		},
-		"Subscription": {
+		"Callback": {
 			"description": "Subscribe to receive updates when specific events occur",
 			"type": "object",
 			"properties": {
@@ -3038,7 +3038,7 @@
 				"url"
 			]
 		},
-		"SubscriptionPost": {
+		"CallbackPost": {
 			"description": "Subscribe to receive updates when specific events occur",
 			"type": "object",
 			"properties": {
