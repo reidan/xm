@@ -1988,6 +1988,11 @@
 					"type": "integer",
 					"default": 0
 				},
+				"testStatus": {
+					"description": "Validation status of the Device",
+					"type": "string",
+					"enum": ["UNTESTED", "PENDING", "TESTED"]
+				},
 				"owner": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
@@ -2079,8 +2084,19 @@
 					"type": "integer",
 					"default": 0
 				},
+				"testStatus": {
+					"description": "Validation status of the Device",
+					"type": "string",
+					"enum": ["UNTESTED", "PENDING", "TESTED"]
+				},
 				"owner": {
 					"$ref": "#/definitions/ReferenceById"
+				},
+				"timeframes": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/DeviceTimeframePost"
+					}
 				}
 			},
 			"required": [
@@ -2102,7 +2118,7 @@
 					"type": "string",
 					"format": "date-time"
 				},
-				"duration": {
+				"durationInMinutes": {
 					"type": "integer"
 				},
 				"days": {
@@ -2149,6 +2165,36 @@
 				"count",
 				"total",
 				"links"
+			]
+		},
+		"DeviceTimeframePost": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"startTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"durationInMinutes": {
+					"type": "integer"
+				},
+				"days": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
+					}
+				},
+				"excludeHolidays": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"name",
+				"startTime",
+				"excludeHolidays"
 			]
 		},
 		"EmailDevice": {
