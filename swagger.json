@@ -43,40 +43,22 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -105,34 +87,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -156,34 +123,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -241,28 +193,16 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -291,46 +231,25 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -359,34 +278,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -417,40 +321,22 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -481,40 +367,22 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -543,34 +411,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -594,34 +447,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -658,34 +496,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -717,46 +540,25 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -785,34 +587,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -849,34 +636,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -912,46 +684,25 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -983,34 +734,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -1045,40 +781,22 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1118,34 +836,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -1188,46 +891,25 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1259,34 +941,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1308,28 +975,16 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1360,40 +1015,22 @@
 						}
 					},
 					"400": {
-						"description": "Bad Request",
-						"schema": {
-							"$ref": "#/definitions/BadRequestResponse"
-						}
+						"$ref": "#/responses/400"
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1422,34 +1059,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			},
@@ -1477,34 +1099,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"409": {
-						"description": "Conflict",
-						"schema": {
-							"$ref": "#/definitions/ConflictResponse"
-						}
+						"$ref": "#/responses/409"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1533,34 +1140,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1589,34 +1181,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -1645,34 +1222,19 @@
 						}
 					},
 					"401": {
-						"description": "Unauthorized",
-						"schema": {
-							"$ref": "#/definitions/UnauthorizedResponse"
-						}
+						"$ref": "#/responses/401"
 					},
 					"403": {
-						"description": "Forbidden",
-						"schema": {
-							"$ref": "#/definitions/ForbiddenResponse"
-						}
+						"$ref": "#/responses/403"
 					},
 					"404": {
-						"description": "Not Found",
-						"schema": {
-							"$ref": "#/definitions/NotFoundResponse"
-						}
+						"$ref": "#/responses/404"
 					},
 					"429": {
-						"description": "Too Many Requests",
-						"schema": {
-							"$ref": "#/definitions/TooManyRequestsResponse"
-						}
+						"$ref": "#/responses/429"
 					},
 					"500": {
-						"description": "Internal Error",
-						"schema": {
-							"$ref": "#/definitions/InternalServerErrorResponse"
-						}
+						"$ref": "#/responses/500"
 					}
 				}
 			}
@@ -3390,6 +2952,50 @@
 			"description": "List of attributes to expand",
 			"required": false,
 			"type": "string"
+		}
+	},
+	"responses": {
+		"201": {
+			"description": "Created",
+			"schema": {
+				"$ref": "#/definitions/Device"
+			}
+		},
+		"400": {
+			"description": "Bad Request",
+			"schema": {
+				"$ref": "#/definitions/BadRequestResponse"
+			}
+		},
+		"401": {
+			"description": "Unauthorized",
+			"schema": {
+				"$ref": "#/definitions/UnauthorizedResponse"
+			}
+		},
+		"403": {
+			"description": "Forbidden",
+			"schema": {
+				"$ref": "#/definitions/ForbiddenResponse"
+			}
+		},
+		"409": {
+			"description": "Conflict",
+			"schema": {
+				"$ref": "#/definitions/ConflictResponse"
+			}
+		},
+		"429": {
+			"description": "Too Many Requests",
+			"schema": {
+				"$ref": "#/definitions/TooManyRequestsResponse"
+			}
+		},
+		"500": {
+			"description": "Internal Error",
+			"schema": {
+				"$ref": "#/definitions/InternalServerErrorResponse"
+			}
 		}
 	}
 }
