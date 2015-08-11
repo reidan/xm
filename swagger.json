@@ -36,6 +36,12 @@
 					}
 				],
 				"responses": {
+					"200": {
+						"description": "Updated",
+						"schema": {
+							"$ref": "#/definitions/Device"
+						}
+					},
 					"201": {
 						"description": "Created",
 						"schema": {
@@ -360,6 +366,12 @@
 					}
 				],
 				"responses": {
+					"200": {
+						"description": "Updated",
+						"schema": {
+							"$ref": "#/definitions/Group"
+						}
+					},
 					"201": {
 						"description": "Created",
 						"schema": {
@@ -1008,6 +1020,12 @@
 					}
 				],
 				"responses": {
+					"200": {
+						"description": "Updated",
+						"schema": {
+							"$ref": "#/definitions/Person"
+						}
+					},
 					"201": {
 						"description": "Created",
 						"schema": {
@@ -2955,12 +2973,6 @@
 		}
 	},
 	"responses": {
-		"201": {
-			"description": "Created",
-			"schema": {
-				"$ref": "#/definitions/Device"
-			}
-		},
 		"400": {
 			"description": "Bad Request",
 			"schema": {
