@@ -3,7 +3,7 @@
 	"info": {
 		"title": "xM API",
 		"description": "The xM API",
-		"version": "1.0.0-alpha"
+		"version": "0.1.0"
 	},
 	"host": "api.xmatters.com",
 	"basePath": "/api/xm/1",
@@ -2107,11 +2107,11 @@
 				"formSubmission": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
-				"recipients": {
-					"$ref": "#/definitions/Recipients"
+				"notifications": {
+					"$ref": "#/definitions/Notifications"
 				}
 			},
-			"required": ["id", "startTime", "status", "priority", "formSubmission"]
+			"required": ["id", "startTime", "status", "priority", "formSubmission", "notifications"]
 		},
 		"Events": {
 			"type": "object",
@@ -2226,6 +2226,92 @@
 			"required": [
 				"name",
 				"version"
+			]
+		},
+		"Notification": {
+			"type": "object",
+			"description": "A notification",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Unique identifier for the notification"
+				},
+				"event": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"recipient": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"sender": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"incident": {
+					"type": "string"
+				},
+				"domain": {
+					"type": "string"
+				},
+				"created": {
+					"type": "string",
+					"description": "Date and time the notification was created",
+					"format": "date-time"
+				}
+			},
+			"required": ["id", "event", "recipient", "sender"]
+		},
+		"Notifications": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Notification"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
+		"NotificationPost": {
+			"type": "object",
+			"description": "A notification",
+			"properties": {
+				"event": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"recipient": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"sender": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"incident": {
+					"type": "string"
+				},
+				"domain": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"event",
+				"recipient",
+				"sender"
 			]
 		},
 		"PaginationLinks": {
