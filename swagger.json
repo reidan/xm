@@ -1175,6 +1175,105 @@
 				}
 			}
 		},
+		"/revisions": {
+			"get": {
+				"tags": [
+					"Revisions"
+				],
+				"summary": "Find revisions",
+				"description": "Find revisions",
+				"operationId": "getRevisions",
+				"parameters": [
+					{
+						"name": "after",
+						"in": "query",
+						"description": "Where revision time is after this time",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"name": "before",
+						"in": "query",
+						"description": "Where revision time is before this time",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"name": "userId",
+						"in": "query",
+						"description": "User who made the revision",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/expand"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Revisions"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					},
+					"500": {
+						"$ref": "#/responses/500"
+					}
+				}
+			}
+		},
+		"/revisions/{revisionId}": {
+			"get": {
+				"tags": [
+					"Revisions"
+				],
+				"summary": "Retrieve revision information",
+				"description": "Retrieve revision information",
+				"operationId": "getRevision",
+				"parameters": [
+					{
+						"$ref": "#/parameters/revisionId"
+					},
+					{
+						"$ref": "#/parameters/expand"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Revision"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					},
+					"500": {
+						"$ref": "#/responses/500"
+					}
+				}
+			}
+		},
 		"/sites/{siteId}": {
 			"get": {
 				"tags": [
@@ -2016,6 +2115,9 @@
 				"form": {
 					"$ref": "#/definitions/Form"
 				},
+				"submitter": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
 				"properties": {
 					"description": "Map of property names and values",
 					"type": "object"
@@ -2041,6 +2143,9 @@
 			"description": "A form submission",
 			"properties": {
 				"form": {
+					"$ref": "#/definitions/ReferenceById"
+				},
+				"submitter": {
 					"$ref": "#/definitions/ReferenceById"
 				},
 				"properties": {
@@ -2630,6 +2735,60 @@
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/Response"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
+		"Revision": {
+			"type": "object",
+			"description": "A domain entity revision",
+			"properties": {
+				"id": {
+					"type": "string",
+					"description": "Unique identifier for the revision"
+				},
+				"when": {
+					"type": "string",
+					"description": "The time of the revision",
+					"format": "date-time"
+				},
+				"who": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"what": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"how": {
+					"type": "object"
+				}
+			},
+			"required": ["id", "when", "who"]
+		},
+		"Revisions": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Revision"
 					}
 				},
 				"count": {
