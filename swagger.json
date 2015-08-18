@@ -1001,6 +1001,192 @@
 				}
 			}
 		},
+		"/notifications": {
+			"post": {
+				"tags": [
+					"Notifications"
+				],
+				"summary": "Send a notification",
+				"description": "Send a notification",
+				"operationId": "postNotification",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/NotificationPost"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Notification"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					},
+					"500": {
+						"$ref": "#/responses/500"
+					}
+				}
+			},
+			"get": {
+				"tags": [
+					"Notifications"
+				],
+				"summary": "Find notifications",
+				"description": "Find notifications",
+				"operationId": "getNotifications",
+				"parameters": [
+					{
+						"name": "after",
+						"in": "query",
+						"description": "Where notification created time is after this time",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"name": "before",
+						"in": "query",
+						"description": "Where notification created time is before this time",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"name": "priority",
+						"in": "query",
+						"description": "Where priority is at or above this level",
+						"required": false,
+						"type": "string",
+						"enum": ["LOW", "MEDIUM", "HIGH"]
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "Where status matches the provided value",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "event",
+						"in": "query",
+						"description": "Filter by event",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "recipient",
+						"in": "query",
+						"description": "Filter by recipient",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "sender",
+						"in": "query",
+						"description": "Filter by sender",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "incident",
+						"in": "query",
+						"description": "Filter by incident",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "domain",
+						"in": "query",
+						"description": "Filter by domain",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/expand"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Notifications"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					},
+					"500": {
+						"$ref": "#/responses/500"
+					}
+				}
+			}
+		},
+		"/notifications/{notificationId}": {
+			"get": {
+				"tags": [
+					"Notifications"
+				],
+				"summary": "Retrieve notification information",
+				"description": "Retrieve notification information",
+				"operationId": "getNotification",
+				"parameters": [
+					{
+						"$ref": "#/parameters/notificationId"
+					},
+					{
+						"$ref": "#/parameters/expand"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Notification"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					},
+					"500": {
+						"$ref": "#/responses/500"
+					}
+				}
+			}
+		},
 		"/people": {
 			"post": {
 				"tags": [
@@ -2356,13 +2542,20 @@
 				"domain": {
 					"type": "string"
 				},
+				"priority": {
+					"type": "string",
+					"enum": ["LOW", "MEDIUM", "HIGH"]
+				},
+				"status": {
+					"type": "string"
+				},
 				"created": {
 					"type": "string",
 					"description": "Date and time the notification was created",
 					"format": "date-time"
 				}
 			},
-			"required": ["id", "event", "recipient", "sender"]
+			"required": ["id", "event", "recipient", "sender", "created"]
 		},
 		"Notifications": {
 			"type": "object",
@@ -2410,6 +2603,13 @@
 					"type": "string"
 				},
 				"domain": {
+					"type": "string"
+				},
+				"priority": {
+					"type": "string",
+					"enum": ["LOW", "MEDIUM", "HIGH"]
+				},
+				"status": {
 					"type": "string"
 				}
 			},
