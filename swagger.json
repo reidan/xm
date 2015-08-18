@@ -82,7 +82,7 @@
 						"$ref": "#/parameters/deviceId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -188,7 +188,7 @@
 						"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -273,7 +273,7 @@
 						"$ref": "#/parameters/eventId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -412,7 +412,7 @@
 						"$ref": "#/parameters/groupId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -497,7 +497,7 @@
 						"enum": ["ACTIVE", "INACTIVE"]
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -637,7 +637,7 @@
 						"enum": ["ACTIVE", "INACTIVE"]
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -735,7 +735,7 @@
 						"$ref": "#/parameters/shiftId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -837,7 +837,7 @@
 						"enum": ["ACTIVE", "INACTIVE"]
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1121,7 +1121,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1159,7 +1159,7 @@
 						"$ref": "#/parameters/notificationId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1252,7 +1252,7 @@
 						"$ref": "#/parameters/personId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1333,7 +1333,7 @@
 						"$ref": "#/parameters/personId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1394,7 +1394,7 @@
 						"type": "string"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1432,7 +1432,7 @@
 						"$ref": "#/parameters/revisionId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1473,7 +1473,7 @@
 						"$ref": "#/parameters/siteId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -1514,7 +1514,7 @@
 						"$ref": "#/parameters/userId"
 					},
 					{
-						"$ref": "#/parameters/expand"
+						"$ref": "#/parameters/embed"
 					}
 				],
 				"responses": {
@@ -3409,10 +3409,10 @@
 			"required": true,
 			"type": "string"
 		},
-		"expand": {
-			"name": "expand",
+		"embed": {
+			"name": "embed",
 			"in": "query",
-			"description": "List of attributes to expand",
+			"description": "List of linked domain entities to embed in the response",
 			"required": false,
 			"type": "string"
 		}
