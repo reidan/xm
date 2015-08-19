@@ -23,7 +23,7 @@
 					"Devices"
 				],
 				"summary": "Add or update a device",
-				"description": "Add or update a device http://google.com",
+				"description": "Add or update a device",
 				"operationId": "postDevice",
 				"parameters": [
 					{
