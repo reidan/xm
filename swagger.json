@@ -1545,7 +1545,7 @@
 	},
 	"definitions": {
 		"Topic": {
-			"description": "System event types",
+			"description": "Observable system event types",
 			"type": "string",
 			"enum": [
 				"call.busy",
