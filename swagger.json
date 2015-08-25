@@ -3007,8 +3007,7 @@
 			]
 		},
 		"SystemEventType": {
-			"id": "SystemEventType",
-			"description": "Observable system event types",
+			"description": "Observable system event type",
 			"type": "string",
 			"enum": [
 				"call.busy",
