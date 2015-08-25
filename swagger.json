@@ -1612,7 +1612,7 @@
 					"type": "boolean"
 				},
 				"script": {
-					"description": "Integration script to execute when this callback is triggered",
+					"description": "Integration script to execute when this callback fires",
 					"type": "string"
 				}
 			},
@@ -1640,7 +1640,7 @@
 					"type": "boolean"
 				},
 				"script": {
-					"description": "Integration script to execute when this callback is triggered",
+					"description": "Integration script to execute when this callback fires",
 					"type": "string"
 				}
 			},
