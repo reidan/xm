@@ -3007,6 +3007,7 @@
 			]
 		},
 		"SystemEventType": {
+			"id": "SystemEventType",
 			"description": "Observable system event types",
 			"type": "string",
 			"enum": [
