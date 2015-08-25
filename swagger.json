@@ -3044,7 +3044,6 @@
 				"notification.recipient_not_found",
 				"notification.recipient_replaced",
 				"public_address.failed",
-				"protocol.exhausted",
 				"response.mapped",
 				"response.received",
 				"response.rejected",
