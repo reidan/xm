@@ -1544,52 +1544,6 @@
 		}
 	},
 	"definitions": {
-		"Topic": {
-			"description": "Observable system event types",
-			"type": "string",
-			"enum": [
-				"call.busy",
-				"call.connected",
-				"call.dropped",
-				"call.failed",
-				"call.hung_up",
-				"call.in",
-				"call.no_answer",
-				"call.reached_voicemail",
-				"conference.joined",
-				"conference.login_failed",
-				"device.invalidated",
-				"device.marked_invalid",
-				"device.override_failed",
-				"device.replaced",
-				"email.failed",
-				"email.opened",
-				"event.annotated",
-				"event.completed",
-				"event.created",
-				"event.resumed",
-				"event.suspended",
-				"event.terminated",
-				"fax.status",
-				"fax.submitted",
-				"group.deleted",
-				"incident.deleted",
-				"notification.delayed",
-				"notification.delivered",
-				"notification.discarded",
-				"notification.escalated",
-				"notification.failed",
-				"notification.recipient_not_found",
-				"notification.recipient_replaced",
-				"pa.failed",
-				"protocol.exhausted",
-				"response.mapped",
-				"response.received",
-				"response.rejected",
-				"sms.delivered",
-				"sms.read"
-			]
-		},
 		"Callback": {
 			"description": "Subscribe to receive callbacks when specific system events occur",
 			"type": "object",
@@ -1598,11 +1552,11 @@
 					"description": "Unique identifier",
 					"type": "string"
 				},
-				"topics": {
+				"on": {
 					"description": "Receive callbacks only for these system events",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/Topic"
+						"$ref": "#/definitions/SystemEventType"
 					}
 				},
 				"request": {
@@ -1619,18 +1573,18 @@
 			},
 			"required": [
 				"id",
-				"topics"
+				"on"
 			]
 		},
 		"CallbackPost": {
 			"description": "Subscribe to receive callbacks when specific system events occur",
 			"type": "object",
 			"properties": {
-				"topics": {
+				"on": {
 					"description": "Receive callbacks for these xMatters system events",
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/Topic"
+						"$ref": "#/definitions/SystemEventType"
 					}
 				},
 				"request": {
@@ -1646,7 +1600,7 @@
 				}
 			},
 			"required": [
-				"topics"
+				"on"
 			]
 		},
 		"Request": {
@@ -3050,6 +3004,52 @@
 				"country",
 				"externallyOwned",
 				"links"
+			]
+		},
+		"SystemEventType": {
+			"description": "Observable system event types",
+			"type": "string",
+			"enum": [
+				"call.busy",
+				"call.connected",
+				"call.dropped",
+				"call.failed",
+				"call.hung_up",
+				"call.in",
+				"call.no_answer",
+				"call.reached_voicemail",
+				"conference.joined",
+				"conference.login_failed",
+				"device.invalidated",
+				"device.marked_invalid",
+				"device.override_failed",
+				"device.replaced",
+				"email.failed",
+				"email.opened",
+				"event.annotated",
+				"event.completed",
+				"event.created",
+				"event.resumed",
+				"event.suspended",
+				"event.terminated",
+				"fax.status",
+				"fax.submitted",
+				"group.deleted",
+				"incident.deleted",
+				"notification.delayed",
+				"notification.delivered",
+				"notification.discarded",
+				"notification.escalated",
+				"notification.failed",
+				"notification.recipient_not_found",
+				"notification.recipient_replaced",
+				"pa.failed",
+				"protocol.exhausted",
+				"response.mapped",
+				"response.received",
+				"response.rejected",
+				"sms.delivered",
+				"sms.read"
 			]
 		},
 		"User": {
