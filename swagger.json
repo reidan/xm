@@ -1590,7 +1590,7 @@
 			]
 		},
 		"Callback": {
-			"description": "Subscribe to receive updates when specific events occur",
+			"description": "Subscribe to receive callbacks when specific system events occur",
 			"type": "object",
 			"properties": {
 				"id": {
@@ -1622,7 +1622,7 @@
 			]
 		},
 		"CallbackPost": {
-			"description": "Subscribe to receive updates when specific events occur",
+			"description": "Subscribe to receive callbacks when specific system events occur",
 			"type": "object",
 			"properties": {
 				"topics": {
