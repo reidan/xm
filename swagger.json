@@ -3043,7 +3043,7 @@
 				"notification.failed",
 				"notification.recipient_not_found",
 				"notification.recipient_replaced",
-				"pa.failed",
+				"public_address.failed",
 				"protocol.exhausted",
 				"response.mapped",
 				"response.received",
