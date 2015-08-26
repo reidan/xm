@@ -3043,6 +3043,7 @@
 				"notification.failed",
 				"notification.recipient_not_found",
 				"notification.recipient_replaced",
+				"notification.sent",
 				"public_address.failed",
 				"response.mapped",
 				"response.received",
