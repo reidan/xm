@@ -1666,13 +1666,38 @@
 		},
 		"Device": {
 			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Recipient"
-				}
-			],
 			"discriminator": "deviceType",
 			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"recipientType": {
+					"type": "string",
+					"enum": [
+						"DEVICE"
+					]
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"externallyOwned": {
+					"description": "Externally owned = N means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = Y means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
+				"locked": {
+					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
 				"deviceType": {
 					"type": "string",
 					"enum": [
@@ -1725,9 +1750,15 @@
 				}
 			},
 			"required": [
+				"id",
+				"targetName",
+				"recipientType",
+				"status",
+				"externallyOwned",
 				"deviceType",
 				"emergencyDevice",
-				"owner"
+				"owner",
+				"links"
 			]
 		},
 		"Devices": {
@@ -1761,13 +1792,29 @@
 		},
 		"DevicePost": {
 			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/RecipientPost"
-				}
-			],
 			"discriminator": "deviceType",
 			"properties": {
+				"recipientType": {
+					"type": "string",
+					"enum": ["DEVICE"]
+				},
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"],
+					"default": "ACTIVE"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
 				"deviceType": {
 					"type": "string",
 					"enum": [
@@ -1824,6 +1871,8 @@
 				}
 			},
 			"required": [
+				"recipientType",
+				"targetName",
 				"deviceType",
 				"owner"
 			]
@@ -2312,30 +2361,111 @@
 			]
 		},
 		"Group": {
+			"description": "A group. Edges: shifts, members",
 			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Recipient"
-				}
-			],
 			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"recipientType": {
+					"type": "string",
+					"enum": [
+						"GROUP"
+					]
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"externallyOwned": {
+					"description": "Externally owned = N means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = Y means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
+				"locked": {
+					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
 				"description": {
 					"type": "string"
 				},
 				"timezone": {
 					"type": "string"
+				},
+				"shifts": {
+					"$ref": "#/definitions/Shifts"
+				},
+				"members": {
+					"$ref": "#/definitions/Recipients"
+				},
+				"links": {
+					"$ref": "#/definitions/GroupLinks"
 				}
-			}
+			},
+			"required": [
+				"id",
+				"targetName",
+				"recipientType",
+				"status",
+				"externallyOwned",
+				"links"
+			]
+		},
+		"GroupLinks": {
+			"type": "object",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this resource"
+				},
+				"shifts": {
+					"type": "string",
+					"description": "Shifts of this group"
+				},
+				"members": {
+					"type": "string",
+					"description": "Members of this group"
+				}
+			},
+			"required": [
+				"self",
+				"shifts",
+				"members"
+			]
 		},
 		"GroupPost": {
 			"description": "Adding or updating a group. Will attempt to find group by id if provided or by targetName before creating a new group in the system.",
 			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/RecipientPost"
-				}
-			],
 			"properties": {
+				"recipientType": {
+					"type": "string",
+					"enum": ["GROUP"]
+				},
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"],
+					"default": "ACTIVE"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
 				"description": {
 					"type": "string"
 				},
@@ -2348,7 +2478,11 @@
 						"$ref": "#/definitions/ReferenceById"
 					}
 				}
-			}
+			},
+			"required": [
+				"recipientType",
+				"targetName"
+			]
 		},
 		"Info": {
 			"type": "object",
@@ -2493,12 +2627,37 @@
 		},
 		"Person": {
 			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Recipient"
-				}
-			],
 			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"recipientType": {
+					"type": "string",
+					"enum": [
+						"PERSON"
+					]
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"]
+				},
+				"externallyOwned": {
+					"description": "Externally owned = N means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = Y means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
+				"locked": {
+					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
 				"firstName": {
 					"type": "string"
 				},
@@ -2519,8 +2678,19 @@
 				},
 				"site": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"links": {
+					"$ref": "#/definitions/SelfLink"
 				}
-			}
+			},
+			"required": [
+				"id",
+				"targetName",
+				"recipientType",
+				"status",
+				"externallyOwned",
+				"links"
+			]
 		},
 		"People": {
 			"type": "object",
@@ -2554,12 +2724,28 @@
 		"PersonPost": {
 			"description": "Adding or updating a person. Will attempt to find person by id if provided or by targetName before creating a new person in the system.",
 			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/RecipientPost"
-				}
-			],
 			"properties": {
+				"recipientType": {
+					"type": "string",
+					"enum": ["PERSON"]
+				},
+				"id": {
+					"type": "string"
+				},
+				"targetName": {
+					"type": "string"
+				},
+				"status": {
+					"type": "string",
+					"enum": ["ACTIVE", "INACTIVE"],
+					"default": "ACTIVE"
+				},
+				"externallyOwned": {
+					"type": "boolean"
+				},
+				"externalKey": {
+					"type": "string"
+				},
 				"firstName": {
 					"type": "string"
 				},
@@ -2593,7 +2779,11 @@
 						"$ref": "#/definitions/ReferenceById"
 					}
 				}
-			}
+			},
+			"required": [
+				"recipientType",
+				"targetName"
+			]
 		},
 		"Recipient": {
 			"type": "object",
@@ -2873,7 +3063,7 @@
 		},
 		"Shift": {
 			"type": "object",
-			"description": "A shift",
+			"description": "A shift. Edges: members",
 			"properties": {
 				"id": {
 					"type": "string"
@@ -2888,8 +3078,11 @@
 				"group": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
+				"members": {
+					"$ref": "#/definitions/Recipients"
+				},
 				"links": {
-					"$ref": "#/definitions/SelfLink"
+					"$ref": "#/definitions/ShiftLinks"
 				}
 			},
 			"required": [
@@ -2898,6 +3091,23 @@
 				"status",
 				"group",
 				"links"
+			]
+		},
+		"ShiftLinks": {
+			"type": "object",
+			"properties": {
+				"self": {
+					"type": "string",
+					"description": "URL of this resource"
+				},
+				"members": {
+					"type": "string",
+					"description": "Members of this shift"
+				}
+			},
+			"required": [
+				"self",
+				"members"
 			]
 		},
 		"ShiftPost": {
