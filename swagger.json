@@ -3021,7 +3021,6 @@
 				"conference.joined",
 				"conference.login_failed",
 				"device.invalidated",
-				"device.marked_invalid",
 				"device.override_failed",
 				"device.replaced",
 				"email.failed",
