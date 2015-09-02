@@ -1718,9 +1718,6 @@
 				"description": {
 					"type": "string"
 				},
-				"details": {
-					"type": "string"
-				},
 				"defaultDevice": {
 					"type": "boolean"
 				},
