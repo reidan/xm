@@ -2176,6 +2176,19 @@
 				"phoneNumber"
 			]
 		},
+		"BlackberryEnterprizeServerDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"address": {
+					"type": "string"
+				}
+			}
+		},
 		"Form": {
 			"type": "object",
 			"description": "A form",
