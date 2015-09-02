@@ -2774,7 +2774,7 @@
 		},
 		"PhoneNumber": {
 			"type": "object",
-			"description": "Common phone muber structure. Either e164 or number is required, the rest of the fields are optional. If e164 is provided the other fields will be parsed from it. If the number, areaCode, countryCode, ext fields are provided they will be used to build the e164 field.",
+			"description": "Common phone number structure. Either e164 or number is required, the rest of the fields are optional. If e164 is provided the other fields will be parsed from it. If the number, areaCode, countryCode, ext fields are provided they will be used to build the e164 field.",
 			"properties": {
 				"e164": {
 					"type": "string",
