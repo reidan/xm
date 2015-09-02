@@ -1701,17 +1701,19 @@
 				"deviceType": {
 					"type": "string",
 					"enum": [
-						"EMAIL",
-						"VOICE",
-						"TEXT_PHONE",
-						"TEXT_PAGER",
-						"NUMERIC_PAGER",
-						"IM",
-						"BROWSER",
-						"APPLE_PUSH",
-						"FAX",
 						"ANDROID_PUSH",
+						"APPLE_PUSH",
+						"BES",
 						"BLACKBERRY_PUSH",
+						"BROWSER",
+						"EMAIL",
+						"FAX",
+						"GENERIC",
+						"IM",
+						"NUMERIC_PAGER",
+						"TEXT_PAGER",
+						"TEXT_PHONE",
+						"VOICE",
 						"VOICE_IVR"
 					]
 				},
@@ -1815,17 +1817,19 @@
 				"deviceType": {
 					"type": "string",
 					"enum": [
-						"EMAIL",
-						"VOICE",
-						"TEXT_PHONE",
-						"TEXT_PAGER",
-						"NUMERIC_PAGER",
-						"IM",
-						"BROWSER",
-						"APPLE_PUSH",
-						"FAX",
 						"ANDROID_PUSH",
+						"APPLE_PUSH",
+						"BES",
 						"BLACKBERRY_PUSH",
+						"BROWSER",
+						"EMAIL",
+						"FAX",
+						"GENERIC",
+						"IM",
+						"NUMERIC_PAGER",
+						"TEXT_PAGER",
+						"TEXT_PHONE",
+						"VOICE",
 						"VOICE_IVR"
 					]
 				},
@@ -1872,99 +1876,6 @@
 				"targetName",
 				"deviceType",
 				"owner"
-			]
-		},
-		"DeviceTimeframe": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"startTime": {
-					"type": "string",
-					"format": "date-time"
-				},
-				"endTime": {
-					"type": "string",
-					"format": "date-time"
-				},
-				"durationInMinutes": {
-					"type": "integer"
-				},
-				"days": {
-					"type": "array",
-					"items": {
-						"type": "string",
-						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
-					}
-				},
-				"excludeHolidays": {
-					"type": "boolean"
-				}
-			},
-			"required": [
-				"name",
-				"startTime",
-				"excludeHolidays"
-			]
-		},
-		"DeviceTimeframes": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/DeviceTimeframe"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"DeviceTimeframePost": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"startTime": {
-					"type": "string",
-					"format": "date-time"
-				},
-				"durationInMinutes": {
-					"type": "integer"
-				},
-				"days": {
-					"type": "array",
-					"items": {
-						"type": "string",
-						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
-					}
-				},
-				"excludeHolidays": {
-					"type": "boolean"
-				}
-			},
-			"required": [
-				"name",
-				"startTime",
-				"excludeHolidays"
 			]
 		},
 		"EmailDevice": {
@@ -2198,6 +2109,99 @@
 					"type": "string"
 				}
 			}
+		},
+		"DeviceTimeframe": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"startTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"endTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"durationInMinutes": {
+					"type": "integer"
+				},
+				"days": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
+					}
+				},
+				"excludeHolidays": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"name",
+				"startTime",
+				"excludeHolidays"
+			]
+		},
+		"DeviceTimeframes": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/DeviceTimeframe"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
+		"DeviceTimeframePost": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"startTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"durationInMinutes": {
+					"type": "integer"
+				},
+				"days": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
+					}
+				},
+				"excludeHolidays": {
+					"type": "boolean"
+				}
+			},
+			"required": [
+				"name",
+				"startTime",
+				"excludeHolidays"
+			]
 		},
 		"Form": {
 			"type": "object",
