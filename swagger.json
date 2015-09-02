@@ -2057,6 +2057,19 @@
 				}
 			}
 		},
+		"GenericDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"pin": {
+					"type": "string"
+				}
+			}
+		},
 		"IMDevice": {
 			"type": "object",
 			"allOf": [
