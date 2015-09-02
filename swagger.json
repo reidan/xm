@@ -1721,7 +1721,7 @@
 				"details": {
 					"type": "string"
 				},
-				"emergencyDevice": {
+				"defaultDevice": {
 					"type": "boolean"
 				},
 				"priorityThreshold": {
@@ -1995,8 +1995,7 @@
 			],
 			"properties": {
 				"phoneNumber": {
-					"type": "string",
-					"description": "E.164 international format phone number including country code"
+					"$ref": "#/definitions/PhoneNumber"
 				}
 			},
 			"required": [
@@ -2012,8 +2011,7 @@
 			],
 			"properties": {
 				"phoneNumber": {
-					"type": "string",
-					"description": "E.164 international format phone number including country code"
+					"$ref": "#/definitions/PhoneNumber"
 				}
 			},
 			"required": [
@@ -2031,13 +2029,13 @@
 				"pin": {
 					"type": "string"
 				},
-				"isTwoWay": {
+				"twoWayDevice": {
 					"type": "boolean"
 				}
 			},
 			"required": [
 				"pin",
-				"isTwoWay"
+				"twoWayDevice"
 			]
 		},
 		"NumericPagerDevice": {
@@ -2049,18 +2047,12 @@
 			],
 			"properties": {
 				"pagerNumber": {
-					"type": "string"
-				},
-				"country": {
-					"type": "string"
-				},
-				"areaCode": {
-					"type": "string"
+					"$ref": "#/definitions/PhoneNumber"
 				},
 				"pin": {
 					"type": "string"
 				},
-				"isTwoWay": {
+				"twoWayDevice": {
 					"type": "boolean"
 				}
 			}
@@ -2160,19 +2152,14 @@
 			],
 			"properties": {
 				"faxNumber": {
-					"type": "string",
-					"pattern": "^\\d{5,20}$"
-				},
-				"country": {
-					"type": "string",
-					"enum": ["AR", "AU", "BR", "CA", "FR", "DE", "HK", "IN", "IT", "JP", "PT", "PR", "GB", "US"]
+					"$ref": "#/definitions/PhoneNumber"
 				}
 			},
 			"required": [
 				"faxNumber"
 			]
 		},
-		"BroadcastDevice": {
+		"PublicAddressDevice": {
 			"description": "a.k.a. Voice IVR",
 			"type": "object",
 			"allOf": [
@@ -2182,7 +2169,7 @@
 			],
 			"properties": {
 				"phoneNumber": {
-					"type": "string"
+					"$ref": "#/definitions/PhoneNumber"
 				}
 			},
 			"required": [
@@ -2784,6 +2771,27 @@
 				"recipientType",
 				"targetName"
 			]
+		},
+		"PhoneNumber": {
+			"type": "object",
+			"properties": {
+				"e164": {
+					"type": "string",
+					"description": "E.164 international format phone number including country code"
+				},
+				"number": {
+					"type": "string"
+				},
+				"areaCode": {
+					"type": "string"
+				},
+				"countryCode": {
+					"type": "string"
+				},
+				"ext": {
+					"type": "string"
+				}
+			}
 		},
 		"Recipient": {
 			"type": "object",
