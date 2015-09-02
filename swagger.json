@@ -1886,6 +1886,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"EMAIL"
+					]
+				},
 				"address": {
 					"type": "string"
 				}
@@ -1902,6 +1908,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"VOICE"
+					]
+				},
 				"phoneNumber": {
 					"$ref": "#/definitions/PhoneNumber"
 				}
@@ -1918,6 +1930,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"TEXT_PHONE"
+					]
+				},
 				"phoneNumber": {
 					"$ref": "#/definitions/PhoneNumber"
 				}
@@ -1934,6 +1952,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"TEXT_PAGER"
+					]
+				},
 				"pin": {
 					"type": "string"
 				},
@@ -1954,6 +1978,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"NUMERIC_PAGER"
+					]
+				},
 				"pagerNumber": {
 					"$ref": "#/definitions/PhoneNumber"
 				},
@@ -1973,6 +2003,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"GENERIC"
+					]
+				},
 				"pin": {
 					"type": "string"
 				}
@@ -1986,6 +2022,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"IM"
+					]
+				},
 				"address": {
 					"type": "string"
 				}
@@ -2002,6 +2044,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"APPLE_PUSH"
+					]
+				},
 				"accountId": {
 					"type": "string"
 				},
@@ -2032,6 +2080,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"ANDROID_PUSH"
+					]
+				},
 				"accountId": {
 					"type": "string"
 				},
@@ -2052,6 +2106,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"BLACKBERRY_PUSH"
+					]
+				},
 				"accountId": {
 					"type": "string"
 				},
@@ -2072,6 +2132,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"FAX"
+					]
+				},
 				"faxNumber": {
 					"$ref": "#/definitions/PhoneNumber"
 				}
@@ -2089,6 +2155,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"VOICE_IVR"
+					]
+				},
 				"phoneNumber": {
 					"$ref": "#/definitions/PhoneNumber"
 				}
@@ -2105,6 +2177,12 @@
 				}
 			],
 			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"BES"
+					]
+				},
 				"address": {
 					"type": "string"
 				}
