@@ -2013,9 +2013,6 @@
 				},
 				"pin": {
 					"type": "string"
-				},
-				"twoWayDevice": {
-					"type": "boolean"
 				}
 			}
 		},
@@ -2172,7 +2169,8 @@
 					]
 				},
 				"phoneNumber": {
-					"type": "string"
+					"type": "string",
+					"description": "E.164 international format phone number including country code and extension"
 				}
 			},
 			"required": [
@@ -2867,28 +2865,6 @@
 				"recipientType",
 				"targetName"
 			]
-		},
-		"PhoneNumber": {
-			"type": "object",
-			"description": "Common phone number structure. Either e164 or number is required, the rest of the fields are optional. If e164 is provided the other fields will be parsed from it. If the number, areaCode, countryCode, ext fields are provided they will be used to build the e164 field.",
-			"properties": {
-				"e164": {
-					"type": "string",
-					"description": "E.164 international format phone number including country code and extension"
-				},
-				"number": {
-					"type": "string"
-				},
-				"areaCode": {
-					"type": "string"
-				},
-				"countryCode": {
-					"type": "string"
-				},
-				"ext": {
-					"type": "string"
-				}
-			}
 		},
 		"Recipient": {
 			"type": "object",
