@@ -1937,7 +1937,8 @@
 					]
 				},
 				"phoneNumber": {
-					"$ref": "#/definitions/PhoneNumber"
+					"type": "string",
+					"description": "E.164 international format phone number including country code"
 				}
 			},
 			"required": [
@@ -1985,7 +1986,13 @@
 					]
 				},
 				"pagerNumber": {
-					"$ref": "#/definitions/PhoneNumber"
+					"type": "string"
+				},
+				"country": {
+					"type": "string"
+				},
+				"areaCode": {
+					"type": "string"
 				},
 				"pin": {
 					"type": "string"
@@ -2139,7 +2146,12 @@
 					]
 				},
 				"faxNumber": {
-					"$ref": "#/definitions/PhoneNumber"
+					"type": "string",
+					"pattern": "^\\d{5,20}$"
+				},
+				"country": {
+					"type": "string",
+					"enum": ["AR", "AU", "BR", "CA", "FR", "DE", "HK", "IN", "IT", "JP", "PT", "PR", "GB", "US"]
 				}
 			},
 			"required": [
@@ -2162,7 +2174,7 @@
 					]
 				},
 				"phoneNumber": {
-					"$ref": "#/definitions/PhoneNumber"
+					"type": "string"
 				}
 			},
 			"required": [
