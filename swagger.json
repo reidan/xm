@@ -128,6 +128,9 @@
 							"$ref": "#/definitions/Device"
 						}
 					},
+					"204": {
+						"$ref": "#/responses/204"
+					},
 					"401": {
 						"$ref": "#/responses/401"
 					},
@@ -458,6 +461,9 @@
 							"$ref": "#/definitions/Group"
 						}
 					},
+					"204": {
+						"$ref": "#/responses/204"
+					},
 					"401": {
 						"$ref": "#/responses/401"
 					},
@@ -597,6 +603,9 @@
 						"schema": {
 							"$ref": "#/definitions/Recipient"
 						}
+					},
+					"204": {
+						"$ref": "#/responses/204"
 					},
 					"401": {
 						"$ref": "#/responses/401"
@@ -792,6 +801,9 @@
 							"$ref": "#/definitions/Shift"
 						}
 					},
+					"204": {
+						"$ref": "#/responses/204"
+					},
 					"401": {
 						"$ref": "#/responses/401"
 					},
@@ -951,6 +963,9 @@
 						"schema": {
 							"$ref": "#/definitions/Recipient"
 						}
+					},
+					"204": {
+						"$ref": "#/responses/204"
 					},
 					"401": {
 						"$ref": "#/responses/401"
@@ -1301,6 +1316,9 @@
 						"schema": {
 							"$ref": "#/definitions/Person"
 						}
+					},
+					"204": {
+						"$ref": "#/responses/204"
 					},
 					"401": {
 						"$ref": "#/responses/401"
@@ -1913,14 +1931,15 @@
 					]
 				},
 				"phoneNumber": {
-					"$ref": "#/definitions/PhoneNumber"
+					"type": "string",
+					"description": "E.164 international format phone number including country code and extension"
 				}
 			},
 			"required": [
 				"phoneNumber"
 			]
 		},
-		"TextPhoneDevice": {
+		"SMSDevice": {
 			"type": "object",
 			"allOf": [
 				{
@@ -1936,7 +1955,7 @@
 				},
 				"phoneNumber": {
 					"type": "string",
-					"description": "E.164 international format phone number including country code"
+					"description": "E.164 international format phone number including country code and extension"
 				}
 			},
 			"required": [
@@ -3608,6 +3627,12 @@
 		}
 	},
 	"responses": {
+		"202": {
+			"description": "Accepted"
+		},
+		"204": {
+			"description": "No Content"
+		},
 		"400": {
 			"description": "Bad Request",
 			"schema": {
