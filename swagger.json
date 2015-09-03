@@ -1819,12 +1819,10 @@
 					"enum": [
 						"ANDROID_PUSH",
 						"APPLE_PUSH",
-						"BES",
 						"BLACKBERRY_PUSH",
 						"BROWSER",
 						"EMAIL",
 						"FAX",
-						"GENERIC",
 						"IM",
 						"NUMERIC_PAGER",
 						"TEXT_PAGER",
@@ -2002,25 +2000,6 @@
 				}
 			}
 		},
-		"GenericDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"GENERIC"
-					]
-				},
-				"pin": {
-					"type": "string"
-				}
-			}
-		},
 		"IMDevice": {
 			"type": "object",
 			"allOf": [
@@ -2180,25 +2159,6 @@
 			"required": [
 				"phoneNumber"
 			]
-		},
-		"BlackberryEnterprizeServerDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"BES"
-					]
-				},
-				"address": {
-					"type": "string"
-				}
-			}
 		},
 		"DeviceTimeframe": {
 			"type": "object",
