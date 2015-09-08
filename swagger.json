@@ -1908,12 +1908,12 @@
 						"EMAIL"
 					]
 				},
-				"address": {
+				"emailAddress": {
 					"type": "string"
 				}
 			},
 			"required": [
-				"address"
+				"emailAddress"
 			]
 		},
 		"VoiceDevice": {
@@ -2140,7 +2140,7 @@
 						"FAX"
 					]
 				},
-				"faxNumber": {
+				"phoneNumber": {
 					"type": "string",
 					"pattern": "^\\d{5,20}$"
 				},
@@ -2150,7 +2150,7 @@
 				}
 			},
 			"required": [
-				"faxNumber"
+				"phoneNumber"
 			]
 		},
 		"PublicAddressDevice": {
