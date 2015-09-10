@@ -1841,6 +1841,7 @@
 						"BROWSER",
 						"EMAIL",
 						"FAX",
+						"GENERIC",
 						"IM",
 						"NUMERIC_PAGER",
 						"TEXT_PAGER",
@@ -2176,6 +2177,25 @@
 			"required": [
 				"phoneNumber"
 			]
+		},
+		"GenericDevice": {
+			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Device"
+				}
+			],
+			"properties": {
+				"deviceType": {
+					"type": "string",
+					"enum": [
+						"GENERIC"
+					]
+				},
+				"pin": {
+					"type": "string"
+				}
+			}
 		},
 		"DeviceTimeframe": {
 			"type": "object",
