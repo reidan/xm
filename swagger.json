@@ -304,21 +304,21 @@
 				}
 			}
 		},
-		"/form-submissions": {
+		"/triggers": {
 			"post": {
 				"tags": [
 					"Forms"
 				],
-				"summary": "Submit a form",
-				"description": "Submit a form (creates an event)",
-				"operationId": "postFormSubmission",
+				"summary": "Submit a form trigger",
+				"description": "Submit a form trigger (intiates an event)",
+				"operationId": "postTrigger",
 				"parameters": [
 					{
 						"name": "body",
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/FormSubmissionPost"
+							"$ref": "#/definitions/TriggerPost"
 						}
 					}
 				],
@@ -326,7 +326,7 @@
 					"201": {
 						"description": "Created",
 						"schema": {
-							"$ref": "#/definitions/FormSubmission"
+							"$ref": "#/definitions/Trigger"
 						}
 					},
 					"400": {
@@ -2299,7 +2299,7 @@
 			},
 			"required": ["id"]
 		},
-		"FormSubmission": {
+		"Trigger": {
 			"type": "object",
 			"description": "A form submission",
 			"properties": {
@@ -2332,7 +2332,7 @@
 			},
 			"required": ["form"]
 		},
-		"FormSubmissionPost": {
+		"TriggerPost": {
 			"type": "object",
 			"description": "A form submission",
 			"properties": {
@@ -2403,14 +2403,14 @@
 					"type": "string",
 					"enum": ["LOW", "MEDIUM", "HIGH"]
 				},
-				"formSubmission": {
+				"trigger": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
 				},
 				"notifications": {
 					"$ref": "#/definitions/Notifications"
 				}
 			},
-			"required": ["id", "startTime", "status", "priority", "formSubmission", "notifications"]
+			"required": ["id", "startTime", "status", "priority", "trigger", "notifications"]
 		},
 		"Events": {
 			"type": "object",
