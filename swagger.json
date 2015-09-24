@@ -3617,7 +3617,7 @@
 		"embed": {
 			"name": "embed",
 			"in": "query",
-			"description": "List of linked domain entities to embed in the response",
+			"description": "Comma separated list of linked domain entities to embed in the response",
 			"required": false,
 			"type": "string"
 		}
