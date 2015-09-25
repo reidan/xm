@@ -1811,6 +1811,7 @@
 			]
 		},
 		"DevicePost": {
+			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
 			"type": "object",
 			"discriminator": "deviceType",
 			"properties": {
@@ -2306,8 +2307,8 @@
 			"required": ["id"]
 		},
 		"Trigger": {
+			"description": "The submission of a form. The trigger for an event",
 			"type": "object",
-			"description": "A form submission",
 			"properties": {
 				"id": {
 					"description": "The unique identifier",
@@ -2340,8 +2341,8 @@
 			"required": ["form"]
 		},
 		"TriggerPost": {
+			"description": "The submission of a form. The trigger for an event",
 			"type": "object",
-			"description": "A form submission",
 			"properties": {
 				"form": {
 					"$ref": "#/definitions/ReferenceById"
@@ -2389,8 +2390,8 @@
 			"required": ["form"]
 		},
 		"Event": {
+			"description": "An event represents a situation that requires a notification. Event is also used to refer to an incident or situation as it progresses through the system, from injection to notification to resolution.",
 			"type": "object",
-			"description": "An event",
 			"properties": {
 				"id": {
 					"description": "The unique identifier",
@@ -2449,8 +2450,8 @@
 			]
 		},
 		"EventPost": {
+			"description": "An event represents a situation that requires a notification. Event is also used to refer to an incident or situation as it progresses through the system, from injection to notification to resolution.",
 			"type": "object",
-			"description": "An event update",
 			"properties": {
 				"id": {
 					"description": "The unique identifier",
@@ -2468,7 +2469,7 @@
 			]
 		},
 		"Group": {
-			"description": "A group. Edges: shifts, members",
+			"description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
 			"type": "object",
 			"properties": {
 				"id": {
@@ -2550,7 +2551,7 @@
 			]
 		},
 		"GroupPost": {
-			"description": "Adding or updating a group. Will attempt to find group by id if provided or by targetName before creating a new group in the system.",
+			"description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
 			"type": "object",
 			"properties": {
 				"recipientType": {
@@ -2612,8 +2613,8 @@
 			]
 		},
 		"Notification": {
+			"description": "A notification is any message sent by xMatters to a device, in order to inform a person of an event that requires attention. The alert contains information about the event, such the time and location, and may ask the person to respond, acknowledging that they have received the notification.",
 			"type": "object",
-			"description": "A notification",
 			"properties": {
 				"id": {
 					"description": "The unique identifier",
@@ -2679,8 +2680,8 @@
 			]
 		},
 		"NotificationPost": {
+			"description": "A notification is any message sent by xMatters to a device, in order to inform a person of an event that requires attention. The alert contains information about the event, such the time and location, and may ask the person to respond, acknowledging that they have received the notification.",
 			"type": "object",
-			"description": "A notification",
 			"properties": {
 				"event": {
 					"$ref": "#/definitions/ReferenceById"
@@ -2800,7 +2801,9 @@
 				"recipientType",
 				"active",
 				"externallyOwned",
-				"links"
+				"links",
+				"firstName",
+				"lastName"
 			]
 		},
 		"People": {
@@ -2836,13 +2839,13 @@
 			"description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
 			"type": "object",
 			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": ["PERSON"]
-				},
 				"id": {
 					"description": "The unique identifier",
 					"type": "string"
+				},
+				"recipientType": {
+					"type": "string",
+					"enum": ["PERSON"]
 				},
 				"targetName": {
 					"type": "string"
@@ -2894,7 +2897,9 @@
 			},
 			"required": [
 				"recipientType",
-				"targetName"
+				"targetName",
+				"firstName",
+				"lastName"
 			]
 		},
 		"Recipient": {
