@@ -1684,7 +1684,7 @@
 			]
 		},
 		"Device": {
-			"description": "A device",
+			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
 			"type": "object",
 			"discriminator": "deviceType",
 			"properties": {
@@ -1693,6 +1693,7 @@
 					"type": "string"
 				},
 				"targetName": {
+					"description": "A unique identifier",
 					"type": "string"
 				},
 				"recipientType": {
@@ -2734,6 +2735,7 @@
 			]
 		},
 		"Person": {
+			"description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
 			"type": "object",
 			"properties": {
 				"id": {
@@ -2831,7 +2833,7 @@
 			]
 		},
 		"PersonPost": {
-			"description": "Adding or updating a person. Will attempt to find person by id if provided or by targetName before creating a new person in the system.",
+			"description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
 			"type": "object",
 			"properties": {
 				"recipientType": {
@@ -2896,6 +2898,7 @@
 			]
 		},
 		"Recipient": {
+			"description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
 			"type": "object",
 			"discriminator": "recipientType",
 			"properties": {
@@ -2976,6 +2979,7 @@
 			]
 		},
 		"RecipientPost": {
+			"description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
 			"type": "object",
 			"discriminator": "recipientType",
 			"properties": {
@@ -3381,6 +3385,7 @@
 			]
 		},
 		"User": {
+			"description": "Every person with a login and password to the xMatters system is a user.",
 			"type": "object",
 			"properties": {
 				"id": {
