@@ -3681,6 +3681,12 @@
 				"$ref": "#/definitions/ForbiddenResponse"
 			}
 		},
+		"404": {
+			"description": "Not Found",
+			"schema": {
+				"$ref": "#/definitions/NotFoundResponse"
+			}
+		},
 		"409": {
 			"description": "Conflict",
 			"schema": {
