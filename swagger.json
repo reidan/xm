@@ -1016,6 +1016,117 @@
 				}
 			}
 		},
+		"/integration/functions/{functionId}": {
+			"get": {
+				"tags": [
+					"Integration"
+				],
+				"summary": "Retrieve an integration function",
+				"description": "Retrieve an integration function",
+				"operationId": "getIntegrationFunction",
+				"parameters": [
+					{
+						"$ref": "#/parameters/functionId"
+					},
+					{
+						"$ref": "#/parameters/embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/IntegrationFunction"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					}
+				}
+			}
+		},
+		"/integration/functions/{functionId}/invocations": {
+			"post": {
+				"tags": [
+					"Integration"
+				],
+				"summary": "Add integration function invocation",
+				"description": "Add integration function invocation",
+				"operationId": "postIntegrationFunctionInvocation",
+				"parameters": [
+					{
+						"$ref": "#/parameters/functionId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/IntegrationFunctionInvocation"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					}
+				}
+			}
+		},
+		"/integration/scripts/{scriptId}": {
+			"get": {
+				"tags": [
+					"Integration"
+				],
+				"summary": "Retrieve integration script",
+				"description": "Retrieve integration script",
+				"operationId": "getIntegrationScript",
+				"parameters": [
+					{
+						"$ref": "#/parameters/scriptId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/IntegrationScript"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					},
+					"429": {
+						"$ref": "#/responses/429"
+					}
+				}
+			}
+		},
 		"/notifications": {
 			"post": {
 				"tags": [
@@ -2612,6 +2723,87 @@
 				"version"
 			]
 		},
+		"IntegrationFunction": {
+			"description": "An integration function",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "The unique identifier",
+					"type": "string"
+				},
+				"script": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				}
+			},
+			"required": ["id"]
+		},
+		"IntegrationFunctions": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/IntegrationFunction"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
+		"IntegrationFunctionInvocation": {
+			"description": "An integration function invocation",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "The unique identifier",
+					"type": "string"
+				},
+				"function": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				}
+			},
+			"required": ["id", "function"]
+		},
+		"IntegrationFunctionInvocationPost": {
+			"description": "An integration function invocation",
+			"type": "object",
+			"properties": {
+				"function": {
+					"$ref": "#/definitions/ReferenceById"
+				}
+			},
+			"required": ["function"]
+		},
+		"IntegrationScript": {
+			"description": "An integration script",
+			"type": "object",
+			"properties": {
+				"id": {
+					"description": "The unique identifier",
+					"type": "string"
+				},
+				"functions": {
+					"$ref": "#/definitions/IntegrationFunctions"
+				}
+			},
+			"required": ["id"]
+		},
 		"Notification": {
 			"description": "A notification is any message sent by xMatters to a device, in order to inform a person of an event that requires attention. The alert contains information about the event, such the time and location, and may ask the person to respond, acknowledging that they have received the notification.",
 			"type": "object",
@@ -3640,6 +3832,20 @@
 			"name": "userId",
 			"in": "path",
 			"description": "The person's uuid or username",
+			"required": true,
+			"type": "string"
+		},
+		"scriptId": {
+			"name": "scriptId",
+			"in": "path",
+			"description": "The script uuid",
+			"required": true,
+			"type": "string"
+		},
+		"functionId": {
+			"name": "functionId",
+			"in": "path",
+			"description": "The function uuid",
 			"required": true,
 			"type": "string"
 		},
