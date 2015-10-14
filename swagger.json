@@ -1602,39 +1602,18 @@
 		"Device": {
 			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Recipient"
+				}
+			],
 			"discriminator": "deviceType",
 			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"targetName": {
-					"description": "A unique identifier",
-					"type": "string"
-				},
 				"recipientType": {
 					"type": "string",
 					"enum": [
 						"DEVICE"
 					]
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
-				"externallyOwned": {
-					"description": "Externally owned = N means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = Y means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				},
-				"locked": {
-					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
 				},
 				"deviceType": {
 					"type": "string",
@@ -1683,15 +1662,8 @@
 				}
 			},
 			"required": [
-				"id",
-				"targetName",
-				"recipientType",
-				"status",
-				"externallyOwned",
 				"deviceType",
-				"emergencyDevice",
-				"owner",
-				"links"
+				"owner"
 			]
 		},
 		"Devices": {
@@ -1726,29 +1698,16 @@
 		"DevicePost": {
 			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPost"
+				}
+			],
 			"discriminator": "deviceType",
 			"properties": {
 				"recipientType": {
 					"type": "string",
 					"enum": ["DEVICE"]
-				},
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"],
-					"default": "ACTIVE"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
 				},
 				"deviceType": {
 					"type": "string",
@@ -1767,13 +1726,6 @@
 						"VOICE",
 						"VOICE_IVR"
 					]
-				},
-				"details": {
-					"type": "string"
-				},
-				"emergencyDevice": {
-					"type": "boolean",
-					"default": false
 				},
 				"priorityThreshold": {
 					"type": "string",
@@ -1804,8 +1756,6 @@
 				}
 			},
 			"required": [
-				"recipientType",
-				"targetName",
 				"deviceType",
 				"owner"
 			]
@@ -2381,37 +2331,17 @@
 		"Group": {
 			"description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Recipient"
+				}
+			],
 			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
 				"recipientType": {
 					"type": "string",
 					"enum": [
 						"GROUP"
 					]
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
-				"externallyOwned": {
-					"description": "Externally owned = N means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = Y means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				},
-				"locked": {
-					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
 				},
 				"description": {
 					"type": "string"
@@ -2448,16 +2378,10 @@
 				}
 			},
 			"required": [
-				"id",
-				"targetName",
-				"recipientType",
-				"status",
-				"externallyOwned",
 				"useDefaultDevices",
 				"allowDuplicates",
 				"observedByAll",
-				"supervisors",
-				"links"
+				"supervisors"
 			]
 		},
 		"GroupLinks": {
@@ -2485,28 +2409,15 @@
 		"GroupPost": {
 			"description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPost"
+				}
+			],
 			"properties": {
 				"recipientType": {
 					"type": "string",
 					"enum": ["GROUP"]
-				},
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"],
-					"default": "ACTIVE"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
 				},
 				"description": {
 					"type": "string"
@@ -2535,7 +2446,6 @@
 			},
 			"required": [
 				"recipientType",
-				"targetName",
 				"useDefaultDevices",
 				"allowDuplicates",
 				"observedByAll",
@@ -2767,37 +2677,17 @@
 		"Person": {
 			"description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Recipient"
+				}
+			],
 			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
 				"recipientType": {
 					"type": "string",
 					"enum": [
 						"PERSON"
 					]
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
-				"externallyOwned": {
-					"description": "Externally owned = N means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = Y means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				},
-				"locked": {
-					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
 				},
 				"firstName": {
 					"type": "string"
@@ -2819,18 +2709,9 @@
 				},
 				"site": {
 					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"links": {
-					"$ref": "#/definitions/SelfLink"
 				}
 			},
 			"required": [
-				"id",
-				"targetName",
-				"recipientType",
-				"status",
-				"externallyOwned",
-				"links",
 				"firstName",
 				"lastName"
 			]
@@ -2867,28 +2748,15 @@
 		"PersonPost": {
 			"description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
 			"type": "object",
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPost"
+				}
+			],
 			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
 				"recipientType": {
 					"type": "string",
 					"enum": ["PERSON"]
-				},
-				"targetName": {
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"],
-					"default": "ACTIVE"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
 				},
 				"firstName": {
 					"type": "string"
@@ -2925,8 +2793,6 @@
 				}
 			},
 			"required": [
-				"recipientType",
-				"targetName",
 				"firstName",
 				"lastName"
 			]
