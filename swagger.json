@@ -2416,11 +2416,32 @@
 				"description": {
 					"type": "string"
 				},
+				"useDefaultDevices": {
+					"description": "Indicates whether to use Group member’s default Devices when other Devices are not available.",
+					"type": "boolean"
+				},
+				"allowDuplicates": {
+					"description": "Indicates whether the Group allows duplicate members.",
+					"type": "boolean"
+				},
+				"observedByAll": {
+					"description": "Indicates whether all Roles can observe this Group.",
+					"type": "boolean"
+				},
+				"site": {
+					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
+				},
+				"supervisors": {
+					"$ref": "#/definitions/People"
+				},
 				"shifts": {
 					"$ref": "#/definitions/Shifts"
 				},
 				"members": {
 					"$ref": "#/definitions/Recipients"
+				},
+				"observers": {
+					"$ref": "#/definitions/People"
 				},
 				"links": {
 					"$ref": "#/definitions/GroupLinks"
@@ -2432,6 +2453,10 @@
 				"recipientType",
 				"status",
 				"externallyOwned",
+				"useDefaultDevices",
+				"allowDuplicates",
+				"observedByAll",
+				"supervisors",
 				"links"
 			]
 		},
@@ -2486,6 +2511,21 @@
 				"description": {
 					"type": "string"
 				},
+				"useDefaultDevices": {
+					"description": "Indicates whether to use Group member’s default Devices when other Devices are not available.",
+					"type": "boolean"
+				},
+				"allowDuplicates": {
+					"description": "Indicates whether the Group allows duplicate members.",
+					"type": "boolean"
+				},
+				"observedByAll": {
+					"description": "Indicates whether all Roles can observe this Group.",
+					"type": "boolean"
+				},
+				"site": {
+					"$ref": "#/definitions/ReferenceById"
+				},
 				"supervisors": {
 					"type": "array",
 					"items": {
@@ -2495,7 +2535,11 @@
 			},
 			"required": [
 				"recipientType",
-				"targetName"
+				"targetName",
+				"useDefaultDevices",
+				"allowDuplicates",
+				"observedByAll",
+				"supervisors"
 			]
 		},
 		"Info": {
