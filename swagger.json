@@ -210,7 +210,13 @@
 				],
 				"responses": {
 					"200": {
-						"description": "OK",
+						"description": "Updated",
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					"201": {
+						"description": "Created",
 						"schema": {
 							"$ref": "#/definitions/Event"
 						}
@@ -435,9 +441,9 @@
 						"$ref": "#/parameters/groupId"
 					},
 					{
-						"name": "active",
+						"name": "status",
 						"in": "query",
-						"description": "Filter by active status",
+						"description": "Filter by status",
 						"required": false,
 						"type": "string",
 						"enum": ["ACTIVE", "INACTIVE"]
@@ -560,9 +566,9 @@
 						"$ref": "#/parameters/groupId"
 					},
 					{
-						"name": "active",
+						"name": "status",
 						"in": "query",
-						"description": "Filter by active status",
+						"description": "Filter by status",
 						"required": false,
 						"type": "string",
 						"enum": ["ACTIVE", "INACTIVE"]
@@ -739,9 +745,9 @@
 						"$ref": "#/parameters/shiftId"
 					},
 					{
-						"name": "active",
+						"name": "status",
 						"in": "query",
-						"description": "Filter by active status",
+						"description": "Filter by status",
 						"required": false,
 						"type": "string",
 						"enum": ["ACTIVE", "INACTIVE"]
@@ -1612,7 +1618,7 @@
 						"DEVICE"
 					]
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
@@ -1648,9 +1654,6 @@
 						"VOICE_IVR"
 					]
 				},
-				"description": {
-					"type": "string"
-				},
 				"defaultDevice": {
 					"type": "boolean"
 				},
@@ -1683,7 +1686,7 @@
 				"id",
 				"targetName",
 				"recipientType",
-				"active",
+				"status",
 				"externallyOwned",
 				"deviceType",
 				"emergencyDevice",
@@ -1736,7 +1739,7 @@
 				"targetName": {
 					"type": "string"
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"],
 					"default": "ACTIVE"
@@ -1764,9 +1767,6 @@
 						"VOICE",
 						"VOICE_IVR"
 					]
-				},
-				"description": {
-					"type": "string"
 				},
 				"details": {
 					"type": "string"
@@ -2395,7 +2395,7 @@
 						"GROUP"
 					]
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
@@ -2416,9 +2416,6 @@
 				"description": {
 					"type": "string"
 				},
-				"timezone": {
-					"type": "string"
-				},
 				"shifts": {
 					"$ref": "#/definitions/Shifts"
 				},
@@ -2433,7 +2430,7 @@
 				"id",
 				"targetName",
 				"recipientType",
-				"active",
+				"status",
 				"externallyOwned",
 				"links"
 			]
@@ -2475,7 +2472,7 @@
 				"targetName": {
 					"type": "string"
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"],
 					"default": "ACTIVE"
@@ -2487,9 +2484,6 @@
 					"type": "string"
 				},
 				"description": {
-					"type": "string"
-				},
-				"timezone": {
 					"type": "string"
 				},
 				"supervisors": {
@@ -2743,7 +2737,7 @@
 						"PERSON"
 					]
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
@@ -2790,7 +2784,7 @@
 				"id",
 				"targetName",
 				"recipientType",
-				"active",
+				"status",
 				"externallyOwned",
 				"links",
 				"firstName",
@@ -2841,7 +2835,7 @@
 				"targetName": {
 					"type": "string"
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"],
 					"default": "ACTIVE"
@@ -2913,7 +2907,7 @@
 						"GROUP"
 					]
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
@@ -2940,7 +2934,7 @@
 				"id",
 				"targetName",
 				"recipientType",
-				"active",
+				"status",
 				"externallyOwned",
 				"links"
 			]
@@ -2994,7 +2988,7 @@
 				"targetName": {
 					"type": "string"
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"],
 					"default": "ACTIVE"
@@ -3188,7 +3182,7 @@
 				"name": {
 					"type": "string"
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"enum": ["ACTIVE", "INACTIVE"]
 				},
@@ -3205,7 +3199,7 @@
 			"required": [
 				"id",
 				"name",
-				"active",
+				"status",
 				"group",
 				"links"
 			]
@@ -3238,7 +3232,7 @@
 				"name": {
 					"type": "string"
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
@@ -3288,7 +3282,7 @@
 				"name": {
 					"type": "string"
 				},
-				"active": {
+				"status": {
 					"type": "string",
 					"default": "ACTIVE",
 					"enum": ["ACTIVE", "INACTIVE"]
@@ -3327,7 +3321,7 @@
 			"required": [
 				"id",
 				"name",
-				"active",
+				"status",
 				"language",
 				"timezone",
 				"country",
