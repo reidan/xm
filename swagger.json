@@ -83,7 +83,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Device"
+							"$ref": "#/definitions/AnyDevice"
 						}
 					},
 					"401": {
@@ -113,7 +113,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Device"
+							"$ref": "#/definitions/AnyDevice"
 						}
 					},
 					"204": {
@@ -2062,6 +2062,48 @@
 				}
 			}
 		},
+		"AnyDevice": {
+			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
+			"type": "object",
+			"anyOf": [
+				{
+					"$ref": "#/definitions/EmailDevice"
+				},
+				{
+					"$ref": "#/definitions/VoiceDevice"
+				},
+				{
+					"$ref": "#/definitions/SMSDevice"
+				},
+				{
+					"$ref": "#/definitions/TextPagerDevice"
+				},
+				{
+					"$ref": "#/definitions/NumericPagerDevice"
+				},
+				{
+					"$ref": "#/definitions/IMDevice"
+				},
+				{
+					"$ref": "#/definitions/ApplePushDevice"
+				},
+				{
+					"$ref": "#/definitions/AndroidPushDevice"
+				},
+				{
+					"$ref": "#/definitions/BlackberryPushDevice"
+				},
+				{
+					"$ref": "#/definitions/FaxDevice"
+				},
+				{
+					"$ref": "#/definitions/PublicAddressDevice"
+				},
+				{
+					"$ref": "#/definitions/GenericDevice"
+				}
+			]
+		},
 		"DeviceTimeframe": {
 			"type": "object",
 			"properties": {
@@ -2713,7 +2755,12 @@
 			},
 			"required": [
 				"firstName",
-				"lastName"
+				"lastName",
+				"language",
+				"timezone",
+				"webLogin",
+				"roles",
+				"site"
 			]
 		},
 		"People": {
@@ -2794,7 +2841,11 @@
 			},
 			"required": [
 				"firstName",
-				"lastName"
+				"lastName",
+				"language",
+				"timezone",
+				"webLogin",
+				"roles"
 			]
 		},
 		"Recipient": {
