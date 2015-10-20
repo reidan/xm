@@ -2424,9 +2424,6 @@
 				"members": {
 					"$ref": "#/definitions/Recipients"
 				},
-				"observers": {
-					"$ref": "#/definitions/Role"
-				},
 				"links": {
 					"$ref": "#/definitions/GroupLinks"
 				}
@@ -2495,12 +2492,6 @@
 					"$ref": "#/definitions/ReferenceById"
 				},
 				"supervisors": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				},
-				"observers": {
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/ReferenceById"
@@ -3138,21 +3129,6 @@
 				"data",
 				"count",
 				"total",
-				"links"
-			]
-		},
-		"Role": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"links": {
-					"$ref": "#/definitions/SelfLink"
-				}
-			},
-			"required": [
-				"id",
 				"links"
 			]
 		},
