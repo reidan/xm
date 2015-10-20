@@ -1933,6 +1933,9 @@
 				"soundThreshold": {
 					"type": "string",
 					"enum": ["LOW", "MEDIUM", "HIGH"]
+				},
+				"description": {
+					"type": "string"
 				}
 			},
 			"required": [
@@ -1959,6 +1962,9 @@
 				},
 				"registrationId": {
 					"type": "string"
+				},
+				"description": {
+					"type": "string"
 				}
 			},
 			"required": [
@@ -1984,6 +1990,9 @@
 					"type": "string"
 				},
 				"registrationId": {
+					"type": "string"
+				},
+				"description": {
 					"type": "string"
 				}
 			},
@@ -2388,6 +2397,9 @@
 				"description": {
 					"type": "string"
 				},
+				"timezone": {
+					"type": "string"
+				},
 				"useDefaultDevices": {
 					"description": "Indicates whether to use Group member’s default Devices when other Devices are not available.",
 					"type": "boolean"
@@ -2413,7 +2425,7 @@
 					"$ref": "#/definitions/Recipients"
 				},
 				"observers": {
-					"$ref": "#/definitions/People"
+					"$ref": "#/definitions/Role"
 				},
 				"links": {
 					"$ref": "#/definitions/GroupLinks"
@@ -2464,6 +2476,9 @@
 				"description": {
 					"type": "string"
 				},
+				"timezone": {
+					"type": "string"
+				},
 				"useDefaultDevices": {
 					"description": "Indicates whether to use Group member’s default Devices when other Devices are not available.",
 					"type": "boolean"
@@ -2480,6 +2495,12 @@
 					"$ref": "#/definitions/ReferenceById"
 				},
 				"supervisors": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReferenceById"
+					}
+				},
+				"observers": {
 					"type": "array",
 					"items": {
 						"$ref": "#/definitions/ReferenceById"
@@ -3117,6 +3138,21 @@
 				"data",
 				"count",
 				"total",
+				"links"
+			]
+		},
+		"Role": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"links": {
+					"$ref": "#/definitions/SelfLink"
+				}
+			},
+			"required": [
+				"id",
 				"links"
 			]
 		},
