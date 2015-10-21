@@ -3284,9 +3284,6 @@
 				"postalCode": {
 					"type": "string"
 				},
-				"region": {
-					"type": "string"
-				},
 				"latitude": {
 					"type": "number"
 				},
