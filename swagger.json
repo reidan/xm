@@ -3535,12 +3535,16 @@
 				},
 				"message": {
 					"type": "string"
+				},
+				"trace": {
+					"type": "string"
 				}
 			},
 			"required": [
 				"code",
 				"reason",
-				"message"
+				"message",
+				"trace"
 			]
 		}
 	},
