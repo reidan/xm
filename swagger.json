@@ -1176,14 +1176,6 @@
 				"operationId": "getPeople",
 				"parameters": [
 					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/People"
-						}
-					},
-					{
 						"name": "search",
 						"in": "query",
 						"description": "Case insensitive substring match within firstName, lastName, targetName. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
@@ -1209,7 +1201,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Person"
+							"$ref": "#/definitions/People"
 						}
 					},
 					"400": {
