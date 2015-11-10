@@ -1188,7 +1188,7 @@
 						"in": "query",
 						"description": "Case insensitive substring match within firstName, lastName, targetName. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
 						"required": false,
-						"type": "integer"
+						"type": "string"
 					},
 					{
 						"name": "status",
