@@ -1167,6 +1167,62 @@
 			}
 		},
 		"/people": {
+			"get": {
+				"tags": [
+					"People"
+				],
+				"summary": "Find people",
+				"description": "Find people",
+				"operationId": "getPeople",
+				"parameters": [
+					{
+						"name": "body",
+						"in": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/People"
+						}
+					},
+					{
+						"name": "search",
+						"in": "query",
+						"description": "Case insensitive substring match within firstName, lastName, targetName. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
+						"required": false,
+						"type": "integer"
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "ACTIVE or INACTIVE",
+						"required": false,
+						"type": "string",
+						"enum": ["ACTIVE", "INACTIVE"]
+					},
+					{
+						"$ref": "#/parameters/limit"
+					},
+					{
+						"$ref": "#/parameters/embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Person"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					}
+				}
+			},
 			"post": {
 				"tags": [
 					"People"
@@ -3623,6 +3679,20 @@
 			"description": "The function uuid",
 			"required": true,
 			"type": "string"
+		},
+		"limit": {
+			"name": "limit",
+			"in": "query",
+			"description": "Maximum result size to return",
+			"required": false,
+			"type": "integer"
+		},
+		"offset": {
+			"name": "offset",
+			"in": "query",
+			"description": "Skip this many results before returning the result set",
+			"required": false,
+			"type": "integer"
 		},
 		"embed": {
 			"name": "embed",
