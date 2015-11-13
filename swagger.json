@@ -449,6 +449,29 @@
 						"enum": ["ACTIVE", "INACTIVE"]
 					},
 					{
+						"name": "onDuty",
+						"in": "query",
+						"description": "Filter by onDuty status",
+						"required": false,
+						"type": "boolean"
+					},
+					{
+						"name": "from",
+						"in": "query",
+						"description": "Alters the time window of the request, defaults to now",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
+						"name": "to",
+						"in": "query",
+						"description": "Alters the time window of the request, defaults to now",
+						"required": false,
+						"type": "string",
+						"format": "date-time"
+					},
+					{
 						"$ref": "#/parameters/embed"
 					}
 				],
