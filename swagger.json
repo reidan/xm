@@ -1,9 +1,9 @@
 {
 	"swagger": "2.0",
 	"info": {
-		"title": "xM API",
-		"description": "The xM API",
-		"version": "0.1.0"
+		"title": "xMatters API",
+		"description": "The xMatters API",
+		"version": "1.0.0"
 	},
 	"host": "api.xmatters.com",
 	"basePath": "/api/xm/1",
@@ -59,6 +59,43 @@
 					},
 					"409": {
 						"$ref": "#/responses/409"
+					}
+				}
+			},
+			"get": {
+				"tags": [
+					"Devices"
+				],
+				"summary": "Retrieve devices",
+				"description": "Retrieve devices",
+				"operationId": "getDevices",
+				"parameters": [
+					{
+						"name": "ownerId",
+						"in": "query",
+						"description": "Filter by owner",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Devices"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
 					}
 				}
 			}
@@ -118,189 +155,6 @@
 					},
 					"204": {
 						"$ref": "#/responses/204"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/events": {
-			"get": {
-				"tags": [
-					"Events"
-				],
-				"summary": "Find events",
-				"description": "Find events",
-				"operationId": "getEvents",
-				"parameters": [
-					{
-						"name": "after",
-						"in": "query",
-						"description": "Where event start time is after this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "before",
-						"in": "query",
-						"description": "Where event start time is before this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "priority",
-						"in": "query",
-						"description": "Where priority is at or above this level",
-						"required": false,
-						"type": "string",
-						"enum": ["LOW", "MEDIUM", "HIGH"]
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Where status matches the provided value",
-						"required": false,
-						"type": "string",
-						"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Events"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"Events"
-				],
-				"summary": "Update an existing event",
-				"description": "Update an existing event",
-				"operationId": "postEvent",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/EventPost"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					},
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/events/{eventId}": {
-			"get": {
-				"tags": [
-					"Events"
-				],
-				"summary": "Retrieve event information",
-				"description": "Retrieve event information",
-				"operationId": "getEvent",
-				"parameters": [
-					{
-						"$ref": "#/parameters/eventId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/triggers": {
-			"post": {
-				"tags": [
-					"Forms"
-				],
-				"summary": "Submit a form trigger",
-				"description": "Submit a form trigger (intiates an event)",
-				"operationId": "postTrigger",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/TriggerPost"
-						}
-					}
-				],
-				"responses": {
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Trigger"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
 					},
 					"401": {
 						"$ref": "#/responses/401"
@@ -894,301 +748,6 @@
 				}
 			}
 		},
-		"/info": {
-			"get": {
-				"tags": [
-					"Info"
-				],
-				"summary": "Retrieve API information",
-				"description": "Retrieve API information",
-				"operationId": "getInfo",
-				"parameters": [],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Info"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			}
-		},
-		"/integration-functions/{functionId}": {
-			"get": {
-				"tags": [
-					"Integration"
-				],
-				"summary": "Retrieve an integration function",
-				"description": "Retrieve an integration function",
-				"operationId": "getIntegrationFunction",
-				"parameters": [
-					{
-						"$ref": "#/parameters/functionId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/IntegrationFunction"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/integration-functions/{functionId}/invocations": {
-			"post": {
-				"tags": [
-					"Integration"
-				],
-				"summary": "Add integration function invocation",
-				"description": "Add integration function invocation",
-				"operationId": "postIntegrationFunctionInvocation",
-				"parameters": [
-					{
-						"$ref": "#/parameters/functionId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/IntegrationFunctionInvocation"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/integration-scripts/{scriptId}": {
-			"get": {
-				"tags": [
-					"Integration"
-				],
-				"summary": "Retrieve integration script",
-				"description": "Retrieve integration script",
-				"operationId": "getIntegrationScript",
-				"parameters": [
-					{
-						"$ref": "#/parameters/scriptId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/IntegrationScript"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/notifications": {
-			"post": {
-				"tags": [
-					"Notifications"
-				],
-				"summary": "Send a notification",
-				"description": "Send a notification",
-				"operationId": "postNotification",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/NotificationPost"
-						}
-					}
-				],
-				"responses": {
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Notification"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			},
-			"get": {
-				"tags": [
-					"Notifications"
-				],
-				"summary": "Find notifications",
-				"description": "Find notifications",
-				"operationId": "getNotifications",
-				"parameters": [
-					{
-						"name": "after",
-						"in": "query",
-						"description": "Where notification created time is after this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "before",
-						"in": "query",
-						"description": "Where notification created time is before this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "priority",
-						"in": "query",
-						"description": "Where priority is at or above this level",
-						"required": false,
-						"type": "string",
-						"enum": ["LOW", "MEDIUM", "HIGH"]
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Where status matches the provided value",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "event",
-						"in": "query",
-						"description": "Filter by event",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "recipient",
-						"in": "query",
-						"description": "Filter by recipient",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "sender",
-						"in": "query",
-						"description": "Filter by sender",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "incident",
-						"in": "query",
-						"description": "Filter by incident",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "domain",
-						"in": "query",
-						"description": "Filter by domain",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Notifications"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			}
-		},
-		"/notifications/{notificationId}": {
-			"get": {
-				"tags": [
-					"Notifications"
-				],
-				"summary": "Retrieve notification information",
-				"description": "Retrieve notification information",
-				"operationId": "getNotification",
-				"parameters": [
-					{
-						"$ref": "#/parameters/notificationId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Notification"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
 		"/people": {
 			"get": {
 				"tags": [
@@ -1355,128 +914,6 @@
 				}
 			}
 		},
-		"/people/{personId}/devices": {
-			"get": {
-				"tags": [
-					"People"
-				],
-				"summary": "Retrieve a person's devices",
-				"description": "Retrieve a person's devices",
-				"operationId": "getPersonDevices",
-				"parameters": [
-					{
-						"$ref": "#/parameters/personId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Devices"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/revisions": {
-			"get": {
-				"tags": [
-					"Revisions"
-				],
-				"summary": "Find revisions",
-				"description": "Find revisions",
-				"operationId": "getRevisions",
-				"parameters": [
-					{
-						"name": "after",
-						"in": "query",
-						"description": "Where revision time is after this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "before",
-						"in": "query",
-						"description": "Where revision time is before this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "userId",
-						"in": "query",
-						"description": "User who made the revision",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Revisions"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			}
-		},
-		"/revisions/{revisionId}": {
-			"get": {
-				"tags": [
-					"Revisions"
-				],
-				"summary": "Retrieve revision information",
-				"description": "Retrieve revision information",
-				"operationId": "getRevision",
-				"parameters": [
-					{
-						"$ref": "#/parameters/revisionId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Revision"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
 		"/sites/{siteId}": {
 			"get": {
 				"tags": [
@@ -1498,41 +935,6 @@
 						"description": "OK",
 						"schema": {
 							"$ref": "#/definitions/Site"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/users/{userId}": {
-			"get": {
-				"tags": [
-					"User"
-				],
-				"summary": "Retrieve user information",
-				"description": "Retrieve user information",
-				"operationId": "getUser",
-				"parameters": [
-					{
-						"$ref": "#/parameters/userId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/User"
 						}
 					},
 					"401": {
