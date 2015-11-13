@@ -2445,9 +2445,6 @@
 				"description": {
 					"type": "string"
 				},
-				"timezone": {
-					"type": "string"
-				},
 				"useDefaultDevices": {
 					"description": "Indicates whether to use Group member’s default Devices when other Devices are not available.",
 					"type": "boolean"
