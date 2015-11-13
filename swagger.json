@@ -3,7 +3,7 @@
 	"info": {
 		"title": "xMatters API",
 		"description": "The xMatters API",
-		"version": "1.0.0"
+		"version": "1.0"
 	},
 	"host": "api.xmatters.com",
 	"basePath": "/api/xm/1",
