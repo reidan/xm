@@ -2,7 +2,7 @@
 	"swagger": "2.0",
 	"info": {
 		"title": "xMatters API",
-		"description": "The xMatters API",
+		"description": "xMatters API v1.0 initial release",
 		"version": "1.0"
 	},
 	"host": "api.xmatters.com",
