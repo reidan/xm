@@ -2288,6 +2288,62 @@
 			},
 			"required": ["id"]
 		},
+		"TeamMember": {
+			"description": "Team Member",
+			"type": "object",
+			"properties": {
+				"position": {
+					"description": "Position in the rotation sequence",
+					"type": "integer"
+				},
+				"delay": {
+					"description": "How long, in minutes, to wait before notifying this team member",
+					"type": "integer"
+				},
+				"escalationType": {
+					"type": "string",
+					"description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.",
+					"enum": ["None","Peer","Management"]
+				},
+				"inRotation": {
+					"type": "boolean",
+					"description": "Indicates whether the team member is included in the rotation cycle"
+				},
+				"recipient": {
+					"$ref": "#/definitions/ReferenceByIdAndRecipientType"
+				}
+			},
+			"required": []
+		},
+		"TeamMembers": {
+			"type": "object",
+			"description": "Team Members",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TeamMember"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
+			]
+		},
 		"Trigger": {
 			"description": "The submission of a form. The trigger for an event",
 			"type": "object",
