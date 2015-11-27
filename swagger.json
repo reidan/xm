@@ -783,7 +783,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Recipients"
+							"$ref": "#/definitions/TeamMembers"
 						}
 					},
 					"401": {
@@ -824,7 +824,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/RecipientReference"
+							"$ref": "#/definitions/TeamMember"
 						}
 					}
 				],
@@ -832,7 +832,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Recipient"
+							"$ref": "#/definitions/TeamMember"
 						}
 					},
 					"400": {
@@ -876,7 +876,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Recipient"
+							"$ref": "#/definitions/TeamMember"
 						}
 					},
 					"204": {
