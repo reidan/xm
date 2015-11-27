@@ -637,7 +637,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Recipients"
+							"$ref": "#/definitions/TeamMembers"
 						}
 					},
 					"401": {
@@ -678,7 +678,7 @@
 						"in": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/RecipientReference"
+							"$ref": "#/definitions/TeamMember"
 						}
 					}
 				],
@@ -686,7 +686,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Recipient"
+							"$ref": "#/definitions/TeamMember"
 						}
 					},
 					"400": {
@@ -730,7 +730,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/Recipient"
+							"$ref": "#/definitions/TeamMember"
 						}
 					},
 					"204": {
@@ -1694,6 +1694,10 @@
 			"description": "Team Member",
 			"type": "object",
 			"properties": {
+				"position": {
+					"description": "Position in the rotation sequence",
+					"type": "integer"
+				},
 				"delay": {
 					"description": "How long, in minutes, to wait before notifying this team member",
 					"type": "integer"
