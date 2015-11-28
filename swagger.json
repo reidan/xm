@@ -2962,7 +2962,7 @@
 				"roles": {
 					"type": "array",
 					"items": {
-						"type": "string"
+						"$ref": "#/definitions/ReferenceById"
 					}
 				},
 				"site": {
