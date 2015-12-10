@@ -83,7 +83,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/AnyDevice"
+							"$ref": "#/definitions/Device"
 						}
 					},
 					"401": {
@@ -113,7 +113,7 @@
 					"200": {
 						"description": "OK",
 						"schema": {
-							"$ref": "#/definitions/AnyDevice"
+							"$ref": "#/definitions/Device"
 						}
 					},
 					"204": {
