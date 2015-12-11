@@ -315,6 +315,54 @@
 			}
 		},
 		"/groups": {
+			"get": {
+				"tags": [
+					"Groups"
+				],
+				"summary": "Find groups",
+				"description": "Find groups",
+				"operationId": "getGroups",
+				"parameters": [
+					{
+						"name": "search",
+						"in": "query",
+						"description": "Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"name": "status",
+						"in": "query",
+						"description": "ACTIVE or INACTIVE",
+						"required": false,
+						"type": "string",
+						"enum": ["ACTIVE", "INACTIVE"]
+					},
+					{
+						"$ref": "#/parameters/limit"
+					},
+					{
+						"$ref": "#/parameters/embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Groups"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					}
+				}
+			},
 			"post": {
 				"tags": [
 					"Groups"
@@ -2557,6 +2605,35 @@
 				"allowDuplicates",
 				"observedByAll",
 				"supervisors"
+			]
+		},
+		"Groups": {
+			"type": "object",
+			"description": "A paginated result set",
+			"properties": {
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/Group"
+					}
+				},
+				"count": {
+					"type": "integer",
+					"description": "Number of data items in this page of the result set"
+				},
+				"total": {
+					"type": "integer",
+					"description": "Total number of data items in the result set"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				}
+			},
+			"required": [
+				"data",
+				"count",
+				"total",
+				"links"
 			]
 		},
 		"GroupLinks": {
