@@ -2972,7 +2972,6 @@
 				"language",
 				"timezone",
 				"webLogin",
-				"roles",
 				"site"
 			]
 		},
@@ -3039,7 +3038,7 @@
 				"roles": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReferenceById"
+						"type": "string"
 					}
 				},
 				"site": {
