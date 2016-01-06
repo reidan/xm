@@ -1,3899 +1,3050 @@
 {
-	"swagger": "2.0",
-	"info": {
-		"title": "xM API",
-		"description": "The xM API",
-		"version": "0.1.0"
-	},
-	"host": "api.xmatters.com",
-	"basePath": "/api/xm/1",
-	"schemes": [
-		"https"
-	],
-	"consumes": [
-		"application/json"
-	],
-	"produces": [
-		"application/json"
-	],
-	"paths": {
-		"/devices": {
-			"post": {
-				"tags": [
-					"Devices"
-				],
-				"summary": "Add or update a device",
-				"description": "Add or update a device",
-				"operationId": "postDevice",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/DevicePost"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"schema": {
-							"$ref": "#/definitions/Device"
-						}
-					},
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Device"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/devices/{deviceId}": {
-			"get": {
-				"tags": [
-					"Devices"
-				],
-				"summary": "Retrieve device information",
-				"description": "Retrieve device information",
-				"operationId": "getDevice",
-				"parameters": [
-					{
-						"$ref": "#/parameters/deviceId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Device"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			},
-			"delete": {
-				"tags": [
-					"Devices"
-				],
-				"summary": "Remove a device",
-				"description": "Remove a device",
-				"operationId": "deleteDevice",
-				"parameters": [
-					{
-						"$ref": "#/parameters/deviceId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Device"
-						}
-					},
-					"204": {
-						"$ref": "#/responses/204"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/events": {
-			"get": {
-				"tags": [
-					"Events"
-				],
-				"summary": "Find events",
-				"description": "Find events",
-				"operationId": "getEvents",
-				"parameters": [
-					{
-						"name": "after",
-						"in": "query",
-						"description": "Where event start time is after this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "before",
-						"in": "query",
-						"description": "Where event start time is before this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "priority",
-						"in": "query",
-						"description": "Where priority is at or above this level",
-						"required": false,
-						"type": "string",
-						"enum": ["LOW", "MEDIUM", "HIGH"]
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Where status matches the provided value",
-						"required": false,
-						"type": "string",
-						"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Events"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"Events"
-				],
-				"summary": "Update an existing event",
-				"description": "Update an existing event",
-				"operationId": "postEvent",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/EventPost"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					},
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/events/{eventId}": {
-			"get": {
-				"tags": [
-					"Events"
-				],
-				"summary": "Retrieve event information",
-				"description": "Retrieve event information",
-				"operationId": "getEvent",
-				"parameters": [
-					{
-						"$ref": "#/parameters/eventId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/triggers": {
-			"post": {
-				"tags": [
-					"Forms"
-				],
-				"summary": "Submit a form trigger",
-				"description": "Submit a form trigger (intiates an event)",
-				"operationId": "postTrigger",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/TriggerPost"
-						}
-					}
-				],
-				"responses": {
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Trigger"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/groups": {
-			"get": {
-				"tags": [
-					"Groups"
-				],
-				"summary": "Find groups",
-				"description": "Find groups",
-				"operationId": "getGroups",
-				"parameters": [
-					{
-						"name": "search",
-						"in": "query",
-						"description": "Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "ACTIVE or INACTIVE",
-						"required": false,
-						"type": "string",
-						"enum": ["ACTIVE", "INACTIVE"]
-					},
-					{
-						"$ref": "#/parameters/limit"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Groups"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"Groups"
-				],
-				"summary": "Add or update a group",
-				"description": "Add or update a group",
-				"operationId": "postGroup",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/GroupPost"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"schema": {
-							"$ref": "#/definitions/Group"
-						}
-					},
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Group"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/groups/{groupId}": {
-			"get": {
-				"tags": [
-					"Groups"
-				],
-				"summary": "Retrieve group information",
-				"description": "Retrieve group information",
-				"operationId": "getGroup",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Group"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			},
-			"delete": {
-				"tags": [
-					"Groups"
-				],
-				"summary": "Remove a group",
-				"description": "Remove a group",
-				"operationId": "deleteGroup",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Group"
-						}
-					},
-					"204": {
-						"$ref": "#/responses/204"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/groups/{groupId}/members": {
-			"get": {
-				"tags": [
-					"Group Members"
-				],
-				"summary": "List group members",
-				"description": "List group members",
-				"operationId": "getGroupMembers",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Filter by status",
-						"required": false,
-						"type": "string",
-						"enum": ["ACTIVE", "INACTIVE"]
-					},
-					{
-						"name": "onDuty",
-						"in": "query",
-						"description": "Filter by onDuty status",
-						"required": false,
-						"type": "boolean"
-					},
-					{
-						"name": "from",
-						"in": "query",
-						"description": "Alters the time window of the request, defaults to now",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "to",
-						"in": "query",
-						"description": "Alters the time window of the request, defaults to now",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Recipients"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"Group Members"
-				],
-				"summary": "Add group members",
-				"description": "Add group members",
-				"operationId": "postGroupMember",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/RecipientReference"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Recipient"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/groups/{groupId}/members/{memberId}": {
-			"delete": {
-				"tags": [
-					"Group Members"
-				],
-				"summary": "Remove group member",
-				"description": "Remove group member",
-				"operationId": "deleteGroupMember",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"$ref": "#/parameters/memberId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Recipient"
-						}
-					},
-					"204": {
-						"$ref": "#/responses/204"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/groups/{groupId}/shifts": {
-			"get": {
-				"tags": [
-					"Shifts"
-				],
-				"summary": "List shifts",
-				"description": "List shifts",
-				"operationId": "getShifts",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Filter by status",
-						"required": false,
-						"type": "string",
-						"enum": ["ACTIVE", "INACTIVE"]
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Shifts"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"Shifts"
-				],
-				"summary": "Add or update a shift",
-				"description": "Add or update a shift",
-				"operationId": "postShift",
-				"parameters": [
-					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/ShiftPost"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Shift"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/groups/{groupId}/shifts/{shiftId}": {
-			"get": {
-				"tags": [
-					"Shifts"
-				],
-				"summary": "Retrieve shift information",
-				"description": "Retrieve shift information",
-				"operationId": "getShift",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"$ref": "#/parameters/shiftId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Shift"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			},
-			"delete": {
-				"tags": [
-					"Shifts"
-				],
-				"summary": "Remove a shift",
-				"description": "Remove a shift",
-				"operationId": "deleteShift",
-				"parameters": [
-					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "shiftId",
-						"in": "path",
-						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
-						"required": true,
-						"type": "string"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Shift"
-						}
-					},
-					"204": {
-						"$ref": "#/responses/204"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/groups/{groupId}/shifts/{shiftId}/members": {
-			"get": {
-				"tags": [
-					"Shift Members"
-				],
-				"summary": "List shift members",
-				"description": "List shift members",
-				"operationId": "getShiftMembers",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"$ref": "#/parameters/shiftId"
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Filter by status",
-						"required": false,
-						"type": "string",
-						"enum": ["ACTIVE", "INACTIVE"]
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/TeamMembers"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"Shift Members"
-				],
-				"summary": "Add shift members",
-				"description": "Add shift members",
-				"operationId": "postShiftMember",
-				"parameters": [
-					{
-						"name": "groupId",
-						"in": "path",
-						"description": "The group uuid or targetName",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "shiftId",
-						"in": "path",
-						"description": "The id or name of the shift. e.g. 24/7. Must be URL encoded.",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/TeamMember"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/TeamMember"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/groups/{groupId}/shifts/{shiftId}/members/{memberId}": {
-			"delete": {
-				"tags": [
-					"Shift Members"
-				],
-				"summary": "Remove shift member",
-				"description": "Remove shift member",
-				"operationId": "deleteShiftMember",
-				"parameters": [
-					{
-						"$ref": "#/parameters/groupId"
-					},
-					{
-						"$ref": "#/parameters/shiftId"
-					},
-					{
-						"$ref": "#/parameters/memberId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/TeamMember"
-						}
-					},
-					"204": {
-						"$ref": "#/responses/204"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/info": {
-			"get": {
-				"tags": [
-					"Info"
-				],
-				"summary": "Retrieve API information",
-				"description": "Retrieve API information",
-				"operationId": "getInfo",
-				"parameters": [],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Info"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			}
-		},
-		"/integration-functions/{functionId}": {
-			"get": {
-				"tags": [
-					"Integration"
-				],
-				"summary": "Retrieve an integration function",
-				"description": "Retrieve an integration function",
-				"operationId": "getIntegrationFunction",
-				"parameters": [
-					{
-						"$ref": "#/parameters/functionId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/IntegrationFunction"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/integration-functions/{functionId}/invocations": {
-			"post": {
-				"tags": [
-					"Integration"
-				],
-				"summary": "Add integration function invocation",
-				"description": "Add integration function invocation",
-				"operationId": "postIntegrationFunctionInvocation",
-				"parameters": [
-					{
-						"$ref": "#/parameters/functionId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/IntegrationFunctionInvocation"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/integration-scripts/{scriptId}": {
-			"get": {
-				"tags": [
-					"Integration"
-				],
-				"summary": "Retrieve integration script",
-				"description": "Retrieve integration script",
-				"operationId": "getIntegrationScript",
-				"parameters": [
-					{
-						"$ref": "#/parameters/scriptId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/IntegrationScript"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/notifications": {
-			"post": {
-				"tags": [
-					"Notifications"
-				],
-				"summary": "Send a notification",
-				"description": "Send a notification",
-				"operationId": "postNotification",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/NotificationPost"
-						}
-					}
-				],
-				"responses": {
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Notification"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			},
-			"get": {
-				"tags": [
-					"Notifications"
-				],
-				"summary": "Find notifications",
-				"description": "Find notifications",
-				"operationId": "getNotifications",
-				"parameters": [
-					{
-						"name": "after",
-						"in": "query",
-						"description": "Where notification created time is after this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "before",
-						"in": "query",
-						"description": "Where notification created time is before this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "priority",
-						"in": "query",
-						"description": "Where priority is at or above this level",
-						"required": false,
-						"type": "string",
-						"enum": ["LOW", "MEDIUM", "HIGH"]
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "Where status matches the provided value",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "event",
-						"in": "query",
-						"description": "Filter by event",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "recipient",
-						"in": "query",
-						"description": "Filter by recipient",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "sender",
-						"in": "query",
-						"description": "Filter by sender",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "incident",
-						"in": "query",
-						"description": "Filter by incident",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "domain",
-						"in": "query",
-						"description": "Filter by domain",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Notifications"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			}
-		},
-		"/notifications/{notificationId}": {
-			"get": {
-				"tags": [
-					"Notifications"
-				],
-				"summary": "Retrieve notification information",
-				"description": "Retrieve notification information",
-				"operationId": "getNotification",
-				"parameters": [
-					{
-						"$ref": "#/parameters/notificationId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Notification"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/people": {
-			"get": {
-				"tags": [
-					"People"
-				],
-				"summary": "Find people",
-				"description": "Find people",
-				"operationId": "getPeople",
-				"parameters": [
-					{
-						"name": "search",
-						"in": "query",
-						"description": "Case insensitive substring match within firstName, lastName, targetName. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"name": "status",
-						"in": "query",
-						"description": "ACTIVE or INACTIVE",
-						"required": false,
-						"type": "string",
-						"enum": ["ACTIVE", "INACTIVE"]
-					},
-					{
-						"$ref": "#/parameters/limit"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/People"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			},
-			"post": {
-				"tags": [
-					"People"
-				],
-				"summary": "Add or update a person",
-				"description": "Add or update a person",
-				"operationId": "postPerson",
-				"parameters": [
-					{
-						"name": "body",
-						"in": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/PersonPost"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"schema": {
-							"$ref": "#/definitions/Person"
-						}
-					},
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/Person"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/people/{personId}": {
-			"get": {
-				"tags": [
-					"People"
-				],
-				"summary": "Retrieve person information",
-				"description": "Retrieve person information",
-				"operationId": "getPerson",
-				"parameters": [
-					{
-						"$ref": "#/parameters/personId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Person"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			},
-			"delete": {
-				"tags": [
-					"People"
-				],
-				"summary": "Remove a person",
-				"description": "Remove a person",
-				"operationId": "deletePerson",
-				"parameters": [
-					{
-						"name": "personId",
-						"in": "path",
-						"description": "The person's uuid or targetName",
-						"required": true,
-						"type": "string"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Person"
-						}
-					},
-					"204": {
-						"$ref": "#/responses/204"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				}
-			}
-		},
-		"/people/{personId}/devices": {
-			"get": {
-				"tags": [
-					"People"
-				],
-				"summary": "Retrieve a person's devices",
-				"description": "Retrieve a person's devices",
-				"operationId": "getPersonDevices",
-				"parameters": [
-					{
-						"$ref": "#/parameters/personId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Devices"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/revisions": {
-			"get": {
-				"tags": [
-					"Revisions"
-				],
-				"summary": "Find revisions",
-				"description": "Find revisions",
-				"operationId": "getRevisions",
-				"parameters": [
-					{
-						"name": "after",
-						"in": "query",
-						"description": "Where revision time is after this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "before",
-						"in": "query",
-						"description": "Where revision time is before this time",
-						"required": false,
-						"type": "string",
-						"format": "date-time"
-					},
-					{
-						"name": "userId",
-						"in": "query",
-						"description": "User who made the revision",
-						"required": false,
-						"type": "string"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Revisions"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					}
-				}
-			}
-		},
-		"/revisions/{revisionId}": {
-			"get": {
-				"tags": [
-					"Revisions"
-				],
-				"summary": "Retrieve revision information",
-				"description": "Retrieve revision information",
-				"operationId": "getRevision",
-				"parameters": [
-					{
-						"$ref": "#/parameters/revisionId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Revision"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/sites/{siteId}": {
-			"get": {
-				"tags": [
-					"Sites"
-				],
-				"summary": "Retrieve site information",
-				"description": "Retrieve site information",
-				"operationId": "getSite",
-				"parameters": [
-					{
-						"$ref": "#/parameters/siteId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Site"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		},
-		"/users/{userId}": {
-			"get": {
-				"tags": [
-					"User"
-				],
-				"summary": "Retrieve user information",
-				"description": "Retrieve user information",
-				"operationId": "getUser",
-				"parameters": [
-					{
-						"$ref": "#/parameters/userId"
-					},
-					{
-						"$ref": "#/parameters/embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/User"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				}
-			}
-		}
-	},
-	"definitions": {
-		"Callback": {
-			"description": "Subscribe to receive callbacks when specific system events occur",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"on": {
-					"description": "Receive callbacks only for these system events",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/SystemEventType"
-					}
-				},
-				"request": {
-					"$ref": "#/definitions/Request"
-				},
-				"queue": {
-					"description": "Store callbacks in a queue. Used when a customer cannot receive callbacks but can poll xMatters systems to retrieve them.",
-					"type": "boolean"
-				},
-				"script": {
-					"description": "Integration script to execute when this callback fires",
-					"type": "string"
-				}
-			},
-			"required": [
-				"id",
-				"on"
-			]
-		},
-		"CallbackPost": {
-			"description": "Subscribe to receive callbacks when specific system events occur",
-			"type": "object",
-			"properties": {
-				"on": {
-					"description": "Receive callbacks for these xMatters system events",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/SystemEventType"
-					}
-				},
-				"request": {
-					"$ref": "#/definitions/Request"
-				},
-				"queue": {
-					"description": "Store callbacks in a queue. Used when a customer cannot receive callbacks but can poll xMatters systems to retrieve them.",
-					"type": "boolean"
-				},
-				"script": {
-					"description": "Integration script to execute when this callback fires",
-					"type": "string"
-				}
-			},
-			"required": [
-				"on"
-			]
-		},
-		"Request": {
-			"description": "Outbound HTTP request definition",
-			"type": "object",
-			"properties": {
-				"method": {
-					"type": "string",
-					"enum": ["POST"]
-				},
-				"url": {
-					"description": "Callback URL to which event callbacks will be sent",
-					"type": "string",
-					"format": "uri"
-				},
-				"headers": {
-					"description": "Map of header names and values (both strings)",
-					"type": "object"
-				}
-			},
-			"required": [
-				"method",
-				"url"
-			]
-		},
-		"Conference": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				}
-			},
-			"required": ["id"]
-		},
-		"Conferences": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Conference"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"Device": {
-			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Recipient"
-				}
-			],
-			"discriminator": "deviceType",
-			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": [
-						"DEVICE"
-					]
-				},
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"ANDROID_PUSH",
-						"APPLE_PUSH",
-						"BLACKBERRY_PUSH",
-						"BROWSER",
-						"EMAIL",
-						"FAX",
-						"GENERIC",
-						"IM",
-						"NUMERIC_PAGER",
-						"TEXT_PAGER",
-						"TEXT_PHONE",
-						"VOICE",
-						"VOICE_IVR"
-					]
-				},
-				"defaultDevice": {
-					"type": "boolean"
-				},
-				"priorityThreshold": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"],
-					"default": "LOW"
-				},
-				"sequence": {
-					"type": "integer",
-					"default": -1
-				},
-				"delay": {
-					"type": "integer",
-					"default": 0
-				},
-				"testStatus": {
-					"description": "Validation status of the Device",
-					"type": "string",
-					"enum": ["UNTESTED", "PENDING", "TESTED"]
-				},
-				"owner": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"timeframes": {
-					"$ref": "#/definitions/DeviceTimeframes"
-				}
-			},
-			"required": [
-				"deviceType",
-				"owner"
-			]
-		},
-		"Devices": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Device"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"DevicePost": {
-			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/RecipientPost"
-				}
-			],
-			"discriminator": "deviceType",
-			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": ["DEVICE"]
-				},
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"ANDROID_PUSH",
-						"APPLE_PUSH",
-						"BLACKBERRY_PUSH",
-						"BROWSER",
-						"EMAIL",
-						"FAX",
-						"GENERIC",
-						"IM",
-						"NUMERIC_PAGER",
-						"TEXT_PAGER",
-						"TEXT_PHONE",
-						"VOICE",
-						"VOICE_IVR"
-					]
-				},
-				"priorityThreshold": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"],
-					"default": "LOW"
-				},
-				"sequence": {
-					"type": "integer",
-					"default": -1
-				},
-				"delay": {
-					"type": "integer",
-					"default": 0
-				},
-				"testStatus": {
-					"description": "Validation status of the Device",
-					"type": "string",
-					"enum": ["UNTESTED", "PENDING", "TESTED"]
-				},
-				"owner": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"timeframes": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/DeviceTimeframePost"
-					}
-				}
-			},
-			"required": [
-				"deviceType",
-				"owner"
-			]
-		},
-		"EmailDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"EMAIL"
-					]
-				},
-				"emailAddress": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"emailAddress"
-			]
-		},
-		"VoiceDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"VOICE"
-					]
-				},
-				"phoneNumber": {
-					"type": "string",
-					"description": "E.164 international format phone number including country code and extension"
-				}
-			},
-			"required": [
-				"phoneNumber"
-			]
-		},
-		"SMSDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"TEXT_PHONE"
-					]
-				},
-				"phoneNumber": {
-					"type": "string",
-					"description": "E.164 international format phone number including country code and extension"
-				}
-			},
-			"required": [
-				"phoneNumber"
-			]
-		},
-		"TextPagerDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"TEXT_PAGER"
-					]
-				},
-				"pin": {
-					"type": "string"
-				},
-				"twoWayDevice": {
-					"type": "boolean"
-				}
-			},
-			"required": [
-				"pin",
-				"twoWayDevice"
-			]
-		},
-		"NumericPagerDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"NUMERIC_PAGER"
-					]
-				},
-				"pagerNumber": {
-					"type": "string"
-				},
-				"country": {
-					"type": "string"
-				},
-				"areaCode": {
-					"type": "string"
-				},
-				"pin": {
-					"type": "string"
-				}
-			}
-		},
-		"IMDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"IM"
-					]
-				},
-				"address": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"address"
-			]
-		},
-		"ApplePushDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"APPLE_PUSH"
-					]
-				},
-				"accountId": {
-					"type": "string"
-				},
-				"apnToken": {
-					"type": "string"
-				},
-				"alertSound": {
-					"type": "string"
-				},
-				"soundStatus": {
-					"type": "string"
-				},
-				"soundThreshold": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"]
-				},
-				"description": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"accountId",
-				"apnToken"
-			]
-		},
-		"AndroidPushDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"ANDROID_PUSH"
-					]
-				},
-				"accountId": {
-					"type": "string"
-				},
-				"registrationId": {
-					"type": "string"
-				},
-				"description": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"accountId",
-				"registrationId"
-			]
-		},
-		"BlackberryPushDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"BLACKBERRY_PUSH"
-					]
-				},
-				"accountId": {
-					"type": "string"
-				},
-				"registrationId": {
-					"type": "string"
-				},
-				"description": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"accountId",
-				"registrationId"
-			]
-		},
-		"FaxDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"FAX"
-					]
-				},
-				"phoneNumber": {
-					"type": "string",
-					"pattern": "^\\d{5,20}$"
-				},
-				"country": {
-					"type": "string",
-					"enum": ["AR", "AU", "BR", "CA", "FR", "DE", "HK", "IN", "IT", "JP", "PT", "PR", "GB", "US"]
-				}
-			},
-			"required": [
-				"phoneNumber"
-			]
-		},
-		"PublicAddressDevice": {
-			"description": "a.k.a. Voice IVR",
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"VOICE_IVR"
-					]
-				},
-				"phoneNumber": {
-					"type": "string",
-					"description": "E.164 international format phone number including country code and extension"
-				}
-			},
-			"required": [
-				"phoneNumber"
-			]
-		},
-		"GenericDevice": {
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Device"
-				}
-			],
-			"properties": {
-				"deviceType": {
-					"type": "string",
-					"enum": [
-						"GENERIC"
-					]
-				},
-				"pin": {
-					"type": "string"
-				}
-			}
-		},
-		"AnyDevice": {
-			"description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
-			"type": "object",
-			"anyOf": [
-				{
-					"$ref": "#/definitions/EmailDevice"
-				},
-				{
-					"$ref": "#/definitions/VoiceDevice"
-				},
-				{
-					"$ref": "#/definitions/SMSDevice"
-				},
-				{
-					"$ref": "#/definitions/TextPagerDevice"
-				},
-				{
-					"$ref": "#/definitions/NumericPagerDevice"
-				},
-				{
-					"$ref": "#/definitions/IMDevice"
-				},
-				{
-					"$ref": "#/definitions/ApplePushDevice"
-				},
-				{
-					"$ref": "#/definitions/AndroidPushDevice"
-				},
-				{
-					"$ref": "#/definitions/BlackberryPushDevice"
-				},
-				{
-					"$ref": "#/definitions/FaxDevice"
-				},
-				{
-					"$ref": "#/definitions/PublicAddressDevice"
-				},
-				{
-					"$ref": "#/definitions/GenericDevice"
-				}
-			]
-		},
-		"DeviceTimeframe": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"startTime": {
-					"type": "string",
-					"format": "date-time"
-				},
-				"endTime": {
-					"type": "string",
-					"format": "date-time"
-				},
-				"durationInMinutes": {
-					"type": "integer"
-				},
-				"days": {
-					"type": "array",
-					"items": {
-						"type": "string",
-						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
-					}
-				},
-				"excludeHolidays": {
-					"type": "boolean"
-				}
-			},
-			"required": [
-				"name",
-				"startTime",
-				"excludeHolidays"
-			]
-		},
-		"DeviceTimeframes": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/DeviceTimeframe"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"DeviceTimeframePost": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"startTime": {
-					"type": "string",
-					"format": "date-time"
-				},
-				"durationInMinutes": {
-					"type": "integer"
-				},
-				"days": {
-					"type": "array",
-					"items": {
-						"type": "string",
-						"enum": ["SU", "MO", "TU", "WE", "TH", "FR", "SA"]
-					}
-				},
-				"excludeHolidays": {
-					"type": "boolean"
-				}
-			},
-			"required": [
-				"name",
-				"startTime",
-				"excludeHolidays"
-			]
-		},
-		"Form": {
-			"type": "object",
-			"description": "A form",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				}
-			},
-			"required": ["id"]
-		},
-		"TeamMember": {
-			"description": "Team Member",
-			"type": "object",
-			"properties": {
-				"position": {
-					"description": "Position in the rotation sequence",
-					"type": "integer"
-				},
-				"delay": {
-					"description": "How long, in minutes, to wait before notifying this team member",
-					"type": "integer"
-				},
-				"escalationType": {
-					"type": "string",
-					"description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.",
-					"enum": ["None","Peer","Management"]
-				},
-				"inRotation": {
-					"type": "boolean",
-					"description": "Indicates whether the team member is included in the rotation cycle"
-				},
-				"recipient": {
-					"$ref": "#/definitions/ReferenceByIdAndRecipientType"
-				}
-			},
-			"required": []
-		},
-		"TeamMembers": {
-			"type": "object",
-			"description": "Team Members",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/TeamMember"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"Trigger": {
-			"description": "The submission of a form. The trigger for an event",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"form": {
-					"$ref": "#/definitions/Form"
-				},
-				"submitter": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"properties": {
-					"description": "Map of property names and values",
-					"type": "object"
-				},
-				"recipients": {
-					"$ref": "#/definitions/Recipients"
-				},
-				"priority": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"]
-				},
-				"conferences": {
-					"$ref": "#/definitions/Conferences"
-				},
-				"responses": {
-					"$ref": "#/definitions/Responses"
-				}
-			},
-			"required": ["form"]
-		},
-		"TriggerPost": {
-			"description": "The submission of a form. The trigger for an event",
-			"type": "object",
-			"properties": {
-				"form": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"submitter": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"properties": {
-					"description": "Map of property names and values",
-					"type": "object"
-				},
-				"recipients": {
-					"description": "Note: required if pre-configured recipients do not exist",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				},
-				"priority": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"]
-				},
-				"callbacks": {
-					"description": "Callbacks applicable to this event only",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/CallbackPost"
-					}
-				},
-				"conferences": {
-					"description": "Set this value to the name of an existing conference bridge, or leave it empty to create a new xMatters-hosted conference bridge.",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				},
-				"responseOptions": {
-					"description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID).",
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				}
-			},
-			"required": ["form"]
-		},
-		"Event": {
-			"description": "An event represents a situation that requires a notification. Event is also used to refer to an incident or situation as it progresses through the system, from injection to notification to resolution.",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"startTime": {
-					"type": "string",
-					"description": "The start time of the event",
-					"format": "date-time"
-				},
-				"status": {
-					"type": "string",
-					"description": "The status of the event",
-					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
-				},
-				"priority": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"]
-				},
-				"trigger": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"notifications": {
-					"$ref": "#/definitions/Notifications"
-				}
-			},
-			"required": ["id", "startTime", "status", "priority", "trigger", "notifications"]
-		},
-		"Events": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Event"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"EventPost": {
-			"description": "An event represents a situation that requires a notification. Event is also used to refer to an incident or situation as it progresses through the system, from injection to notification to resolution.",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"description": "The status of the event",
-					"enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
-				}
-			},
-			"required": [
-				"id",
-				"status"
-			]
-		},
-		"Group": {
-			"description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Recipient"
-				}
-			],
-			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": [
-						"GROUP"
-					]
-				},
-				"description": {
-					"type": "string"
-				},
-				"useDefaultDevices": {
-					"description": "Indicates whether to use Group member’s default Devices when other Devices are not available.",
-					"type": "boolean"
-				},
-				"allowDuplicates": {
-					"description": "Indicates whether the Group allows duplicate members.",
-					"type": "boolean"
-				},
-				"observedByAll": {
-					"description": "Indicates whether all Roles can observe this Group.",
-					"type": "boolean"
-				},
-				"site": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"supervisors": {
-					"$ref": "#/definitions/People"
-				},
-				"shifts": {
-					"$ref": "#/definitions/Shifts"
-				},
-				"members": {
-					"$ref": "#/definitions/Recipients"
-				},
-				"links": {
-					"$ref": "#/definitions/GroupLinks"
-				}
-			},
-			"required": [
-				"useDefaultDevices",
-				"allowDuplicates",
-				"observedByAll",
-				"supervisors"
-			]
-		},
-		"Groups": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Group"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"GroupLinks": {
-			"type": "object",
-			"properties": {
-				"self": {
-					"type": "string",
-					"description": "URL of this resource"
-				},
-				"shifts": {
-					"type": "string",
-					"description": "Shifts of this group"
-				},
-				"members": {
-					"type": "string",
-					"description": "Members of this group"
-				}
-			},
-			"required": [
-				"self",
-				"shifts",
-				"members"
-			]
-		},
-		"GroupPost": {
-			"description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/RecipientPost"
-				}
-			],
-			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": ["GROUP"]
-				},
-				"description": {
-					"type": "string"
-				},
-				"timezone": {
-					"type": "string"
-				},
-				"useDefaultDevices": {
-					"description": "Indicates whether to use Group member’s default Devices when other Devices are not available.",
-					"type": "boolean"
-				},
-				"allowDuplicates": {
-					"description": "Indicates whether the Group allows duplicate members.",
-					"type": "boolean"
-				},
-				"observedByAll": {
-					"description": "Indicates whether all Roles can observe this Group.",
-					"type": "boolean"
-				},
-				"site": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"supervisors": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				}
-			},
-			"required": [
-				"recipientType",
-				"useDefaultDevices",
-				"allowDuplicates",
-				"observedByAll",
-				"supervisors"
-			]
-		},
-		"Info": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string"
-				},
-				"version": {
-					"type": "string"
-				},
-				"dependencies": {
-					"type": "object"
-				}
-			},
-			"required": [
-				"name",
-				"version"
-			]
-		},
-		"IntegrationFunction": {
-			"description": "An integration function",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"script": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				}
-			},
-			"required": ["id"]
-		},
-		"IntegrationFunctions": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/IntegrationFunction"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"IntegrationFunctionInvocation": {
-			"description": "An integration function invocation",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"function": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				}
-			},
-			"required": ["id", "function"]
-		},
-		"IntegrationFunctionInvocationPost": {
-			"description": "An integration function invocation",
-			"type": "object",
-			"properties": {
-				"function": {
-					"$ref": "#/definitions/ReferenceById"
-				}
-			},
-			"required": ["function"]
-		},
-		"IntegrationScript": {
-			"description": "An integration script",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"functions": {
-					"$ref": "#/definitions/IntegrationFunctions"
-				}
-			},
-			"required": ["id"]
-		},
-		"Notification": {
-			"description": "A notification is any message sent by xMatters to a device, in order to inform a person of an event that requires attention. The alert contains information about the event, such the time and location, and may ask the person to respond, acknowledging that they have received the notification.",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"event": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"recipient": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"sender": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"incident": {
-					"type": "string"
-				},
-				"domain": {
-					"type": "string"
-				},
-				"priority": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"]
-				},
-				"status": {
-					"type": "string"
-				},
-				"created": {
-					"type": "string",
-					"description": "Date and time the notification was created",
-					"format": "date-time"
-				}
-			},
-			"required": ["id", "event", "recipient", "sender", "created"]
-		},
-		"Notifications": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Notification"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"NotificationPost": {
-			"description": "A notification is any message sent by xMatters to a device, in order to inform a person of an event that requires attention. The alert contains information about the event, such the time and location, and may ask the person to respond, acknowledging that they have received the notification.",
-			"type": "object",
-			"properties": {
-				"event": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"recipient": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"sender": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"incident": {
-					"type": "string"
-				},
-				"domain": {
-					"type": "string"
-				},
-				"priority": {
-					"type": "string",
-					"enum": ["LOW", "MEDIUM", "HIGH"]
-				},
-				"status": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"event",
-				"recipient",
-				"sender"
-			]
-		},
-		"PaginationLinks": {
-			"type": "object",
-			"properties": {
-				"self": {
-					"type": "string",
-					"description": "URL of this page of the result set",
-					"format": "uri"
-				},
-				"previous": {
-					"type": "string",
-					"description": "URL of the previous page of the result set",
-					"format": "uri"
-				},
-				"next": {
-					"type": "string",
-					"description": "URL of the next page of the result set",
-					"format": "uri"
-				}
-			},
-			"required": [
-				"self"
-			]
-		},
-		"Person": {
-			"description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/Recipient"
-				}
-			],
-			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": [
-						"PERSON"
-					]
-				},
-				"firstName": {
-					"type": "string"
-				},
-				"lastName": {
-					"type": "string"
-				},
-				"language": {
-					"type": "string"
-				},
-				"timezone": {
-					"type": "string"
-				},
-				"webLogin": {
-					"type": "string"
-				},
-				"phoneLogin": {
-					"type": "string"
-				},
-				"site": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				}
-			},
-			"required": [
-				"firstName",
-				"lastName",
-				"language",
-				"timezone",
-				"webLogin",
-				"site"
-			]
-		},
-		"People": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Person"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"PersonPost": {
-			"description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
-			"type": "object",
-			"allOf": [
-				{
-					"$ref": "#/definitions/RecipientPost"
-				}
-			],
-			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": ["PERSON"]
-				},
-				"firstName": {
-					"type": "string"
-				},
-				"lastName": {
-					"type": "string"
-				},
-				"language": {
-					"type": "string"
-				},
-				"timezone": {
-					"type": "string"
-				},
-				"webLogin": {
-					"type": "string"
-				},
-				"phoneLogin": {
-					"type": "string"
-				},
-				"roles": {
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				},
-				"site": {
-					"$ref": "#/definitions/ReferenceById"
-				},
-				"supervisors": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/ReferenceById"
-					}
-				}
-			},
-			"required": [
-				"firstName",
-				"lastName",
-				"language",
-				"timezone",
-				"webLogin",
-				"roles"
-			]
-		},
-		"Recipient": {
-			"description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
-			"type": "object",
-			"discriminator": "recipientType",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
-				"recipientType": {
-					"type": "string",
-					"enum": [
-						"PERSON",
-						"DEVICE",
-						"GROUP"
-					]
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
-				"externallyOwned": {
-					"description": "Externally owned = false means that data locking in the Web UI will never take place for a record, regardless of the data locking configuration. Externally owned = true means that data locking in the Web UI will take place for a record, but only for the fields that have data locking enabled. These records can only be deleted via EPIC.",
-					"type": "boolean",
-					"default": false
-				},
-				"externalKey": {
-					"type": "string"
-				},
-				"locked": {
-					"description": "When objects are in an externally owned state, locked controls which externally owned data fields users can change",
-					"type": "array",
-					"items": {
-						"type": "string"
-					}
-				},
-				"links": {
-					"$ref": "#/definitions/SelfLink"
-				}
-			},
-			"required": [
-				"id",
-				"targetName",
-				"recipientType",
-				"status",
-				"externallyOwned",
-				"links"
-			]
-		},
-		"Recipients": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Recipient"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"RecipientPost": {
-			"description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
-			"type": "object",
-			"discriminator": "recipientType",
-			"properties": {
-				"recipientType": {
-					"type": "string",
-					"enum": [
-						"PERSON",
-						"DEVICE",
-						"GROUP"
-					]
-				},
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"targetName": {
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"],
-					"default": "ACTIVE"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"recipientType",
-				"targetName"
-			]
-		},
-		"RecipientReference": {
-			"description": "Reference to an existing recipient",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"recipientType": {
-					"type": "string",
-					"enum": [
-						"PERSON",
-						"DEVICE",
-						"GROUP"
-					]
-				}
-			},
-			"required": [
-				"id",
-				"recipientType"
-			]
-		},
-		"ReferenceById": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				}
-			},
-			"required": [
-				"id"
-			]
-		},
-		"ReferenceByIdAndSelfLink": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"links": {
-					"$ref": "#/definitions/SelfLink"
-				}
-			},
-			"required": [
-				"id",
-				"links"
-			]
-		},
-		"ReferenceBySelfLink": {
-			"type": "object",
-			"properties": {
-				"links": {
-					"$ref": "#/definitions/SelfLink"
-				}
-			},
-			"required": [
-				"links"
-			]
-		},
-		"Response": {
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				}
-			},
-			"required": ["id"]
-		},
-		"Responses": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Response"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"Revision": {
-			"type": "object",
-			"description": "A domain entity revision",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"when": {
-					"type": "string",
-					"description": "The time of the revision",
-					"format": "date-time"
-				},
-				"who": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"what": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"how": {
-					"type": "object"
-				}
-			},
-			"required": ["id", "when", "who"]
-		},
-		"Revisions": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Revision"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"SelfLink": {
-			"type": "object",
-			"properties": {
-				"self": {
-					"type": "string",
-					"description": "URL of this resource"
-				}
-			},
-			"required": [
-				"self"
-			]
-		},
-		"Shift": {
-			"type": "object",
-			"description": "A shift. Edges: members",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
-				"group": {
-					"$ref": "#/definitions/ReferenceByIdAndSelfLink"
-				},
-				"members": {
-					"$ref": "#/definitions/Recipients"
-				},
-				"links": {
-					"$ref": "#/definitions/ShiftLinks"
-				}
-			},
-			"required": [
-				"id",
-				"name",
-				"status",
-				"group",
-				"links"
-			]
-		},
-		"ShiftLinks": {
-			"type": "object",
-			"properties": {
-				"self": {
-					"type": "string",
-					"description": "URL of this resource"
-				},
-				"members": {
-					"type": "string",
-					"description": "Members of this shift"
-				}
-			},
-			"required": [
-				"self",
-				"members"
-			]
-		},
-		"ShiftPost": {
-			"type": "object",
-			"description": "Adding or updating a shift. Will attempt to find shift by id if provided before creating a new shift in the system.",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"default": "ACTIVE",
-					"enum": ["ACTIVE", "INACTIVE"]
-				}
-			},
-			"required": [
-				"name"
-			]
-		},
-		"Shifts": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/Shift"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"Site": {
-			"type": "object",
-			"description": "A geographic area",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"status": {
-					"type": "string",
-					"default": "ACTIVE",
-					"enum": ["ACTIVE", "INACTIVE"]
-				},
-				"language": {
-					"type": "string"
-				},
-				"timezone": {
-					"type": "string"
-				},
-				"address1": {
-					"type": "string"
-				},
-				"address2": {
-					"type": "string"
-				},
-				"city": {
-					"type": "string"
-				},
-				"state": {
-					"type": "string"
-				},
-				"country": {
-					"type": "string"
-				},
-				"postalCode": {
-					"type": "string"
-				},
-				"latitude": {
-					"type": "number"
-				},
-				"longitude": {
-					"type": "number"
-				},
-				"externallyOwned": {
-					"type": "boolean"
-				},
-				"externalKey": {
-					"type": "string"
-				},
-				"links": {
-					"$ref": "#/definitions/SelfLink"
-				}
-			},
-			"required": [
-				"id",
-				"name",
-				"status",
-				"language",
-				"timezone",
-				"country",
-				"externallyOwned",
-				"links"
-			]
-		},
-		"SystemEventType": {
-			"description": "Observable system event type",
-			"type": "string",
-			"enum": [
-				"call.busy",
-				"call.connected",
-				"call.dropped",
-				"call.failed",
-				"call.hung_up",
-				"call.in",
-				"call.no_answer",
-				"call.reached_voicemail",
-				"conference.joined",
-				"conference.login_failed",
-				"device.invalidated",
-				"device.override_failed",
-				"device.replaced",
-				"email.failed",
-				"email.opened",
-				"event.annotated",
-				"event.completed",
-				"event.created",
-				"event.resumed",
-				"event.suspended",
-				"event.terminated",
-				"fax.status",
-				"fax.submitted",
-				"group.deleted",
-				"incident.deleted",
-				"notification.delayed",
-				"notification.delivered",
-				"notification.discarded",
-				"notification.escalated",
-				"notification.failed",
-				"notification.recipient_not_found",
-				"notification.recipient_replaced",
-				"notification.sent",
-				"public_address.failed",
-				"response.mapped",
-				"response.received",
-				"response.rejected",
-				"sms.delivered",
-				"sms.read"
-			]
-		},
-		"User": {
-			"description": "Every person with a login and password to the xMatters system is a user.",
-			"type": "object",
-			"properties": {
-				"id": {
-					"description": "The unique identifier",
-					"type": "string"
-				},
-				"username": {
-					"type": "string"
-				}
-			}
-		},
-		"Users": {
-			"type": "object",
-			"description": "A paginated result set",
-			"properties": {
-				"data": {
-					"type": "array",
-					"items": {
-						"$ref": "#/definitions/User"
-					}
-				},
-				"count": {
-					"type": "integer",
-					"description": "Number of data items in this page of the result set"
-				},
-				"total": {
-					"type": "integer",
-					"description": "Total number of data items in the result set"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				}
-			},
-			"required": [
-				"data",
-				"count",
-				"total",
-				"links"
-			]
-		},
-		"BadRequestResponse": {
-			"description": "Bad Request API response",
-			"properties": {
-				"code": {
-					"type": "integer",
-					"format": "int32",
-					"enum": [400]
-				},
-				"reason": {
-					"type": "string",
-					"enum": ["Bad Request"]
-				},
-				"message": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"code",
-				"reason",
-				"message"
-			]
-		},
-		"UnauthorizedResponse": {
-			"description": "Unauthorized API response",
-			"properties": {
-				"code": {
-					"type": "integer",
-					"format": "int32",
-					"enum": [401]
-				},
-				"reason": {
-					"type": "string",
-					"enum": ["Unauthorized"]
-				},
-				"message": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"code",
-				"reason",
-				"message"
-			]
-		},
-		"ForbiddenResponse": {
-			"description": "Forbidden API response",
-			"properties": {
-				"code": {
-					"type": "integer",
-					"format": "int32",
-					"enum": [403]
-				},
-				"reason": {
-					"type": "string",
-					"enum": ["Forbidden"]
-				},
-				"message": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"code",
-				"reason",
-				"message"
-			]
-		},
-		"NotFoundResponse": {
-			"description": "Not Found API response",
-			"properties": {
-				"code": {
-					"type": "integer",
-					"format": "int32",
-					"enum": [404]
-				},
-				"reason": {
-					"type": "string",
-					"enum": ["Not Found"]
-				},
-				"message": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"code",
-				"reason",
-				"message"
-			]
-		},
-		"ConflictResponse": {
-			"description": "Conflict API response",
-			"properties": {
-				"code": {
-					"type": "integer",
-					"format": "int32",
-					"enum": [409]
-				},
-				"reason": {
-					"type": "string",
-					"enum": ["Conflict"]
-				},
-				"message": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"code",
-				"reason",
-				"message"
-			]
-		},
-		"TooManyRequestsResponse": {
-			"description": "Too Many Requests API response",
-			"properties": {
-				"code": {
-					"type": "integer",
-					"format": "int32",
-					"enum": [429]
-				},
-				"reason": {
-					"type": "string",
-					"enum": ["Too Many Requests"]
-				},
-				"message": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"code",
-				"reason",
-				"message"
-			]
-		},
-		"InternalServerErrorResponse": {
-			"description": "Internal Server Error API response",
-			"properties": {
-				"code": {
-					"type": "integer",
-					"format": "int32",
-					"enum": [500]
-				},
-				"reason": {
-					"type": "string",
-					"enum": ["Internal Server Error"]
-				},
-				"message": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"code",
-				"reason",
-				"message"
-			]
-		}
-	},
-	"parameters": {
-		"eventId": {
-			"name": "eventId",
-			"in": "path",
-			"description": "The event id",
-			"required": true,
-			"type": "string"
-		},
-		"groupId": {
-			"name": "groupId",
-			"in": "path",
-			"description": "The group uuid or targetName",
-			"required": true,
-			"type": "string"
-		},
-		"personId": {
-			"name": "personId",
-			"in": "path",
-			"description": "The person's uuid or targetName",
-			"required": true,
-			"type": "string"
-		},
-		"deviceId": {
-			"name": "deviceId",
-			"in": "path",
-			"description": "The device uuid or targetName",
-			"required": true,
-			"type": "string"
-		},
-		"memberId": {
-			"name": "memberId",
-			"in": "path",
-			"description": "The recipient's uuid or targetName",
-			"required": true,
-			"type": "string"
-		},
-		"shiftId": {
-			"name": "shiftId",
-			"in": "path",
-			"description": "The uuid or name of the shift. e.g. 24/7 (Must be URL encoded)",
-			"required": true,
-			"type": "string"
-		},
-		"siteId": {
-			"name": "siteId",
-			"in": "path",
-			"description": "The site uuid or name",
-			"required": true,
-			"type": "string"
-		},
-		"userId": {
-			"name": "userId",
-			"in": "path",
-			"description": "The person's uuid or username",
-			"required": true,
-			"type": "string"
-		},
-		"scriptId": {
-			"name": "scriptId",
-			"in": "path",
-			"description": "The script uuid",
-			"required": true,
-			"type": "string"
-		},
-		"functionId": {
-			"name": "functionId",
-			"in": "path",
-			"description": "The function uuid",
-			"required": true,
-			"type": "string"
-		},
-		"limit": {
-			"name": "limit",
-			"in": "query",
-			"description": "Maximum result size to return",
-			"required": false,
-			"type": "integer"
-		},
-		"offset": {
-			"name": "offset",
-			"in": "query",
-			"description": "Skip this many results before returning the result set",
-			"required": false,
-			"type": "integer"
-		},
-		"embed": {
-			"name": "embed",
-			"in": "query",
-			"description": "Comma separated list of linked domain entities to embed in the response",
-			"required": false,
-			"type": "string"
-		}
-	},
-	"responses": {
-		"202": {
-			"description": "Accepted"
-		},
-		"204": {
-			"description": "No Content"
-		},
-		"400": {
-			"description": "Bad Request",
-			"schema": {
-				"$ref": "#/definitions/BadRequestResponse"
-			}
-		},
-		"401": {
-			"description": "Unauthorized",
-			"schema": {
-				"$ref": "#/definitions/UnauthorizedResponse"
-			}
-		},
-		"403": {
-			"description": "Forbidden",
-			"schema": {
-				"$ref": "#/definitions/ForbiddenResponse"
-			}
-		},
-		"404": {
-			"description": "Not Found",
-			"schema": {
-				"$ref": "#/definitions/NotFoundResponse"
-			}
-		},
-		"409": {
-			"description": "Conflict",
-			"schema": {
-				"$ref": "#/definitions/ConflictResponse"
-			}
-		},
-		"429": {
-			"description": "Too Many Requests",
-			"schema": {
-				"$ref": "#/definitions/TooManyRequestsResponse"
-			}
-		},
-		"500": {
-			"description": "Internal Error",
-			"schema": {
-				"$ref": "#/definitions/InternalServerErrorResponse"
-			}
-		}
-	}
+    "swagger": "2.0",
+    "info": {
+        "description": "xMatters ReST API",
+        "title": "xMatters ReST API",
+        "version": "1.0"
+    },
+    "basePath": "/api/xm/1",
+    "schemes": [
+        "https"
+    ],
+    "tags": [
+        {
+            "name": "Devices",
+            "description": "Devices"
+        },
+        {
+            "name": "Groups",
+            "description": "Groups"
+        },
+        {
+            "name": "Integrations",
+            "description": "Integrations"
+        },
+        {
+            "name": "People",
+            "description": "People"
+        },
+        {
+            "name": "Shifts",
+            "description": "Shifts"
+        },
+        {
+            "name": "Sites",
+            "description": "Sites"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/devices/{deviceId}": {
+            "get": {
+                "tags": [
+                    "Devices"
+                ],
+                "summary": "Returns information about a device.",
+                "description": "Returns information about a device. Use embed=timeframes to include device timeframes in the response.",
+                "operationId": "getDevice",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/deviceId"
+                    },
+                    {
+                        "$ref": "#/parameters/embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Device"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Devices"
+                ],
+                "summary": "Deletes a device.",
+                "description": "Deletes a device and removes it from the owner's device list.",
+                "operationId": "deleteDevice",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/deviceId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Device"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/groups": {
+            "post": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "Creates a group",
+                "description": "Creates a group",
+                "operationId": "postGroup",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "An object that contains a description of the new group",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GroupPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/Group"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Group"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/groups/{groupId}": {
+            "get": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "Returns information about a Group.",
+                "description": "Returns information about a Group.",
+                "operationId": "getGroup",
+                "parameters": [
+                    {
+                        "description": "OK",
+                        "$ref": "#/parameters/groupId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Group"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "Deletes a Group.",
+                "description": "Deletes a Group.",
+                "operationId": "deleteGroup",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/groupId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Group"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/groups/{groupId}/members": {
+            "post": {
+                "tags": [
+                    "Groups"
+                ],
+                "summary": "Add Group members.",
+                "description": "Add Group members.",
+                "operationId": "postGroupMember",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/groupId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Member to add",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GroupMemberLink"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Recipient"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/groups/{groupId}/shifts/{shiftId}": {
+            "get": {
+                "tags": [
+                    "Shifts"
+                ],
+                "summary": "Returns information about a Shift.",
+                "operationId": "Returns information about a Shift.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/groupId"
+                    },
+                    {
+                        "$ref": "#/parameters/shiftId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Shift"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/integration-functions/{functionId}": {
+            "get": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Returns information about an integration function.",
+                "description": "Returns information about an integration function.",
+                "operationId": "getIntegrationFunction",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/functionId"
+                    },
+                    {
+                        "$ref": "#/parameters/embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationFunction"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/integration-functions/{functionId}/invocations": {
+            "post": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Post results of an integration function invocation.",
+                "description": "Post results of an integration function invocation.",
+                "operationId": "postIntegrationFunctionInvocation",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/functionId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "result",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/JobResult"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationFunctionInvocation"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationFunctionInvocation"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/integration-invocations/{invocationId}": {
+            "get": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Retrieve results of one integration function invocation.",
+                "description": "Retrieve results of one integration function invocation.",
+                "operationId": "getIntegrationFunctionInvocation",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/invocationId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationFunctionInvocation"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/integration-scripts/{scriptId}": {
+            "get": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Retrieve integration script information.",
+                "description": "Retrieve integration script information.",
+                "operationId": "getIntegrationScript",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/scriptId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationScript"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/integration-tickets": {
+            "get": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Retrieve integration tickets.",
+                "description": "Retrieve integration tickets, optionally including expired tickets.",
+                "operationId": "getIntegrationTickets",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/includeExpired"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/IntegrationTicket"
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Creates a new integration ticket.",
+                "description": "Creates a new integration ticket.",
+                "operationId": "postIntegrationTicket",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "post",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationTicketPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationTicket"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationTicket"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/integration-tickets/{ticketId}": {
+            "get": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Retrieve integration tickets.",
+                "description": "Retrieve integration tickets, optionally including expired tickets.",
+                "operationId": "getIntegrationTicket",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/ticketId"
+                    },
+                    {
+                        "$ref": "#/parameters/includeExpired"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationTicket"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Integrations"
+                ],
+                "summary": "Updates an existing non-expired integration ticket.",
+                "description": "Updates the expiry time or the batch size and TTL of an existing non-expired integration ticket.",
+                "operationId": "patchIntegrationTicket",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/ticketId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "patch",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationTicketPatch"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationTicket"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/people": {
+            "post": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Creates a new user.",
+                "description": "Creates a new user.",
+                "operationId": "postPerson",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "An object that describes the new user.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PersonPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/people/{personId}": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Returns information about a user.",
+                "description": "Returns information about a user.",
+                "operationId": "getPerson",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Deletes a user",
+                "description": "Deletes a user",
+                "operationId": "deletePerson",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Person"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/devices": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Retrieves a list of a user's devices.",
+                "description": "Retrieves a list of a user's devices. Use embed=timeframes to include device timeframes in the response.",
+                "operationId": "getPersonDevices",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/personId"
+                    },
+                    {
+                        "$ref": "#/parameters/embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination«Device»"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/sites/{siteId}": {
+            "get": {
+                "tags": [
+                    "Sites"
+                ],
+                "summary": "Returns information about a site.",
+                "description": "Returns information about a site.",
+                "operationId": "getSite",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/siteId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Site"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Recipient": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "An identifier (UUID) that represents this resource"
+                },
+                "targetName": {
+                    "type": "string",
+                    "description": "An identifier such as a name that can be used to identify a resource"
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON",
+                        "DEVICE",
+                        "GROUP"
+                    ]
+                },
+                "externalKey": {
+                    "type": "string",
+                    "description": "Identifies this resource in an external system. Used when externallyOwned is true."
+                },
+                "externallyOwned": {
+                    "type": "boolean",
+                    "description": "True if this resource is managed by an external system. Externally-owned resources cannot be deleted in the xMatters user interface."
+                },
+                "locked": {
+                    "type": "array",
+                    "description": "Lists the fields of externally-owned objects that are locked and cannot be modified in the xMatters user interface",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                }
+            },
+            "required": [
+                "id",
+                "targetName",
+                "owner",
+                "externallyOwned"
+            ],
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/Group"
+                },
+                {
+                    "$ref": "#/definitions/Person"
+                },
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "discriminator": "recipientType"
+        },
+        "Group": {
+            "description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
+            "type": "object",
+            "properties": {
+                "allowDuplicates": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "observedByAll": {
+                    "type": "boolean"
+                },
+                "recipientType": {
+                    "type": "string",
+                    "description": "A description of the group.",
+                    "enum": [
+                        "GROUP"
+                    ]
+                },
+                "site": {
+                    "$ref": "#/definitions/SiteReference"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Whether the group is active. Inactive groups cannot receive notifications.",
+                    "enum": [
+                        "ACTIVE",
+                        "INACTIVE"
+                    ]
+                },
+                "useDefaultDevices": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "id",
+                "targetName",
+                "externallyOwned"
+            ],
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Recipient"
+                }
+            ]
+        },
+        "Person": {
+            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "description": "The first name of the user."
+                },
+                "language": {
+                    "type": "string",
+                    "description": "The preferred language of the user: Example: en."
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "The last name of the user."
+                },
+                "owner": {
+                    "description": "The owner of this resource",
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "phoneLogin": {
+                    "type": "string",
+                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company."
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON"
+                    ]
+                },
+                "site": {
+                    "$ref": "#/definitions/SiteReference"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The time zone of the user. Example:  US/Pacific."
+                },
+                "webLogin": {
+                    "type": "string",
+                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field."
+                }
+            },
+            "required": [
+                "firstName",
+                "lastName",
+                "status"
+            ],
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Recipient"
+                }
+            ]
+        },
+        "Device": {
+            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
+            "type": "object",
+            "properties": {
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "DEVICE"
+                    ]
+                },
+                "deviceType": {
+                    "type": "string",
+                    "description": "The type of device.",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the device. Example: Work Email, Home Phone."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the device."
+                },
+                "owner": {
+                    "description": "The owner of this resource",
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "defaultDevice": {
+                    "type": "boolean",
+                    "description": "True if this device can receive notifications when the user has no active devices."
+                },
+                "delay": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of minutes to wait for a response before contacting the next device."
+                },
+                "priorityThreshold": {
+                    "type": "string",
+                    "description": "The minimum priority of an event for it to be delivered to this device.",
+                    "enum": [
+                        "LOW",
+                        "HIGH",
+                        "MEDIUM"
+                    ]
+                },
+                "sequence": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted."
+                },
+                "testStatus": {
+                    "type": "string",
+                    "description": "Whether the device has been tested.",
+                    "enum": [
+                        "TESTED",
+                        "UNTESTED",
+                        "PENDING",
+                        "INVALID"
+                    ]
+                },
+                "timeframes": {
+                    "description": "The time frames in which the device is available to receive notifications",
+                    "$ref": "#/definitions/Pagination«DeviceTimeframe»"
+                }
+            },
+            "required": [
+                "owner",
+                "deviceType"
+            ],
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Recipient"
+                }
+            ],
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/EmailDevice"
+                },
+                {
+                    "$ref": "#/definitions/VoiceDevice"
+                },
+                {
+                    "$ref": "#/definitions/SMSDevice"
+                },
+                {
+                    "$ref": "#/definitions/TextPagerDevice"
+                },
+                {
+                    "$ref": "#/definitions/NumericPagerDevice"
+                },
+                {
+                    "$ref": "#/definitions/IMDevice"
+                },
+                {
+                    "$ref": "#/definitions/ApplePushDevice"
+                },
+                {
+                    "$ref": "#/definitions/AndroidPushDevice"
+                },
+                {
+                    "$ref": "#/definitions/BlackberryPushDevice"
+                },
+                {
+                    "$ref": "#/definitions/FaxDevice"
+                },
+                {
+                    "$ref": "#/definitions/PublicAddressDevice"
+                },
+                {
+                    "$ref": "#/definitions/GenericDevice"
+                }
+            ],
+            "discriminator": "deviceType"
+        },
+        "EmailDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "EMAIL"
+                    ]
+                },
+                "emailAddress": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "emailAddress"
+            ]
+        },
+        "VoiceDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "VOICE"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "E.164 international format phone number including country code and extension"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "SMSDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "TEXT_PHONE"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "E.164 international format phone number including country code and extension"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "TextPagerDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "TEXT_PAGER"
+                    ]
+                },
+                "pin": {
+                    "type": "string"
+                },
+                "twoWayDevice": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "pin",
+                "twoWayDevice"
+            ]
+        },
+        "NumericPagerDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "NUMERIC_PAGER"
+                    ]
+                },
+                "pagerNumber": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "areaCode": {
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "IMDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "IM"
+                    ]
+                },
+                "address": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "address"
+            ]
+        },
+        "ApplePushDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "APPLE_PUSH"
+                    ]
+                },
+                "accountId": {
+                    "type": "string"
+                },
+                "apnToken": {
+                    "type": "string"
+                },
+                "alertSound": {
+                    "type": "string"
+                },
+                "soundStatus": {
+                    "type": "string"
+                },
+                "soundThreshold": {
+                    "type": "string",
+                    "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "apnToken"
+            ]
+        },
+        "AndroidPushDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH"
+                    ]
+                },
+                "accountId": {
+                    "type": "string"
+                },
+                "registrationId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "registrationId"
+            ]
+        },
+        "BlackberryPushDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "BLACKBERRY_PUSH"
+                    ]
+                },
+                "accountId": {
+                    "type": "string"
+                },
+                "registrationId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "registrationId"
+            ]
+        },
+        "FaxDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "FAX"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "pattern": "^\\d{5,20}$"
+                },
+                "country": {
+                    "type": "string",
+                    "enum": [
+                        "AR",
+                        "AU",
+                        "BR",
+                        "CA",
+                        "FR",
+                        "DE",
+                        "HK",
+                        "IN",
+                        "IT",
+                        "JP",
+                        "PT",
+                        "PR",
+                        "GB",
+                        "US"
+                    ]
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "PublicAddressDevice": {
+            "description": "a.k.a. Voice IVR",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "VOICE_IVR"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "E.164 international format phone number including country code and extension"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "GenericDevice": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "GENERIC"
+                    ]
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "DeviceTimeframe": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Timeframe. Example: \"After hours\"."
+                },
+                "days": {
+                    "type": "array",
+                    "description": "List of the days of the week this timeframe is active.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "durationInMinutes": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The length of the timeframe in minutes."
+                },
+                "excludeHolidays": {
+                    "type": "boolean",
+                    "description": "True if the timeframe is not active on holidays."
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "The time of day that the timeframe begins."
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "HttpRequest": {
+            "properties": {
+                "body": {
+                    "type": "string"
+                },
+                "headers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "method": {
+                    "type": "string"
+                },
+                "parameters": {
+                    "type": "object"
+                },
+                "remoteAddr": {
+                    "type": "string"
+                },
+                "requestId": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "xtrace": {
+                    "type": "string"
+                }
+            }
+        },
+        "IntegrationEndpoint": {
+            "required": [
+                "alias",
+                "authType",
+                "type",
+                "url"
+            ],
+            "properties": {
+                "alias": {
+                    "type": "string",
+                    "description": "The case-sensitive name used to access the endpoint in the JavaScript."
+                },
+                "apiKey": {
+                    "type": "string",
+                    "description": "The api key to use for authentication with XMATTERS endpoints."
+                },
+                "authPreemptive": {
+                    "type": "boolean",
+                    "description": "If Basic auth is used, determines whether credentials are sent preemptively."
+                },
+                "authType": {
+                    "type": "string",
+                    "description": "The type of authentication to use when making requests to this endpoint."
+                },
+                "password": {
+                    "type": "string",
+                    "description": "The encrypted password for authentication, if required."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The endpoint type. EXTERNAL type refers to endpoints created through the UI."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The base URL accessible through this endpoint. When making HTTP requests, additional path components may be appended."
+                },
+                "username": {
+                    "type": "string",
+                    "description": "The username for authentication, if required."
+                }
+            }
+        },
+        "IntegrationFunction": {
+            "required": [
+                "id",
+                "mainMethod",
+                "name",
+                "operation",
+                "requestsToLog",
+                "script",
+                "type"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Unique ID of the integration"
+                },
+                "mainMethod": {
+                    "type": "string",
+                    "description": "Name of the function in the JavaScript, may be auto-generated."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Human-readable name assigned to the integration function"
+                },
+                "operation": {
+                    "type": "string",
+                    "description": "Action performed by this function, such as 'CREATE_EVENT' or 'OUTBOUND_CALLBACK'"
+                },
+                "requestsToLog": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of requests to log"
+                },
+                "script": {
+                    "description": "The script to which the function belongs",
+                    "$ref": "#/definitions/IntegrationScript"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Integration function type, such as 'INBOUND_WEBHOOK' or 'OUTBOUND_WEBHOOK'"
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                }
+            }
+        },
+        "IntegrationFunctionInvocation": {
+            "required": [
+                "function",
+                "id"
+            ],
+            "properties": {
+                "completedTime": {
+                    "type": "string"
+                },
+                "function": {
+                    "$ref": "#/definitions/FunctionReference"
+                },
+                "id": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "The unique ID of this invocation record"
+                },
+                "job": {
+                    "$ref": "#/definitions/IntegrationServiceJob"
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                },
+                "logfileName": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "COMPLETED",
+                        "WARNING",
+                        "FAILED",
+                        "CANCELLED"
+                    ]
+                }
+            }
+        },
+        "IntegrationScript": {
+            "required": [
+                "commPlanName",
+                "endpoints",
+                "functions",
+                "scriptId",
+                "sourceCode",
+                "version"
+            ],
+            "properties": {
+                "authPassword": {
+                    "type": "string",
+                    "description": "The password of the user authorized to access this function"
+                },
+                "authUserName": {
+                    "type": "string",
+                    "description": "The username of the user authorized to access this function"
+                },
+                "commPlanName": {
+                    "type": "string",
+                    "description": "Name of the Communication Plan"
+                },
+                "endpoints": {
+                    "type": "array",
+                    "description": "Integration endpoints belonging to the integration",
+                    "items": {
+                        "$ref": "#/definitions/IntegrationEndpoint"
+                    }
+                },
+                "functions": {
+                    "type": "array",
+                    "description": "Integration functions belonging to the integration",
+                    "items": {
+                        "$ref": "#/definitions/IntegrationFunction"
+                    }
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                },
+                "scriptId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Unique ID of the script, corresponding to the UUID of the Communication Plan"
+                },
+                "sourceCode": {
+                    "type": "string",
+                    "description": "JavaScript source code of the integration script"
+                },
+                "version": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Version of the integration script. Version numbers are monotonically increasing but not necessarily sequential. May be used to look up the script content in the revision table."
+                }
+            }
+        },
+        "IntegrationServiceJob": {
+            "properties": {
+                "communicationPlanId": {
+                    "type": "string"
+                },
+                "integrationServiceId": {
+                    "type": "string"
+                },
+                "integrationServiceName": {
+                    "type": "string"
+                },
+                "logged": {
+                    "type": "boolean"
+                },
+                "orgKey": {
+                    "type": "string"
+                },
+                "request": {
+                    "$ref": "#/definitions/HttpRequest"
+                }
+            }
+        },
+        "IntegrationTicket": {
+            "required": [
+                "batchSize",
+                "orgKey",
+                "secondsToLive",
+                "systemFormUuid",
+                "uuid"
+            ],
+            "properties": {
+                "batchSize": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Max batch size of requests that will be processed before the ticket is returned to the queue"
+                },
+                "expiryTime": {
+                    "type": "string",
+                    "description": "The time at which this ticket should be considered dropped, if it has not checked in before then"
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                },
+                "orgKey": {
+                    "type": "string",
+                    "description": "Organization identifier"
+                },
+                "secondsToLive": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time this ticket may go without updates before it considered lost or dropped. When a ticket is returned to the queue, this value is added to current time to determine expiryTime"
+                },
+                "systemFormUuid": {
+                    "type": "string",
+                    "description": "The UUID of the system level communication plan form to post failure notifications to"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "UUID for the Ticket instance"
+                }
+            }
+        },
+        "JobResult": {
+            "required": [
+                "job"
+            ],
+            "properties": {
+                "completedTime": {
+                    "type": "string"
+                },
+                "job": {
+                    "$ref": "#/definitions/IntegrationServiceJob"
+                },
+                "logfileName": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "COMPLETED",
+                        "WARNING",
+                        "FAILED",
+                        "CANCELLED"
+                    ]
+                }
+            }
+        },
+        "Shift": {
+            "properties": {
+                "group": {
+                    "$ref": "#/definitions/GroupReference"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                }
+            }
+        },
+        "Site": {
+            "properties": {
+                "address1": {
+                    "type": "string"
+                },
+                "address2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "externalKey": {
+                    "type": "string"
+                },
+                "externallyOwned": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "latitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "links": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "longitude": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "postalCode": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "ACTIVE",
+                        "INACTIVE"
+                    ]
+                },
+                "timezone": {
+                    "type": "string"
+                }
+            }
+        },
+        "RecipientPost": {
+            "description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "The unique identifier",
+                    "type": "string"
+                },
+                "targetName": {
+                    "type": "string"
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP",
+                        "PERSON",
+                        "DEVICE"
+                    ]
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "ACTIVE",
+                        "INACTIVE"
+                    ],
+                    "default": "ACTIVE"
+                },
+                "externallyOwned": {
+                    "type": "boolean"
+                },
+                "externalKey": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "recipientType",
+                "targetName"
+            ],
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/GroupPost"
+                },
+                {
+                    "$ref": "#/definitions/PersonPost"
+                },
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "discriminator": "recipientType"
+        },
+        "PersonPost": {
+            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RecipientPost"
+                }
+            ],
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "description": "The first name of the user."
+                },
+                "language": {
+                    "type": "string",
+                    "description": "The preferred language of the user: Example: en."
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "The last name of the user."
+                },
+                "phoneLogin": {
+                    "type": "string",
+                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company."
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON"
+                    ]
+                },
+                "roles": {
+                    "type": "array",
+                    "description": "A list of the user's roles. Users must have at least one role.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "site": {
+                    "$ref": "#/definitions/SiteLink"
+                },
+                "supervisors": {
+                    "type": "array",
+                    "description": "A list of supervisors of this users. If this value is not provided, the XXX user becomes the supervisor. To assign a user as a supervisor, the authenticating user must have the appropriate permissions.",
+                    "items": {
+                        "$ref": "#/definitions/PersonLink"
+                    }
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The time zone of the user. Example:  US/Pacific."
+                },
+                "webLogin": {
+                    "type": "string",
+                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field."
+                }
+            },
+            "required": [
+                "firstName",
+                "lastName",
+                "language",
+                "timezone",
+                "webLogin",
+                "roles"
+            ]
+        },
+        "GroupPost": {
+            "description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RecipientPost"
+                }
+            ],
+            "properties": {
+                "allowDuplicates": {
+                    "type": "boolean",
+                    "description": "Whether the group allows a notification to be sent to a device multiple times."
+                },
+                "description": {
+                    "type": "string"
+                },
+                "observedByAll": {
+                    "type": "boolean",
+                    "description": "Whether the group notifications are observed by all."
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP"
+                    ]
+                },
+                "site": {
+                    "description": "The name of the site the group belongs to.",
+                    "$ref": "#/definitions/SiteLink"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Whether the group is active. Inactive groups do not receive notifications.",
+                    "enum": [
+                        "ACTIVE",
+                        "INACTIVE"
+                    ]
+                },
+                "supervisors": {
+                    "type": "array",
+                    "description": "A list of group supervisors. Groups must have at least one supervisor.",
+                    "items": {
+                        "$ref": "#/definitions/PersonLink"
+                    }
+                },
+                "timezone": {
+                    "type": "string"
+                },
+                "useDefaultDevices": {
+                    "type": "boolean",
+                    "description": "Whether the default user device should be used when sending out a notification to the group."
+                }
+            }
+        },
+        "DevicePost": {
+            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RecipientPost"
+                }
+            ],
+            "properties": {
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "DEVICE"
+                    ]
+                },
+                "deviceType": {
+                    "type": "string",
+                    "description": "The type of device.",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the device. Example: Work Email, Home Phone."
+                },
+                "owner": {
+                    "description": "The owner of this resource",
+                    "$ref": "#/definitions/PersonLink"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the device."
+                },
+                "defaultDevice": {
+                    "type": "boolean",
+                    "description": "True if this device can receive notifications when the user has no active devices."
+                },
+                "delay": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of minutes to wait for a response before contacting the next device."
+                },
+                "priorityThreshold": {
+                    "type": "string",
+                    "description": "The minimum priority of an event for it to be delivered to this device.",
+                    "enum": [
+                        "LOW",
+                        "HIGH",
+                        "MEDIUM"
+                    ]
+                },
+                "sequence": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted."
+                },
+                "testStatus": {
+                    "type": "string",
+                    "description": "Whether the device has been tested.",
+                    "enum": [
+                        "TESTED",
+                        "UNTESTED",
+                        "PENDING",
+                        "INVALID"
+                    ]
+                }
+            },
+            "required": [
+                "deviceType",
+                "name",
+                "owner"
+            ],
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/EmailDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/VoiceDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/SMSDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/TextPagerDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/NumericPagerDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/IMDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/ApplePushDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/AndroidPushDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/BlackberryPushDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/FaxDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/PublicAddressDevicePost"
+                },
+                {
+                    "$ref": "#/definitions/GenericDevicePost"
+                }
+            ],
+            "discriminator": "deviceType"
+        },
+        "EmailDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "EMAIL"
+                    ]
+                },
+                "emailAddress": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "emailAddress"
+            ]
+        },
+        "VoiceDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "VOICE"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "E.164 international format phone number including country code and extension"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "SMSDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "TEXT_PHONE"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "E.164 international format phone number including country code and extension"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "TextPagerDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "TEXT_PAGER"
+                    ]
+                },
+                "pin": {
+                    "type": "string"
+                },
+                "twoWayDevice": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "pin",
+                "twoWayDevice"
+            ]
+        },
+        "NumericPagerDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "NUMERIC_PAGER"
+                    ]
+                },
+                "pagerNumber": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "areaCode": {
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "IMDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "IM"
+                    ]
+                },
+                "address": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "address"
+            ]
+        },
+        "ApplePushDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "APPLE_PUSH"
+                    ]
+                },
+                "accountId": {
+                    "type": "string"
+                },
+                "apnToken": {
+                    "type": "string"
+                },
+                "alertSound": {
+                    "type": "string"
+                },
+                "soundStatus": {
+                    "type": "string"
+                },
+                "soundThreshold": {
+                    "type": "string",
+                    "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "apnToken"
+            ]
+        },
+        "AndroidPushDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH"
+                    ]
+                },
+                "accountId": {
+                    "type": "string"
+                },
+                "registrationId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "registrationId"
+            ]
+        },
+        "BlackberryPushDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "BLACKBERRY_PUSH"
+                    ]
+                },
+                "accountId": {
+                    "type": "string"
+                },
+                "registrationId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "registrationId"
+            ]
+        },
+        "FaxDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "FAX"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "pattern": "^\\d{5,20}$"
+                },
+                "country": {
+                    "type": "string",
+                    "enum": [
+                        "AR",
+                        "AU",
+                        "BR",
+                        "CA",
+                        "FR",
+                        "DE",
+                        "HK",
+                        "IN",
+                        "IT",
+                        "JP",
+                        "PT",
+                        "PR",
+                        "GB",
+                        "US"
+                    ]
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "PublicAddressDevicePost": {
+            "description": "a.k.a. Voice IVR",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "VOICE_IVR"
+                    ]
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "description": "E.164 international format phone number including country code and extension"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "GenericDevicePost": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DevicePost"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "GENERIC"
+                    ]
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "IntegrationTicketPost": {
+            "required": [
+                "batchSize",
+                "orgKey",
+                "secondsToLive"
+            ],
+            "properties": {
+                "batchSize": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Max batch size of requests that will be processed before the ticket is returned to the queue"
+                },
+                "orgKey": {
+                    "type": "string",
+                    "description": "Organization identifier"
+                },
+                "secondsToLive": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Sets or resets the expiryTime of the ticket to this many seconds from now"
+                }
+            }
+        },
+        "IntegrationTicketPatch": {
+            "properties": {
+                "batchSize": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Max batch size of requests that will be processed before the ticket is returned to the queue"
+                },
+                "expiryTime": {
+                    "type": "string",
+                    "description": "Ticket will be considered expired at this time"
+                },
+                "secondsToLive": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "The time this ticket may go without updates before it considered lost or dropped. When a ticket is returned to the queue, this value is added to current time to determine expiryTime"
+                }
+            }
+        },
+        "Pagination«Device»": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Device"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "properties": {
+                        "next": {
+                            "type": "string",
+                            "description": "A link to the next page of results"
+                        },
+                        "previous": {
+                            "type": "string",
+                            "description": "A link to the previous page of results"
+                        },
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this page of results"
+                        }
+                    },
+                    "required": [
+                        "self"
+                    ]
+                }
+            }
+        },
+        "Pagination«DeviceTimeframe»": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/DeviceTimeframe"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "properties": {
+                        "next": {
+                            "type": "string",
+                            "description": "A link to the next page of results"
+                        },
+                        "previous": {
+                            "type": "string",
+                            "description": "A link to the previous page of results"
+                        },
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this page of results"
+                        }
+                    },
+                    "required": [
+                        "self"
+                    ]
+                }
+            }
+        },
+        "PersonLink": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                }
+            }
+        },
+        "SiteLink": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                }
+            }
+        },
+        "GroupMemberLink": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP",
+                        "PERSON",
+                        "DEVICE"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "recipientType"
+            ]
+        },
+        "SiteReference": {
+            "required": [
+                "id",
+                "links"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                }
+            }
+        },
+        "FunctionReference": {
+            "required": [
+                "id",
+                "links"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                }
+            }
+        },
+        "PersonReference": {
+            "required": [
+                "id",
+                "links"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                }
+            }
+        },
+        "GroupReference": {
+            "required": [
+                "id",
+                "links"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                },
+                "links": {
+                    "required": [
+                        "self"
+                    ],
+                    "properties": {
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this resource."
+                        }
+                    }
+                }
+            }
+        },
+        "BadRequestResponse": {
+            "required": [
+                "code",
+                "message",
+                "reason"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The http response code.",
+                    "enum": [
+                        400
+                    ]
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Bad Request"
+                    ]
+                }
+            }
+        },
+        "UnauthorizedResponse": {
+            "required": [
+                "code",
+                "message",
+                "reason"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The http response code.",
+                    "enum": [
+                        401
+                    ]
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Unauthorized"
+                    ]
+                }
+            }
+        },
+        "ForbiddenResponse": {
+            "required": [
+                "code",
+                "message",
+                "reason"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The http response code.",
+                    "enum": [
+                        403
+                    ]
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Forbidden"
+                    ]
+                }
+            }
+        },
+        "NotFoundResponse": {
+            "required": [
+                "code",
+                "message",
+                "reason"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The http response code.",
+                    "enum": [
+                        404
+                    ]
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Not Found"
+                    ]
+                }
+            }
+        },
+        "ConflictResponse": {
+            "required": [
+                "code",
+                "message",
+                "reason"
+            ],
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The http response code.",
+                    "enum": [
+                        409
+                    ]
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Conflict"
+                    ]
+                }
+            }
+        }
+    },
+    "parameters": {
+        "deviceId": {
+            "name": "deviceId",
+            "in": "path",
+            "description": "The device uuid or targetName",
+            "required": true,
+            "type": "string"
+        },
+        "embed": {
+            "name": "embed",
+            "in": "query",
+            "description": "Comma separated list of linked domain entities to embed in the response",
+            "required": false,
+            "type": "string"
+        },
+        "groupId": {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+        },
+        "functionId": {
+            "name": "functionId",
+            "in": "path",
+            "description": "The function uuid",
+            "required": true,
+            "type": "string"
+        },
+        "includeExpired": {
+            "name": "includeExpired",
+            "in": "query",
+            "description": "Include expired tickets in result",
+            "required": false,
+            "type": "boolean"
+        },
+        "invocationId": {
+            "name": "invocationId",
+            "in": "path",
+            "description": "The invocation uuid",
+            "required": true,
+            "type": "string"
+        },
+        "limit": {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum result size to return",
+            "required": false,
+            "type": "integer"
+        },
+        "memberId": {
+            "name": "memberId",
+            "in": "path",
+            "description": "The recipient's uuid or targetName",
+            "required": true,
+            "type": "string"
+        },
+        "offset": {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip this many results before returning the result set",
+            "required": false,
+            "type": "integer"
+        },
+        "personId": {
+            "name": "personId",
+            "in": "path",
+            "description": "The person's uuid or targetName",
+            "required": true,
+            "type": "string"
+        },
+        "scriptId": {
+            "name": "scriptId",
+            "in": "path",
+            "description": "The script uuid",
+            "required": true,
+            "type": "string"
+        },
+        "shiftId": {
+            "name": "shiftId",
+            "in": "path",
+            "description": "The uuid or name of the shift. e.g. 24/7 (Must be URL encoded)",
+            "required": true,
+            "type": "string"
+        },
+        "siteId": {
+            "name": "siteId",
+            "in": "path",
+            "description": "The site uuid or name",
+            "required": true,
+            "type": "string"
+        },
+        "ticketId": {
+            "name": "ticketId",
+            "in": "path",
+            "description": "The ticket uuid",
+            "required": true,
+            "type": "string"
+        }
+    },
+    "responses": {
+        "204": {
+            "description": "No Content"
+        },
+        "400": {
+            "description": "Bad Request - The request is malformed",
+            "schema": {
+                "$ref": "#/definitions/BadRequestResponse"
+            }
+        },
+        "401": {
+            "description": "Unauthorized - The action cannot be performed in the system",
+            "schema": {
+                "$ref": "#/definitions/UnauthorizedResponse"
+            }
+        },
+        "403": {
+            "description": "Forbidden - The authenticated user does not have permission to perform this action",
+            "schema": {
+                "$ref": "#/definitions/ForbiddenResponse"
+            }
+        },
+        "404": {
+            "description": "Not Found - The resource does not exist",
+            "schema": {
+                "$ref": "#/definitions/NotFoundResponse"
+            }
+        },
+        "409": {
+            "description": "Conflict - The action cannot be performed in the system",
+            "schema": {
+                "$ref": "#/definitions/ConflictResponse"
+            }
+        },
+        "429": {
+            "description": "Too Many Requests",
+            "schema": {
+                "$ref": "#/definitions/TooManyRequestsResponse"
+            }
+        },
+        "500": {
+            "description": "Internal Error",
+            "schema": {
+                "$ref": "#/definitions/InternalServerErrorResponse"
+            }
+        }
+    }
 }
