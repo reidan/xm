@@ -1212,6 +1212,7 @@
             "required": [
                 "id",
                 "targetName",
+                "recipientType",
                 "owner",
                 "externallyOwned"
             ],
