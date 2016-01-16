@@ -11,20 +11,12 @@
     ],
     "tags": [
         {
-            "name": "Calendar",
-            "description": "Calendar"
-        },
-        {
             "name": "Devices",
             "description": "Devices"
         },
         {
             "name": "Groups",
             "description": "Groups"
-        },
-        {
-            "name": "Group Members",
-            "description": "Group Members"
         },
         {
             "name": "Integrations",
@@ -39,10 +31,6 @@
             "description": "Shifts"
         },
         {
-            "name": "Shift Members",
-            "description": "Shift Members"
-        },
-        {
             "name": "Sites",
             "description": "Sites"
         }
@@ -54,100 +42,6 @@
         "application/json"
     ],
     "paths": {
-        "/calendar": {
-            "get": {
-                "tags": [
-                    "Calendar"
-                ],
-                "summary": "Shift occurrence calendar",
-                "description": "Shift occurrence calendar",
-                "operationId": "getCalendar",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/query-at"
-                    },
-                    {
-                        "$ref": "#/parameters/query-from"
-                    },
-                    {
-                        "$ref": "#/parameters/query-to"
-                    },
-                    {
-                        "$ref": "#/parameters/query-groupId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-personId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination<ShiftOccurrence>"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
-        "/devices": {
-            "post": {
-                "tags": [
-                    "Devices"
-                ],
-                "summary": "Add a device.",
-                "description": "Add a device.",
-                "operationId": "postDevice",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "An object that contains the definition of the new device",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/DevicePost"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Device"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/Device"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            }
-        },
         "/devices/{deviceId}": {
             "get": {
                 "tags": [
@@ -158,10 +52,10 @@
                 "operationId": "getDevice",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-deviceId"
+                        "$ref": "#/parameters/deviceId"
                     },
                     {
-                        "$ref": "#/parameters/query-embed"
+                        "$ref": "#/parameters/embed"
                     }
                 ],
                 "responses": {
@@ -191,7 +85,7 @@
                 "operationId": "deleteDevice",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-deviceId"
+                        "$ref": "#/parameters/deviceId"
                     }
                 ],
                 "responses": {
@@ -217,49 +111,6 @@
             }
         },
         "/groups": {
-            "get": {
-                "tags": [
-                    "Groups"
-                ],
-                "summary": "List Groups",
-                "description": "List Groups. Can embed group calendar e.g. embed=calendar(at: '2015-11-02T22:54:19Z') e.g. embed=calendar(from: '2015-11-02T22:54:19Z', to: '2015-11-03T22:54:19Z')",
-                "operationId": "getGroups",
-                "parameters": [
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination<Group>"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            },
             "post": {
                 "tags": [
                     "Groups"
@@ -317,7 +168,7 @@
                 "parameters": [
                     {
                         "description": "OK",
-                        "$ref": "#/parameters/path-groupId"
+                        "$ref": "#/parameters/groupId"
                     }
                 ],
                 "responses": {
@@ -347,7 +198,7 @@
                 "operationId": "deleteGroup",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-groupId"
+                        "$ref": "#/parameters/groupId"
                     }
                 ],
                 "responses": {
@@ -372,14 +223,20 @@
         "/groups/{groupId}/members": {
             "post": {
                 "tags": [
-                    "Group Members"
+                    "Groups"
                 ],
                 "summary": "Add Group members.",
                 "description": "Add Group members.",
                 "operationId": "postGroupMember",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-groupId"
+                        "$ref": "#/parameters/groupId"
                     },
                     {
                         "in": "body",
@@ -387,7 +244,7 @@
                         "description": "Member to add",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RecipientLink"
+                            "$ref": "#/definitions/GroupMemberLink"
                         }
                     }
                 ],
@@ -395,133 +252,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/GroupMember"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            }
-        },
-        "/groups/{groupId}/members/{memberId}": {
-            "delete": {
-                "tags": [
-                    "Group Members"
-                ],
-                "summary": "Removes a Group Member.",
-                "description": "Removes a Group Member.",
-                "operationId": "deleteGroupMember",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-groupId"
-                    },
-                    {
-                        "$ref": "#/parameters/path-memberId"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/GroupMember"
-                        }
-                    },
-                    "204": {
-                        "$ref": "#/responses/204"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    }
-                }
-            }
-        },
-        "/groups/{groupId}/shifts": {
-            "get": {
-                "tags": [
-                    "Shifts"
-                ],
-                "summary": "List shifts",
-                "description": "List shifts",
-                "operationId": "getShifts",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-groupId"
-                    },
-                    {
-                        "name": "status",
-                        "in": "query",
-                        "description": "Filter by status",
-                        "required": false,
-                        "type": "string",
-                        "enum": ["ACTIVE", "INACTIVE"]
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination<Shift>"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Shifts"
-                ],
-                "summary": "Add or update a shift",
-                "description": "Add or update a shift",
-                "operationId": "postShift",
-                "parameters": [
-                    {
-                        "name": "groupId",
-                        "in": "path",
-                        "description": "The group uuid or targetName",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ShiftPost"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Shift"
+                            "$ref": "#/definitions/Recipient"
                         }
                     },
                     "400": {
@@ -548,14 +279,19 @@
                     "Shifts"
                 ],
                 "summary": "Returns information about a Shift.",
-                "description": "Returns information about a Shift.",
-                "operationId": "getShift",
+                "operationId": "Returns information about a Shift.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-groupId"
+                        "$ref": "#/parameters/groupId"
                     },
                     {
-                        "$ref": "#/parameters/path-shiftId"
+                        "$ref": "#/parameters/shiftId"
                     }
                 ],
                 "responses": {
@@ -577,62 +313,6 @@
                 }
             }
         },
-        "/groups/{groupId}/shifts/{shiftId}/members": {
-            "post": {
-                "tags": [
-                    "Shift Members"
-                ],
-                "summary": "Add or update a shift membership.",
-                "description": "Add or update a shift membership.",
-                "operationId": "postShiftMember",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-groupId"
-                    },
-                    {
-                        "$ref": "#/parameters/path-shiftId"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Shift Member",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/ShiftMemberPost"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/ShiftMember"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/ShiftMember"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            }
-        },
         "/integration-functions/{functionId}": {
             "get": {
                 "tags": [
@@ -643,10 +323,10 @@
                 "operationId": "getIntegrationFunction",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-functionId"
+                        "$ref": "#/parameters/functionId"
                     },
                     {
-                        "$ref": "#/parameters/query-embed"
+                        "$ref": "#/parameters/embed"
                     }
                 ],
                 "responses": {
@@ -678,12 +358,12 @@
                 "operationId": "postIntegrationFunctionInvocation",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-functionId"
+                        "$ref": "#/parameters/functionId"
                     },
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Job result",
+                        "description": "result",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/JobResult"
@@ -731,7 +411,7 @@
                 "operationId": "getIntegrationFunctionInvocation",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-invocationId"
+                        "$ref": "#/parameters/invocationId"
                     }
                 ],
                 "responses": {
@@ -763,7 +443,7 @@
                 "operationId": "getIntegrationScript",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-scriptId"
+                        "$ref": "#/parameters/scriptId"
                     }
                 ],
                 "responses": {
@@ -795,7 +475,7 @@
                 "operationId": "getIntegrationTickets",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/query-includeExpired"
+                        "$ref": "#/parameters/includeExpired"
                     }
                 ],
                 "responses": {
@@ -872,10 +552,10 @@
                 "operationId": "getIntegrationTicket",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-ticketId"
+                        "$ref": "#/parameters/ticketId"
                     },
                     {
-                        "$ref": "#/parameters/query-includeExpired"
+                        "$ref": "#/parameters/includeExpired"
                     }
                 ],
                 "responses": {
@@ -905,7 +585,7 @@
                 "operationId": "patchIntegrationTicket",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-ticketId"
+                        "$ref": "#/parameters/ticketId"
                     },
                     {
                         "in": "body",
@@ -937,52 +617,6 @@
             }
         },
         "/people": {
-            "get": {
-                "tags": [
-                    "People"
-                ],
-                "summary": "Returns information about users.",
-                "description": "Returns information about users.",
-                "operationId": "getPeople",
-                "parameters": [
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "$ref": "#/parameters/query-status"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination<Person>"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            },
             "post": {
                 "tags": [
                     "People"
@@ -1039,7 +673,7 @@
                 "operationId": "getPerson",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-personId"
+                        "$ref": "#/parameters/personId"
                     }
                 ],
                 "responses": {
@@ -1069,7 +703,7 @@
                 "operationId": "deletePerson",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-personId"
+                        "$ref": "#/parameters/personId"
                     }
                 ],
                 "responses": {
@@ -1104,17 +738,17 @@
                 "operationId": "getPersonDevices",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-personId"
+                        "$ref": "#/parameters/personId"
                     },
                     {
-                        "$ref": "#/parameters/query-embed"
+                        "$ref": "#/parameters/embed"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination<Device>"
+                            "$ref": "#/definitions/PaginationÂ«DeviceÂ»"
                         }
                     },
                     "401": {
@@ -1139,7 +773,7 @@
                 "operationId": "getSite",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/path-siteId"
+                        "$ref": "#/parameters/siteId"
                     }
                 ],
                 "responses": {
@@ -1215,7 +849,7 @@
                 "owner",
                 "externallyOwned"
             ],
-            "x-anyOf": [
+            "anyOf": [
                 {
                     "$ref": "#/definitions/Group"
                 },
@@ -1261,9 +895,6 @@
                 },
                 "useDefaultDevices": {
                     "type": "boolean"
-                },
-                "calendar": {
-                    "$ref": "#/definitions/Pagination<ShiftOccurrence>"
                 }
             },
             "required": [
@@ -1275,20 +906,6 @@
                 {
                     "$ref": "#/definitions/Recipient"
                 }
-            ]
-        },
-        "GroupMember": {
-            "properties": {
-                "group": {
-                    "$ref": "#/definitions/GroupReference"
-                },
-                "member": {
-                    "$ref": "#/definitions/RecipientReference"
-                }
-            },
-            "required": [
-                "group",
-                "member"
             ]
         },
         "Person": {
@@ -1420,7 +1037,7 @@
                 },
                 "timeframes": {
                     "description": "The time frames in which the device is available to receive notifications",
-                    "$ref": "#/definitions/Pagination<DeviceTimeframe>"
+                    "$ref": "#/definitions/PaginationÂ«DeviceTimeframeÂ»"
                 }
             },
             "required": [
@@ -1432,7 +1049,7 @@
                     "$ref": "#/definitions/Recipient"
                 }
             ],
-            "x-anyOf": [
+            "anyOf": [
                 {
                     "$ref": "#/definitions/EmailDevice"
                 },
@@ -1808,9 +1425,12 @@
                     "type": "string",
                     "description": "Name of the Timeframe. Example: \"After hours\"."
                 },
-                "startTime": {
-                    "type": "string",
-                    "description": "The time of day that the timeframe begins. HH:mm"
+                "days": {
+                    "type": "array",
+                    "description": "List of the days of the week this timeframe is active.",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "durationInMinutes": {
                     "type": "integer",
@@ -1821,20 +1441,13 @@
                     "type": "boolean",
                     "description": "True if the timeframe is not active on holidays."
                 },
-                "days": {
-                    "type": "array",
-                    "description": "List of the days of the week this timeframe is active.",
-                    "items": {
-                        "type": "string",
-                        "enum": ["SU","MO","TU","WE","TH","FR","SA"]
-                    }
+                "startTime": {
+                    "type": "string",
+                    "description": "The time of day that the timeframe begins."
                 }
             },
             "required": [
-                "name",
-                "startTime",
-                "durationInMinutes",
-                "excludeHolidays"
+                "name"
             ]
         },
         "HttpRequest": {
@@ -2200,94 +1813,8 @@
                 }
             }
         },
-        "ShiftMember": {
-            "properties": {
-                "shift": {
-                    "$ref": "#/definitions/ShiftReference"
-                },
-                "member": {
-                    "$ref": "#/definitions/RecipientReference"
-                },
-                "position": {
-                    "description": "Position in the rotation sequence.",
-                    "type": "integer"
-                },
-                "delay": {
-                    "description": "How long, in minutes, to wait before notifying this team member.",
-                    "type": "integer"
-                },
-                "escalationType": {
-                    "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.",
-                    "type": "string",
-                    "enum": ["None", "Peer", "Management"]
-                },
-                "inRotation": {
-                    "description": "Indicates whether the team member is included in the rotation cycle.",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "shift",
-                "member",
-                "position",
-                "delay",
-                "escalationType",
-                "inRotation"
-            ]
-        },
-        "ShiftOccurrence": {
-            "properties": {
-                "shift": {
-                    "$ref": "#/definitions/ShiftReference"
-                },
-                "members": {
-                    "$ref": "#/definitions/Pagination<ShiftOccurrenceMember>"
-                },
-                "start": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "end": {
-                    "type": "string",
-                    "format": "date-time"
-                }
-            },
-            "required": [
-                "shift",
-                "start",
-                "end"
-            ]
-        },
-        "ShiftOccurrenceMember": {
-            "properties": {
-                "shift": {
-                    "$ref": "#/definitions/ShiftReference"
-                },
-                "member": {
-                    "$ref": "#/definitions/RecipientReference"
-                },
-                "position": {
-                    "type": "integer"
-                },
-                "delay": {
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "shift",
-                "member",
-                "position",
-                "delay"
-            ]
-        },
         "Site": {
             "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
                 "address1": {
                     "type": "string"
                 },
@@ -2306,6 +1833,9 @@
                 "externallyOwned": {
                     "type": "boolean"
                 },
+                "id": {
+                    "type": "string"
+                },
                 "language": {
                     "type": "string"
                 },
@@ -2323,6 +1853,9 @@
                     "type": "number",
                     "format": "double"
                 },
+                "name": {
+                    "type": "string"
+                },
                 "postalCode": {
                     "type": "string"
                 },
@@ -2339,48 +1872,7 @@
                 "timezone": {
                     "type": "string"
                 }
-            },
-            "required": [
-                "id",
-                "name"
-            ]
-        },
-        "ShiftPost": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name"
-            ]
-        },
-        "ShiftMemberPost": {
-            "properties": {
-                "member": {
-                    "$ref": "#/definitions/RecipientLink"
-                },
-                "position": {
-                    "description": "Position in the rotation sequence.",
-                    "type": "integer"
-                },
-                "delay": {
-                    "description": "How long, in minutes, to wait before notifying this team member.",
-                    "type": "integer"
-                },
-                "escalationType": {
-                    "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.",
-                    "type": "string",
-                    "enum": ["None", "Peer", "Management"]
-                },
-                "inRotation": {
-                    "description": "Indicates whether the team member is included in the rotation cycle.",
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "member"
-            ]
+            }
         },
         "RecipientPost": {
             "description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
@@ -2420,7 +1912,7 @@
                 "recipientType",
                 "targetName"
             ],
-            "x-anyOf": [
+            "anyOf": [
                 {
                     "$ref": "#/definitions/GroupPost"
                 },
@@ -2601,7 +2093,7 @@
                 },
                 "defaultDevice": {
                     "type": "boolean",
-                    "description": "True if this device can receive notifications when the user has no active devices. a.k.a. Fail-safe device."
+                    "description": "True if this device can receive notifications when the user has no active devices."
                 },
                 "delay": {
                     "type": "integer",
@@ -2631,16 +2123,6 @@
                         "PENDING",
                         "INVALID"
                     ]
-                },
-                "provider": {
-                    "$ref": "#/definitions/ProviderLink"
-                },
-                "timeframes": {
-                    "type": "array",
-                    "description": "Timeframes when this device is active.",
-                    "items": {
-                        "$ref": "#/definitions/DeviceTimeframe"
-                    }
                 }
             },
             "required": [
@@ -2648,7 +2130,7 @@
                 "name",
                 "owner"
             ],
-            "x-anyOf": [
+            "anyOf": [
                 {
                     "$ref": "#/definitions/EmailDevicePost"
                 },
@@ -3059,86 +2541,7 @@
                 }
             }
         },
-        "PaginationLinks": {
-            "properties": {
-                "next": {
-                    "type": "string",
-                    "description": "A link to the next page of results"
-                },
-                "previous": {
-                    "type": "string",
-                    "description": "A link to the previous page of results"
-                },
-                "self": {
-                    "type": "string",
-                    "description": "A link to this page of results"
-                }
-            },
-            "required": [
-                "self"
-            ]
-        },
-        "Pagination<Group>": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Group"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "Pagination<Person>": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Person"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "Pagination<Device>": {
+        "PaginationÂ«DeviceÂ»": {
             "required": [
                 "count",
                 "data",
@@ -3164,11 +2567,27 @@
                     "description": "The total number of items in the result set."
                 },
                 "links": {
-                    "$ref": "#/definitions/PaginationLinks"
+                    "properties": {
+                        "next": {
+                            "type": "string",
+                            "description": "A link to the next page of results"
+                        },
+                        "previous": {
+                            "type": "string",
+                            "description": "A link to the previous page of results"
+                        },
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this page of results"
+                        }
+                    },
+                    "required": [
+                        "self"
+                    ]
                 }
             }
         },
-        "Pagination<DeviceTimeframe>": {
+        "PaginationÂ«DeviceTimeframeÂ»": {
             "required": [
                 "count",
                 "data",
@@ -3194,97 +2613,23 @@
                     "description": "The total number of items in the result set."
                 },
                 "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "Pagination<Shift>": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Shift"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "Pagination<ShiftOccurrence>": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/ShiftOccurrence"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "Pagination<ShiftOccurrenceMember>": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/ShiftOccurrenceMember"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
+                    "properties": {
+                        "next": {
+                            "type": "string",
+                            "description": "A link to the next page of results"
+                        },
+                        "previous": {
+                            "type": "string",
+                            "description": "A link to the previous page of results"
+                        },
+                        "self": {
+                            "type": "string",
+                            "description": "A link to this page of results"
+                        }
+                    },
+                    "required": [
+                        "self"
+                    ]
                 }
             }
         },
@@ -3304,7 +2649,7 @@
                 }
             }
         },
-        "RecipientLink": {
+        "GroupMemberLink": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -3323,40 +2668,11 @@
                 "recipientType"
             ]
         },
-        "ProviderLink": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name"
-            ]
-        },
-        "ShiftReference": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The identifier of the resource."
-                },
-                "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
-                }
-            },
-            "required": [
-                "id",
-                "links"
-            ]
-        },
         "SiteReference": {
+            "required": [
+                "id",
+                "links"
+            ],
             "properties": {
                 "id": {
                     "type": "string",
@@ -3373,45 +2689,13 @@
                         }
                     }
                 }
-            },
-            "required": [
-                "id",
-                "links"
-            ]
-        },
-        "RecipientReference": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The identifier of the resource."
-                },
-                "recipientType": {
-                    "type": "string",
-                    "enum": [
-                        "GROUP",
-                        "PERSON",
-                        "DEVICE"
-                    ]
-                },
-                "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
-                }
-            },
-            "required": [
-                "id",
-                "recipientType",
-                "links"
-            ]
+            }
         },
         "FunctionReference": {
+            "required": [
+                "id",
+                "links"
+            ],
             "properties": {
                 "id": {
                     "type": "string",
@@ -3428,13 +2712,13 @@
                         }
                     }
                 }
-            },
-            "required": [
-                "id",
-                "links"
-            ]
+            }
         },
         "PersonReference": {
+            "required": [
+                "id",
+                "links"
+            ],
             "properties": {
                 "id": {
                     "type": "string",
@@ -3451,13 +2735,13 @@
                         }
                     }
                 }
-            },
-            "required": [
-                "id",
-                "links"
-            ]
+            }
         },
         "GroupReference": {
+            "required": [
+                "id",
+                "links"
+            ],
             "properties": {
                 "id": {
                     "type": "string",
@@ -3474,13 +2758,14 @@
                         }
                     }
                 }
-            },
-            "required": [
-                "id",
-                "links"
-            ]
+            }
         },
         "BadRequestResponse": {
+            "required": [
+                "code",
+                "message",
+                "reason"
+            ],
             "properties": {
                 "code": {
                     "type": "integer",
@@ -3501,14 +2786,14 @@
                         "Bad Request"
                     ]
                 }
-            },
+            }
+        },
+        "UnauthorizedResponse": {
             "required": [
                 "code",
                 "message",
                 "reason"
-            ]
-        },
-        "UnauthorizedResponse": {
+            ],
             "properties": {
                 "code": {
                     "type": "integer",
@@ -3529,14 +2814,14 @@
                         "Unauthorized"
                     ]
                 }
-            },
+            }
+        },
+        "ForbiddenResponse": {
             "required": [
                 "code",
                 "message",
                 "reason"
-            ]
-        },
-        "ForbiddenResponse": {
+            ],
             "properties": {
                 "code": {
                     "type": "integer",
@@ -3557,14 +2842,14 @@
                         "Forbidden"
                     ]
                 }
-            },
+            }
+        },
+        "NotFoundResponse": {
             "required": [
                 "code",
                 "message",
                 "reason"
-            ]
-        },
-        "NotFoundResponse": {
+            ],
             "properties": {
                 "code": {
                     "type": "integer",
@@ -3585,14 +2870,14 @@
                         "Not Found"
                     ]
                 }
-            },
+            }
+        },
+        "ConflictResponse": {
             "required": [
                 "code",
                 "message",
                 "reason"
-            ]
-        },
-        "ConflictResponse": {
+            ],
             "properties": {
                 "code": {
                     "type": "integer",
@@ -3613,160 +2898,106 @@
                         "Conflict"
                     ]
                 }
-            },
-            "required": [
-                "code",
-                "message",
-                "reason"
-            ]
+            }
         }
     },
     "parameters": {
-        "path-deviceId": {
+        "deviceId": {
             "name": "deviceId",
             "in": "path",
             "description": "The device uuid or targetName",
             "required": true,
             "type": "string"
         },
-        "path-groupId": {
-            "name": "groupId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-        },
-        "path-functionId": {
-            "name": "functionId",
-            "in": "path",
-            "description": "The function uuid",
-            "required": true,
-            "type": "string"
-        },
-        "path-invocationId": {
-            "name": "invocationId",
-            "in": "path",
-            "description": "The invocation uuid",
-            "required": true,
-            "type": "string"
-        },
-        "path-memberId": {
-            "name": "memberId",
-            "in": "path",
-            "description": "The recipient's uuid or targetName",
-            "required": true,
-            "type": "string"
-        },
-        "path-personId": {
-            "name": "personId",
-            "in": "path",
-            "description": "The person's uuid or targetName",
-            "required": true,
-            "type": "string"
-        },
-        "path-scriptId": {
-            "name": "scriptId",
-            "in": "path",
-            "description": "The script uuid",
-            "required": true,
-            "type": "string"
-        },
-        "path-shiftId": {
-            "name": "shiftId",
-            "in": "path",
-            "description": "The uuid or name of the shift. e.g. 24/7 (Must be URL encoded)",
-            "required": true,
-            "type": "string"
-        },
-        "path-siteId": {
-            "name": "siteId",
-            "in": "path",
-            "description": "The site uuid or name",
-            "required": true,
-            "type": "string"
-        },
-        "path-ticketId": {
-            "name": "ticketId",
-            "in": "path",
-            "description": "The ticket uuid",
-            "required": true,
-            "type": "string"
-        },
-        "query-personId": {
-            "name": "personId",
-            "in": "query",
-            "description": "The person's uuid or targetName",
-            "required": false,
-            "type": "string"
-        },
-        "query-groupId": {
-            "name": "groupId",
-            "in": "query",
-            "description": "The group's uuid or targetName",
-            "required": false,
-            "type": "string"
-        },
-        "query-embed": {
+        "embed": {
             "name": "embed",
             "in": "query",
             "description": "Comma separated list of linked domain entities to embed in the response",
             "required": false,
             "type": "string"
         },
-        "query-limit": {
-            "name": "limit",
-            "in": "query",
-            "description": "Maximum result size to return",
-            "required": false,
-            "type": "integer",
-            "default": 100,
-            "maximum": 1000
+        "groupId": {
+            "name": "groupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
         },
-        "query-offset": {
-            "name": "offset",
-            "in": "query",
-            "description": "Skip this many results before returning the result set",
-            "required": false,
-            "type": "integer",
-            "default": 0
+        "functionId": {
+            "name": "functionId",
+            "in": "path",
+            "description": "The function uuid",
+            "required": true,
+            "type": "string"
         },
-        "query-at": {
-            "name": "at",
-            "in": "query",
-            "description": "At this time",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-        },
-        "query-from": {
-            "name": "from",
-            "in": "query",
-            "description": "From this time",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-        },
-        "query-to": {
-            "name": "to",
-            "in": "query",
-            "description": "To this time",
-            "required": false,
-            "type": "string",
-            "format": "date-time"
-        },
-        "query-status": {
-            "name": "status",
-            "in": "query",
-            "description": "ACTIVE or INACTIVE",
-            "required": false,
-            "type": "string",
-            "enum": ["ACTIVE", "INACTIVE"]
-        },
-        "query-includeExpired": {
+        "includeExpired": {
             "name": "includeExpired",
             "in": "query",
             "description": "Include expired tickets in result",
             "required": false,
             "type": "boolean"
+        },
+        "invocationId": {
+            "name": "invocationId",
+            "in": "path",
+            "description": "The invocation uuid",
+            "required": true,
+            "type": "string"
+        },
+        "limit": {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum result size to return",
+            "required": false,
+            "type": "integer"
+        },
+        "memberId": {
+            "name": "memberId",
+            "in": "path",
+            "description": "The recipient's uuid or targetName",
+            "required": true,
+            "type": "string"
+        },
+        "offset": {
+            "name": "offset",
+            "in": "query",
+            "description": "Skip this many results before returning the result set",
+            "required": false,
+            "type": "integer"
+        },
+        "personId": {
+            "name": "personId",
+            "in": "path",
+            "description": "The person's uuid or targetName",
+            "required": true,
+            "type": "string"
+        },
+        "scriptId": {
+            "name": "scriptId",
+            "in": "path",
+            "description": "The script uuid",
+            "required": true,
+            "type": "string"
+        },
+        "shiftId": {
+            "name": "shiftId",
+            "in": "path",
+            "description": "The uuid or name of the shift. e.g. 24/7 (Must be URL encoded)",
+            "required": true,
+            "type": "string"
+        },
+        "siteId": {
+            "name": "siteId",
+            "in": "path",
+            "description": "The site uuid or name",
+            "required": true,
+            "type": "string"
+        },
+        "ticketId": {
+            "name": "ticketId",
+            "in": "path",
+            "description": "The ticket uuid",
+            "required": true,
+            "type": "string"
         }
     },
     "responses": {
@@ -3801,6 +3032,18 @@
             "description": "Conflict - The action cannot be performed in the system",
             "schema": {
                 "$ref": "#/definitions/ConflictResponse"
+            }
+        },
+        "429": {
+            "description": "Too Many Requests",
+            "schema": {
+                "$ref": "#/definitions/TooManyRequestsResponse"
+            }
+        },
+        "500": {
+            "description": "Internal Error",
+            "schema": {
+                "$ref": "#/definitions/InternalServerErrorResponse"
             }
         }
     }
