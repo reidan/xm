@@ -63,7 +63,72 @@
                 }
             }
         },
+        "/device-types": {
+            "get": {
+                "tags": [
+                    "Device Types"
+                ],
+                "summary": "Returns information about device types.",
+                "description": "Returns information about device types.",
+                "operationId": "getDeviceTypes",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination<DeviceType>"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/devices": {
+            "get": {
+                "tags": [
+                    "Devices"
+                ],
+                "summary": "Returns information about devices.",
+                "description": "Returns information about devices.",
+                "operationId": "getDevices",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/deviceType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination<Device>"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Devices"
@@ -984,6 +1049,25 @@
                 }
             ]
         },
+        "DeviceType": {
+            "type": "string",
+            "description": "The type of device.",
+            "enum": [
+                "ANDROID_PUSH",
+                "APPLE_PUSH",
+                "BLACKBERRY_PUSH",
+                "BROWSER",
+                "EMAIL",
+                "FAX",
+                "GENERIC",
+                "IM",
+                "NUMERIC_PAGER",
+                "TEXT_PAGER",
+                "TEXT_PHONE",
+                "VOICE",
+                "VOICE_IVR"
+            ]
+        },
         "Device": {
             "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
             "type": "object",
@@ -995,23 +1079,7 @@
                     ]
                 },
                 "deviceType": {
-                    "type": "string",
-                    "description": "The type of device.",
-                    "enum": [
-                        "ANDROID_PUSH",
-                        "APPLE_PUSH",
-                        "BLACKBERRY_PUSH",
-                        "BROWSER",
-                        "EMAIL",
-                        "FAX",
-                        "GENERIC",
-                        "IM",
-                        "NUMERIC_PAGER",
-                        "TEXT_PAGER",
-                        "TEXT_PHONE",
-                        "VOICE",
-                        "VOICE_IVR"
-                    ]
+                    "$ref": "#/definitions/DeviceType"
                 },
                 "name": {
                     "type": "string",
@@ -1812,23 +1880,7 @@
                     ]
                 },
                 "deviceType": {
-                    "type": "string",
-                    "description": "The type of device.",
-                    "enum": [
-                        "ANDROID_PUSH",
-                        "APPLE_PUSH",
-                        "BLACKBERRY_PUSH",
-                        "BROWSER",
-                        "EMAIL",
-                        "FAX",
-                        "GENERIC",
-                        "IM",
-                        "NUMERIC_PAGER",
-                        "TEXT_PAGER",
-                        "TEXT_PHONE",
-                        "VOICE",
-                        "VOICE_IVR"
-                    ]
+                    "$ref": "#/definitions/DeviceType"
                 },
                 "name": {
                     "type": "string",
@@ -2320,6 +2372,36 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/Device"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "Pagination<DeviceType>": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/DeviceType"
                     }
                 },
                 "total": {
