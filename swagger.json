@@ -1422,6 +1422,9 @@
                 "timeframes": {
                     "description": "The time frames in which the device is available to receive notifications",
                     "$ref": "#/definitions/Pagination<DeviceTimeframe>"
+                },
+                "provider": {
+                    "$ref": "#/definitions/ProviderReference"
                 }
             },
             "required": [
@@ -3326,12 +3329,22 @@
         },
         "ProviderLink": {
             "properties": {
-                "name": {
+                "id": {
                     "type": "string"
                 }
             },
             "required": [
-                "name"
+                "id"
+            ]
+        },
+        "ProviderReference": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
             ]
         },
         "ShiftReference": {
