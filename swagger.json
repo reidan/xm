@@ -3,49 +3,11 @@
     "info": {
         "description": "xMatters ReST API",
         "title": "xMatters ReST API",
-        "version": "1.0"
+        "version": "1"
     },
     "basePath": "/api/xm/1",
     "schemes": [
         "https"
-    ],
-    "tags": [
-        {
-            "name": "Calendar",
-            "description": "Calendar"
-        },
-        {
-            "name": "Devices",
-            "description": "Devices"
-        },
-        {
-            "name": "Groups",
-            "description": "Groups"
-        },
-        {
-            "name": "Group Members",
-            "description": "Group Members"
-        },
-        {
-            "name": "Integrations",
-            "description": "Integrations"
-        },
-        {
-            "name": "People",
-            "description": "People"
-        },
-        {
-            "name": "Shifts",
-            "description": "Shifts"
-        },
-        {
-            "name": "Shift Members",
-            "description": "Shift Members"
-        },
-        {
-            "name": "Sites",
-            "description": "Sites"
-        }
     ],
     "consumes": [
         "application/json"
@@ -633,309 +595,6 @@
                 }
             }
         },
-        "/integration-functions/{functionId}": {
-            "get": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Returns information about an integration function.",
-                "description": "Returns information about an integration function.",
-                "operationId": "getIntegrationFunction",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-functionId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationFunction"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
-        "/integration-functions/{functionId}/invocations": {
-            "post": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Post results of an integration function invocation.",
-                "description": "Post results of an integration function invocation.",
-                "operationId": "postIntegrationFunctionInvocation",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-functionId"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Job result",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/JobResult"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationFunctionInvocation"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationFunctionInvocation"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            }
-        },
-        "/integration-invocations/{invocationId}": {
-            "get": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Retrieve results of one integration function invocation.",
-                "description": "Retrieve results of one integration function invocation.",
-                "operationId": "getIntegrationFunctionInvocation",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-invocationId"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationFunctionInvocation"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
-        "/integration-scripts/{scriptId}": {
-            "get": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Retrieve integration script information.",
-                "description": "Retrieve integration script information.",
-                "operationId": "getIntegrationScript",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-scriptId"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationScript"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
-        "/integration-tickets": {
-            "get": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Retrieve integration tickets.",
-                "description": "Retrieve integration tickets, optionally including expired tickets.",
-                "operationId": "getIntegrationTickets",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/query-includeExpired"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/IntegrationTicket"
-                            }
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Creates a new integration ticket.",
-                "description": "Creates a new integration ticket.",
-                "operationId": "postIntegrationTicket",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "post",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationTicketPost"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationTicket"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationTicket"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            }
-        },
-        "/integration-tickets/{ticketId}": {
-            "get": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Retrieve integration tickets.",
-                "description": "Retrieve integration tickets, optionally including expired tickets.",
-                "operationId": "getIntegrationTicket",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-ticketId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-includeExpired"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationTicket"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            },
-            "patch": {
-                "tags": [
-                    "Integrations"
-                ],
-                "summary": "Updates an existing non-expired integration ticket.",
-                "description": "Updates the expiry time or the batch size and TTL of an existing non-expired integration ticket.",
-                "operationId": "patchIntegrationTicket",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-ticketId"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "patch",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationTicketPatch"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationTicket"
-                        }
-                    },
-                    "204": {
-                        "$ref": "#/responses/204"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    }
-                }
-            }
-        },
         "/people": {
             "get": {
                 "tags": [
@@ -1198,15 +857,7 @@
                     }
                 },
                 "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -1215,17 +866,6 @@
                 "recipientType",
                 "owner",
                 "externallyOwned"
-            ],
-            "x-anyOf": [
-                {
-                    "$ref": "#/definitions/Group"
-                },
-                {
-                    "$ref": "#/definitions/Person"
-                },
-                {
-                    "$ref": "#/definitions/Device"
-                }
             ],
             "discriminator": "recipientType"
         },
@@ -1309,7 +949,6 @@
                     "description": "The last name of the user."
                 },
                 "owner": {
-                    "description": "The owner of this resource",
                     "$ref": "#/definitions/PersonReference"
                 },
                 "phoneLogin": {
@@ -1383,7 +1022,6 @@
                     "description": "A description of the device."
                 },
                 "owner": {
-                    "description": "The owner of this resource",
                     "$ref": "#/definitions/PersonReference"
                 },
                 "defaultDevice": {
@@ -1434,44 +1072,6 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
-                }
-            ],
-            "x-anyOf": [
-                {
-                    "$ref": "#/definitions/EmailDevice"
-                },
-                {
-                    "$ref": "#/definitions/VoiceDevice"
-                },
-                {
-                    "$ref": "#/definitions/SMSDevice"
-                },
-                {
-                    "$ref": "#/definitions/TextPagerDevice"
-                },
-                {
-                    "$ref": "#/definitions/NumericPagerDevice"
-                },
-                {
-                    "$ref": "#/definitions/IMDevice"
-                },
-                {
-                    "$ref": "#/definitions/ApplePushDevice"
-                },
-                {
-                    "$ref": "#/definitions/AndroidPushDevice"
-                },
-                {
-                    "$ref": "#/definitions/BlackberryPushDevice"
-                },
-                {
-                    "$ref": "#/definitions/FaxDevice"
-                },
-                {
-                    "$ref": "#/definitions/PublicAddressDevice"
-                },
-                {
-                    "$ref": "#/definitions/GenericDevice"
                 }
             ],
             "discriminator": "deviceType"
@@ -1841,345 +1441,6 @@
                 "excludeHolidays"
             ]
         },
-        "HttpRequest": {
-            "properties": {
-                "body": {
-                    "type": "string"
-                },
-                "headers": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
-                "method": {
-                    "type": "string"
-                },
-                "parameters": {
-                    "type": "object"
-                },
-                "remoteAddr": {
-                    "type": "string"
-                },
-                "requestId": {
-                    "type": "string"
-                },
-                "timestamp": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                },
-                "xtrace": {
-                    "type": "string"
-                }
-            }
-        },
-        "IntegrationEndpoint": {
-            "required": [
-                "alias",
-                "authType",
-                "type",
-                "url"
-            ],
-            "properties": {
-                "alias": {
-                    "type": "string",
-                    "description": "The case-sensitive name used to access the endpoint in the JavaScript."
-                },
-                "apiKey": {
-                    "type": "string",
-                    "description": "The api key to use for authentication with XMATTERS endpoints."
-                },
-                "authPreemptive": {
-                    "type": "boolean",
-                    "description": "If Basic auth is used, determines whether credentials are sent preemptively."
-                },
-                "authType": {
-                    "type": "string",
-                    "description": "The type of authentication to use when making requests to this endpoint."
-                },
-                "password": {
-                    "type": "string",
-                    "description": "The encrypted password for authentication, if required."
-                },
-                "type": {
-                    "type": "string",
-                    "description": "The endpoint type. EXTERNAL type refers to endpoints created through the UI."
-                },
-                "url": {
-                    "type": "string",
-                    "description": "The base URL accessible through this endpoint. When making HTTP requests, additional path components may be appended."
-                },
-                "username": {
-                    "type": "string",
-                    "description": "The username for authentication, if required."
-                }
-            }
-        },
-        "IntegrationFunction": {
-            "required": [
-                "id",
-                "mainMethod",
-                "name",
-                "operation",
-                "requestsToLog",
-                "script",
-                "type"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Unique ID of the integration"
-                },
-                "mainMethod": {
-                    "type": "string",
-                    "description": "Name of the function in the JavaScript, may be auto-generated."
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Human-readable name assigned to the integration function"
-                },
-                "operation": {
-                    "type": "string",
-                    "description": "Action performed by this function, such as 'CREATE_EVENT' or 'OUTBOUND_CALLBACK'"
-                },
-                "requestsToLog": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of requests to log"
-                },
-                "script": {
-                    "description": "The script to which the function belongs",
-                    "$ref": "#/definitions/IntegrationScript"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "Integration function type, such as 'INBOUND_WEBHOOK' or 'OUTBOUND_WEBHOOK'"
-                },
-                "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
-                }
-            }
-        },
-        "IntegrationFunctionInvocation": {
-            "required": [
-                "function",
-                "id"
-            ],
-            "properties": {
-                "completedTime": {
-                    "type": "string"
-                },
-                "function": {
-                    "$ref": "#/definitions/FunctionReference"
-                },
-                "id": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "The unique ID of this invocation record"
-                },
-                "job": {
-                    "$ref": "#/definitions/IntegrationServiceJob"
-                },
-                "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
-                },
-                "logfileName": {
-                    "type": "string"
-                },
-                "startTime": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string",
-                    "enum": [
-                        "COMPLETED",
-                        "WARNING",
-                        "FAILED",
-                        "CANCELLED"
-                    ]
-                }
-            }
-        },
-        "IntegrationScript": {
-            "required": [
-                "commPlanName",
-                "endpoints",
-                "functions",
-                "scriptId",
-                "sourceCode",
-                "version"
-            ],
-            "properties": {
-                "authPassword": {
-                    "type": "string",
-                    "description": "The password of the user authorized to access this function"
-                },
-                "authUserName": {
-                    "type": "string",
-                    "description": "The username of the user authorized to access this function"
-                },
-                "commPlanName": {
-                    "type": "string",
-                    "description": "Name of the Communication Plan"
-                },
-                "endpoints": {
-                    "type": "array",
-                    "description": "Integration endpoints belonging to the integration",
-                    "items": {
-                        "$ref": "#/definitions/IntegrationEndpoint"
-                    }
-                },
-                "functions": {
-                    "type": "array",
-                    "description": "Integration functions belonging to the integration",
-                    "items": {
-                        "$ref": "#/definitions/IntegrationFunction"
-                    }
-                },
-                "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
-                },
-                "scriptId": {
-                    "type": "string",
-                    "format": "uuid",
-                    "description": "Unique ID of the script, corresponding to the UUID of the Communication Plan"
-                },
-                "sourceCode": {
-                    "type": "string",
-                    "description": "JavaScript source code of the integration script"
-                },
-                "version": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "Version of the integration script. Version numbers are monotonically increasing but not necessarily sequential. May be used to look up the script content in the revision table."
-                }
-            }
-        },
-        "IntegrationServiceJob": {
-            "properties": {
-                "communicationPlanId": {
-                    "type": "string"
-                },
-                "integrationServiceId": {
-                    "type": "string"
-                },
-                "integrationServiceName": {
-                    "type": "string"
-                },
-                "logged": {
-                    "type": "boolean"
-                },
-                "orgKey": {
-                    "type": "string"
-                },
-                "request": {
-                    "$ref": "#/definitions/HttpRequest"
-                }
-            }
-        },
-        "IntegrationTicket": {
-            "required": [
-                "batchSize",
-                "orgKey",
-                "secondsToLive",
-                "systemFormUuid",
-                "uuid"
-            ],
-            "properties": {
-                "batchSize": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "Max batch size of requests that will be processed before the ticket is returned to the queue"
-                },
-                "expiryTime": {
-                    "type": "string",
-                    "description": "The time at which this ticket should be considered dropped, if it has not checked in before then"
-                },
-                "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
-                },
-                "orgKey": {
-                    "type": "string",
-                    "description": "Organization identifier"
-                },
-                "secondsToLive": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "The time this ticket may go without updates before it considered lost or dropped. When a ticket is returned to the queue, this value is added to current time to determine expiryTime"
-                },
-                "systemFormUuid": {
-                    "type": "string",
-                    "description": "The UUID of the system level communication plan form to post failure notifications to"
-                },
-                "uuid": {
-                    "type": "string",
-                    "description": "UUID for the Ticket instance"
-                }
-            }
-        },
-        "JobResult": {
-            "required": [
-                "job"
-            ],
-            "properties": {
-                "completedTime": {
-                    "type": "string"
-                },
-                "job": {
-                    "$ref": "#/definitions/IntegrationServiceJob"
-                },
-                "logfileName": {
-                    "type": "string"
-                },
-                "startTime": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string",
-                    "enum": [
-                        "COMPLETED",
-                        "WARNING",
-                        "FAILED",
-                        "CANCELLED"
-                    ]
-                }
-            }
-        },
         "Shift": {
             "properties": {
                 "group": {
@@ -2192,15 +1453,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             }
         },
@@ -2317,12 +1570,6 @@
                     "type": "number",
                     "format": "double"
                 },
-                "links": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "string"
-                    }
-                },
                 "longitude": {
                     "type": "number",
                     "format": "double"
@@ -2342,6 +1589,9 @@
                 },
                 "timezone": {
                     "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -2423,17 +1673,6 @@
             "required": [
                 "recipientType",
                 "targetName"
-            ],
-            "x-anyOf": [
-                {
-                    "$ref": "#/definitions/GroupPost"
-                },
-                {
-                    "$ref": "#/definitions/PersonPost"
-                },
-                {
-                    "$ref": "#/definitions/DevicePost"
-                }
             ],
             "discriminator": "recipientType"
         },
@@ -2651,44 +1890,6 @@
                 "deviceType",
                 "name",
                 "owner"
-            ],
-            "x-anyOf": [
-                {
-                    "$ref": "#/definitions/EmailDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/VoiceDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/SMSDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/TextPagerDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/NumericPagerDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/IMDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/ApplePushDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/AndroidPushDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/BlackberryPushDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/FaxDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/PublicAddressDevicePost"
-                },
-                {
-                    "$ref": "#/definitions/GenericDevicePost"
-                }
             ],
             "discriminator": "deviceType"
         },
@@ -3022,47 +2223,6 @@
                 }
             }
         },
-        "IntegrationTicketPost": {
-            "required": [
-                "batchSize",
-                "orgKey",
-                "secondsToLive"
-            ],
-            "properties": {
-                "batchSize": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "Max batch size of requests that will be processed before the ticket is returned to the queue"
-                },
-                "orgKey": {
-                    "type": "string",
-                    "description": "Organization identifier"
-                },
-                "secondsToLive": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "Sets or resets the expiryTime of the ticket to this many seconds from now"
-                }
-            }
-        },
-        "IntegrationTicketPatch": {
-            "properties": {
-                "batchSize": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "Max batch size of requests that will be processed before the ticket is returned to the queue"
-                },
-                "expiryTime": {
-                    "type": "string",
-                    "description": "Ticket will be considered expired at this time"
-                },
-                "secondsToLive": {
-                    "type": "integer",
-                    "format": "int64",
-                    "description": "The time this ticket may go without updates before it considered lost or dropped. When a ticket is returned to the queue, this value is added to current time to determine expiryTime"
-                }
-            }
-        },
         "PaginationLinks": {
             "properties": {
                 "next": {
@@ -3337,6 +2497,17 @@
                 "id"
             ]
         },
+        "ReferenceLink": {
+            "properties": {
+                "self": {
+                    "type": "string",
+                    "description": "A link to this resource."
+                }
+            },
+            "required": [
+                "self"
+            ]
+        },
         "ProviderReference": {
             "properties": {
                 "id": {
@@ -3354,15 +2525,7 @@
                     "description": "The identifier of the resource."
                 },
                 "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -3377,15 +2540,7 @@
                     "description": "The identifier of the resource."
                 },
                 "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -3408,43 +2563,12 @@
                     ]
                 },
                 "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
                 "id",
                 "recipientType",
-                "links"
-            ]
-        },
-        "FunctionReference": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The identifier of the resource."
-                },
-                "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
-                }
-            },
-            "required": [
-                "id",
                 "links"
             ]
         },
@@ -3455,15 +2579,7 @@
                     "description": "The identifier of the resource."
                 },
                 "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -3478,15 +2594,7 @@
                     "description": "The identifier of the resource."
                 },
                 "links": {
-                    "required": [
-                        "self"
-                    ],
-                    "properties": {
-                        "self": {
-                            "type": "string",
-                            "description": "A link to this resource."
-                        }
-                    }
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -3649,20 +2757,6 @@
             "required": true,
             "type": "string"
         },
-        "path-functionId": {
-            "name": "functionId",
-            "in": "path",
-            "description": "The function uuid",
-            "required": true,
-            "type": "string"
-        },
-        "path-invocationId": {
-            "name": "invocationId",
-            "in": "path",
-            "description": "The invocation uuid",
-            "required": true,
-            "type": "string"
-        },
         "path-memberId": {
             "name": "memberId",
             "in": "path",
@@ -3677,13 +2771,6 @@
             "required": true,
             "type": "string"
         },
-        "path-scriptId": {
-            "name": "scriptId",
-            "in": "path",
-            "description": "The script uuid",
-            "required": true,
-            "type": "string"
-        },
         "path-shiftId": {
             "name": "shiftId",
             "in": "path",
@@ -3695,13 +2782,6 @@
             "name": "siteId",
             "in": "path",
             "description": "The site uuid or name",
-            "required": true,
-            "type": "string"
-        },
-        "path-ticketId": {
-            "name": "ticketId",
-            "in": "path",
-            "description": "The ticket uuid",
             "required": true,
             "type": "string"
         },
@@ -3774,13 +2854,6 @@
             "required": false,
             "type": "string",
             "enum": ["ACTIVE", "INACTIVE"]
-        },
-        "query-includeExpired": {
-            "name": "includeExpired",
-            "in": "query",
-            "description": "Include expired tickets in result",
-            "required": false,
-            "type": "boolean"
         }
     },
     "responses": {
