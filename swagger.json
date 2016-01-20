@@ -98,6 +98,44 @@
                 }
             }
         },
+        "/device-names": {
+            "get": {
+                "tags": [
+                    "Device Names"
+                ],
+                "summary": "Returns information about device names.",
+                "description": "Returns information about device names.",
+                "operationId": "getDeviceNames",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-deviceType"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination<DeviceName>"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/devices": {
             "get": {
                 "tags": [
@@ -108,7 +146,7 @@
                 "operationId": "getDevices",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/deviceType"
+                        "$ref": "#/parameters/query-deviceType"
                     }
                 ],
                 "responses": {
@@ -1066,6 +1104,25 @@
                 "TEXT_PHONE",
                 "VOICE",
                 "VOICE_IVR"
+            ]
+        },
+        "DeviceName": {
+            "type": "object",
+            "properties": {
+                "deviceType": {
+                    "$ref": "#/definitions/DeviceType"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceType",
+                "name",
+                "description"
             ]
         },
         "Device": {
@@ -2384,6 +2441,36 @@
                 }
             }
         },
+        "Pagination<DeviceName>": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/DeviceName"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination<DeviceType>": {
             "required": [
                 "count",
@@ -2936,6 +3023,28 @@
             "required": false,
             "type": "string",
             "enum": ["ACTIVE", "INACTIVE"]
+        },
+        "query-deviceType": {
+            "name": "deviceType",
+            "in": "query",
+            "description": "Device type",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "ANDROID_PUSH",
+                "APPLE_PUSH",
+                "BLACKBERRY_PUSH",
+                "BROWSER",
+                "EMAIL",
+                "FAX",
+                "GENERIC",
+                "IM",
+                "NUMERIC_PAGER",
+                "TEXT_PAGER",
+                "TEXT_PHONE",
+                "VOICE",
+                "VOICE_IVR"
+            ]
         }
     },
     "responses": {
