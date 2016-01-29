@@ -1,0 +1,2233 @@
+swagger: '2.0'
+info:
+  description: xMatters ReST API
+  title: xMatters ReST API
+  version: '1'
+basePath: /api/xm/1
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /calendar:
+    get:
+      tags:
+        - Calendar
+      summary: Shift occurrence calendar
+      description: Shift occurrence calendar
+      operationId: getCalendar
+      parameters:
+        - $ref: '#/parameters/query-at'
+        - $ref: '#/parameters/query-from'
+        - $ref: '#/parameters/query-to'
+        - $ref: '#/parameters/query-groupId'
+        - $ref: '#/parameters/query-personId'
+        - $ref: '#/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(ShiftOccurrence)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+  /device-types:
+    get:
+      tags:
+        - Device Types
+      summary: Returns information about device types.
+      description: Returns information about device types.
+      operationId: getDeviceTypes
+      parameters:
+        - $ref: '#/parameters/query-offset'
+        - $ref: '#/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(DeviceType)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+  /device-names:
+    get:
+      tags:
+        - Device Names
+      summary: Returns information about device names.
+      description: Returns information about device names.
+      operationId: getDeviceNames
+      parameters:
+        - $ref: '#/parameters/query-deviceType'
+        - $ref: '#/parameters/query-offset'
+        - $ref: '#/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(DeviceName)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+  /devices:
+    get:
+      tags:
+        - Devices
+      summary: Returns information about devices.
+      description: Returns information about devices.
+      operationId: getDevices
+      parameters:
+        - $ref: '#/parameters/query-deviceType'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(Device)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    post:
+      tags:
+        - Devices
+      summary: Add a device.
+      description: Add a device.
+      operationId: postDevice
+      parameters:
+        - in: body
+          name: body
+          description: An object that contains the definition of the new device
+          required: true
+          schema:
+            $ref: '#/definitions/DevicePost'
+      responses:
+        '200':
+          description: Updated
+          schema:
+            $ref: '#/definitions/Device'
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/Device'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '409':
+          $ref: '#/responses/409'
+  '/devices/{deviceId}':
+    get:
+      tags:
+        - Devices
+      summary: Returns information about a device.
+      description: Returns information about a device. Use embed=timeframes to include device timeframes in the response.
+      operationId: getDevice
+      parameters:
+        - $ref: '#/parameters/path-deviceId'
+        - $ref: '#/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Device'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    delete:
+      tags:
+        - Devices
+      summary: Deletes a device.
+      description: "Deletes a device and removes it from the owner's device list."
+      operationId: deleteDevice
+      parameters:
+        - $ref: '#/parameters/path-deviceId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Device'
+        '204':
+          $ref: '#/responses/204'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '409':
+          $ref: '#/responses/409'
+  /events:
+    get:
+      tags:
+        - Events
+      summary: Get Events
+      description: Returns a list of event resources in the xMatters system.
+      operationId: getEvents
+      parameters:
+        - $ref: '#/parameters/query-status'
+        - $ref: '#/parameters/query-from'
+        - $ref: '#/parameters/query-to'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(Event)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+  '/events/{eventId}':
+    get:
+      tags:
+        - Events
+      summary: Returns information about an event.
+      description: 'Returns information about an event. Use embed=conferences,targets to include conferences and targeted recipients in the response.'
+      operationId: getEvent
+      parameters:
+        - $ref: '#/parameters/path-eventId'
+        - $ref: '#/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Event'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+  /groups:
+    get:
+      tags:
+        - Groups
+      summary: List Groups
+      description: "List Groups. Can embed group calendar e.g. embed=calendar(at: '2015-11-02T22:54:19Z') e.g. embed=calendar(from: '2015-11-02T22:54:19Z', to: '2015-11-03T22:54:19Z')"
+      operationId: getGroups
+      parameters:
+        - name: search
+          in: query
+          description: 'Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ANY of the search terms.'
+          required: false
+          type: string
+        - $ref: '#/parameters/query-offset'
+        - $ref: '#/parameters/query-limit'
+        - $ref: '#/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(Group)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    post:
+      tags:
+        - Groups
+      summary: Creates a group
+      description: Creates a group
+      operationId: postGroup
+      parameters:
+        - in: body
+          name: body
+          description: An object that contains a description of the new group
+          required: true
+          schema:
+            $ref: '#/definitions/GroupPost'
+      responses:
+        '200':
+          description: Updated
+          schema:
+            $ref: '#/definitions/Group'
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/Group'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '409':
+          $ref: '#/responses/409'
+  '/groups/{groupId}':
+    get:
+      tags:
+        - Groups
+      summary: Returns information about a Group.
+      description: Returns information about a Group.
+      operationId: getGroup
+      parameters:
+        - description: OK
+          $ref: '#/parameters/path-groupId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    delete:
+      tags:
+        - Groups
+      summary: Deletes a Group.
+      description: Deletes a Group.
+      operationId: deleteGroup
+      parameters:
+        - $ref: '#/parameters/path-groupId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Group'
+        '204':
+          $ref: '#/responses/204'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+  '/groups/{groupId}/members':
+    post:
+      tags:
+        - Group Members
+      summary: Add Group members.
+      description: Add Group members.
+      operationId: postGroupMember
+      parameters:
+        - $ref: '#/parameters/path-groupId'
+        - in: body
+          name: body
+          description: Member to add
+          required: true
+          schema:
+            $ref: '#/definitions/RecipientLink'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GroupMember'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '409':
+          $ref: '#/responses/409'
+  '/groups/{groupId}/members/{memberId}':
+    delete:
+      tags:
+        - Group Members
+      summary: Removes a Group Member.
+      description: Removes a Group Member.
+      operationId: deleteGroupMember
+      parameters:
+        - $ref: '#/parameters/path-groupId'
+        - $ref: '#/parameters/path-memberId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GroupMember'
+        '204':
+          $ref: '#/responses/204'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/403'
+  '/groups/{groupId}/shifts':
+    get:
+      tags:
+        - Shifts
+      summary: List shifts
+      description: List shifts
+      operationId: getShifts
+      parameters:
+        - $ref: '#/parameters/path-groupId'
+        - name: status
+          in: query
+          description: Filter by status
+          required: false
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+        - $ref: '#/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(Shift)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    post:
+      tags:
+        - Shifts
+      summary: Add or update a shift
+      description: Add or update a shift
+      operationId: postShift
+      parameters:
+        - name: groupId
+          in: path
+          description: The group uuid or targetName
+          required: true
+          type: string
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/ShiftPost'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '409':
+          $ref: '#/responses/409'
+  '/groups/{groupId}/shifts/{shiftId}':
+    get:
+      tags:
+        - Shifts
+      summary: Returns information about a Shift.
+      description: Returns information about a Shift.
+      operationId: getShift
+      parameters:
+        - $ref: '#/parameters/path-groupId'
+        - $ref: '#/parameters/path-shiftId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Shift'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+  '/groups/{groupId}/shifts/{shiftId}/members':
+    post:
+      tags:
+        - Shift Members
+      summary: Add or update a shift membership.
+      description: Add or update a shift membership.
+      operationId: postShiftMember
+      parameters:
+        - $ref: '#/parameters/path-groupId'
+        - $ref: '#/parameters/path-shiftId'
+        - in: body
+          name: body
+          description: Shift Member
+          required: true
+          schema:
+            $ref: '#/definitions/ShiftMemberPost'
+      responses:
+        '200':
+          description: Updated
+          schema:
+            $ref: '#/definitions/ShiftMember'
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/ShiftMember'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '409':
+          $ref: '#/responses/409'
+  /people:
+    get:
+      tags:
+        - People
+      summary: Returns information about users.
+      description: Returns information about users.
+      operationId: getPeople
+      parameters:
+        - name: search
+          in: query
+          description: 'Case insensitive substring match within firstName, lastName, id, targetName, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.'
+          required: false
+          type: string
+        - $ref: '#/parameters/query-status'
+        - $ref: '#/parameters/query-offset'
+        - $ref: '#/parameters/query-limit'
+        - $ref: '#/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(Person)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    post:
+      tags:
+        - People
+      summary: Creates a new user.
+      description: Creates a new user.
+      operationId: postPerson
+      parameters:
+        - in: body
+          name: body
+          description: An object that describes the new user.
+          required: true
+          schema:
+            $ref: '#/definitions/PersonPost'
+      responses:
+        '200':
+          description: Updated
+          schema:
+            $ref: '#/definitions/Person'
+        '201':
+          description: Created
+          schema:
+            $ref: '#/definitions/Person'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '409':
+          $ref: '#/responses/409'
+  '/people/{personId}':
+    get:
+      tags:
+        - People
+      summary: Returns information about a user.
+      description: Returns information about a user.
+      operationId: getPerson
+      parameters:
+        - $ref: '#/parameters/path-personId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Person'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+    delete:
+      tags:
+        - People
+      summary: Deletes a user
+      description: Deletes a user
+      operationId: deletePerson
+      parameters:
+        - $ref: '#/parameters/path-personId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Person'
+        '204':
+          $ref: '#/responses/204'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '409':
+          $ref: '#/responses/409'
+  '/people/{personId}/devices':
+    get:
+      tags:
+        - People
+      summary: "Retrieves a list of a user's devices."
+      description: "Retrieves a list of a user's devices. Use embed=timeframes to include device timeframes in the response."
+      operationId: getPersonDevices
+      parameters:
+        - $ref: '#/parameters/path-personId'
+        - $ref: '#/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Pagination(Device)'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+  '/sites/{siteId}':
+    get:
+      tags:
+        - Sites
+      summary: Returns information about a site.
+      description: Returns information about a site.
+      operationId: getSite
+      parameters:
+        - $ref: '#/parameters/path-siteId'
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Site'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+definitions:
+  Event:
+    description: Returns an event resource in the xMatters system.
+    type: object
+    properties:
+      priority:
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+      status:
+        type: string
+        enum:
+          - ACTIVE
+          - SUSPENDED
+          - TERMINATED
+      conferences:
+        $ref: '#/definitions/Pagination(Conference)'
+      targets:
+        $ref: '#/definitions/Pagination(Recipient)'
+    required:
+      - priority
+      - status
+  Conference:
+    description: Returns an event resource in the xMatters system.
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+      - id
+  Recipient:
+    type: object
+    properties:
+      id:
+        type: string
+        description: An identifier (UUID) that represents this resource
+      targetName:
+        type: string
+        description: An identifier such as a name that can be used to identify a resource
+      recipientType:
+        type: string
+        enum:
+          - PERSON
+          - DEVICE
+          - GROUP
+      externalKey:
+        type: string
+        description: Identifies this resource in an external system. Used when externallyOwned is true.
+      externallyOwned:
+        type: boolean
+        description: True if this resource is managed by an external system. Externally-owned resources cannot be deleted in the xMatters user interface.
+      locked:
+        type: array
+        description: Lists the fields of externally-owned objects that are locked and cannot be modified in the xMatters user interface
+        items:
+          type: string
+      links:
+        $ref: '#/definitions/ReferenceLink'
+    required:
+      - id
+      - targetName
+      - recipientType
+      - externallyOwned
+    discriminator: recipientType
+  Group:
+    description: Groups are used for collecting users and devices and organizing them into notification schedules.
+    type: object
+    properties:
+      allowDuplicates:
+        type: boolean
+      description:
+        type: string
+      observedByAll:
+        type: boolean
+      recipientType:
+        type: string
+        description: A description of the group.
+        enum:
+          - GROUP
+      site:
+        $ref: '#/definitions/SiteReference'
+      status:
+        type: string
+        description: Whether the group is active. Inactive groups cannot receive notifications.
+        enum:
+          - ACTIVE
+          - INACTIVE
+      useDefaultDevices:
+        type: boolean
+      calendar:
+        $ref: '#/definitions/Pagination(ShiftOccurrence)'
+    required:
+      - id
+      - targetName
+      - externallyOwned
+    allOf:
+      - $ref: '#/definitions/Recipient'
+  GroupMember:
+    properties:
+      group:
+        $ref: '#/definitions/GroupReference'
+      member:
+        $ref: '#/definitions/RecipientReference'
+    required:
+      - group
+      - member
+  Person:
+    description: "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on."
+    type: object
+    properties:
+      firstName:
+        type: string
+        description: The first name of the user.
+      language:
+        type: string
+        description: 'The preferred language of the user: Example: en.'
+      lastName:
+        type: string
+        description: The last name of the user.
+      owner:
+        $ref: '#/definitions/PersonReference'
+      phoneLogin:
+        type: string
+        description: A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company.
+      recipientType:
+        type: string
+        enum:
+          - PERSON
+      site:
+        $ref: '#/definitions/SiteReference'
+      timezone:
+        type: string
+        description: 'The time zone of the user. Example:  US/Pacific.'
+      webLogin:
+        type: string
+        description: The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field.
+    required:
+      - firstName
+      - lastName
+    allOf:
+      - $ref: '#/definitions/Recipient'
+  DeviceType:
+    type: string
+    description: The type of device.
+    enum:
+      - ANDROID_PUSH
+      - APPLE_PUSH
+      - BLACKBERRY_PUSH
+      - BROWSER
+      - EMAIL
+      - FAX
+      - GENERIC
+      - IM
+      - NUMERIC_PAGER
+      - TEXT_PAGER
+      - TEXT_PHONE
+      - VOICE
+      - VOICE_IVR
+  DeviceName:
+    type: object
+    properties:
+      deviceType:
+        $ref: '#/definitions/DeviceType'
+      name:
+        type: string
+      description:
+        type: string
+    required:
+      - deviceType
+      - name
+      - description
+  Device:
+    description: 'A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.'
+    type: object
+    properties:
+      recipientType:
+        type: string
+        enum:
+          - DEVICE
+      deviceType:
+        $ref: '#/definitions/DeviceType'
+      name:
+        type: string
+        description: 'The name of the device. Example: Work Email, Home Phone.'
+      description:
+        type: string
+        description: A description of the device.
+      owner:
+        $ref: '#/definitions/PersonReference'
+      defaultDevice:
+        type: boolean
+        description: True if this device can receive notifications when the user has no active devices.
+      delay:
+        type: integer
+        format: int32
+        description: The number of minutes to wait for a response before contacting the next device.
+      priorityThreshold:
+        type: string
+        description: The minimum priority of an event for it to be delivered to this device.
+        enum:
+          - LOW
+          - HIGH
+          - MEDIUM
+      sequence:
+        type: integer
+        format: int32
+        description: 'The order in which the device will be contacted, where 0 represents the first device contacted.'
+      testStatus:
+        type: string
+        description: Whether the device has been tested.
+        enum:
+          - TESTED
+          - UNTESTED
+          - PENDING
+          - INVALID
+      timeframes:
+        description: The time frames in which the device is available to receive notifications
+        $ref: '#/definitions/Pagination(DeviceTimeframe)'
+      provider:
+        $ref: '#/definitions/ProviderReference'
+    required:
+      - owner
+      - deviceType
+    allOf:
+      - $ref: '#/definitions/Recipient'
+    discriminator: deviceType
+  EmailDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - EMAIL
+      emailAddress:
+        type: string
+    required:
+      - emailAddress
+  VoiceDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - VOICE
+      phoneNumber:
+        type: string
+        description: E.164 international format phone number including country code and extension
+    required:
+      - phoneNumber
+  SMSDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - TEXT_PHONE
+      phoneNumber:
+        type: string
+        description: E.164 international format phone number including country code and extension
+    required:
+      - phoneNumber
+  TextPagerDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - TEXT_PAGER
+      pin:
+        type: string
+      twoWayDevice:
+        type: boolean
+    required:
+      - pin
+      - twoWayDevice
+  NumericPagerDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - NUMERIC_PAGER
+      pagerNumber:
+        type: string
+      country:
+        type: string
+      areaCode:
+        type: string
+      pin:
+        type: string
+  IMDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - IM
+      address:
+        type: string
+    required:
+      - address
+  ApplePushDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - APPLE_PUSH
+      accountId:
+        type: string
+      apnToken:
+        type: string
+      alertSound:
+        type: string
+      soundStatus:
+        type: string
+      soundThreshold:
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+      description:
+        type: string
+    required:
+      - accountId
+      - apnToken
+  AndroidPushDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - ANDROID_PUSH
+      accountId:
+        type: string
+      registrationId:
+        type: string
+      description:
+        type: string
+    required:
+      - accountId
+      - registrationId
+  BlackberryPushDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - BLACKBERRY_PUSH
+      accountId:
+        type: string
+      registrationId:
+        type: string
+      description:
+        type: string
+    required:
+      - accountId
+      - registrationId
+  FaxDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - FAX
+      phoneNumber:
+        type: string
+        pattern: "^\\d{5,20}$"
+      country:
+        type: string
+        enum:
+          - AR
+          - AU
+          - BR
+          - CA
+          - FR
+          - DE
+          - HK
+          - IN
+          - IT
+          - JP
+          - PT
+          - PR
+          - GB
+          - US
+    required:
+      - phoneNumber
+  PublicAddressDevice:
+    description: a.k.a. Voice IVR
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - VOICE_IVR
+      phoneNumber:
+        type: string
+        description: E.164 international format phone number including country code and extension
+    required:
+      - phoneNumber
+  GenericDevice:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Device'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - GENERIC
+      pin:
+        type: string
+  DeviceTimeframe:
+    properties:
+      name:
+        type: string
+        description: 'Name of the Timeframe. Example: "After hours".'
+      startTime:
+        type: string
+        description: 'The time of day that the timeframe begins. HH:mm'
+      durationInMinutes:
+        type: integer
+        format: int32
+        description: The length of the timeframe in minutes.
+      excludeHolidays:
+        type: boolean
+        description: True if the timeframe is not active on holidays.
+      days:
+        type: array
+        description: List of the days of the week this timeframe is active.
+        items:
+          type: string
+          enum:
+            - SU
+            - MO
+            - TU
+            - WE
+            - TH
+            - FR
+            - SA
+    required:
+      - name
+      - startTime
+      - durationInMinutes
+      - excludeHolidays
+  Shift:
+    properties:
+      group:
+        $ref: '#/definitions/GroupReference'
+      id:
+        type: string
+      name:
+        type: string
+      links:
+        $ref: '#/definitions/ReferenceLink'
+  ShiftMember:
+    properties:
+      shift:
+        $ref: '#/definitions/ShiftReference'
+      member:
+        $ref: '#/definitions/RecipientReference'
+      position:
+        description: Position in the rotation sequence.
+        type: integer
+      delay:
+        description: 'How long, in minutes, to wait before notifying this team member.'
+        type: integer
+      escalationType:
+        description: 'Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.'
+        type: string
+        enum:
+          - None
+          - Peer
+          - Management
+      inRotation:
+        description: Indicates whether the team member is included in the rotation cycle.
+        type: boolean
+    required:
+      - shift
+      - member
+      - position
+      - delay
+      - escalationType
+      - inRotation
+  ShiftOccurrence:
+    properties:
+      shift:
+        $ref: '#/definitions/ShiftReference'
+      members:
+        $ref: '#/definitions/Pagination(ShiftOccurrenceMember)'
+      start:
+        type: string
+        format: date-time
+      end:
+        type: string
+        format: date-time
+    required:
+      - shift
+      - start
+      - end
+  ShiftOccurrenceMember:
+    properties:
+      shift:
+        $ref: '#/definitions/ShiftReference'
+      member:
+        $ref: '#/definitions/RecipientReference'
+      position:
+        type: integer
+      delay:
+        type: integer
+    required:
+      - shift
+      - member
+      - position
+      - delay
+  Site:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+      externalKey:
+        type: string
+      externallyOwned:
+        type: boolean
+      language:
+        type: string
+      latitude:
+        type: number
+        format: double
+      longitude:
+        type: number
+        format: double
+      postalCode:
+        type: string
+      state:
+        type: string
+      status:
+        type: string
+        enum:
+          - ACTIVE
+          - INACTIVE
+      timezone:
+        type: string
+      links:
+        $ref: '#/definitions/ReferenceLink'
+    required:
+      - id
+      - name
+  ShiftPost:
+    properties:
+      name:
+        type: string
+    required:
+      - name
+  ShiftMemberPost:
+    properties:
+      member:
+        $ref: '#/definitions/RecipientLink'
+      position:
+        description: Position in the rotation sequence.
+        type: integer
+      delay:
+        description: 'How long, in minutes, to wait before notifying this team member.'
+        type: integer
+      escalationType:
+        description: 'Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.'
+        type: string
+        enum:
+          - None
+          - Peer
+          - Management
+      inRotation:
+        description: Indicates whether the team member is included in the rotation cycle.
+        type: boolean
+    required:
+      - member
+  RecipientPost:
+    description: 'A Recipient can be the target of a notification. Groups, People and Devices are all Recipients'
+    type: object
+    properties:
+      id:
+        description: The unique identifier
+        type: string
+      targetName:
+        type: string
+      recipientType:
+        type: string
+        enum:
+          - GROUP
+          - PERSON
+          - DEVICE
+      status:
+        type: string
+        enum:
+          - ACTIVE
+          - INACTIVE
+        default: ACTIVE
+      externallyOwned:
+        type: boolean
+      externalKey:
+        type: string
+    required:
+      - recipientType
+      - targetName
+    discriminator: recipientType
+  PersonPost:
+    description: "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on."
+    type: object
+    allOf:
+      - $ref: '#/definitions/RecipientPost'
+    properties:
+      firstName:
+        type: string
+        description: The first name of the user.
+      language:
+        type: string
+        description: 'The preferred language of the user: Example: en.'
+      lastName:
+        type: string
+        description: The last name of the user.
+      phoneLogin:
+        type: string
+        description: A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company.
+      recipientType:
+        type: string
+        enum:
+          - PERSON
+      roles:
+        type: array
+        description: "A list of the user's roles. Users must have at least one role."
+        items:
+          type: string
+      site:
+        $ref: '#/definitions/SiteLink'
+      supervisors:
+        type: array
+        description: 'A list of supervisors of this users. If this value is not provided, the XXX user becomes the supervisor. To assign a user as a supervisor, the authenticating user must have the appropriate permissions.'
+        items:
+          $ref: '#/definitions/PersonLink'
+      timezone:
+        type: string
+        description: 'The time zone of the user. Example:  US/Pacific.'
+      webLogin:
+        type: string
+        description: The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field.
+    required:
+      - firstName
+      - lastName
+      - language
+      - timezone
+      - webLogin
+      - roles
+  GroupPost:
+    description: Groups are used for collecting users and devices and organizing them into notification schedules.
+    type: object
+    allOf:
+      - $ref: '#/definitions/RecipientPost'
+    properties:
+      allowDuplicates:
+        type: boolean
+        description: Whether the group allows a notification to be sent to a device multiple times.
+      description:
+        type: string
+      observedByAll:
+        type: boolean
+        description: Whether the group notifications are observed by all.
+      recipientType:
+        type: string
+        enum:
+          - GROUP
+      site:
+        description: The name of the site the group belongs to.
+        $ref: '#/definitions/SiteLink'
+      status:
+        type: string
+        description: Whether the group is active. Inactive groups do not receive notifications.
+        enum:
+          - ACTIVE
+          - INACTIVE
+      supervisors:
+        type: array
+        description: A list of group supervisors. Groups must have at least one supervisor.
+        items:
+          $ref: '#/definitions/PersonLink'
+      timezone:
+        type: string
+      useDefaultDevices:
+        type: boolean
+        description: Whether the default user device should be used when sending out a notification to the group.
+  DevicePost:
+    description: 'A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.'
+    type: object
+    allOf:
+      - $ref: '#/definitions/RecipientPost'
+    properties:
+      recipientType:
+        type: string
+        enum:
+          - DEVICE
+      deviceType:
+        $ref: '#/definitions/DeviceType'
+      name:
+        type: string
+        description: 'The name of the device. Example: Work Email, Home Phone.'
+      owner:
+        description: The owner of this resource
+        $ref: '#/definitions/PersonLink'
+      defaultDevice:
+        type: boolean
+        description: True if this device can receive notifications when the user has no active devices. a.k.a. Fail-safe device.
+      delay:
+        type: integer
+        format: int32
+        description: The number of minutes to wait for a response before contacting the next device.
+      priorityThreshold:
+        type: string
+        description: The minimum priority of an event for it to be delivered to this device.
+        enum:
+          - LOW
+          - HIGH
+          - MEDIUM
+      sequence:
+        type: integer
+        format: int32
+        description: 'The order in which the device will be contacted, where 0 represents the first device contacted.'
+      testStatus:
+        type: string
+        description: Whether the device has been tested.
+        enum:
+          - TESTED
+          - UNTESTED
+          - PENDING
+          - INVALID
+      provider:
+        $ref: '#/definitions/ProviderLink'
+      timeframes:
+        type: array
+        description: Timeframes when this device is active.
+        items:
+          $ref: '#/definitions/DeviceTimeframe'
+    required:
+      - deviceType
+      - name
+      - owner
+    discriminator: deviceType
+  EmailDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - EMAIL
+      emailAddress:
+        type: string
+    required:
+      - emailAddress
+  VoiceDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - VOICE
+      phoneNumber:
+        type: string
+        description: E.164 international format phone number including country code and extension
+    required:
+      - phoneNumber
+  SMSDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - TEXT_PHONE
+      phoneNumber:
+        type: string
+        description: E.164 international format phone number including country code and extension
+    required:
+      - phoneNumber
+  TextPagerDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - TEXT_PAGER
+      pin:
+        type: string
+      twoWayDevice:
+        type: boolean
+    required:
+      - pin
+      - twoWayDevice
+  NumericPagerDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - NUMERIC_PAGER
+      pagerNumber:
+        type: string
+      country:
+        type: string
+      areaCode:
+        type: string
+      pin:
+        type: string
+  IMDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - IM
+      address:
+        type: string
+    required:
+      - address
+  ApplePushDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - APPLE_PUSH
+      accountId:
+        type: string
+      apnToken:
+        type: string
+      alertSound:
+        type: string
+      soundStatus:
+        type: string
+      soundThreshold:
+        type: string
+        enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+      description:
+        type: string
+    required:
+      - accountId
+      - apnToken
+  AndroidPushDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - ANDROID_PUSH
+      accountId:
+        type: string
+      registrationId:
+        type: string
+      description:
+        type: string
+    required:
+      - accountId
+      - registrationId
+  BlackberryPushDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - BLACKBERRY_PUSH
+      accountId:
+        type: string
+      registrationId:
+        type: string
+      description:
+        type: string
+    required:
+      - accountId
+      - registrationId
+  FaxDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - FAX
+      phoneNumber:
+        type: string
+        pattern: "^\\d{5,20}$"
+      country:
+        type: string
+        enum:
+          - AR
+          - AU
+          - BR
+          - CA
+          - FR
+          - DE
+          - HK
+          - IN
+          - IT
+          - JP
+          - PT
+          - PR
+          - GB
+          - US
+    required:
+      - phoneNumber
+  PublicAddressDevicePost:
+    description: a.k.a. Voice IVR
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - VOICE_IVR
+      phoneNumber:
+        type: string
+        description: E.164 international format phone number including country code and extension
+    required:
+      - phoneNumber
+  GenericDevicePost:
+    type: object
+    allOf:
+      - $ref: '#/definitions/DevicePost'
+    properties:
+      deviceType:
+        type: string
+        enum:
+          - GENERIC
+      pin:
+        type: string
+  PaginationLinks:
+    properties:
+      next:
+        type: string
+        description: A link to the next page of results
+      previous:
+        type: string
+        description: A link to the previous page of results
+      self:
+        type: string
+        description: A link to this page of results
+    required:
+      - self
+  Pagination(Event):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/Event'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(Recipient):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/Recipient'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(Group):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/Group'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(Person):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/Person'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(Device):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/Device'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(DeviceName):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/DeviceName'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(DeviceType):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/DeviceType'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(DeviceTimeframe):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/DeviceTimeframe'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(Conference):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/Conference'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(Shift):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/Shift'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(ShiftOccurrence):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/ShiftOccurrence'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  Pagination(ShiftOccurrenceMember):
+    required:
+      - count
+      - data
+      - total
+      - links
+    properties:
+      count:
+        type: integer
+        format: int32
+        description: The number of items in this page of results (the number of items in the data array).
+      data:
+        type: array
+        description: An array that contains this page of resources.
+        items:
+          $ref: '#/definitions/ShiftOccurrenceMember'
+      total:
+        type: integer
+        format: int32
+        description: The total number of items in the result set.
+      links:
+        $ref: '#/definitions/PaginationLinks'
+  PersonLink:
+    properties:
+      id:
+        type: string
+        description: The identifier of the resource.
+  SiteLink:
+    properties:
+      id:
+        type: string
+        description: The identifier of the resource.
+  RecipientLink:
+    properties:
+      id:
+        type: string
+      recipientType:
+        type: string
+        enum:
+          - GROUP
+          - PERSON
+          - DEVICE
+    required:
+      - id
+      - recipientType
+  ProviderLink:
+    properties:
+      id:
+        type: string
+    required:
+      - id
+  ReferenceLink:
+    properties:
+      self:
+        type: string
+        description: A link to this resource.
+    required:
+      - self
+  ProviderReference:
+    properties:
+      id:
+        type: string
+    required:
+      - id
+  ShiftReference:
+    properties:
+      id:
+        type: string
+        description: The identifier of the resource.
+      links:
+        $ref: '#/definitions/ReferenceLink'
+    required:
+      - id
+      - links
+  SiteReference:
+    properties:
+      id:
+        type: string
+        description: The identifier of the resource.
+      links:
+        $ref: '#/definitions/ReferenceLink'
+    required:
+      - id
+      - links
+  RecipientReference:
+    properties:
+      id:
+        type: string
+        description: The identifier of the resource.
+      recipientType:
+        type: string
+        enum:
+          - GROUP
+          - PERSON
+          - DEVICE
+      links:
+        $ref: '#/definitions/ReferenceLink'
+    required:
+      - id
+      - recipientType
+      - links
+  PersonReference:
+    properties:
+      id:
+        type: string
+        description: The identifier of the resource.
+      links:
+        $ref: '#/definitions/ReferenceLink'
+    required:
+      - id
+      - links
+  GroupReference:
+    properties:
+      id:
+        type: string
+        description: The identifier of the resource.
+      links:
+        $ref: '#/definitions/ReferenceLink'
+    required:
+      - id
+      - links
+  BadRequestResponse:
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: The http response code.
+        enum:
+          - 400
+      message:
+        type: string
+        description: A detailed description of the response or error.
+      reason:
+        type: string
+        description: A description of the response code.
+        enum:
+          - Bad Request
+    required:
+      - code
+      - message
+      - reason
+  UnauthorizedResponse:
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: The http response code.
+        enum:
+          - 401
+      message:
+        type: string
+        description: A detailed description of the response or error.
+      reason:
+        type: string
+        description: A description of the response code.
+        enum:
+          - Unauthorized
+    required:
+      - code
+      - message
+      - reason
+  ForbiddenResponse:
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: The http response code.
+        enum:
+          - 403
+      message:
+        type: string
+        description: A detailed description of the response or error.
+      reason:
+        type: string
+        description: A description of the response code.
+        enum:
+          - Forbidden
+    required:
+      - code
+      - message
+      - reason
+  NotFoundResponse:
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: The http response code.
+        enum:
+          - 404
+      message:
+        type: string
+        description: A detailed description of the response or error.
+      reason:
+        type: string
+        description: A description of the response code.
+        enum:
+          - Not Found
+    required:
+      - code
+      - message
+      - reason
+  ConflictResponse:
+    properties:
+      code:
+        type: integer
+        format: int32
+        description: The http response code.
+        enum:
+          - 409
+      message:
+        type: string
+        description: A detailed description of the response or error.
+      reason:
+        type: string
+        description: A description of the response code.
+        enum:
+          - Conflict
+    required:
+      - code
+      - message
+      - reason
+parameters:
+  path-deviceId:
+    name: deviceId
+    in: path
+    description: The device uuid or targetName
+    required: true
+    type: string
+  path-eventId:
+    name: eventId
+    in: path
+    description: The event id
+    required: true
+    type: string
+  path-groupId:
+    name: groupId
+    in: path
+    required: true
+    type: string
+  path-memberId:
+    name: memberId
+    in: path
+    description: "The recipient's uuid or targetName"
+    required: true
+    type: string
+  path-personId:
+    name: personId
+    in: path
+    description: "The person's uuid or targetName"
+    required: true
+    type: string
+  path-shiftId:
+    name: shiftId
+    in: path
+    description: The uuid or name of the shift. e.g. 24/7 (Must be URL encoded)
+    required: true
+    type: string
+  path-siteId:
+    name: siteId
+    in: path
+    description: The site uuid or name
+    required: true
+    type: string
+  query-personId:
+    name: personId
+    in: query
+    description: "The person's uuid or targetName"
+    required: false
+    type: string
+  query-groupId:
+    name: groupId
+    in: query
+    description: "The group's uuid or targetName"
+    required: false
+    type: string
+  query-embed:
+    name: embed
+    in: query
+    description: Comma separated list of linked domain entities to embed in the response
+    required: false
+    type: string
+  query-limit:
+    name: limit
+    in: query
+    description: Maximum result size to return
+    required: false
+    type: integer
+    default: 100
+    maximum: 1000
+  query-offset:
+    name: offset
+    in: query
+    description: Skip this many results before returning the result set
+    required: false
+    type: integer
+    default: 0
+  query-at:
+    name: at
+    in: query
+    description: At this time
+    required: false
+    type: string
+    format: date-time
+  query-from:
+    name: from
+    in: query
+    description: From this time
+    required: false
+    type: string
+    format: date-time
+  query-to:
+    name: to
+    in: query
+    description: To this time
+    required: false
+    type: string
+    format: date-time
+  query-status:
+    name: status
+    in: query
+    description: ACTIVE or INACTIVE
+    required: false
+    type: string
+    enum:
+      - ACTIVE
+      - INACTIVE
+  query-deviceType:
+    name: deviceType
+    in: query
+    description: Device type
+    required: false
+    type: string
+    enum:
+      - ANDROID_PUSH
+      - APPLE_PUSH
+      - BLACKBERRY_PUSH
+      - BROWSER
+      - EMAIL
+      - FAX
+      - GENERIC
+      - IM
+      - NUMERIC_PAGER
+      - TEXT_PAGER
+      - TEXT_PHONE
+      - VOICE
+      - VOICE_IVR
+responses:
+  '204':
+    description: No Content
+  '400':
+    description: Bad Request - The request is malformed
+    schema:
+      $ref: '#/definitions/BadRequestResponse'
+  '401':
+    description: Unauthorized - The action cannot be performed in the system
+    schema:
+      $ref: '#/definitions/UnauthorizedResponse'
+  '403':
+    description: Forbidden - The authenticated user does not have permission to perform this action
+    schema:
+      $ref: '#/definitions/ForbiddenResponse'
+  '404':
+    description: Not Found - The resource does not exist
+    schema:
+      $ref: '#/definitions/NotFoundResponse'
+  '409':
+    description: Conflict - The action cannot be performed in the system
+    schema:
+      $ref: '#/definitions/ConflictResponse'
