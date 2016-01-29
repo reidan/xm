@@ -1001,6 +1001,54 @@
         }
     },
     "definitions": {
+        "IntegratedProperty": {
+            "description": "An Integrated Property.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "CommunicationPlan": {
+            "description": "A Communication Plan.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "UUID of the communication plan"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "forms": {
+                    "$ref": "#/definitions/Pagination(Form)"
+                },
+                "properties": {
+                    "$ref": "#/definitions/EventProperties"
+                },
+                "integratedProperties": {
+                    "$ref": "#/definitions/Pagination(IntegratedProperty)"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "enabled"
+            ]
+        },
         "Incident": {
             "description": "An Incident.",
             "type": "object",
@@ -1015,10 +1063,7 @@
         },
         "EventProperties": {
             "description": "Event properties.",
-            "type": "object",
-            "additionalProperties": {
-                "type": "string"
-            }
+            "type": "object"
         },
         "Trigger": {
             "description": "An Event Trigger.",
@@ -1031,11 +1076,17 @@
                     "type": "string",
                     "enum": ["LOW", "MEDIUM", "HIGH"]
                 },
+                "initiator": {
+                    "$ref": "#/definitions/PersonReference"
+                },
                 "targets": {
                     "$ref": "#/definitions/Pagination(Recipient)"
                 },
                 "properties": {
                     "$ref": "#/definitions/EventProperties"
+                },
+                "message": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -1078,9 +1129,6 @@
                 "priority": {
                     "type": "string",
                     "enum": ["LOW", "MEDIUM", "HIGH"]
-                },
-                "initiator": {
-                    "$ref": "#/definitions/PersonReference"
                 },
                 "trigger": {
                     "$ref": "#/definitions/TriggerReference"
