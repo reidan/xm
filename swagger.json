@@ -1001,32 +1001,8 @@
         }
     },
     "definitions": {
-        "Event": {
-            "description": "Returns an event resource in the xMatters system.",
-            "type": "object",
-            "properties": {
-                "priority": {
-                    "type": "string",
-                    "enum": ["LOW", "MEDIUM", "HIGH"]
-                },
-                "status": {
-                    "type": "string",
-                    "enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
-                },
-                "conferences": {
-                    "$ref": "#/definitions/Pagination(Conference)"
-                },
-                "targets": {
-                    "$ref": "#/definitions/Pagination(Recipient)"
-                }
-            },
-            "required": [
-                "priority",
-                "status"
-            ]
-        },
-        "Conference": {
-            "description": "Returns an event resource in the xMatters system.",
+        "Incident": {
+            "description": "An Incident.",
             "type": "object",
             "properties": {
                 "id": {
@@ -1035,6 +1011,95 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "EventProperties": {
+            "description": "Event properties.",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "Trigger": {
+            "description": "An Event Trigger.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "string",
+                    "enum": ["LOW", "MEDIUM", "HIGH"]
+                },
+                "targets": {
+                    "$ref": "#/definitions/Pagination(Recipient)"
+                },
+                "properties": {
+                    "$ref": "#/definitions/EventProperties"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "Conference": {
+            "description": "A Conference.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "Event": {
+            "description": "Returns an event in the xMatters system.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "incident": {
+                    "$ref": "#/definitions/Incident"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": ["ACTIVE", "SUSPENDED", "TERMINATED"]
+                },
+                "priority": {
+                    "type": "string",
+                    "enum": ["LOW", "MEDIUM", "HIGH"]
+                },
+                "initiator": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "trigger": {
+                    "$ref": "#/definitions/TriggerReference"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormReference"
+                },
+                "properties": {
+                    "$ref": "#/definitions/EventProperties"
+                },
+                "conferences": {
+                    "$ref": "#/definitions/Pagination(Conference)"
+                }
+            },
+            "required": [
+                "id",
+                "created",
+                "status",
+                "priority"
             ]
         },
         "Recipient": {
@@ -2877,6 +2942,28 @@
             "properties": {
                 "id": {
                     "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "TriggerReference": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "FormReference": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
                 }
             },
             "required": [
