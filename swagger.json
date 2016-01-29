@@ -281,6 +281,44 @@
                 }
             }
         },
+        "/events": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Get Events",
+                "description": "Returns a list of event resources in the xMatters system.",
+                "operationId": "getEvents",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-status"
+                    },
+                    {
+                        "$ref": "#/parameters/query-from"
+                    },
+                    {
+                        "$ref": "#/parameters/query-to"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Event)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/events/{eventId}": {
             "get": {
                 "tags": [
@@ -546,6 +584,9 @@
                         "$ref": "#/responses/401"
                     },
                     "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
                         "$ref": "#/responses/403"
                     }
                 }
@@ -2415,6 +2456,36 @@
             "required": [
                 "self"
             ]
+        },
+        "Pagination(Event)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Event"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
         },
         "Pagination(Recipient)": {
             "required": [
