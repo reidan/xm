@@ -454,7 +454,6 @@
                 "operationId": "getGroup",
                 "parameters": [
                     {
-                        "description": "OK",
                         "$ref": "#/parameters/path-groupId"
                     }
                 ],
@@ -935,7 +934,7 @@
         "/people/{personId}/devices": {
             "get": {
                 "tags": [
-                    "People"
+                    "Devices"
                 ],
                 "summary": "Retrieves a list of a user's devices.",
                 "description": "Retrieves a list of a user's devices. Use embed=timeframes to include device timeframes in the response.",
@@ -963,6 +962,52 @@
                     },
                     "404": {
                         "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Devices"
+                ],
+                "summary": "Add or Update devices.",
+                "description": "Add or Update devices. Returns the pagination of the person's devices.",
+                "operationId": "patchPersonDevices",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "An array containing the device updates or insertions",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "description": "An array containing the device updates or insertions",
+                            "items": {
+                                "$ref": "#/definitions/DevicePost"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Device)"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
                     }
                 }
             }
@@ -1001,6 +1046,18 @@
         }
     },
     "definitions": {
+        "Form": {
+            "description": "A Form.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "IntegratedProperty": {
             "description": "An Integrated Property.",
             "type": "object",
@@ -1199,16 +1256,12 @@
         "Group": {
             "description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
             "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Recipient"
+                }
+            ],
             "properties": {
-                "allowDuplicates": {
-                    "type": "boolean"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "observedByAll": {
-                    "type": "boolean"
-                },
                 "recipientType": {
                     "type": "string",
                     "description": "A description of the group.",
@@ -1216,8 +1269,17 @@
                         "GROUP"
                     ]
                 },
-                "site": {
-                    "$ref": "#/definitions/SiteReference"
+                "allowDuplicates": {
+                    "type": "boolean"
+                },
+                "observedByAll": {
+                    "type": "boolean"
+                },
+                "useDefaultDevices": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string"
                 },
                 "status": {
                     "type": "string",
@@ -1227,22 +1289,18 @@
                         "INACTIVE"
                     ]
                 },
-                "useDefaultDevices": {
-                    "type": "boolean"
+                "site": {
+                    "$ref": "#/definitions/SiteReference"
                 },
                 "calendar": {
                     "$ref": "#/definitions/Pagination(ShiftOccurrence)"
                 }
             },
             "required": [
-                "id",
-                "targetName",
-                "externallyOwned"
-            ],
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Recipient"
-                }
+                "allowDuplicates",
+                "observedByAll",
+                "useDefaultDevices",
+                "status"
             ]
         },
         "GroupMember": {
@@ -1351,6 +1409,11 @@
         "Device": {
             "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
             "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Recipient"
+                }
+            ],
             "properties": {
                 "recipientType": {
                     "type": "string",
@@ -1406,7 +1469,6 @@
                     ]
                 },
                 "timeframes": {
-                    "description": "The time frames in which the device is available to receive notifications",
                     "$ref": "#/definitions/Pagination(DeviceTimeframe)"
                 },
                 "provider": {
@@ -1416,11 +1478,6 @@
             "required": [
                 "owner",
                 "deviceType"
-            ],
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Recipient"
-                }
             ],
             "discriminator": "deviceType"
         },
@@ -1755,6 +1812,7 @@
             }
         },
         "DeviceTimeframe": {
+            "description": "The timeframe in which a device is available to receive notifications",
             "properties": {
                 "name": {
                     "type": "string",
@@ -1886,6 +1944,7 @@
             ]
         },
         "Site": {
+            "description": "Site a group belongs to.",
             "properties": {
                 "id": {
                     "type": "string"
@@ -2117,7 +2176,6 @@
                     ]
                 },
                 "site": {
-                    "description": "The name of the site the group belongs to.",
                     "$ref": "#/definitions/SiteLink"
                 },
                 "status": {
@@ -2167,7 +2225,6 @@
                     "description": "The name of the device. Example: Work Email, Home Phone."
                 },
                 "owner": {
-                    "description": "The owner of this resource",
                     "$ref": "#/definitions/PersonLink"
                 },
                 "defaultDevice": {
@@ -2570,6 +2627,66 @@
                 "self"
             ]
         },
+        "Pagination(IntegratedProperty)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/IntegratedProperty"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "Pagination(Form)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Form"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination(Event)": {
             "required": [
                 "count",
@@ -2931,6 +3048,7 @@
             }
         },
         "PersonLink": {
+            "description": "A reference to a person resource.",
             "properties": {
                 "id": {
                     "type": "string",
@@ -2939,6 +3057,7 @@
             }
         },
         "SiteLink": {
+            "description": "Site a group belongs to.",
             "properties": {
                 "id": {
                     "type": "string",
@@ -2947,6 +3066,7 @@
             }
         },
         "RecipientLink": {
+            "description": "A reference to a recipient resource.",
             "properties": {
                 "id": {
                     "type": "string"
@@ -2966,6 +3086,7 @@
             ]
         },
         "ProviderLink": {
+            "description": "A reference to a provider resource.",
             "properties": {
                 "id": {
                     "type": "string"
