@@ -1052,14 +1052,17 @@
             "properties": {
                 "id": {
                     "type": "string"
+                },
+                "properties": {
+                    "$ref": "#/definitions/Pagination(EventProperty)"
                 }
             },
             "required": [
                 "id"
             ]
         },
-        "IntegratedProperty": {
-            "description": "An Integrated Property.",
+        "EventProperty": {
+            "description": "An Event Property.",
             "type": "object",
             "properties": {
                 "name": {
@@ -1073,94 +1076,9 @@
                 "name"
             ]
         },
-        "CommunicationPlan": {
-            "description": "A Communication Plan.",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "UUID of the communication plan"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "forms": {
-                    "$ref": "#/definitions/Pagination(Form)"
-                },
-                "properties": {
-                    "$ref": "#/definitions/EventProperties"
-                },
-                "integratedProperties": {
-                    "$ref": "#/definitions/Pagination(IntegratedProperty)"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "enabled"
-            ]
-        },
-        "Incident": {
-            "description": "An Incident.",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "EventProperties": {
-            "description": "Event properties.",
+        "PropertyValues": {
+            "description": "Event property values.",
             "type": "object"
-        },
-        "Trigger": {
-            "description": "An Event Trigger.",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "priority": {
-                    "type": "string",
-                    "enum": ["LOW", "MEDIUM", "HIGH"]
-                },
-                "initiator": {
-                    "$ref": "#/definitions/PersonReference"
-                },
-                "targets": {
-                    "$ref": "#/definitions/Pagination(Recipient)"
-                },
-                "properties": {
-                    "$ref": "#/definitions/EventProperties"
-                },
-                "message": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "Conference": {
-            "description": "A Conference.",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
         },
         "Event": {
             "description": "Returns an event in the xMatters system.",
@@ -1170,7 +1088,7 @@
                     "type": "string"
                 },
                 "incident": {
-                    "$ref": "#/definitions/Incident"
+                    "$ref": "#/definitions/IncidentReference"
                 },
                 "created": {
                     "type": "string",
@@ -1187,24 +1105,30 @@
                     "type": "string",
                     "enum": ["LOW", "MEDIUM", "HIGH"]
                 },
-                "trigger": {
-                    "$ref": "#/definitions/TriggerReference"
+                "initiator": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "properties": {
+                    "$ref": "#/definitions/PropertyValues"
+                },
+                "targets": {
+                    "$ref": "#/definitions/Pagination(Recipient)"
                 },
                 "form": {
                     "$ref": "#/definitions/FormReference"
                 },
-                "properties": {
-                    "$ref": "#/definitions/EventProperties"
+                "conference": {
+                    "$ref": "#/definitions/ConferenceReference"
                 },
-                "conferences": {
-                    "$ref": "#/definitions/Pagination(Conference)"
+                "message": {
+                    "type": "string"
                 }
             },
             "required": [
                 "id",
                 "created",
-                "status",
-                "priority"
+                "priority",
+                "status"
             ]
         },
         "Recipient": {
@@ -2627,7 +2551,7 @@
                 "self"
             ]
         },
-        "Pagination(IntegratedProperty)": {
+        "Pagination(EventProperty)": {
             "required": [
                 "count",
                 "data",
@@ -2644,7 +2568,7 @@
                     "type": "array",
                     "description": "An array that contains this page of resources.",
                     "items": {
-                        "$ref": "#/definitions/IntegratedProperty"
+                        "$ref": "#/definitions/EventProperty"
                     }
                 },
                 "total": {
@@ -2927,36 +2851,6 @@
                 }
             }
         },
-        "Pagination(Conference)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Conference"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
         "Pagination(Shift)": {
             "required": [
                 "count",
@@ -3128,7 +3022,31 @@
                 "id"
             ]
         },
+        "ConferenceReference": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "FormReference": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "IncidentReference": {
+            "description": "An Incident.",
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string",
