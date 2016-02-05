@@ -1617,7 +1617,6 @@
                 }
             },
             "required": [
-                "accountId",
                 "registrationId"
             ]
         },
@@ -3093,6 +3092,10 @@
                     "type": "string",
                     "description": "The identifier of the resource."
                 },
+                "targetName": {
+                    "type": "string",
+                    "description": "The target name of the resource."
+                },
                 "recipientType": {
                     "type": "string",
                     "enum": [
@@ -3107,6 +3110,7 @@
             },
             "required": [
                 "id",
+                "targetName",
                 "recipientType",
                 "links"
             ]
