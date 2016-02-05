@@ -2962,7 +2962,8 @@
             "description": "A reference to a recipient resource.",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The identifier of the resource. Can be either UUID or targetName"
                 },
                 "recipientType": {
                     "type": "string",
@@ -3121,12 +3122,17 @@
                     "type": "string",
                     "description": "The identifier of the resource."
                 },
+                "targetName": {
+                    "type": "string",
+                    "description": "The target name of the resource."
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
                 "id",
+                "targetName",
                 "links"
             ]
         },
@@ -3136,12 +3142,17 @@
                     "type": "string",
                     "description": "The identifier of the resource."
                 },
+                "targetName": {
+                    "type": "string",
+                    "description": "The target name of the resource."
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
                 "id",
+                "targetName",
                 "links"
             ]
         },
