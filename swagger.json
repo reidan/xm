@@ -3257,7 +3257,7 @@
         "path-memberId": {
             "name": "memberId",
             "in": "path",
-            "description": "The recipient's uuid or targetName",
+            "description": "The recipient's uuid",
             "required": true,
             "type": "string"
         },
