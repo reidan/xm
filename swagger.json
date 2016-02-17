@@ -63,6 +63,38 @@
                 }
             }
         },
+        "/countries": {
+            "get": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "List of countries",
+                "description": "List of countries",
+                "operationId": "getCountries",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-available"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Country)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/device-types": {
             "get": {
                 "tags": [
@@ -1046,6 +1078,33 @@
         }
     },
     "definitions": {
+        "Country": {
+            "description": "A country.",
+            "type": "object",
+            "properties": {
+                "code2": {
+                    "type": "string"
+                },
+                "code3": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "available": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "code2",
+                "code3",
+                "name",
+                "available"
+            ]
+        },
         "ResponseOption": {
             "description": "A response option.",
             "type": "object",
@@ -2551,6 +2610,36 @@
                 "self"
             ]
         },
+        "Pagination(Country)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Country"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination(ResponseOption)": {
             "required": [
                 "count",
@@ -3257,7 +3346,7 @@
         "path-memberId": {
             "name": "memberId",
             "in": "path",
-            "description": "The recipient's uuid",
+            "description": "The recipient's uuid or targetName",
             "required": true,
             "type": "string"
         },
@@ -3373,6 +3462,13 @@
                 "VOICE",
                 "VOICE_IVR"
             ]
+        },
+        "query-available": {
+            "name": "available",
+            "in": "query",
+            "description": "is available",
+            "required": false,
+            "type": "boolean"
         }
     },
     "responses": {
