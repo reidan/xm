@@ -817,7 +817,7 @@
                     {
                         "name": "search",
                         "in": "query",
-                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
+                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
                         "required": false,
                         "type": "string"
                     },
