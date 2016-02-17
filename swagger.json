@@ -3183,17 +3183,13 @@
         },
         "BadRequestResponse": {
             "properties": {
-                "code": {
+                "status": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The http response code.",
+                    "description": "The HTTP status code.",
                     "enum": [
                         400
                     ]
-                },
-                "message": {
-                    "type": "string",
-                    "description": "A detailed description of the response or error."
                 },
                 "reason": {
                     "type": "string",
@@ -3201,27 +3197,32 @@
                     "enum": [
                         "Bad Request"
                     ]
-                }
-            },
-            "required": [
-                "code",
-                "message",
-                "reason"
-            ]
-        },
-        "UnauthorizedResponse": {
-            "properties": {
+                },
                 "code": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The http response code.",
-                    "enum": [
-                        401
-                    ]
+                    "description": "An application-specific error code."
                 },
                 "message": {
                     "type": "string",
                     "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "UnauthorizedResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        401
+                    ]
                 },
                 "reason": {
                     "type": "string",
@@ -3229,27 +3230,32 @@
                     "enum": [
                         "Unauthorized"
                     ]
-                }
-            },
-            "required": [
-                "code",
-                "message",
-                "reason"
-            ]
-        },
-        "ForbiddenResponse": {
-            "properties": {
+                },
                 "code": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The http response code.",
-                    "enum": [
-                        403
-                    ]
+                    "description": "An application-specific error code."
                 },
                 "message": {
                     "type": "string",
                     "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "ForbiddenResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        403
+                    ]
                 },
                 "reason": {
                     "type": "string",
@@ -3257,27 +3263,32 @@
                     "enum": [
                         "Forbidden"
                     ]
-                }
-            },
-            "required": [
-                "code",
-                "message",
-                "reason"
-            ]
-        },
-        "NotFoundResponse": {
-            "properties": {
+                },
                 "code": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The http response code.",
-                    "enum": [
-                        404
-                    ]
+                    "description": "An application-specific error code."
                 },
                 "message": {
                     "type": "string",
                     "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "NotFoundResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        404
+                    ]
                 },
                 "reason": {
                     "type": "string",
@@ -3285,40 +3296,54 @@
                     "enum": [
                         "Not Found"
                     ]
-                }
-            },
-            "required": [
-                "code",
-                "message",
-                "reason"
-            ]
-        },
-        "ConflictResponse": {
-            "properties": {
+                },
                 "code": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The http response code.",
-                    "enum": [
-                        409
-                    ]
+                    "description": "An application-specific error code."
                 },
                 "message": {
                     "type": "string",
                     "description": "A detailed description of the response or error."
-                },
-                "reason": {
-                    "type": "string",
-                    "description": "A description of the response code.",
-                    "enum": [
-                        "Conflict"
-                    ]
                 }
             },
             "required": [
-                "code",
-                "message",
-                "reason"
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "ConflictResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        409
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response status.",
+                    "enum": [
+                        "Conflict"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
             ]
         }
     },
