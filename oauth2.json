@@ -1,0 +1,528 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "xMatters OAuth2 API",
+        "title": "xMatters OAuth2 API",
+        "version": "1"
+    },
+    "basePath": "/api/xm/1",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/oauth2/access-tokens": {
+            "post": {
+                "tags": [
+                    "Access Tokens"
+                ],
+                "summary": "Generate a token",
+                "description": "Generate a token",
+                "operationId": "postAccessToken",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Authentication credentials",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Credentials"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AccessToken"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/oauth2/refresh-tokens": {
+            "post": {
+                "tags": [
+                    "Refresh Tokens"
+                ],
+                "summary": "Generate a refresh token",
+                "description": "Generate a refresh token",
+                "operationId": "postRefreshToken",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RefreshTokenPost"
+                        }
+                    },
+                    {
+                        "in": "header",
+                        "name": "Authorization",
+                        "description": "Valid, unexpired access token in the format Bearer: <token>",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/RefreshToken"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/refresh-tokens": {
+            "get": {
+                "tags": [
+                    "Refresh Tokens"
+                ],
+                "summary": "Returns refresh tokens for a user.",
+                "description": "Returns refresh tokens for a user.",
+                "operationId": "getPersonRefreshTokens",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(RefreshToken)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/refresh-tokens/{tokenId}": {
+            "delete": {
+                "tags": [
+                    "Refresh Tokens"
+                ],
+                "summary": "Invalidates a person's refresh token",
+                "description": "Invalidates a person's refresh token",
+                "operationId": "deletePersonRefreshToken",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-tokenId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/RefreshToken"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Credentials": {
+            "description": "Authentication credentials",
+            "type": "object",
+            "properties": {
+                "grant_type": {
+                    "type": "string",
+                    "enum": ["password", "refresh_token", "urn:ietf:params:oauth:grant-type:saml2-bearer"]
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "assertion": {
+                    "type": "string"
+                },
+                "scope": {
+                    "type": "string"
+                },
+                "client_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "grant_type",
+                "client_id"
+            ]
+        },
+        "AccessToken": {
+            "description": "Access token response",
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "expires_in": {
+                    "type": "integer",
+                    "description": "Seconds till access_token expiry"
+                },
+                "token_type": {
+                    "type": "string",
+                    "enum": ["Bearer"]
+                }
+            },
+            "required": [
+                "access_token",
+                "expires_in",
+                "token_type"
+            ]
+        },
+        "RefreshTokenPost": {
+            "description": "Refresh token",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "client_id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "client_id"
+            ]
+        },
+        "RefreshToken": {
+            "description": "Refresh token response",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "refresh_token"
+            ]
+        },
+        "PaginationLinks": {
+            "properties": {
+                "next": {
+                    "type": "string",
+                    "description": "A link to the next page of results"
+                },
+                "previous": {
+                    "type": "string",
+                    "description": "A link to the previous page of results"
+                },
+                "self": {
+                    "type": "string",
+                    "description": "A link to this page of results"
+                }
+            },
+            "required": [
+                "self"
+            ]
+        },
+        "Pagination(RefreshToken)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/RefreshToken"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "BadRequestResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        400
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Bad Request"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "UnauthorizedResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        401
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Unauthorized"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "ForbiddenResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        403
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Forbidden"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "NotFoundResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        404
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Not Found"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "ConflictResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        409
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response status.",
+                    "enum": [
+                        "Conflict"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        }
+    },
+    "parameters": {
+        "path-personId": {
+            "name": "personId",
+            "in": "path",
+            "description": "The person's uuid or targetName",
+            "required": true,
+            "type": "string"
+        },
+        "path-tokenId": {
+            "name": "tokenId",
+            "in": "path",
+            "description": "Token name",
+            "required": true,
+            "type": "string"
+        }
+    },
+    "responses": {
+        "204": {
+            "description": "No Content"
+        },
+        "400": {
+            "description": "Bad Request - The request is malformed",
+            "schema": {
+                "$ref": "#/definitions/BadRequestResponse"
+            }
+        },
+        "401": {
+            "description": "Unauthorized - The action cannot be performed in the system",
+            "schema": {
+                "$ref": "#/definitions/UnauthorizedResponse"
+            }
+        },
+        "403": {
+            "description": "Forbidden - The authenticated user does not have permission to perform this action",
+            "schema": {
+                "$ref": "#/definitions/ForbiddenResponse"
+            }
+        },
+        "404": {
+            "description": "Not Found - The resource does not exist",
+            "schema": {
+                "$ref": "#/definitions/NotFoundResponse"
+            }
+        },
+        "409": {
+            "description": "Conflict - The action cannot be performed in the system",
+            "schema": {
+                "$ref": "#/definitions/ConflictResponse"
+            }
+        }
+    }
+}
