@@ -997,13 +997,13 @@
                     }
                 }
             },
-            "patch": {
+            "put": {
                 "tags": [
                     "Devices"
                 ],
-                "summary": "Add or Update devices.",
-                "description": "Add or Update devices. Returns the pagination of the person's devices.",
-                "operationId": "patchPersonDevices",
+                "summary": "Set devices.",
+                "description": "Set devices. Returns the pagination of the person's devices.",
+                "operationId": "putPersonDevices",
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-personId"
