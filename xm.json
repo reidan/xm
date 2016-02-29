@@ -105,6 +105,9 @@
                 "operationId": "getDeviceTypes",
                 "parameters": [
                     {
+                        "$ref": "#/parameters/query-personId"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
