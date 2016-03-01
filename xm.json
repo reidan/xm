@@ -106,12 +106,6 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/query-personId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
                     }
                 ],
                 "responses": {
