@@ -1340,6 +1340,10 @@
                 "webLogin": {
                     "type": "string",
                     "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field."
+                },
+                "properties": {
+                    "type": "object",
+                    "description": "Key/Value map of custom properties."
                 }
             },
             "required": [
@@ -2117,6 +2121,10 @@
                 "webLogin": {
                     "type": "string",
                     "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field."
+                },
+                "properties": {
+                    "type": "object",
+                    "description": "Key/Value map of custom properties."
                 }
             },
             "required": [
