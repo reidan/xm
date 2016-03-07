@@ -101,12 +101,9 @@
                     "Device Types"
                 ],
                 "summary": "Returns device types.",
-                "description": "Returns device types. The available param will filter the response to only those device types that have available device names for the calling user",
+                "description": "Returns device types.",
                 "operationId": "getDeviceTypes",
                 "parameters": [
-                    {
-                        "$ref": "#/parameters/query-available"
-                    }
                 ],
                 "responses": {
                     "200": {
@@ -133,14 +130,11 @@
                     "Device Names"
                 ],
                 "summary": "Returns information about device names.",
-                "description": "Returns information about device names. The available param will filter the response to only those device names available (not yet registered to a device) to the calling user",
+                "description": "Returns information about device names.",
                 "operationId": "getDeviceNames",
                 "parameters": [
                     {
                         "$ref": "#/parameters/query-deviceType"
-                    },
-                    {
-                        "$ref": "#/parameters/query-available"
                     },
                     {
                         "$ref": "#/parameters/query-offset"
