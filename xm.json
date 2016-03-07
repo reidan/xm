@@ -1044,6 +1044,38 @@
                 }
             }
         },
+        "/service-providers": {
+            "get": {
+                "tags": [
+                    "Service Providers"
+                ],
+                "summary": "Returns information about configured service providers.",
+                "description": "Returns information about configured service providers.",
+                "operationId": "getServiceProviders",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-deviceType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(ServiceProvider)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/sites/{siteId}": {
             "get": {
                 "tags": [
@@ -1989,6 +2021,21 @@
                 "name"
             ]
         },
+        "ServiceProvider": {
+            "description": "A service provider.",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
+        },
         "ShiftPost": {
             "properties": {
                 "name": {
@@ -2248,7 +2295,7 @@
                     ]
                 },
                 "provider": {
-                    "$ref": "#/definitions/ProviderLink"
+                    "$ref": "#/definitions/ServiceProviderLink"
                 },
                 "timeframes": {
                     "type": "array",
@@ -3004,6 +3051,36 @@
                 }
             }
         },
+        "Pagination(ServiceProvider)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/ServiceProvider"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "PersonLink": {
             "description": "A reference to a person resource.",
             "properties": {
@@ -3043,7 +3120,7 @@
                 "recipientType"
             ]
         },
-        "ProviderLink": {
+        "ServiceProviderLink": {
             "description": "A reference to a provider resource.",
             "properties": {
                 "id": {
