@@ -1937,7 +1937,7 @@
         "ShiftOccurrenceMember": {
             "properties": {
                 "member": {
-                    "$ref": "#/definitions/RecipientReference"
+                    "$ref": "#/definitions/Recipient"
                 },
                 "position": {
                     "type": "integer"
