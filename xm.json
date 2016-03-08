@@ -1251,6 +1251,14 @@
                         "type": "string"
                     }
                 },
+                "status": {
+                    "type": "string",
+                    "description": "Whether the recipient is active. Inactive recipients do not receive notifications.",
+                    "enum": [
+                        "ACTIVE",
+                        "INACTIVE"
+                    ]
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
@@ -1259,7 +1267,8 @@
                 "id",
                 "targetName",
                 "recipientType",
-                "externallyOwned"
+                "externallyOwned",
+                "status"
             ],
             "discriminator": "recipientType"
         },
@@ -1291,14 +1300,6 @@
                 "description": {
                     "type": "string"
                 },
-                "status": {
-                    "type": "string",
-                    "description": "Whether the group is active. Inactive groups cannot receive notifications.",
-                    "enum": [
-                        "ACTIVE",
-                        "INACTIVE"
-                    ]
-                },
                 "site": {
                     "$ref": "#/definitions/SiteReference"
                 },
@@ -1309,8 +1310,7 @@
             "required": [
                 "allowDuplicates",
                 "observedByAll",
-                "useDefaultDevices",
-                "status"
+                "useDefaultDevices"
             ]
         },
         "GroupMember": {
@@ -2205,14 +2205,6 @@
                 },
                 "site": {
                     "$ref": "#/definitions/SiteLink"
-                },
-                "status": {
-                    "type": "string",
-                    "description": "Whether the group is active. Inactive groups do not receive notifications.",
-                    "enum": [
-                        "ACTIVE",
-                        "INACTIVE"
-                    ]
                 },
                 "supervisors": {
                     "type": "array",
