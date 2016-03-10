@@ -35,9 +35,6 @@
                         "$ref": "#/parameters/query-to"
                     },
                     {
-                        "$ref": "#/parameters/query-groupId"
-                    },
-                    {
                         "$ref": "#/parameters/query-personId"
                     },
                     {
@@ -528,6 +525,38 @@
                     },
                     "403": {
                         "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/groups/{groupId}/calendar": {
+            "get": {
+                "tags": [
+                    "Group Calendar"
+                ],
+                "summary": "Shift occurrence calendar",
+                "description": "Shift occurrence calendar",
+                "operationId": "getGroupCalendar",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/param-groupId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(ShiftOccurrence)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
                     }
                 }
             }
