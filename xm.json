@@ -539,7 +539,7 @@
                 "operationId": "getGroupCalendar",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/param-groupId"
+                        "$ref": "#/parameters/path-groupId"
                     }
                 ],
                 "responses": {
