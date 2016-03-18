@@ -1077,6 +1077,12 @@
                 "operationId": "getServiceProviders",
                 "parameters": [
                     {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
                         "$ref": "#/parameters/query-deviceType"
                     }
                 ],
