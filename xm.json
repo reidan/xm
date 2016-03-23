@@ -606,6 +606,36 @@
                         "$ref": "#/responses/409"
                     }
                 }
+            },
+            "get": {
+                "tags": [
+                    "Group Members"
+                ],
+                "summary": "List Group members.",
+                "description": "List Group members.",
+                "operationId": "getGroupMembers",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-groupId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(GroupMember)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
             }
         },
         "/groups/{groupId}/members/{memberId}": {
@@ -824,6 +854,39 @@
                     },
                     "409": {
                         "$ref": "#/responses/409"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Shift Members"
+                ],
+                "summary": "List Shift members.",
+                "description": "List Shift members.",
+                "operationId": "getShiftMembers",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-groupId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-shiftId"
+                    },
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(ShiftMember)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
                     }
                 }
             }
