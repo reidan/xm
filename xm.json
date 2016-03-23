@@ -1418,6 +1418,9 @@
                 },
                 "member": {
                     "$ref": "#/definitions/RecipientReference"
+                },
+                "shifts": {
+                    "$ref": "#/definitions/Pagination(Shift)"
                 }
             },
             "required": [
