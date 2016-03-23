@@ -870,7 +870,7 @@
                     },
                     {
                         "$ref": "#/parameters/path-shiftId"
-                    },
+                    }
                 ],
                 "responses": {
                     "200": {
