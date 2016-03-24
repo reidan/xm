@@ -71,6 +71,12 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/query-available"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
                     }
                 ],
                 "responses": {
@@ -101,6 +107,12 @@
                 "description": "Returns device types.",
                 "operationId": "getDeviceTypes",
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -1130,6 +1142,102 @@
                 }
             }
         },
+        "/plans": {
+            "get": {
+                "tags": [
+                    "Communication Plans"
+                ],
+                "summary": "List of communication plans",
+                "description": "List of communication plans",
+                "operationId": "getPlans",
+                "parameters": [
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Plan)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/plans/{planId}/forms": {
+            "get": {
+                "tags": [
+                    "Communication Plans"
+                ],
+                "summary": "List of forms",
+                "description": "List of forms",
+                "operationId": "getPlanForms",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Form)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/plans/{planId}/forms/{formId}/scenarios": {
+            "get": {
+                "tags": [
+                    "Communication Plans"
+                ],
+                "summary": "List of scenarios",
+                "description": "List of scenarios",
+                "operationId": "getPlanFormScenarios",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-formId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Scenario)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/service-providers": {
             "get": {
                 "tags": [
@@ -1202,6 +1310,91 @@
         }
     },
     "definitions": {
+        "Plan": {
+            "description": "A communication plan.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description",
+                "status",
+                "enabled"
+            ]
+        },
+        "Form": {
+            "description": "A form.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description",
+                "status"
+            ]
+        },
+        "Scenario": {
+            "description": "A scenario.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description",
+                "status"
+            ]
+        },
         "Country": {
             "description": "A country.",
             "type": "object",
@@ -3198,6 +3391,96 @@
                 }
             }
         },
+        "Pagination(Plan)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Plan"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "Pagination(Form)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Form"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "Pagination(Scenario)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Scenario"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "PersonLink": {
             "description": "A reference to a person resource.",
             "properties": {
@@ -3591,6 +3874,20 @@
             "name": "siteId",
             "in": "path",
             "description": "The site uuid or name",
+            "required": true,
+            "type": "string"
+        },
+        "path-planId": {
+            "name": "planId",
+            "in": "path",
+            "description": "The plan uuid or name",
+            "required": true,
+            "type": "string"
+        },
+        "path-formId": {
+            "name": "formId",
+            "in": "path",
+            "description": "The form uuid or name",
             "required": true,
             "type": "string"
         },
