@@ -1637,9 +1637,6 @@
                     "type": "string",
                     "description": "The last name of the user."
                 },
-                "owner": {
-                    "$ref": "#/definitions/PersonReference"
-                },
                 "phoneLogin": {
                     "type": "string",
                     "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company."
