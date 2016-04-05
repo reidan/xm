@@ -29,15 +29,6 @@
                         "$ref": "#/parameters/query-at"
                     },
                     {
-                        "$ref": "#/parameters/query-from"
-                    },
-                    {
-                        "$ref": "#/parameters/query-to"
-                    },
-                    {
-                        "$ref": "#/parameters/query-personId"
-                    },
-                    {
                         "$ref": "#/parameters/query-embed"
                     }
                 ],
@@ -70,7 +61,7 @@
                 "operationId": "getCountries",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/query-available"
+                        "$ref": "#/parameters/query-used"
                     },
                     {
                         "$ref": "#/parameters/query-offset"
@@ -3980,10 +3971,10 @@
                 "VOICE_IVR"
             ]
         },
-        "query-available": {
-            "name": "available",
+        "query-used": {
+            "name": "used",
             "in": "query",
-            "description": "is available",
+            "description": "is used",
             "required": false,
             "type": "boolean"
         }
