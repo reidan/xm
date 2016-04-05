@@ -1401,16 +1401,12 @@
                 },
                 "description": {
                     "type": "string"
-                },
-                "available": {
-                    "type": "boolean"
                 }
             },
             "required": [
                 "code2",
                 "code3",
-                "name",
-                "available"
+                "name"
             ]
         },
         "ResponseOption": {
