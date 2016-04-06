@@ -2182,7 +2182,7 @@
             },
             "required": [
                 "shift",
-                "member",
+                "recipient",
                 "position",
                 "delay",
                 "escalationType",
@@ -2342,7 +2342,7 @@
                 }
             },
             "required": [
-                "member"
+                "recipient"
             ]
         },
         "RecipientPost": {
