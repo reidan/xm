@@ -2159,7 +2159,7 @@
                 "shift": {
                     "$ref": "#/definitions/ShiftReference"
                 },
-                "member": {
+                "recipient": {
                     "$ref": "#/definitions/RecipientReference"
                 },
                 "position": {
@@ -2320,7 +2320,7 @@
         },
         "ShiftMemberPost": {
             "properties": {
-                "member": {
+                "recipient": {
                     "$ref": "#/definitions/RecipientLink"
                 },
                 "position": {
