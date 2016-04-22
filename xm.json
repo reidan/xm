@@ -2111,7 +2111,7 @@
                 },
                 "startTime": {
                     "type": "string",
-                    "description": "The time of day that the timeframe begins. HH:mm"
+                    "description": "The time of day that the timeframe begins in UTC. HH:mm"
                 },
                 "durationInMinutes": {
                     "type": "integer",
@@ -2301,6 +2301,9 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "deviceType": {
+                    "$ref": "#/definitions/DeviceType"
                 }
             },
             "required": [
@@ -2565,7 +2568,7 @@
                     "type": "array",
                     "description": "Timeframes when this device is active.",
                     "items": {
-                        "$ref": "#/definitions/DeviceTimeframe"
+                        "$ref": "#/definitions/DeviceTimeframePost"
                     }
                 }
             },
@@ -2905,6 +2908,42 @@
                     "type": "string"
                 }
             }
+        },
+        "DeviceTimeframePost": {
+            "description": "The timeframe in which a device is available to receive notifications",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the Timeframe. Example: \"After hours\"."
+                },
+                "startTime": {
+                    "type": "string",
+                    "description": "The time of day that the timeframe begins in UTC. HH:mm"
+                },
+                "durationInMinutes": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The length of the timeframe in minutes."
+                },
+                "excludeHolidays": {
+                    "type": "boolean",
+                    "description": "True if the timeframe is not active on holidays."
+                },
+                "days": {
+                    "type": "array",
+                    "description": "List of the days of the week this timeframe is active.",
+                    "items": {
+                        "type": "string",
+                        "enum": ["SU","MO","TU","WE","TH","FR","SA"]
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "startTime",
+                "durationInMinutes",
+                "excludeHolidays"
+            ]
         },
         "PaginationLinks": {
             "properties": {
