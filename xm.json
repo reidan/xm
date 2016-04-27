@@ -2111,7 +2111,11 @@
                 },
                 "startTime": {
                     "type": "string",
-                    "description": "The time of day that the timeframe begins in UTC. HH:mm"
+                    "description": "The time of day that the timeframe begins, in the device owners timezone"
+                },
+                "timezone": {
+                    "type": "string",
+                    "description": "The time zone of the device owner. Example:  US/Pacific."
                 },
                 "durationInMinutes": {
                     "type": "integer",
@@ -2918,7 +2922,7 @@
                 },
                 "startTime": {
                     "type": "string",
-                    "description": "The time of day that the timeframe begins in UTC. HH:mm"
+                    "description": "The time of day that the timeframe begins, in the device owners timezone"
                 },
                 "durationInMinutes": {
                     "type": "integer",
