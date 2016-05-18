@@ -1,0 +1,514 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "xMatters Config API",
+        "title": "xMatters Config API",
+        "version": "1"
+    },
+    "basePath": "/api/config/1",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/customer-configs": {
+            "post": {
+                "tags": [
+                    "Customer Config"
+                ],
+                "summary": "Set a customer configuration value",
+                "description": "Set a customer configuration value",
+                "operationId": "postCustomerConfig",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Customer Config Parameter",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CustomerConfig"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerConfig"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerConfig"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Customer Config"
+                ],
+                "summary": "Get customer configuration values",
+                "description": "Get customer configuration values",
+                "operationId": "getCustomerConfigs",
+                "parameters": [
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "The region",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["north_america", "europe", "asia_pacific"]
+                    },
+                    {
+                        "name": "env",
+                        "in": "query",
+                        "description": "The environment",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["prd", "stg", "tst", "dev"]
+                    },
+                    {
+                        "name": "customer",
+                        "in": "query",
+                        "description": "The customer",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "The config key",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(CustomerConfig)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/customer-configs/{configId}": {
+            "delete": {
+                "tags": [
+                    "Customer Config"
+                ],
+                "summary": "Delete a customer configuration value",
+                "description": "Delete a customer configuration value",
+                "operationId": "deleteCustomerConfig",
+                "parameters": [
+                    {
+                        "name": "configId",
+                        "in": "path",
+                        "description": "A customer config id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CustomerConfig"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/effective-customer-configs": {
+            "get": {
+                "tags": [
+                    "Customer Config"
+                ],
+                "summary": "Get effective customer configuration values",
+                "description": "Get effective customer configuration values",
+                "operationId": "getEffectiveCustomerConfigs",
+                "parameters": [
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "The region",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["north_america", "europe", "asia_pacific"]
+                    },
+                    {
+                        "name": "env",
+                        "in": "query",
+                        "description": "The environment",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["prd", "stg", "tst", "dev"]
+                    },
+                    {
+                        "name": "customer",
+                        "in": "query",
+                        "description": "The customer",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "The config key",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "at",
+                        "in": "query",
+                        "description": "Where config is effective at this time (defaults to now)",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(CustomerConfig)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CustomerConfig": {
+            "description": "Authentication credentials",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string",
+                    "enum": ["north_america", "europe", "asia_pacific"]
+                },
+                "env": {
+                    "type": "string",
+                    "enum": ["prd", "stg", "tst", "dev"]
+                },
+                "customer": {
+                    "type": "string"
+                },
+                "from": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "to": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": ["string", "number", "boolean"]
+                }
+            },
+            "required": [
+                "key",
+                "value"
+            ]
+        },
+        "Pagination(CustomerConfig)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/CustomerConfig"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "PaginationLinks": {
+            "properties": {
+                "next": {
+                    "type": "string",
+                    "description": "A link to the next page of results"
+                },
+                "previous": {
+                    "type": "string",
+                    "description": "A link to the previous page of results"
+                },
+                "self": {
+                    "type": "string",
+                    "description": "A link to this page of results"
+                }
+            },
+            "required": [
+                "self"
+            ]
+        },
+        "BadRequestResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        400
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Bad Request"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "UnauthorizedResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        401
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Unauthorized"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "ForbiddenResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        403
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Forbidden"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "NotFoundResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        404
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response code.",
+                    "enum": [
+                        "Not Found"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        },
+        "ConflictResponse": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The HTTP status code.",
+                    "enum": [
+                        409
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "description": "A description of the response status.",
+                    "enum": [
+                        "Conflict"
+                    ]
+                },
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "An application-specific error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A detailed description of the response or error."
+                }
+            },
+            "required": [
+                "status",
+                "reason",
+                "message"
+            ]
+        }
+    },
+    "parameters": {},
+    "responses": {
+        "204": {
+            "description": "No Content"
+        },
+        "400": {
+            "description": "Bad Request - The request is malformed",
+            "schema": {
+                "$ref": "#/definitions/BadRequestResponse"
+            }
+        },
+        "401": {
+            "description": "Unauthorized - The action cannot be performed in the system",
+            "schema": {
+                "$ref": "#/definitions/UnauthorizedResponse"
+            }
+        },
+        "403": {
+            "description": "Forbidden - The authenticated user does not have permission to perform this action",
+            "schema": {
+                "$ref": "#/definitions/ForbiddenResponse"
+            }
+        },
+        "404": {
+            "description": "Not Found - The resource does not exist",
+            "schema": {
+                "$ref": "#/definitions/NotFoundResponse"
+            }
+        },
+        "409": {
+            "description": "Conflict - The action cannot be performed in the system",
+            "schema": {
+                "$ref": "#/definitions/ConflictResponse"
+            }
+        }
+    }
+}
