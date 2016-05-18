@@ -159,7 +159,7 @@
         "/effective-customer-configs": {
             "get": {
                 "tags": [
-                    "Customer Config"
+                    "Effective Customer Config"
                 ],
                 "summary": "Get effective customer configuration values",
                 "description": "Get effective customer configuration values",
