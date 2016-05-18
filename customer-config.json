@@ -31,7 +31,7 @@
                         "description": "Customer Config Parameter",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/CustomerConfig"
+                            "$ref": "#/definitions/CustomerConfigPost"
                         }
                     }
                 ],
@@ -222,8 +222,8 @@
         }
     },
     "definitions": {
-        "CustomerConfig": {
-            "description": "Authentication credentials",
+        "CustomerConfigPost": {
+            "description": "Customer Configuration Value",
             "type": "object",
             "properties": {
                 "id": {
@@ -256,6 +256,45 @@
                 }
             },
             "required": [
+                "key",
+                "value"
+            ]
+        },
+        "CustomerConfig": {
+            "description": "Customer Configuration Value",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "region": {
+                    "type": "string",
+                    "enum": ["north_america", "europe", "asia_pacific"]
+                },
+                "env": {
+                    "type": "string",
+                    "enum": ["prd", "stg", "tst", "dev"]
+                },
+                "customer": {
+                    "type": "string"
+                },
+                "from": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "to": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": ["string", "number", "boolean"]
+                }
+            },
+            "required": [
+                "id",
                 "key",
                 "value"
             ]
