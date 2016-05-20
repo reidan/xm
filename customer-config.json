@@ -208,7 +208,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(CustomerConfig)"
+                            "$ref": "#/definitions/Pagination(EffectiveCustomerConfig)"
                         }
                     },
                     "401": {
@@ -299,6 +299,36 @@
                 "value"
             ]
         },
+        "Pagination(CustomerConfig)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/CustomerConfig"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "EffectiveCustomerConfig": {
             "description": "Effective Customer Configuration Value",
             "type": "object",
@@ -319,7 +349,7 @@
                 "value"
             ]
         },
-        "Pagination(CustomerConfig)": {
+        "Pagination(EffectiveCustomerConfig)": {
             "required": [
                 "count",
                 "data",
@@ -336,7 +366,7 @@
                     "type": "array",
                     "description": "An array that contains this page of resources.",
                     "items": {
-                        "$ref": "#/definitions/CustomerConfig"
+                        "$ref": "#/definitions/EffectiveCustomerConfig"
                     }
                 },
                 "total": {
