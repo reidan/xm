@@ -170,7 +170,6 @@
                         "in": "path",
                         "description": "The region",
                         "required": true,
-                        "type": "string",
                         "enum": ["north_america", "europe", "asia_pacific"]
                     },
                     {
@@ -178,7 +177,6 @@
                         "in": "path",
                         "description": "The environment",
                         "required": true,
-                        "type": "string",
                         "enum": ["prd", "stg", "tst", "dev"]
                     },
                     {
