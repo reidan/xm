@@ -67,7 +67,7 @@
                     "Customer Config"
                 ],
                 "summary": "Get customer configuration values",
-                "description": "Get customer configuration values",
+                "description": "Get customer configuration values. A pagination of the raw customer configuration values returned in order of precedence, then alphabetically by customer and key. Logic to inherit and override values should be applied by the client.",
                 "operationId": "getCustomerConfigs",
                 "parameters": [
                     {
@@ -162,7 +162,7 @@
                     "Effective Customer Config"
                 ],
                 "summary": "Get effective customer configuration values",
-                "description": "Get effective customer configuration values",
+                "description": "Get effective customer configuration values. Inheritance and override logic applied. Pagination of all effective customer config values in the provided region and environment. Can be filtered by customer and key.",
                 "operationId": "getEffectiveCustomerConfigs",
                 "parameters": [
                     {
@@ -214,6 +214,71 @@
                     },
                     "403": {
                         "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/effective-customer-configs/{region}/{env}/{customer}/{key}": {
+            "get": {
+                "tags": [
+                    "Effective Customer Config"
+                ],
+                "summary": "Get effective customer configuration value",
+                "description": "Get effective customer configuration value. Inheritance and override logic applied. Single customer configuration value for given region, environment, and key",
+                "operationId": "getEffectiveCustomerConfig",
+                "parameters": [
+                    {
+                        "name": "region",
+                        "in": "path",
+                        "description": "The region",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "env",
+                        "in": "path",
+                        "description": "The environment",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "customer",
+                        "in": "path",
+                        "description": "The customer",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "path",
+                        "description": "The config key",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "at",
+                        "in": "query",
+                        "description": "Config effective at this time (defaults to now)",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/EffectiveCustomerConfig"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
                     }
                 }
             }
