@@ -156,7 +156,7 @@
                 }
             }
         },
-        "/effective-customer-configs": {
+        "/effective-customer-configs/{region}/{env}": {
             "get": {
                 "tags": [
                     "Effective Customer Config"
@@ -167,17 +167,17 @@
                 "parameters": [
                     {
                         "name": "region",
-                        "in": "query",
+                        "in": "path",
                         "description": "The region",
-                        "required": false,
+                        "required": true,
                         "type": "string",
                         "enum": ["north_america", "europe", "asia_pacific"]
                     },
                     {
                         "name": "env",
-                        "in": "query",
+                        "in": "path",
                         "description": "The environment",
-                        "required": false,
+                        "required": true,
                         "type": "string",
                         "enum": ["prd", "stg", "tst", "dev"]
                     },
@@ -295,6 +295,26 @@
             },
             "required": [
                 "id",
+                "key",
+                "value"
+            ]
+        },
+        "EffectiveCustomerConfig": {
+            "description": "Effective Customer Configuration Value",
+            "type": "object",
+            "properties": {
+                "customer": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": ["string", "number", "boolean"]
+                }
+            },
+            "required": [
+                "customer",
                 "key",
                 "value"
             ]
