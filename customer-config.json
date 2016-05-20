@@ -196,7 +196,7 @@
                     {
                         "name": "at",
                         "in": "query",
-                        "description": "Where config is effective at this time (defaults to now)",
+                        "description": "Config effective at this time (defaults to now)",
                         "required": false,
                         "type": "string",
                         "format": "date-time"
