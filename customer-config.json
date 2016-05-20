@@ -170,16 +170,14 @@
                         "in": "path",
                         "description": "The region",
                         "required": true,
-                        "type": "string",
-                        "enum": ["north_america", "europe", "asia_pacific"]
+                        "type": "string"
                     },
                     {
                         "name": "env",
                         "in": "path",
                         "description": "The environment",
                         "required": true,
-                        "type": "string",
-                        "enum": ["prd", "stg", "tst", "dev"]
+                        "type": "string"
                     },
                     {
                         "name": "customer",
