@@ -156,7 +156,7 @@
                 }
             }
         },
-        "/effective-customer-configs/{region}/{env}": {
+        "/effective-customer-configs": {
             "get": {
                 "tags": [
                     "Effective Customer Config"
@@ -167,17 +167,19 @@
                 "parameters": [
                     {
                         "name": "region",
-                        "in": "path",
+                        "in": "query",
                         "description": "The region",
-                        "required": true,
-                        "type": "string"
+                        "required": false,
+                        "type": "string",
+                        "enum": ["north_america", "europe", "asia_pacific"]
                     },
                     {
                         "name": "env",
-                        "in": "path",
+                        "in": "query",
                         "description": "The environment",
-                        "required": true,
-                        "type": "string"
+                        "required": false,
+                        "type": "string",
+                        "enum": ["prd", "stg", "tst", "dev"]
                     },
                     {
                         "name": "customer",
@@ -206,7 +208,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(EffectiveCustomerConfig)"
+                            "$ref": "#/definitions/Pagination(CustomerConfig)"
                         }
                     },
                     "401": {
@@ -214,71 +216,6 @@
                     },
                     "403": {
                         "$ref": "#/responses/403"
-                    }
-                }
-            }
-        },
-        "/effective-customer-configs/{region}/{env}/{customer}/{key}": {
-            "get": {
-                "tags": [
-                    "Effective Customer Config"
-                ],
-                "summary": "Get effective customer configuration value",
-                "description": "Get effective customer configuration value. Inheritance and override logic applied. Single customer configuration value for given region, environment, and key",
-                "operationId": "getEffectiveCustomerConfig",
-                "parameters": [
-                    {
-                        "name": "region",
-                        "in": "path",
-                        "description": "The region",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "env",
-                        "in": "path",
-                        "description": "The environment",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "customer",
-                        "in": "path",
-                        "description": "The customer",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "key",
-                        "in": "path",
-                        "description": "The config key",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "at",
-                        "in": "query",
-                        "description": "Config effective at this time (defaults to now)",
-                        "required": false,
-                        "type": "string",
-                        "format": "date-time"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/EffectiveCustomerConfig"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
                     }
                 }
             }
@@ -380,56 +317,6 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/CustomerConfig"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "EffectiveCustomerConfig": {
-            "description": "Effective Customer Configuration Value",
-            "type": "object",
-            "properties": {
-                "customer": {
-                    "type": "string"
-                },
-                "key": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": ["string", "number", "boolean"]
-                }
-            },
-            "required": [
-                "customer",
-                "key",
-                "value"
-            ]
-        },
-        "Pagination(EffectiveCustomerConfig)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/EffectiveCustomerConfig"
                     }
                 },
                 "total": {
