@@ -177,118 +177,6 @@
                 }
             }
         },
-        "/environments": {
-            "post": {
-                "tags": [
-                    "Environments"
-                ],
-                "summary": "Create or update an environment",
-                "description": "Create or update an environment",
-                "operationId": "postEnvironment",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Environment definition",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/EnvironmentPost"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Environment"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/Environment"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            },
-            "get": {
-                "tags": [
-                    "Environments"
-                ],
-                "summary": "Retrieve environments",
-                "description": "Returns environments",
-                "operationId": "getEnvironments",
-                "parameters": [ ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(Environment)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
-        "/environments/{environmentId}": {
-            "delete": {
-                "tags": [
-                    "Environments"
-                ],
-                "summary": "Delete a environment",
-                "description": "Delete a environment",
-                "operationId": "deleteEnvironment",
-                "parameters": [
-                    {
-                        "name": "environmentId",
-                        "in": "path",
-                        "description": "Environment ID",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Environment"
-                        }
-                    },
-                    "204": {
-                        "$ref": "#/responses/204"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            }
-        },
         "/deployments": {
             "post": {
                 "tags": [
@@ -354,6 +242,20 @@
                         "name": "site",
                         "in": "query",
                         "description": "Filter by site",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "customer",
+                        "in": "query",
+                        "description": "Filter by customer",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Filter by region",
                         "required": false,
                         "type": "string"
                     }
@@ -567,6 +469,122 @@
                 }
             }
         },
+        "/environments": {
+            "post": {
+                "tags": [
+                    "Environments"
+                ],
+                "summary": "Create or update an environment",
+                "description": "Create or update an environment",
+                "operationId": "postEnvironment",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Environment definition",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EnvironmentPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/Environment"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Environment"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Environments"
+                ],
+                "summary": "Retrieve environments",
+                "description": "Returns environments",
+                "operationId": "getEnvironments",
+                "parameters": [ ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "description": "An array of Environments",
+                            "items": {
+                                "$ref": "#/definitions/Environment"
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/environments/{environmentId}": {
+            "delete": {
+                "tags": [
+                    "Environments"
+                ],
+                "summary": "Delete a environment",
+                "description": "Delete a environment",
+                "operationId": "deleteEnvironment",
+                "parameters": [
+                    {
+                        "name": "environmentId",
+                        "in": "path",
+                        "description": "Environment ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Environment"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
         "/regions": {
             "post": {
                 "tags": [
@@ -633,7 +651,11 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(Region)"
+                            "type": "array",
+                            "description": "An array of regions",
+                            "items": {
+                                "$ref": "#/definitions/Region"
+                            }
                         }
                     },
                     "401": {
@@ -932,7 +954,7 @@
                     {
                         "name": "regionId",
                         "in": "query",
-                        "description": "Region identifier",
+                        "description": "Filter by region",
                         "required": false,
                         "type": "string"
                     }
@@ -941,7 +963,11 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(Site)"
+                            "type": "array",
+                            "description": "An array of sites",
+                            "items": {
+                                "$ref": "#/definitions/Site"
+                            }
                         }
                     },
                     "401": {
@@ -1321,36 +1347,6 @@
                 "self"
             ]
         },
-        "Pagination(Environment)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Environment"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
         "Pagination(Customer)": {
             "required": [
                 "count",
@@ -1441,67 +1437,7 @@
                 }
             }
         },
-        "Pagination(Region)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Region"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
         "Pagination(Service)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Domain"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "Pagination(Site)": {
             "required": [
                 "count",
                 "data",
