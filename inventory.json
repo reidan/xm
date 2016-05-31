@@ -227,8 +227,8 @@
                 "tags": [
                     "Environments"
                 ],
-                "summary": "Retrieve environments.",
-                "description": "Returns environments.",
+                "summary": "Retrieve environments",
+                "description": "Returns environments",
                 "operationId": "getEnvironments",
                 "parameters": [ ],
                 "responses": {
@@ -1086,11 +1086,16 @@
                     "description": "The uuid of the customer"
                 },
                 "domains": {
-                    "$ref": "#/definitions/Pagination(Domain)"
+                    "type": "array",
+                    "description": "An array containing the customer domains for this customer",
+                    "items": {
+                        "$ref": "#/definitions/Domain"
+                    }
                 }
             },
             "required": [
-                "id"
+                "id",
+                "domains"
             ]
         },
         "CustomerPost": {
