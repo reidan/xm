@@ -3711,26 +3711,6 @@
                 "links"
             ]
         },
-        "PersonReference": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The identifier of the resource."
-                },
-                "targetName": {
-                    "type": "string",
-                    "description": "The target name of the resource."
-                },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                }
-            },
-            "required": [
-                "id",
-                "targetName",
-                "links"
-            ]
-        },
         "GroupReference": {
             "properties": {
                 "id": {
@@ -3741,6 +3721,12 @@
                     "type": "string",
                     "description": "The target name of the resource."
                 },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP"
+                    ]
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
@@ -3748,6 +3734,65 @@
             "required": [
                 "id",
                 "targetName",
+                "recipientType",
+                "links"
+            ]
+        },
+        "PersonReference": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                },
+                "targetName": {
+                    "type": "string",
+                    "description": "The target name of the resource."
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON"
+                    ]
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
+                }
+            },
+            "required": [
+                "id",
+                "targetName",
+                "recipientType",
+                "links"
+            ]
+        },
+        "DeviceReference": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                },
+                "targetName": {
+                    "type": "string",
+                    "description": "The target name of the resource."
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "DEVICE"
+                    ]
+                },
+                "deviceType": {
+                    "$ref": "#/definitions/DeviceType"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
+                }
+            },
+            "required": [
+                "id",
+                "targetName",
+                "recipientType",
+                "deviceType",
                 "links"
             ]
         },
