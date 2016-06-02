@@ -3715,12 +3715,6 @@
                     "type": "string",
                     "description": "The target name of the resource."
                 },
-                "recipientType": {
-                    "type": "string",
-                    "enum": [
-                        "GROUP"
-                    ]
-                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
@@ -3728,7 +3722,6 @@
             "required": [
                 "id",
                 "targetName",
-                "recipientType",
                 "links"
             ]
         },
@@ -3742,12 +3735,6 @@
                     "type": "string",
                     "description": "The target name of the resource."
                 },
-                "recipientType": {
-                    "type": "string",
-                    "enum": [
-                        "PERSON"
-                    ]
-                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
@@ -3755,7 +3742,6 @@
             "required": [
                 "id",
                 "targetName",
-                "recipientType",
                 "links"
             ]
         },
@@ -3769,12 +3755,6 @@
                     "type": "string",
                     "description": "The target name of the resource."
                 },
-                "recipientType": {
-                    "type": "string",
-                    "enum": [
-                        "DEVICE"
-                    ]
-                },
                 "deviceType": {
                     "$ref": "#/definitions/DeviceType"
                 },
@@ -3785,7 +3765,6 @@
             "required": [
                 "id",
                 "targetName",
-                "recipientType",
                 "deviceType",
                 "links"
             ]
