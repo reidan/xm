@@ -864,13 +864,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/ShiftMember"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
+                        "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/ShiftMember"
                         }
