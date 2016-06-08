@@ -71,9 +71,30 @@
                 "operationId": "getCustomers",
                 "parameters": [
                     {
+                        "name": "deployment",
+                        "in": "query",
+                        "description": "Filter by deployment",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "domain",
+                        "in": "query",
+                        "description": "Filter by domain",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "name": "env",
                         "in": "query",
                         "description": "Filter by environment",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Filter by region",
                         "required": false,
                         "type": "string"
                     },
@@ -116,7 +137,7 @@
                     {
                         "name": "customerId",
                         "in": "path",
-                        "description": "Customer UUID",
+                        "description": "Customer UUID or domain",
                         "required": true,
                         "type": "string"
                     }
@@ -150,7 +171,7 @@
                     {
                         "name": "customerId",
                         "in": "path",
-                        "description": "Customer UUID",
+                        "description": "Customer UUID or domain",
                         "required": true,
                         "type": "string"
                     }
@@ -409,7 +430,7 @@
                     {
                         "name": "customerId",
                         "in": "query",
-                        "description": "Filter by Customer UID",
+                        "description": "Filter by Customer UUID",
                         "required": false,
                         "type": "string"
                     }
