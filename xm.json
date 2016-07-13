@@ -1551,9 +1551,6 @@
                 "form": {
                     "$ref": "#/definitions/FormPointer"
                 },
-                "submitter": {
-                    "$ref": "#/definitions/RecipientPointer"
-                },
                 "properties": {
                     "description": "Map of property names and values",
                     "type": "object"
