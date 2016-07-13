@@ -1258,7 +1258,7 @@
         "/plans/{planId}/forms/{formId}/triggers": {
             "post": {
                 "tags": [
-                    "Forms"
+                    "Communication Plans"
                 ],
                 "summary": "Submit a form trigger",
                 "description": "Submit a form trigger (intiates an event)",
