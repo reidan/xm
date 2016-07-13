@@ -582,7 +582,7 @@
                         "description": "Member to add",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/RecipientLink"
+                            "$ref": "#/definitions/RecipientPointer"
                         }
                     }
                 ],
@@ -1549,10 +1549,10 @@
             "description": "A form submission",
             "properties": {
                 "form": {
-                    "$ref": "#/definitions/FormLink"
+                    "$ref": "#/definitions/FormPointer"
                 },
                 "submitter": {
-                    "$ref": "#/definitions/RecipientLink"
+                    "$ref": "#/definitions/RecipientPointer"
                 },
                 "properties": {
                     "description": "Map of property names and values",
@@ -1562,7 +1562,7 @@
                     "description": "Note: required if pre-configured recipients do not exist",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/RecipientLink"
+                        "$ref": "#/definitions/RecipientPointer"
                     }
                 },
                 "priority": {
@@ -1573,7 +1573,7 @@
                     "description": "Set this value to the name of an existing conference bridges, or leave it empty to create a new xMatters-hosted conference bridge.",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/ConferenceLink"
+                        "$ref": "#/definitions/ConferencePointer"
                     }
                 },
                 "responseOptions": {
@@ -2489,7 +2489,7 @@
         "ShiftMemberPost": {
             "properties": {
                 "recipient": {
-                    "$ref": "#/definitions/RecipientLink"
+                    "$ref": "#/definitions/RecipientPointer"
                 },
                 "position": {
                     "description": "Position in the rotation sequence.",
@@ -2592,13 +2592,13 @@
                     }
                 },
                 "site": {
-                    "$ref": "#/definitions/SiteLink"
+                    "$ref": "#/definitions/SitePointer"
                 },
                 "supervisors": {
                     "type": "array",
                     "description": "A list of supervisors of this users. If this value is not provided, the XXX user becomes the supervisor. To assign a user as a supervisor, the authenticating user must have the appropriate permissions.",
                     "items": {
-                        "$ref": "#/definitions/PersonLink"
+                        "$ref": "#/definitions/PersonPointer"
                     }
                 },
                 "timezone": {
@@ -2650,13 +2650,13 @@
                     ]
                 },
                 "site": {
-                    "$ref": "#/definitions/SiteLink"
+                    "$ref": "#/definitions/SitePointer"
                 },
                 "supervisors": {
                     "type": "array",
                     "description": "A list of group supervisors. Groups must have at least one supervisor.",
                     "items": {
-                        "$ref": "#/definitions/PersonLink"
+                        "$ref": "#/definitions/PersonPointer"
                     }
                 },
                 "timezone": {
@@ -2691,7 +2691,7 @@
                     "description": "The name of the device. Example: Work Email, Home Phone."
                 },
                 "owner": {
-                    "$ref": "#/definitions/PersonLink"
+                    "$ref": "#/definitions/PersonPointer"
                 },
                 "defaultDevice": {
                     "type": "boolean",
@@ -2727,7 +2727,7 @@
                     ]
                 },
                 "provider": {
-                    "$ref": "#/definitions/ServiceProviderLink"
+                    "$ref": "#/definitions/ServiceProviderPointer"
                 },
                 "timeframes": {
                     "type": "array",
@@ -3759,8 +3759,7 @@
                 }
             }
         },
-
-        "PersonLink": {
+        "PersonPointer": {
             "description": "A reference to a person resource.",
             "properties": {
                 "id": {
@@ -3769,7 +3768,7 @@
                 }
             }
         },
-        "FormLink": {
+        "FormPointer": {
             "description": "A reference to a form resource.",
             "properties": {
                 "id": {
@@ -3778,7 +3777,7 @@
                 }
             }
         },
-        "SiteLink": {
+        "SitePointer": {
             "description": "Site a group belongs to.",
             "properties": {
                 "id": {
@@ -3787,7 +3786,7 @@
                 }
             }
         },
-        "RecipientLink": {
+        "RecipientPointer": {
             "description": "A reference to a recipient resource.",
             "properties": {
                 "id": {
@@ -3808,7 +3807,7 @@
                 "recipientType"
             ]
         },
-        "ServiceProviderLink": {
+        "ServiceProviderPointer": {
             "description": "A reference to a provider resource.",
             "properties": {
                 "id": {
@@ -3819,7 +3818,7 @@
                 "id"
             ]
         },
-        "ConferenceLink": {
+        "ConferencePointer": {
             "properties": {
                 "id": {
                     "type": "string"
