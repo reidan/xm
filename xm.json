@@ -1255,6 +1255,52 @@
                 }
             }
         },
+        "/plans/{planId}/forms/{formId}/triggers": {
+            "post": {
+                "tags": [
+                    "Forms"
+                ],
+                "summary": "Submit a form trigger",
+                "description": "Submit a form trigger (intiates an event)",
+                "operationId": "postTrigger",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-formId"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TriggerPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Trigger"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
         "/service-providers": {
             "get": {
                 "tags": [
@@ -1464,6 +1510,81 @@
             "required": [
                 "id"
             ]
+        },
+        "Trigger": {
+            "type": "object",
+            "description": "A form submission",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormReference"
+                },
+                "submitter": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "properties": {
+                    "description": "Map of property names and values",
+                    "type": "object"
+                },
+                "recipients": {
+                    "$ref": "#/definitions/Pagination(Recipient)"
+                },
+                "priority": {
+                    "type": "string",
+                    "enum": ["LOW", "MEDIUM", "HIGH"]
+                },
+                "conferences": {
+                    "$ref": "#/definitions/Pagination(Conference)"
+                },
+                "responseOptions": {
+                    "$ref": "#/definitions/Pagination(ResponseOption)"
+                }
+            },
+            "required": ["form"]
+        },
+        "TriggerPost": {
+            "type": "object",
+            "description": "A form submission",
+            "properties": {
+                "form": {
+                    "$ref": "#/definitions/FormLink"
+                },
+                "submitter": {
+                    "$ref": "#/definitions/RecipientLink"
+                },
+                "properties": {
+                    "description": "Map of property names and values",
+                    "type": "object"
+                },
+                "recipients": {
+                    "description": "Note: required if pre-configured recipients do not exist",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RecipientLink"
+                    }
+                },
+                "priority": {
+                    "type": "string",
+                    "enum": ["LOW", "MEDIUM", "HIGH"]
+                },
+                "conferences": {
+                    "description": "Set this value to the name of an existing conference bridges, or leave it empty to create a new xMatters-hosted conference bridge.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ConferenceLink"
+                    }
+                },
+                "responseOptions": {
+                    "description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID).",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ResponseOption"
+                    }
+                }
+            },
+            "required": ["form"]
         },
         "Event": {
             "description": "Returns an event in the xMatters system.",
@@ -3008,6 +3129,36 @@
                 "self"
             ]
         },
+        "Pagination(Conference)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Conference"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination(Country)": {
             "required": [
                 "count",
@@ -3608,8 +3759,18 @@
                 }
             }
         },
+
         "PersonLink": {
             "description": "A reference to a person resource.",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                }
+            }
+        },
+        "FormLink": {
+            "description": "A reference to a form resource.",
             "properties": {
                 "id": {
                     "type": "string",
@@ -3658,6 +3819,20 @@
                 "id"
             ]
         },
+        "ConferenceLink": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["BRIDGE", "EXTERNAL"]
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "ReferenceLink": {
             "properties": {
                 "self": {
@@ -3669,6 +3844,7 @@
                 "self"
             ]
         },
+
         "ProviderReference": {
             "properties": {
                 "id": {
