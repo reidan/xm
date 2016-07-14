@@ -1485,12 +1485,34 @@
             "description": "A response option.",
             "type": "object",
             "properties": {
-                "id": {
+                "number": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "prompt": {
+                    "type": "string"
+                },
+                "conference": {
+                    "$ref": "#/definitions/ConferencePointer"
+                },
+                "action": {
+                    "type": "string"
+                },
+                "contribution": {
                     "type": "string"
                 }
             },
             "required": [
-                "id"
+                "number",
+                "text",
+                "description",
+                "prompt"
             ]
         },
         "PropertyValues": {
