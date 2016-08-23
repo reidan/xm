@@ -3911,12 +3911,16 @@
                     "type": "string",
                     "description": "The identifier of the resource."
                 },
+                "name": {
+                    "type": "string"
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
                 "id",
+                "name",
                 "links"
             ]
         },
