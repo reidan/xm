@@ -1540,6 +1540,9 @@
                 "id": {
                     "type": "string"
                 },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
                 "form": {
                     "$ref": "#/definitions/FormReference"
                 },
@@ -3862,7 +3865,20 @@
                 "self"
             ]
         },
-
+        "EventReference": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
+                }
+            },
+            "required": [
+                "id",
+                "links"
+            ]
+        },
         "ProviderReference": {
             "properties": {
                 "id": {
