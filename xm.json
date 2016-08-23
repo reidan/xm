@@ -1655,9 +1655,6 @@
                 },
                 "responseOptions": {
                     "$ref": "#/definitions/Pagination(ResponseOption)"
-                },
-                "trigger": {
-                    "$ref": "#/definitions/TriggerReference"
                 }
             },
             "required": [
@@ -3877,21 +3874,6 @@
                 "eventId": {
                     "type": "string",
                     "description": "A legacy identifier (numeric) that represents this resource"
-                },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                }
-            },
-            "required": [
-                "id",
-                "links"
-            ]
-        },
-        "TriggerReference": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "An identifier (UUID) that represents this resource"
                 },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
