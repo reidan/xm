@@ -380,6 +380,47 @@
                 }
             }
         },
+        "/events/{eventId}/audit": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Returns an audit of an event.",
+                "description": "Returns an audit of an event.",
+                "operationId": "getEventAudit",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-before"
+                    },
+                    {
+                        "$ref": "#/parameters/query-after"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Audit)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/groups": {
             "get": {
                 "tags": [
@@ -1373,6 +1414,59 @@
         }
     },
     "definitions": {
+        "Notification": {
+            "description": "A notification.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "Response": {
+            "description": "A response.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "notification": {
+                    "$ref": "#/definitions/NotificationReference"
+                }
+            },
+            "required": [
+                "id",
+                "notification"
+            ]
+        },
+        "Audit": {
+            "description": "An event audit",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "notification": {
+                    "$ref": "#/definitions/Notification"
+                },
+                "response": {
+                    "$ref": "#/definitions/Response"
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ]
+        },
         "Plan": {
             "description": "A communication plan.",
             "type": "object",
@@ -3151,6 +3245,24 @@
                 "self"
             ]
         },
+        "Pagination(Audit)": {
+            "required": [
+                "data",
+                "links"
+            ],
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Audit"
+                    }
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination(Conference)": {
             "required": [
                 "count",
@@ -3894,6 +4006,17 @@
                 "id"
             ]
         },
+        "NotificationReference": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The identifier of the resource."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "FormReference": {
             "properties": {
                 "id": {
@@ -4298,6 +4421,20 @@
             "required": false,
             "type": "integer",
             "default": 0
+        },
+        "query-before": {
+            "name": "before",
+            "in": "query",
+            "description": "Return results before this result",
+            "required": false,
+            "type": "string"
+        },
+        "query-after": {
+            "name": "after",
+            "in": "query",
+            "description": "Return results after this result",
+            "required": false,
+            "type": "string"
         },
         "query-at": {
             "name": "at",
