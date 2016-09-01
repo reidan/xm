@@ -1450,7 +1450,8 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A Version 1 UUID used for windowing across the audits within an event using before and after query params https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_1_.28date-time_and_MAC_address.29"
                 },
                 "type": {
                     "type": "string"
