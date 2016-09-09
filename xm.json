@@ -380,23 +380,26 @@
                 }
             }
         },
-        "/events/{eventId}/audit": {
+        "/events/{eventId}/audits": {
             "get": {
                 "tags": [
                     "Events"
                 ],
                 "summary": "Returns an audit of an event.",
                 "description": "Returns an audit of an event.",
-                "operationId": "getEventAudit",
+                "operationId": "getEventAudits",
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-eventId"
                     },
                     {
-                        "$ref": "#/parameters/query-before"
+                        "$ref": "#/parameters/query-from"
                     },
                     {
-                        "$ref": "#/parameters/query-after"
+                        "$ref": "#/parameters/query-to"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
                     },
                     {
                         "$ref": "#/parameters/query-embed"
@@ -4423,20 +4426,6 @@
             "type": "integer",
             "default": 0
         },
-        "query-before": {
-            "name": "before",
-            "in": "query",
-            "description": "Return results before this result",
-            "required": false,
-            "type": "string"
-        },
-        "query-after": {
-            "name": "after",
-            "in": "query",
-            "description": "Return results after this result",
-            "required": false,
-            "type": "string"
-        },
         "query-at": {
             "name": "at",
             "in": "query",
@@ -4448,15 +4437,14 @@
         "query-from": {
             "name": "from",
             "in": "query",
-            "description": "From this time",
+            "description": "From this time or after this item",
             "required": false,
-            "type": "string",
-            "format": "date-time"
+            "type": "string"
         },
         "query-to": {
             "name": "to",
             "in": "query",
-            "description": "To this time",
+            "description": "To this time or after before item",
             "required": false,
             "type": "string",
             "format": "date-time"
