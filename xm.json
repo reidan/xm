@@ -1462,11 +1462,14 @@
                 "type": {
                     "type": "string"
                 },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
                 "notification": {
-                    "$ref": "#/definitions/Notification"
+                    "$ref": "#/definitions/NotificationReference"
                 },
                 "response": {
-                    "$ref": "#/definitions/Response"
+                    "$ref": "#/definitions/ResponseReference"
                 }
             },
             "required": [
