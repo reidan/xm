@@ -1426,6 +1426,9 @@
                 },
                 "category": {
                     "type": "string"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientReference"
                 }
             },
             "required": [
