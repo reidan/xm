@@ -4446,8 +4446,7 @@
             "in": "query",
             "description": "To this time or after before item",
             "required": false,
-            "type": "string",
-            "format": "date-time"
+            "type": "string"
         },
         "query-status": {
             "name": "status",
