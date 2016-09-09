@@ -4444,7 +4444,7 @@
         "query-to": {
             "name": "to",
             "in": "query",
-            "description": "To this time or after before item",
+            "description": "To this time or before this item",
             "required": false,
             "type": "string"
         },
