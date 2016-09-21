@@ -393,10 +393,10 @@
                         "$ref": "#/parameters/path-eventId"
                     },
                     {
-                        "$ref": "#/parameters/query-from"
+                        "$ref": "#/parameters/query-before"
                     },
                     {
-                        "$ref": "#/parameters/query-to"
+                        "$ref": "#/parameters/query-after"
                     },
                     {
                         "$ref": "#/parameters/query-limit"
@@ -4525,14 +4525,28 @@
         "query-from": {
             "name": "from",
             "in": "query",
-            "description": "From this time or after this item",
+            "description": "After this time or sequenced item identifier (inclusive)",
             "required": false,
             "type": "string"
         },
         "query-to": {
             "name": "to",
             "in": "query",
-            "description": "To this time or before this item",
+            "description": "Before this time or sequenced item identifier (inclusive)",
+            "required": false,
+            "type": "string"
+        },
+        "query-after": {
+            "name": "after",
+            "in": "query",
+            "description": "After this time or sequenced item identifier (exclusive)",
+            "required": false,
+            "type": "string"
+        },
+        "query-before": {
+            "name": "before",
+            "in": "query",
+            "description": "Before this time or sequenced item identifier (exclusive)",
             "required": false,
             "type": "string"
         },
