@@ -1697,7 +1697,7 @@
                     "enum": ["LOW", "MEDIUM", "HIGH"]
                 },
                 "expiration": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "overrideDeviceRestrictions": {
                     "type": "boolean",
@@ -1753,7 +1753,7 @@
                     "enum": ["LOW", "MEDIUM", "HIGH"]
                 },
                 "expiration": {
-                    "type": "string"
+                    "type": "integer"
                 },
                 "overrideDeviceRestrictions": {
                     "type": "boolean",
