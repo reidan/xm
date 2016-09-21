@@ -1637,6 +1637,33 @@
                 "id"
             ]
         },
+        "SenderOverrides": {
+            "type": "object",
+            "description": "Sender Overrides",
+            "properties": {
+                "displayName": {
+                    "type": "string"
+                },
+                "callerId": {
+                    "type": "string"
+                }
+            }
+        },
+        "VoicemailOptions": {
+            "type": "object",
+            "description": "Voicemail Options",
+            "properties": {
+                "retry": {
+                    "type": "integer"
+                },
+                "every": {
+                    "type": "integer"
+                },
+                "leave": {
+                    "type": "string"
+                }
+            }
+        },
         "Trigger": {
             "type": "object",
             "description": "A form submission",
@@ -1663,6 +1690,31 @@
                 "priority": {
                     "type": "string",
                     "enum": ["LOW", "MEDIUM", "HIGH"]
+                },
+                "expiration": {
+                    "type": "string"
+                },
+                "overrideDeviceRestrictions": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "escalationOverride": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "bypassPhoneIntro": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "requirePhonePassword": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "senderOverrides": {
+                    "$ref": "#/definitions/SenderOverrides"
+                },
+                "voicemailOptions": {
+                    "$ref": "#/definitions/VoicemailOptions"
                 },
                 "conferences": {
                     "$ref": "#/definitions/Pagination(Conference)"
@@ -1694,6 +1746,31 @@
                 "priority": {
                     "type": "string",
                     "enum": ["LOW", "MEDIUM", "HIGH"]
+                },
+                "expiration": {
+                    "type": "string"
+                },
+                "overrideDeviceRestrictions": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "escalationOverride": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "bypassPhoneIntro": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "requirePhonePassword": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "senderOverrides": {
+                    "$ref": "#/definitions/SenderOverrides"
+                },
+                "voicemailOptions": {
+                    "$ref": "#/definitions/VoicemailOptions"
                 },
                 "conferences": {
                     "description": "Set this value to the name of an existing conference bridges, or leave it empty to create a new xMatters-hosted conference bridge.",
