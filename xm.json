@@ -1478,6 +1478,7 @@
             },
             "required": [
                 "id",
+                "at",
                 "type"
             ]
         },
