@@ -1457,7 +1457,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "A Version 1 UUID used for windowing across the audits within an event using before and after query params https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_1_.28date-time_and_MAC_address.29"
+                    "description": "A unique identifier for this audit record. Derived from the insert order."
                 },
                 "at": {
                     "type": "string",
