@@ -1642,6 +1642,25 @@
                 "id"
             ]
         },
+        "Hierarchy": {
+            "type": "array",
+            "description": "Hierarchy",
+            "items": {
+                "$ref": "#/definitions/HierarchyItem"
+            }
+        },
+        "HierarchyItem": {
+            "type": "object",
+            "description": "Hierarchy item",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
         "SenderOverrides": {
             "type": "object",
             "description": "Sender Overrides",
@@ -1696,7 +1715,7 @@
                     "type": "string",
                     "enum": ["LOW", "MEDIUM", "HIGH"]
                 },
-                "expiration": {
+                "expirationInMinutes": {
                     "type": "integer"
                 },
                 "overrideDeviceRestrictions": {
