@@ -1471,9 +1471,6 @@
                 },
                 "notification": {
                     "$ref": "#/definitions/Notification"
-                },
-                "response": {
-                    "$ref": "#/definitions/Response"
                 }
             },
             "required": [
