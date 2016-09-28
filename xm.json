@@ -4480,6 +4480,28 @@
         }
     },
     "parameters": {
+        "path-deviceType": {
+            "name": "deviceType",
+            "in": "path",
+            "description": "Device Type",
+            "required": true,
+            "type": "string",
+            "enum": [
+                "ANDROID_PUSH",
+                "APPLE_PUSH",
+                "BLACKBERRY_PUSH",
+                "BROWSER",
+                "EMAIL",
+                "FAX",
+                "GENERIC",
+                "IM",
+                "NUMERIC_PAGER",
+                "TEXT_PAGER",
+                "TEXT_PHONE",
+                "VOICE",
+                "VOICE_IVR"
+            ]
+        },
         "path-deviceId": {
             "name": "deviceId",
             "in": "path",
