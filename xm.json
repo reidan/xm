@@ -124,6 +124,44 @@
                 }
             }
         },
+        "/device-types/{deviceType}/domains": {
+            "get": {
+                "tags": [
+                    "Device Types"
+                ],
+                "summary": "Returns device type domains.",
+                "description": "Returns device type domains.",
+                "operationId": "getDeviceTypeDomains",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-deviceType"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Domain)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/device-names": {
             "get": {
                 "tags": [
@@ -1417,6 +1455,18 @@
         }
     },
     "definitions": {
+        "Domain": {
+            "description": "An email domain restriction.",
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "domain"
+            ]
+        },
         "Notification": {
             "description": "A notification.",
             "type": "object",
