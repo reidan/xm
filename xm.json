@@ -1654,9 +1654,6 @@
                 "prompt": {
                     "type": "string"
                 },
-                "conference": {
-                    "$ref": "#/definitions/ConferencePointer"
-                },
                 "action": {
                     "type": "string"
                 },
