@@ -1784,8 +1784,8 @@
                 "voicemailOptions": {
                     "$ref": "#/definitions/VoicemailOptions"
                 },
-                "conferences": {
-                    "$ref": "#/definitions/Pagination(Conference)"
+                "conference": {
+                    "$ref": "#/definitions/Conference"
                 },
                 "responseOptions": {
                     "$ref": "#/definitions/Pagination(ResponseOption)"
@@ -1840,12 +1840,8 @@
                 "voicemailOptions": {
                     "$ref": "#/definitions/VoicemailOptions"
                 },
-                "conferences": {
-                    "description": "Set this value to the name of an existing conference bridges, or leave it empty to create a new xMatters-hosted conference bridge.",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/ConferencePointer"
-                    }
+                "conference": {
+                    "$ref": "#/definitions/ConferencePointer"
                 },
                 "responseOptions": {
                     "description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID).",
