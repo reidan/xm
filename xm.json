@@ -418,6 +418,41 @@
                 }
             }
         },
+        "/events/{eventId}/recipients": {
+            "get": {
+                "tags": [
+                    "Events"
+                ],
+                "summary": "Returns targeted event recipients.",
+                "description": "Returns targeted event recipients.",
+                "operationId": "getEvent",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Recipient)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/events/{eventId}/audits": {
             "get": {
                 "tags": [
@@ -1889,7 +1924,7 @@
                 "properties": {
                     "$ref": "#/definitions/PropertyValues"
                 },
-                "targetedRecipients": {
+                "recipients": {
                     "$ref": "#/definitions/Pagination(Recipient)"
                 },
                 "form": {
