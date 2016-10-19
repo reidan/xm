@@ -1512,8 +1512,21 @@
                 "category": {
                     "type": "string"
                 },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
                 "recipient": {
                     "$ref": "#/definitions/RecipientReference"
+                },
+                "responses": {
+                    "$ref": "#/definitions/Pagination(Response)"
+                },
+                "deliveryStatus": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -1986,6 +1999,10 @@
                         "INACTIVE"
                     ]
                 },
+                "isTargeted": {
+                    "type": "string",
+                    "description": "Indicates if this is a targeted recipient."
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
@@ -2111,6 +2128,12 @@
                 "properties": {
                     "type": "object",
                     "description": "Key/Value map of custom properties."
+                },
+                "devices": {
+                    "$ref": "#/definitions/Pagination(Device)"
+                },
+                "response": {
+                    "$ref": "#/definitions/Response"
                 }
             },
             "required": [
@@ -2228,6 +2251,9 @@
                 },
                 "provider": {
                     "$ref": "#/definitions/ProviderReference"
+                },
+                "notifications": {
+                    "$ref": "#/definitions/Pagination(Notification)"
                 }
             },
             "required": [
@@ -4097,6 +4123,54 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/Scenario"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "Pagination(Audit)": {
+            "required": [
+                "data",
+                "links"
+            ],
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Audit"
+                    }
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "Pagination(Notification)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Notification"
                     }
                 },
                 "total": {
