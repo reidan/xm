@@ -1722,7 +1722,7 @@
         },
         "Conference": {
             "properties": {
-                "id": {
+                "bridgeId": {
                     "type": "string"
                 },
                 "type": {
@@ -4244,7 +4244,7 @@
         },
         "ConferencePointer": {
             "properties": {
-                "id": {
+                "bridgeId": {
                     "type": "string"
                 },
                 "type": {
