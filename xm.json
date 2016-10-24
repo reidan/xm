@@ -1928,9 +1928,6 @@
                 "incident": {
                     "type": "string"
                 },
-                "domain": {
-                    "type": "string"
-                },
                 "expirationInMinutes": {
                     "type": "integer"
                 },
