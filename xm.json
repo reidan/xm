@@ -1931,6 +1931,9 @@
                 "domain": {
                     "type": "string"
                 },
+                "expirationInMinutes": {
+                    "type": "integer"
+                },
                 "initiator": {
                     "$ref": "#/definitions/PersonReference"
                 },
