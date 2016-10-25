@@ -4227,8 +4227,7 @@
                 }
             },
             "required": [
-                "id",
-                "recipientType"
+                "id"
             ]
         },
         "ServiceProviderPointer": {
