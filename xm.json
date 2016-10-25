@@ -245,7 +245,7 @@
                         "description": "An object that contains the definition of the new device",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DevicePost"
+                            "$ref": "#/definitions/DeviceInput"
                         }
                     }
                 ],
@@ -555,7 +555,7 @@
                         "description": "An object that contains a description of the new group",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/GroupPost"
+                            "$ref": "#/definitions/GroupInput"
                         }
                     }
                 ],
@@ -890,7 +890,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ShiftPost"
+                            "$ref": "#/definitions/ShiftInput"
                         }
                     }
                 ],
@@ -975,7 +975,7 @@
                         "description": "Shift Member",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ShiftMemberPost"
+                            "$ref": "#/definitions/ShiftMemberInput"
                         }
                     }
                 ],
@@ -1098,7 +1098,7 @@
                         "description": "An object that describes the new user.",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/PersonPost"
+                            "$ref": "#/definitions/PersonInput"
                         }
                     }
                 ],
@@ -1249,7 +1249,7 @@
                             "type": "array",
                             "description": "An array containing the device updates or insertions",
                             "items": {
-                                "$ref": "#/definitions/DevicePost"
+                                "$ref": "#/definitions/DeviceInput"
                             }
                         }
                     }
@@ -1392,7 +1392,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TriggerPost"
+                            "$ref": "#/definitions/TriggerInput"
                         }
                     }
                 ],
@@ -1844,7 +1844,7 @@
             },
             "required": ["form"]
         },
-        "TriggerPost": {
+        "TriggerInput": {
             "type": "object",
             "description": "A form submission",
             "properties": {
@@ -2807,7 +2807,7 @@
                 "name"
             ]
         },
-        "ShiftPost": {
+        "ShiftInput": {
             "properties": {
                 "name": {
                     "type": "string"
@@ -2817,7 +2817,7 @@
                 "name"
             ]
         },
-        "ShiftMemberPost": {
+        "ShiftMemberInput": {
             "properties": {
                 "recipient": {
                     "$ref": "#/definitions/RecipientPointer"
@@ -2844,7 +2844,7 @@
                 "recipient"
             ]
         },
-        "RecipientPost": {
+        "RecipientInput": {
             "description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
             "type": "object",
             "properties": {
@@ -2884,12 +2884,12 @@
             ],
             "discriminator": "recipientType"
         },
-        "PersonPost": {
+        "PersonInput": {
             "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/RecipientPost"
+                    "$ref": "#/definitions/RecipientInput"
                 }
             ],
             "properties": {
@@ -2954,12 +2954,12 @@
                 "roles"
             ]
         },
-        "GroupPost": {
+        "GroupInput": {
             "description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/RecipientPost"
+                    "$ref": "#/definitions/RecipientInput"
                 }
             ],
             "properties": {
@@ -2999,12 +2999,12 @@
                 }
             }
         },
-        "DevicePost": {
+        "DeviceInput": {
             "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/RecipientPost"
+                    "$ref": "#/definitions/RecipientInput"
                 }
             ],
             "properties": {
@@ -3064,7 +3064,7 @@
                     "type": "array",
                     "description": "Timeframes when this device is active.",
                     "items": {
-                        "$ref": "#/definitions/DeviceTimeframePost"
+                        "$ref": "#/definitions/DeviceTimeframeInput"
                     }
                 }
             },
@@ -3075,11 +3075,11 @@
             ],
             "discriminator": "deviceType"
         },
-        "EmailDevicePost": {
+        "EmailDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3097,11 +3097,11 @@
                 "emailAddress"
             ]
         },
-        "VoiceDevicePost": {
+        "VoiceDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3120,11 +3120,11 @@
                 "phoneNumber"
             ]
         },
-        "SMSDevicePost": {
+        "SMSDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3143,11 +3143,11 @@
                 "phoneNumber"
             ]
         },
-        "TextPagerDevicePost": {
+        "TextPagerDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3169,11 +3169,11 @@
                 "twoWayDevice"
             ]
         },
-        "NumericPagerDevicePost": {
+        "NumericPagerDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3197,11 +3197,11 @@
                 }
             }
         },
-        "IMDevicePost": {
+        "IMDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3219,11 +3219,11 @@
                 "address"
             ]
         },
-        "ApplePushDevicePost": {
+        "ApplePushDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3262,11 +3262,11 @@
                 "apnToken"
             ]
         },
-        "AndroidPushDevicePost": {
+        "AndroidPushDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3291,11 +3291,11 @@
                 "registrationId"
             ]
         },
-        "BlackberryPushDevicePost": {
+        "BlackberryPushDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3320,11 +3320,11 @@
                 "registrationId"
             ]
         },
-        "FaxDevicePost": {
+        "FaxDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3362,12 +3362,12 @@
                 "phoneNumber"
             ]
         },
-        "PublicAddressDevicePost": {
+        "PublicAddressDeviceInput": {
             "description": "a.k.a. Voice IVR",
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3386,11 +3386,11 @@
                 "phoneNumber"
             ]
         },
-        "GenericDevicePost": {
+        "GenericDeviceInput": {
             "type": "object",
             "allOf": [
                 {
-                    "$ref": "#/definitions/DevicePost"
+                    "$ref": "#/definitions/DeviceInput"
                 }
             ],
             "properties": {
@@ -3405,7 +3405,7 @@
                 }
             }
         },
-        "DeviceTimeframePost": {
+        "DeviceTimeframeInput": {
             "description": "The timeframe in which a device is available to receive notifications",
             "properties": {
                 "name": {
@@ -4036,6 +4036,36 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/ServiceProvider"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
+        "Pagination(Response)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Response"
                     }
                 },
                 "total": {
