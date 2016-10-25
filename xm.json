@@ -1751,7 +1751,10 @@
                 "value": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "value"
+            ]
         },
         "SenderOverrides": {
             "type": "object",
