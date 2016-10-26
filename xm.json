@@ -3982,7 +3982,7 @@
                 },
                 "responseCountWith": {
                     "enum": [
-                        "SEPARATELY",
+                        "SEPARATE",
                         "OTHERS"
                     ],
                     "type": "string"
