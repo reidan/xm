@@ -2235,7 +2235,7 @@
                 "incident": {
                     "type": "string"
                 },
-                "initiator": {
+                "submitter": {
                     "$ref": "#/definitions/PersonReference"
                 },
                 "priority": {
@@ -2378,7 +2378,7 @@
         "FillCountInput": {
             "description": "Fill counts input",
             "properties": {
-                "generalRecipientStopCount": {
+                "generalRecipientFillCount": {
                     "type": "integer"
                 },
                 "generalRecipients": {
@@ -3991,6 +3991,31 @@
                 "links"
             ]
         },
+        "RecipientTarget": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RecipientPointer"
+                }
+            ],
+            "description": "Expands on RecipientPointer to include targeting attributes.",
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource. Can be either UUID or targetName",
+                    "type": "string"
+                },
+                "recipientType": {
+                    "enum": [
+                        "GROUP",
+                        "PERSON",
+                        "DEVICE"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "ReferenceLink": {
             "properties": {
                 "self": {
@@ -4549,6 +4574,10 @@
                 "conference": {
                     "$ref": "#/definitions/ConferencePointer"
                 },
+                "enableFillCounts": {
+                    "default": false,
+                    "type": "boolean"
+                },
                 "escalationOverride": {
                     "default": false,
                     "type": "boolean"
@@ -4556,11 +4585,11 @@
                 "expiration": {
                     "type": "integer"
                 },
-                "fillCounts": {
-                    "$ref": "#/definitions/FillCountInput"
-                },
                 "form": {
                     "$ref": "#/definitions/FormPointer"
+                },
+                "otherRecipientsFillCount": {
+                    "type": "integer"
                 },
                 "overrideDeviceRestrictions": {
                     "default": false,
@@ -4581,7 +4610,7 @@
                 "recipients": {
                     "description": "Note: required if pre-configured recipients do not exist",
                     "items": {
-                        "$ref": "#/definitions/RecipientPointer"
+                        "$ref": "#/definitions/RecipientTarget"
                     },
                     "type": "array"
                 },
