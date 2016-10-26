@@ -2375,29 +2375,6 @@
             ],
             "type": "object"
         },
-        "FillCountInput": {
-            "description": "Fill counts input",
-            "properties": {
-                "generalRecipientFillCount": {
-                    "type": "integer"
-                },
-                "generalRecipients": {
-                    "description": "?",
-                    "items": {
-                        "$ref": "#/definitions/RecipientPointer"
-                    },
-                    "type": "array"
-                },
-                "groupRecipients": {
-                    "description": "?",
-                    "items": {
-                        "$ref": "#/definitions/RecipientPointer"
-                    },
-                    "type": "array"
-                }
-            },
-            "type": "object"
-        },
         "ForbiddenResponse": {
             "properties": {
                 "code": {
@@ -3997,24 +3974,20 @@
                     "$ref": "#/definitions/RecipientPointer"
                 }
             ],
-            "description": "Expands on RecipientPointer to include targeting attributes.",
+            "description": "Extends RecipientPointer to include targeting attributes such as response counts.",
             "properties": {
-                "id": {
-                    "description": "The identifier of the resource. Can be either UUID or targetName",
+                "responseCount": {
+                    "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
                     "type": "string"
                 },
-                "recipientType": {
+                "responseCountWith": {
                     "enum": [
-                        "GROUP",
-                        "PERSON",
-                        "DEVICE"
+                        "SEPARATELY",
+                        "OTHERS"
                     ],
                     "type": "string"
                 }
-            },
-            "required": [
-                "id"
-            ]
+            }
         },
         "ReferenceLink": {
             "properties": {
@@ -4574,7 +4547,7 @@
                 "conference": {
                     "$ref": "#/definitions/ConferencePointer"
                 },
-                "enableFillCounts": {
+                "enableResponseCounts": {
                     "default": false,
                     "type": "boolean"
                 },
@@ -4588,7 +4561,7 @@
                 "form": {
                     "$ref": "#/definitions/FormPointer"
                 },
-                "otherRecipientsFillCount": {
+                "otherResponseCount": {
                     "type": "integer"
                 },
                 "overrideDeviceRestrictions": {
