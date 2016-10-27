@@ -1376,7 +1376,7 @@
         },
         "/plans/{planId}/forms/{formId}/triggers": {
             "post": {
-                "description": "Submit a form trigger (intiates an event)",
+                "description": "Submit a form (intiates an event)",
                 "operationId": "postTrigger",
                 "parameters": [
                     {
@@ -1390,7 +1390,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/TriggerInput"
+                            "$ref": "#/definitions/EventInput"
                         }
                     }
                 ],
@@ -1398,7 +1398,7 @@
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/Trigger"
+                            "$ref": "#/definitions/Event"
                         }
                     },
                     "400": {
@@ -1414,7 +1414,7 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Submit a form trigger",
+                "summary": "Submit a form",
                 "tags": [
                     "Communication Plans"
                 ]
@@ -2211,12 +2211,18 @@
         "Event": {
             "description": "Returns an event in the xMatters system.",
             "properties": {
+                "bypassPhoneIntro": {
+                    "type": "boolean"
+                },
                 "conference": {
                     "$ref": "#/definitions/Conference"
                 },
                 "created": {
                     "format": "date-time",
                     "type": "string"
+                },
+                "escalationOverride": {
+                    "type": "boolean"
                 },
                 "eventId": {
                     "description": "A legacy identifier (numeric) that represents this resource",
@@ -2235,8 +2241,9 @@
                 "incident": {
                     "type": "string"
                 },
-                "submitter": {
-                    "$ref": "#/definitions/PersonReference"
+                "overrideDeviceRestrictions": {
+                    "default": false,
+                    "type": "boolean"
                 },
                 "priority": {
                     "enum": [
@@ -2252,8 +2259,14 @@
                 "recipients": {
                     "$ref": "#/definitions/Pagination(Recipient)"
                 },
+                "requirePhonePassword": {
+                    "type": "boolean"
+                },
                 "responseOptions": {
                     "$ref": "#/definitions/Pagination(ResponseOption)"
+                },
+                "senderOverrides": {
+                    "$ref": "#/definitions/SenderOverrides"
                 },
                 "status": {
                     "enum": [
@@ -2262,13 +2275,97 @@
                         "TERMINATED"
                     ],
                     "type": "string"
+                },
+                "submitter": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "voicemailOptions": {
+                    "$ref": "#/definitions/VoicemailOptions"
                 }
             },
             "required": [
                 "id",
                 "created",
                 "status",
-                "priority"
+                "priority",
+                "form"
+            ],
+            "type": "object"
+        },
+        "EventInput": {
+            "description": "A form submission",
+            "properties": {
+                "bypassPhoneIntro": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "conference": {
+                    "$ref": "#/definitions/ConferencePointer"
+                },
+                "enableResponseCounts": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "escalationOverride": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "expirationInMinutes": {
+                    "type": "integer"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormPointer"
+                },
+                "id": {
+                    "description": "An identifier (UUID) that represents this resource",
+                    "type": "string"
+                },
+                "otherResponseCount": {
+                    "type": "integer"
+                },
+                "overrideDeviceRestrictions": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "priority": {
+                    "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                    ],
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Map of property names and values",
+                    "type": "object"
+                },
+                "recipients": {
+                    "description": "Note: required if pre-configured recipients do not exist",
+                    "items": {
+                        "$ref": "#/definitions/RecipientTarget"
+                    },
+                    "type": "array"
+                },
+                "requirePhonePassword": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "responseOptions": {
+                    "description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID).",
+                    "items": {
+                        "$ref": "#/definitions/ResponseOption"
+                    },
+                    "type": "array"
+                },
+                "senderOverrides": {
+                    "$ref": "#/definitions/SenderOverrides"
+                },
+                "voicemailOptions": {
+                    "$ref": "#/definitions/VoicemailOptions"
+                }
+            },
+            "required": [
+                "form"
             ],
             "type": "object"
         },
@@ -4467,146 +4564,6 @@
             "required": [
                 "pin",
                 "twoWayDevice"
-            ],
-            "type": "object"
-        },
-        "Trigger": {
-            "description": "A form submission",
-            "properties": {
-                "bypassPhoneIntro": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "conference": {
-                    "$ref": "#/definitions/Conference"
-                },
-                "escalationOverride": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "event": {
-                    "$ref": "#/definitions/EventReference"
-                },
-                "expirationInMinutes": {
-                    "type": "integer"
-                },
-                "form": {
-                    "$ref": "#/definitions/FormReference"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "overrideDeviceRestrictions": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "priority": {
-                    "enum": [
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH"
-                    ],
-                    "type": "string"
-                },
-                "properties": {
-                    "description": "Map of property names and values",
-                    "type": "object"
-                },
-                "recipients": {
-                    "$ref": "#/definitions/Pagination(Recipient)"
-                },
-                "requirePhonePassword": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "responseOptions": {
-                    "$ref": "#/definitions/Pagination(ResponseOption)"
-                },
-                "senderOverrides": {
-                    "$ref": "#/definitions/SenderOverrides"
-                },
-                "submitter": {
-                    "$ref": "#/definitions/PersonReference"
-                },
-                "voicemailOptions": {
-                    "$ref": "#/definitions/VoicemailOptions"
-                }
-            },
-            "required": [
-                "form"
-            ],
-            "type": "object"
-        },
-        "TriggerInput": {
-            "description": "A form submission",
-            "properties": {
-                "bypassPhoneIntro": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "conference": {
-                    "$ref": "#/definitions/ConferencePointer"
-                },
-                "enableResponseCounts": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "escalationOverride": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "expiration": {
-                    "type": "integer"
-                },
-                "form": {
-                    "$ref": "#/definitions/FormPointer"
-                },
-                "otherResponseCount": {
-                    "type": "integer"
-                },
-                "overrideDeviceRestrictions": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "priority": {
-                    "enum": [
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH"
-                    ],
-                    "type": "string"
-                },
-                "properties": {
-                    "description": "Map of property names and values",
-                    "type": "object"
-                },
-                "recipients": {
-                    "description": "Note: required if pre-configured recipients do not exist",
-                    "items": {
-                        "$ref": "#/definitions/RecipientTarget"
-                    },
-                    "type": "array"
-                },
-                "requirePhonePassword": {
-                    "default": false,
-                    "type": "boolean"
-                },
-                "responseOptions": {
-                    "description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID).",
-                    "items": {
-                        "$ref": "#/definitions/ResponseOption"
-                    },
-                    "type": "array"
-                },
-                "senderOverrides": {
-                    "$ref": "#/definitions/SenderOverrides"
-                },
-                "voicemailOptions": {
-                    "$ref": "#/definitions/VoicemailOptions"
-                }
-            },
-            "required": [
-                "form"
             ],
             "type": "object"
         },
