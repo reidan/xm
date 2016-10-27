@@ -2285,6 +2285,7 @@
             },
             "required": [
                 "id",
+                "eventId",
                 "created",
                 "status",
                 "priority",
