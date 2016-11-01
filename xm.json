@@ -4024,6 +4024,17 @@
                 },
                 "targetName": {
                     "type": "string"
+                },
+                "responseCount": {
+                    "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
+                    "type": "string"
+                },
+                "responseCountWith": {
+                    "enum": [
+                        "SEPARATE",
+                        "OTHERS"
+                    ],
+                    "type": "string"
                 }
             },
             "required": [
