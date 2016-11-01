@@ -2347,7 +2347,7 @@
                 "recipients": {
                     "description": "Note: required if pre-configured recipients do not exist",
                     "items": {
-                        "$ref": "#/definitions/RecipientTarget"
+                        "$ref": "#/definitions/RecipientPointer"
                     },
                     "type": "array"
                 },
@@ -3970,6 +3970,17 @@
                 "targetName": {
                     "description": "An identifier such as a name that can be used to identify a resource",
                     "type": "string"
+                },
+                "responseCount": {
+                    "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
+                    "type": "string"
+                },
+                "responseCountWith": {
+                    "enum": [
+                        "SEPARATE",
+                        "OTHERS"
+                    ],
+                    "type": "string"
                 }
             },
             "required": [
@@ -4035,6 +4046,17 @@
                         "DEVICE"
                     ],
                     "type": "string"
+                },
+                "responseCount": {
+                    "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
+                    "type": "string"
+                },
+                "responseCountWith": {
+                    "enum": [
+                        "SEPARATE",
+                        "OTHERS"
+                    ],
+                    "type": "string"
                 }
             },
             "required": [
@@ -4069,27 +4091,6 @@
                 "recipientType",
                 "links"
             ]
-        },
-        "RecipientTarget": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/RecipientPointer"
-                }
-            ],
-            "description": "Extends RecipientPointer to include targeting attributes such as response counts.",
-            "properties": {
-                "responseCount": {
-                    "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
-                    "type": "string"
-                },
-                "responseCountWith": {
-                    "enum": [
-                        "SEPARATE",
-                        "OTHERS"
-                    ],
-                    "type": "string"
-                }
-            }
         },
         "ReferenceLink": {
             "properties": {
