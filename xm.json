@@ -3983,15 +3983,7 @@
                 },
                 "responseCount": {
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
-                    "type": "string"
-                },
-                "responseCountWith": {
-                    "enum": [
-                        "SEPARATE",
-                        "OTHERS"
-                    ],
-                    "type": "string"
-                }
+                    "type": "integer"
             },
             "required": [
                 "id",
@@ -4037,14 +4029,8 @@
                 },
                 "responseCount": {
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
-                    "type": "string"
-                },
-                "responseCountWith": {
-                    "enum": [
-                        "SEPARATE",
-                        "OTHERS"
-                    ],
-                    "type": "string"
+                    "type": "integer",
+                    "minimum": 1
                 }
             },
             "required": [
@@ -4070,14 +4056,8 @@
                 },
                 "responseCount": {
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
-                    "type": "string"
-                },
-                "responseCountWith": {
-                    "enum": [
-                        "SEPARATE",
-                        "OTHERS"
-                    ],
-                    "type": "string"
+                    "type": "integer",
+                    "minimum": 1
                 }
             },
             "required": [
