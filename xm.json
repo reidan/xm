@@ -3983,7 +3983,9 @@
                 },
                 "responseCount": {
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 1
+                }
             },
             "required": [
                 "id",
