@@ -2278,10 +2278,6 @@
                     "format": "date-time",
                     "type": "string"
                 },
-                "enableResponseCounts": {
-                    "default": false,
-                    "type": "boolean"
-                },
                 "escalationOverride": {
                     "type": "boolean"
                 },
@@ -2330,6 +2326,10 @@
                 "requirePhonePassword": {
                     "type": "boolean"
                 },
+                "responseCountsEnabled": {
+                    "default": false,
+                    "type": "boolean"
+                },
                 "responseOptions": {
                     "$ref": "#/definitions/Pagination(ResponseOption)"
                 },
@@ -2370,10 +2370,6 @@
                 },
                 "conference": {
                     "$ref": "#/definitions/ConferencePointer"
-                },
-                "enableResponseCounts": {
-                    "default": false,
-                    "type": "boolean"
                 },
                 "escalationOverride": {
                     "default": false,
