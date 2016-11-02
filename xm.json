@@ -504,7 +504,7 @@
                     {
                         "description": "isTargeted",
                         "in": "query",
-                        "name": "status",
+                        "name": "isTargeted",
                         "required": false,
                         "type": "boolean"
                     },
