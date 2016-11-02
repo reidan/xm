@@ -2292,7 +2292,7 @@
                 "expirationInMinutes": {
                     "type": "integer"
                 },
-                "terminationTime": {
+                "terminated": {
                     "format": "date-time",
                     "type": "string"
                 },
