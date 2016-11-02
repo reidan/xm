@@ -567,6 +567,13 @@
                         "type": "string"
                     },
                     {
+                        "description": "Group supervisors include this person. UUID or targetName.",
+                        "in": "query",
+                        "name": "supervisor",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
@@ -2687,6 +2694,9 @@
                 },
                 "site": {
                     "$ref": "#/definitions/SiteReference"
+                },
+                "supervisors": {
+                    "$ref": "#/definitions/Pagination(Person)"
                 },
                 "useDefaultDevices": {
                     "type": "boolean"
