@@ -1521,26 +1521,6 @@
                         ]
                     },
                     {
-                        "description": "isTargeted",
-                        "in": "query",
-                        "name": "status",
-                        "required": false,
-                        "type": "boolean"
-                    },
-                    {
-                        "description": "deliveryStatus",
-                        "in": "query",
-                        "name": "deliveryStatus",
-                        "required": false,
-                        "type": "string",
-                        "enum": [
-                            "PENDING",
-                            "DELIVERED",
-                            "RESPONDED",
-                            "FAILED"
-                        ]
-                    },
-                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
