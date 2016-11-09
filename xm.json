@@ -1484,6 +1484,95 @@
                 ]
             }
         },
+        "/recipients": {
+            "get": {
+                "description": "Returns information about potential recipients.",
+                "operationId": "getRecipients",
+                "parameters": [
+                    {
+                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
+                        "in": "query",
+                        "name": "search",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "searchType",
+                        "in": "query",
+                        "name": "searchType",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "CONTAINS",
+                            "STARTS_WITH",
+                            "ENDS_WITH"
+                        ]
+                    },
+                    {
+                        "description": "recipientType",
+                        "in": "query",
+                        "name": "recipientType",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "PERSON",
+                            "DEVICE",
+                            "GROUP"
+                        ]
+                    },
+                    {
+                        "description": "isTargeted",
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "description": "deliveryStatus",
+                        "in": "query",
+                        "name": "deliveryStatus",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "PENDING",
+                            "DELIVERED",
+                            "RESPONDED",
+                            "FAILED"
+                        ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Recipient)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "summary": "Returns information about event recipients.",
+                "tags": [
+                    "Recipients"
+                ]
+            }
+        },
         "/service-providers": {
             "get": {
                 "description": "Returns information about configured service providers.",
