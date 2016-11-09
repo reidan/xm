@@ -486,7 +486,8 @@
                         "enum": [
                             "CONTAINS",
                             "STARTS_WITH",
-                            "ENDS_WITH"
+                            "ENDS_WITH",
+                            "EQUALS"
                         ]
                     },
                     {
@@ -1505,7 +1506,8 @@
                         "enum": [
                             "CONTAINS",
                             "STARTS_WITH",
-                            "ENDS_WITH"
+                            "ENDS_WITH",
+                            "EQUALS"
                         ]
                     },
                     {
