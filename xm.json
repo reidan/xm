@@ -2708,7 +2708,6 @@
                 }
             },
             "required": [
-                "id",
                 "name",
                 "description"
             ],
@@ -4022,23 +4021,26 @@
         "Plan": {
             "description": "A communication plan.",
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
                 "enabled": {
                     "type": "boolean"
                 },
-                "id": {
-                    "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
                 "name": {
                     "type": "string"
                 },
                 "status": {
                     "type": "string"
+                },
+                "forms": {
+                    "$ref": "#/definitions/Pagination(Form)"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -4047,6 +4049,28 @@
                 "description",
                 "status",
                 "enabled"
+            ],
+            "type": "object"
+        },
+        "PlanInput": {
+            "description": "A communication plan.",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "description"
             ],
             "type": "object"
         },
