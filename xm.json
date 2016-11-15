@@ -2654,20 +2654,26 @@
         "Form": {
             "description": "A form.",
             "properties": {
-                "description": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
                 },
                 "name": {
                     "type": "string"
                 },
+                "description": {
+                    "type": "string"
+                },
+                "senderOverrides": {
+                    "type": "object"
+                },
                 "status": {
                     "type": "string"
+                },
+                "recipients": {
+                    "$ref": "#/definitions/Pagination(Recipient)"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -2675,6 +2681,36 @@
                 "name",
                 "description",
                 "status"
+            ],
+            "type": "object"
+        },
+        "FormInput": {
+            "description": "A form.",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "senderOverrides": {
+                    "type": "object"
+                },
+                "recipients": {
+                    "description": "Pre-configured recipients",
+                    "items": {
+                        "$ref": "#/definitions/RecipientPointer"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "description"
             ],
             "type": "object"
         },
