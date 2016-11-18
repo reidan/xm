@@ -26,6 +26,15 @@
                     },
                     {
                         "$ref": "#/parameters/query-embed"
+                    },
+                    {
+                        "$ref": "#/parameters/query-groups"
+                    },
+                    {
+                        "$ref": "#/parameters/query-from"
+                    },
+                    {
+                        "$ref": "#/parameters/query-to"
                     }
                 ],
                 "responses": {
@@ -5024,6 +5033,17 @@
             "name": "groupId",
             "required": false,
             "type": "string"
+        },
+        "query-groups": {
+            "description": "Comma separated list of group uuid or targetName",
+            "in": "query",
+            "name": "groups",
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "collectionFormat": "csv"
         },
         "query-limit": {
             "default": 100,
