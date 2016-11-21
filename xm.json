@@ -390,6 +390,44 @@
                 "tags": [
                     "Events"
                 ]
+            },
+            "post": {
+                "description": "Submit an event",
+                "operationId": "postEvent",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EventInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "summary": "Submit an event",
+                "tags": [
+                    "Events"
+                ]
             }
         },
         "/events/{eventId}": {
@@ -2514,6 +2552,14 @@
                 },
                 "senderOverrides": {
                     "$ref": "#/definitions/SenderOverrides"
+                },
+                "status": {
+                    "enum": [
+                        "ACTIVE",
+                        "SUSPENDED",
+                        "TERMINATED"
+                    ],
+                    "type": "string"
                 },
                 "voicemailOptions": {
                     "$ref": "#/definitions/VoicemailOptions"
