@@ -2393,6 +2393,10 @@
         "Event": {
             "description": "Returns an event in the xMatters system.",
             "properties": {
+                "id": {
+                    "description": "An identifier (UUID) that represents this resource",
+                    "type": "string"
+                },
                 "bypassPhoneIntro": {
                     "type": "boolean"
                 },
@@ -2419,10 +2423,6 @@
                 },
                 "form": {
                     "$ref": "#/definitions/FormReference"
-                },
-                "id": {
-                    "description": "An identifier (UUID) that represents this resource",
-                    "type": "string"
                 },
                 "incident": {
                     "type": "string"
