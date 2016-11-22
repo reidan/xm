@@ -4373,6 +4373,9 @@
                 },
                 "notification": {
                     "$ref": "#/definitions/NotificationReference"
+                },
+                "option": {
+                    "$ref": "#/definitions/ResponseOption"
                 }
             },
             "required": [
