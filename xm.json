@@ -2489,6 +2489,10 @@
         "EventInput": {
             "description": "A form submission",
             "properties": {
+                "id": {
+                    "description": "An identifier (UUID) that represents this resource",
+                    "type": "string"
+                },
                 "bypassPhoneIntro": {
                     "default": false,
                     "type": "boolean"
@@ -2505,10 +2509,6 @@
                 },
                 "form": {
                     "$ref": "#/definitions/FormPointer"
-                },
-                "id": {
-                    "description": "An identifier (UUID) that represents this resource",
-                    "type": "string"
                 },
                 "incident": {
                     "type": "string"
@@ -2575,12 +2575,12 @@
         },
         "EventReference": {
             "properties": {
-                "eventId": {
-                    "description": "A legacy identifier (numeric) that represents this resource",
-                    "type": "string"
-                },
                 "id": {
                     "description": "An identifier (UUID) that represents this resource",
+                    "type": "string"
+                },
+                "eventId": {
+                    "description": "A legacy identifier (numeric) that represents this resource",
                     "type": "string"
                 },
                 "links": {
