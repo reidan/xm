@@ -1967,7 +1967,7 @@
                 }
             },
             "required": [
-                "id"
+                "bridgeId"
             ]
         },
         "ConflictResponse": {
@@ -2513,6 +2513,9 @@
                 "incident": {
                     "type": "string"
                 },
+                "integration": {
+                    "$ref": "#/definitions/IntegrationPointer"
+                },
                 "otherResponseCount": {
                     "type": "integer"
                 },
@@ -2971,6 +2974,17 @@
             },
             "required": [
                 "value"
+            ],
+            "type": "object"
+        },
+        "IntegrationPointer": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
             ],
             "type": "object"
         },
