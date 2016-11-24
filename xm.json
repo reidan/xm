@@ -4390,6 +4390,10 @@
                 },
                 "option": {
                     "$ref": "#/definitions/ResponseOption"
+                },
+                "received": {
+                    "type": "string",
+                    "format": "date-time"
                 }
             },
             "required": [
