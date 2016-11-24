@@ -550,9 +550,9 @@
                         ]
                     },
                     {
-                        "description": "isTargeted",
+                        "description": "targeted",
                         "in": "query",
-                        "name": "isTargeted",
+                        "name": "targeted",
                         "required": false,
                         "type": "boolean"
                     },
@@ -4220,7 +4220,7 @@
                     "description": "An identifier (UUID) that represents this resource",
                     "type": "string"
                 },
-                "isTargeted": {
+                "targeted": {
                     "description": "Indicates if this is a targeted recipient.",
                     "type": "string"
                 },
