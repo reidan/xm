@@ -4382,7 +4382,7 @@
         "Response": {
             "description": "A response.",
             "properties": {
-                "id": {
+                "text": {
                     "type": "string"
                 },
                 "notification": {
@@ -4393,7 +4393,7 @@
                 }
             },
             "required": [
-                "id",
+                "text",
                 "notification"
             ],
             "type": "object"
