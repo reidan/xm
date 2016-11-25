@@ -3958,9 +3958,6 @@
             ],
             "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
             "properties": {
-                "devices": {
-                    "$ref": "#/definitions/Pagination(Device)"
-                },
                 "firstName": {
                     "description": "The first name of the user.",
                     "type": "string"
@@ -3977,24 +3974,11 @@
                     "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company.",
                     "type": "string"
                 },
-                "properties": {
-                    "description": "Key/Value map of custom properties.",
-                    "type": "object"
-                },
                 "recipientType": {
                     "enum": [
                         "PERSON"
                     ],
                     "type": "string"
-                },
-                "response": {
-                    "$ref": "#/definitions/Response"
-                },
-                "roles": {
-                    "$ref": "#/definitions/Pagination(Role)"
-                },
-                "site": {
-                    "$ref": "#/definitions/SiteReference"
                 },
                 "timezone": {
                     "description": "The time zone of the user. Example:  US/Pacific.",
@@ -4013,6 +3997,22 @@
                         "RESPONDED",
                         "FAILED"
                     ]
+                },
+                "properties": {
+                    "description": "Key/Value map of custom properties.",
+                    "type": "object"
+                },
+                "response": {
+                    "$ref": "#/definitions/Response"
+                },
+                "site": {
+                    "$ref": "#/definitions/SiteReference"
+                },
+                "devices": {
+                    "$ref": "#/definitions/Pagination(Device)"
+                },
+                "roles": {
+                    "$ref": "#/definitions/Pagination(Role)"
                 }
             },
             "required": [
