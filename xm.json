@@ -107,6 +107,9 @@
                         "$ref": "#/parameters/query-deviceType"
                     },
                     {
+                        "$ref": "#/parameters/query-deviceName"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
@@ -166,44 +169,6 @@
                     }
                 },
                 "summary": "Returns device types.",
-                "tags": [
-                    "Device Types"
-                ]
-            }
-        },
-        "/device-types/{deviceType}/domains": {
-            "get": {
-                "description": "Returns device type domains.",
-                "operationId": "getDeviceTypeDomains",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-deviceType"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(Domain)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "summary": "Returns device type domains.",
                 "tags": [
                     "Device Types"
                 ]
@@ -2182,13 +2147,16 @@
         },
         "DeviceName": {
             "properties": {
-                "description": {
-                    "type": "string"
-                },
                 "deviceType": {
                     "$ref": "#/definitions/DeviceType"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "domains": {
                     "type": "string"
                 }
             },
@@ -5124,6 +5092,13 @@
             ],
             "in": "query",
             "name": "deviceType",
+            "required": false,
+            "type": "string"
+        },
+        "query-deviceName": {
+            "description": "Device name",
+            "in": "query",
+            "name": "deviceName",
             "required": false,
             "type": "string"
         },
