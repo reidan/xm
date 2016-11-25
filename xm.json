@@ -3691,6 +3691,36 @@
                 "links"
             ]
         },
+        "Pagination(Role)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Role"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
         "Pagination(RosterMember)": {
             "properties": {
                 "count": {
@@ -3959,6 +3989,9 @@
                 },
                 "response": {
                     "$ref": "#/definitions/Response"
+                },
+                "roles": {
+                    "$ref": "#/definitions/Pagination(Role)"
                 },
                 "site": {
                     "$ref": "#/definitions/SiteReference"
@@ -4432,6 +4465,20 @@
                 "prompt"
             ],
             "type": "object"
+        },
+        "Role": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
         },
         "RosterMember": {
             "properties": {
