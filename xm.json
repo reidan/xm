@@ -2074,23 +2074,23 @@
             "type": "object",
             "properties": {
                 "token": {
-                    "description": "Universally unique token.",
+                    "description": "Universally unique token",
                     "type": "string"
                 },
                 "expiry": {
-                    "description": "Expiry date.",
+                    "description": "Expiry date",
                     "type": "string",
                     "format": "date-time"
                 },
                 "url": {
-                    "description": "Link URL.",
+                    "description": "Link URL",
                     "type": "string"
                 },
                 "action": {
                     "type": "string"
                 },
                 "status": {
-                    "description": "Status of the token.",
+                    "description": "Status of the token",
                     "type": "string",
                     "enum": [
                         "UNUSED",
@@ -2110,19 +2110,20 @@
             "type": "object",
             "properties": {
                 "expiry": {
-                    "description": "Expiry date.",
+                    "description": "Expiry date",
                     "type": "string",
                     "format": "date-time"
                 },
                 "url": {
-                    "description": "Link URL.",
+                    "description": "Link URL",
                     "type": "string"
                 },
                 "action": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Code to be used by URL handler to determine action"
                 },
                 "status": {
-                    "description": "Status of the token.",
+                    "description": "Status of the token",
                     "type": "string",
                     "enum": [
                         "UNUSED",
