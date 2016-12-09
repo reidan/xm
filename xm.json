@@ -2125,7 +2125,7 @@
                     "description": "Status of the token.",
                     "type": "string",
                     "enum": [
-                        "GENERATED",
+                        "UNUSED",
                         "USED"
                     ]
                 }
