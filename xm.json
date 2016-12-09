@@ -2109,10 +2109,6 @@
         "DeepLinkInput": {
             "type": "object",
             "properties": {
-                "token": {
-                    "description": "Universally unique token.",
-                    "type": "string"
-                },
                 "expiry": {
                     "description": "Expiry date.",
                     "type": "string",
