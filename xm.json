@@ -98,6 +98,85 @@
                 ]
             }
         },
+        "/deep-links": {
+            "post": {
+                "description": "Generate a single use, expiring, link with associated action and meta data",
+                "operationId": "postDeepLink",
+                "parameters": [
+                    {
+                        "description": "An object that contains the definition of the new link",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DeepLinkInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/DeepLink"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/DeepLink"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "summary": "Create or update a deep link.",
+                "tags": [
+                    "Deep Links"
+                ]
+            }
+        },
+        "/deep-links/{deepLinkToken}": {
+            "get": {
+                "description": "Returns information about a deep link.",
+                "operationId": "getDeepLink",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-deepLinkToken"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/DeepLink"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "summary": "Returns information about a deep link.",
+                "tags": [
+                    "Deep Links"
+                ]
+            }
+        },
         "/device-names": {
             "get": {
                 "description": "Returns information about device names.",
@@ -1990,6 +2069,76 @@
                 "name"
             ],
             "type": "object"
+        },
+        "DeepLink": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "description": "Universally unique token.",
+                    "type": "string"
+                },
+                "expiry": {
+                    "description": "Expiry date.",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "url": {
+                    "description": "Link URL.",
+                    "type": "string"
+                },
+                "action": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Status of the token.",
+                    "type": "string",
+                    "enum": [
+                        "GENERATED",
+                        "USED"
+                    ]
+                }
+            },
+            "required": [
+                "token",
+                "expiry",
+                "url",
+                "action",
+                "status"
+            ]
+        },
+        "DeepLinkInput": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "description": "Universally unique token.",
+                    "type": "string"
+                },
+                "expiry": {
+                    "description": "Expiry date.",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "url": {
+                    "description": "Link URL.",
+                    "type": "string"
+                },
+                "action": {
+                    "type": "string"
+                },
+                "status": {
+                    "description": "Status of the token.",
+                    "type": "string",
+                    "enum": [
+                        "GENERATED",
+                        "USED"
+                    ]
+                }
+            },
+            "required": [
+                "token",
+                "url",
+                "action"
+            ]
         },
         "Device": {
             "allOf": [
@@ -4967,6 +5116,13 @@
         }
     },
     "parameters": {
+        "path-deepLinkToken": {
+            "description": "Deep link token",
+            "in": "path",
+            "name": "deepLinkToken",
+            "required": true,
+            "type": "string"
+        },
         "path-deviceId": {
             "description": "The device uuid or targetName",
             "in": "path",
