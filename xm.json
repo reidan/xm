@@ -2096,6 +2096,9 @@
                         "UNUSED",
                         "USED"
                     ]
+                },
+                "attributes": {
+                    "type": "object"
                 }
             },
             "required": [
@@ -2129,6 +2132,9 @@
                         "UNUSED",
                         "USED"
                     ]
+                },
+                "attributes": {
+                    "type": "object"
                 }
             },
             "required": [
