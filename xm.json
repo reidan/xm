@@ -652,7 +652,7 @@
                 "operationId": "getGroups",
                 "parameters": [
                     {
-                        "description": "Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ALL of the search terms of the operand is set to AND, or ANY of the search terms of the operand is set to OR.",
+                        "description": "Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ALL if the search terms of the operand is set to AND, or ANY of the search terms if the operand is set to OR.",
                         "in": "query",
                         "name": "search",
                         "required": false,
