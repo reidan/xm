@@ -1922,6 +1922,17 @@
                 "message"
             ]
         },
+        "Browser": {
+            "description": "The Web UI Application",
+            "discriminator": "deviceType",
+            "properties": {
+                "notifications": {
+                    "$ref": "#/definitions/Pagination(Notification)"
+                }
+            },
+            "required": [],
+            "type": "object"
+        },
         "BlackberryPushDevice": {
             "allOf": [
                 {
@@ -4127,6 +4138,9 @@
                 },
                 "site": {
                     "$ref": "#/definitions/SiteReference"
+                },
+                "browser": {
+                    "$ref": "#/definitions/Browser"
                 },
                 "devices": {
                     "$ref": "#/definitions/Pagination(Device)"
