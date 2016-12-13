@@ -1930,7 +1930,6 @@
                     "$ref": "#/definitions/Pagination(Notification)"
                 }
             },
-            "required": [],
             "type": "object"
         },
         "BlackberryPushDevice": {
