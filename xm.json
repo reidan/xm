@@ -2138,7 +2138,7 @@
                 }
             },
             "required": [
-                "token",
+                "expiry",
                 "url",
                 "action"
             ]
