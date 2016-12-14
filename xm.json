@@ -3291,9 +3291,6 @@
                 },
                 "os": {
                     "type": "string"
-                },
-                "updateStatus": {
-                    "type": "string"
                 }
             },
             "required": [
@@ -3302,8 +3299,7 @@
                 "url",
                 "status",
                 "statusAt",
-                "os",
-                "updateStatus"
+                "os"
             ],
             "type": "object"
         },
