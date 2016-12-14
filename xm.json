@@ -2735,6 +2735,9 @@
                 "recipients": {
                     "$ref": "#/definitions/Pagination(Recipient)"
                 },
+                "requestId": {
+                    "type": "string"
+                },
                 "requirePhonePassword": {
                     "type": "boolean"
                 },
@@ -2828,6 +2831,9 @@
                         "$ref": "#/definitions/RecipientPointer"
                     },
                     "type": "array"
+                },
+                "requestId": {
+                    "type": "string"
                 },
                 "requirePhonePassword": {
                     "default": false,
