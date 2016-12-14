@@ -3279,7 +3279,11 @@
                     "type": "string"
                 },
                 "status": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "CONNECTED",
+                        "DISCONNECTED"
+                    ]
                 },
                 "statusAt": {
                     "type": "string",
