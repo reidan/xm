@@ -3318,7 +3318,10 @@
                     "type": "string"
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "id"
+            ]
         },
         "IntegrationPointer": {
             "properties": {
