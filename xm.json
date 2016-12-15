@@ -60,6 +60,44 @@
                 ]
             }
         },
+        "/calendar/{shiftOccurrenceId}/members": {
+            "get": {
+                "summary": "Shift occurrence members",
+                "description": "Shift occurrence members",
+                "operationId": "getCalendarMembers",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-shiftOccurrenceId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Calendar"
+                ]
+            }
+        },
         "/countries": {
             "get": {
                 "description": "List of countries",
@@ -5466,6 +5504,13 @@
             "description": "The uuid or name of the shift. e.g. 24/7 (Must be URL encoded)",
             "in": "path",
             "name": "shiftId",
+            "required": true,
+            "type": "string"
+        },
+        "path-shiftOccurrenceId": {
+            "description": "The uuid of the shift occurrence",
+            "in": "path",
+            "name": "shiftOccurrenceId",
             "required": true,
             "type": "string"
         },
