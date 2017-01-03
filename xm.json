@@ -3426,6 +3426,10 @@
                 "id": {
                     "type": "string"
                 },
+                "agentId": {
+                    "type": "string",
+                    "description": "Legacy non-UUID identifier"
+                },
                 "name": {
                     "type": "string"
                 },
