@@ -136,6 +136,119 @@
                 ]
             }
         },
+        "/customer-config": {
+            "get": {
+                "tags": [
+                    "Customer Config"
+                ],
+                "summary": "Get effective customer configuration values",
+                "description": "Get effective customer configuration values. Inheritance and override logic applied. Pagination of all effective customer config values in the provided region and environment.",
+                "operationId": "getCustomerConfig",
+                "parameters": [
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "The region",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["north_america", "europe", "asia_pacific"]
+                    },
+                    {
+                        "name": "env",
+                        "in": "query",
+                        "description": "The environment",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["prd", "stg", "tst", "dev"]
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "The config key",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "at",
+                        "in": "query",
+                        "description": "Config effective at this time (defaults to now)",
+                        "required": false,
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(CustomerConfig)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/customer-config/{configId}": {
+            "get": {
+                "tags": [
+                    "Customer Config"
+                ],
+                "summary": "Get effective customer configuration value",
+                "description": "Get effective customer configuration value. Inheritance and override logic applied.",
+                "operationId": "getEffectiveCustomerConfig",
+                "parameters": [
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "The region",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["north_america", "europe", "asia_pacific"]
+                    },
+                    {
+                        "name": "env",
+                        "in": "query",
+                        "description": "The environment",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["prd", "stg", "tst", "dev"]
+                    },
+                    {
+                        "name": "customer",
+                        "in": "query",
+                        "description": "The customer",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "The config key",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(CustomerConfig)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
         "/deep-links": {
             "post": {
                 "description": "Generate a single use, expiring, link with associated action and meta data",
