@@ -2278,6 +2278,37 @@
             ],
             "type": "object"
         },
+        "Callback": {
+            "properties": {
+                "url": {
+                    "type": "string"
+                },
+                "type": {
+                    "enum": [
+                        "status",
+                        "deliveryStatus",
+                        "response"
+                    ],
+                    "type": "string"
+                },
+                "authType": {
+                    "type": "string"
+                },
+                "authUserName": {
+                    "type": "string"
+                },
+                "authPassword": {
+                    "type": "string"
+                },
+                "iaId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url",
+                "type"
+            ]
+        },
         "Conference": {
             "properties": {
                 "bridgeId": {
@@ -2933,6 +2964,12 @@
                 "bypassPhoneIntro": {
                     "default": false,
                     "type": "boolean"
+                },
+                "callbacks": {
+                    "items": {
+                        "$ref": "#/definitions/Callback"
+                    },
+                    "type": "array"
                 },
                 "conference": {
                     "$ref": "#/definitions/ConferencePointer"
