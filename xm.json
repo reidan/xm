@@ -5637,7 +5637,13 @@
                 "trigger": {
                     "$ref": "#/definitions/Trigger"
                 }
-            }
+            },
+            "required": [
+                "organization",
+                "message",
+                "topic",
+                "trigger"
+            ]
         },
         "Trigger": {
             "type": "object",
@@ -5667,9 +5673,13 @@
             "type": "object",
             "properties": {
                 "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Organization UUID. Used as partition key."
                 }
-            }
+            },
+            "required": [
+                "id"
+            ]
         }
     },
     "parameters": {
