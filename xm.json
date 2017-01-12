@@ -2003,6 +2003,31 @@
                     "Sites"
                 ]
             }
+        },
+        "/schedule-this": {
+            "post": {
+                "summary": "schedule-this messages",
+                "description": "schedule-this messages",
+                "operationId": "schedule-this",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ScheduleThisMessage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
         }
     },
     "definitions": {
@@ -5593,6 +5618,58 @@
                 }
             },
             "type": "object"
+        },
+        "ScheduleThisMessage": {
+            "type": "object",
+            "description": "schedule-this message",
+            "properties": {
+                "organization": {
+                    "$ref": "#/definitions/OrganizationPointer"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "JSON message to be emitted into topic. Must be appropriate for the destination topic schema."
+                },
+                "topic": {
+                    "type": "string",
+                    "description": "Will emit message into this topic using organization.id as the partition key"
+                },
+                "trigger": {
+                    "$ref": "#/definitions/Trigger"
+                }
+            }
+        },
+        "Trigger": {
+            "type": "object",
+            "description": "Trigger",
+            "properties": {
+                "startTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The “startTime” property indicates when the trigger’s schedule first comes into affect. Defaults to now."
+                },
+                "endTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The “endTime” property indicates when the trigger’s schedule should no longer be in effect."
+                },
+                "cron": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Cron-Expression string made up of seven sub-expressions, that describe individual details of the schedule. These sub-expression are separated with white-space, and represent: Seconds Minutes Hours Day-of-Month Month Day-of-Week Year (optional field)"
+                }
+            },
+            "required": [
+                "startTime"
+            ]
+        },
+        "OrganizationPointer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
         }
     },
     "parameters": {
