@@ -1629,6 +1629,18 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Determines the attribute used to match the personId",
+                        "in": "query",
+                        "name": "personIdType",
+                        "required": false,
+                        "enum": [
+                            "id",
+                            "targetName",
+                            "webLogin"
+                        ]
                     }
                 ],
                 "responses": {
