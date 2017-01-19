@@ -607,7 +607,7 @@
         },
         "/events/{eventId}": {
             "get": {
-                "description": "Returns information about an event. Use embed=conference,targetedRecipients to include conference and targeted recipients in the response.",
+                "description": "Returns information about an event. Use embed=conference,recipients to include conference and resolved recipients in the response.",
                 "operationId": "getEvent",
                 "parameters": [
                     {
@@ -1506,6 +1506,12 @@
                         "$ref": "#/parameters/query-status"
                     },
                     {
+                        "$ref": "#/parameters/query-propertyName"
+                    },
+                    {
+                        "$ref": "#/parameters/query-propertyValue"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
@@ -2019,6 +2025,41 @@
                 "summary": "Returns information about a site.",
                 "tags": [
                     "Sites"
+                ]
+            }
+        },
+        "/triggers/{eventId}": {
+            "get": {
+                "summary": "Returns information about an event trigger.",
+                "description": "Returns information about the trigger for an event. Use embed=conference,recipients to include conference and targeted recipients in the response.",
+                "operationId": "getTrigger",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/EventTrigger"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Events Triggers"
                 ]
             }
         },
@@ -2951,7 +2992,8 @@
                     "type": "string"
                 },
                 "properties": {
-                    "$ref": "#/definitions/PropertyValues"
+                    "description": "Map of property names and values",
+                    "type": "object"
                 },
                 "recipients": {
                     "$ref": "#/definitions/Pagination(Recipient)"
@@ -3110,6 +3152,110 @@
             "required": [
                 "id",
                 "links"
+            ]
+        },
+        "EventTrigger": {
+            "type": "object",
+            "description": "The information that was submitted to trigger an event.",
+            "properties": {
+                "id": {
+                    "description": "An identifier (UUID) that represents this resource",
+                    "type": "string"
+                },
+                "bypassPhoneIntro": {
+                    "type": "boolean"
+                },
+                "callbacks": {
+                    "items": {
+                        "$ref": "#/definitions/Callback"
+                    },
+                    "type": "array"
+                },
+                "conference": {
+                    "$ref": "#/definitions/Conference"
+                },
+                "created": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "escalationOverride": {
+                    "type": "boolean"
+                },
+                "eventId": {
+                    "description": "A legacy identifier (numeric) that represents this resource",
+                    "type": "string"
+                },
+                "expirationInMinutes": {
+                    "type": "integer"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormReference"
+                },
+                "incident": {
+                    "type": "string"
+                },
+                "integration": {
+                    "$ref": "#/definitions/IntegrationPointer"
+                },
+                "otherResponseCount": {
+                    "type": "integer"
+                },
+                "overrideDeviceRestrictions": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "priority": {
+                    "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                    ],
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Map of property names and values",
+                    "type": "object"
+                },
+                "recipients": {
+                    "$ref": "#/definitions/Pagination(Recipient)"
+                },
+                "requestId": {
+                    "type": "string"
+                },
+                "requirePhonePassword": {
+                    "type": "boolean"
+                },
+                "responseCountsEnabled": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "responseOptions": {
+                    "$ref": "#/definitions/Pagination(ResponseOption)"
+                },
+                "senderOverrides": {
+                    "$ref": "#/definitions/SenderOverrides"
+                },
+                "status": {
+                    "enum": [
+                        "ACTIVE",
+                        "SUSPENDED",
+                        "TERMINATED"
+                    ],
+                    "type": "string"
+                },
+                "submitter": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "voicemailOptions": {
+                    "$ref": "#/definitions/VoicemailOptions"
+                }
+            },
+            "required": [
+                "id",
+                "eventId",
+                "created",
+                "priority",
+                "form"
             ]
         },
         "FaxDevice": {
@@ -4816,10 +4962,6 @@
             ],
             "type": "object"
         },
-        "PropertyValues": {
-            "description": "Event property values.",
-            "type": "object"
-        },
         "ProviderReference": {
             "properties": {
                 "id": {
@@ -5949,6 +6091,20 @@
                 "targetName",
                 "webLogin"
             ]
+        },
+        "query-propertyName": {
+            "description": "Embedded property name",
+            "in": "query",
+            "name": "propertyName",
+            "required": false,
+            "type": "string"
+        },
+        "query-propertyValue": {
+            "description": "Embedded property value",
+            "in": "query",
+            "name": "propertyValue",
+            "required": false,
+            "type": "string"
         },
         "query-role": {
             "type": "string",
