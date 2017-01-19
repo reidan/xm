@@ -535,7 +535,25 @@
                 "operationId": "getEvents",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/query-status"
+                        "$ref": "#/parameters/query-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-formId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-integrationId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-submitterId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-propertyName"
+                    },
+                    {
+                        "$ref": "#/parameters/query-propertyValue"
+                    },
+                    {
+                        "$ref": "#/parameters/query-requestId"
                     },
                     {
                         "$ref": "#/parameters/query-from"
@@ -1346,7 +1364,15 @@
                 "operationId": "getIntegrationAgents",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/query-status"
+                        "description": "ACTIVE or INACTIVE",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE"
+                        ],
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "type": "string"
                     },
                     {
                         "$ref": "#/parameters/query-offset"
@@ -3234,14 +3260,6 @@
                 },
                 "senderOverrides": {
                     "$ref": "#/definitions/SenderOverrides"
-                },
-                "status": {
-                    "enum": [
-                        "ACTIVE",
-                        "SUSPENDED",
-                        "TERMINATED"
-                    ],
-                    "type": "string"
                 },
                 "submitter": {
                     "$ref": "#/definitions/PersonReference"
@@ -6006,6 +6024,13 @@
             "required": false,
             "type": "string"
         },
+        "query-formId": {
+            "description": "The form uuid or name",
+            "in": "query",
+            "name": "formId",
+            "required": false,
+            "type": "string"
+        },
         "query-from": {
             "description": "After this time or sequenced item identifier (inclusive)",
             "in": "query",
@@ -6031,6 +6056,13 @@
             },
             "collectionFormat": "csv"
         },
+        "query-integrationId": {
+            "description": "The integration id",
+            "in": "query",
+            "name": "integrationId",
+            "required": false,
+            "type": "string"
+        },
         "query-limit": {
             "default": 100,
             "description": "Maximum result size to return",
@@ -6055,14 +6087,36 @@
             "required": false,
             "type": "string"
         },
+        "query-planId": {
+            "description": "The plan uuid or name",
+            "in": "query",
+            "name": "planId",
+            "required": false,
+            "type": "string"
+        },
+        "query-requestId": {
+            "description": "Request identifier",
+            "in": "query",
+            "name": "requestId",
+            "required": false,
+            "type": "string"
+        },
         "query-status": {
-            "description": "ACTIVE or INACTIVE",
+            "description": "Event status",
             "enum": [
                 "ACTIVE",
-                "INACTIVE"
+                "SUSPENDED",
+                "TERMINATED"
             ],
             "in": "query",
             "name": "status",
+            "required": false,
+            "type": "string"
+        },
+        "query-submitterId": {
+            "description": "The id or targetName of the submitter",
+            "in": "query",
+            "name": "submitterId",
             "required": false,
             "type": "string"
         },
