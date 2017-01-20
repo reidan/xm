@@ -5670,6 +5670,9 @@
             "type": "object",
             "description": "schedule-this message",
             "properties": {
+                "version": {
+                    "type": "string"
+                },
                 "organization": {
                     "$ref": "#/definitions/OrganizationPointer"
                 },
@@ -5682,19 +5685,20 @@
                     "description": "Will emit message into this topic using organization.id as the partition key"
                 },
                 "trigger": {
-                    "$ref": "#/definitions/Trigger"
+                    "$ref": "#/definitions/ScheduleTrigger"
                 }
             },
             "required": [
+                "version",
                 "organization",
                 "message",
                 "topic",
                 "trigger"
             ]
         },
-        "Trigger": {
+        "ScheduleTrigger": {
             "type": "object",
-            "description": "Trigger",
+            "description": "Schedule Trigger",
             "properties": {
                 "startTime": {
                     "type": "string",
