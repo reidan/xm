@@ -1510,6 +1510,33 @@
                 ]
             }
         },
+        "/organization": {
+            "get": {
+                "summary": "Returns information about the organization.",
+                "description": "Returns information about the organization.",
+                "operationId": "getOrganization",
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Organization"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                },
+                "tags": [
+                    "Organization"
+                ]
+            }
+        },
         "/people": {
             "get": {
                 "description": "Returns information about users.",
@@ -3773,6 +3800,48 @@
             },
             "type": "object"
         },
+        "Organization": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Organization UUID. Used as partition key."
+                },
+                "trial": {
+                    "type": "boolean",
+                    "description": "True if this is a trial organization."
+                }
+            },
+            "required": [
+                "id",
+                "trial"
+            ]
+        },
+        "OrganizationInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Organization UUID. Used as partition key."
+                },
+                "trial": {
+                    "type": "boolean",
+                    "description": "True if this is a trial organization."
+                }
+            }
+        },
+        "OrganizationPointer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Organization UUID. Used as partition key."
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "Pagination(Audit)": {
             "properties": {
                 "data": {
@@ -5718,18 +5787,6 @@
             },
             "required": [
                 "startTime"
-            ]
-        },
-        "OrganizationPointer": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Organization UUID. Used as partition key."
-                }
-            },
-            "required": [
-                "id"
             ]
         }
     },
