@@ -1537,6 +1537,33 @@
                 ]
             }
         },
+        "/organization/config": {
+            "get": {
+                "summary": "Organization configuration.",
+                "description": "Organization configuration.",
+                "operationId": "getOrganizationConfig",
+                "parameters": [
+
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/OrganizationConfig"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                },
+                "tags": [
+                    "Organization"
+                ]
+            }
+        },
         "/people": {
             "get": {
                 "description": "Returns information about users.",
@@ -3841,6 +3868,9 @@
             "required": [
                 "id"
             ]
+        },
+        "OrganizationConfig": {
+            "type": "object"
         },
         "Pagination(Audit)": {
             "properties": {
