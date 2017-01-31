@@ -98,6 +98,56 @@
                 ]
             }
         },
+        "/conferences/{conferenceId}/participants": {
+            "post": {
+                "summary": "Add a conference participant.",
+                "description": "Add a conference participant.",
+                "operationId": "postConferenceParticipant",
+                "parameters": [
+                    {
+                        "description": "A new conference participant",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ConferenceParticipantInput"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/path-conferenceId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/ConferenceParticipant"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/ConferenceParticipant"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Conferences"
+                ]
+            }
+        },
         "/countries": {
             "get": {
                 "description": "List of countries",
@@ -2449,10 +2499,29 @@
                         "EXTERNAL"
                     ],
                     "type": "string"
+                },
+                "sid": {
+                    "type": "string"
+                },
+                "startTime": {
+                    "type": "string"
+                },
+                "endTime": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "bridgeId",
+                "type"
             ]
         },
         "ConferencePointer": {
@@ -2469,8 +2538,103 @@
                 }
             },
             "required": [
-                "bridgeId"
+                "type"
             ]
+        },
+        "ConferenceParticipant": {
+            "properties": {
+                "conferenceId": {
+                    "type": "string"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "device": {
+                    "$ref": "#/definitions/DeviceReference"
+                },
+                "sid": {
+                    "type": "string"
+                },
+                "muted": {
+                    "type": "boolean"
+                },
+                "joined": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "left": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "extensionInProgress": {
+                    "type": "boolean"
+                },
+                "warnedForExtension": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "willCallToExtend": {
+                    "type": "boolean"
+                },
+                "retries": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "conferenceId"
+            ]
+        },
+        "ConferenceParticipantInput": {
+            "properties": {
+                "conferenceId": {
+                    "type": "string"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "device": {
+                    "$ref": "#/definitions/DeviceReference"
+                },
+                "sid": {
+                    "type": "string"
+                },
+                "muted": {
+                    "type": "boolean"
+                },
+                "joined": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "left": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "displayName": {
+                    "type": "string"
+                },
+                "extensionInProgress": {
+                    "type": "boolean"
+                },
+                "warnedForExtension": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "willCallToExtend": {
+                    "type": "boolean"
+                },
+                "retries": {
+                    "type": "integer"
+                }
+            }
         },
         "ConflictResponse": {
             "properties": {
@@ -5821,6 +5985,13 @@
         }
     },
     "parameters": {
+        "path-conferenceId": {
+            "description": "Conference identifier",
+            "in": "path",
+            "name": "conferenceId",
+            "required": true,
+            "type": "string"
+        },
         "path-deepLinkToken": {
             "description": "Deep link token",
             "in": "path",
