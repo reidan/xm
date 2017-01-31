@@ -2504,18 +2504,14 @@
                     "type": "string"
                 },
                 "startTime": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date-time"
                 },
                 "endTime": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date-time"
                 },
                 "status": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "description": {
                     "type": "string"
                 }
             },
@@ -2541,16 +2537,35 @@
                 "type"
             ]
         },
-        "ConferenceParticipant": {
+        "ConferenceReference": {
             "properties": {
-                "conferenceId": {
+                "bridgeId": {
                     "type": "string"
                 },
-                "person": {
-                    "$ref": "#/definitions/PersonReference"
+                "type": {
+                    "enum": [
+                        "BRIDGE",
+                        "EXTERNAL"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "bridgeId"
+            ]
+        },
+        "ConferenceParticipant": {
+            "properties": {
+                "conference": {
+                    "$ref": "#/definitions/ConferenceReference"
                 },
                 "device": {
                     "$ref": "#/definitions/DeviceReference"
+                },
+                "member": {
+                    "type": "string",
+                    "description": "Plivo member"
                 },
                 "sid": {
                     "type": "string"
@@ -2587,19 +2602,20 @@
                 }
             },
             "required": [
-                "conferenceId"
+                "conference"
             ]
         },
         "ConferenceParticipantInput": {
             "properties": {
-                "conferenceId": {
-                    "type": "string"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonReference"
+                "conference": {
+                    "$ref": "#/definitions/ConferencePointer"
                 },
                 "device": {
-                    "$ref": "#/definitions/DeviceReference"
+                    "$ref": "#/definitions/DevicePointer"
+                },
+                "member": {
+                    "type": "string",
+                    "description": "Plivo member id"
                 },
                 "sid": {
                     "type": "string"
@@ -2634,7 +2650,10 @@
                 "retries": {
                     "type": "integer"
                 }
-            }
+            },
+            "required": [
+                "conference"
+            ]
         },
         "ConflictResponse": {
             "properties": {
@@ -2934,6 +2953,19 @@
                 "owner"
             ],
             "type": "object"
+        },
+        "DevicePointer": {
+            "description": "A pointer to a device.",
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource.",
+                    "type": "string"
+                },
+                "targetName": {
+                    "description": "The target name of the resource.",
+                    "type": "string"
+                }
+            }
         },
         "DeviceName": {
             "properties": {
