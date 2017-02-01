@@ -1560,6 +1560,50 @@
                 ]
             }
         },
+        "/on-duty": {
+            "get": {
+                "summary": "On duty report",
+                "description": "On duty report",
+                "operationId": "getOnDuty",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-at"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    },
+                    {
+                        "$ref": "#/parameters/query-groups"
+                    },
+                    {
+                        "$ref": "#/parameters/query-from"
+                    },
+                    {
+                        "$ref": "#/parameters/query-to"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Group)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "On Duty"
+                ]
+            }
+        },
         "/organization": {
             "get": {
                 "summary": "Returns information about the organization.",
