@@ -1949,6 +1949,168 @@
                 ]
             }
         },
+        "/plans/{planId}": {
+            "get": {
+                "summary": "List plans",
+                "description": "List plans",
+                "operationId": "getPlan",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Plan"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
+        "/plans/{planId}/endpoints": {
+            "get": {
+                "summary": "List plan endpoints",
+                "description": "List plan endpoints",
+                "operationId": "getPlanEndpoints",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(PlanEndpoint)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
+            "post": {
+                "summary": "Add or update plan endpoints",
+                "description": "Add or update plan endpoints",
+                "operationId": "postPlanEndpoint",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "description": "Plan Endpoint",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanEndpointInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanEndpoint"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
+        "/plans/{planId}/endpoints/{endpointId}": {
+            "delete": {
+                "summary": "Delete a plan endpoint",
+                "description": "Delete a plan endpoint",
+                "operationId": "deletePlanEndpoint",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-endpointId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanEndpoint"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/plans/{planId}/forms": {
             "get": {
                 "description": "List of forms",
@@ -4610,6 +4772,36 @@
                 "links"
             ]
         },
+        "Pagination(PlanEndpoint)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/PlanEndpoint"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
         "Pagination(Recipient)": {
             "properties": {
                 "count": {
@@ -5153,6 +5345,9 @@
                 "forms": {
                     "$ref": "#/definitions/Pagination(Form)"
                 },
+                "endpoints": {
+                    "$ref": "#/definitions/Pagination(PlanEndpoint)"
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
@@ -5185,6 +5380,68 @@
             "required": [
                 "name",
                 "description"
+            ],
+            "type": "object"
+        },
+        "PlanReference": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "PlanPointer": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "PlanEndpoint": {
+            "properties": {
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "plan",
+                "name"
+            ],
+            "type": "object"
+        },
+        "PlanEndpointInput": {
+            "properties": {
+                "plan": {
+                    "$ref": "#/definitions/PlanPointer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "plan",
+                "name"
             ],
             "type": "object"
         },
@@ -6108,6 +6365,13 @@
             "description": "The event id",
             "in": "path",
             "name": "eventId",
+            "required": true,
+            "type": "string"
+        },
+        "path-endpointId": {
+            "description": "The endpoint name",
+            "in": "path",
+            "name": "endpointId",
             "required": true,
             "type": "string"
         },
