@@ -5405,6 +5405,9 @@
         },
         "PlanEndpoint": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "plan": {
                     "$ref": "#/definitions/PlanReference"
                 },
@@ -5419,6 +5422,7 @@
                 }
             },
             "required": [
+                "id",
                 "plan",
                 "name"
             ],
@@ -5426,6 +5430,9 @@
         },
         "PlanEndpointInput": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "plan": {
                     "$ref": "#/definitions/PlanPointer"
                 },
@@ -5439,10 +5446,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "plan",
-                "name"
-            ],
             "type": "object"
         },
         "ProviderReference": {
