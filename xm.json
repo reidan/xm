@@ -4234,8 +4234,19 @@
                 "group": {
                     "$ref": "#/definitions/GroupReference"
                 },
-                "shifts": {
-                    "$ref": "#/definitions/Pagination(ShiftOccurrence)"
+                "shift": {
+                    "$ref": "#/definitions/ShiftReference"
+                },
+                "start": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "end": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "members": {
+                    "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
                 }
             },
             "required": [
