@@ -2133,7 +2133,7 @@
                         "$ref": "#/parameters/query-limit"
                     },
                     {
-                        "description": "Only custom integrations",
+                        "description": "Is a custom integration (Has email initiation, or is webservice enabled, or has an inbound, or outbound integration)",
                         "in": "query",
                         "name": "customIntegration",
                         "type": "boolean",
