@@ -1677,6 +1677,157 @@
                 ]
             }
         },
+        "/integration-configs": {
+            "get": {
+                "tags": [
+                    "Integration Configs"
+                ],
+                "summary": "Get integration configurations",
+                "description": "Get integration configurations",
+                "operationId": "getIntegrationConfigs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(IntegrationConfig)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/integration-configs/{integrationConfigId}": {
+            "get": {
+                "tags": [
+                    "Integration Configs"
+                ],
+                "summary": "Get integration configuration",
+                "description": "Get integration configuration",
+                "operationId": "getIntegrationConfig",
+                "parameters": [
+                    {
+                        "name": "integrationConfigId",
+                        "in": "path",
+                        "description": "The integration config identifier",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationConfig"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/integration-configs/{integrationConfigId}/permissions": {
+            "get": {
+                "tags": [
+                    "Integration Configs"
+                ],
+                "summary": "Get integration configuration permissions",
+                "description": "Get integration configuration permissions",
+                "operationId": "getIntegrationConfigPermissions",
+                "parameters": [
+                    {
+                        "name": "integrationConfigId",
+                        "in": "path",
+                        "description": "The integration config identifier",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(IntegrationConfigPermission)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Integration Configs"
+                ],
+                "summary": "Replace integration configuration permissions",
+                "description": "Replace integration configuration permissions",
+                "operationId": "putIntegrationConfigPermissions",
+                "parameters": [
+                    {
+                        "name": "integrationConfigId",
+                        "in": "path",
+                        "description": "The integration config identifier",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "description": "An array containing integration permissions",
+                            "items": {
+                                "$ref": "#/definitions/IntegrationConfigPermissionInput"
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
         "/on-duty": {
             "get": {
                 "summary": "On duty report",
@@ -4207,6 +4358,73 @@
                 "id"
             ]
         },
+        "IntegrationConfig": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "accessibleByAll": {
+                    "type": "boolean"
+                },
+                "permissions": {
+                    "$ref": "#/definitions/Pagination(IntegrationConfigPermission)"
+                }
+            },
+            "type": "object",
+            "required": [
+                "id"
+            ]
+        },
+        "IntegrationConfigPermission": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientReference"
+                },
+                "role": {
+                    "$ref": "#/definitions/RoleReference"
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ]
+        },
+        "IntegrationConfigPermissionInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientPointer"
+                },
+                "role": {
+                    "$ref": "#/definitions/RolePointer"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
         "IntegrationPointer": {
             "properties": {
                 "id": {
@@ -4911,6 +5129,66 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/IntegrationAgent"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(IntegrationConfig)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/IntegrationConfig"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(IntegrationConfigPermission)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/IntegrationConfigPermission"
                     },
                     "type": "array"
                 },
@@ -6024,6 +6302,30 @@
             "required": [
                 "id",
                 "name"
+            ]
+        },
+        "RoleReference": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ]
+        },
+        "RolePointer": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
             ]
         },
         "RosterMember": {
