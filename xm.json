@@ -279,6 +279,74 @@
                 }
             }
         },
+        "/custom-integrations": {
+            "get": {
+                "tags": [
+                    "Custom Integrations"
+                ],
+                "summary": "Get custom integrations",
+                "description": "Get custom integrations",
+                "operationId": "getCustomIntegrations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(CustomIntegration)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/custom-integrations/{integrationId}": {
+            "get": {
+                "tags": [
+                    "Custom Integrations"
+                ],
+                "summary": "Get custom integration",
+                "description": "Get custom integration",
+                "operationId": "getCustomIntegration",
+                "parameters": [
+                    {
+                        "name": "integrationId",
+                        "in": "path",
+                        "description": "The integration identifier",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/CustomIntegration"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/deep-links": {
             "post": {
                 "description": "Generate a single use, expiring, link with associated action and meta data",
@@ -2968,7 +3036,7 @@
         },
         "CustomerConfig": {
             "type": "object",
-            "description": "A country.",
+            "description": "Customer config",
             "properties": {
                 "key": {
                     "type": "string"
@@ -2980,6 +3048,25 @@
             "required": [
                 "key",
                 "value"
+            ]
+        },
+        "CustomIntegration": {
+            "type": "object",
+            "description": "Custom integration",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "emailInitiation": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "id",
+                "name"
             ]
         },
         "DeepLink": {
@@ -4483,6 +4570,36 @@
                 "links"
             ]
         },
+        "Pagination(CustomIntegration)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/CustomIntegration"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
         "Pagination(Device)": {
             "properties": {
                 "count": {
@@ -4644,6 +4761,36 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/Event"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(FeatureToggle)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/FeatureToggle"
                     },
                     "type": "array"
                 },
