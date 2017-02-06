@@ -1586,7 +1586,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(Group)"
+                            "$ref": "#/definitions/Pagination(OnDuty)"
                         }
                     },
                     "401": {
@@ -4229,6 +4229,30 @@
             },
             "type": "object"
         },
+        "OnDuty": {
+            "properties": {
+                "group": {
+                    "$ref": "#/definitions/GroupReference"
+                },
+                "shift": {
+                    "$ref": "#/definitions/ShiftReference"
+                },
+                "start": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "end": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "members": {
+                    "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
+                }
+            },
+            "required": [
+                "group"
+            ]
+        },
         "Organization": {
             "type": "object",
             "properties": {
@@ -4693,6 +4717,36 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/Notification"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(OnDuty)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/OnDuty"
                     },
                     "type": "array"
                 },
@@ -5974,19 +6028,19 @@
         },
         "ShiftOccurrence": {
             "properties": {
-                "end": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "members": {
-                    "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
-                },
                 "shift": {
                     "$ref": "#/definitions/ShiftReference"
                 },
                 "start": {
                     "format": "date-time",
                     "type": "string"
+                },
+                "end": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "members": {
+                    "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
                 }
             },
             "required": [
