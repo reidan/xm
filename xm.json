@@ -4234,19 +4234,8 @@
                 "group": {
                     "$ref": "#/definitions/GroupReference"
                 },
-                "shift": {
-                    "$ref": "#/definitions/ShiftReference"
-                },
-                "start": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "end": {
-                    "format": "date-time",
-                    "type": "string"
-                },
-                "members": {
-                    "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
+                "shifts": {
+                    "$ref": "#/definitions/Pagination(ShiftOccurrence)"
                 }
             },
             "required": [
