@@ -4376,7 +4376,7 @@
                 "accessibleByAll": {
                     "type": "boolean"
                 },
-                "permissions": {
+                "permitted": {
                     "$ref": "#/definitions/Pagination(Recipient)"
                 }
             },
