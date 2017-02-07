@@ -5062,7 +5062,8 @@
                     "description": "Whether the recipient is active. Inactive recipients do not receive notifications.",
                     "enum": [
                         "ACTIVE",
-                        "INACTIVE"
+                        "INACTIVE",
+                        "INVALID"
                     ],
                     "type": "string"
                 },
