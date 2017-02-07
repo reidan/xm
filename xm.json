@@ -2124,7 +2124,7 @@
         "/people/{personId}/plans": {
             "get": {
                 "summary": "Communication plans this person can access",
-                "description": "Communication plans this person can access",
+                "description": "Communication plans this person can access (DEPRECATED use GET /plans?accessibleBy={personId})",
                 "operationId": "getPersonPlans",
                 "parameters": [
                     {
