@@ -5837,12 +5837,12 @@
                     "description": "The identifier of the resource.",
                     "type": "string"
                 },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
                 "targetName": {
                     "description": "The target name of the resource.",
                     "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -6034,39 +6034,24 @@
             "type": "object"
         },
         "Recipient": {
+            "type": "object",
             "discriminator": "recipientType",
             "properties": {
-                "externalKey": {
-                    "description": "Identifies this resource in an external system. Used when externallyOwned is true.",
-                    "type": "string"
-                },
-                "externallyOwned": {
-                    "description": "True if this resource is managed by an external system. Externally-owned resources cannot be deleted in the xMatters user interface.",
-                    "type": "boolean"
-                },
                 "id": {
                     "description": "An identifier (UUID) that represents this resource",
                     "type": "string"
                 },
-                "targeted": {
-                    "description": "Indicates if this is a targeted recipient.",
+                "targetName": {
+                    "description": "An identifier such as a name that can be used to identify a resource",
                     "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
-                "locked": {
-                    "description": "Lists the fields of externally-owned objects that are locked and cannot be modified in the xMatters user interface",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": "array"
                 },
                 "recipientType": {
                     "enum": [
                         "PERSON",
                         "DEVICE",
-                        "GROUP"
+                        "GROUP",
+                        "DYNAMIC_TEAM",
+                        "SITE"
                     ],
                     "type": "string"
                 },
@@ -6078,14 +6063,32 @@
                     ],
                     "type": "string"
                 },
-                "targetName": {
-                    "description": "An identifier such as a name that can be used to identify a resource",
+                "externalKey": {
+                    "description": "Identifies this resource in an external system. Used when externallyOwned is true.",
                     "type": "string"
+                },
+                "externallyOwned": {
+                    "description": "True if this resource is managed by an external system. Externally-owned resources cannot be deleted in the xMatters user interface.",
+                    "type": "boolean"
+                },
+                "targeted": {
+                    "description": "Indicates if this is a targeted recipient.",
+                    "type": "string"
+                },
+                "locked": {
+                    "description": "Lists the fields of externally-owned objects that are locked and cannot be modified in the xMatters user interface",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 },
                 "responseCount": {
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
                     "type": "integer",
                     "minimum": 1
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -6094,28 +6097,27 @@
                 "recipientType",
                 "externallyOwned",
                 "status"
-            ],
-            "type": "object"
+            ]
         },
         "RecipientInput": {
+            "type": "object",
             "description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
             "discriminator": "recipientType",
             "properties": {
-                "externalKey": {
-                    "type": "string"
-                },
-                "externallyOwned": {
-                    "type": "boolean"
-                },
                 "id": {
                     "description": "The unique identifier",
+                    "type": "string"
+                },
+                "targetName": {
                     "type": "string"
                 },
                 "recipientType": {
                     "enum": [
                         "GROUP",
                         "PERSON",
-                        "DEVICE"
+                        "DEVICE",
+                        "DYNAMIC_TEAM",
+                        "SITE"
                     ],
                     "type": "string"
                 },
@@ -6127,8 +6129,11 @@
                     ],
                     "type": "string"
                 },
-                "targetName": {
+                "externalKey": {
                     "type": "string"
+                },
+                "externallyOwned": {
+                    "type": "boolean"
                 },
                 "responseCount": {
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
@@ -6139,8 +6144,7 @@
             "required": [
                 "recipientType",
                 "targetName"
-            ],
-            "type": "object"
+            ]
         },
         "RecipientPointer": {
             "description": "A reference to a recipient resource.",
@@ -6587,8 +6591,17 @@
             ]
         },
         "Site": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Recipient"
+                }
+            ],
             "description": "Site a group belongs to.",
             "properties": {
+                "name": {
+                    "type": "string"
+                },
                 "address1": {
                     "type": "string"
                 },
@@ -6601,15 +6614,6 @@
                 "country": {
                     "type": "string"
                 },
-                "externalKey": {
-                    "type": "string"
-                },
-                "externallyOwned": {
-                    "type": "boolean"
-                },
-                "id": {
-                    "type": "string"
-                },
                 "language": {
                     "type": "string"
                 },
@@ -6617,15 +6621,9 @@
                     "format": "double",
                     "type": "number"
                 },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
                 "longitude": {
                     "format": "double",
                     "type": "number"
-                },
-                "name": {
-                    "type": "string"
                 },
                 "postalCode": {
                     "type": "string"
@@ -6633,15 +6631,11 @@
                 "state": {
                     "type": "string"
                 },
-                "status": {
-                    "enum": [
-                        "ACTIVE",
-                        "INACTIVE"
-                    ],
-                    "type": "string"
-                },
                 "timezone": {
                     "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
@@ -6674,6 +6668,7 @@
             ]
         },
         "TextPagerDevice": {
+            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
@@ -6696,8 +6691,7 @@
             "required": [
                 "pin",
                 "twoWayDevice"
-            ],
-            "type": "object"
+            ]
         },
         "TextPagerDeviceInput": {
             "allOf": [
