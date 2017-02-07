@@ -5122,7 +5122,9 @@
                     "enum": [
                         "GROUP",
                         "PERSON",
-                        "DEVICE"
+                        "DEVICE",
+                        "SITE",
+                        "ROLE"
                     ],
                     "type": "string"
                 },
@@ -5149,7 +5151,9 @@
                     "enum": [
                         "GROUP",
                         "PERSON",
-                        "DEVICE"
+                        "DEVICE",
+                        "SITE",
+                        "ROLE"
                     ],
                     "type": "string"
                 },
