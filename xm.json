@@ -4376,6 +4376,9 @@
                 "accessibleByAll": {
                     "type": "boolean"
                 },
+                "creator": {
+                    "$ref": "#/definitions/PersonReference"
+                },
                 "permitted": {
                     "$ref": "#/definitions/Pagination(Recipient)"
                 }
