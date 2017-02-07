@@ -6379,6 +6379,25 @@
                 "name"
             ]
         },
+        "ShiftReference": {
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource.",
+                    "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "links"
+            ]
+        },
         "ShiftMember": {
             "properties": {
                 "delay": {
@@ -6488,25 +6507,6 @@
                 "member",
                 "position",
                 "delay"
-            ]
-        },
-        "ShiftReference": {
-            "properties": {
-                "id": {
-                    "description": "The identifier of the resource.",
-                    "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
-                "name": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "name",
-                "links"
             ]
         },
         "Site": {
