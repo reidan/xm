@@ -2121,9 +2121,83 @@
                 ]
             }
         },
+        "/people/{personId}/plans": {
+            "get": {
+                "summary": "Communication plans this person can access",
+                "description": "Communication plans this person can access",
+                "operationId": "getPersonPlans",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Plan)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
+        "/people/{personId}/plans/{planId}": {
+            "get": {
+                "summary": "Get communication plan",
+                "description": "Get communication plan",
+                "operationId": "getPersonPlan",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Plan"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/plans": {
             "get": {
-                "description": "List of communication plans",
+                "summary": "List communication plans",
+                "description": "List communication plans",
                 "operationId": "getPlans",
                 "parameters": [
                     {
@@ -2137,6 +2211,13 @@
                         "in": "query",
                         "name": "customIntegration",
                         "type": "boolean",
+                        "required": false
+                    },
+                    {
+                        "description": "Is accessible by specified user",
+                        "in": "query",
+                        "name": "accessibleBy",
+                        "type": "string",
                         "required": false
                     }
                 ],
@@ -2157,7 +2238,6 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "List of communication plans",
                 "tags": [
                     "Communication Plans"
                 ]
@@ -2165,18 +2245,12 @@
         },
         "/plans/{planId}": {
             "get": {
-                "summary": "List plans",
-                "description": "List plans",
+                "summary": "Get communication plan",
+                "description": "Get communication plan",
                 "operationId": "getPlan",
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-planId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
                     },
                     {
                         "$ref": "#/parameters/query-embed"
