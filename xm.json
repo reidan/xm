@@ -6355,17 +6355,17 @@
         },
         "Shift": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "group": {
                     "$ref": "#/definitions/GroupReference"
                 },
-                "id": {
+                "name": {
                     "type": "string"
                 },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
-                },
-                "name": {
-                    "type": "string"
                 }
             }
         },
@@ -6385,11 +6385,14 @@
                     "description": "The identifier of the resource.",
                     "type": "string"
                 },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                "group": {
+                    "$ref": "#/definitions/GroupReference"
                 },
                 "name": {
                     "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
