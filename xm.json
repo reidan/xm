@@ -1683,14 +1683,14 @@
                 }
             }
         },
-        "/integration-configs/{integrationConfigId}/permissions": {
+        "/integration-configs/{integrationConfigId}/permitted": {
             "get": {
                 "tags": [
                     "Integration Configs"
                 ],
-                "summary": "Get integration configuration permissions",
-                "description": "Get integration configuration permissions",
-                "operationId": "getIntegrationConfigPermissions",
+                "summary": "Get permitted recipients",
+                "description": "Get permitted recipients",
+                "operationId": "getIntegrationConfigPermitted",
                 "parameters": [
                     {
                         "name": "integrationConfigId",
@@ -1713,7 +1713,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(IntegrationConfigPermission)"
+                            "$ref": "#/definitions/Pagination(Recipient)"
                         }
                     },
                     "401": {
@@ -1728,9 +1728,9 @@
                 "tags": [
                     "Integration Configs"
                 ],
-                "summary": "Replace integration configuration permissions",
-                "description": "Replace integration configuration permissions",
-                "operationId": "putIntegrationConfigPermissions",
+                "summary": "Replace permitted recipients",
+                "description": "Replace permitted recipients",
+                "operationId": "putIntegrationConfigPermitted",
                 "parameters": [
                     {
                         "name": "integrationConfigId",
@@ -1745,9 +1745,9 @@
                         "description": "OK",
                         "schema": {
                             "type": "array",
-                            "description": "An array containing integration permissions",
+                            "description": "An array containing permitted recipients",
                             "items": {
-                                "$ref": "#/definitions/IntegrationConfigPermissionInput"
+                                "$ref": "#/definitions/RecipientPointer"
                             }
                         }
                     },
@@ -4377,53 +4377,12 @@
                     "type": "boolean"
                 },
                 "permissions": {
-                    "$ref": "#/definitions/Pagination(IntegrationConfigPermission)"
+                    "$ref": "#/definitions/Pagination(Recipient)"
                 }
             },
             "type": "object",
             "required": [
                 "id"
-            ]
-        },
-        "IntegrationConfigPermission": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "recipient": {
-                    "$ref": "#/definitions/RecipientReference"
-                },
-                "role": {
-                    "$ref": "#/definitions/RoleReference"
-                }
-            },
-            "required": [
-                "id",
-                "type"
-            ]
-        },
-        "IntegrationConfigPermissionInput": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "recipient": {
-                    "$ref": "#/definitions/RecipientPointer"
-                },
-                "role": {
-                    "$ref": "#/definitions/RolePointer"
-                }
-            },
-            "required": [
-                "type"
             ]
         },
         "IntegrationPointer": {
@@ -6325,36 +6284,6 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/IntegrationConfig"
-                    },
-                    "type": "array"
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                },
-                "total": {
-                    "description": "The total number of items in the result set.",
-                    "format": "int32",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ]
-        },
-        "Pagination(IntegrationConfigPermission)": {
-            "properties": {
-                "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "data": {
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/IntegrationConfigPermission"
                     },
                     "type": "array"
                 },
