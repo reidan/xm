@@ -2162,7 +2162,7 @@
         "/people/{personId}/plans/{planId}": {
             "get": {
                 "summary": "Get communication plan",
-                "description": "Get communication plan",
+                "description": "Get communication plan (DEPRECATED use GET /plans/{planId})",
                 "operationId": "getPersonPlan",
                 "parameters": [
                     {
