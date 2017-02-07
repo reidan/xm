@@ -5054,7 +5054,8 @@
                         "DEVICE",
                         "GROUP",
                         "DYNAMIC_TEAM",
-                        "SITE"
+                        "SITE",
+                        "ROLE"
                     ],
                     "type": "string"
                 },
@@ -5076,7 +5077,7 @@
                     "type": "boolean"
                 },
                 "targeted": {
-                    "description": "Indicates if this is a targeted recipient.",
+                    "description": "Indicates if this is a targeted recipient. If omitted assume false",
                     "type": "string"
                 },
                 "locked": {
@@ -5121,7 +5122,8 @@
                         "PERSON",
                         "DEVICE",
                         "DYNAMIC_TEAM",
-                        "SITE"
+                        "SITE",
+                        "ROLE"
                     ],
                     "type": "string"
                 },
@@ -5270,16 +5272,18 @@
             "type": "object"
         },
         "Role": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Recipient"
+                }
+            ],
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique name. Also alias for targetName"
                 }
             },
             "required": [
-                "id",
                 "name"
             ]
         },
@@ -5289,7 +5293,8 @@
                     "type": "string"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique name. Also alias for targetName"
                 }
             },
             "required": [
