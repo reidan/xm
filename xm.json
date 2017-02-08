@@ -59,7 +59,8 @@
         },
         "/calendar": {
             "get": {
-                "description": "Shift occurrence calendar",
+                "summary": "DEPRECATED use GET /on-call",
+                "description": "DEPRECATED use GET /on-call",
                 "operationId": "getCalendar",
                 "parameters": [
                     {
@@ -95,7 +96,6 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Shift occurrence calendar",
                 "tags": [
                     "Calendar"
                 ]
@@ -1839,11 +1839,11 @@
                 }
             }
         },
-        "/on-duty": {
+        "/on-call": {
             "get": {
-                "summary": "On duty report",
-                "description": "On duty report",
-                "operationId": "getOnDuty",
+                "summary": "On call report",
+                "description": "On call report",
+                "operationId": "getOnCall",
                 "parameters": [
                     {
                         "$ref": "#/parameters/query-at"
@@ -1872,7 +1872,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(OnDuty)"
+                            "$ref": "#/definitions/Pagination(OnCall)"
                         }
                     },
                     "401": {
@@ -1886,7 +1886,7 @@
                     }
                 },
                 "tags": [
-                    "On Duty"
+                    "On Call"
                 ]
             }
         },
@@ -4883,7 +4883,7 @@
             },
             "type": "object"
         },
-        "OnDuty": {
+        "OnCall": {
             "properties": {
                 "group": {
                     "$ref": "#/definitions/GroupReference"
@@ -6784,7 +6784,7 @@
                 "links"
             ]
         },
-        "Pagination(OnDuty)": {
+        "Pagination(OnCall)": {
             "properties": {
                 "count": {
                     "description": "The number of items in this page of results (the number of items in the data array).",
@@ -6794,7 +6794,7 @@
                 "data": {
                     "description": "An array that contains this page of resources.",
                     "items": {
-                        "$ref": "#/definitions/OnDuty"
+                        "$ref": "#/definitions/OnCall"
                     },
                     "type": "array"
                 },
