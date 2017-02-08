@@ -16,6 +16,47 @@
         "version": "1"
     },
     "paths": {
+        "/oauth2/token": {
+            "post": {
+                "tags": [
+                    "Access Tokens"
+                ],
+                "summary": "Generate a token",
+                "description": "Generate a token",
+                "operationId": "postAccessToken",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Authentication credentials",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Credentials"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AccessToken"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/calendar": {
             "get": {
                 "description": "Shift occurrence calendar",
@@ -2121,6 +2162,172 @@
                 ]
             }
         },
+        "/people/{personId}/refresh-tokens": {
+            "get": {
+                "tags": [
+                    "Refresh Tokens"
+                ],
+                "summary": "Returns refresh tokens for a user.",
+                "description": "Returns refresh tokens for a user.",
+                "operationId": "getPersonRefreshTokens",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(RefreshToken)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/refresh-tokens/{tokenId}": {
+            "delete": {
+                "tags": [
+                    "Refresh Tokens"
+                ],
+                "summary": "Invalidates a person's refresh token",
+                "description": "Invalidates a person's refresh token",
+                "operationId": "deletePersonRefreshToken",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-tokenId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/RefreshToken"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/roles": {
+            "get": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Retrieves a list of a user's roles.",
+                "description": "Retrieves a list of a user's roles.",
+                "operationId": "getPersonRoles",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Role)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/functions": {
+            "get": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Retrieves a list of a user's functions.",
+                "description": "Retrieves a list of a user's functions.",
+                "operationId": "getPersonFunctions",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Function)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/permissions": {
+            "get": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Retrieves a list of a user's permissions.",
+                "description": "Retrieves a list of a user's permissions.",
+                "operationId": "getPersonPermissions",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Permission)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/people/{personId}/plans": {
             "get": {
                 "summary": "Communication plans this person can access",
@@ -2194,6 +2401,7 @@
                 ]
             }
         },
+
         "/plans": {
             "get": {
                 "summary": "List communication plans",
@@ -2679,6 +2887,31 @@
         }
     },
     "definitions": {
+        "AccessToken": {
+            "description": "Access token response",
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "expires_in": {
+                    "type": "integer",
+                    "description": "Seconds till access_token expiry"
+                },
+                "token_type": {
+                    "type": "string",
+                    "enum": ["Bearer"]
+                }
+            },
+            "required": [
+                "access_token",
+                "expires_in",
+                "token_type"
+            ]
+        },
         "AndroidPushDevice": {
             "allOf": [
                 {
@@ -2980,6 +3213,35 @@
             "required": [
                 "url",
                 "type"
+            ]
+        },
+        "Credentials": {
+            "description": "Authentication credentials",
+            "type": "object",
+            "properties": {
+                "grant_type": {
+                    "type": "string",
+                    "enum": ["password", "refresh_token"]
+                },
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                },
+                "client_id": {
+                    "type": "string"
+                },
+                "client_secret": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "grant_type",
+                "client_id"
             ]
         },
         "Conference": {
@@ -4116,6 +4378,21 @@
                 "id"
             ]
         },
+        "Function": {
+            "description": "Function",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "functions": {
+                    "$ref": "#/definitions/Pagination(Permission)"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "GenericDevice": {
             "allOf": [
                 {
@@ -4816,6 +5093,18 @@
                 "links"
             ]
         },
+        "Permission": {
+            "description": "Permission",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "Plan": {
             "description": "A communication plan.",
             "properties": {
@@ -5213,6 +5502,22 @@
                 "self"
             ]
         },
+        "RefreshToken": {
+            "description": "Refresh token response",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "refresh_token": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "refresh_token"
+            ]
+        },
         "Response": {
             "description": "A response.",
             "properties": {
@@ -5268,6 +5573,7 @@
             "type": "object"
         },
         "Role": {
+            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
@@ -5277,6 +5583,9 @@
                 "name": {
                     "type": "string",
                     "description": "Unique name. Also alias for targetName"
+                },
+                "functions": {
+                    "$ref": "#/definitions/Pagination(Function)"
                 }
             },
             "required": [
@@ -6220,6 +6529,36 @@
                 "links"
             ]
         },
+        "Pagination(Function)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Function"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination(Group)": {
             "properties": {
                 "count": {
@@ -6400,6 +6739,36 @@
                 "links"
             ]
         },
+        "Pagination(Permission)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/Permission"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination(Person)": {
             "properties": {
                 "count": {
@@ -6519,6 +6888,36 @@
                 "total",
                 "links"
             ]
+        },
+        "Pagination(RefreshToken)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)."
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/RefreshToken"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set."
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
         },
         "Pagination(Response)": {
             "properties": {
@@ -6957,6 +7356,13 @@
             "description": "The site uuid or name",
             "in": "path",
             "name": "siteId",
+            "required": true,
+            "type": "string"
+        },
+        "path-tokenId": {
+            "name": "tokenId",
+            "in": "path",
+            "description": "Token name",
             "required": true,
             "type": "string"
         },
