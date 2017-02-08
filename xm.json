@@ -5802,9 +5802,9 @@
                 "escalationType": {
                     "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.",
                     "enum": [
-                        "None",
-                        "Peer",
-                        "Management"
+                        "NONE",
+                        "PEER",
+                        "MANAGEMENT"
                     ],
                     "type": "string"
                 },
@@ -5896,6 +5896,9 @@
                 },
                 "position": {
                     "type": "integer"
+                },
+                "replacements": {
+                    "$ref": "#/definitions/Pagination(TemporaryReplacement)"
                 }
             },
             "required": [
@@ -5979,6 +5982,34 @@
             "required": [
                 "id",
                 "links"
+            ]
+        },
+        "TemporaryReplacement": {
+            "type": "object",
+            "description": "object",
+            "properties": {
+                "shift": {
+                    "$ref": "#/definitions/ShiftReference"
+                },
+                "start": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "end": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "member": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "replacement": {
+                    "$ref": "#/definitions/PersonReference"
+                }
+            },
+            "required": [
+                "start",
+                "end",
+                "replacement"
             ]
         },
         "TextPagerDevice": {
@@ -7200,6 +7231,36 @@
                     "description": "An array that contains this page of resources.",
                     "items": {
                         "$ref": "#/definitions/ShiftOccurrenceMember"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set.",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(TemporaryReplacement)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources.",
+                    "items": {
+                        "$ref": "#/definitions/TemporaryReplacement"
                     },
                     "type": "array"
                 },
