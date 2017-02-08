@@ -7444,7 +7444,7 @@
             "type": "string"
         },
         "path-occurrenceId": {
-            "description": "The uuid or sequence number of the shift occurrence",
+            "description": "The uuid, or start time, or sequence number of the shift occurrence",
             "in": "path",
             "name": "occurrenceId",
             "required": true,
