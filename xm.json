@@ -4229,9 +4229,6 @@
             "description": "Feature toggle",
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string"
-                },
                 "region": {
                     "type": "string",
                     "enum": ["north_america", "europe", "asia_pacific"]
@@ -4240,7 +4237,7 @@
                     "type": "string",
                     "enum": ["prd", "stg", "tst", "dev"]
                 },
-                "key": {
+                "name": {
                     "type": "string"
                 },
                 "value": {
@@ -4248,8 +4245,7 @@
                 }
             },
             "required": [
-                "id",
-                "key",
+                "name",
                 "value"
             ]
         },
