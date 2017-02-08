@@ -3116,16 +3116,6 @@
                 "message"
             ]
         },
-        "Browser": {
-            "description": "The Web UI Application",
-            "discriminator": "deviceType",
-            "properties": {
-                "notifications": {
-                    "$ref": "#/definitions/Pagination(Notification)"
-                }
-            },
-            "type": "object"
-        },
         "BlackberryPushDevice": {
             "allOf": [
                 {
@@ -4720,6 +4710,15 @@
             ],
             "type": "object"
         },
+        "Mobile": {
+            "description": "The Web UI Application",
+            "properties": {
+                "notifications": {
+                    "$ref": "#/definitions/Pagination(Notification)"
+                }
+            },
+            "type": "object"
+        },
         "NotFoundResponse": {
             "properties": {
                 "code": {
@@ -4979,7 +4978,22 @@
                     "$ref": "#/definitions/SiteReference"
                 },
                 "browser": {
-                    "$ref": "#/definitions/Browser"
+                    "type": "object",
+                    "description": "Notifications and responses from the web application",
+                    "properties": {
+                        "notifications": {
+                            "$ref": "#/definitions/Pagination(Notification)"
+                        }
+                    }
+                },
+                "mobile": {
+                    "type": "object",
+                    "description": "Notifications and responses from the mobile application",
+                    "properties": {
+                        "notifications": {
+                            "$ref": "#/definitions/Pagination(Notification)"
+                        }
+                    }
                 },
                 "devices": {
                     "$ref": "#/definitions/Pagination(Device)"
