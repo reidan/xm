@@ -101,44 +101,6 @@
                 ]
             }
         },
-        "/calendar/{shiftOccurrenceId}/members": {
-            "get": {
-                "summary": "Shift occurrence members",
-                "description": "Shift occurrence members",
-                "operationId": "getCalendarMembers",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-shiftOccurrenceId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "tags": [
-                    "Calendar"
-                ]
-            }
-        },
         "/conferences/{conferenceId}/participants": {
             "post": {
                 "summary": "Add a conference participant.",
@@ -1494,6 +1456,82 @@
                 "summary": "Add or update a shift membership.",
                 "tags": [
                     "Shift Members"
+                ]
+            }
+        },
+        "/groups/{groupId}/shifts/{shiftId}/occurrences/{occurrenceId}": {
+            "get": {
+                "summary": "List shift occurrences",
+                "description": "List shift occurrences",
+                "operationId": "getShiftOccurrences",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-groupId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-shiftId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-occurrenceId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(ShiftOccurrence)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Shift Occurrences"
+                ]
+            }
+        },
+        "/groups/{groupId}/shifts/{shiftId}/occurrences/{occurrenceId}/members": {
+            "get": {
+                "summary": "List shift occurrence members",
+                "description": "List shift occurrence members",
+                "operationId": "getShiftOccurrenceMembers",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-groupId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-shiftId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-occurrenceId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Shift Occurrences"
                 ]
             }
         },
@@ -7405,10 +7443,10 @@
             "required": true,
             "type": "string"
         },
-        "path-shiftOccurrenceId": {
-            "description": "The uuid of the shift occurrence",
+        "path-occurrenceId": {
+            "description": "The uuid or sequence number of the shift occurrence",
             "in": "path",
-            "name": "shiftOccurrenceId",
+            "name": "occurrenceId",
             "required": true,
             "type": "string"
         },
