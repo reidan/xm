@@ -5988,9 +5988,6 @@
             "type": "object",
             "description": "object",
             "properties": {
-                "shift": {
-                    "$ref": "#/definitions/ShiftReference"
-                },
                 "start": {
                     "format": "date-time",
                     "type": "string"
