@@ -4229,14 +4229,6 @@
             "description": "Feature toggle",
             "type": "object",
             "properties": {
-                "region": {
-                    "type": "string",
-                    "enum": ["north_america", "europe", "asia_pacific"]
-                },
-                "env": {
-                    "type": "string",
-                    "enum": ["prd", "stg", "tst", "dev"]
-                },
                 "name": {
                     "type": "string"
                 },
