@@ -103,8 +103,8 @@
         },
         "/conferences/{conferenceId}/participants": {
             "post": {
-                "summary": "Add a conference participant.",
-                "description": "Add a conference participant.",
+                "summary": "Add a conference participant",
+                "description": "Add a conference participant",
                 "operationId": "postConferenceParticipant",
                 "parameters": [
                     {
@@ -195,7 +195,7 @@
                     "Customer Config"
                 ],
                 "summary": "Get effective customer configuration values",
-                "description": "Get effective customer configuration values. Inheritance and override logic applied. Pagination of all effective customer config values in the provided region and environment.",
+                "description": "Get effective customer configuration values. Inheritance and override logic applied. Pagination of all effective customer config values in the provided region and environment",
                 "operationId": "getCustomerConfig",
                 "parameters": [
                     {
@@ -252,7 +252,7 @@
                     "Customer Config"
                 ],
                 "summary": "Get effective customer configuration value",
-                "description": "Get effective customer configuration value. Inheritance and override logic applied.",
+                "description": "Get effective customer configuration value. Inheritance and override logic applied",
                 "operationId": "getEffectiveCustomerConfig",
                 "parameters": [
                     {
@@ -323,7 +323,7 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Create or update a deep link.",
+                "summary": "Create or update a deep link",
                 "tags": [
                     "Deep Links"
                 ]
@@ -331,7 +331,7 @@
         },
         "/deep-links/{deepLinkToken}": {
             "get": {
-                "description": "Returns information about a deep link.",
+                "description": "Returns information about a deep link",
                 "operationId": "getDeepLink",
                 "parameters": [
                     {
@@ -355,7 +355,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about a deep link.",
+                "summary": "Returns information about a deep link",
                 "tags": [
                     "Deep Links"
                 ]
@@ -363,7 +363,7 @@
         },
         "/device-names": {
             "get": {
-                "description": "Returns information about device names.",
+                "description": "Returns information about device names",
                 "operationId": "getDeviceNames",
                 "parameters": [
                     {
@@ -396,7 +396,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about device names.",
+                "summary": "Returns information about device names",
                 "tags": [
                     "Device Names"
                 ]
@@ -404,7 +404,7 @@
         },
         "/device-types": {
             "get": {
-                "description": "Returns device types.",
+                "description": "Returns device types",
                 "operationId": "getDeviceTypes",
                 "parameters": [
                     {
@@ -431,7 +431,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns device types.",
+                "summary": "Returns device types",
                 "tags": [
                     "Device Types"
                 ]
@@ -439,7 +439,7 @@
         },
         "/devices": {
             "get": {
-                "description": "Returns information about devices.",
+                "description": "Returns information about devices",
                 "operationId": "getDevices",
                 "parameters": [
                     {
@@ -463,13 +463,13 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about devices.",
+                "summary": "Returns information about devices",
                 "tags": [
                     "Devices"
                 ]
             },
             "post": {
-                "description": "Add a device.",
+                "description": "Add a device",
                 "operationId": "postDevice",
                 "parameters": [
                     {
@@ -508,7 +508,7 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Add a device.",
+                "summary": "Add a device",
                 "tags": [
                     "Devices"
                 ]
@@ -516,7 +516,7 @@
         },
         "/devices/{deviceId}": {
             "delete": {
-                "description": "Deletes a device and removes it from the owner's device list.",
+                "description": "Deletes a device and removes it from the owner's device list",
                 "operationId": "deleteDevice",
                 "parameters": [
                     {
@@ -543,13 +543,13 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Deletes a device.",
+                "summary": "Deletes a device",
                 "tags": [
                     "Devices"
                 ]
             },
             "get": {
-                "description": "Returns information about a device. Use embed=timeframes to include device timeframes in the response.",
+                "description": "Returns information about a device. Use embed=timeframes to include device timeframes in the response",
                 "operationId": "getDevice",
                 "parameters": [
                     {
@@ -576,7 +576,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about a device.",
+                "summary": "Returns information about a device",
                 "tags": [
                     "Devices"
                 ]
@@ -584,7 +584,7 @@
         },
         "/events": {
             "get": {
-                "description": "Returns a list of event resources in the xMatters system.",
+                "description": "Returns a list of event resources in the xMatters system",
                 "operationId": "getEvents",
                 "parameters": [
                     {
@@ -678,7 +678,7 @@
         },
         "/events/{eventId}": {
             "get": {
-                "description": "Returns information about an event. Use embed=conference,recipients to include conference and resolved recipients in the response.",
+                "description": "Returns information about an event. Use embed=conference,recipients to include conference and resolved recipients in the response",
                 "operationId": "getEvent",
                 "parameters": [
                     {
@@ -705,7 +705,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about an event.",
+                "summary": "Returns information about an event",
                 "tags": [
                     "Events"
                 ]
@@ -713,7 +713,7 @@
         },
         "/events/{eventId}/audits": {
             "get": {
-                "description": "Returns an audit of an event.",
+                "description": "Returns an audit of an event",
                 "operationId": "getEventAudits",
                 "parameters": [
                     {
@@ -749,7 +749,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns an audit of an event.",
+                "summary": "Returns an audit of an event",
                 "tags": [
                     "Events"
                 ]
@@ -757,14 +757,14 @@
         },
         "/events/{eventId}/recipients": {
             "get": {
-                "description": "Returns information about event recipients.",
+                "description": "Returns information about event recipients",
                 "operationId": "getEventRecipients",
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-eventId"
                     },
                     {
-                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
+                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms",
                         "in": "query",
                         "name": "search",
                         "required": false,
@@ -842,7 +842,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about event recipients.",
+                "summary": "Returns information about event recipients",
                 "tags": [
                     "Events"
                 ]
@@ -903,21 +903,21 @@
                 "operationId": "getGroups",
                 "parameters": [
                     {
-                        "description": "Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ALL if the search terms of the operand is set to AND, or ANY of the search terms if the operand is set to OR.",
+                        "description": "Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ALL if the search terms of the operand is set to AND, or ANY of the search terms if the operand is set to OR",
                         "in": "query",
                         "name": "search",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "description": "Group supervisors include this person. UUID or targetName.",
+                        "description": "Group supervisors include this person. UUID or targetName",
                         "in": "query",
                         "name": "supervisor",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "description": "Operand to use in search.",
+                        "description": "Operand to use in search",
                         "in": "query",
                         "name": "operand",
                         "required": false,
@@ -1008,7 +1008,7 @@
         },
         "/groups/{groupId}": {
             "delete": {
-                "description": "Deletes a Group.",
+                "description": "Deletes a Group",
                 "operationId": "deleteGroup",
                 "parameters": [
                     {
@@ -1032,13 +1032,13 @@
                         "$ref": "#/responses/403"
                     }
                 },
-                "summary": "Deletes a Group.",
+                "summary": "Deletes a Group",
                 "tags": [
                     "Groups"
                 ]
             },
             "get": {
-                "description": "Returns information about a Group.",
+                "description": "Returns information about a Group",
                 "operationId": "getGroup",
                 "parameters": [
                     {
@@ -1062,7 +1062,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about a Group.",
+                "summary": "Returns information about a Group",
                 "tags": [
                     "Groups"
                 ]
@@ -1102,7 +1102,7 @@
         },
         "/groups/{groupId}/members": {
             "get": {
-                "description": "List Group members.",
+                "description": "List Group members",
                 "operationId": "getGroupMembers",
                 "parameters": [
                     {
@@ -1126,13 +1126,13 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "List Group members.",
+                "summary": "List Group members",
                 "tags": [
                     "Group Members"
                 ]
             },
             "post": {
-                "description": "Add Group members.",
+                "description": "Add Group members",
                 "operationId": "postGroupMember",
                 "parameters": [
                     {
@@ -1171,7 +1171,7 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Add Group members.",
+                "summary": "Add Group members",
                 "tags": [
                     "Group Members"
                 ]
@@ -1179,7 +1179,7 @@
         },
         "/groups/{groupId}/members/{memberId}": {
             "delete": {
-                "description": "Removes a Group Member.",
+                "description": "Removes a Group Member",
                 "operationId": "deleteGroupMember",
                 "parameters": [
                     {
@@ -1209,7 +1209,7 @@
                         "$ref": "#/responses/403"
                     }
                 },
-                "summary": "Removes a Group Member.",
+                "summary": "Removes a Group Member",
                 "tags": [
                     "Group Members"
                 ]
@@ -1217,7 +1217,7 @@
         },
         "/groups/{groupId}/roster": {
             "get": {
-                "description": "List group roster. This is the same as group members with the notable exception that devices that are direct members of groups are not returned as such. They are instead returned in the devices of their owner (Person).",
+                "description": "List group roster. This is the same as group members with the notable exception that devices that are direct members of groups are not returned as such. They are instead returned in the devices of their owner (Person)",
                 "operationId": "getGroupRoster",
                 "parameters": [
                     {
@@ -1241,7 +1241,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "List group roster.",
+                "summary": "List group roster",
                 "tags": [
                     "Group Members"
                 ]
@@ -1343,7 +1343,7 @@
         },
         "/groups/{groupId}/shifts/{shiftId}": {
             "get": {
-                "description": "Returns information about a Shift.",
+                "description": "Returns information about a Shift",
                 "operationId": "getShift",
                 "parameters": [
                     {
@@ -1370,7 +1370,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about a Shift.",
+                "summary": "Returns information about a Shift",
                 "tags": [
                     "Shifts"
                 ]
@@ -1378,7 +1378,7 @@
         },
         "/groups/{groupId}/shifts/{shiftId}/members": {
             "get": {
-                "description": "List Shift members.",
+                "description": "List Shift members",
                 "operationId": "getShiftMembers",
                 "parameters": [
                     {
@@ -1405,13 +1405,13 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "List Shift members.",
+                "summary": "List Shift members",
                 "tags": [
                     "Shift Members"
                 ]
             },
             "post": {
-                "description": "Add or update a shift membership.",
+                "description": "Add or update a shift membership",
                 "operationId": "postShiftMember",
                 "parameters": [
                     {
@@ -1453,7 +1453,7 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Add or update a shift membership.",
+                "summary": "Add or update a shift membership",
                 "tags": [
                     "Shift Members"
                 ]
@@ -1537,8 +1537,8 @@
         },
         "/integration-agents": {
             "get": {
-                "summary": "Returns information about integration agents.",
-                "description": "Returns information about integration agents.",
+                "summary": "Returns information about integration agents",
+                "description": "Returns information about integration agents",
                 "operationId": "getIntegrationAgents",
                 "parameters": [
                     {
@@ -1581,12 +1581,12 @@
                 ]
             },
             "post": {
-                "summary": "Update an integration agent.",
-                "description": "Update an integration agent.",
+                "summary": "Update an integration agent",
+                "description": "Update an integration agent",
                 "operationId": "postIntegrationAgent",
                 "parameters": [
                     {
-                        "description": "Integration agent update data.",
+                        "description": "Integration agent update data",
                         "in": "body",
                         "name": "body",
                         "required": true,
@@ -1658,8 +1658,8 @@
                 ]
             },
             "get": {
-                "summary": "Returns information about an integration agent.",
-                "description": "Returns information about an integration agent.",
+                "summary": "Returns information about an integration agent",
+                "description": "Returns information about an integration agent",
                 "operationId": "getIntegrationAgent",
                 "parameters": [
                     {
@@ -1892,8 +1892,8 @@
         },
         "/organization": {
             "get": {
-                "summary": "Returns information about the organization.",
-                "description": "Returns information about the organization.",
+                "summary": "Returns information about the organization",
+                "description": "Returns information about the organization",
                 "operationId": "getOrganization",
                 "parameters": [
 
@@ -1919,8 +1919,8 @@
         },
         "/organization/config": {
             "get": {
-                "summary": "Organization configuration.",
-                "description": "Organization configuration.",
+                "summary": "Organization configuration",
+                "description": "Organization configuration",
                 "operationId": "getOrganizationConfig",
                 "parameters": [
 
@@ -1946,11 +1946,11 @@
         },
         "/people": {
             "get": {
-                "description": "Returns information about users.",
+                "description": "Returns information about users",
                 "operationId": "getPeople",
                 "parameters": [
                     {
-                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
+                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms",
                         "in": "query",
                         "name": "search",
                         "required": false,
@@ -1998,17 +1998,17 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about users.",
+                "summary": "Returns information about users",
                 "tags": [
                     "People"
                 ]
             },
             "post": {
-                "description": "Creates a new user.",
+                "description": "Creates a new user",
                 "operationId": "postPerson",
                 "parameters": [
                     {
-                        "description": "An object that describes the new user.",
+                        "description": "An object that describes the new user",
                         "in": "body",
                         "name": "body",
                         "required": true,
@@ -2043,7 +2043,7 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Creates a new user.",
+                "summary": "Creates a new user",
                 "tags": [
                     "People"
                 ]
@@ -2087,7 +2087,7 @@
                 ]
             },
             "get": {
-                "description": "Returns information about a user.",
+                "description": "Returns information about a user",
                 "operationId": "getPerson",
                 "parameters": [
                     {
@@ -2114,7 +2114,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about a user.",
+                "summary": "Returns information about a user",
                 "tags": [
                     "People"
                 ]
@@ -2122,7 +2122,7 @@
         },
         "/people/{personId}/devices": {
             "get": {
-                "description": "Retrieves a list of a user's devices. Use embed=timeframes to include device timeframes in the response.",
+                "description": "Retrieves a list of a user's devices. Use embed=timeframes to include device timeframes in the response",
                 "operationId": "getPersonDevices",
                 "parameters": [
                     {
@@ -2152,13 +2152,13 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Retrieves a list of a user's devices.",
+                "summary": "Retrieves a list of a user's devices",
                 "tags": [
                     "Devices"
                 ]
             },
             "put": {
-                "description": "Set devices. Returns the pagination of the person's devices.",
+                "description": "Set devices. Returns the pagination of the person's devices",
                 "operationId": "putPersonDevices",
                 "parameters": [
                     {
@@ -2201,7 +2201,7 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Set devices.",
+                "summary": "Set devices",
                 "tags": [
                     "Devices"
                 ]
@@ -2212,8 +2212,8 @@
                 "tags": [
                     "Authentication"
                 ],
-                "summary": "Returns refresh tokens for a user.",
-                "description": "Returns refresh tokens for a user.",
+                "summary": "Returns refresh tokens for a user",
+                "description": "Returns refresh tokens for a user",
                 "operationId": "getPersonRefreshTokens",
                 "parameters": [
                     {
@@ -2282,8 +2282,8 @@
                 "tags": [
                     "Authorization"
                 ],
-                "summary": "Retrieves a list of a user's roles.",
-                "description": "Retrieves a list of a user's roles.",
+                "summary": "Retrieves a list of a user's roles",
+                "description": "Retrieves a list of a user's roles",
                 "operationId": "getPersonRoles",
                 "parameters": [
                     {
@@ -2314,8 +2314,8 @@
                 "tags": [
                     "Authorization"
                 ],
-                "summary": "Retrieves a list of a user's functions.",
-                "description": "Retrieves a list of a user's functions.",
+                "summary": "Retrieves a list of a user's functions",
+                "description": "Retrieves a list of a user's functions",
                 "operationId": "getPersonFunctions",
                 "parameters": [
                     {
@@ -2346,8 +2346,8 @@
                 "tags": [
                     "Authorization"
                 ],
-                "summary": "Retrieves a list of a user's permissions.",
-                "description": "Retrieves a list of a user's permissions.",
+                "summary": "Retrieves a list of a user's permissions",
+                "description": "Retrieves a list of a user's permissions",
                 "operationId": "getPersonPermissions",
                 "parameters": [
                     {
@@ -2767,11 +2767,11 @@
         },
         "/recipients": {
             "get": {
-                "description": "Returns information about potential recipients.",
+                "description": "Returns information about potential recipients",
                 "operationId": "getRecipients",
                 "parameters": [
                     {
-                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms.",
+                        "description": "Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms",
                         "in": "query",
                         "name": "search",
                         "required": false,
@@ -2829,7 +2829,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about event recipients.",
+                "summary": "Returns information about event recipients",
                 "tags": [
                     "Recipients"
                 ]
@@ -2837,7 +2837,7 @@
         },
         "/service-providers": {
             "get": {
-                "description": "Returns information about configured service providers.",
+                "description": "Returns information about configured service providers",
                 "operationId": "getServiceProviders",
                 "parameters": [
                     {
@@ -2867,7 +2867,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about configured service providers.",
+                "summary": "Returns information about configured service providers",
                 "tags": [
                     "Service Providers"
                 ]
@@ -2875,7 +2875,7 @@
         },
         "/sites/{siteId}": {
             "get": {
-                "description": "Returns information about a site.",
+                "description": "Returns information about a site",
                 "operationId": "getSite",
                 "parameters": [
                     {
@@ -2899,7 +2899,7 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about a site.",
+                "summary": "Returns information about a site",
                 "tags": [
                     "Sites"
                 ]
@@ -3111,7 +3111,7 @@
                     "$ref": "#/definitions/EventReference"
                 },
                 "id": {
-                    "description": "A unique identifier for this audit record. Derived from the insert order.",
+                    "description": "A unique identifier for this audit record. Derived from the insert order",
                     "type": "string"
                 },
                 "notification": {
@@ -3131,23 +3131,23 @@
         "BadRequestResponse": {
             "properties": {
                 "code": {
-                    "description": "An application-specific error code.",
+                    "description": "An application-specific error code",
                     "format": "int32",
                     "type": "integer"
                 },
                 "message": {
-                    "description": "A detailed description of the response or error.",
+                    "description": "A detailed description of the response or error",
                     "type": "string"
                 },
                 "reason": {
-                    "description": "A description of the response code.",
+                    "description": "A description of the response code",
                     "enum": [
                         "Bad Request"
                     ],
                     "type": "string"
                 },
                 "status": {
-                    "description": "The HTTP status code.",
+                    "description": "The HTTP status code",
                     "enum": [
                         400
                     ],
@@ -3449,23 +3449,23 @@
         "ConflictResponse": {
             "properties": {
                 "code": {
-                    "description": "An application-specific error code.",
+                    "description": "An application-specific error code",
                     "format": "int32",
                     "type": "integer"
                 },
                 "message": {
-                    "description": "A detailed description of the response or error.",
+                    "description": "A detailed description of the response or error",
                     "type": "string"
                 },
                 "reason": {
-                    "description": "A description of the response status.",
+                    "description": "A description of the response status",
                     "enum": [
                         "Conflict"
                     ],
                     "type": "string"
                 },
                 "status": {
-                    "description": "The HTTP status code.",
+                    "description": "The HTTP status code",
                     "enum": [
                         409
                     ],
@@ -3480,7 +3480,7 @@
             ]
         },
         "Country": {
-            "description": "A country.",
+            "description": "A country",
             "properties": {
                 "code2": {
                     "type": "string"
@@ -3597,27 +3597,27 @@
                     "$ref": "#/definitions/Recipient"
                 }
             ],
-            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
+            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts",
             "discriminator": "deviceType",
             "properties": {
                 "defaultDevice": {
-                    "description": "True if this device can receive notifications when the user has no active devices.",
+                    "description": "True if this device can receive notifications when the user has no active devices",
                     "type": "boolean"
                 },
                 "delay": {
-                    "description": "The number of minutes to wait for a response before contacting the next device.",
+                    "description": "The number of minutes to wait for a response before contacting the next device",
                     "format": "int32",
                     "type": "integer"
                 },
                 "description": {
-                    "description": "A description of the device.",
+                    "description": "A description of the device",
                     "type": "string"
                 },
                 "deviceType": {
                     "$ref": "#/definitions/DeviceType"
                 },
                 "name": {
-                    "description": "The name of the device. Example: Work Email, Home Phone.",
+                    "description": "The name of the device. Example: Work Email, Home Phone",
                     "type": "string"
                 },
                 "notifications": {
@@ -3627,7 +3627,7 @@
                     "$ref": "#/definitions/PersonReference"
                 },
                 "priorityThreshold": {
-                    "description": "The minimum priority of an event for it to be delivered to this device.",
+                    "description": "The minimum priority of an event for it to be delivered to this device",
                     "enum": [
                         "LOW",
                         "HIGH",
@@ -3645,12 +3645,12 @@
                     "type": "string"
                 },
                 "sequence": {
-                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted.",
+                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted",
                     "format": "int32",
                     "type": "integer"
                 },
                 "testStatus": {
-                    "description": "Whether the device has been tested.",
+                    "description": "Whether the device has been tested",
                     "enum": [
                         "TESTED",
                         "UNTESTED",
@@ -3675,15 +3675,15 @@
                     "$ref": "#/definitions/RecipientInput"
                 }
             ],
-            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts.",
+            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts",
             "discriminator": "deviceType",
             "properties": {
                 "defaultDevice": {
-                    "description": "True if this device can receive notifications when the user has no active devices. a.k.a. Fail-safe device.",
+                    "description": "True if this device can receive notifications when the user has no active devices. a.k.a. Fail-safe device",
                     "type": "boolean"
                 },
                 "delay": {
-                    "description": "The number of minutes to wait for a response before contacting the next device.",
+                    "description": "The number of minutes to wait for a response before contacting the next device",
                     "format": "int32",
                     "type": "integer"
                 },
@@ -3691,14 +3691,14 @@
                     "$ref": "#/definitions/DeviceType"
                 },
                 "name": {
-                    "description": "The name of the device. Example: Work Email, Home Phone.",
+                    "description": "The name of the device. Example: Work Email, Home Phone",
                     "type": "string"
                 },
                 "owner": {
                     "$ref": "#/definitions/PersonPointer"
                 },
                 "priorityThreshold": {
-                    "description": "The minimum priority of an event for it to be delivered to this device.",
+                    "description": "The minimum priority of an event for it to be delivered to this device",
                     "enum": [
                         "LOW",
                         "HIGH",
@@ -3716,12 +3716,12 @@
                     "type": "string"
                 },
                 "sequence": {
-                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted.",
+                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted",
                     "format": "int32",
                     "type": "integer"
                 },
                 "testStatus": {
-                    "description": "Whether the device has been tested.",
+                    "description": "Whether the device has been tested",
                     "enum": [
                         "TESTED",
                         "UNTESTED",
@@ -3731,7 +3731,7 @@
                     "type": "string"
                 },
                 "timeframes": {
-                    "description": "Timeframes when this device is active.",
+                    "description": "Timeframes when this device is active",
                     "items": {
                         "$ref": "#/definitions/DeviceTimeframeInput"
                     },
@@ -3746,14 +3746,14 @@
             "type": "object"
         },
         "DevicePointer": {
-            "description": "A pointer to a device.",
+            "description": "A pointer to a device",
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 },
                 "targetName": {
-                    "description": "The target name of the resource.",
+                    "description": "The target name of the resource",
                     "type": "string"
                 }
             }
@@ -3786,14 +3786,14 @@
                     "$ref": "#/definitions/DeviceType"
                 },
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 },
                 "targetName": {
-                    "description": "The target name of the resource.",
+                    "description": "The target name of the resource",
                     "type": "string"
                 }
             },
@@ -3808,7 +3808,7 @@
             "description": "The timeframe in which a device is available to receive notifications",
             "properties": {
                 "days": {
-                    "description": "List of the days of the week this timeframe is active.",
+                    "description": "List of the days of the week this timeframe is active",
                     "items": {
                         "enum": [
                             "SU",
@@ -3824,16 +3824,16 @@
                     "type": "array"
                 },
                 "durationInMinutes": {
-                    "description": "The length of the timeframe in minutes.",
+                    "description": "The length of the timeframe in minutes",
                     "format": "int32",
                     "type": "integer"
                 },
                 "excludeHolidays": {
-                    "description": "True if the timeframe is not active on holidays.",
+                    "description": "True if the timeframe is not active on holidays",
                     "type": "boolean"
                 },
                 "name": {
-                    "description": "Name of the Timeframe. Example: \"After hours\".",
+                    "description": "Name of the Timeframe. Example: \"After hours\"",
                     "type": "string"
                 },
                 "startTime": {
@@ -3841,7 +3841,7 @@
                     "type": "string"
                 },
                 "timezone": {
-                    "description": "The time zone of the device owner. Example:  US/Pacific.",
+                    "description": "The time zone of the device owner. Example:  US/Pacific",
                     "type": "string"
                 }
             },
@@ -3856,7 +3856,7 @@
             "description": "The timeframe in which a device is available to receive notifications",
             "properties": {
                 "days": {
-                    "description": "List of the days of the week this timeframe is active.",
+                    "description": "List of the days of the week this timeframe is active",
                     "items": {
                         "enum": [
                             "SU",
@@ -3872,16 +3872,16 @@
                     "type": "array"
                 },
                 "durationInMinutes": {
-                    "description": "The length of the timeframe in minutes.",
+                    "description": "The length of the timeframe in minutes",
                     "format": "int32",
                     "type": "integer"
                 },
                 "excludeHolidays": {
-                    "description": "True if the timeframe is not active on holidays.",
+                    "description": "True if the timeframe is not active on holidays",
                     "type": "boolean"
                 },
                 "name": {
-                    "description": "Name of the Timeframe. Example: \"After hours\".",
+                    "description": "Name of the Timeframe. Example: \"After hours\"",
                     "type": "string"
                 },
                 "startTime": {
@@ -3897,7 +3897,7 @@
             ]
         },
         "DeviceType": {
-            "description": "The type of device.",
+            "description": "The type of device",
             "enum": [
                 "ANDROID_PUSH",
                 "APPLE_PUSH",
@@ -3916,7 +3916,7 @@
             "type": "string"
         },
         "Domain": {
-            "description": "An email domain restriction.",
+            "description": "An email domain restriction",
             "properties": {
                 "domain": {
                     "type": "string"
@@ -3972,7 +3972,7 @@
             "type": "object"
         },
         "Event": {
-            "description": "Returns an event in the xMatters system.",
+            "description": "Returns an event in the xMatters system",
             "properties": {
                 "id": {
                     "description": "An identifier (UUID) that represents this resource",
@@ -4141,7 +4141,7 @@
                     "type": "boolean"
                 },
                 "responseOptions": {
-                    "description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID).",
+                    "description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID)",
                     "items": {
                         "$ref": "#/definitions/ResponseOption"
                     },
@@ -4289,23 +4289,23 @@
         "ForbiddenResponse": {
             "properties": {
                 "code": {
-                    "description": "An application-specific error code.",
+                    "description": "An application-specific error code",
                     "format": "int32",
                     "type": "integer"
                 },
                 "message": {
-                    "description": "A detailed description of the response or error.",
+                    "description": "A detailed description of the response or error",
                     "type": "string"
                 },
                 "reason": {
-                    "description": "A description of the response code.",
+                    "description": "A description of the response code",
                     "enum": [
                         "Forbidden"
                     ],
                     "type": "string"
                 },
                 "status": {
-                    "description": "The HTTP status code.",
+                    "description": "The HTTP status code",
                     "enum": [
                         403
                     ],
@@ -4320,7 +4320,7 @@
             ]
         },
         "Form": {
-            "description": "A form.",
+            "description": "A form",
             "properties": {
                 "id": {
                     "type": "string"
@@ -4353,7 +4353,7 @@
             "type": "object"
         },
         "FormInput": {
-            "description": "A form.",
+            "description": "A form",
             "properties": {
                 "id": {
                     "type": "string"
@@ -4382,10 +4382,10 @@
             "type": "object"
         },
         "FormPointer": {
-            "description": "A reference to a form resource.",
+            "description": "A reference to a form resource",
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 }
             }
@@ -4393,7 +4393,7 @@
         "FormReference": {
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 }
             },
@@ -4460,7 +4460,7 @@
                     "$ref": "#/definitions/Recipient"
                 }
             ],
-            "description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
+            "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
             "properties": {
                 "allowDuplicates": {
                     "type": "boolean"
@@ -4475,7 +4475,7 @@
                     "type": "boolean"
                 },
                 "recipientType": {
-                    "description": "A description of the group.",
+                    "description": "A description of the group",
                     "enum": [
                         "GROUP"
                     ],
@@ -4504,17 +4504,17 @@
                     "$ref": "#/definitions/RecipientInput"
                 }
             ],
-            "description": "Groups are used for collecting users and devices and organizing them into notification schedules.",
+            "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
             "properties": {
                 "allowDuplicates": {
-                    "description": "Whether the group allows a notification to be sent to a device multiple times.",
+                    "description": "Whether the group allows a notification to be sent to a device multiple times",
                     "type": "boolean"
                 },
                 "description": {
                     "type": "string"
                 },
                 "observedByAll": {
-                    "description": "Whether the group notifications are observed by all.",
+                    "description": "Whether the group notifications are observed by all",
                     "type": "boolean"
                 },
                 "recipientType": {
@@ -4527,7 +4527,7 @@
                     "$ref": "#/definitions/SitePointer"
                 },
                 "supervisors": {
-                    "description": "A list of group supervisors. Groups must have at least one supervisor.",
+                    "description": "A list of group supervisors. Groups must have at least one supervisor",
                     "items": {
                         "$ref": "#/definitions/PersonPointer"
                     },
@@ -4537,7 +4537,7 @@
                     "type": "string"
                 },
                 "useDefaultDevices": {
-                    "description": "Whether the default user device should be used when sending out a notification to the group.",
+                    "description": "Whether the default user device should be used when sending out a notification to the group",
                     "type": "boolean"
                 }
             },
@@ -4563,14 +4563,14 @@
         "GroupReference": {
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 },
                 "targetName": {
-                    "description": "The target name of the resource.",
+                    "description": "The target name of the resource",
                     "type": "string"
                 }
             },
@@ -4755,23 +4755,23 @@
         "NotFoundResponse": {
             "properties": {
                 "code": {
-                    "description": "An application-specific error code.",
+                    "description": "An application-specific error code",
                     "format": "int32",
                     "type": "integer"
                 },
                 "message": {
-                    "description": "A detailed description of the response or error.",
+                    "description": "A detailed description of the response or error",
                     "type": "string"
                 },
                 "reason": {
-                    "description": "A description of the response code.",
+                    "description": "A description of the response code",
                     "enum": [
                         "Not Found"
                     ],
                     "type": "string"
                 },
                 "status": {
-                    "description": "The HTTP status code.",
+                    "description": "The HTTP status code",
                     "enum": [
                         404
                     ],
@@ -4786,7 +4786,7 @@
             ]
         },
         "Notification": {
-            "description": "A notification.",
+            "description": "A notification",
             "properties": {
                 "category": {
                     "type": "string"
@@ -4819,7 +4819,7 @@
         "NotificationReference": {
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 }
             },
@@ -4912,11 +4912,11 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Organization UUID. Used as partition key."
+                    "description": "Organization UUID. Used as partition key"
                 },
                 "trial": {
                     "type": "boolean",
-                    "description": "True if this is a trial organization."
+                    "description": "True if this is a trial organization"
                 }
             },
             "required": [
@@ -4929,11 +4929,11 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Organization UUID. Used as partition key."
+                    "description": "Organization UUID. Used as partition key"
                 },
                 "trial": {
                     "type": "boolean",
-                    "description": "True if this is a trial organization."
+                    "description": "True if this is a trial organization"
                 }
             }
         },
@@ -4942,7 +4942,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Organization UUID. Used as partition key."
+                    "description": "Organization UUID. Used as partition key"
                 }
             },
             "required": [
@@ -4958,22 +4958,22 @@
                     "$ref": "#/definitions/Recipient"
                 }
             ],
-            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
+            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
             "properties": {
                 "firstName": {
-                    "description": "The first name of the user.",
+                    "description": "The first name of the user",
                     "type": "string"
                 },
                 "language": {
-                    "description": "The preferred language of the user: Example: en.",
+                    "description": "The preferred language of the user: Example: en",
                     "type": "string"
                 },
                 "lastName": {
-                    "description": "The last name of the user.",
+                    "description": "The last name of the user",
                     "type": "string"
                 },
                 "phoneLogin": {
-                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company.",
+                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company",
                     "type": "string"
                 },
                 "recipientType": {
@@ -4983,15 +4983,15 @@
                     "type": "string"
                 },
                 "timezone": {
-                    "description": "The time zone of the user. Example:  US/Pacific.",
+                    "description": "The time zone of the user. Example:  US/Pacific",
                     "type": "string"
                 },
                 "webLogin": {
-                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field.",
+                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field",
                     "type": "string"
                 },
                 "deliveryStatus": {
-                    "description": "Delivery status.",
+                    "description": "Delivery status",
                     "type": "string",
                     "enum": [
                         "PENDING",
@@ -5001,7 +5001,7 @@
                     ]
                 },
                 "properties": {
-                    "description": "Key/Value map of custom properties.",
+                    "description": "Key/Value map of custom properties",
                     "type": "object"
                 },
                 "response": {
@@ -5047,26 +5047,26 @@
                     "$ref": "#/definitions/RecipientInput"
                 }
             ],
-            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on.",
+            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
             "properties": {
                 "firstName": {
-                    "description": "The first name of the user.",
+                    "description": "The first name of the user",
                     "type": "string"
                 },
                 "language": {
-                    "description": "The preferred language of the user: Example: en.",
+                    "description": "The preferred language of the user: Example: en",
                     "type": "string"
                 },
                 "lastName": {
-                    "description": "The last name of the user.",
+                    "description": "The last name of the user",
                     "type": "string"
                 },
                 "phoneLogin": {
-                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company.",
+                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company",
                     "type": "string"
                 },
                 "properties": {
-                    "description": "Key/Value map of custom properties.",
+                    "description": "Key/Value map of custom properties",
                     "type": "object"
                 },
                 "recipientType": {
@@ -5076,7 +5076,7 @@
                     "type": "string"
                 },
                 "roles": {
-                    "description": "A list of the user's roles. Users must have at least one role.",
+                    "description": "A list of the user's roles. Users must have at least one role",
                     "items": {
                         "type": "string"
                     },
@@ -5086,18 +5086,18 @@
                     "$ref": "#/definitions/SitePointer"
                 },
                 "supervisors": {
-                    "description": "A list of supervisors of this users. If this value is not provided, the XXX user becomes the supervisor. To assign a user as a supervisor, the authenticating user must have the appropriate permissions.",
+                    "description": "A list of supervisors of this users. If this value is not provided, the XXX user becomes the supervisor. To assign a user as a supervisor, the authenticating user must have the appropriate permissions",
                     "items": {
                         "$ref": "#/definitions/PersonPointer"
                     },
                     "type": "array"
                 },
                 "timezone": {
-                    "description": "The time zone of the user. Example:  US/Pacific.",
+                    "description": "The time zone of the user. Example:  US/Pacific",
                     "type": "string"
                 },
                 "webLogin": {
-                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field.",
+                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field",
                     "type": "string"
                 }
             },
@@ -5112,10 +5112,10 @@
             "type": "object"
         },
         "PersonPointer": {
-            "description": "A reference to a person resource.",
+            "description": "A reference to a person resource",
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 }
             }
@@ -5123,11 +5123,11 @@
         "PersonReference": {
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 },
                 "targetName": {
-                    "description": "The target name of the resource.",
+                    "description": "The target name of the resource",
                     "type": "string"
                 },
                 "links": {
@@ -5153,7 +5153,7 @@
             ]
         },
         "Plan": {
-            "description": "A communication plan.",
+            "description": "A communication plan",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5190,7 +5190,7 @@
             "type": "object"
         },
         "PlanInput": {
-            "description": "A communication plan.",
+            "description": "A communication plan",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5388,7 +5388,7 @@
                     "type": "string"
                 },
                 "status": {
-                    "description": "Whether the recipient is active. Inactive recipients do not receive notifications.",
+                    "description": "Whether the recipient is active. Inactive recipients do not receive notifications",
                     "enum": [
                         "ACTIVE",
                         "INACTIVE",
@@ -5397,11 +5397,11 @@
                     "type": "string"
                 },
                 "externalKey": {
-                    "description": "Identifies this resource in an external system. Used when externallyOwned is true.",
+                    "description": "Identifies this resource in an external system. Used when externallyOwned is true",
                     "type": "string"
                 },
                 "externallyOwned": {
-                    "description": "True if this resource is managed by an external system. Externally-owned resources cannot be deleted in the xMatters user interface.",
+                    "description": "True if this resource is managed by an external system. Externally-owned resources cannot be deleted in the xMatters user interface",
                     "type": "boolean"
                 },
                 "targeted": {
@@ -5481,7 +5481,7 @@
             ]
         },
         "RecipientPointer": {
-            "description": "A reference to a recipient resource.",
+            "description": "A reference to a recipient resource",
             "properties": {
                 "id": {
                     "description": "The identifier of the resource. Can be either UUID or targetName",
@@ -5510,7 +5510,7 @@
         "RecipientReference": {
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 },
                 "links": {
@@ -5527,7 +5527,7 @@
                     "type": "string"
                 },
                 "targetName": {
-                    "description": "The target name of the resource.",
+                    "description": "The target name of the resource",
                     "type": "string"
                 }
             },
@@ -5541,7 +5541,7 @@
         "ReferenceLink": {
             "properties": {
                 "self": {
-                    "description": "A link to this resource.",
+                    "description": "A link to this resource",
                     "type": "string"
                 }
             },
@@ -5566,7 +5566,7 @@
             ]
         },
         "Response": {
-            "description": "A response.",
+            "description": "A response",
             "properties": {
                 "text": {
                     "type": "string"
@@ -5589,7 +5589,7 @@
             "type": "object"
         },
         "ResponseOption": {
-            "description": "A response option.",
+            "description": "A response option",
             "properties": {
                 "action": {
                     "type": "string"
@@ -5725,7 +5725,7 @@
             "type": "object"
         },
         "Scenario": {
-            "description": "A scenario.",
+            "description": "A scenario",
             "properties": {
                 "description": {
                     "type": "string"
@@ -5764,7 +5764,7 @@
             "type": "object"
         },
         "ServiceProvider": {
-            "description": "A service provider.",
+            "description": "A service provider",
             "properties": {
                 "deviceType": {
                     "$ref": "#/definitions/DeviceType"
@@ -5782,7 +5782,7 @@
             ]
         },
         "ServiceProviderPointer": {
-            "description": "A reference to a provider resource.",
+            "description": "A reference to a provider resource",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5821,7 +5821,7 @@
         "ShiftReference": {
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 },
                 "group": {
@@ -5843,11 +5843,11 @@
         "ShiftMember": {
             "properties": {
                 "delay": {
-                    "description": "How long, in minutes, to wait before notifying this team member.",
+                    "description": "How long, in minutes, to wait before notifying this team member",
                     "type": "integer"
                 },
                 "escalationType": {
-                    "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.",
+                    "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list",
                     "enum": [
                         "NONE",
                         "PEER",
@@ -5856,11 +5856,11 @@
                     "type": "string"
                 },
                 "inRotation": {
-                    "description": "Indicates whether the team member is included in the rotation cycle.",
+                    "description": "Indicates whether the team member is included in the rotation cycle",
                     "type": "boolean"
                 },
                 "position": {
-                    "description": "Position in the rotation sequence.",
+                    "description": "Position in the rotation sequence",
                     "type": "integer"
                 },
                 "recipient": {
@@ -5882,11 +5882,11 @@
         "ShiftMemberInput": {
             "properties": {
                 "delay": {
-                    "description": "How long, in minutes, to wait before notifying this team member.",
+                    "description": "How long, in minutes, to wait before notifying this team member",
                     "type": "integer"
                 },
                 "escalationType": {
-                    "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list.",
+                    "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list",
                     "enum": [
                         "None",
                         "Peer",
@@ -5895,11 +5895,11 @@
                     "type": "string"
                 },
                 "inRotation": {
-                    "description": "Indicates whether the team member is included in the rotation cycle.",
+                    "description": "Indicates whether the team member is included in the rotation cycle",
                     "type": "boolean"
                 },
                 "position": {
-                    "description": "Position in the rotation sequence.",
+                    "description": "Position in the rotation sequence",
                     "type": "integer"
                 },
                 "recipient": {
@@ -5961,7 +5961,7 @@
                     "$ref": "#/definitions/Recipient"
                 }
             ],
-            "description": "Site a group belongs to.",
+            "description": "Site a group belongs to",
             "properties": {
                 "name": {
                     "type": "string"
@@ -6008,10 +6008,10 @@
             ]
         },
         "SitePointer": {
-            "description": "Site a group belongs to.",
+            "description": "Site a group belongs to",
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 }
             }
@@ -6019,7 +6019,7 @@
         "SiteReference": {
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource.",
+                    "description": "The identifier of the resource",
                     "type": "string"
                 },
                 "links": {
@@ -6111,23 +6111,23 @@
         "UnauthorizedResponse": {
             "properties": {
                 "code": {
-                    "description": "An application-specific error code.",
+                    "description": "An application-specific error code",
                     "format": "int32",
                     "type": "integer"
                 },
                 "message": {
-                    "description": "A detailed description of the response or error.",
+                    "description": "A detailed description of the response or error",
                     "type": "string"
                 },
                 "reason": {
-                    "description": "A description of the response code.",
+                    "description": "A description of the response code",
                     "enum": [
                         "Unauthorized"
                     ],
                     "type": "string"
                 },
                 "status": {
-                    "description": "The HTTP status code.",
+                    "description": "The HTTP status code",
                     "enum": [
                         401
                     ],
@@ -6214,7 +6214,7 @@
                 },
                 "message": {
                     "type": "string",
-                    "description": "JSON message to be emitted into topic. Must be appropriate for the destination topic schema."
+                    "description": "JSON message to be emitted into topic. Must be appropriate for the destination topic schema"
                 },
                 "topic": {
                     "type": "string",
@@ -6239,12 +6239,12 @@
                 "startTime": {
                     "type": "string",
                     "format": "date-time",
-                    "description": "The “startTime” property indicates when the trigger’s schedule first comes into affect. Defaults to now."
+                    "description": "The “startTime” property indicates when the trigger’s schedule first comes into affect. Defaults to now"
                 },
                 "endTime": {
                     "type": "string",
                     "format": "date-time",
-                    "description": "The “endTime” property indicates when the trigger’s schedule should no longer be in effect."
+                    "description": "The “endTime” property indicates when the trigger’s schedule should no longer be in effect"
                 },
                 "cron": {
                     "type": "string",
@@ -6259,7 +6259,7 @@
         "Pagination(Audit)": {
             "properties": {
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Audit"
                     },
@@ -6277,12 +6277,12 @@
         "Pagination(Conference)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Conference"
                     },
@@ -6292,7 +6292,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6307,12 +6307,12 @@
         "Pagination(Country)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Country"
                     },
@@ -6322,7 +6322,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6337,12 +6337,12 @@
         "Pagination(CustomerConfig)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/CustomerConfig"
                     },
@@ -6352,7 +6352,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6367,12 +6367,12 @@
         "Pagination(Device)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Device"
                     },
@@ -6382,7 +6382,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6397,12 +6397,12 @@
         "Pagination(DeviceName)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/DeviceName"
                     },
@@ -6412,7 +6412,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6427,12 +6427,12 @@
         "Pagination(DeviceTimeframe)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/DeviceTimeframe"
                     },
@@ -6442,7 +6442,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6457,12 +6457,12 @@
         "Pagination(DeviceType)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/DeviceType"
                     },
@@ -6472,7 +6472,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6487,12 +6487,12 @@
         "Pagination(Domain)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Domain"
                     },
@@ -6502,7 +6502,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6517,12 +6517,12 @@
         "Pagination(Event)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Event"
                     },
@@ -6532,7 +6532,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6547,12 +6547,12 @@
         "Pagination(FeatureToggle)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/FeatureToggle"
                     },
@@ -6562,7 +6562,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6577,12 +6577,12 @@
         "Pagination(Form)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Form"
                     },
@@ -6592,7 +6592,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6615,11 +6615,11 @@
                 "count": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
+                    "description": "The number of items in this page of results (the number of items in the data array)"
                 },
                 "data": {
                     "type": "array",
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Function"
                     }
@@ -6627,7 +6627,7 @@
                 "total": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The total number of items in the result set."
+                    "description": "The total number of items in the result set"
                 },
                 "links": {
                     "$ref": "#/definitions/PaginationLinks"
@@ -6637,12 +6637,12 @@
         "Pagination(Group)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Group"
                     },
@@ -6652,7 +6652,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6667,12 +6667,12 @@
         "Pagination(GroupMember)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/GroupMember"
                     },
@@ -6682,7 +6682,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6697,12 +6697,12 @@
         "Pagination(IntegrationAgent)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/IntegrationAgent"
                     },
@@ -6712,7 +6712,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6727,12 +6727,12 @@
         "Pagination(IntegrationConfig)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/IntegrationConfig"
                     },
@@ -6742,7 +6742,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6757,12 +6757,12 @@
         "Pagination(Notification)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Notification"
                     },
@@ -6772,7 +6772,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6787,12 +6787,12 @@
         "Pagination(OnCall)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/OnCall"
                     },
@@ -6802,7 +6802,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6825,11 +6825,11 @@
                 "count": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
+                    "description": "The number of items in this page of results (the number of items in the data array)"
                 },
                 "data": {
                     "type": "array",
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Permission"
                     }
@@ -6837,7 +6837,7 @@
                 "total": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The total number of items in the result set."
+                    "description": "The total number of items in the result set"
                 },
                 "links": {
                     "$ref": "#/definitions/PaginationLinks"
@@ -6847,12 +6847,12 @@
         "Pagination(Person)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Person"
                     },
@@ -6862,7 +6862,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6877,12 +6877,12 @@
         "Pagination(Plan)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Plan"
                     },
@@ -6892,7 +6892,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6907,12 +6907,12 @@
         "Pagination(PlanEndpoint)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/PlanEndpoint"
                     },
@@ -6922,7 +6922,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6937,12 +6937,12 @@
         "Pagination(Recipient)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Recipient"
                     },
@@ -6952,7 +6952,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -6975,11 +6975,11 @@
                 "count": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
+                    "description": "The number of items in this page of results (the number of items in the data array)"
                 },
                 "data": {
                     "type": "array",
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/RefreshToken"
                     }
@@ -6987,7 +6987,7 @@
                 "total": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "The total number of items in the result set."
+                    "description": "The total number of items in the result set"
                 },
                 "links": {
                     "$ref": "#/definitions/PaginationLinks"
@@ -6997,12 +6997,12 @@
         "Pagination(Response)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Response"
                     },
@@ -7012,7 +7012,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7027,12 +7027,12 @@
         "Pagination(ResponseOption)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/ResponseOption"
                     },
@@ -7042,7 +7042,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7057,12 +7057,12 @@
         "Pagination(Role)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Role"
                     },
@@ -7072,7 +7072,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7087,12 +7087,12 @@
         "Pagination(RosterMember)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/RosterMember"
                     },
@@ -7102,7 +7102,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7117,12 +7117,12 @@
         "Pagination(Scenario)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Scenario"
                     },
@@ -7132,7 +7132,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7147,12 +7147,12 @@
         "Pagination(ServiceProvider)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/ServiceProvider"
                     },
@@ -7162,7 +7162,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7177,12 +7177,12 @@
         "Pagination(Shift)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Shift"
                     },
@@ -7192,7 +7192,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7207,12 +7207,12 @@
         "Pagination(ShiftMember)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/ShiftMember"
                     },
@@ -7222,7 +7222,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7237,12 +7237,12 @@
         "Pagination(ShiftOccurrence)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/ShiftOccurrence"
                     },
@@ -7252,7 +7252,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7267,12 +7267,12 @@
         "Pagination(ShiftOccurrenceMember)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/ShiftOccurrenceMember"
                     },
@@ -7282,7 +7282,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
@@ -7297,12 +7297,12 @@
         "Pagination(TemporaryReplacement)": {
             "properties": {
                 "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array).",
+                    "description": "The number of items in this page of results (the number of items in the data array)",
                     "format": "int32",
                     "type": "integer"
                 },
                 "data": {
-                    "description": "An array that contains this page of resources.",
+                    "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/TemporaryReplacement"
                     },
@@ -7312,7 +7312,7 @@
                     "$ref": "#/definitions/PaginationLinks"
                 },
                 "total": {
-                    "description": "The total number of items in the result set.",
+                    "description": "The total number of items in the result set",
                     "format": "int32",
                     "type": "integer"
                 }
