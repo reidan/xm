@@ -1859,6 +1859,13 @@
                     },
                     {
                         "$ref": "#/parameters/query-to"
+                    },
+                    {
+                        "description": "Limit number of shift occurrence members returned",
+                        "in": "query",
+                        "name": "membersPerShift",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
