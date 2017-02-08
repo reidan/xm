@@ -189,99 +189,6 @@
                 ]
             }
         },
-        "/customer-config": {
-            "get": {
-                "tags": [
-                    "Customer Config"
-                ],
-                "summary": "Get effective customer configuration values",
-                "description": "Get effective customer configuration values. Inheritance and override logic applied. Pagination of all effective customer config values in the provided region and environment",
-                "operationId": "getCustomerConfig",
-                "parameters": [
-                    {
-                        "name": "region",
-                        "in": "query",
-                        "description": "The region",
-                        "required": false,
-                        "type": "string",
-                        "enum": ["north_america", "europe", "asia_pacific"]
-                    },
-                    {
-                        "name": "env",
-                        "in": "query",
-                        "description": "The environment",
-                        "required": false,
-                        "type": "string",
-                        "enum": ["prd", "stg", "tst", "dev"]
-                    },
-                    {
-                        "name": "key",
-                        "in": "query",
-                        "description": "The config key",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "at",
-                        "in": "query",
-                        "description": "Config effective at this time (defaults to now)",
-                        "required": false,
-                        "type": "string",
-                        "format": "date-time"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(CustomerConfig)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    }
-                }
-            }
-        },
-        "/customer-config/{configId}": {
-            "get": {
-                "tags": [
-                    "Customer Config"
-                ],
-                "summary": "Get effective customer configuration value",
-                "description": "Get effective customer configuration value. Inheritance and override logic applied",
-                "operationId": "getEffectiveCustomerConfig",
-                "parameters": [
-                    {
-                        "name": "configId",
-                        "in": "path",
-                        "description": "The config identifier",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/CustomerConfig"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
         "/deep-links": {
             "post": {
                 "description": "Generate a single use, expiring, link with associated action and meta data",
@@ -858,25 +765,9 @@
                 "operationId": "getFeatureToggles",
                 "parameters": [
                     {
-                        "name": "region",
+                        "name": "name",
                         "in": "query",
-                        "description": "The region",
-                        "required": false,
-                        "type": "string",
-                        "enum": ["north_america", "europe", "asia_pacific"]
-                    },
-                    {
-                        "name": "env",
-                        "in": "query",
-                        "description": "The environment",
-                        "required": false,
-                        "type": "string",
-                        "enum": ["prd", "stg", "tst", "dev"]
-                    },
-                    {
-                        "name": "key",
-                        "in": "query",
-                        "description": "The config key",
+                        "description": "The toggle name",
                         "required": false,
                         "type": "string"
                     }
@@ -3501,22 +3392,6 @@
                 "name"
             ],
             "type": "object"
-        },
-        "CustomerConfig": {
-            "type": "object",
-            "description": "Customer config",
-            "properties": {
-                "key": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "key",
-                "value"
-            ]
         },
         "DeepLink": {
             "type": "object",
@@ -6315,36 +6190,6 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Country"
-                    },
-                    "type": "array"
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                },
-                "total": {
-                    "description": "The total number of items in the result set",
-                    "format": "int32",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ]
-        },
-        "Pagination(CustomerConfig)": {
-            "properties": {
-                "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array)",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "data": {
-                    "description": "An array that contains this page of resources",
-                    "items": {
-                        "$ref": "#/definitions/CustomerConfig"
                     },
                     "type": "array"
                 },
