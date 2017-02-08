@@ -4909,8 +4909,23 @@
                 "url": {
                     "type": "string"
                 },
-                "type": {
-                    "type": "string"
+                "endpointType": {
+                    "type": "string",
+                    "enum": [
+                        "NO_AUTH",
+                        "BASIC",
+                        "OAUTH2",
+                        "OAUTH2_FORCE",
+                        "OAUTH_SLACK"
+                    ]
+                },
+                "authenticationType": {
+                    "type": "string",
+                    "enum": [
+                        "XMATTERS",
+                        "EXTERNAL",
+                        "XM_FORM"
+                    ]
                 }
             },
             "required": [
@@ -4934,8 +4949,23 @@
                 "url": {
                     "type": "string"
                 },
-                "type": {
-                    "type": "string"
+                "endpointType": {
+                    "type": "string",
+                    "enum": [
+                        "NO_AUTH",
+                        "BASIC",
+                        "OAUTH2",
+                        "OAUTH2_FORCE",
+                        "OAUTH_SLACK"
+                    ]
+                },
+                "authenticationType": {
+                    "type": "string",
+                    "enum": [
+                        "XMATTERS",
+                        "EXTERNAL",
+                        "XM_FORM"
+                    ]
                 }
             },
             "type": "object"
