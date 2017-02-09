@@ -2506,6 +2506,42 @@
             }
         },
         "/plans/{planId}/endpoints/{endpointId}": {
+            "get": {
+                "summary": "Get communication plan endpoint",
+                "description": "Get communication plan endpoint",
+                "operationId": "getPlanEndpoint",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-endpointId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanEndpoint"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
             "delete": {
                 "summary": "Delete a plan endpoint",
                 "description": "Delete a plan endpoint",
