@@ -6082,18 +6082,23 @@
             "description": "schedule-this message",
             "properties": {
                 "version": {
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 1
                 },
                 "organization": {
                     "$ref": "#/definitions/OrganizationPointer"
                 },
                 "message": {
                     "type": "string",
-                    "description": "JSON message to be emitted into topic. Must be appropriate for the destination topic schema"
+                    "description": "JSON message to be emitted into topic. Must be appropriate for the destination topic schema",
+                    "maxLength": 10000
                 },
                 "topic": {
                     "type": "string",
-                    "description": "Will emit message into this topic using organization.id as the partition key"
+                    "description": "Will emit message into this topic using organization.id as the partition key",
+                    "maxLength": 32,
+                    "minLength": 1
                 },
                 "trigger": {
                     "$ref": "#/definitions/ScheduleTrigger"
@@ -6123,7 +6128,6 @@
                 },
                 "cron": {
                     "type": "string",
-                    "format": "date-time",
                     "description": "Cron-Expression string made up of seven sub-expressions, that describe individual details of the schedule. These sub-expression are separated with white-space, and represent: Seconds Minutes Hours Day-of-Month Month Day-of-Week Year (optional field)"
                 }
             },
