@@ -6092,7 +6092,7 @@
                 "message": {
                     "type": "string",
                     "description": "JSON message to be emitted into topic. Must be appropriate for the destination topic schema",
-                    "maxLength": 10000,
+                    "maxLength": 100000,
                     "minLength": 1
                 },
                 "topic": {
