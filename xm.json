@@ -545,7 +545,7 @@
                 ]
             },
             "post": {
-                "description": "Submit an event",
+                "description": "Submit or update an event",
                 "operationId": "postEvent",
                 "parameters": [
                     {
@@ -560,6 +560,12 @@
                 "responses": {
                     "201": {
                         "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "202": {
+                        "description": "Accepted",
                         "schema": {
                             "$ref": "#/definitions/Event"
                         }
@@ -3889,6 +3895,10 @@
                     "description": "An identifier (UUID) that represents this resource",
                     "type": "string"
                 },
+                "eventId": {
+                    "description": "A legacy identifier (numeric) that represents this resource",
+                    "type": "string"
+                },
                 "bypassPhoneIntro": {
                     "type": "boolean"
                 },
@@ -3901,10 +3911,6 @@
                 },
                 "escalationOverride": {
                     "type": "boolean"
-                },
-                "eventId": {
-                    "description": "A legacy identifier (numeric) that represents this resource",
-                    "type": "string"
                 },
                 "expirationInMinutes": {
                     "type": "integer"
