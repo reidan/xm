@@ -11,8 +11,8 @@
         "https"
     ],
     "info": {
-        "description": "xMatters ReST API",
-        "title": "xMatters ReST API",
+        "title": "Paul's xM API Spec",
+        "description": "Paul's xM API Spec (specification scratch-pad)",
         "version": "1"
     },
     "paths": {
@@ -4699,6 +4699,15 @@
         "Notification": {
             "description": "A notification",
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientReference"
+                },
                 "category": {
                     "type": "string"
                 },
@@ -4708,15 +4717,6 @@
                 },
                 "deliveryStatus": {
                     "type": "string"
-                },
-                "event": {
-                    "$ref": "#/definitions/EventReference"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "recipient": {
-                    "$ref": "#/definitions/RecipientReference"
                 },
                 "responses": {
                     "$ref": "#/definitions/Pagination(Response)"
@@ -4921,23 +4921,8 @@
                 "site": {
                     "$ref": "#/definitions/SiteReference"
                 },
-                "browser": {
-                    "type": "object",
-                    "description": "Notifications and responses from the web application",
-                    "properties": {
-                        "notifications": {
-                            "$ref": "#/definitions/Pagination(Notification)"
-                        }
-                    }
-                },
-                "mobile": {
-                    "type": "object",
-                    "description": "Notifications and responses from the mobile application",
-                    "properties": {
-                        "notifications": {
-                            "$ref": "#/definitions/Pagination(Notification)"
-                        }
-                    }
+                "notifications": {
+                    "$ref": "#/definitions/Pagination(Notification)"
                 },
                 "devices": {
                     "$ref": "#/definitions/Pagination(Device)"
@@ -5477,6 +5462,7 @@
             ]
         },
         "Response": {
+            "type": "object",
             "description": "A response",
             "properties": {
                 "text": {
@@ -5491,15 +5477,18 @@
                 "received": {
                     "type": "string",
                     "format": "date-time"
+                },
+                "source": {
+                    "type": "string"
                 }
             },
             "required": [
                 "text",
                 "notification"
-            ],
-            "type": "object"
+            ]
         },
         "ResponseOption": {
+            "type": "object",
             "description": "A response option",
             "properties": {
                 "action": {
@@ -5527,8 +5516,7 @@
                 "text",
                 "description",
                 "prompt"
-            ],
-            "type": "object"
+            ]
         },
         "Role": {
             "type": "object",
