@@ -5479,7 +5479,11 @@
                     "format": "date-time"
                 },
                 "source": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "BROWSER",
+                        "MOBILE"
+                    ]
                 }
             },
             "required": [
