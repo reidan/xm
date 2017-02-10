@@ -2768,6 +2768,52 @@
                 ]
             }
         },
+        "/responses": {
+            "post": {
+                "summary": "Send a response",
+                "description": "Send a response",
+                "operationId": "postResponse",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ResponseInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Responses"
+                ]
+            }
+        },
         "/service-providers": {
             "get": {
                 "description": "Returns information about configured service providers",
@@ -4744,6 +4790,17 @@
                 "id"
             ]
         },
+        "NotificationPointer": {
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "NumericPagerDevice": {
             "allOf": [
                 {
@@ -5480,20 +5537,50 @@
                 "option": {
                     "$ref": "#/definitions/ResponseOption"
                 },
+                "source": {
+                    "type": "string",
+                    "enum": [
+                        "BROWSER",
+                        "IOS",
+                        "ANDROID"
+                    ]
+                },
                 "received": {
                     "type": "string",
                     "format": "date-time"
+                }
+            },
+            "required": [
+                "text",
+                "notification"
+            ]
+        },
+        "ResponseInput": {
+            "type": "object",
+            "description": "A response",
+            "properties": {
+                "notification": {
+                    "$ref": "#/definitions/NotificationPointer"
                 },
                 "source": {
                     "type": "string",
                     "enum": [
                         "BROWSER",
-                        "MOBILE"
+                        "IOS",
+                        "ANDROID"
                     ]
+                },
+                "option": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "deviceName": {
+                    "type": "string"
                 }
             },
             "required": [
-                "text",
                 "notification"
             ]
         },
