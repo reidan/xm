@@ -545,6 +545,7 @@
                 ]
             },
             "post": {
+                "summary": "Submit or update an event",
                 "description": "Submit or update an event",
                 "operationId": "postEvent",
                 "parameters": [
@@ -583,7 +584,6 @@
                         "$ref": "#/responses/409"
                     }
                 },
-                "summary": "Submit an event",
                 "tags": [
                     "Events"
                 ]
