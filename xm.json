@@ -490,6 +490,7 @@
             }
         },
         "/events": {
+            "summary": "Get Events",
             "get": {
                 "description": "Returns a list of event resources in the xMatters system",
                 "operationId": "getEvents",
@@ -539,7 +540,6 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Get Events",
                 "tags": [
                     "Events"
                 ]
@@ -1783,7 +1783,7 @@
                     }
                 },
                 "tags": [
-                    "On Call"
+                    "Reports"
                 ]
             }
         },
@@ -2906,6 +2906,47 @@
                 },
                 "tags": [
                     "Kafka"
+                ]
+            }
+        },
+        "/timeline": {
+            "get": {
+                "summary": "Get Timeline",
+                "description": "Returns a list of timeline events",
+                "operationId": "getTimeline",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-incidentId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-from"
+                    },
+                    {
+                        "$ref": "#/parameters/query-to"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Event)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Reports"
                 ]
             }
         }
@@ -4764,8 +4805,8 @@
                     "type": "string"
                 },
                 "created": {
-                    "format": "date-time",
-                    "type": "string"
+                    "type": "string",
+                    "format": "date-time"
                 },
                 "deliveryStatus": {
                     "type": "string"
@@ -5559,6 +5600,9 @@
             "type": "object",
             "description": "A response",
             "properties": {
+                "event": {
+                    "$ref": "#/definitions/EventPointer"
+                },
                 "notification": {
                     "$ref": "#/definitions/NotificationPointer"
                 },
@@ -6114,6 +6158,43 @@
                 "twoWayDevice"
             ],
             "type": "object"
+        },
+        "TimelineEvent": {
+            "type": "object",
+            "properties": {
+                "at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "NOTIFICATION",
+                        "RESPONSE"
+                    ]
+                },
+                "incident": {
+                    "type": "string"
+                },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
+                "notification": {
+                    "$ref": "#/definitions/Notification"
+                },
+                "response": {
+                    "$ref": "#/definitions/Response"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/Recipient"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "at"
+            ]
         },
         "UnauthorizedResponse": {
             "properties": {
