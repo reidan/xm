@@ -490,8 +490,8 @@
             }
         },
         "/events": {
-            "summary": "Get Events",
             "get": {
+                "summary": "Get Events",
                 "description": "Returns a list of event resources in the xMatters system",
                 "operationId": "getEvents",
                 "parameters": [
@@ -7603,6 +7603,13 @@
             "required": false,
             "type": "string"
         },
+        "query-eventId": {
+            "description": "Event id",
+            "in": "query",
+            "name": "eventId",
+            "required": false,
+            "type": "string"
+        },
         "query-formId": {
             "description": "The form uuid or name",
             "in": "query",
@@ -7639,6 +7646,13 @@
             "description": "The integration id",
             "in": "query",
             "name": "integrationId",
+            "required": false,
+            "type": "string"
+        },
+        "query-incidentId": {
+            "description": "Incident id",
+            "in": "query",
+            "name": "incidentId",
             "required": false,
             "type": "string"
         },
