@@ -4190,6 +4190,17 @@
                 "links"
             ]
         },
+        "EventPointer": {
+            "properties": {
+                "id": {
+                    "description": "An identifier that represents this resource",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
         "FaxDevice": {
             "allOf": [
                 {
