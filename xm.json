@@ -16,47 +16,6 @@
         "version": "1"
     },
     "paths": {
-        "/oauth2/token": {
-            "post": {
-                "tags": [
-                    "Authentication"
-                ],
-                "summary": "Generate a token",
-                "description": "Generate a token",
-                "operationId": "postAccessToken",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Authentication credentials",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/Credentials"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/AccessToken"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
         "/calendar": {
             "get": {
                 "summary": "DEPRECATED use GET /on-call",
@@ -1732,6 +1691,47 @@
                     },
                     "403": {
                         "$ref": "#/responses/403"
+                    }
+                }
+            }
+        },
+        "/oauth2/token": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Generate a token",
+                "description": "Generate a token",
+                "operationId": "postAccessToken",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Authentication credentials",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Credentials"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AccessToken"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
                     }
                 }
             }
