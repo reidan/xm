@@ -630,50 +630,6 @@
                 ]
             }
         },
-        "/events/{eventId}/audits": {
-            "get": {
-                "description": "Returns an audit of an event",
-                "operationId": "getEventAudits",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-eventId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-before"
-                    },
-                    {
-                        "$ref": "#/parameters/query-after"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(Audit)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "summary": "Returns an audit of an event",
-                "tags": [
-                    "Events"
-                ]
-            }
-        },
         "/events/{eventId}/recipients": {
             "get": {
                 "description": "Returns information about event recipients",
