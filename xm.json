@@ -16,6 +16,53 @@
         "version": "1"
     },
     "paths": {
+        "/audits": {
+            "get": {
+                "summary": "Audit records",
+                "description": "Audit records",
+                "operationId": "getAudits",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-from"
+                    },
+                    {
+                        "$ref": "#/parameters/query-to"
+                    },
+                    {
+                        "$ref": "#/parameters/query-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-auditType"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Audit)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Audit"
+                ]
+            }
+        },
         "/calendar": {
             "get": {
                 "summary": "DEPRECATED use GET /on-call",
@@ -3121,24 +3168,24 @@
             "type": "object"
         },
         "Audit": {
-            "description": "An event audit",
+            "description": "An audit",
             "properties": {
+                "id": {
+                    "description": "A unique identifier for this record",
+                    "type": "string"
+                },
                 "at": {
                     "format": "date-time",
+                    "type": "string"
+                },
+                "type": {
                     "type": "string"
                 },
                 "event": {
                     "$ref": "#/definitions/EventReference"
                 },
-                "id": {
-                    "description": "A unique identifier for this audit record. Derived from the insert order",
-                    "type": "string"
-                },
                 "notification": {
-                    "$ref": "#/definitions/Notification"
-                },
-                "type": {
-                    "type": "string"
+                    "$ref": "#/definitions/EventReference"
                 }
             },
             "required": [
@@ -7543,6 +7590,13 @@
             "in": "path",
             "description": "Token name",
             "required": true,
+            "type": "string"
+        },
+        "query-auditType": {
+            "description": "Audit type",
+            "in": "query",
+            "name": "auditType",
+            "required": false,
             "type": "string"
         },
         "query-after": {
