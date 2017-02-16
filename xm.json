@@ -1698,6 +1698,44 @@
                 }
             }
         },
+        "/logs": {
+            "post": {
+                "summary": "Logging",
+                "description": "Logging",
+                "operationId": "postLogs",
+                "parameters": [
+                    {
+                        "description": "A log entry",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LogEntryInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Logs"
+                ]
+            }
+        },
         "/oauth2/token": {
             "post": {
                 "tags": [
@@ -4761,14 +4799,30 @@
             ],
             "type": "object"
         },
-        "Mobile": {
-            "description": "The Web UI Application",
+        "LogEntryInput": {
+            "type": "object",
+            "description": "Log entry",
             "properties": {
-                "notifications": {
-                    "$ref": "#/definitions/Pagination(Notification)"
+                "at": {
+                    "description": "Timestamp at caller",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "priority": {
+                    "description": "Logging level",
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "WARN",
+                        "INFO",
+                        "DEBUG"
+                    ]
+                },
+                "text": {
+                    "description": "The log line text (should be formatted appropriately to key=value pairs by the caller)",
+                    "type": "string"
                 }
-            },
-            "type": "object"
+            }
         },
         "NotFoundResponse": {
             "properties": {
