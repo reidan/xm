@@ -2775,6 +2775,53 @@
                 "tags": [
                     "Communication Plans"
                 ]
+            },
+            "post": {
+                "summary": "Insert or update an integration",
+                "description": "Insert or update an integration",
+                "operationId": "postPlanIntegration",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanIntegrationInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/PlanIntegration"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/PlanIntegration"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
             }
         },
         "/recipients": {
@@ -5431,6 +5478,9 @@
                 },
                 "creator": {
                     "$ref": "#/definitions/PersonReference"
+                },
+                "deployed": {
+                    "type": "boolean"
                 }
             },
             "required": [
@@ -5439,6 +5489,36 @@
                 "name"
             ],
             "type": "object"
+        },
+        "PlanIntegrationInput": {
+            "type": "object",
+            "description": "Insert or update of an integration",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanPointer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "accessibleByAll": {
+                    "type": "boolean"
+                },
+                "creator": {
+                    "$ref": "#/definitions/PersonPointer"
+                },
+                "deployed": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "id"
+            ]
         },
         "ProviderReference": {
             "properties": {
