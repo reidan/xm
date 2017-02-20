@@ -5577,9 +5577,6 @@
                 "name": {
                     "type": "string"
                 },
-                "description": {
-                    "type": "string"
-                },
                 "operation": {
                     "type": "string",
                     "enum": [
@@ -5614,12 +5611,6 @@
                 "form": {
                     "$ref": "#/definitions/FormReference"
                 },
-                "accessibleByAll": {
-                    "type": "boolean"
-                },
-                "creator": {
-                    "$ref": "#/definitions/PersonReference"
-                },
                 "deployed": {
                     "type": "boolean"
                 }
@@ -5641,9 +5632,6 @@
                     "$ref": "#/definitions/PlanPointer"
                 },
                 "name": {
-                    "type": "string"
-                },
-                "description": {
                     "type": "string"
                 },
                 "operation": {
@@ -5679,12 +5667,6 @@
                 },
                 "form": {
                     "$ref": "#/definitions/FormPointer"
-                },
-                "accessibleByAll": {
-                    "type": "boolean"
-                },
-                "creator": {
-                    "$ref": "#/definitions/PersonPointer"
                 },
                 "deployed": {
                     "type": "boolean"
