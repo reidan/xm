@@ -2895,6 +2895,41 @@
                 ]
             }
         },
+        "/plans/{planId}/integrations/{integrationId}/logs": {
+            "get": {
+                "summary": "Get integration logs",
+                "description": "Get integration logs",
+                "operationId": "getPlanIntegrationLogs",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-integrationId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(PlanIntegrationLog)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/recipients": {
             "get": {
                 "description": "Returns information about potential recipients",
@@ -5531,6 +5566,7 @@
             "type": "object"
         },
         "PlanIntegration": {
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5575,7 +5611,7 @@
                 "mainMethod": {
                     "type": "string"
                 },
-                "defaultForm": {
+                "form": {
                     "$ref": "#/definitions/FormReference"
                 },
                 "accessibleByAll": {
@@ -5592,8 +5628,7 @@
                 "id",
                 "plan",
                 "name"
-            ],
-            "type": "object"
+            ]
         },
         "PlanIntegrationInput": {
             "type": "object",
@@ -5642,7 +5677,7 @@
                 "mainMethod": {
                     "type": "string"
                 },
-                "defaultForm": {
+                "form": {
                     "$ref": "#/definitions/FormPointer"
                 },
                 "accessibleByAll": {
@@ -5657,6 +5692,59 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "PlanIntegrationReference": {
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource",
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                }
+            },
+            "required": [
+                "id",
+                "plan"
+            ]
+        },
+        "PlanIntegrationLog": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "integration": {
+                    "$ref": "#/definitions/PlanIntegrationReference"
+                },
+                "completed": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "requestMethod": {
+                    "type": "string"
+                },
+                "requestHeaders": {
+                    "type": "object"
+                },
+                "requestParameters": {
+                    "type": "object"
+                },
+                "requestBody": {
+                    "type": "string"
+                },
+                "remoteAddress": {
+                    "type": "string"
+                },
+                "requestId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "integration",
+                "completed"
             ]
         },
         "ProviderReference": {
@@ -7367,6 +7455,32 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/PlanIntegration"
+                    }
+                }
+            },
+            "required": [
+                "count",
+                "total",
+                "data"
+            ]
+        },
+        "Pagination(PlanIntegrationLog)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/PlanIntegrationLog"
                     }
                 }
             },
