@@ -2824,6 +2824,77 @@
                 ]
             }
         },
+        "/plans/{planId}/integrations/{integrationId}": {
+            "get": {
+                "summary": "Get an integration",
+                "description": "Get an integration",
+                "operationId": "getPlanIntegration",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-integrationId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanIntegration"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
+            "delete": {
+                "summary": "Delete an integration",
+                "description": "Delete an integration",
+                "operationId": "deletePlanIntegration",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-integrationId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanIntegration"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/recipients": {
             "get": {
                 "description": "Returns information about potential recipients",
@@ -7722,6 +7793,13 @@
             "description": "Integration Agent ID",
             "in": "path",
             "name": "integrationAgentId",
+            "required": true,
+            "type": "string"
+        },
+        "path-integrationId": {
+            "description": "Integration identifier",
+            "in": "path",
+            "name": "integrationId",
             "required": true,
             "type": "string"
         },
