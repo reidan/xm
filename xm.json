@@ -5544,6 +5544,40 @@
                 "description": {
                     "type": "string"
                 },
+                "operation": {
+                    "type": "string",
+                    "enum": [
+                        "CREATE_EVENT",
+                        "OUTBOUND_CALLBACK",
+                        "RUN_SCRIPT",
+                        "SEND_TO_IA",
+                        "SEND_WEBHOOK",
+                        "CREATE_EVENT_SIMPLE"
+                    ]
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "HOSTED",
+                        "ONPREMISE"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "INBOUND_WEBHOOK",
+                        "OUTBOUND_WEBHOOK"
+                    ]
+                },
+                "script": {
+                    "type": "string"
+                },
+                "mainMethod": {
+                    "type": "string"
+                },
+                "defaultForm": {
+                    "$ref": "#/definitions/FormReference"
+                },
                 "accessibleByAll": {
                     "type": "boolean"
                 },
@@ -5576,6 +5610,40 @@
                 },
                 "description": {
                     "type": "string"
+                },
+                "operation": {
+                    "type": "string",
+                    "enum": [
+                        "CREATE_EVENT",
+                        "OUTBOUND_CALLBACK",
+                        "RUN_SCRIPT",
+                        "SEND_TO_IA",
+                        "SEND_WEBHOOK",
+                        "CREATE_EVENT_SIMPLE"
+                    ]
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "HOSTED",
+                        "ONPREMISE"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "INBOUND_WEBHOOK",
+                        "OUTBOUND_WEBHOOK"
+                    ]
+                },
+                "script": {
+                    "type": "string"
+                },
+                "mainMethod": {
+                    "type": "string"
+                },
+                "defaultForm": {
+                    "$ref": "#/definitions/FormPointer"
                 },
                 "accessibleByAll": {
                     "type": "boolean"
