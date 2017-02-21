@@ -5637,8 +5637,7 @@
                     "$ref": "#/definitions/FormPointer"
                 },
                 "deployed": {
-                    "type": "boolean",
-                    "default": true
+                    "type": "boolean"
                 },
                 "environment": {
                     "type": "string",
