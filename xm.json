@@ -5595,6 +5595,43 @@
             },
             "type": "object"
         },
+        "PlanEndpointReference": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "plan",
+                "name"
+            ]
+        },
+        "PlanEndpointPointer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "plan"
+            ]
+        },
         "PlanIntegration": {
             "type": "object",
             "properties": {
@@ -5606,6 +5643,9 @@
                 },
                 "form": {
                     "$ref": "#/definitions/FormReference"
+                },
+                "endpoint": {
+                    "$ref": "#/definitions/PlanEndpointReference"
                 },
                 "deployed": {
                     "type": "boolean",
@@ -5665,6 +5705,9 @@
                 },
                 "form": {
                     "$ref": "#/definitions/FormPointer"
+                },
+                "endpoint": {
+                    "$ref": "#/definitions/PlanEndpointPointer"
                 },
                 "deployed": {
                     "type": "boolean"
