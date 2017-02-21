@@ -5616,6 +5616,7 @@
             "required": [
                 "id",
                 "plan",
+                "deployed",
                 "environment",
                 "name",
                 "operation",
