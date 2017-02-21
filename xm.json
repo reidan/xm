@@ -5577,6 +5577,16 @@
                 "form": {
                     "$ref": "#/definitions/FormReference"
                 },
+                "deployed": {
+                    "type": "boolean"
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "HOSTED",
+                        "ONPREMISE"
+                    ]
+                },
                 "name": {
                     "type": "string"
                 },
@@ -5591,12 +5601,8 @@
                         "CREATE_EVENT_SIMPLE"
                     ]
                 },
-                "environment": {
-                    "type": "string",
-                    "enum": [
-                        "HOSTED",
-                        "ONPREMISE"
-                    ]
+                "script": {
+                    "type": "string"
                 },
                 "type": {
                     "type": "string",
@@ -5604,12 +5610,6 @@
                         "INBOUND_WEBHOOK",
                         "OUTBOUND_WEBHOOK"
                     ]
-                },
-                "script": {
-                    "type": "string"
-                },
-                "deployed": {
-                    "type": "boolean"
                 }
             },
             "required": [
@@ -5631,6 +5631,16 @@
                 "form": {
                     "$ref": "#/definitions/FormPointer"
                 },
+                "deployed": {
+                    "type": "boolean"
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "HOSTED",
+                        "ONPREMISE"
+                    ]
+                },
                 "name": {
                     "type": "string"
                 },
@@ -5645,12 +5655,8 @@
                         "CREATE_EVENT_SIMPLE"
                     ]
                 },
-                "environment": {
-                    "type": "string",
-                    "enum": [
-                        "HOSTED",
-                        "ONPREMISE"
-                    ]
+                "script": {
+                    "type": "string"
                 },
                 "type": {
                     "type": "string",
@@ -5658,12 +5664,6 @@
                         "INBOUND_WEBHOOK",
                         "OUTBOUND_WEBHOOK"
                     ]
-                },
-                "script": {
-                    "type": "string"
-                },
-                "deployed": {
-                    "type": "boolean"
                 }
             },
             "required": [
