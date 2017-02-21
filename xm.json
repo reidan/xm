@@ -2175,6 +2175,36 @@
                         "$ref": "#/responses/404"
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Remove all refresh tokens for a user",
+                "description": "Remove all refresh tokens for a user",
+                "operationId": "deletePersonRefreshTokens",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(RefreshToken)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
             }
         },
         "/people/{personId}/refresh-tokens/{tokenId}": {
