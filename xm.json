@@ -5615,7 +5615,10 @@
             "required": [
                 "id",
                 "plan",
-                "name"
+                "environment",
+                "name",
+                "operation",
+                "type"
             ]
         },
         "PlanIntegrationInput": {
