@@ -5605,9 +5605,6 @@
                 "script": {
                     "type": "string"
                 },
-                "mainMethod": {
-                    "type": "string"
-                },
                 "form": {
                     "$ref": "#/definitions/FormReference"
                 },
@@ -5660,9 +5657,6 @@
                     ]
                 },
                 "script": {
-                    "type": "string"
-                },
-                "mainMethod": {
                     "type": "string"
                 },
                 "form": {
