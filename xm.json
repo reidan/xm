@@ -5574,6 +5574,9 @@
                 "plan": {
                     "$ref": "#/definitions/PlanReference"
                 },
+                "form": {
+                    "$ref": "#/definitions/FormReference"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -5604,9 +5607,6 @@
                 },
                 "script": {
                     "type": "string"
-                },
-                "form": {
-                    "$ref": "#/definitions/FormReference"
                 },
                 "deployed": {
                     "type": "boolean"
@@ -5628,6 +5628,9 @@
                 "plan": {
                     "$ref": "#/definitions/PlanPointer"
                 },
+                "form": {
+                    "$ref": "#/definitions/FormPointer"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -5658,9 +5661,6 @@
                 },
                 "script": {
                     "type": "string"
-                },
-                "form": {
-                    "$ref": "#/definitions/FormPointer"
                 },
                 "deployed": {
                     "type": "boolean"
