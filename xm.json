@@ -2180,8 +2180,8 @@
                 "tags": [
                     "Authentication"
                 ],
-                "summary": "Remove all refresh tokens for a user",
-                "description": "Remove all refresh tokens for a user",
+                "summary": "Revoke all refresh tokens for a user",
+                "description": "Revoke all refresh tokens for a user",
                 "operationId": "deletePersonRefreshTokens",
                 "parameters": [
                     {
