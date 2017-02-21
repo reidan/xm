@@ -5521,6 +5521,7 @@
             ]
         },
         "PlanEndpoint": {
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5556,9 +5557,9 @@
             "required": [
                 "id",
                 "plan",
-                "name"
-            ],
-            "type": "object"
+                "name",
+                "url"
+            ]
         },
         "PlanEndpointInput": {
             "properties": {
@@ -5644,22 +5645,15 @@
                 "form": {
                     "$ref": "#/definitions/FormReference"
                 },
-                "endpoint": {
-                    "$ref": "#/definitions/PlanEndpointReference"
-                },
-                "deployed": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "environment": {
-                    "type": "string",
-                    "enum": [
-                        "HOSTED",
-                        "ONPREMISE"
-                    ]
-                },
                 "name": {
                     "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "INBOUND_WEBHOOK",
+                        "OUTBOUND_WEBHOOK"
+                    ]
                 },
                 "operation": {
                     "type": "string",
@@ -5672,25 +5666,40 @@
                         "CREATE_EVENT_SIMPLE"
                     ]
                 },
-                "script": {
-                    "type": "string"
+                "endpoint": {
+                    "$ref": "#/definitions/PlanEndpointReference"
                 },
-                "type": {
+                "triggeredBy": {
                     "type": "string",
                     "enum": [
-                        "INBOUND_WEBHOOK",
-                        "OUTBOUND_WEBHOOK"
+                        "DELIVERYSTATUS",
+                        "RESPONSE",
+                        "STATUS"
                     ]
+                },
+                "deployed": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "HOSTED",
+                        "ONPREMISE"
+                    ]
+                },
+                "script": {
+                    "type": "string"
                 }
             },
             "required": [
                 "id",
                 "plan",
-                "deployed",
-                "environment",
                 "name",
+                "type",
                 "operation",
-                "type"
+                "deployed",
+                "environment"
             ]
         },
         "PlanIntegrationInput": {
@@ -5706,6 +5715,35 @@
                 "form": {
                     "$ref": "#/definitions/FormPointer"
                 },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "INBOUND_WEBHOOK",
+                        "OUTBOUND_WEBHOOK"
+                    ]
+                },
+                "operation": {
+                    "type": "string",
+                    "enum": [
+                        "CREATE_EVENT",
+                        "OUTBOUND_CALLBACK",
+                        "RUN_SCRIPT",
+                        "SEND_TO_IA",
+                        "SEND_WEBHOOK",
+                        "CREATE_EVENT_SIMPLE"
+                    ]
+                },
+                "triggeredBy": {
+                    "type": "string",
+                    "enum": [
+                        "DELIVERYSTATUS",
+                        "RESPONSE",
+                        "STATUS"
+                    ]
+                },
                 "endpoint": {
                     "$ref": "#/definitions/PlanEndpointPointer"
                 },
@@ -5719,29 +5757,8 @@
                         "ONPREMISE"
                     ]
                 },
-                "name": {
-                    "type": "string"
-                },
-                "operation": {
-                    "type": "string",
-                    "enum": [
-                        "CREATE_EVENT",
-                        "OUTBOUND_CALLBACK",
-                        "RUN_SCRIPT",
-                        "SEND_TO_IA",
-                        "SEND_WEBHOOK",
-                        "CREATE_EVENT_SIMPLE"
-                    ]
-                },
                 "script": {
                     "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "INBOUND_WEBHOOK",
-                        "OUTBOUND_WEBHOOK"
-                    ]
                 }
             },
             "required": [
