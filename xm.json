@@ -5005,13 +5005,22 @@
                     "type": "boolean"
                 },
                 "messages": {
-                    "type": "array"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "inboundWebHooks": {
-                    "type": "array"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "constants": {
-                    "type": "array"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "creator": {
                     "$ref": "#/definitions/PersonReference"
