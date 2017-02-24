@@ -1549,9 +1549,6 @@
         },
         "/integration-configs": {
             "get": {
-                "tags": [
-                    "Integration Configs"
-                ],
                 "summary": "Get integration configurations",
                 "description": "Get integration configurations",
                 "operationId": "getIntegrationConfigs",
@@ -1579,7 +1576,58 @@
                     "403": {
                         "$ref": "#/responses/403"
                     }
-                }
+                },
+                "tags": [
+                    "Integration Configs"
+                ]
+            },
+            "post": {
+                "summary": "Insert or update integration configuration",
+                "description": "Insert or update integration configuration",
+                "operationId": "postIntegrationConfig",
+                "parameters": [
+                    {
+                        "description": "Integration config",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationConfigInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationConfig"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationConfig"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Integration Configs"
+                ]
             }
         },
         "/integration-configs/{integrationConfigId}": {
@@ -4953,8 +5001,24 @@
                 "accessibleByAll": {
                     "type": "boolean"
                 },
+                "editable": {
+                    "type": "boolean"
+                },
+                "messages": {
+                    "type": "array"
+                },
+                "inboundWebHooks": {
+                    "type": "array"
+                },
+                "constants": {
+                    "type": "array"
+                },
                 "creator": {
                     "$ref": "#/definitions/PersonReference"
+                },
+                "creationDate": {
+                    "type": "string",
+                    "format": "date-time"
                 },
                 "permitted": {
                     "$ref": "#/definitions/Pagination(Recipient)"
@@ -4964,6 +5028,32 @@
             "required": [
                 "id"
             ]
+        },
+        "IntegrationConfigInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "accessibleByAll": {
+                    "type": "boolean"
+                },
+                "creator": {
+                    "$ref": "#/definitions/PersonPointer"
+                },
+                "permitted": {
+                    "$ref": "#/definitions/Pagination(Recipient)"
+                }
+            }
         },
         "IntegrationPointer": {
             "properties": {
@@ -6112,9 +6202,6 @@
             "type": "object",
             "description": "A response",
             "properties": {
-                "event": {
-                    "$ref": "#/definitions/EventPointer"
-                },
                 "notification": {
                     "$ref": "#/definitions/NotificationPointer"
                 },
