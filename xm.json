@@ -934,6 +934,12 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-groupId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-from"
+                    },
+                    {
+                        "$ref": "#/parameters/query-to"
                     }
                 ],
                 "responses": {
