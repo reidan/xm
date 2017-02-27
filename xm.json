@@ -1934,6 +1934,45 @@
                 "tags": [
                     "Organization"
                 ]
+            },
+            "post": {
+                "summary": "Set organization configuration",
+                "description": "Set organization configuration",
+                "operationId": "postOrganizationConfig",
+                "parameters": [
+                    {
+                        "description": "Data for insert or update",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrganizationConfigInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/OrganizationConfig"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Organization"
+                ]
             }
         },
         "/people": {
@@ -4911,6 +4950,18 @@
                 "links"
             ]
         },
+        "GroupPointer": {
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource",
+                    "type": "string"
+                },
+                "targetName": {
+                    "description": "The target name of the resource",
+                    "type": "string"
+                }
+            }
+        },
         "Hierarchy": {
             "description": "Hierarchy",
             "items": {
@@ -5359,6 +5410,19 @@
             ]
         },
         "OrganizationConfig": {
+            "type": "object",
+            "properties": {
+                "mobilePINLockEnabled": {
+                    "description": "Mobile app users will be required to have an account PIN",
+                    "type": "boolean"
+                },
+                "mobilePINLockTimeout": {
+                    "description": "PIN lock timeout in minutes",
+                    "type": "integer"
+                }
+            }
+        },
+        "OrganizationConfigInput": {
             "type": "object",
             "properties": {
                 "mobilePINLockEnabled": {
@@ -6503,6 +6567,20 @@
                 "name",
                 "links"
             ]
+        },
+        "ShiftPointer": {
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource",
+                    "type": "string"
+                },
+                "group": {
+                    "$ref": "#/definitions/GroupPointer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
         },
         "ShiftMember": {
             "properties": {
