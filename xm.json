@@ -5419,6 +5419,30 @@
                 "mobilePINLockTimeout": {
                     "description": "PIN lock timeout in minutes",
                     "type": "integer"
+                },
+                "passwordUniqueHistory": {
+                    "type": "integer"
+                },
+                "passwordMinimumLength": {
+                    "type": "integer"
+                },
+                "passwordRequiredComplexity": {
+                    "type": "string"
+                },
+                "passwordMaximumAge": {
+                    "type": "integer"
+                },
+                "passwordMinimumAge": {
+                    "type": "integer"
+                },
+                "passwordLockoutThreshold": {
+                    "type": "integer"
+                },
+                "passwordLockoutDuration": {
+                    "type": "integer"
+                },
+                "passwordLockoutResetPeriod": {
+                    "type": "integer"
                 }
             }
         },
@@ -5431,6 +5455,30 @@
                 },
                 "mobilePINLockTimeout": {
                     "description": "PIN lock timeout in minutes",
+                    "type": "integer"
+                },
+                "passwordUniqueHistory": {
+                    "type": "integer"
+                },
+                "passwordMinimumLength": {
+                    "type": "integer"
+                },
+                "passwordRequiredComplexity": {
+                    "type": "string"
+                },
+                "passwordMaximumAge": {
+                    "type": "integer"
+                },
+                "passwordMinimumAge": {
+                    "type": "integer"
+                },
+                "passwordLockoutThreshold": {
+                    "type": "integer"
+                },
+                "passwordLockoutDuration": {
+                    "type": "integer"
+                },
+                "passwordLockoutResetPeriod": {
                     "type": "integer"
                 }
             }
