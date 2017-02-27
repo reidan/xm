@@ -5359,15 +5359,26 @@
             ]
         },
         "OrganizationConfig": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "mobilePINLockEnabled": {
+                    "description": "Mobile app users will be required to have an account PIN",
+                    "type": "boolean"
+                },
+                "mobilePINLockTimeout": {
+                    "description": "PIN lock timeout in minutes",
+                    "type": "integer"
+                }
+            }
         },
         "Person": {
+            "type": "object",
+            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
                 }
             ],
-            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
             "properties": {
                 "firstName": {
                     "description": "The first name of the user",
@@ -5432,8 +5443,7 @@
             "required": [
                 "firstName",
                 "lastName"
-            ],
-            "type": "object"
+            ]
         },
         "PersonInput": {
             "allOf": [
@@ -6906,43 +6916,39 @@
         },
         "ScheduleThisMessage": {
             "type": "object",
-            "description": "schedule-this message",
+            "description": "schedule-this topic message",
             "properties": {
+                "organization": {
+                    "$ref": "#/definitions/OrganizationPointer"
+                },
                 "version": {
                     "type": "string",
                     "maxLength": 32,
                     "minLength": 1
                 },
-                "organization": {
-                    "$ref": "#/definitions/OrganizationPointer"
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this message"
                 },
                 "message": {
                     "type": "string",
-                    "description": "JSON message to be emitted into topic. Must be appropriate for the destination topic schema",
-                    "maxLength": 100000,
-                    "minLength": 1
-                },
-                "topic": {
-                    "type": "string",
-                    "description": "Will emit message into this topic using organization.id as the partition key",
-                    "maxLength": 32,
-                    "minLength": 1
+                    "description": "Serialized message to be emitted into reminders topic using organization.id as the partition key"
                 },
                 "trigger": {
                     "$ref": "#/definitions/ScheduleTrigger"
                 }
             },
             "required": [
-                "version",
                 "organization",
+                "version",
+                "id",
                 "message",
-                "topic",
                 "trigger"
             ]
         },
         "ScheduleTrigger": {
             "type": "object",
-            "description": "Schedule Trigger",
+            "description": "Defines the Quartz Trigger Schedule",
             "properties": {
                 "startTime": {
                     "type": "string",
@@ -6961,6 +6967,96 @@
             },
             "required": [
                 "startTime"
+            ]
+        },
+        "ReminderMessage": {
+            "type": "object",
+            "description": "reminders topic message",
+            "properties": {
+                "organization": {
+                    "$ref": "#/definitions/OrganizationPointer"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "coverage.start",
+                        "coverage.end",
+                        "person.on-call"
+                    ]
+                },
+                "version": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 1
+                },
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this message"
+                },
+                "at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "organization",
+                "type",
+                "version",
+                "id",
+                "at"
+            ]
+        },
+        "OnCallReminderMessage": {
+            "type": "object",
+            "description": "on call reminder message",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ReminderMessage"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "person.on-call"
+                    ]
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonPointer"
+                },
+                "shift": {
+                    "$ref": "#/definitions/ShiftPointer"
+                }
+            },
+            "required": [
+                "type",
+                "person",
+                "shift"
+            ]
+        },
+        "RevisionMessage": {
+            "type": "object",
+            "description": "revisions topic message",
+            "properties": {
+                "organization": {
+                    "$ref": "#/definitions/OrganizationPointer"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "shift"
+                    ]
+                },
+                "version": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 1
+                }
+            },
+            "required": [
+                "organization",
+                "type",
+                "version"
             ]
         },
         "Pagination(Audit)": {
