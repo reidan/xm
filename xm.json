@@ -3239,10 +3239,10 @@
                 ]
             }
         },
-        "/schedule-this": {
+        "/topics/schedule-this": {
             "post": {
-                "summary": "schedule-this messages",
-                "description": "schedule-this messages",
+                "summary": "schedule-this topic messages",
+                "description": "schedule-this topic messages",
                 "operationId": "schedule-this",
                 "parameters": [
                     {
@@ -3251,6 +3251,31 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ScheduleThisMessage"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
+        },
+        "/topics/reminders": {
+            "post": {
+                "summary": "reminders topic messages",
+                "description": "reminders topic messages",
+                "operationId": "reminders",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReminderMessage"
                         }
                     }
                 ],
@@ -7118,18 +7143,13 @@
                 "id": {
                     "type": "string",
                     "description": "A unique identifier (UUID) for this message"
-                },
-                "at": {
-                    "type": "string",
-                    "format": "date-time"
                 }
             },
             "required": [
                 "organization",
                 "type",
                 "version",
-                "id",
-                "at"
+                "id"
             ]
         },
         "OnCallReminderMessage": {
