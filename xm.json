@@ -29,6 +29,12 @@
                         "$ref": "#/parameters/query-to"
                     },
                     {
+                        "$ref": "#/parameters/query-after"
+                    },
+                    {
+                        "$ref": "#/parameters/query-before"
+                    },
+                    {
                         "$ref": "#/parameters/query-eventId"
                     },
                     {
@@ -6389,6 +6395,9 @@
                 },
                 "deviceName": {
                     "type": "string"
+                },
+                "callMeAt": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -7127,7 +7136,7 @@
                 "startTime"
             ]
         },
-        "ReminderMessage": {
+        "KafkaReminderMessage": {
             "type": "object",
             "description": "reminders topic message",
             "properties": {
@@ -7159,7 +7168,7 @@
                 "id"
             ]
         },
-        "OnCallReminderMessage": {
+        "KafkaOnCallReminderMessage": {
             "type": "object",
             "description": "on call reminder message",
             "allOf": [
