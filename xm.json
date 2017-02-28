@@ -7136,7 +7136,7 @@
                 "startTime"
             ]
         },
-        "KafkaReminderMessage": {
+        "ReminderMessage": {
             "type": "object",
             "description": "reminders topic message",
             "properties": {
