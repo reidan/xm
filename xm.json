@@ -6333,14 +6333,17 @@
             "type": "object",
             "description": "A response",
             "properties": {
-                "text": {
-                    "type": "string"
-                },
                 "notification": {
                     "$ref": "#/definitions/NotificationReference"
                 },
                 "option": {
                     "$ref": "#/definitions/ResponseOption"
+                },
+                "response": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
                 },
                 "source": {
                     "type": "string",
@@ -6350,14 +6353,17 @@
                         "ANDROID"
                     ]
                 },
+                "deviceName": {
+                    "type": "string"
+                },
                 "received": {
                     "type": "string",
                     "format": "date-time"
                 }
             },
             "required": [
-                "text",
-                "notification"
+                "notification",
+                "response"
             ]
         },
         "ResponseInput": {
@@ -6375,10 +6381,10 @@
                         "ANDROID"
                     ]
                 },
-                "option": {
+                "response": {
                     "type": "string"
                 },
-                "text": {
+                "comment": {
                     "type": "string"
                 },
                 "deviceName": {
@@ -6386,7 +6392,8 @@
                 }
             },
             "required": [
-                "notification"
+                "notification",
+                "response"
             ]
         },
         "ResponseOption": {
