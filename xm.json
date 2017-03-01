@@ -3507,6 +3507,7 @@
             "type": "object"
         },
         "Audit": {
+            "type": "object",
             "description": "An audit",
             "properties": {
                 "id": {
@@ -3524,15 +3525,42 @@
                     "$ref": "#/definitions/EventReference"
                 },
                 "notification": {
-                    "$ref": "#/definitions/EventReference"
+                    "$ref": "#/definitions/NotificationReference"
                 }
             },
             "required": [
                 "id",
                 "at",
                 "type"
-            ],
-            "type": "object"
+            ]
+        },
+        "AuditInput": {
+            "type": "object",
+            "description": "An audit",
+            "properties": {
+                "id": {
+                    "description": "A unique identifier for this record",
+                    "type": "string"
+                },
+                "at": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "event": {
+                    "$ref": "#/definitions/EventPointer"
+                },
+                "notification": {
+                    "$ref": "#/definitions/NotificationPointer"
+                }
+            },
+            "required": [
+                "id",
+                "at",
+                "type"
+            ]
         },
         "BadRequestResponse": {
             "properties": {
@@ -7139,6 +7167,23 @@
             "required": [
                 "reminder",
                 "schedule"
+            ]
+        },
+        "KafkaAuditMessage": {
+            "type": "object",
+            "description": "audits topic message",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/KafkaMessage"
+                }
+            ],
+            "properties": {
+                "audit": {
+                    "$ref": "#/definitions/AuditInput"
+                }
+            },
+            "required": [
+                "audit"
             ]
         },
         "ScheduleTrigger": {
