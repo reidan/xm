@@ -3256,7 +3256,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/KafkaAuditMessage"
+                            "$ref": "#/definitions/AuditInput"
                         }
                     }
                 ],
@@ -3281,7 +3281,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/KafkaScheduleThisMessage"
+                            "$ref": "#/definitions/Job"
                         }
                     }
                 ],
@@ -3306,7 +3306,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/KafkaReminderMessage"
+                            "$ref": "#/definitions/Reminder"
                         }
                     }
                 ],
@@ -7218,32 +7218,14 @@
             },
             "type": "object"
         },
-        "KafkaMessage": {
+        "Job": {
             "type": "object",
-            "description": "Kafka topic message",
+            "description": "schedule-this topic message",
             "properties": {
                 "id": {
                     "type": "string",
                     "description": "A unique identifier (UUID) for this entity"
                 },
-                "organization": {
-                    "$ref": "#/definitions/OrganizationPointer"
-                }
-            },
-            "required": [
-                "id",
-                "organization"
-            ]
-        },
-        "KafkaScheduleThisMessage": {
-            "type": "object",
-            "description": "schedule-this topic message",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/KafkaMessage"
-                }
-            ],
-            "properties": {
                 "reminder": {
                     "$ref": "#/definitions/Reminder"
                 },
@@ -7252,42 +7234,21 @@
                 }
             },
             "required": [
+                "id",
                 "reminder",
                 "trigger"
             ]
         },
-        "KafkaReminderMessage": {
+        "JobPointer": {
             "type": "object",
-            "description": "reminders topic message",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/KafkaMessage"
-                }
-            ],
             "properties": {
-                "reminder": {
-                    "$ref": "#/definitions/Reminder"
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this Job"
                 }
             },
             "required": [
-                "reminder"
-            ]
-        },
-        "KafkaAuditMessage": {
-            "type": "object",
-            "description": "audits topic message",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/KafkaMessage"
-                }
-            ],
-            "properties": {
-                "audit": {
-                    "$ref": "#/definitions/AuditInput"
-                }
-            },
-            "required": [
-                "audit"
+                "id"
             ]
         },
         "ScheduleTrigger": {
@@ -7328,15 +7289,18 @@
                         "coverage.end",
                         "person.on-call"
                     ]
+                },
+                "job": {
+                    "$ref": "#/definitions/JobPointer"
                 }
             },
             "required": [
                 "type"
             ]
         },
-        "OnCallReminder": {
+        "PersonOnCallReminder": {
             "type": "object",
-            "description": "on call reminder",
+            "description": "person on call reminder",
             "allOf": [
                 {
                     "$ref": "#/definitions/Reminder"
@@ -7351,15 +7315,11 @@
                 },
                 "person": {
                     "$ref": "#/definitions/PersonPointer"
-                },
-                "onCallReminder": {
-                    "$ref": "#/definitions/OnCallReminderPointer"
                 }
             },
             "required": [
                 "type",
-                "person",
-                "onCallReminder"
+                "person"
             ]
         },
         "OnCallReminderPointer": {
