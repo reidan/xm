@@ -3320,6 +3320,31 @@
                 ]
             }
         },
+        "/topics/revisions": {
+            "post": {
+                "summary": "revisions topic messages",
+                "description": "revisions topic messages",
+                "operationId": "revisions",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Revision"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
+        },
         "/timeline": {
             "get": {
                 "summary": "Get Timeline",
@@ -7333,6 +7358,28 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "Revision": {
+            "type": "object",
+            "description": "A revision",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this entity"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "event",
+                        "person",
+                        "shift",
+                        "reminder"
+                    ]
+                }
+            },
+            "required": [
+                "type"
             ]
         },
         "Pagination(Audit)": {
