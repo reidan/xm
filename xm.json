@@ -3775,6 +3775,7 @@
             "required": [
                 "type",
                 "event",
+                "person",
                 "device"
             ]
         },
