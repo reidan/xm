@@ -3256,7 +3256,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AuditInput"
+                            "$ref": "#/definitions/KafkaAuditMessage"
                         }
                     }
                 ],
@@ -7267,15 +7267,10 @@
             "properties": {
                 "reminder": {
                     "$ref": "#/definitions/Reminder"
-                },
-                "schedule": {
-                    "type": "string",
-                    "description": "id of the schedule-this message that created this reminder"
                 }
             },
             "required": [
-                "reminder",
-                "schedule"
+                "reminder"
             ]
         },
         "KafkaAuditMessage": {
@@ -7322,6 +7317,10 @@
             "type": "object",
             "description": "A reminder",
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this reminder"
+                },
                 "type": {
                     "type": "string",
                     "enum": [
