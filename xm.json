@@ -3245,6 +3245,31 @@
                 ]
             }
         },
+        "/topics/audits": {
+            "post": {
+                "summary": "audits topic messages",
+                "description": "audits topic messages",
+                "operationId": "audits",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AuditInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
+        },
         "/topics/schedule-this": {
             "post": {
                 "summary": "schedule-this topic messages",
