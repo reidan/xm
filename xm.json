@@ -3256,7 +3256,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ScheduleThisMessage"
+                            "$ref": "#/definitions/KafkaScheduleThisMessage"
                         }
                     }
                 ],
@@ -3281,7 +3281,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/ReminderMessage"
+                            "$ref": "#/definitions/KafkaReminderMessage"
                         }
                     }
                 ],
@@ -7081,9 +7081,9 @@
             },
             "type": "object"
         },
-        "ScheduleThisMessage": {
+        "KafkaMessageHeaders": {
             "type": "object",
-            "description": "schedule-this topic message",
+            "description": "Kafka topic common message headers",
             "properties": {
                 "organization": {
                     "$ref": "#/definitions/OrganizationPointer"
@@ -7096,20 +7096,61 @@
                 "id": {
                     "type": "string",
                     "description": "A unique identifier (UUID) for this message"
-                },
-                "message": {
-                    "type": "string",
-                    "description": "Serialized message to be emitted into reminders topic using organization.id as the partition key"
+                }
+            }
+        },
+        "KafkaMessage": {
+            "type": "object",
+            "description": "Kafka topic message",
+            "properties": {
+                "headers": {
+                    "$ref": "#/definitions/KafkaMessageHeaders"
+                }
+            },
+            "required": [
+                "headers"
+            ]
+        },
+        "KafkaScheduleThisMessage": {
+            "type": "object",
+            "description": "schedule-this topic message",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/KafkaMessage"
+                }
+            ],
+            "properties": {
+                "reminder": {
+                    "$ref": "#/definitions/Reminder"
                 },
                 "trigger": {
                     "$ref": "#/definitions/ScheduleTrigger"
                 }
             },
             "required": [
-                "organization",
-                "version",
-                "id",
-                "message",
+                "reminder",
+                "trigger"
+            ]
+        },
+        "KafkaReminderMessage": {
+            "type": "object",
+            "description": "reminders topic message",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/KafkaMessage"
+                }
+            ],
+            "properties": {
+                "reminder": {
+                    "$ref": "#/definitions/Reminder"
+                },
+                "trigger": {
+                    "type": "string",
+                    "description": "id of the schedule that triggered this reminder"
+                }
+            },
+            "required": [
+                "reminder",
                 "trigger"
             ]
         },
@@ -7136,13 +7177,10 @@
                 "startTime"
             ]
         },
-        "ReminderMessage": {
+        "Reminder": {
             "type": "object",
-            "description": "reminders topic message",
+            "description": "A reminder",
             "properties": {
-                "organization": {
-                    "$ref": "#/definitions/OrganizationPointer"
-                },
                 "type": {
                     "type": "string",
                     "enum": [
@@ -7150,30 +7188,18 @@
                         "coverage.end",
                         "person.on-call"
                     ]
-                },
-                "version": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 1
-                },
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier (UUID) for this message"
                 }
             },
             "required": [
-                "organization",
-                "type",
-                "version",
-                "id"
+                "type"
             ]
         },
-        "KafkaOnCallReminderMessage": {
+        "OnCallReminder": {
             "type": "object",
-            "description": "on call reminder message",
+            "description": "on call reminder",
             "allOf": [
                 {
-                    "$ref": "#/definitions/ReminderMessage"
+                    "$ref": "#/definitions/Reminder"
                 }
             ],
             "properties": {
@@ -7186,39 +7212,15 @@
                 "person": {
                     "$ref": "#/definitions/PersonPointer"
                 },
-                "shift": {
-                    "$ref": "#/definitions/ShiftPointer"
+                "reminder": {
+                    "type": "object",
+                    "description": "TODO: No idea what on call reminder pointer is right now"
                 }
             },
             "required": [
                 "type",
                 "person",
-                "shift"
-            ]
-        },
-        "RevisionMessage": {
-            "type": "object",
-            "description": "revisions topic message",
-            "properties": {
-                "organization": {
-                    "$ref": "#/definitions/OrganizationPointer"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "shift"
-                    ]
-                },
-                "version": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 1
-                }
-            },
-            "required": [
-                "organization",
-                "type",
-                "version"
+                "reminder"
             ]
         },
         "Pagination(Audit)": {
