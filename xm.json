@@ -3565,10 +3565,12 @@
                     "type": "string"
                 },
                 "at": {
-                    "format": "date-time",
-                    "type": "string"
+                    "description": "Time this event happened",
+                    "type": "string",
+                    "format": "date-time"
                 },
                 "type": {
+                    "description": "Audit types",
                     "type": "string",
                     "enum": [
                         "call.busy",
@@ -3616,6 +3618,12 @@
                 "event": {
                     "$ref": "#/definitions/EventReference"
                 },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "device": {
+                    "$ref": "#/definitions/DeviceReference"
+                },
                 "notification": {
                     "$ref": "#/definitions/NotificationReference"
                 }
@@ -3635,10 +3643,12 @@
                     "type": "string"
                 },
                 "at": {
-                    "format": "date-time",
-                    "type": "string"
+                    "description": "Time this event happened",
+                    "type": "string",
+                    "format": "date-time"
                 },
                 "type": {
+                    "description": "Audit types",
                     "type": "string",
                     "enum": [
                         "call.busy",
@@ -3686,6 +3696,15 @@
                 "event": {
                     "$ref": "#/definitions/EventPointer"
                 },
+                "person": {
+                    "$ref": "#/definitions/PersonPointer"
+                },
+                "device": {
+                    "$ref": "#/definitions/DevicePointer"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonPointer"
+                },
                 "notification": {
                     "$ref": "#/definitions/NotificationPointer"
                 }
@@ -3694,6 +3713,69 @@
                 "id",
                 "at",
                 "type"
+            ]
+        },
+        "EventAnnotatedAudit": {
+            "type": "object",
+            "description": "An event.annotated audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "event.annotated"
+                    ]
+                },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "annotation": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "event",
+                "person",
+                "annotation"
+            ]
+        },
+        "ResponseReceivedAudit": {
+            "type": "object",
+            "description": "A response.received audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "response.received"
+                    ]
+                },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "device": {
+                    "$ref": "#/definitions/DeviceReference"
+                }
+            },
+            "required": [
+                "type",
+                "event",
+                "device"
             ]
         },
         "BadRequestResponse": {
