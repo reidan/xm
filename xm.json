@@ -3536,7 +3536,7 @@
             "description": "An audit",
             "properties": {
                 "id": {
-                    "description": "A unique identifier for this record",
+                    "description": "A unique identifier (UUID) for this entity",
                     "type": "string"
                 },
                 "at": {
@@ -3606,7 +3606,7 @@
             "description": "An audit",
             "properties": {
                 "id": {
-                    "description": "A unique identifier for this record",
+                    "description": "A unique identifier (UUID) for this entity",
                     "type": "string"
                 },
                 "at": {
@@ -4697,7 +4697,7 @@
         "EventReference": {
             "properties": {
                 "id": {
-                    "description": "An identifier (UUID) that represents this resource",
+                    "description": "A unique identifier (UUID) for this entity",
                     "type": "string"
                 },
                 "eventId": {
@@ -5540,7 +5540,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Organization UUID. Used as partition key"
+                    "description": "A unique identifier (UUID) for this entity"
                 },
                 "trial": {
                     "type": "boolean",
@@ -5557,7 +5557,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Organization UUID. Used as partition key"
+                    "description": "A unique identifier (UUID) for this entity"
                 },
                 "trial": {
                     "type": "boolean",
@@ -5570,7 +5570,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Organization UUID. Used as partition key"
+                    "description": "A unique identifier (UUID) for this entity"
                 }
             },
             "required": [
@@ -6276,7 +6276,7 @@
             "discriminator": "recipientType",
             "properties": {
                 "id": {
-                    "description": "An identifier (UUID) that represents this resource",
+                    "description": "A unique identifier (UUID) for this entity",
                     "type": "string"
                 },
                 "targetName": {
@@ -6345,7 +6345,7 @@
             "discriminator": "recipientType",
             "properties": {
                 "id": {
-                    "description": "The unique identifier",
+                    "description": "A unique identifier (UUID) for this entity",
                     "type": "string"
                 },
                 "targetName": {
@@ -7224,7 +7224,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "A unique identifier (UUID) for this message"
+                    "description": "A unique identifier (UUID) for this entity"
                 },
                 "organization": {
                     "$ref": "#/definitions/OrganizationPointer"
@@ -7319,7 +7319,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "A unique identifier (UUID) for this reminder"
+                    "description": "A unique identifier (UUID) for this entity"
                 },
                 "type": {
                     "type": "string",
@@ -7368,7 +7368,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "A unique identifier (UUID) for object"
+                    "description": "A unique identifier (UUID) for this entity"
                 }
             },
             "required": [
