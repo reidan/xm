@@ -7081,34 +7081,21 @@
             },
             "type": "object"
         },
-        "KafkaMessageHeaders": {
-            "type": "object",
-            "description": "Kafka topic common message headers",
-            "properties": {
-                "organization": {
-                    "$ref": "#/definitions/OrganizationPointer"
-                },
-                "version": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 1
-                },
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier (UUID) for this message"
-                }
-            }
-        },
         "KafkaMessage": {
             "type": "object",
             "description": "Kafka topic message",
             "properties": {
-                "headers": {
-                    "$ref": "#/definitions/KafkaMessageHeaders"
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this message"
+                },
+                "organization": {
+                    "$ref": "#/definitions/OrganizationPointer"
                 }
             },
             "required": [
-                "headers"
+                "id",
+                "organization"
             ]
         },
         "KafkaScheduleThisMessage": {
@@ -7144,14 +7131,14 @@
                 "reminder": {
                     "$ref": "#/definitions/Reminder"
                 },
-                "trigger": {
+                "schedule": {
                     "type": "string",
-                    "description": "id of the schedule that triggered this reminder"
+                    "description": "id of the schedule-this message that created this reminder"
                 }
             },
             "required": [
                 "reminder",
-                "trigger"
+                "schedule"
             ]
         },
         "ScheduleTrigger": {
@@ -7212,15 +7199,27 @@
                 "person": {
                     "$ref": "#/definitions/PersonPointer"
                 },
-                "reminder": {
-                    "type": "object",
-                    "description": "TODO: No idea what on call reminder pointer is right now"
+                "onCallReminder": {
+                    "$ref": "#/definitions/OnCallReminderPointer"
                 }
             },
             "required": [
                 "type",
                 "person",
-                "reminder"
+                "onCallReminder"
+            ]
+        },
+        "OnCallReminderPointer": {
+            "type": "object",
+            "description": "An on-call reminder",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for object"
+                }
+            },
+            "required": [
+                "id"
             ]
         },
         "Pagination(Audit)": {
