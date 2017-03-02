@@ -7355,7 +7355,7 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "A unique identifier (UUID) for this Job"
+                    "description": "A unique identifier (UUID) for this entity"
                 }
             },
             "required": [
