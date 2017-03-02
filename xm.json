@@ -3273,6 +3273,31 @@
                 ]
             }
         },
+        "/topics/notifications": {
+            "post": {
+                "summary": "notifications topic messages",
+                "description": "notifications topic messages",
+                "operationId": "notifications",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NotificationInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
+        },
         "/topics/schedule-this": {
             "post": {
                 "summary": "schedule-this topic messages",
@@ -5537,6 +5562,31 @@
                 },
                 "responses": {
                     "$ref": "#/definitions/Pagination(Response)"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "type": "object"
+        },
+        "NotificationInput": {
+            "description": "A notification",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "event": {
+                    "$ref": "#/definitions/EventPointer"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientPointer"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
                 }
             },
             "required": [
