@@ -41,6 +41,9 @@
                         "$ref": "#/parameters/query-personId"
                     },
                     {
+                        "$ref": "#/parameters/query-deviceId"
+                    },
+                    {
                         "$ref": "#/parameters/query-auditType"
                     },
                     {
@@ -8735,6 +8738,13 @@
             "description": "Before this time or sequenced item identifier (exclusive)",
             "in": "query",
             "name": "before",
+            "required": false,
+            "type": "string"
+        },
+        "query-deviceId": {
+            "description": "The device uuid or name",
+            "in": "query",
+            "name": "deviceId",
             "required": false,
             "type": "string"
         },
