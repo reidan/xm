@@ -7433,19 +7433,6 @@
                 "person"
             ]
         },
-        "OnCallReminderPointer": {
-            "type": "object",
-            "description": "An on-call reminder",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier (UUID) for this entity"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
         "Revision": {
             "type": "object",
             "description": "A revision",
