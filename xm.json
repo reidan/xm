@@ -3720,21 +3720,6 @@
                         "sms.read",
                         "subscription.created"
                     ]
-                },
-                "event": {
-                    "$ref": "#/definitions/EventPointer"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonPointer"
-                },
-                "device": {
-                    "$ref": "#/definitions/DevicePointer"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonPointer"
-                },
-                "notification": {
-                    "$ref": "#/definitions/NotificationPointer"
                 }
             },
             "required": [
@@ -3743,12 +3728,36 @@
                 "type"
             ]
         },
-        "EventAnnotatedAudit": {
+        "EventCreatedAuditInput": {
+            "type": "object",
+            "description": "An event.created audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/AuditInput"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "event.created"
+                    ]
+                },
+                "event": {
+                    "$ref": "#/definitions/EventPointer"
+                }
+            },
+            "required": [
+                "type",
+                "event"
+            ]
+        },
+        "EventAnnotatedAuditInput": {
             "type": "object",
             "description": "An event.annotated audit",
             "allOf": [
                 {
-                    "$ref": "#/definitions/Audit"
+                    "$ref": "#/definitions/AuditInput"
                 }
             ],
             "properties": {
@@ -3759,10 +3768,10 @@
                     ]
                 },
                 "event": {
-                    "$ref": "#/definitions/EventReference"
+                    "$ref": "#/definitions/EventPointer"
                 },
                 "person": {
-                    "$ref": "#/definitions/PersonReference"
+                    "$ref": "#/definitions/PersonPointer"
                 },
                 "annotation": {
                     "type": "string"
@@ -3775,12 +3784,12 @@
                 "annotation"
             ]
         },
-        "ResponseReceivedAudit": {
+        "ResponseReceivedAuditInput": {
             "type": "object",
             "description": "A response.received audit",
             "allOf": [
                 {
-                    "$ref": "#/definitions/Audit"
+                    "$ref": "#/definitions/AuditInput"
                 }
             ],
             "properties": {
@@ -3791,13 +3800,13 @@
                     ]
                 },
                 "event": {
-                    "$ref": "#/definitions/EventReference"
+                    "$ref": "#/definitions/EventPointer"
                 },
                 "person": {
-                    "$ref": "#/definitions/PersonReference"
+                    "$ref": "#/definitions/PersonPointer"
                 },
                 "device": {
-                    "$ref": "#/definitions/DeviceReference"
+                    "$ref": "#/definitions/DevicePointer"
                 }
             },
             "required": [
