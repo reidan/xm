@@ -3716,6 +3716,30 @@
                 "type"
             ]
         },
+        "EventCreatedAudit": {
+            "type": "object",
+            "description": "An event.created audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "event.created"
+                    ]
+                },
+                "event": {
+                    "$ref": "#/definitions/Event"
+                }
+            },
+            "required": [
+                "type",
+                "event"
+            ]
+        },
         "EventCreatedAuditInput": {
             "type": "object",
             "description": "An event.created audit",
@@ -3738,6 +3762,38 @@
             "required": [
                 "type",
                 "event"
+            ]
+        },
+        "EventAnnotatedAudit": {
+            "type": "object",
+            "description": "An event.annotated audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "event.annotated"
+                    ]
+                },
+                "event": {
+                    "$ref": "#/definitions/Event"
+                },
+                "person": {
+                    "$ref": "#/definitions/Person"
+                },
+                "annotation": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "event",
+                "person",
+                "annotation"
             ]
         },
         "EventAnnotatedAuditInput": {
