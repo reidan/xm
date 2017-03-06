@@ -6747,6 +6747,12 @@
                 "notification": {
                     "$ref": "#/definitions/NotificationPointer"
                 },
+                "response": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                },
                 "source": {
                     "type": "string",
                     "enum": [
@@ -6754,12 +6760,6 @@
                         "IOS",
                         "ANDROID"
                     ]
-                },
-                "response": {
-                    "type": "string"
-                },
-                "comment": {
-                    "type": "string"
                 },
                 "deviceName": {
                     "type": "string"
