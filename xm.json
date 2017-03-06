@@ -3593,7 +3593,7 @@
                     "type": "string"
                 },
                 "at": {
-                    "description": "Time this event happened",
+                    "description": "Time this event happened (UTC)",
                     "type": "string",
                     "format": "date-time"
                 },
@@ -3642,18 +3642,6 @@
                         "sms.read",
                         "subscription.created"
                     ]
-                },
-                "event": {
-                    "$ref": "#/definitions/EventReference"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonReference"
-                },
-                "device": {
-                    "$ref": "#/definitions/DeviceReference"
-                },
-                "notification": {
-                    "$ref": "#/definitions/NotificationReference"
                 }
             },
             "required": [
@@ -3671,7 +3659,7 @@
                     "type": "string"
                 },
                 "at": {
-                    "description": "Time this event happened",
+                    "description": "Time this event happened (UTC)",
                     "type": "string",
                     "format": "date-time"
                 },
@@ -3784,6 +3772,30 @@
                 "annotation"
             ]
         },
+        "ResponseReceivedAudit": {
+            "type": "object",
+            "description": "A response.received audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "response.received"
+                    ]
+                },
+                "response": {
+                    "$ref": "#/definitions/Response"
+                }
+            },
+            "required": [
+                "type",
+                "response"
+            ]
+        },
         "ResponseReceivedAuditInput": {
             "type": "object",
             "description": "A response.received audit",
@@ -3799,21 +3811,13 @@
                         "response.received"
                     ]
                 },
-                "event": {
-                    "$ref": "#/definitions/EventPointer"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonPointer"
-                },
-                "device": {
-                    "$ref": "#/definitions/DevicePointer"
+                "response": {
+                    "$ref": "#/definitions/ResponseInput"
                 }
             },
             "required": [
                 "type",
-                "event",
-                "person",
-                "device"
+                "response"
             ]
         },
         "BadRequestResponse": {
@@ -6675,7 +6679,6 @@
                 }
             },
             "required": [
-                "notification",
                 "response"
             ]
         },
