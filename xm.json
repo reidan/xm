@@ -3062,6 +3062,51 @@
                 ]
             }
         },
+        "/plans/{planId}/integrations/{integrationId}/logs/{logId}": {
+            "get": {
+                "summary": "Get integration log",
+                "description": "Get integration log as PlanIntegrationLog object or file download",
+                "operationId": "getPlanIntegrationLog",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-integrationId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-logId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanIntegrationLog"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/recipients": {
             "get": {
                 "description": "Returns information about potential recipients",
@@ -8767,6 +8812,13 @@
             "description": "Integration identifier",
             "in": "path",
             "name": "integrationId",
+            "required": true,
+            "type": "string"
+        },
+        "path-logId": {
+            "description": "Log identifier",
+            "in": "path",
+            "name": "logId",
             "required": true,
             "type": "string"
         },
