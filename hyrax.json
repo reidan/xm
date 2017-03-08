@@ -3,9 +3,7 @@
   "info": {
     "description": "This service provides the HTTP interface to the Cloud Integration Agent",
     "version": "0.2.0",
-    "title": "Hyrax :: Cloud-to-Cloud Integration Agent :: HTTP Endpoint",
-    "contact": {},
-    "license": {}
+    "title": "Hyrax :: Cloud-to-Cloud Integration Agent :: HTTP Endpoint"
   },
   "host": "localhost",
   "basePath": "/api/integration/1",
