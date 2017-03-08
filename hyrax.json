@@ -1,0 +1,267 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This service provides the HTTP interface to the Cloud Integration Agent",
+    "version": "0.2.0",
+    "title": "Hyrax :: Cloud-to-Cloud Integration Agent :: HTTP Endpoint",
+    "contact": {},
+    "license": {}
+  },
+  "host": "localhost",
+  "basePath": "/api/integration/1",
+  "tags": [
+    {
+      "name": "jobs-controller",
+      "description": "Jobs Controller"
+    },
+    {
+      "name": "integration-controller",
+      "description": "Integration Controller"
+    },
+    {
+      "name": "tickets-controller",
+      "description": "Tickets Controller"
+    }
+  ],
+  "paths": {
+    "/functions/{functionId}/triggers": {
+      "post": {
+        "tags": [
+          "integration-controller"
+        ],
+        "summary": "Post a request to the integration specified in the UUID path parameter.",
+        "operationId": "postIntegrationRequestUsingPOST",
+        "consumes": [
+          "application/xml",
+          "application/soap+xml",
+          "application/json",
+          "*/*",
+          "text/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/soap+xml",
+          "application/json",
+          "text/json",
+          "text/xml"
+        ],
+        "parameters": [
+          {
+            "name": "functionId",
+            "in": "path",
+            "description": "functionId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "202": {
+            "description": "Accepted for processing",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "400": {
+            "description": "Bad request, or unable to determine organization from request"
+          },
+          "401": {
+            "description": "User is not authorized to make this request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not found, or unable to determine integration UUID from request"
+          }
+        }
+      }
+    },
+    "/invocations/{invocationId}/log": {
+      "get": {
+        "tags": [
+          "jobs-controller"
+        ],
+        "summary": "Fetch the contents of a given logfile",
+        "operationId": "fetchLogfileUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "invocationId",
+            "in": "path",
+            "description": "invocationId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/tickets": {
+      "post": {
+        "tags": [
+          "tickets-controller"
+        ],
+        "summary": "Post a request to configure the current Org to have this many tickets with this batch size.",
+        "operationId": "postTicketRequestUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ticketRequest",
+            "description": "ticketRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TicketRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GoldenTicket"
+              }
+            }
+          },
+          "201": {
+            "description": "Tickets created",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/GoldenTicket"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, or unable to determine organization from request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GoldenTicket": {
+      "required": [
+        "batchSize",
+        "orgKey",
+        "secondsToLive",
+        "systemFormUuid",
+        "uuid"
+      ],
+      "properties": {
+        "batchSize": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Max batch size of requests that will be processed before the ticket is returned to the queue"
+        },
+        "expiryTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time at which this ticket should be considered dropped, if it has not checked in before then"
+        },
+        "lastTouchedTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time this ticket's record was last touched in xM-API"
+        },
+        "orgKey": {
+          "type": "string",
+          "description": "Organization identifier"
+        },
+        "orgQueueMessageTtl": {
+          "type": "integer",
+          "format": "int64",
+          "description": "If non-null and non-negative, this controls the x-message-ttl header of the org queue"
+        },
+        "orgQueueTtl": {
+          "type": "integer",
+          "format": "int64",
+          "description": "If non-null and non-negative, this controls the x-expires header of the org queue"
+        },
+        "secondsToLive": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The time this ticket may go without updates before it considered lost or dropped. When a ticket is returned to the queue, this value is added to current time to determine expiryTime"
+        },
+        "systemFormUuid": {
+          "type": "string",
+          "description": "The UUID of the system level communication plan form to post failure notifications to"
+        },
+        "uuid": {
+          "type": "string",
+          "description": "UUID for the Ticket instance"
+        }
+      }
+    },
+    "TicketRequest": {
+      "required": [
+        "numTickets",
+        "secondsToLive"
+      ],
+      "properties": {
+        "numTickets": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of tickets requested"
+        },
+        "secondsToLive": {
+          "type": "integer",
+          "format": "int32",
+          "description": "The time before a ticket that has not reported in is considered lost"
+        }
+      }
+    }
+  }
+}
