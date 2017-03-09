@@ -1862,6 +1862,9 @@
                         "$ref": "#/parameters/query-to"
                     },
                     {
+                        "$ref": "#/parameters/query-shiftId"
+                    },
+                    {
                         "description": "Limit number of shift occurrence members returned",
                         "in": "query",
                         "name": "membersPerShift",
@@ -9031,6 +9034,13 @@
             "description": "Request identifier",
             "in": "query",
             "name": "requestId",
+            "required": false,
+            "type": "string"
+        },
+        "query-shiftId": {
+            "description": "Shift identifier",
+            "in": "query",
+            "name": "shiftId",
             "required": false,
             "type": "string"
         },
