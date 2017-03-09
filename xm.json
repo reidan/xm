@@ -6446,6 +6446,10 @@
                 },
                 "plan": {
                     "$ref": "#/definitions/PlanReference"
+                },
+                "name": {
+                    "description": "The name",
+                    "type": "string"
                 }
             },
             "required": [
@@ -6483,6 +6487,15 @@
                 },
                 "requestId": {
                     "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "COMPLETED",
+                        "WARNING",
+                        "FAILED",
+                        "CANCELLED"
+                    ]
                 }
             },
             "required": [
