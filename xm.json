@@ -6695,28 +6695,28 @@
                     "description": "The identifier of the resource",
                     "type": "string"
                 },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
                 "recipientType": {
+                    "type": "string",
                     "enum": [
                         "GROUP",
                         "PERSON",
                         "DEVICE",
                         "SITE",
                         "ROLE"
-                    ],
-                    "type": "string"
+                    ]
                 },
                 "targetName": {
-                    "description": "The target name of the resource",
+                    "description": "The target name of the recipient",
                     "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
                 "id",
-                "targetName",
                 "recipientType",
+                "targetName",
                 "links"
             ]
         },
