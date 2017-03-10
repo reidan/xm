@@ -6140,6 +6140,14 @@
                     "description": "The target name of the resource",
                     "type": "string"
                 },
+                "firstName": {
+                    "description": "The first name of the user",
+                    "type": "string"
+                },
+                "lastName": {
+                    "description": "The last name of the user",
+                    "type": "string"
+                },
                 "links": {
                     "$ref": "#/definitions/ReferenceLink"
                 }
