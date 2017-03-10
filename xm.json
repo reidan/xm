@@ -4466,7 +4466,23 @@
                     "type": "string"
                 },
                 "deviceType": {
-                    "$ref": "#/definitions/DeviceType"
+                    "description": "The type of the device",
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
                 },
                 "name": {
                     "description": "The name of the device. Example: Work Email, Home Phone",
@@ -4540,7 +4556,23 @@
                     "type": "integer"
                 },
                 "deviceType": {
-                    "$ref": "#/definitions/DeviceType"
+                    "description": "The type of the device",
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
                 },
                 "name": {
                     "description": "The name of the device. Example: Work Email, Home Phone",
@@ -4613,7 +4645,23 @@
         "DeviceName": {
             "properties": {
                 "deviceType": {
-                    "$ref": "#/definitions/DeviceType"
+                    "description": "The type of the device",
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
                 },
                 "name": {
                     "type": "string"
@@ -4643,7 +4691,23 @@
                     "type": "string"
                 },
                 "deviceType": {
-                    "$ref": "#/definitions/DeviceType"
+                    "description": "The type of the device",
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
@@ -4748,7 +4812,8 @@
             ]
         },
         "DeviceType": {
-            "description": "The type of device",
+            "description": "The type of the device",
+            "type": "string",
             "enum": [
                 "ANDROID_PUSH",
                 "APPLE_PUSH",
@@ -4763,8 +4828,7 @@
                 "TEXT_PHONE",
                 "VOICE",
                 "VOICE_IVR"
-            ],
-            "type": "string"
+            ]
         },
         "Domain": {
             "description": "An email domain restriction",
@@ -7060,11 +7124,27 @@
         "ServiceProvider": {
             "description": "A service provider",
             "properties": {
-                "deviceType": {
-                    "$ref": "#/definitions/DeviceType"
-                },
                 "id": {
                     "type": "string"
+                },
+                "deviceType": {
+                    "description": "The type of the device",
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
                 },
                 "name": {
                     "type": "string"
@@ -7832,7 +7912,23 @@
                 "data": {
                     "description": "An array that contains this page of resources",
                     "items": {
-                        "$ref": "#/definitions/DeviceType"
+                        "description": "The type of the device",
+                        "type": "string",
+                        "enum": [
+                            "ANDROID_PUSH",
+                            "APPLE_PUSH",
+                            "BLACKBERRY_PUSH",
+                            "BROWSER",
+                            "EMAIL",
+                            "FAX",
+                            "GENERIC",
+                            "IM",
+                            "NUMERIC_PAGER",
+                            "TEXT_PAGER",
+                            "TEXT_PHONE",
+                            "VOICE",
+                            "VOICE_IVR"
+                        ]
                     },
                     "type": "array"
                 },
