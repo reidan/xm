@@ -732,6 +732,160 @@
                 ]
             }
         },
+        "/events/{eventId}/annotations": {
+            "get": {
+                "summary": "Get event annotations",
+                "description": "Get event annotations",
+                "operationId": "getEventAnnotations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(EventAnnotation)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            },
+            "post": {
+                "summary": "Add an event annotation",
+                "description": "Add an event annotation",
+                "operationId": "postEventAnnotation",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "description": "An event annotation",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EventAnnotationInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/EventAnnotation"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/EventAnnotation"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            }
+        },
+        "/events/{eventId}/annotations/{annotationId}": {
+            "delete": {
+                "summary": "Remove an event annotation",
+                "description": "Remove an event annotation",
+                "operationId": "deleteEventAnnotation",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-annotationId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/EventAnnotation"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            },
+            "get": {
+                "summary": "Get an event annotation",
+                "description": "Get an event annotation",
+                "operationId": "getEventAnnotation",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-annotationId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/EventAnnotation"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            }
+        },
         "/feature-toggles": {
             "get": {
                 "tags": [
@@ -4977,6 +5131,41 @@
                 "id"
             ]
         },
+        "EventAnnotation": {
+            "type": "object",
+            "description": "An event annotation",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "event": {
+                    "$ref": "#/definitions/EventReference"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "event",
+                "comment"
+            ]
+        },
+        "EventAnnotationInput": {
+            "type": "object",
+            "description": "An event annotation",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "event": {
+                    "$ref": "#/definitions/EventPointer"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            }
+        },
         "FaxDevice": {
             "allOf": [
                 {
@@ -7894,6 +8083,36 @@
                 "links"
             ]
         },
+        "Pagination(EventAnnotation)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/EventAnnotation"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
         "Pagination(FeatureToggle)": {
             "properties": {
                 "count": {
@@ -8747,6 +8966,13 @@
         }
     },
     "parameters": {
+        "path-annotationId": {
+            "description": "Annotation identifier",
+            "in": "path",
+            "name": "annotationId",
+            "required": true,
+            "type": "string"
+        },
         "path-conferenceId": {
             "description": "Conference identifier",
             "in": "path",
