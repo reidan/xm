@@ -7196,9 +7196,9 @@
                 "escalationType": {
                     "description": "Identifies the type of escalation to use for Performance Report metrics; can be one of None, Peer, or Management. Note that if the delay is set to 0, this field must be set to None, or omitted. This setting cannot be applied to the first recipient in a list",
                     "enum": [
-                        "None",
-                        "Peer",
-                        "Management"
+                        "NONE",
+                        "PEER",
+                        "MANAGEMENT"
                     ],
                     "type": "string"
                 },
@@ -7592,9 +7592,9 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "coverage.start",
-                        "coverage.end",
-                        "person.on-call"
+                        "COVERAGE_START",
+                        "COVERAGE_END",
+                        "PERSON_ON_CALL"
                     ]
                 },
                 "job": {
@@ -7617,7 +7617,7 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "person.on-call"
+                        "PERSON_ON_CALL"
                     ]
                 },
                 "person": {
@@ -7640,10 +7640,10 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "event",
-                        "person",
-                        "shift",
-                        "reminder"
+                        "EVENT",
+                        "PERSON",
+                        "SHIFT",
+                        "REMINDER"
                     ]
                 }
             },
