@@ -3920,7 +3920,7 @@
         },
         "EventCreatedAudit": {
             "type": "object",
-            "description": "An event.created audit",
+            "description": "An event created audit",
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
@@ -3944,7 +3944,7 @@
         },
         "EventCreatedAuditInput": {
             "type": "object",
-            "description": "An event.created audit",
+            "description": "An event created audit",
             "allOf": [
                 {
                     "$ref": "#/definitions/AuditInput"
@@ -3968,7 +3968,7 @@
         },
         "EventAnnotatedAudit": {
             "type": "object",
-            "description": "An event.annotated audit",
+            "description": "An event annotated audit",
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
@@ -3992,7 +3992,7 @@
         },
         "EventAnnotatedAuditInput": {
             "type": "object",
-            "description": "An event.annotated audit",
+            "description": "An event annotated audit",
             "allOf": [
                 {
                     "$ref": "#/definitions/AuditInput"
@@ -4016,7 +4016,7 @@
         },
         "ResponseReceivedAudit": {
             "type": "object",
-            "description": "A response.received audit",
+            "description": "A response received audit",
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
@@ -4040,7 +4040,7 @@
         },
         "ResponseReceivedAuditInput": {
             "type": "object",
-            "description": "A response.received audit",
+            "description": "A response received audit",
             "allOf": [
                 {
                     "$ref": "#/definitions/AuditInput"
