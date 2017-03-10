@@ -6607,7 +6607,7 @@
                         "COMPLETED",
                         "WARNING",
                         "FAILED",
-                        "CANCELLED"
+                        "CANCELED"
                     ]
                 }
             },
