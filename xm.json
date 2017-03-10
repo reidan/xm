@@ -4235,11 +4235,11 @@
                     "type": "string"
                 },
                 "type": {
+                    "type": "string",
                     "enum": [
                         "BRIDGE",
                         "EXTERNAL"
-                    ],
-                    "type": "string"
+                    ]
                 }
             },
             "required": [
@@ -4634,26 +4634,25 @@
         },
         "DeviceReference": {
             "properties": {
-                "deviceType": {
-                    "$ref": "#/definitions/DeviceType"
-                },
                 "id": {
                     "description": "The identifier of the resource",
                     "type": "string"
                 },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
                 "targetName": {
                     "description": "The target name of the resource",
                     "type": "string"
+                },
+                "deviceType": {
+                    "$ref": "#/definitions/DeviceType"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
                 "id",
                 "targetName",
-                "deviceType",
-                "links"
+                "deviceType"
             ]
         },
         "DeviceTimeframe": {
@@ -5034,8 +5033,7 @@
                 }
             },
             "required": [
-                "id",
-                "links"
+                "id"
             ]
         },
         "EventPointer": {
@@ -5226,6 +5224,7 @@
         },
         "FormInput": {
             "description": "A form",
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5250,8 +5249,7 @@
             "required": [
                 "name",
                 "description"
-            ],
-            "type": "object"
+            ]
         },
         "FormPointer": {
             "description": "A reference to a form resource",
@@ -5267,10 +5265,14 @@
                 "id": {
                     "description": "The identifier of the resource",
                     "type": "string"
+                },
+                "name": {
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "name"
             ]
         },
         "Function": {
@@ -5371,12 +5373,13 @@
             "type": "object"
         },
         "GroupInput": {
+            "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
+            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientInput"
                 }
             ],
-            "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
             "properties": {
                 "allowDuplicates": {
                     "description": "Whether the group allows a notification to be sent to a device multiple times",
@@ -5412,8 +5415,7 @@
                     "description": "Whether the default user device should be used when sending out a notification to the group",
                     "type": "boolean"
                 }
-            },
-            "type": "object"
+            }
         },
         "GroupMember": {
             "properties": {
@@ -5438,18 +5440,17 @@
                     "description": "The identifier of the resource",
                     "type": "string"
                 },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
-                },
                 "targetName": {
                     "description": "The target name of the resource",
                     "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/ReferenceLink"
                 }
             },
             "required": [
                 "id",
-                "targetName",
-                "links"
+                "targetName"
             ]
         },
         "GroupPointer": {
@@ -6154,8 +6155,7 @@
             },
             "required": [
                 "id",
-                "targetName",
-                "links"
+                "targetName"
             ]
         },
         "Permission": {
@@ -6349,17 +6349,10 @@
             "properties": {
                 "id": {
                     "type": "string"
-                },
-                "plan": {
-                    "$ref": "#/definitions/PlanReference"
-                },
-                "name": {
-                    "type": "string"
                 }
             },
             "required": [
-                "id",
-                "plan"
+                "id"
             ]
         },
         "PlanIntegration": {
@@ -6788,8 +6781,7 @@
             "required": [
                 "id",
                 "recipientType",
-                "targetName",
-                "links"
+                "targetName"
             ]
         },
         "ReferenceLink": {
@@ -7138,8 +7130,7 @@
             },
             "required": [
                 "id",
-                "name",
-                "links"
+                "name"
             ]
         },
         "ShiftPointer": {
@@ -7354,8 +7345,7 @@
                 }
             },
             "required": [
-                "id",
-                "links"
+                "id"
             ]
         },
         "TemporaryReplacement": {
