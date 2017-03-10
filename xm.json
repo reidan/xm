@@ -4646,7 +4646,7 @@
                     "$ref": "#/definitions/DeviceType"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -5029,7 +5029,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -5191,6 +5191,7 @@
         },
         "Form": {
             "description": "A form",
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5211,7 +5212,7 @@
                     "$ref": "#/definitions/Pagination(Recipient)"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -5219,8 +5220,7 @@
                 "name",
                 "description",
                 "status"
-            ],
-            "type": "object"
+            ]
         },
         "FormInput": {
             "description": "A form",
@@ -5445,7 +5445,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -6150,7 +6150,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -6195,7 +6195,7 @@
                     "$ref": "#/definitions/Pagination(PlanEndpoint)"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -6668,7 +6668,7 @@
                     "minimum": 1
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -6775,7 +6775,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -6784,7 +6784,7 @@
                 "targetName"
             ]
         },
-        "ReferenceLink": {
+        "SelfLink": {
             "properties": {
                 "self": {
                     "description": "A link to this resource",
@@ -7020,21 +7020,22 @@
         },
         "Scenario": {
             "description": "A scenario",
+            "type": "object",
             "properties": {
-                "description": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/ReferenceLink"
                 },
                 "name": {
                     "type": "string"
                 },
+                "description": {
+                    "type": "string"
+                },
                 "status": {
                     "type": "string"
+                },
+                "links": {
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -7042,8 +7043,7 @@
                 "name",
                 "description",
                 "status"
-            ],
-            "type": "object"
+            ]
         },
         "SenderOverrides": {
             "description": "Sender Overrides",
@@ -7098,9 +7098,14 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
-            }
+            },
+            "required": [
+                "id",
+                "group",
+                "name"
+            ]
         },
         "ShiftInput": {
             "properties": {
@@ -7125,7 +7130,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -7317,7 +7322,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
@@ -7341,7 +7346,7 @@
                     "type": "string"
                 },
                 "links": {
-                    "$ref": "#/definitions/ReferenceLink"
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
