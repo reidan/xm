@@ -4923,6 +4923,9 @@
                 "incident": {
                     "type": "string"
                 },
+                "integration": {
+                    "$ref": "#/definitions/IntegrationReference"
+                },
                 "otherResponseCount": {
                     "type": "integer"
                 },
@@ -5688,7 +5691,8 @@
                 }
             }
         },
-        "IntegrationPointer": {
+        "IntegrationReference": {
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5696,8 +5700,18 @@
             },
             "required": [
                 "id"
-            ],
-            "type": "object"
+            ]
+        },
+        "IntegrationPointer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
         },
         "IMDevice": {
             "allOf": [
