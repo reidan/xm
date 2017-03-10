@@ -3981,20 +3981,12 @@
                         "event.annotated"
                     ]
                 },
-                "event": {
-                    "$ref": "#/definitions/Event"
-                },
-                "person": {
-                    "$ref": "#/definitions/Person"
-                },
                 "annotation": {
-                    "type": "string"
+                    "$ref": "#/definitions/EventAnnotation"
                 }
             },
             "required": [
                 "type",
-                "event",
-                "person",
                 "annotation"
             ]
         },
@@ -4013,20 +4005,12 @@
                         "event.annotated"
                     ]
                 },
-                "event": {
-                    "$ref": "#/definitions/EventPointer"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonPointer"
-                },
                 "annotation": {
-                    "type": "string"
+                    "$ref": "#/definitions/EventAnnotationInput"
                 }
             },
             "required": [
                 "type",
-                "event",
-                "person",
                 "annotation"
             ]
         },
@@ -5141,6 +5125,9 @@
                 "event": {
                     "$ref": "#/definitions/EventReference"
                 },
+                "author": {
+                    "$ref": "#/definitions/PersonReference"
+                },
                 "comment": {
                     "type": "string"
                 }
@@ -5148,6 +5135,7 @@
             "required": [
                 "id",
                 "event",
+                "author",
                 "comment"
             ]
         },
@@ -5160,6 +5148,9 @@
                 },
                 "event": {
                     "$ref": "#/definitions/EventPointer"
+                },
+                "author": {
+                    "$ref": "#/definitions/PersonPointer"
                 },
                 "comment": {
                     "type": "string"
