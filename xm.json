@@ -170,6 +170,42 @@
             }
         },
         "/agents/{agentId}/keys": {
+            "get": {
+                "summary": "Get agent keys",
+                "description": "Get agent keys",
+                "operationId": "getAgentKeys",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(AgentKey)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            },
             "post": {
                 "summary": "Add keys to an agent",
                 "description": "Add keys to an agent",
@@ -7877,6 +7913,66 @@
                 "type"
             ]
         },
+        "Pagination(Agent)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/Agent"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(AgentKey)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/Agent"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
         "Pagination(Audit)": {
             "properties": {
                 "data": {
@@ -8312,36 +8408,6 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/GroupMember"
-                    },
-                    "type": "array"
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                },
-                "total": {
-                    "description": "The total number of items in the result set",
-                    "format": "int32",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ]
-        },
-        "Pagination(Agent)": {
-            "properties": {
-                "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array)",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "data": {
-                    "description": "An array that contains this page of resources",
-                    "items": {
-                        "$ref": "#/definitions/Agent"
                     },
                     "type": "array"
                 },
