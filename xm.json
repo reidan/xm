@@ -18,8 +18,8 @@
     "paths": {
         "/agents": {
             "get": {
-                "summary": "Returns information about integration agents",
-                "description": "Returns information about integration agents",
+                "summary": "Returns information about agents",
+                "description": "Returns information about agents",
                 "operationId": "getAgents",
                 "parameters": [
                     {
@@ -62,12 +62,12 @@
                 ]
             },
             "post": {
-                "summary": "Update an integration agent",
-                "description": "Update an integration agent",
+                "summary": "Update an agent",
+                "description": "Update an agent",
                 "operationId": "postAgent",
                 "parameters": [
                     {
-                        "description": "Integration agent update data",
+                        "description": "Agent update data",
                         "in": "body",
                         "name": "body",
                         "required": true,
@@ -106,8 +106,8 @@
         },
         "/agents/{agentId}": {
             "delete": {
-                "summary": "Delete an integration agent",
-                "description": "Delete an integration agent",
+                "summary": "Delete an agent",
+                "description": "Delete an agent",
                 "operationId": "deleteAgent",
                 "parameters": [
                     {
@@ -139,8 +139,8 @@
                 ]
             },
             "get": {
-                "summary": "Returns information about an integration agent",
-                "description": "Returns information about an integration agent",
+                "summary": "Returns information about an agent",
+                "description": "Returns information about an agent",
                 "operationId": "getAgent",
                 "parameters": [
                     {
@@ -162,6 +162,53 @@
                     },
                     "404": {
                         "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
+        "/agents/{agentId}/keys": {
+            "post": {
+                "summary": "Add keys to an agent",
+                "description": "Add keys to an agent",
+                "operationId": "postAgentKey",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "description": "Agent update data",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AgentKeyInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/AgentKey"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
                     }
                 },
                 "tags": [
@@ -3720,6 +3767,63 @@
                 },
                 "owner": {
                     "$ref": "#/definitions/PersonPointer"
+                }
+            }
+        },
+        "AgentReference": {
+            "type": "object",
+            "description": "An agent",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "AgentPointer": {
+            "type": "object",
+            "description": "An agent",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "AgentKey": {
+            "type": "object",
+            "description": "Key used to authorize an agent",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "agent": {
+                    "$ref": "#/definitions/AgentReference"
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "AgentKeyInput": {
+            "type": "object",
+            "description": "Key used to authorize an agent",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "agent": {
+                    "$ref": "#/definitions/AgentPointer"
+                },
+                "key": {
+                    "type": "string"
                 }
             }
         },
