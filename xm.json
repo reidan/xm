@@ -24,14 +24,14 @@
                 "parameters": [
                     {
                         "description": "ACTIVE or INACTIVE",
-                        "enum": [
-                            "ACTIVE",
-                            "INACTIVE"
-                        ],
                         "in": "query",
                         "name": "status",
                         "required": false,
-                        "type": "string"
+                        "type": "string",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE"
+                        ]
                     },
                     {
                         "$ref": "#/parameters/query-offset"
@@ -3804,12 +3804,17 @@
                 "agent": {
                     "$ref": "#/definitions/AgentReference"
                 },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                },
                 "key": {
                     "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "agent",
+                "key"
             ]
         },
         "AgentKeyInput": {
