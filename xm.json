@@ -3764,9 +3764,6 @@
                 },
                 "os": {
                     "type": "string"
-                },
-                "owner": {
-                    "$ref": "#/definitions/PersonPointer"
                 }
             }
         },
