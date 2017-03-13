@@ -5555,6 +5555,7 @@
             "type": "object"
         },
         "IntegrationAgent": {
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5585,6 +5586,9 @@
                 },
                 "os": {
                     "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/definitions/PersonReference"
                 }
             },
             "required": [
@@ -5594,19 +5598,41 @@
                 "status",
                 "statusAt",
                 "os"
-            ],
-            "type": "object"
+            ]
         },
         "IntegrationAgentInput": {
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
                 },
+                "agentId": {
+                    "type": "string",
+                    "description": "Legacy non-UUID identifier"
+                },
                 "name": {
                     "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "CONNECTED",
+                        "DISCONNECTED"
+                    ]
+                },
+                "os": {
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/definitions/PersonPointer"
                 }
             },
-            "type": "object",
             "required": [
                 "id"
             ]
