@@ -5632,10 +5632,7 @@
                 "owner": {
                     "$ref": "#/definitions/PersonPointer"
                 }
-            },
-            "required": [
-                "id"
-            ]
+            }
         },
         "IntegrationConfig": {
             "properties": {
