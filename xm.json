@@ -222,6 +222,38 @@
                 ]
             }
         },
+        "/agent-installers/{versionId}": {
+            "get": {
+                "summary": "Returns information about agent install packages",
+                "description": "Returns information about agent install packages",
+                "operationId": "getAgentInstaller",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-versionId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AgentInstaller"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
         "/audits": {
             "get": {
                 "summary": "Audit records",
@@ -4043,6 +4075,34 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "AgentInstaller": {
+            "type": "object",
+            "description": "Agent installation information",
+            "properties": {
+                "version": {
+                    "type": "string"
+                },
+                "minimumVersion": {
+                    "type": "string"
+                },
+                "downloadURL": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "version",
+                "minimumVersion",
+                "downloadURL",
+                "host",
+                "key"
             ]
         },
         "AgentOwner": {
@@ -9924,6 +9984,13 @@
             "name": "tokenId",
             "in": "path",
             "description": "Token name",
+            "required": true,
+            "type": "string"
+        },
+        "path-versionId": {
+            "name": "versionId",
+            "in": "path",
+            "description": "Version (use 'latest' for latest version)",
             "required": true,
             "type": "string"
         },
