@@ -4084,7 +4084,7 @@
                 "version": {
                     "type": "string"
                 },
-                "minimumVersion": {
+                "minimumCompatibleVersion": {
                     "type": "string"
                 },
                 "downloadURL": {
