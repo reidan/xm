@@ -1799,6 +1799,159 @@
                 ]
             }
         },
+        "/integration-agents": {
+            "get": {
+                "summary": "Returns information about agents",
+                "description": "Returns information about agents",
+                "operationId": "getIntegrationAgents",
+                "parameters": [
+                    {
+                        "description": "ACTIVE or INACTIVE",
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE"
+                        ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(IntegrationAgent)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            },
+            "post": {
+                "summary": "Update an agent",
+                "description": "Update an agent",
+                "operationId": "postIntegrationAgent",
+                "parameters": [
+                    {
+                        "description": "Agent update data",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationAgentInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationAgent"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
+        "/integration-agents/{agentId}": {
+            "delete": {
+                "summary": "Delete an agent",
+                "description": "Delete an agent",
+                "operationId": "deleteIntegrationAgent",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationAgent"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            },
+            "get": {
+                "summary": "Returns information about an agent",
+                "description": "Returns information about an agent",
+                "operationId": "getIntegrationAgent",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationAgent"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
         "/integration-configs": {
             "get": {
                 "summary": "Get integration configurations",
@@ -3742,7 +3895,48 @@
                 "version": {
                     "type": "string"
                 },
-                "url": {
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "CONNECTED",
+                        "DISCONNECTED"
+                    ]
+                },
+                "os": {
+                    "type": "string"
+                },
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "owner": {
+                    "$ref": "#/definitions/PersonReference"
+                }
+            },
+            "required": [
+                "id",
+                "agentId",
+                "version",
+                "status",
+                "os"
+            ]
+        },
+        "AgentInput": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "agentId": {
+                    "type": "string",
+                    "description": "Legacy non-UUID identifier"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
                     "type": "string"
                 },
                 "status": {
@@ -3752,27 +3946,87 @@
                         "DISCONNECTED"
                     ]
                 },
-                "statusAt": {
+                "os": {
+                    "type": "string"
+                },
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "owner": {
+                    "$ref": "#/definitions/PersonPointer"
+                }
+            }
+        },
+        "AgentReference": {
+            "type": "object",
+            "description": "An agent",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "AgentPointer": {
+            "type": "object",
+            "description": "An agent",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "IntegrationAgent": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "agentId": {
                     "type": "string",
-                    "format": "date-time"
+                    "description": "Legacy non-UUID identifier"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "CONNECTED",
+                        "DISCONNECTED"
+                    ]
                 },
                 "os": {
                     "type": "string"
                 },
-                "owner": {
-                    "$ref": "#/definitions/PersonReference"
+                "statusAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "url": {
+                    "type": "string"
                 }
             },
             "required": [
                 "id",
+                "agentId",
                 "version",
-                "url",
                 "status",
-                "statusAt",
                 "os"
             ]
         },
-        "AgentInput": {
+        "IntegrationAgentInput": {
             "type": "object",
             "properties": {
                 "id": {
@@ -3800,10 +4054,17 @@
                 },
                 "os": {
                     "type": "string"
+                },
+                "statusAt": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "url": {
+                    "type": "string"
                 }
             }
         },
-        "AgentReference": {
+        "IntegrationAgentReference": {
             "type": "object",
             "description": "An agent",
             "properties": {
@@ -3815,7 +4076,7 @@
                 "id"
             ]
         },
-        "AgentPointer": {
+        "IntegrationAgentPointer": {
             "type": "object",
             "description": "An agent",
             "properties": {
@@ -4838,10 +5099,10 @@
                 },
                 "timeframes": {
                     "description": "Timeframes when this device is active",
+                    "type": "array",
                     "items": {
                         "$ref": "#/definitions/DeviceTimeframeInput"
-                    },
-                    "type": "array"
+                    }
                 }
             },
             "required": [
@@ -8450,6 +8711,36 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/GroupMember"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(IntegrationAgent)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/IntegrationAgent"
                     },
                     "type": "array"
                 },
