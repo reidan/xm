@@ -7864,7 +7864,9 @@
                 }
             },
             "required": [
-                "type"
+                "id",
+                "type",
+                "job"
             ]
         },
         "PersonOnCallReminder": {
