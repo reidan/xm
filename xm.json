@@ -169,22 +169,22 @@
                 ]
             }
         },
-        "/agents/{agentId}/api-keys": {
+        "/agents/{agentId}/owners": {
             "post": {
-                "summary": "Add API key",
-                "description": "Add API key",
-                "operationId": "postAgentAPIKey",
+                "summary": "Add an agent owner",
+                "description": "Add an agent owner",
+                "operationId": "postAgentOwner",
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-agentId"
                     },
                     {
-                        "description": "API Key",
+                        "description": "Owner",
                         "in": "body",
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/APIKeyInput"
+                            "$ref": "#/definitions/AgentOwnerInput"
                         }
                     }
                 ],
@@ -192,13 +192,13 @@
                     "200": {
                         "description": "Updated",
                         "schema": {
-                            "$ref": "#/definitions/APIKey"
+                            "$ref": "#/definitions/AgentOwner"
                         }
                     },
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/APIKey"
+                            "$ref": "#/definitions/AgentOwner"
                         }
                     },
                     "400": {
@@ -2559,6 +2559,57 @@
                 "tags": [
                     "People"
                 ]
+            },
+            "post": {
+                "summary": "Add an API Key",
+                "description": "Add an API Key",
+                "operationId": "postPersonAPIKey",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "description": "API Key",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/APIKeyInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/APIKey"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/APIKey"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "People"
+                ]
             }
         },
         "/people/{personId}/devices": {
@@ -3994,6 +4045,46 @@
                 "id"
             ]
         },
+        "AgentOwner": {
+            "type": "object",
+            "description": "An agent owner",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "agent": {
+                    "$ref": "#/definitions/AgentReference"
+                },
+                "owner": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "agent",
+                "owner",
+                "key"
+            ]
+        },
+        "AgentOwnerInput": {
+            "type": "object",
+            "description": "An agent owner",
+            "properties": {
+                "agent": {
+                    "$ref": "#/definitions/AgentPointer"
+                },
+                "owner": {
+                    "$ref": "#/definitions/PersonPointer"
+                }
+            },
+            "required": [
+                "agent",
+                "owner"
+            ]
+        },
         "APIKey": {
             "type": "object",
             "description": "An API Key",
@@ -4021,9 +4112,6 @@
                 },
                 "key": {
                     "type": "string"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonPointer"
                 }
             }
         },
@@ -6630,12 +6718,13 @@
             ]
         },
         "PersonInput": {
+            "type": "object",
+            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientInput"
                 }
             ],
-            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
             "properties": {
                 "firstName": {
                     "description": "The first name of the user",
@@ -6696,14 +6785,22 @@
                 "timezone",
                 "webLogin",
                 "roles"
-            ],
-            "type": "object"
+            ]
         },
         "PersonPointer": {
+            "type": "object",
             "description": "A reference to a person resource",
             "properties": {
                 "id": {
-                    "description": "The identifier of the resource",
+                    "description": "The UUID or targetName of the resource",
+                    "type": "string"
+                },
+                "targetName": {
+                    "description": "The targetName of the resource",
+                    "type": "string"
+                },
+                "key": {
+                    "description": "API key used to identify a person",
                     "type": "string"
                 }
             }
