@@ -4099,7 +4099,7 @@
             },
             "required": [
                 "version",
-                "minimumVersion",
+                "minimumCompatibleVersion",
                 "downloadURL",
                 "host",
                 "key"
