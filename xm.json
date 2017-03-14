@@ -7787,27 +7787,6 @@
             },
             "type": "object"
         },
-        "Job": {
-            "type": "object",
-            "description": "Scheduled Job",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier (UUID) for this entity"
-                },
-                "reminder": {
-                    "$ref": "#/definitions/Reminder"
-                },
-                "trigger": {
-                    "$ref": "#/definitions/ScheduleTrigger"
-                }
-            },
-            "required": [
-                "id",
-                "reminder",
-                "trigger"
-            ]
-        },
         "JobInput": {
             "type": "object",
             "description": "Job to schedule",
@@ -7830,18 +7809,6 @@
             ]
         },
         "JobReference": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier (UUID) for this entity"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "JobPointer": {
             "type": "object",
             "properties": {
                 "id": {
