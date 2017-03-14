@@ -3594,7 +3594,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Job"
+                            "$ref": "#/definitions/JobInput"
                         }
                     }
                 ],
@@ -7789,7 +7789,7 @@
         },
         "Job": {
             "type": "object",
-            "description": "schedule-this topic message",
+            "description": "Scheduled Job",
             "properties": {
                 "id": {
                     "type": "string",
@@ -7806,6 +7806,39 @@
                 "id",
                 "reminder",
                 "trigger"
+            ]
+        },
+        "JobInput": {
+            "type": "object",
+            "description": "Job to schedule",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this entity"
+                },
+                "reminder": {
+                    "$ref": "#/definitions/ReminderInput"
+                },
+                "trigger": {
+                    "$ref": "#/definitions/ScheduleTrigger"
+                }
+            },
+            "required": [
+                "id",
+                "reminder",
+                "trigger"
+            ]
+        },
+        "JobReference": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this entity"
+                }
+            },
+            "required": [
+                "id"
             ]
         },
         "JobPointer": {
@@ -7860,7 +7893,7 @@
                     ]
                 },
                 "job": {
-                    "$ref": "#/definitions/JobPointer"
+                    "$ref": "#/definitions/JobReference"
                 }
             },
             "required": [
@@ -7869,12 +7902,53 @@
                 "job"
             ]
         },
+        "ReminderInput": {
+            "type": "object",
+            "description": "A reminder",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "COVERAGE_START",
+                        "COVERAGE_END",
+                        "PERSON_ON_CALL"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
         "PersonOnCallReminder": {
             "type": "object",
             "description": "person on call reminder",
             "allOf": [
                 {
                     "$ref": "#/definitions/Reminder"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON_ON_CALL"
+                    ]
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                }
+            },
+            "required": [
+                "type",
+                "person"
+            ]
+        },
+        "PersonOnCallReminderInput": {
+            "type": "object",
+            "description": "person on call reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ReminderInput"
                 }
             ],
             "properties": {
