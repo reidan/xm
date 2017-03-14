@@ -4000,6 +4000,12 @@
             "properties": {
                 "id": {
                     "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
                 }
             },
             "required": [
@@ -4012,6 +4018,12 @@
             "properties": {
                 "id": {
                     "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonPointer"
                 }
             }
         },
