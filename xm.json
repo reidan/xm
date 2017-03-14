@@ -5500,6 +5500,9 @@
                 "recipients": {
                     "$ref": "#/definitions/Pagination(Recipient)"
                 },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
                 }
@@ -5533,6 +5536,9 @@
                         "$ref": "#/definitions/RecipientPointer"
                     },
                     "type": "array"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanPointer"
                 }
             },
             "required": [
@@ -6909,9 +6915,6 @@
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
                     "type": "integer",
                     "minimum": 1
-                },
-                "links": {
-                    "$ref": "#/definitions/SelfLink"
                 }
             },
             "required": [
