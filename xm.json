@@ -169,58 +169,22 @@
                 ]
             }
         },
-        "/agents/{agentId}/keys": {
-            "get": {
-                "summary": "Get agent keys",
-                "description": "Get agent keys",
-                "operationId": "getAgentKeys",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-agentId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(AgentKey)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "tags": [
-                    "Agents"
-                ]
-            },
+        "/agents/{agentId}/api-keys": {
             "post": {
-                "summary": "Add keys to an agent",
-                "description": "Add keys to an agent",
-                "operationId": "postAgentKey",
+                "summary": "Add API key",
+                "description": "Add API key",
+                "operationId": "postAgentAPIKey",
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-agentId"
                     },
                     {
-                        "description": "Agent update data",
+                        "description": "API Key",
                         "in": "body",
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/AgentKeyInput"
+                            "$ref": "#/definitions/APIKeyInput"
                         }
                     }
                 ],
@@ -228,7 +192,13 @@
                     "200": {
                         "description": "Updated",
                         "schema": {
-                            "$ref": "#/definitions/AgentKey"
+                            "$ref": "#/definitions/APIKey"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/APIKey"
                         }
                     },
                     "400": {
@@ -2553,6 +2523,44 @@
                 ]
             }
         },
+        "/people/{personId}/api-keys": {
+            "get": {
+                "summary": "Get API keys",
+                "description": "Get API keys",
+                "operationId": "getPersonAPIKeys",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(APIKey)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "People"
+                ]
+            }
+        },
         "/people/{personId}/devices": {
             "get": {
                 "description": "Retrieves a list of a user's devices. Use embed=timeframes to include device timeframes in the response",
@@ -3881,6 +3889,7 @@
         },
         "Agent": {
             "type": "object",
+            "description": "An agent",
             "properties": {
                 "id": {
                     "type": "string"
@@ -3925,6 +3934,7 @@
         },
         "AgentInput": {
             "type": "object",
+            "description": "An agent",
             "properties": {
                 "id": {
                     "type": "string"
@@ -3975,6 +3985,51 @@
         "AgentPointer": {
             "type": "object",
             "description": "An agent",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "APIKey": {
+            "type": "object",
+            "description": "An API Key",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "APIKeyInput": {
+            "type": "object",
+            "description": "An API Key",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "APIKeyReference": {
+            "type": "object",
+            "description": "An API Key",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "APIKeyPointer": {
+            "type": "object",
+            "description": "An API Key",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8282,6 +8337,24 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Audit"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            },
+            "required": [
+                "data",
+                "links"
+            ]
+        },
+        "Pagination(APIKey)": {
+            "properties": {
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/APIKey"
                     },
                     "type": "array"
                 },
