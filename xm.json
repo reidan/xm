@@ -6507,6 +6507,55 @@
                 "id"
             ]
         },
+        "NotificationFilter": {
+            "type": "object",
+            "description": "A notification filter",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TARGET"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "type"
+            ]
+        },
+        "TargetNotificationFilter": {
+            "type": "object",
+            "description": "Filter notifications to a target within a specified number of minutes",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/NotificationFilter"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TARGET"
+                    ]
+                },
+                "count": {
+                    "type": "integer",
+                    "description": "Count of notifications before suppression is activated"
+                },
+                "minutes": {
+                    "type": "integer",
+                    "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
+                }
+            },
+            "required": [
+                "type",
+                "count",
+                "minutes"
+            ]
+        },
         "NumericPagerDevice": {
             "allOf": [
                 {
@@ -6521,10 +6570,10 @@
                     "type": "string"
                 },
                 "deviceType": {
+                    "type": "string",
                     "enum": [
                         "NUMERIC_PAGER"
-                    ],
-                    "type": "string"
+                    ]
                 },
                 "pagerNumber": {
                     "type": "string"
@@ -7146,6 +7195,9 @@
                 },
                 "script": {
                     "type": "string"
+                },
+                "filters": {
+                    "$ref": "#/definitions/Pagination(NotificationFilter)"
                 }
             },
             "required": [
@@ -9123,6 +9175,36 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Notification"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(NotificationFilter)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/NotificationFilter"
                     },
                     "type": "array"
                 },
