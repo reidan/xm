@@ -5599,7 +5599,7 @@
                     "type": "boolean"
                 },
                 "conference": {
-                    "$ref": "#/definitions/Conference"
+                    "$ref": "#/definitions/ConferenceReference"
                 },
                 "created": {
                     "format": "date-time",
