@@ -6120,7 +6120,6 @@
                     "type": "boolean"
                 },
                 "recipientType": {
-                    "description": "A description of the group",
                     "enum": [
                         "GROUP"
                     ],
@@ -7825,6 +7824,7 @@
             ]
         },
         "SenderOverrides": {
+            "type": "object",
             "description": "Sender Overrides",
             "properties": {
                 "callerId": {
@@ -7833,8 +7833,7 @@
                 "displayName": {
                     "type": "string"
                 }
-            },
-            "type": "object"
+            }
         },
         "ServiceProvider": {
             "description": "A service provider",
@@ -8309,6 +8308,7 @@
             "type": "object"
         },
         "VoicemailOptions": {
+            "type": "object",
             "description": "Voicemail Options",
             "properties": {
                 "every": {
@@ -8320,8 +8320,7 @@
                 "retry": {
                     "type": "integer"
                 }
-            },
-            "type": "object"
+            }
         },
         "SchedulerCommand": {
             "type": "object",
@@ -10411,7 +10410,7 @@
             }
         },
         "401": {
-            "description": "Unauthorized - The action cannot be performed in the system",
+            "description": "Unauthorized - The caller cannot be identified",
             "schema": {
                 "$ref": "#/definitions/UnauthorizedResponse"
             }
@@ -10423,7 +10422,7 @@
             }
         },
         "404": {
-            "description": "Not Found - The resource does not exist",
+            "description": "Not Found - The requested resource does not exist",
             "schema": {
                 "$ref": "#/definitions/NotFoundResponse"
             }
