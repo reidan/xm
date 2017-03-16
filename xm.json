@@ -2191,6 +2191,154 @@
                 ]
             }
         },
+        "/notification-filters": {
+            "get": {
+                "summary": "Get notification filters",
+                "description": "Get notification filters",
+                "operationId": "getNotificationFilters",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(NotificationFilter)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                },
+                "tags": [
+                    "Notification Filters"
+                ]
+            },
+            "post": {
+                "summary": "Add or update notification filters",
+                "description": "Add or update notification filters",
+                "operationId": "postNotificationFilter",
+                "parameters": [
+                    {
+                        "description": "A insert or update",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NotificationFilterInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/NotificationFilter"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/NotificationFilter"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Notification Filters"
+                ]
+            }
+        },
+        "/notification-filters/{notificationFilterId}": {
+            "get": {
+                "summary": "Get notification filter",
+                "description": "Get notification filter",
+                "operationId": "getNotificationFilter",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-notificationFilterId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/NotificationFilter"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Notification Filters"
+                ]
+            },
+            "delete": {
+                "summary": "Delete notification filter",
+                "description": "Delete notification filter",
+                "operationId": "deleteNotificationFilter",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-notificationFilterId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/NotificationFilter"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Notification Filters"
+                ]
+            }
+        },
         "/oauth2/token": {
             "post": {
                 "tags": [
@@ -6508,7 +6656,7 @@
         },
         "NotificationFilter": {
             "type": "object",
-            "description": "A notification filter",
+            "description": "A notification filter, applied to notifications matching the specified attributes",
             "properties": {
                 "id": {
                     "type": "string"
@@ -6518,6 +6666,15 @@
                     "enum": [
                         "PERSON_INTEGRATION_DEVICE_TYPE"
                     ]
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormReference"
+                },
+                "integration": {
+                    "$ref": "#/definitions/IntegrationReference"
                 }
             },
             "required": [
@@ -6525,9 +6682,33 @@
                 "type"
             ]
         },
+        "NotificationFilterInput": {
+            "type": "object",
+            "description": "A notification filter, applied to notifications matching the specified attributes",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON_INTEGRATION_DEVICE_TYPE"
+                    ]
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanPointer"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormPointer"
+                },
+                "integration": {
+                    "$ref": "#/definitions/IntegrationPointer"
+                }
+            }
+        },
         "PersonIntegrationDeviceTypeNotificationFilter": {
             "type": "object",
-            "description": "Filter notifications to a target within a specified number of minutes",
+            "description": "Cap notifications to a person within a specified number of minutes",
             "allOf": [
                 {
                     "$ref": "#/definitions/NotificationFilter"
@@ -6550,10 +6731,27 @@
                 }
             },
             "required": [
-                "type",
-                "count",
-                "minutes"
+                "type"
             ]
+        },
+        "PersonIntegrationDeviceTypeNotificationFilterInput": {
+            "type": "object",
+            "description": "Filter notifications to any person within a specified number of minutes",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/NotificationFilterInput"
+                }
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "description": "Count of notifications before suppression is activated"
+                },
+                "minutes": {
+                    "type": "integer",
+                    "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
+                }
+            }
         },
         "NumericPagerDevice": {
             "allOf": [
@@ -10001,6 +10199,13 @@
         }
     },
     "parameters": {
+        "path-agentId": {
+            "description": "Agent ID",
+            "in": "path",
+            "name": "agentId",
+            "required": true,
+            "type": "string"
+        },
         "path-annotationId": {
             "description": "Annotation identifier",
             "in": "path",
@@ -10078,13 +10283,6 @@
             "required": true,
             "type": "string"
         },
-        "path-agentId": {
-            "description": "Agent ID",
-            "in": "path",
-            "name": "agentId",
-            "required": true,
-            "type": "string"
-        },
         "path-integrationId": {
             "description": "Integration identifier",
             "in": "path",
@@ -10103,6 +10301,13 @@
             "description": "The recipient's uuid or targetName",
             "in": "path",
             "name": "memberId",
+            "required": true,
+            "type": "string"
+        },
+        "path-notificationFilterId": {
+            "description": "The notification filter identifier",
+            "in": "path",
+            "name": "notificationFilterId",
             "required": true,
             "type": "string"
         },
