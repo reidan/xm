@@ -6516,7 +6516,7 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "TARGET"
+                        "PERSON_INTEGRATION_DEVICE_TYPE"
                     ]
                 }
             },
@@ -6525,7 +6525,7 @@
                 "type"
             ]
         },
-        "TargetNotificationFilter": {
+        "PersonIntegrationDeviceTypeNotificationFilter": {
             "type": "object",
             "description": "Filter notifications to a target within a specified number of minutes",
             "allOf": [
@@ -6537,7 +6537,7 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "TARGET"
+                        "PERSON_INTEGRATION_DEVICE_TYPE"
                     ]
                 },
                 "count": {
