@@ -2198,6 +2198,15 @@
                 "operationId": "getNotificationFilters",
                 "parameters": [
                     {
+                        "$ref": "#/parameters/query-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-formId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-integrationId"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
