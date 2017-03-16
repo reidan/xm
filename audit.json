@@ -852,6 +852,11 @@
         "Event": {
             "type": "object",
             "description": "Returns an event in the xMatters system",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
             "properties": {
                 "id": {
                     "description": "An identifier (UUID) that represents this resource",
@@ -964,6 +969,11 @@
         "EventAnnotation": {
             "type": "object",
             "description": "An event annotation",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
             "properties": {
                 "id": {
                     "type": "string"
@@ -1075,9 +1085,6 @@
                     "description": "Key/Value map of custom properties",
                     "type": "object"
                 },
-                "response": {
-                    "$ref": "#/definitions/Response"
-                },
                 "site": {
                     "$ref": "#/definitions/SiteReference"
                 }
@@ -1124,6 +1131,11 @@
         "Recipient": {
             "type": "object",
             "discriminator": "recipientType",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
             "properties": {
                 "id": {
                     "description": "A unique identifier (UUID) for this entity",
@@ -1189,6 +1201,11 @@
         "Response": {
             "type": "object",
             "description": "A response",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
             "properties": {
                 "notification": {
                     "$ref": "#/definitions/NotificationReference"
@@ -1253,6 +1270,31 @@
                 "text",
                 "description",
                 "prompt"
+            ]
+        },
+        "Revision": {
+            "type": "object",
+            "description": "A revision of an entity",
+            "properties": {
+                "revisionId": {
+                    "description": "A unique identifier (UUID) for this revision",
+                    "type": "string"
+                },
+                "from": {
+                    "description": "Revision state was valid from this time (UTC)",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "to": {
+                    "description": "Revision state was valid to this time (UTC)",
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "revisionId",
+                "from",
+                "to"
             ]
         },
         "SenderOverrides": {
