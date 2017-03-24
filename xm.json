@@ -8387,6 +8387,9 @@
                     "description": "The identifier of the resource",
                     "type": "string"
                 },
+                "name": {
+                    "type": "string"
+                },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
                 }
