@@ -2888,6 +2888,44 @@
                 ]
             }
         },
+        "/people/{personId}/group-memberships": {
+            "get": {
+                "summary": "Retrieves a list of a user's group memberships",
+                "description": "Retrieves a list of a user's group memberships. Use embed=group to embed the group",
+                "operationId": "getPersonGroupMemberships",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-personIdMatch"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(GroupMember)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "People"
+                ]
+            }
+        },
         "/people/{personId}/refresh-tokens": {
             "get": {
                 "tags": [
