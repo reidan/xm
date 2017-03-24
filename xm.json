@@ -8475,43 +8475,6 @@
             ],
             "type": "object"
         },
-        "TimelineEvent": {
-            "type": "object",
-            "properties": {
-                "at": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "NOTIFICATION",
-                        "RESPONSE"
-                    ]
-                },
-                "incident": {
-                    "type": "string"
-                },
-                "event": {
-                    "$ref": "#/definitions/EventReference"
-                },
-                "notification": {
-                    "$ref": "#/definitions/Notification"
-                },
-                "response": {
-                    "$ref": "#/definitions/Response"
-                },
-                "recipient": {
-                    "$ref": "#/definitions/Recipient"
-                },
-                "comment": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "at"
-            ]
-        },
         "VoiceDevice": {
             "allOf": [
                 {
