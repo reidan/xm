@@ -7930,6 +7930,9 @@
                 },
                 "text": {
                     "type": "string"
+                },
+                "joinConference": {
+                    "type": "boolean"
                 }
             },
             "required": [
