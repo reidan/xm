@@ -774,6 +774,12 @@
                     },
                     {
                         "$ref": "#/parameters/query-to"
+                    },
+                    {
+                        "$ref": "#/parameters/query-before"
+                    },
+                    {
+                        "$ref": "#/parameters/query-after"
                     }
                 ],
                 "responses": {
