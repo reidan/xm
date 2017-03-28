@@ -6254,11 +6254,14 @@
             ],
             "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
             "properties": {
+                "recipientType": {
+                    "enum": [
+                        "GROUP"
+                    ],
+                    "type": "string"
+                },
                 "allowDuplicates": {
                     "type": "boolean"
-                },
-                "calendar": {
-                    "$ref": "#/definitions/Pagination(ShiftOccurrence)"
                 },
                 "description": {
                     "type": "string"
@@ -6266,20 +6269,14 @@
                 "observedByAll": {
                     "type": "boolean"
                 },
-                "recipientType": {
-                    "enum": [
-                        "GROUP"
-                    ],
-                    "type": "string"
+                "useDefaultDevices": {
+                    "type": "boolean"
                 },
                 "site": {
                     "$ref": "#/definitions/SiteReference"
                 },
                 "supervisors": {
                     "$ref": "#/definitions/Pagination(Person)"
-                },
-                "useDefaultDevices": {
-                    "type": "boolean"
                 }
             },
             "required": [
@@ -6298,6 +6295,12 @@
                 }
             ],
             "properties": {
+                "recipientType": {
+                    "enum": [
+                        "GROUP"
+                    ],
+                    "type": "string"
+                },
                 "allowDuplicates": {
                     "description": "Whether the group allows a notification to be sent to a device multiple times",
                     "type": "boolean"
@@ -6309,11 +6312,12 @@
                     "description": "Whether the group notifications are observed by all",
                     "type": "boolean"
                 },
-                "recipientType": {
-                    "enum": [
-                        "GROUP"
-                    ],
+                "timezone": {
                     "type": "string"
+                },
+                "useDefaultDevices": {
+                    "description": "Whether the default user device should be used when sending out a notification to the group",
+                    "type": "boolean"
                 },
                 "site": {
                     "$ref": "#/definitions/SitePointer"
@@ -6324,13 +6328,6 @@
                         "$ref": "#/definitions/PersonPointer"
                     },
                     "type": "array"
-                },
-                "timezone": {
-                    "type": "string"
-                },
-                "useDefaultDevices": {
-                    "description": "Whether the default user device should be used when sending out a notification to the group",
-                    "type": "boolean"
                 }
             }
         },
