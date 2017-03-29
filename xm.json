@@ -8715,7 +8715,7 @@
                 "person"
             ]
         },
-        "TrialExpiryReminder": {
+        "TrialExpiredReminder": {
             "type": "object",
             "description": "trial expiry reminder",
             "allOf": [
@@ -8735,7 +8735,7 @@
                 "type"
             ]
         },
-        "TrialExpiryReminderInput": {
+        "TrialExpiredReminderInput": {
             "type": "object",
             "description": "trial expiry reminder",
             "allOf": [
