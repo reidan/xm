@@ -8636,8 +8636,9 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "COVERAGE_START",
-                        "PERSON_ON_CALL"
+                        "SHIFT_START",
+                        "PERSON_ON_CALL",
+                        "TRIAL_EXPIRED"
                     ]
                 },
                 "job": {
@@ -8657,7 +8658,7 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "COVERAGE_START",
+                        "SHIFT_START",
                         "PERSON_ON_CALL",
                         "TRIAL_EXPIRED"
                     ]
