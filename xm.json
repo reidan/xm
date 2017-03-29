@@ -4206,6 +4206,10 @@
                 },
                 "owner": {
                     "$ref": "#/definitions/PersonReference"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
                 }
             },
             "required": [
@@ -4213,7 +4217,8 @@
                 "externalId",
                 "version",
                 "status",
-                "os"
+                "os",
+                "created"
             ]
         },
         "AgentInput": {
