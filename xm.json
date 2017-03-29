@@ -4178,7 +4178,7 @@
                 "id": {
                     "type": "string"
                 },
-                "agentId": {
+                "externalId": {
                     "type": "string",
                     "description": "Legacy non-UUID identifier"
                 },
@@ -4210,7 +4210,7 @@
             },
             "required": [
                 "id",
-                "agentId",
+                "externalId",
                 "version",
                 "status",
                 "os"
@@ -4223,7 +4223,7 @@
                 "id": {
                     "type": "string"
                 },
-                "agentId": {
+                "externalId": {
                     "type": "string",
                     "description": "Legacy non-UUID identifier"
                 },
@@ -4406,7 +4406,7 @@
                 "id": {
                     "type": "string"
                 },
-                "agentId": {
+                "externalId": {
                     "type": "string",
                     "description": "Legacy non-UUID identifier"
                 },
@@ -4436,7 +4436,7 @@
             },
             "required": [
                 "id",
-                "agentId",
+                "externalId",
                 "version",
                 "status",
                 "os"
@@ -4448,7 +4448,7 @@
                 "id": {
                     "type": "string"
                 },
-                "agentId": {
+                "externalId": {
                     "type": "string",
                     "description": "Legacy non-UUID identifier"
                 },
