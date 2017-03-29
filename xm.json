@@ -8658,8 +8658,8 @@
                     "type": "string",
                     "enum": [
                         "COVERAGE_START",
-                        "COVERAGE_END",
-                        "PERSON_ON_CALL"
+                        "PERSON_ON_CALL",
+                        "TRIAL_EXPIRED"
                     ]
                 }
             },
@@ -8713,6 +8713,46 @@
             "required": [
                 "type",
                 "person"
+            ]
+        },
+        "TrialExpiryReminder": {
+            "type": "object",
+            "description": "trial expiry reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Reminder"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_EXPIRED"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        "TrialExpiryReminderInput": {
+            "type": "object",
+            "description": "trial expiry reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ReminderInput"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_EXPIRED"
+                    ]
+                }
+            },
+            "required": [
+                "type"
             ]
         },
         "Revision": {
