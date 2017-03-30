@@ -8643,7 +8643,8 @@
                     "enum": [
                         "SHIFT_START",
                         "PERSON_ON_CALL",
-                        "TRIAL_EXPIRED"
+                        "TRIAL_EXPIRY",
+                        "TRIAL_DELETION"
                     ]
                 },
                 "job": {
@@ -8665,7 +8666,8 @@
                     "enum": [
                         "SHIFT_START",
                         "PERSON_ON_CALL",
-                        "TRIAL_EXPIRED"
+                        "TRIAL_EXPIRY",
+                        "TRIAL_DELETION"
                     ]
                 }
             },
