@@ -8721,7 +8721,47 @@
                 "person"
             ]
         },
-        "TrialExpiredReminder": {
+        "TrialDeletionReminder": {
+            "type": "object",
+            "description": "trial deletion reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Reminder"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_DELETION"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        "TrialDeletionReminderInput": {
+            "type": "object",
+            "description": "trial deletion reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ReminderInput"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_DELETION"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        "TrialExpiryReminder": {
             "type": "object",
             "description": "trial expiry reminder",
             "allOf": [
@@ -8733,7 +8773,7 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "TRIAL_EXPIRED"
+                        "TRIAL_EXPIRY"
                     ]
                 }
             },
@@ -8741,7 +8781,7 @@
                 "type"
             ]
         },
-        "TrialExpiredReminderInput": {
+        "TrialExpiryReminderInput": {
             "type": "object",
             "description": "trial expiry reminder",
             "allOf": [
@@ -8753,7 +8793,7 @@
                 "type": {
                     "type": "string",
                     "enum": [
-                        "TRIAL_EXPIRED"
+                        "TRIAL_EXPIRY"
                     ]
                 }
             },
