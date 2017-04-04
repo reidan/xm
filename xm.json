@@ -8811,6 +8811,40 @@
                     "type": "string",
                     "description": "A unique identifier (UUID) for this entity"
                 },
+                "from": {
+                    "description": "The timestamp this revision became effective",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "to": {
+                    "description": "The timestamp this revision became effective",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "EVENT",
+                        "PERSON",
+                        "SHIFT"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "from",
+                "to",
+                "type"
+            ]
+        },
+        "RevisionInput": {
+            "type": "object",
+            "description": "A revision",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this entity"
+                },
                 "at": {
                     "description": "The timestamp this revision became effective",
                     "type": "string",
@@ -8826,7 +8860,25 @@
                 }
             },
             "required": [
+                "at",
                 "type"
+            ]
+        },
+        "EventRevisionInput": {
+            "type": "object",
+            "description": "An event revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RevisionInput"
+                }
+            ],
+            "properties": {
+                "event": {
+                    "$ref": "#/definitions/EventInput"
+                }
+            },
+            "required": [
+                "event"
             ]
         },
         "Pagination(Agent)": {
