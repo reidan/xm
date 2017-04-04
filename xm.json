@@ -8874,7 +8874,7 @@
             ],
             "properties": {
                 "event": {
-                    "$ref": "#/definitions/EventInput"
+                    "$ref": "#/definitions/Event"
                 }
             },
             "required": [
