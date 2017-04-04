@@ -8811,13 +8811,17 @@
                     "type": "string",
                     "description": "A unique identifier (UUID) for this entity"
                 },
+                "at": {
+                    "description": "The timestamp this revision became effective",
+                    "type": "string",
+                    "format": "date-time"
+                },
                 "type": {
                     "type": "string",
                     "enum": [
                         "EVENT",
                         "PERSON",
-                        "SHIFT",
-                        "REMINDER"
+                        "SHIFT"
                     ]
                 }
             },
