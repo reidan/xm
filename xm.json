@@ -782,7 +782,16 @@
                         "$ref": "#/parameters/query-after"
                     },
                     {
-                        "$ref": "#/parameters/query-status"
+                        "description": "Event status",
+                        "enum": [
+                            "ACTIVE",
+                            "SUSPENDED",
+                            "TERMINATED"
+                        ],
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -2564,9 +2573,6 @@
                         "$ref": "#/parameters/query-role"
                     },
                     {
-                        "$ref": "#/parameters/query-status"
-                    },
-                    {
                         "$ref": "#/parameters/query-propertyName"
                     },
                     {
@@ -2580,6 +2586,18 @@
                     },
                     {
                         "$ref": "#/parameters/query-embed"
+                    },
+                    {
+                        "description": "Recipient status",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE",
+                            "INVALID"
+                        ],
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -10609,18 +10627,6 @@
             "description": "Shift identifier",
             "in": "query",
             "name": "shiftId",
-            "required": false,
-            "type": "string"
-        },
-        "query-status": {
-            "description": "Event status",
-            "enum": [
-                "ACTIVE",
-                "SUSPENDED",
-                "TERMINATED"
-            ],
-            "in": "query",
-            "name": "status",
             "required": false,
             "type": "string"
         },
