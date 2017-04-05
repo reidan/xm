@@ -780,6 +780,9 @@
                     },
                     {
                         "$ref": "#/parameters/query-after"
+                    },
+                    {
+                        "$ref": "#/parameters/query-status"
                     }
                 ],
                 "responses": {
