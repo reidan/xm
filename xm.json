@@ -4024,6 +4024,31 @@
                 ]
             }
         },
+        "/topics/events": {
+            "post": {
+                "summary": "events topic messages",
+                "description": "events topic messages",
+                "operationId": "events",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EventInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
+        },
         "/topics/notifications": {
             "post": {
                 "summary": "notifications topic messages",
