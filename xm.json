@@ -604,6 +604,9 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/query-deviceType"
+                    },
+                    {
+                        "$ref": "#/parameters/query-phoneNumberFormat"
                     }
                 ],
                 "responses": {
@@ -681,6 +684,9 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-deviceId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-phoneNumberFormat"
                     }
                 ],
                 "responses": {
@@ -2838,6 +2844,9 @@
                     },
                     {
                         "$ref": "#/parameters/query-personIdMatch"
+                    },
+                    {
+                        "$ref": "#/parameters/query-phoneNumberFormat"
                     },
                     {
                         "$ref": "#/parameters/query-embed"
@@ -10635,6 +10644,20 @@
             "name": "personId",
             "required": false,
             "type": "string"
+        },
+        "query-phoneNumberFormat": {
+            "description": "Modify the format of the returned phoneNumber",
+            "in": "query",
+            "name": "phoneNumberFormat",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "E164",
+                "RAW",
+                "COUNTRY_CODE",
+                "CALLER_LOCALE"
+            ],
+            "default": "E164"
         },
         "query-planId": {
             "description": "The plan uuid or name",
