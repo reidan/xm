@@ -678,15 +678,48 @@
             }
         },
         "/devices/{deviceId}": {
+            "get": {
+                "description": "Returns information about a device. Use embed=timeframes to include device timeframes in the response",
+                "operationId": "getDevice",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-deviceId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    },
+                    {
+                        "$ref": "#/parameters/query-phoneNumberFormat"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Device"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "summary": "Returns information about a device",
+                "tags": [
+                    "Devices"
+                ]
+            },
             "delete": {
                 "description": "Deletes a device and removes it from the owner's device list",
                 "operationId": "deleteDevice",
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-deviceId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-phoneNumberFormat"
                     }
                 ],
                 "responses": {
@@ -710,39 +743,6 @@
                     }
                 },
                 "summary": "Deletes a device",
-                "tags": [
-                    "Devices"
-                ]
-            },
-            "get": {
-                "description": "Returns information about a device. Use embed=timeframes to include device timeframes in the response",
-                "operationId": "getDevice",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-deviceId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Device"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "summary": "Returns information about a device",
                 "tags": [
                     "Devices"
                 ]
