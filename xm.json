@@ -8497,6 +8497,7 @@
                 }
             },
             "required": [
+                "deviceType",
                 "phoneNumber"
             ],
             "type": "object"
@@ -8520,6 +8521,7 @@
                 }
             },
             "required": [
+                "deviceType",
                 "phoneNumber"
             ],
             "type": "object"
