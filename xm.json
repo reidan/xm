@@ -2492,6 +2492,35 @@
                 "tags": [
                     "Organization"
                 ]
+            },
+            "delete": {
+                "summary": "Deletes the organization",
+                "description": "Deletes the organization as determined by the domain. This is kind of a big deal so should be authorized only to services.",
+                "operationId": "deleteOrganization",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Organization"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Organization"
+                ]
             }
         },
         "/organization/config": {
