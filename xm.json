@@ -250,6 +250,55 @@
                 "tags": [
                     "Agents"
                 ]
+            },
+            "put": {
+                "summary": "Replace agent monitors",
+                "description": "Replace agent monitors",
+                "operationId": "putAgentMonitors",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "description": "An array containing the agent monitors",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "description": "An array containing the agent monitors",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AgentMonitorInput"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(AgentMonitor)"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
             }
         },
         "/agents/{agentId}/monitors/{monitorId}": {
@@ -2282,6 +2331,19 @@
                         "description": "The integration config identifier",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "description": "Permitted recipients",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "description": "An array containing the permitted recipients",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RecipientPointer"
+                            }
+                        }
                     }
                 ],
                 "responses": {
@@ -2291,7 +2353,7 @@
                             "type": "array",
                             "description": "An array containing permitted recipients",
                             "items": {
-                                "$ref": "#/definitions/RecipientPointer"
+                                "$ref": "#/definitions/Pagination(Recipient)"
                             }
                         }
                     },
@@ -3047,10 +3109,10 @@
                         "required": true,
                         "schema": {
                             "description": "An array containing the device updates or insertions",
+                            "type": "array",
                             "items": {
                                 "$ref": "#/definitions/DeviceInput"
-                            },
-                            "type": "array"
+                            }
                         }
                     }
                 ],
