@@ -2239,9 +2239,6 @@
         },
         "/integration-configs/{integrationConfigId}": {
             "get": {
-                "tags": [
-                    "Integration Configs"
-                ],
                 "summary": "Get integration configuration",
                 "description": "Get integration configuration",
                 "operationId": "getIntegrationConfig",
@@ -2273,7 +2270,47 @@
                     "404": {
                         "$ref": "#/responses/404"
                     }
-                }
+                },
+                "tags": [
+                    "Integration Configs"
+                ]
+            },
+            "delete": {
+                "summary": "Delete integration configuration",
+                "description": "Delete integration configuration",
+                "operationId": "deleteIntegrationConfiguration",
+                "parameters": [
+                    {
+                        "name": "integrationConfigId",
+                        "in": "path",
+                        "description": "The integration config identifier",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/IntegrationConfig"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Integration Configs"
+                ]
             }
         },
         "/integration-configs/{integrationConfigId}/permitted": {
