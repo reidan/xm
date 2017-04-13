@@ -169,6 +169,133 @@
                 ]
             }
         },
+        "/agents/{agentId}/monitors": {
+            "get": {
+                "summary": "Return agent monitors",
+                "description": "Return agent monitors",
+                "operationId": "getAgentMonitors",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(AgentMonitor)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            },
+            "post": {
+                "summary": "Add or update an agent monitor",
+                "description": "Add or update an agent monitor",
+                "operationId": "postAgentMonitor",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "description": "Agent Monitor",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AgentMonitorInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/AgentMonitor"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/AgentMonitor"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
+        "/agents/{agentId}/monitors/{monitorId}": {
+            "delete": {
+                "summary": "Delete an agent monitor",
+                "description": "Delete an agent monitor",
+                "operationId": "deleteAgentMonitor",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-monitorId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AgentMonitor"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
         "/agents/{agentId}/owners": {
             "post": {
                 "summary": "Add an agent owner",
@@ -4294,6 +4421,9 @@
                 "created": {
                     "type": "string",
                     "format": "date-time"
+                },
+                "monitors": {
+                    "$ref": "#/definitions/Pagination(AgentMonitor)"
                 }
             },
             "required": [
@@ -4340,6 +4470,13 @@
                 },
                 "owner": {
                     "$ref": "#/definitions/PersonPointer"
+                },
+                "monitors": {
+                    "description": "Recipients monitoring this agent",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AgentMonitorInput"
+                    }
                 }
             }
         },
@@ -4366,6 +4503,43 @@
             "required": [
                 "id"
             ]
+        },
+        "AgentMonitor": {
+            "type": "object",
+            "description": "A recipient monitoring an agent",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The unique identifier for this specific monitoring subscription"
+                },
+                "agent": {
+                    "$ref": "#/definitions/AgentReference"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientReference"
+                }
+            },
+            "required": [
+                "id",
+                "agent",
+                "recipient"
+            ]
+        },
+        "AgentMonitorInput": {
+            "type": "object",
+            "description": "A recipient monitoring an agent",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The unique identifier for this specific monitoring subscription"
+                },
+                "agent": {
+                    "$ref": "#/definitions/AgentPointer"
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientPointer"
+                }
+            }
         },
         "AgentInstaller": {
             "type": "object",
@@ -8964,6 +9138,36 @@
                 "links"
             ]
         },
+        "Pagination(AgentMonitor)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/AgentMonitor"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
         "Pagination(AgentKey)": {
             "properties": {
                 "count": {
@@ -10466,6 +10670,13 @@
             "description": "The recipient's uuid or targetName",
             "in": "path",
             "name": "memberId",
+            "required": true,
+            "type": "string"
+        },
+        "path-monitorId": {
+            "description": "The monitor's uuid or targetName",
+            "in": "path",
+            "name": "monitorId",
             "required": true,
             "type": "string"
         },
