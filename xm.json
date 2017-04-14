@@ -2700,9 +2700,6 @@
                 "summary": "Returns information about the organization",
                 "description": "Returns information about the organization",
                 "operationId": "getOrganization",
-                "parameters": [
-
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -2715,6 +2712,45 @@
                     },
                     "403": {
                         "$ref": "#/responses/403"
+                    }
+                },
+                "tags": [
+                    "Organization"
+                ]
+            },
+            "post": {
+                "summary": "Update an organization",
+                "description": "Update an organization",
+                "operationId": "postOrganization",
+                "parameters": [
+                    {
+                        "description": "Data for update",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrganizationInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/Organization"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
                     }
                 },
                 "tags": [
@@ -3488,7 +3524,6 @@
                 ]
             }
         },
-
         "/plans": {
             "get": {
                 "summary": "List communication plans",
@@ -3531,6 +3566,48 @@
                     },
                     "404": {
                         "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
+            "post": {
+                "summary": "Add or update a communication plan",
+                "description": "Add or update a communication plan",
+                "operationId": "postPlan",
+                "parameters": [
+                    {
+                        "description": "Plan",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Plan"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
                     }
                 },
                 "tags": [
@@ -4740,30 +4817,6 @@
                 }
             }
         },
-        "APIKeyReference": {
-            "type": "object",
-            "description": "An API Key",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "APIKeyPointer": {
-            "type": "object",
-            "description": "An API Key",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
         "IntegrationAgent": {
             "type": "object",
             "properties": {
@@ -4838,71 +4891,6 @@
                 "statusAt": {
                     "type": "string",
                     "format": "date-time"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "IntegrationAgentReference": {
-            "type": "object",
-            "description": "An agent",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "IntegrationAgentPointer": {
-            "type": "object",
-            "description": "An agent",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "AgentKey": {
-            "type": "object",
-            "description": "Key used to authorize an agent",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "agent": {
-                    "$ref": "#/definitions/AgentReference"
-                },
-                "person": {
-                    "$ref": "#/definitions/PersonReference"
-                },
-                "key": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "agent",
-                "key"
-            ]
-        },
-        "AgentKeyInput": {
-            "type": "object",
-            "description": "Key used to authorize an agent",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "agent": {
-                    "$ref": "#/definitions/AgentPointer"
-                },
-                "key": {
-                    "type": "string"
                 }
             }
         },
@@ -6038,18 +6026,6 @@
                 "VOICE",
                 "VOICE_IVR"
             ]
-        },
-        "Domain": {
-            "description": "An email domain restriction",
-            "properties": {
-                "domain": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "domain"
-            ],
-            "type": "object"
         },
         "EmailDevice": {
             "allOf": [
@@ -7216,10 +7192,6 @@
         "OrganizationInput": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier (UUID) for this entity"
-                },
                 "trial": {
                     "type": "boolean",
                     "description": "True if this is a trial organization"
@@ -9269,36 +9241,6 @@
                 "links"
             ]
         },
-        "Pagination(AgentKey)": {
-            "properties": {
-                "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array)",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "data": {
-                    "description": "An array that contains this page of resources",
-                    "items": {
-                        "$ref": "#/definitions/Agent"
-                    },
-                    "type": "array"
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                },
-                "total": {
-                    "description": "The total number of items in the result set",
-                    "format": "int32",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ]
-        },
         "Pagination(Audit)": {
             "properties": {
                 "data": {
@@ -9512,36 +9454,6 @@
                             "VOICE",
                             "VOICE_IVR"
                         ]
-                    },
-                    "type": "array"
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                },
-                "total": {
-                    "description": "The total number of items in the result set",
-                    "format": "int32",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ]
-        },
-        "Pagination(Domain)": {
-            "properties": {
-                "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array)",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "data": {
-                    "description": "An array that contains this page of resources",
-                    "items": {
-                        "$ref": "#/definitions/Domain"
                     },
                     "type": "array"
                 },
@@ -10704,28 +10616,6 @@
             "required": true,
             "type": "string"
         },
-        "path-deviceType": {
-            "description": "Device Type",
-            "enum": [
-                "ANDROID_PUSH",
-                "APPLE_PUSH",
-                "BLACKBERRY_PUSH",
-                "BROWSER",
-                "EMAIL",
-                "FAX",
-                "GENERIC",
-                "IM",
-                "NUMERIC_PAGER",
-                "TEXT_PAGER",
-                "TEXT_PHONE",
-                "VOICE",
-                "VOICE_IVR"
-            ],
-            "in": "path",
-            "name": "deviceType",
-            "required": true,
-            "type": "string"
-        },
         "path-eventId": {
             "description": "The event id",
             "in": "path",
@@ -10927,13 +10817,6 @@
             "description": "After this time or sequenced item identifier (inclusive)",
             "in": "query",
             "name": "from",
-            "required": false,
-            "type": "string"
-        },
-        "query-groupId": {
-            "description": "The group's uuid or targetName",
-            "in": "query",
-            "name": "groupId",
             "required": false,
             "type": "string"
         },
