@@ -4428,7 +4428,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/SchedulerCommand"
+                            "$ref": "#/definitions/JobInput"
                         }
                     }
                 ],
@@ -8826,75 +8826,6 @@
                 }
             }
         },
-        "SchedulerCommand": {
-            "type": "object",
-            "description": "Scheduling service command",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "A unique identifier (UUID) for this command"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "SCHEDULE_JOB",
-                        "DELETE_JOB"
-                    ]
-                }
-            },
-            "required": [
-                "id",
-                "type"
-            ]
-        },
-        "ScheduleJobSchedulerCommand": {
-            "type": "object",
-            "description": "Schedule a job",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/SchedulerCommand"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "SCHEDULE_JOB"
-                    ]
-                },
-                "job": {
-                    "$ref": "#/definitions/JobInput"
-                }
-            },
-            "required": [
-                "type",
-                "job"
-            ]
-        },
-        "DeleteJobSchedulerCommand": {
-            "type": "object",
-            "description": "Delete a scheduled job",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/SchedulerCommand"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "DELETE_JOB"
-                    ]
-                },
-                "job": {
-                    "$ref": "#/definitions/JobPointer"
-                }
-            },
-            "required": [
-                "type",
-                "job"
-            ]
-        },
         "JobInput": {
             "type": "object",
             "description": "Job to schedule",
@@ -9274,36 +9205,6 @@
             },
             "required": [
                 "data",
-                "links"
-            ]
-        },
-        "Pagination(Conference)": {
-            "properties": {
-                "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array)",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "data": {
-                    "description": "An array that contains this page of resources",
-                    "items": {
-                        "$ref": "#/definitions/Conference"
-                    },
-                    "type": "array"
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                },
-                "total": {
-                    "description": "The total number of items in the result set",
-                    "format": "int32",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "data",
-                "total",
                 "links"
             ]
         },
