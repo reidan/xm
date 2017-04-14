@@ -2387,11 +2387,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "description": "An array containing permitted recipients",
-                            "items": {
-                                "$ref": "#/definitions/Pagination(Recipient)"
-                            }
+                            "$ref": "#/definitions/Pagination(Recipient)"
                         }
                     },
                     "400": {
