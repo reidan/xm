@@ -7730,6 +7730,25 @@
                 },
                 "filters": {
                     "$ref": "#/definitions/Pagination(NotificationFilter)"
+                },
+                "agents": {
+                    "description": "The agents on which an ONPREMISE integration will execute",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AgentPointer"
+                    }
+                },
+                "integrationService": {
+                    "description": "The integration service on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "integrationServiceSelector": {
+                    "description": "Selector for integration agents on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "appendToURL": {
+                    "description": "Appended to the endpoint's Base URL",
+                    "type": "string"
                 }
             },
             "required": [
@@ -7798,6 +7817,21 @@
                     ]
                 },
                 "script": {
+                    "type": "string"
+                },
+                "agents": {
+                    "$ref": "#/definitions/Pagination(Agent)"
+                },
+                "integrationService": {
+                    "description": "The integration service on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "integrationServiceSelector": {
+                    "description": "Selector for integration agents on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "appendToURL": {
+                    "description": "Appended to the endpoint's Base URL",
                     "type": "string"
                 }
             },
@@ -7975,10 +8009,10 @@
                 },
                 "locked": {
                     "description": "Lists the fields of externally-owned objects that are locked and cannot be modified in the xMatters user interface",
+                    "type": "array",
                     "items": {
                         "type": "string"
-                    },
-                    "type": "array"
+                    }
                 },
                 "responseCount": {
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
