@@ -7732,11 +7732,7 @@
                     "$ref": "#/definitions/Pagination(NotificationFilter)"
                 },
                 "agents": {
-                    "description": "The agents on which an ONPREMISE integration will execute",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/AgentPointer"
-                    }
+                    "$ref": "#/definitions/Pagination(Agent)"
                 },
                 "integrationService": {
                     "description": "The integration service on which an ONPREMISE integration will execute",
@@ -7820,7 +7816,11 @@
                     "type": "string"
                 },
                 "agents": {
-                    "$ref": "#/definitions/Pagination(Agent)"
+                    "description": "The agents on which an ONPREMISE integration will execute",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AgentPointer"
+                    }
                 },
                 "integrationService": {
                     "description": "The integration service on which an ONPREMISE integration will execute",
