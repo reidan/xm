@@ -220,7 +220,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Updated",
+                        "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/AgentMonitor"
                         }
