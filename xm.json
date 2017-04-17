@@ -8439,13 +8439,16 @@
         },
         "ShiftInput": {
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "group": {
+                    "$ref": "#/definitions/GroupPointer"
+                },
                 "name": {
                     "type": "string"
                 }
-            },
-            "required": [
-                "name"
-            ]
+            }
         },
         "ShiftReference": {
             "properties": {
