@@ -6162,6 +6162,11 @@
                 },
                 "voicemailOptions": {
                     "$ref": "#/definitions/VoicemailOptions"
+                },
+                "revision": {
+                    "description": "Integer that increases to indicate revision of this entity, unlikely to be sequential as it is generated from a table specific sequence",
+                    "type": "integer",
+                    "format": "int64"
                 }
             },
             "required": [
@@ -8018,6 +8023,11 @@
                     "description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
                     "type": "integer",
                     "minimum": 1
+                },
+                "revision": {
+                    "description": "Integer that increases to indicate revision of this entity, unlikely to be sequential as it is generated from a table specific sequence",
+                    "type": "integer",
+                    "format": "int64"
                 }
             },
             "required": [
@@ -8460,6 +8470,9 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "revision": {
+                    "type": "integer"
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
@@ -9121,6 +9134,7 @@
                     "type": "string",
                     "enum": [
                         "EVENT",
+                        "GROUP",
                         "PERSON",
                         "SHIFT"
                     ]
@@ -9141,12 +9155,67 @@
                 }
             ],
             "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "EVENT"
+                    ]
+                },
                 "event": {
                     "$ref": "#/definitions/Event"
                 }
             },
             "required": [
+                "type",
                 "event"
+            ]
+        },
+        "GroupRevision": {
+            "type": "object",
+            "description": "A group revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP"
+                    ]
+                },
+                "group": {
+                    "$ref": "#/definitions/Group"
+                }
+            },
+            "required": [
+                "type",
+                "group"
+            ]
+        },
+        "ShiftRevision": {
+            "type": "object",
+            "description": "A shift revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "SHIFT"
+                    ]
+                },
+                "shift": {
+                    "$ref": "#/definitions/Shift"
+                }
+            },
+            "required": [
+                "type",
+                "shift"
             ]
         },
         "Pagination(Agent)": {
