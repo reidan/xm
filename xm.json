@@ -9136,7 +9136,8 @@
                         "EVENT",
                         "GROUP",
                         "PERSON",
-                        "SHIFT"
+                        "SHIFT",
+                        "SITE"
                     ]
                 }
             },
@@ -9194,6 +9195,30 @@
                 "group"
             ]
         },
+        "PersonRevision": {
+            "type": "object",
+            "description": "A person revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP"
+                    ]
+                },
+                "person": {
+                    "$ref": "#/definitions/Person"
+                }
+            },
+            "required": [
+                "type",
+                "person"
+            ]
+        },
         "ShiftRevision": {
             "type": "object",
             "description": "A shift revision",
@@ -9216,6 +9241,30 @@
             "required": [
                 "type",
                 "shift"
+            ]
+        },
+        "SiteRevision": {
+            "type": "object",
+            "description": "A site revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "SITE"
+                    ]
+                },
+                "site": {
+                    "$ref": "#/definitions/Site"
+                }
+            },
+            "required": [
+                "type",
+                "site"
             ]
         },
         "Pagination(Agent)": {
