@@ -7537,6 +7537,14 @@
                 "status": {
                     "type": "string"
                 },
+                "loggingLevel": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ],
+                    "default": "ERROR"
+                },
                 "forms": {
                     "$ref": "#/definitions/Pagination(Form)"
                 },
@@ -7570,6 +7578,13 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "loggingLevel": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ]
                 }
             },
             "required": [
@@ -7779,6 +7794,14 @@
                 "appendToURL": {
                     "description": "Appended to the endpoint's Base URL",
                     "type": "string"
+                },
+                "loggingLevel": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ],
+                    "default": "ERROR"
                 }
             },
             "required": [
@@ -7867,6 +7890,13 @@
                 "appendToURL": {
                     "description": "Appended to the endpoint's Base URL",
                     "type": "string"
+                },
+                "loggingLevel": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ]
                 }
             },
             "required": [
