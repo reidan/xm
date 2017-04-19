@@ -7177,6 +7177,35 @@
                 "group"
             ]
         },
+        "OnCallReminderSchedule": {
+            "type": "object",
+            "description": "On call reminder schedule configuration",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this entity"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "OnCallReminderScheduleInput": {
+            "type": "object",
+            "description": "On call reminder schedule configuration",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this entity"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonPointer"
+                }
+            }
+        },
         "Organization": {
             "type": "object",
             "properties": {
@@ -9135,6 +9164,7 @@
                     "enum": [
                         "EVENT",
                         "GROUP",
+                        "ON_CALL_REMINDER_SCHEDULE",
                         "PERSON",
                         "SHIFT",
                         "SITE"
@@ -9217,6 +9247,30 @@
             "required": [
                 "type",
                 "person"
+            ]
+        },
+        "OnCallReminderScheduleRevision": {
+            "type": "object",
+            "description": "An on call reminder schedule revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "ON_CALL_REMINDER_SCHEDULE"
+                    ]
+                },
+                "onCallReminderSchedule": {
+                    "$ref": "#/definitions/OnCallReminderSchedule"
+                }
+            },
+            "required": [
+                "type",
+                "onCallReminderSchedule"
             ]
         },
         "ShiftRevision": {
