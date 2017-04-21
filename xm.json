@@ -5259,6 +5259,54 @@
                 "response"
             ]
         },
+        "NotificationSuppressedAudit": {
+            "type": "object",
+            "description": "A notification suppressed audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "NOTIFICATION_SUPPRESSED"
+                    ]
+                },
+                "notification": {
+                    "$ref": "#/definitions/Notification"
+                }
+            },
+            "required": [
+                "type",
+                "notification"
+            ]
+        },
+        "NotificationSuppressedAuditInput": {
+            "type": "object",
+            "description": "A notification suppressed audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/AuditInput"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "NOTIFICATION_SUPPRESSED"
+                    ]
+                },
+                "notification": {
+                    "$ref": "#/definitions/NotificationInput"
+                }
+            },
+            "required": [
+                "type",
+                "notification"
+            ]
+        },
         "BlackberryPushDevice": {
             "allOf": [
                 {
