@@ -7743,13 +7743,13 @@
             "required": [
                 "id",
                 "name",
-                "description",
                 "status",
                 "enabled"
             ],
             "type": "object"
         },
         "PlanInput": {
+            "type": "object",
             "description": "A communication plan",
             "properties": {
                 "id": {
@@ -7771,12 +7771,7 @@
                         "INFO"
                     ]
                 }
-            },
-            "required": [
-                "name",
-                "description"
-            ],
-            "type": "object"
+            }
         },
         "PlanReference": {
             "properties": {
