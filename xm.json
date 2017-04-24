@@ -321,6 +321,9 @@
                     },
                     {
                         "$ref": "#/parameters/path-monitorId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
@@ -371,6 +374,9 @@
                         "schema": {
                             "$ref": "#/definitions/AgentOwnerInput"
                         }
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
