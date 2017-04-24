@@ -2016,6 +2016,41 @@
                 ]
             }
         },
+        "/groups/{groupId}/supervisors": {
+            "get": {
+                "summary": "List Group supervisors",
+                "description": "List Group supervisors",
+                "operationId": "getGroupSupervisors",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-groupId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Person)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Group Supervisors"
+                ]
+            }
+        },
         "/integration-agents": {
             "get": {
                 "summary": "Returns information about agents",
