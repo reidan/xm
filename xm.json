@@ -38,6 +38,9 @@
                     },
                     {
                         "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
