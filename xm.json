@@ -5989,6 +5989,11 @@
             "type": "object"
         },
         "DeviceReference": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RecipientReference"
+                }
+            ],
             "properties": {
                 "id": {
                     "description": "The identifier of the resource",
@@ -5997,6 +6002,12 @@
                 "targetName": {
                     "description": "The target name of the resource",
                     "type": "string"
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "DEVICE"
+                    ]
                 },
                 "deviceType": {
                     "description": "The type of the device",
@@ -6016,6 +6027,10 @@
                         "VOICE",
                         "VOICE_IVR"
                     ]
+                },
+                "name": {
+                    "description": "The name of the device. Example: Work Email, Home Phone",
+                    "type": "string"
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
@@ -6703,6 +6718,7 @@
             "type": "object"
         },
         "Group": {
+            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
@@ -6739,8 +6755,7 @@
                 "allowDuplicates",
                 "observedByAll",
                 "useDefaultDevices"
-            ],
-            "type": "object"
+            ]
         },
         "GroupInput": {
             "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
@@ -6805,6 +6820,11 @@
             ]
         },
         "GroupReference": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RecipientReference"
+                }
+            ],
             "properties": {
                 "id": {
                     "description": "The identifier of the resource",
@@ -6813,6 +6833,12 @@
                 "targetName": {
                     "description": "The target name of the resource",
                     "type": "string"
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "GROUP"
+                    ]
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
@@ -7592,6 +7618,11 @@
             }
         },
         "PersonReference": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RecipientReference"
+                }
+            ],
             "properties": {
                 "id": {
                     "description": "The identifier of the resource",
@@ -7600,6 +7631,12 @@
                 "targetName": {
                     "description": "The target name of the resource",
                     "type": "string"
+                },
+                "recipientType": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON"
+                    ]
                 },
                 "firstName": {
                     "description": "The first name of the user",
@@ -7615,7 +7652,9 @@
             },
             "required": [
                 "id",
-                "targetName"
+                "targetName",
+                "firstName",
+                "lastName"
             ]
         },
         "Permission": {
