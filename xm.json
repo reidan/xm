@@ -7705,6 +7705,7 @@
             ]
         },
         "Plan": {
+            "type": "object",
             "description": "A communication plan",
             "properties": {
                 "id": {
@@ -7745,8 +7746,7 @@
                 "name",
                 "status",
                 "enabled"
-            ],
-            "type": "object"
+            ]
         },
         "PlanInput": {
             "type": "object",
