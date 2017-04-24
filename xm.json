@@ -183,6 +183,9 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
