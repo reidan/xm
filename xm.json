@@ -6919,6 +6919,7 @@
             "type": "object"
         },
         "IntegrationConfig": {
+            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -6959,15 +6960,17 @@
                 "creator": {
                     "$ref": "#/definitions/PersonReference"
                 },
-                "creationDate": {
+                "created": {
                     "type": "string",
                     "format": "date-time"
                 },
                 "permitted": {
                     "$ref": "#/definitions/Pagination(Recipient)"
+                },
+                "links": {
+                    "$ref": "#/definitions/SelfLink"
                 }
             },
-            "type": "object",
             "required": [
                 "id"
             ]
@@ -7711,17 +7714,20 @@
                 "id": {
                     "type": "string"
                 },
+                "name": {
+                    "type": "string"
+                },
                 "description": {
                     "type": "string"
                 },
                 "enabled": {
                     "type": "boolean"
                 },
-                "name": {
-                    "type": "string"
-                },
                 "status": {
                     "type": "string"
+                },
+                "editable": {
+                    "type": "boolean"
                 },
                 "loggingLevel": {
                     "type": "string",
@@ -7731,14 +7737,24 @@
                     ],
                     "default": "ERROR"
                 },
+                "accessibleByAll": {
+                    "type": "boolean"
+                },
+                "creator": {
+                    "$ref": "#/definitions/PersonReference"
+                },
+                "created": {
+                    "type": "string",
+                    "format": "date-time"
+                },
                 "forms": {
                     "$ref": "#/definitions/Pagination(Form)"
                 },
                 "endpoints": {
                     "$ref": "#/definitions/Pagination(PlanEndpoint)"
                 },
-                "accessibleByAll": {
-                    "type": "boolean"
+                "permitted": {
+                    "$ref": "#/definitions/Pagination(Recipient)"
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
@@ -7776,6 +7792,12 @@
                         "ERROR",
                         "INFO"
                     ]
+                },
+                "permitted": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RecipientPointer"
+                    }
                 }
             }
         },
