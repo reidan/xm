@@ -7737,6 +7737,9 @@
                 "endpoints": {
                     "$ref": "#/definitions/Pagination(PlanEndpoint)"
                 },
+                "accessibleByAll": {
+                    "type": "boolean"
+                },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
                 }
@@ -7763,6 +7766,9 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "accessibleByAll": {
+                    "type": "boolean"
                 },
                 "loggingLevel": {
                     "type": "string",
