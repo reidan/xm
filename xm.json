@@ -6925,16 +6925,19 @@
                     "type": "string"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Categorization of integration to a specific provider, e.g. SUMO_LOGIC"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User provided name for this specific integration"
                 },
                 "description": {
                     "type": "string"
                 },
                 "accessibleByAll": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "True if all authenticated callers are permitted"
                 },
                 "editable": {
                     "type": "boolean"
@@ -6982,16 +6985,19 @@
                     "type": "string"
                 },
                 "type": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Categorization of integration to a specific provider, e.g. SUMO_LOGIC"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User provided name for this specific integration"
                 },
                 "description": {
                     "type": "string"
                 },
                 "accessibleByAll": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "True if all authenticated callers are permitted"
                 },
                 "creator": {
                     "$ref": "#/definitions/PersonPointer"
@@ -7715,7 +7721,8 @@
                     "type": "string"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User provided name for this specific plan"
                 },
                 "description": {
                     "type": "string"
@@ -7738,7 +7745,8 @@
                     "default": "ERROR"
                 },
                 "accessibleByAll": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "True if all authenticated callers are permitted"
                 },
                 "creator": {
                     "$ref": "#/definitions/PersonReference"
@@ -7781,10 +7789,12 @@
                     "type": "boolean"
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User provided name for this specific plan"
                 },
                 "accessibleByAll": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "True if all authenticated callers are permitted"
                 },
                 "loggingLevel": {
                     "type": "string",
