@@ -9497,6 +9497,30 @@
                 "person"
             ]
         },
+        "DeviceRevision": {
+            "type": "object",
+            "description": "A device revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "DEVICE"
+                    ]
+                },
+                "device": {
+                    "$ref": "#/definitions/Device"
+                }
+            },
+            "required": [
+                "type",
+                "device"
+            ]
+        },
         "OnCallReminderScheduleRevision": {
             "type": "object",
             "description": "An on call reminder schedule revision",
