@@ -7118,7 +7118,14 @@
                     "format": "date-time"
                 },
                 "deliveryStatus": {
-                    "type": "string"
+                    "description": "Delivery status",
+                    "type": "string",
+                    "enum": [
+                        "PENDING",
+                        "DELIVERED",
+                        "RESPONDED",
+                        "FAILED"
+                    ]
                 },
                 "responses": {
                     "$ref": "#/definitions/Pagination(Response)"
@@ -7508,6 +7515,12 @@
                 }
             ],
             "properties": {
+                "recipientType": {
+                    "enum": [
+                        "PERSON"
+                    ],
+                    "type": "string"
+                },
                 "firstName": {
                     "description": "The first name of the user",
                     "type": "string"
@@ -7524,12 +7537,6 @@
                     "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company",
                     "type": "string"
                 },
-                "recipientType": {
-                    "enum": [
-                        "PERSON"
-                    ],
-                    "type": "string"
-                },
                 "timezone": {
                     "description": "The time zone of the user. Example:  US/Pacific",
                     "type": "string"
@@ -7538,8 +7545,24 @@
                     "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field",
                     "type": "string"
                 },
+                "properties": {
+                    "description": "Key/Value map of custom properties",
+                    "type": "object"
+                },
+                "site": {
+                    "$ref": "#/definitions/SiteReference"
+                },
+                "devices": {
+                    "$ref": "#/definitions/Pagination(Device)"
+                },
+                "roles": {
+                    "$ref": "#/definitions/Pagination(Role)"
+                },
+                "supervisors": {
+                    "$ref": "#/definitions/Pagination(Person)"
+                },
                 "deliveryStatus": {
-                    "description": "Delivery status",
+                    "description": "Delivery status. Derived from the status of all notifications to this person for this event",
                     "type": "string",
                     "enum": [
                         "PENDING",
@@ -7548,24 +7571,11 @@
                         "FAILED"
                     ]
                 },
-                "properties": {
-                    "description": "Key/Value map of custom properties",
-                    "type": "object"
-                },
-                "response": {
-                    "$ref": "#/definitions/Response"
-                },
-                "site": {
-                    "$ref": "#/definitions/SiteReference"
-                },
                 "notifications": {
                     "$ref": "#/definitions/Pagination(Notification)"
                 },
-                "devices": {
-                    "$ref": "#/definitions/Pagination(Device)"
-                },
-                "roles": {
-                    "$ref": "#/definitions/Pagination(Role)"
+                "response": {
+                    "$ref": "#/definitions/Response"
                 }
             },
             "required": [
@@ -7582,6 +7592,12 @@
                 }
             ],
             "properties": {
+                "recipientType": {
+                    "enum": [
+                        "PERSON"
+                    ],
+                    "type": "string"
+                },
                 "firstName": {
                     "description": "The first name of the user",
                     "type": "string"
@@ -7601,12 +7617,6 @@
                 "properties": {
                     "description": "Key/Value map of custom properties",
                     "type": "object"
-                },
-                "recipientType": {
-                    "enum": [
-                        "PERSON"
-                    ],
-                    "type": "string"
                 },
                 "roles": {
                     "description": "A list of the user's roles. Users must have at least one role",
