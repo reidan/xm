@@ -3648,6 +3648,48 @@
                 }
             }
         },
+        "/people/{personId}/password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Set user password",
+                "description": "Set user password",
+                "operationId": "postPersonPassword",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "description": "password"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/people/{personId}/permissions": {
             "get": {
                 "tags": [
