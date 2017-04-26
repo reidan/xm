@@ -2934,6 +2934,154 @@
                 ]
             }
         },
+        "/password-rules": {
+            "get": {
+                "summary": "Returns information about password rules",
+                "description": "Returns information about password rules",
+                "operationId": "getPasswordRules",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(PasswordRule)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Password Rules"
+                ]
+            },
+            "post": {
+                "summary": "Create or update a password rule",
+                "description": "Create or update a password rule",
+                "operationId": "postPasswordRule",
+                "parameters": [
+                    {
+                        "description": "A password rule",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PasswordRuleInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/PasswordRule"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/PasswordRule"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Password Rules"
+                ]
+            }
+        },
+        "/password-rules/{passwordRuleId}": {
+            "get": {
+                "summary": "Get a password rule",
+                "description": "Get a password rule",
+                "operationId": "getPasswordRule",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-passwordRuleId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PasswordRule"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Password Rules"
+                ]
+            },
+            "delete": {
+                "summary": "Delete a password rule",
+                "description": "Delete a password rule",
+                "operationId": "deletePasswordRule",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-passwordRuleId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PasswordRule"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Password Rules"
+                ]
+            }
+        },
         "/people": {
             "get": {
                 "description": "Returns information about users",
@@ -7569,6 +7717,151 @@
                 }
             }
         },
+        "PasswordRule": {
+            "type": "object",
+            "description": "Password rule",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "minimumLength": {
+                    "description": "Minimum length",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "expiryPeriod": {
+                    "description": "Expiry period in days",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "historySize": {
+                    "description": "History size",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "passwordComplexity": {
+                    "description": "Something",
+                    "type": "string",
+                    "enum": [
+                        "NONE",
+                        "NON_ALPHA",
+                        "STRONG"
+                    ]
+                },
+                "minimumPasswordAge": {
+                    "description": "Minimum password age",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "lockThreshold": {
+                    "description": "Lock threshold",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "lockDuration": {
+                    "description": "Lock duration in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 30
+                },
+                "lockReset": {
+                    "description": "Lock reset in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 30
+                },
+                "emailPasswordReset": {
+                    "description": "Email password reset",
+                    "type": "boolean",
+                    "default": false
+                },
+                "pinLockEnabled": {
+                    "description": "PIN lock enabled",
+                    "type": "boolean",
+                    "default": false
+                },
+                "lockTimeoutMinutes": {
+                    "description": "Lock timeout in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 10
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "PasswordRuleInput": {
+            "type": "object",
+            "description": "Password rule",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "minimumLength": {
+                    "description": "Minimum length",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "expiryPeriod": {
+                    "description": "Expiry period in days",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "historySize": {
+                    "description": "History size",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "passwordComplexity": {
+                    "description": "Something",
+                    "type": "string",
+                    "enum": [
+                        "NONE",
+                        "NON_ALPHA",
+                        "STRONG"
+                    ]
+                },
+                "minimumPasswordAge": {
+                    "description": "Minimum password age",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "lockThreshold": {
+                    "description": "Lock threshold",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "lockDuration": {
+                    "description": "Lock duration in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 30
+                },
+                "lockReset": {
+                    "description": "Lock reset in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 30
+                },
+                "emailPasswordReset": {
+                    "description": "Email password reset",
+                    "type": "boolean",
+                    "default": false
+                },
+                "pinLockEnabled": {
+                    "description": "PIN lock enabled",
+                    "type": "boolean",
+                    "default": false
+                },
+                "lockTimeoutMinutes": {
+                    "description": "Lock timeout in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 10
+                }
+            }
+        },
         "Person": {
             "type": "object",
             "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on. deliveryStatus, notifications, and response are dynamic derived attributes and will only appear when viewing the person as an event recipient",
@@ -10313,6 +10606,36 @@
                 "links"
             ]
         },
+        "Pagination(PasswordRule)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)"
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/PasswordRule"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
+        },
         "Pagination(Permission)": {
             "required": [
                 "count",
@@ -11162,6 +11485,13 @@
             "description": "The person's uuid or targetName",
             "in": "path",
             "name": "personId",
+            "required": true,
+            "type": "string"
+        },
+        "path-passwordRuleId": {
+            "description": "The password rule uuid",
+            "in": "path",
+            "name": "passwordRuleId",
             "required": true,
             "type": "string"
         },
