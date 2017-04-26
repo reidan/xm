@@ -4840,7 +4840,6 @@
     "definitions": {
         "AccessToken": {
             "description": "Access token response",
-            "type": "object",
             "properties": {
                 "access_token": {
                     "type": "string"
@@ -4864,7 +4863,6 @@
             ]
         },
         "Agent": {
-            "type": "object",
             "description": "An agent",
             "properties": {
                 "id": {
@@ -4917,7 +4915,6 @@
             ]
         },
         "AgentInput": {
-            "type": "object",
             "description": "An agent",
             "properties": {
                 "id": {
@@ -4962,7 +4959,6 @@
             }
         },
         "AgentReference": {
-            "type": "object",
             "description": "An agent",
             "properties": {
                 "id": {
@@ -4974,7 +4970,6 @@
             ]
         },
         "AgentPointer": {
-            "type": "object",
             "description": "An agent",
             "properties": {
                 "id": {
@@ -4986,7 +4981,6 @@
             ]
         },
         "AgentMonitor": {
-            "type": "object",
             "description": "A recipient monitoring an agent",
             "properties": {
                 "id": {
@@ -5007,7 +5001,6 @@
             ]
         },
         "AgentMonitorInput": {
-            "type": "object",
             "description": "A recipient monitoring an agent",
             "properties": {
                 "id": {
@@ -5023,7 +5016,6 @@
             }
         },
         "AgentInstaller": {
-            "type": "object",
             "description": "Agent installation information",
             "properties": {
                 "version": {
@@ -5051,7 +5043,6 @@
             ]
         },
         "AgentOwner": {
-            "type": "object",
             "description": "An agent owner",
             "properties": {
                 "id": {
@@ -5075,7 +5066,6 @@
             ]
         },
         "AgentOwnerInput": {
-            "type": "object",
             "description": "An agent owner",
             "properties": {
                 "agent": {
@@ -5091,7 +5081,6 @@
             ]
         },
         "APIKey": {
-            "type": "object",
             "description": "An API Key",
             "properties": {
                 "id": {
@@ -5109,7 +5098,6 @@
             ]
         },
         "APIKeyInput": {
-            "type": "object",
             "description": "An API Key",
             "properties": {
                 "id": {
@@ -5121,7 +5109,6 @@
             }
         },
         "IntegrationAgent": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5163,7 +5150,6 @@
             ]
         },
         "IntegrationAgentInput": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -5341,7 +5327,6 @@
             "type": "object"
         },
         "Audit": {
-            "type": "object",
             "description": "An audit",
             "properties": {
                 "id": {
@@ -5380,7 +5365,6 @@
             ]
         },
         "AuditInput": {
-            "type": "object",
             "description": "An audit",
             "properties": {
                 "id": {
@@ -5419,7 +5403,6 @@
             ]
         },
         "EventCreatedAudit": {
-            "type": "object",
             "description": "An event created audit",
             "allOf": [
                 {
@@ -5443,7 +5426,6 @@
             ]
         },
         "EventCreatedAuditInput": {
-            "type": "object",
             "description": "An event created audit",
             "allOf": [
                 {
@@ -5467,7 +5449,6 @@
             ]
         },
         "EventAnnotatedAudit": {
-            "type": "object",
             "description": "An event annotated audit",
             "allOf": [
                 {
@@ -5491,7 +5472,6 @@
             ]
         },
         "EventAnnotatedAuditInput": {
-            "type": "object",
             "description": "An event annotated audit",
             "allOf": [
                 {
@@ -5515,7 +5495,6 @@
             ]
         },
         "ResponseReceivedAudit": {
-            "type": "object",
             "description": "A response received audit",
             "allOf": [
                 {
@@ -5539,7 +5518,6 @@
             ]
         },
         "ResponseReceivedAuditInput": {
-            "type": "object",
             "description": "A response received audit",
             "allOf": [
                 {
@@ -5563,7 +5541,6 @@
             ]
         },
         "NotificationDeliveredAudit": {
-            "type": "object",
             "description": "A notification delivered audit",
             "allOf": [
                 {
@@ -5587,7 +5564,6 @@
             ]
         },
         "NotificationDeliveredAuditInput": {
-            "type": "object",
             "description": "A notification delivered audit",
             "allOf": [
                 {
@@ -5611,7 +5587,6 @@
             ]
         },
         "NotificationSuppressedAudit": {
-            "type": "object",
             "description": "A notification suppressed audit",
             "allOf": [
                 {
@@ -5635,7 +5610,6 @@
             ]
         },
         "NotificationSuppressedAuditInput": {
-            "type": "object",
             "description": "A notification suppressed audit",
             "allOf": [
                 {
@@ -5749,7 +5723,6 @@
         },
         "Credentials": {
             "description": "Authentication credentials",
-            "type": "object",
             "properties": {
                 "grant_type": {
                     "type": "string",
@@ -5967,7 +5940,6 @@
             "type": "object"
         },
         "DeepLink": {
-            "type": "object",
             "properties": {
                 "token": {
                     "description": "Universally unique token",
@@ -6006,7 +5978,6 @@
             ]
         },
         "DeepLinkInput": {
-            "type": "object",
             "properties": {
                 "expiry": {
                     "description": "Expiry date",
@@ -6719,7 +6690,6 @@
             ]
         },
         "EventAnnotation": {
-            "type": "object",
             "description": "An event annotation",
             "properties": {
                 "id": {
@@ -6743,7 +6713,6 @@
             ]
         },
         "EventAnnotationInput": {
-            "type": "object",
             "description": "An event annotation",
             "properties": {
                 "id": {
@@ -6846,7 +6815,6 @@
         },
         "FeatureToggle": {
             "description": "Feature toggle",
-            "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
@@ -6862,7 +6830,6 @@
         },
         "Form": {
             "description": "A form",
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -6898,7 +6865,6 @@
         },
         "FormInput": {
             "description": "A form",
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -6954,7 +6920,6 @@
         },
         "Function": {
             "description": "Function",
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -7006,7 +6971,6 @@
             "type": "object"
         },
         "Group": {
-            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
@@ -7047,7 +7011,6 @@
         },
         "GroupInput": {
             "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
-            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientInput"
@@ -7172,7 +7135,6 @@
             "type": "object"
         },
         "IntegrationConfig": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -7232,7 +7194,6 @@
             ]
         },
         "IntegrationConfigInput": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -7261,7 +7222,6 @@
             }
         },
         "IntegrationReference": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -7272,7 +7232,6 @@
             ]
         },
         "IntegrationPointer": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -7327,7 +7286,6 @@
             "type": "object"
         },
         "LogEntryInput": {
-            "type": "object",
             "description": "Log entry",
             "properties": {
                 "at": {
@@ -7437,7 +7395,6 @@
             ]
         },
         "NotificationFilter": {
-            "type": "object",
             "description": "A notification filter, applied to notifications matching the specified attributes",
             "properties": {
                 "id": {
@@ -7465,7 +7422,6 @@
             ]
         },
         "NotificationFilterInput": {
-            "type": "object",
             "description": "A notification filter, applied to notifications matching the specified attributes",
             "properties": {
                 "id": {
@@ -7492,7 +7448,6 @@
             ]
         },
         "PersonIntegrationDeviceTypeNotificationFilter": {
-            "type": "object",
             "description": "Cap notifications to a person within a specified number of minutes",
             "allOf": [
                 {
@@ -7520,7 +7475,6 @@
             ]
         },
         "PersonIntegrationDeviceTypeNotificationFilterInput": {
-            "type": "object",
             "description": "Filter notifications to any person within a specified number of minutes",
             "allOf": [
                 {
@@ -7619,7 +7573,6 @@
             ]
         },
         "OnCallReminderSchedule": {
-            "type": "object",
             "description": "On call reminder schedule configuration",
             "properties": {
                 "id": {
@@ -7635,7 +7588,6 @@
             ]
         },
         "OnCallReminderScheduleInput": {
-            "type": "object",
             "description": "On call reminder schedule configuration",
             "properties": {
                 "id": {
@@ -7648,7 +7600,6 @@
             }
         },
         "Organization": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string",
@@ -7665,7 +7616,6 @@
             ]
         },
         "OrganizationInput": {
-            "type": "object",
             "properties": {
                 "trial": {
                     "type": "boolean",
@@ -7674,7 +7624,6 @@
             }
         },
         "OrganizationPointer": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string",
@@ -7686,7 +7635,6 @@
             ]
         },
         "OrganizationConfig": {
-            "type": "object",
             "properties": {
                 "mobilePINLockEnabled": {
                     "description": "Mobile app users will be required to have an account PIN",
@@ -7723,7 +7671,6 @@
             }
         },
         "OrganizationConfigInput": {
-            "type": "object",
             "properties": {
                 "mobilePINLockEnabled": {
                     "description": "Mobile app users will be required to have an account PIN",
@@ -7760,7 +7707,6 @@
             }
         },
         "PasswordRule": {
-            "type": "object",
             "description": "Password rule",
             "properties": {
                 "id": {
@@ -7834,7 +7780,6 @@
             ]
         },
         "PasswordRuleInput": {
-            "type": "object",
             "description": "Password rule",
             "properties": {
                 "id": {
@@ -7905,7 +7850,6 @@
             }
         },
         "Person": {
-            "type": "object",
             "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on. deliveryStatus, notifications, and response are dynamic derived attributes and will only appear when viewing the person as an event recipient",
             "allOf": [
                 {
@@ -7979,7 +7923,6 @@
             ]
         },
         "PersonInput": {
-            "type": "object",
             "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
             "allOf": [
                 {
@@ -8049,7 +7992,6 @@
             ]
         },
         "PersonPointer": {
-            "type": "object",
             "description": "A reference to a person resource",
             "properties": {
                 "id": {
@@ -8108,7 +8050,6 @@
         },
         "Permission": {
             "description": "Permission",
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8119,7 +8060,6 @@
             ]
         },
         "Plan": {
-            "type": "object",
             "description": "A communication plan",
             "properties": {
                 "id": {
@@ -8181,7 +8121,6 @@
             ]
         },
         "PlanInput": {
-            "type": "object",
             "description": "A communication plan",
             "properties": {
                 "id": {
@@ -8237,7 +8176,6 @@
             ]
         },
         "PlanEndpoint": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8313,7 +8251,6 @@
             "type": "object"
         },
         "PlanEndpointReference": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8332,7 +8269,6 @@
             ]
         },
         "PlanEndpointPointer": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8343,7 +8279,6 @@
             ]
         },
         "PlanIntegration": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8438,7 +8373,6 @@
             ]
         },
         "PlanIntegrationInput": {
-            "type": "object",
             "description": "Insert or update of an integration",
             "properties": {
                 "id": {
@@ -8546,7 +8480,6 @@
             ]
         },
         "PlanIntegrationLog": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8651,7 +8584,6 @@
             "type": "object"
         },
         "Recipient": {
-            "type": "object",
             "discriminator": "recipientType",
             "properties": {
                 "id": {
@@ -8721,7 +8653,6 @@
             ]
         },
         "RecipientInput": {
-            "type": "object",
             "description": "A Recipient can be the target of a notification. Groups, People and Devices are all Recipients",
             "discriminator": "recipientType",
             "properties": {
@@ -8834,7 +8765,6 @@
         },
         "RefreshToken": {
             "description": "Refresh token response",
-            "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
@@ -8849,7 +8779,6 @@
             ]
         },
         "Response": {
-            "type": "object",
             "description": "A response",
             "properties": {
                 "id": {
@@ -8889,7 +8818,6 @@
             ]
         },
         "ResponseInput": {
-            "type": "object",
             "description": "A response",
             "properties": {
                 "notification": {
@@ -8918,7 +8846,6 @@
             }
         },
         "ResponseOption": {
-            "type": "object",
             "description": "A response option",
             "properties": {
                 "action": {
@@ -8952,7 +8879,6 @@
             ]
         },
         "Role": {
-            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
@@ -9058,7 +8984,6 @@
         },
         "Scenario": {
             "description": "A scenario",
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string"
@@ -9084,7 +9009,6 @@
             ]
         },
         "SenderOverrides": {
-            "type": "object",
             "description": "Sender Overrides",
             "properties": {
                 "callerId": {
@@ -9338,7 +9262,6 @@
             ]
         },
         "Site": {
-            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
@@ -9417,7 +9340,6 @@
             ]
         },
         "TemporaryReplacement": {
-            "type": "object",
             "description": "object",
             "properties": {
                 "start": {
@@ -9442,7 +9364,6 @@
             ]
         },
         "TextPagerDevice": {
-            "type": "object",
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
@@ -9542,7 +9463,6 @@
             "type": "object"
         },
         "VoicemailOptions": {
-            "type": "object",
             "description": "Voicemail Options",
             "properties": {
                 "every": {
@@ -9557,7 +9477,6 @@
             }
         },
         "JobInput": {
-            "type": "object",
             "description": "Job to schedule",
             "properties": {
                 "id": {
@@ -9578,7 +9497,6 @@
             ]
         },
         "JobReference": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string",
@@ -9590,7 +9508,6 @@
             ]
         },
         "JobPointer": {
-            "type": "object",
             "properties": {
                 "id": {
                     "type": "string",
@@ -9602,7 +9519,6 @@
             ]
         },
         "ScheduleTrigger": {
-            "type": "object",
             "description": "Defines the Quartz Trigger Schedule",
             "properties": {
                 "startTime": {
@@ -9625,7 +9541,6 @@
             ]
         },
         "Reminder": {
-            "type": "object",
             "description": "A reminder",
             "properties": {
                 "id": {
@@ -9652,7 +9567,6 @@
             ]
         },
         "ReminderInput": {
-            "type": "object",
             "description": "A reminder",
             "properties": {
                 "type": {
@@ -9670,7 +9584,6 @@
             ]
         },
         "PersonOnCallReminder": {
-            "type": "object",
             "description": "person on call reminder",
             "allOf": [
                 {
@@ -9694,7 +9607,6 @@
             ]
         },
         "PersonOnCallReminderInput": {
-            "type": "object",
             "description": "person on call reminder",
             "allOf": [
                 {
@@ -9718,7 +9630,6 @@
             ]
         },
         "TrialDeletionReminder": {
-            "type": "object",
             "description": "trial deletion reminder",
             "allOf": [
                 {
@@ -9738,7 +9649,6 @@
             ]
         },
         "TrialDeletionReminderInput": {
-            "type": "object",
             "description": "trial deletion reminder",
             "allOf": [
                 {
@@ -9758,7 +9668,6 @@
             ]
         },
         "TrialExpiryReminder": {
-            "type": "object",
             "description": "trial expiry reminder",
             "allOf": [
                 {
@@ -9778,7 +9687,6 @@
             ]
         },
         "TrialExpiryReminderInput": {
-            "type": "object",
             "description": "trial expiry reminder",
             "allOf": [
                 {
@@ -9798,7 +9706,6 @@
             ]
         },
         "Revision": {
-            "type": "object",
             "description": "A revision",
             "properties": {
                 "id": {
@@ -9829,7 +9736,6 @@
             ]
         },
         "EventRevision": {
-            "type": "object",
             "description": "An event revision",
             "allOf": [
                 {
@@ -9853,7 +9759,6 @@
             ]
         },
         "GroupRevision": {
-            "type": "object",
             "description": "A group revision",
             "allOf": [
                 {
@@ -9877,7 +9782,6 @@
             ]
         },
         "PersonRevision": {
-            "type": "object",
             "description": "A person revision",
             "allOf": [
                 {
@@ -9901,7 +9805,6 @@
             ]
         },
         "DeviceRevision": {
-            "type": "object",
             "description": "A device revision",
             "allOf": [
                 {
@@ -9925,7 +9828,6 @@
             ]
         },
         "OnCallReminderScheduleRevision": {
-            "type": "object",
             "description": "An on call reminder schedule revision",
             "allOf": [
                 {
@@ -9949,7 +9851,6 @@
             ]
         },
         "ShiftRevision": {
-            "type": "object",
             "description": "A shift revision",
             "allOf": [
                 {
@@ -9973,7 +9874,6 @@
             ]
         },
         "SiteRevision": {
-            "type": "object",
             "description": "A site revision",
             "allOf": [
                 {
