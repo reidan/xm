@@ -3605,6 +3605,38 @@
                 ]
             }
         },
+        "/people/{personId}/supervisors": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Retrieves a list of a user's supervisors",
+                "description": "Retrieves a list of a user's supervisors",
+                "operationId": "getPersonSupervisors",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Person)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/plans": {
             "get": {
                 "summary": "List communication plans",
