@@ -634,6 +634,40 @@
             }
         },
         "/deep-links": {
+            "get": {
+                "summary": "Returns information about deep links",
+                "description": "Returns information about deep links",
+                "operationId": "getDeepLinks",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-personId"
+                    },
+                    {
+                        "description": "Deep link code",
+                        "in": "query",
+                        "name": "code",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(DeepLink)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                },
+                "tags": [
+                    "Deep Links"
+                ]
+            },
             "post": {
                 "description": "Generate a single use, expiring, link with associated action and meta data",
                 "operationId": "postDeepLink",
@@ -1003,9 +1037,6 @@
                     },
                     "403": {
                         "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
                     }
                 },
                 "tags": [
@@ -6599,7 +6630,7 @@
                     "type": "string"
                 },
                 "value": {
-                    "type": ["string", "number", "boolean"]
+                    "type": "string"
                 }
             },
             "required": [
@@ -7508,7 +7539,7 @@
         },
         "Person": {
             "type": "object",
-            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on",
+            "description": "Someone in the xMatters system who can receive notifications is called a 'Person'. Every person in the xMatters system is a user defined by a set of details, including ID number, user name, login password, and so on. deliveryStatus, notifications, and response are dynamic derived attributes and will only appear when viewing the person as an event recipient",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
@@ -7557,9 +7588,6 @@
                 },
                 "roles": {
                     "$ref": "#/definitions/Pagination(Role)"
-                },
-                "supervisors": {
-                    "$ref": "#/definitions/Pagination(Person)"
                 },
                 "deliveryStatus": {
                     "description": "Delivery status. Derived from the status of all notifications to this person for this event",
@@ -9708,6 +9736,36 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Country"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(DeepLink)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/DeepLink"
                     },
                     "type": "array"
                 },
