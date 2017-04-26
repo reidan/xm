@@ -11677,8 +11677,8 @@
             "required": false,
             "type": "string",
             "enum": [
-                "ASC",
-                "DESC"
+                "ASCENDING",
+                "DESCENDING"
             ]
         },
         "query-submitterId": {
