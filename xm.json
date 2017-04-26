@@ -3852,6 +3852,20 @@
                         "name": "accessibleBy",
                         "type": "string",
                         "required": false
+                    },
+                    {
+                        "description": "Sort results by",
+                        "in": "query",
+                        "name": "sortBy",
+                        "type": "string",
+                        "required": false,
+                        "enum": [
+                            "NAME",
+                            "USER_DEFINED"
+                        ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-sortOrder"
                     }
                 ],
                 "responses": {
@@ -11655,6 +11669,17 @@
             "name": "shiftId",
             "required": false,
             "type": "string"
+        },
+        "query-sortOrder": {
+            "description": "The sort order of results",
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "ASC",
+                "DESC"
+            ]
         },
         "query-submitterId": {
             "description": "The id or targetName of the submitter",
