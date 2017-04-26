@@ -8447,6 +8447,9 @@
             "type": "object",
             "description": "A response",
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "notification": {
                     "$ref": "#/definitions/NotificationReference"
                 },
@@ -8476,7 +8479,6 @@
                 }
             },
             "required": [
-                "notification",
                 "response",
                 "received"
             ]
@@ -8508,11 +8510,7 @@
                 "callMeAt": {
                     "type": "string"
                 }
-            },
-            "required": [
-                "notification",
-                "response"
-            ]
+            }
         },
         "ResponseOption": {
             "type": "object",
