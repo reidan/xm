@@ -4294,6 +4294,41 @@
                 ]
             }
         },
+        "/plans/{planId}/integrations/{integrationId}/agents": {
+            "get": {
+                "summary": "Get agents that can execute this integration",
+                "description": "Get agents that can execute this integration",
+                "operationId": "getPlanIntegrationAgents",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-integrationId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Agent)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/plans/{planId}/integrations/{integrationId}/logs": {
             "get": {
                 "summary": "Get integration logs",
@@ -4899,9 +4934,6 @@
                 },
                 "monitors": {
                     "$ref": "#/definitions/Pagination(AgentMonitor)"
-                },
-                "integrations": {
-                    "$ref": "#/definitions/Pagination(PlanIntegration)"
                 }
             },
             "required": [
@@ -8335,9 +8367,6 @@
                 },
                 "filters": {
                     "$ref": "#/definitions/Pagination(NotificationFilter)"
-                },
-                "agents": {
-                    "$ref": "#/definitions/Pagination(Agent)"
                 },
                 "integrationService": {
                     "description": "The integration service on which an ONPREMISE integration will execute",
