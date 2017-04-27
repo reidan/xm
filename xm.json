@@ -501,6 +501,56 @@
                 ]
             }
         },
+        "/built-in-plans": {
+            "post": {
+                "summary": "Create or update a built-in communication plan",
+                "description": "Create or update a built-in communication plan",
+                "operationId": "postBuiltInPlan",
+                "parameters": [
+                    {
+                        "description": "Built-in plan",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/BuiltInPlanInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/Plan"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Plan"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/calendar": {
             "get": {
                 "summary": "DEPRECATED use GET /on-call",
@@ -2235,56 +2285,6 @@
                 ]
             }
         },
-        "/integration-configs": {
-            "post": {
-                "summary": "Create or update integration configuration",
-                "description": "Create or update integration configuration",
-                "operationId": "postIntegrationConfig",
-                "parameters": [
-                    {
-                        "description": "Integration config",
-                        "in": "body",
-                        "name": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationConfigInput"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Plan"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/Plan"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                },
-                "tags": [
-                    "Integration Configs"
-                ]
-            }
-        },
         "/logs": {
             "post": {
                 "summary": "Logging",
@@ -3633,10 +3633,10 @@
                 "operationId": "getPlans",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/query-offset"
+                        "$ref": "#/parameters/query-planType"
                     },
                     {
-                        "$ref": "#/parameters/query-limit"
+                        "$ref": "#/parameters/query-builtInPlanType"
                     },
                     {
                         "description": "Is a custom integration (Has email initiation, or is webservice enabled, or has an inbound, or outbound integration)",
@@ -3651,6 +3651,12 @@
                         "name": "accessibleBy",
                         "type": "string",
                         "required": false
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
                     },
                     {
                         "description": "Sort results by",
@@ -7942,18 +7948,25 @@
                 "id"
             ]
         },
-        "IntegrationConfigInput": {
+        "BuiltInPlanInput": {
             "description": "Built-in communication plan",
             "properties": {
                 "id": {
                     "type": "string"
                 },
-                "template": {
+                "builtInPlanType": {
                     "type": "string",
-                    "description": "Built-in communication plan template",
+                    "description": "Built-in communication plan type",
                     "enum": [
                         "SUMO_LOGIC",
-                        "DATA_DOG"
+                        "DATADOG",
+                        "NEW_RELIC",
+                        "PINGDOM",
+                        "HIPCHAT",
+                        "JIRA",
+                        "WEBHOOK",
+                        "APP_DYNAMICS",
+                        "SENSU"
                     ]
                 },
                 "name": {
@@ -7994,12 +8007,19 @@
                         "BUILT_IN"
                     ]
                 },
-                "planTemplate": {
+                "builtInPlanType": {
                     "type": "string",
-                    "description": "Built-in communication plan template",
+                    "description": "Built-in communication plan type",
                     "enum": [
                         "SUMO_LOGIC",
-                        "DATA_DOG"
+                        "DATADOG",
+                        "NEW_RELIC",
+                        "PINGDOM",
+                        "HIPCHAT",
+                        "JIRA",
+                        "WEBHOOK",
+                        "APP_DYNAMICS",
+                        "SENSU"
                     ]
                 },
                 "name": {
@@ -11418,6 +11438,24 @@
             "required": false,
             "type": "string"
         },
+        "query-builtInPlanType": {
+            "description": "The built in plan type",
+            "in": "query",
+            "name": "builtInPlanType",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "SUMO_LOGIC",
+                "DATADOG",
+                "NEW_RELIC",
+                "PINGDOM",
+                "HIPCHAT",
+                "JIRA",
+                "WEBHOOK",
+                "APP_DYNAMICS",
+                "SENSU"
+            ]
+        },
         "query-deviceId": {
             "description": "The device uuid or name",
             "in": "query",
@@ -11551,6 +11589,17 @@
             "name": "planId",
             "required": false,
             "type": "string"
+        },
+        "query-planType": {
+            "description": "The plan type",
+            "in": "query",
+            "name": "planType",
+            "required": false,
+            "type": "string",
+            "enum": [
+                "CUSTOM",
+                "BUILT_IN"
+            ]
         },
         "query-requestId": {
             "description": "Request identifier",
