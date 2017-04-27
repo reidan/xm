@@ -2236,42 +2236,9 @@
             }
         },
         "/integration-configs": {
-            "get": {
-                "summary": "Get integration configurations",
-                "description": "Get integration configurations",
-                "operationId": "getIntegrationConfigs",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(IntegrationConfig)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    }
-                },
-                "tags": [
-                    "Integration Configs"
-                ]
-            },
             "post": {
-                "summary": "Insert or update integration configuration",
-                "description": "Insert or update integration configuration",
+                "summary": "Create or update integration configuration",
+                "description": "Create or update integration configuration",
                 "operationId": "postIntegrationConfig",
                 "parameters": [
                     {
@@ -2288,13 +2255,13 @@
                     "200": {
                         "description": "Updated",
                         "schema": {
-                            "$ref": "#/definitions/IntegrationConfig"
+                            "$ref": "#/definitions/Plan"
                         }
                     },
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/IntegrationConfig"
+                            "$ref": "#/definitions/Plan"
                         }
                     },
                     "400": {
@@ -2316,174 +2283,6 @@
                 "tags": [
                     "Integration Configs"
                 ]
-            }
-        },
-        "/integration-configs/{integrationConfigId}": {
-            "get": {
-                "summary": "Get integration configuration",
-                "description": "Get integration configuration",
-                "operationId": "getIntegrationConfig",
-                "parameters": [
-                    {
-                        "name": "integrationConfigId",
-                        "in": "path",
-                        "description": "The integration config identifier",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationConfig"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "tags": [
-                    "Integration Configs"
-                ]
-            },
-            "delete": {
-                "summary": "Delete integration configuration",
-                "description": "Delete integration configuration",
-                "operationId": "deleteIntegrationConfiguration",
-                "parameters": [
-                    {
-                        "name": "integrationConfigId",
-                        "in": "path",
-                        "description": "The integration config identifier",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/IntegrationConfig"
-                        }
-                    },
-                    "204": {
-                        "$ref": "#/responses/204"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                },
-                "tags": [
-                    "Integration Configs"
-                ]
-            }
-        },
-        "/integration-configs/{integrationConfigId}/permitted": {
-            "get": {
-                "tags": [
-                    "Integration Configs"
-                ],
-                "summary": "Get permitted recipients",
-                "description": "Get permitted recipients",
-                "operationId": "getIntegrationConfigPermitted",
-                "parameters": [
-                    {
-                        "name": "integrationConfigId",
-                        "in": "path",
-                        "description": "The integration config identifier",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(Recipient)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Integration Configs"
-                ],
-                "summary": "Replace permitted recipients",
-                "description": "Replace permitted recipients",
-                "operationId": "putIntegrationConfigPermitted",
-                "parameters": [
-                    {
-                        "name": "integrationConfigId",
-                        "in": "path",
-                        "description": "The integration config identifier",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "description": "Permitted recipients",
-                        "in": "body",
-                        "name": "body",
-                        "required": true,
-                        "schema": {
-                            "description": "An array containing the permitted recipients",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/RecipientPointer"
-                            }
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(Recipient)"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
             }
         },
         "/logs": {
@@ -3965,6 +3764,39 @@
                 "tags": [
                     "Communication Plans"
                 ]
+            },
+            "delete": {
+                "summary": "Delete a plan",
+                "description": "Delete a plan",
+                "operationId": "deletePlan",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Plan"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
             }
         },
         "/plans/{planId}/endpoints": {
@@ -4473,6 +4305,90 @@
                 ]
             }
         },
+        "/plans/{planId}/permitted": {
+            "get": {
+                "summary": "Get permitted recipients",
+                "description": "Get permitted recipients",
+                "operationId": "getPlanPermitted",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Recipient)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
+            "put": {
+                "summary": "Replace permitted recipients",
+                "description": "Replace permitted recipients",
+                "operationId": "putPlanPermitted",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "description": "Permitted recipients",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "description": "An array containing the permitted recipients",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RecipientPointer"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Recipient)"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/recipients": {
             "get": {
                 "description": "Returns information about potential recipients",
@@ -4892,6 +4808,9 @@
                 "version": {
                     "type": "string"
                 },
+                "os": {
+                    "type": "string"
+                },
                 "status": {
                     "type": "string",
                     "enum": [
@@ -4899,14 +4818,8 @@
                         "DISCONNECTED"
                     ]
                 },
-                "os": {
-                    "type": "string"
-                },
                 "addresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "string"
                 },
                 "owner": {
                     "$ref": "#/definitions/PersonReference"
@@ -4923,7 +4836,6 @@
                 "id",
                 "externalId",
                 "version",
-                "status",
                 "os",
                 "created"
             ]
@@ -4955,10 +4867,7 @@
                     "type": "string"
                 },
                 "addresses": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                    "type": "string"
                 },
                 "owner": {
                     "$ref": "#/definitions/PersonPointer"
@@ -7145,95 +7054,7 @@
             },
             "required": [
                 "value"
-            ],
-            "type": "object"
-        },
-        "IntegrationConfig": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "Categorization of integration to a specific provider, e.g. SUMO_LOGIC"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "User provided name for this specific integration"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "accessibleByAll": {
-                    "type": "boolean",
-                    "description": "True if all authenticated callers are permitted"
-                },
-                "editable": {
-                    "type": "boolean"
-                },
-                "messages": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "inboundWebHooks": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "constants": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "creator": {
-                    "$ref": "#/definitions/PersonReference"
-                },
-                "created": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "permitted": {
-                    "$ref": "#/definitions/Pagination(Recipient)"
-                },
-                "links": {
-                    "$ref": "#/definitions/SelfLink"
-                }
-            },
-            "required": [
-                "id"
             ]
-        },
-        "IntegrationConfigInput": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "description": "Categorization of integration to a specific provider, e.g. SUMO_LOGIC"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "User provided name for this specific integration"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "accessibleByAll": {
-                    "type": "boolean",
-                    "description": "True if all authenticated callers are permitted"
-                },
-                "creator": {
-                    "$ref": "#/definitions/PersonPointer"
-                },
-                "permitted": {
-                    "$ref": "#/definitions/Pagination(Recipient)"
-                }
-            }
         },
         "IntegrationReference": {
             "properties": {
@@ -8073,15 +7894,89 @@
                 "id"
             ]
         },
+        "IntegrationConfig": {
+            "description": "Built-in communication plan",
+            "properties": {
+                "messages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "constants": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "IntegrationConfigInput": {
+            "description": "Built-in communication plan",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "template": {
+                    "type": "string",
+                    "description": "Built-in communication plan template",
+                    "enum": [
+                        "SUMO_LOGIC",
+                        "DATA_DOG"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "description": "User provided name for this plan"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean"
+                },
+                "accessibleByAll": {
+                    "type": "boolean",
+                    "description": "True if all authenticated callers are permitted"
+                },
+                "creator": {
+                    "$ref": "#/definitions/PersonPointer"
+                },
+                "permitted": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RecipientPointer"
+                    }
+                }
+            }
+        },
         "Plan": {
             "description": "A communication plan",
             "properties": {
                 "id": {
                     "type": "string"
                 },
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "CUSTOM",
+                        "BUILT_IN"
+                    ]
+                },
+                "planTemplate": {
+                    "type": "string",
+                    "description": "Built-in communication plan template",
+                    "enum": [
+                        "SUMO_LOGIC",
+                        "DATA_DOG"
+                    ]
+                },
                 "name": {
                     "type": "string",
-                    "description": "User provided name for this specific plan"
+                    "description": "User provided name for this plan"
                 },
                 "description": {
                     "type": "string"
@@ -8119,6 +8014,9 @@
                 },
                 "endpoints": {
                     "$ref": "#/definitions/Pagination(PlanEndpoint)"
+                },
+                "integrations": {
+                    "$ref": "#/definitions/Pagination(PlanIntegration)"
                 },
                 "permitted": {
                     "$ref": "#/definitions/Pagination(Recipient)"
@@ -10423,36 +10321,6 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/IntegrationAgent"
-                    },
-                    "type": "array"
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                },
-                "total": {
-                    "description": "The total number of items in the result set",
-                    "format": "int32",
-                    "type": "integer"
-                }
-            },
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ]
-        },
-        "Pagination(IntegrationConfig)": {
-            "properties": {
-                "count": {
-                    "description": "The number of items in this page of results (the number of items in the data array)",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "data": {
-                    "description": "An array that contains this page of resources",
-                    "items": {
-                        "$ref": "#/definitions/IntegrationConfig"
                     },
                     "type": "array"
                 },
