@@ -192,7 +192,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(PlanIntegration)"
+                            "$ref": "#/definitions/Pagination(Integration)"
                         }
                     },
                     "401": {
@@ -3688,12 +3688,6 @@
                         "required": false
                     },
                     {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    },
-                    {
                         "description": "Sort results by",
                         "in": "query",
                         "name": "sortBy",
@@ -3706,6 +3700,12 @@
                     },
                     {
                         "$ref": "#/parameters/query-sortOrder"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
                     }
                 ],
                 "responses": {
@@ -4158,7 +4158,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(PlanIntegration)"
+                            "$ref": "#/definitions/Pagination(Integration)"
                         }
                     },
                     "401": {
@@ -4188,7 +4188,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/PlanIntegrationInput"
+                            "$ref": "#/definitions/IntegrationInput"
                         }
                     }
                 ],
@@ -4196,13 +4196,13 @@
                     "200": {
                         "description": "Updated",
                         "schema": {
-                            "$ref": "#/definitions/PlanIntegration"
+                            "$ref": "#/definitions/Integration"
                         }
                     },
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/PlanIntegration"
+                            "$ref": "#/definitions/Integration"
                         }
                     },
                     "400": {
@@ -4240,7 +4240,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanIntegration"
+                            "$ref": "#/definitions/Integration"
                         }
                     },
                     "401": {
@@ -4273,7 +4273,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanIntegration"
+                            "$ref": "#/definitions/Integration"
                         }
                     },
                     "204": {
@@ -4346,7 +4346,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(PlanIntegrationLog)"
+                            "$ref": "#/definitions/Pagination(IntegrationLog)"
                         }
                     },
                     "401": {
@@ -4367,7 +4367,7 @@
         "/plans/{planId}/integrations/{integrationId}/logs/{logId}": {
             "get": {
                 "summary": "Get integration log",
-                "description": "Get integration log as PlanIntegrationLog object or file download",
+                "description": "Get integration log as IntegrationLog object or file download",
                 "operationId": "getPlanIntegrationLog",
                 "consumes": [
                     "application/json"
@@ -4391,7 +4391,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanIntegrationLog"
+                            "$ref": "#/definitions/IntegrationLog"
                         }
                     },
                     "401": {
@@ -7160,14 +7160,199 @@
                 "value"
             ]
         },
+        "Integration": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormReference"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "INBOUND_WEBHOOK",
+                        "OUTBOUND_WEBHOOK"
+                    ]
+                },
+                "operation": {
+                    "type": "string",
+                    "enum": [
+                        "CREATE_EVENT",
+                        "OUTBOUND_CALLBACK",
+                        "RUN_SCRIPT",
+                        "SEND_TO_IA",
+                        "SEND_WEBHOOK",
+                        "CREATE_EVENT_SIMPLE"
+                    ]
+                },
+                "endpoint": {
+                    "$ref": "#/definitions/PlanEndpointReference"
+                },
+                "triggeredBy": {
+                    "type": "string",
+                    "enum": [
+                        "DELIVERYSTATUS",
+                        "RESPONSE",
+                        "STATUS"
+                    ]
+                },
+                "deployed": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "HOSTED",
+                        "ONPREMISE"
+                    ]
+                },
+                "script": {
+                    "type": "string"
+                },
+                "filters": {
+                    "$ref": "#/definitions/Pagination(NotificationFilter)"
+                },
+                "integrationService": {
+                    "description": "The integration service on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "integrationServiceSelector": {
+                    "description": "Selector for integration agents on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "appendToURL": {
+                    "description": "Appended to the endpoint's Base URL",
+                    "type": "string"
+                },
+                "loggingLevel": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ],
+                    "default": "ERROR"
+                }
+            },
+            "required": [
+                "id",
+                "plan",
+                "name",
+                "type",
+                "operation",
+                "deployed",
+                "environment"
+            ]
+        },
+        "IntegrationInput": {
+            "description": "Insert or update of an integration",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanPointer"
+                },
+                "form": {
+                    "$ref": "#/definitions/FormPointer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "INBOUND_WEBHOOK",
+                        "OUTBOUND_WEBHOOK"
+                    ]
+                },
+                "operation": {
+                    "type": "string",
+                    "enum": [
+                        "CREATE_EVENT",
+                        "OUTBOUND_CALLBACK",
+                        "RUN_SCRIPT",
+                        "SEND_TO_IA",
+                        "SEND_WEBHOOK",
+                        "CREATE_EVENT_SIMPLE"
+                    ]
+                },
+                "triggeredBy": {
+                    "type": "string",
+                    "enum": [
+                        "DELIVERYSTATUS",
+                        "RESPONSE",
+                        "STATUS"
+                    ]
+                },
+                "endpoint": {
+                    "$ref": "#/definitions/PlanEndpointPointer"
+                },
+                "deployed": {
+                    "type": "boolean"
+                },
+                "environment": {
+                    "type": "string",
+                    "enum": [
+                        "HOSTED",
+                        "ONPREMISE"
+                    ]
+                },
+                "script": {
+                    "type": "string"
+                },
+                "agents": {
+                    "description": "The agents on which an ONPREMISE integration will execute",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AgentPointer"
+                    }
+                },
+                "integrationService": {
+                    "description": "The integration service on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "integrationServiceSelector": {
+                    "description": "Selector for integration agents on which an ONPREMISE integration will execute",
+                    "type": "string"
+                },
+                "appendToURL": {
+                    "description": "Appended to the endpoint's Base URL",
+                    "type": "string"
+                },
+                "loggingLevel": {
+                    "type": "string",
+                    "enum": [
+                        "ERROR",
+                        "INFO"
+                    ]
+                }
+            }
+        },
         "IntegrationReference": {
             "properties": {
                 "id": {
+                    "description": "The identifier of the resource",
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "name": {
+                    "description": "The name",
                     "type": "string"
                 }
             },
             "required": [
-                "id"
+                "id",
+                "plan"
             ]
         },
         "IntegrationPointer": {
@@ -7178,6 +7363,52 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "IntegrationLog": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "integration": {
+                    "$ref": "#/definitions/IntegrationReference"
+                },
+                "completed": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "requestMethod": {
+                    "type": "string"
+                },
+                "requestHeaders": {
+                    "type": "object"
+                },
+                "requestParameters": {
+                    "type": "object"
+                },
+                "requestBody": {
+                    "type": "string"
+                },
+                "remoteAddress": {
+                    "type": "string"
+                },
+                "requestId": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "COMPLETED",
+                        "WARNING",
+                        "FAILED",
+                        "CANCELED"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "integration",
+                "completed"
             ]
         },
         "IMDevice": {
@@ -8073,7 +8304,7 @@
                 "planType": {
                     "type": "string",
                     "enum": [
-                        "CUSTOM",
+                        "PLAN",
                         "BUILT_IN"
                     ]
                 },
@@ -8132,9 +8363,6 @@
                 },
                 "endpoints": {
                     "$ref": "#/definitions/Pagination(PlanEndpoint)"
-                },
-                "integrations": {
-                    "$ref": "#/definitions/Pagination(PlanIntegration)"
                 },
                 "permitted": {
                     "$ref": "#/definitions/Pagination(Recipient)"
@@ -8306,250 +8534,6 @@
             },
             "required": [
                 "id"
-            ]
-        },
-        "PlanIntegration": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "plan": {
-                    "$ref": "#/definitions/PlanReference"
-                },
-                "form": {
-                    "$ref": "#/definitions/FormReference"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "INBOUND_WEBHOOK",
-                        "OUTBOUND_WEBHOOK"
-                    ]
-                },
-                "operation": {
-                    "type": "string",
-                    "enum": [
-                        "CREATE_EVENT",
-                        "OUTBOUND_CALLBACK",
-                        "RUN_SCRIPT",
-                        "SEND_TO_IA",
-                        "SEND_WEBHOOK",
-                        "CREATE_EVENT_SIMPLE"
-                    ]
-                },
-                "endpoint": {
-                    "$ref": "#/definitions/PlanEndpointReference"
-                },
-                "triggeredBy": {
-                    "type": "string",
-                    "enum": [
-                        "DELIVERYSTATUS",
-                        "RESPONSE",
-                        "STATUS"
-                    ]
-                },
-                "deployed": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "environment": {
-                    "type": "string",
-                    "enum": [
-                        "HOSTED",
-                        "ONPREMISE"
-                    ]
-                },
-                "script": {
-                    "type": "string"
-                },
-                "filters": {
-                    "$ref": "#/definitions/Pagination(NotificationFilter)"
-                },
-                "integrationService": {
-                    "description": "The integration service on which an ONPREMISE integration will execute",
-                    "type": "string"
-                },
-                "integrationServiceSelector": {
-                    "description": "Selector for integration agents on which an ONPREMISE integration will execute",
-                    "type": "string"
-                },
-                "appendToURL": {
-                    "description": "Appended to the endpoint's Base URL",
-                    "type": "string"
-                },
-                "loggingLevel": {
-                    "type": "string",
-                    "enum": [
-                        "ERROR",
-                        "INFO"
-                    ],
-                    "default": "ERROR"
-                }
-            },
-            "required": [
-                "id",
-                "plan",
-                "name",
-                "type",
-                "operation",
-                "deployed",
-                "environment"
-            ]
-        },
-        "PlanIntegrationInput": {
-            "description": "Insert or update of an integration",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "plan": {
-                    "$ref": "#/definitions/PlanPointer"
-                },
-                "form": {
-                    "$ref": "#/definitions/FormPointer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "INBOUND_WEBHOOK",
-                        "OUTBOUND_WEBHOOK"
-                    ]
-                },
-                "operation": {
-                    "type": "string",
-                    "enum": [
-                        "CREATE_EVENT",
-                        "OUTBOUND_CALLBACK",
-                        "RUN_SCRIPT",
-                        "SEND_TO_IA",
-                        "SEND_WEBHOOK",
-                        "CREATE_EVENT_SIMPLE"
-                    ]
-                },
-                "triggeredBy": {
-                    "type": "string",
-                    "enum": [
-                        "DELIVERYSTATUS",
-                        "RESPONSE",
-                        "STATUS"
-                    ]
-                },
-                "endpoint": {
-                    "$ref": "#/definitions/PlanEndpointPointer"
-                },
-                "deployed": {
-                    "type": "boolean"
-                },
-                "environment": {
-                    "type": "string",
-                    "enum": [
-                        "HOSTED",
-                        "ONPREMISE"
-                    ]
-                },
-                "script": {
-                    "type": "string"
-                },
-                "agents": {
-                    "description": "The agents on which an ONPREMISE integration will execute",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/AgentPointer"
-                    }
-                },
-                "integrationService": {
-                    "description": "The integration service on which an ONPREMISE integration will execute",
-                    "type": "string"
-                },
-                "integrationServiceSelector": {
-                    "description": "Selector for integration agents on which an ONPREMISE integration will execute",
-                    "type": "string"
-                },
-                "appendToURL": {
-                    "description": "Appended to the endpoint's Base URL",
-                    "type": "string"
-                },
-                "loggingLevel": {
-                    "type": "string",
-                    "enum": [
-                        "ERROR",
-                        "INFO"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "PlanIntegrationReference": {
-            "properties": {
-                "id": {
-                    "description": "The identifier of the resource",
-                    "type": "string"
-                },
-                "plan": {
-                    "$ref": "#/definitions/PlanReference"
-                },
-                "name": {
-                    "description": "The name",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "plan"
-            ]
-        },
-        "PlanIntegrationLog": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "integration": {
-                    "$ref": "#/definitions/PlanIntegrationReference"
-                },
-                "completed": {
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "requestMethod": {
-                    "type": "string"
-                },
-                "requestHeaders": {
-                    "type": "object"
-                },
-                "requestParameters": {
-                    "type": "object"
-                },
-                "requestBody": {
-                    "type": "string"
-                },
-                "remoteAddress": {
-                    "type": "string"
-                },
-                "requestId": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string",
-                    "enum": [
-                        "COMPLETED",
-                        "WARNING",
-                        "FAILED",
-                        "CANCELED"
-                    ]
-                }
-            },
-            "required": [
-                "id",
-                "integration",
-                "completed"
             ]
         },
         "ProviderReference": {
@@ -10695,7 +10679,7 @@
                 "links"
             ]
         },
-        "Pagination(PlanIntegration)": {
+        "Pagination(Integration)": {
             "properties": {
                 "count": {
                     "description": "The number of items in this page of results (the number of items in the data array)",
@@ -10711,7 +10695,7 @@
                     "description": "An array that contains this page of resources",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/PlanIntegration"
+                        "$ref": "#/definitions/Integration"
                     }
                 }
             },
@@ -10721,7 +10705,7 @@
                 "data"
             ]
         },
-        "Pagination(PlanIntegrationLog)": {
+        "Pagination(IntegrationLog)": {
             "properties": {
                 "count": {
                     "description": "The number of items in this page of results (the number of items in the data array)",
@@ -10737,7 +10721,7 @@
                     "description": "An array that contains this page of resources",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/PlanIntegrationLog"
+                        "$ref": "#/definitions/IntegrationLog"
                     }
                 }
             },
