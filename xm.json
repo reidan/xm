@@ -175,6 +175,41 @@
                 ]
             }
         },
+        "/agents/{agentId}/integrations": {
+            "get": {
+                "summary": "Get integrations that can be executed on this agent",
+                "description": "Get integrations that can be executed on this agent",
+                "operationId": "getAgentIntegrations",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(PlanIntegration)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
         "/agents/{agentId}/monitors": {
             "get": {
                 "summary": "Return agent monitors",
@@ -4864,6 +4899,9 @@
                 },
                 "monitors": {
                     "$ref": "#/definitions/Pagination(AgentMonitor)"
+                },
+                "integrations": {
+                    "$ref": "#/definitions/Pagination(PlanIntegration)"
                 }
             },
             "required": [
