@@ -3963,6 +3963,20 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "description": "Sort results by",
+                        "in": "query",
+                        "name": "sortBy",
+                        "type": "string",
+                        "required": false,
+                        "enum": [
+                            "NAME",
+                            "USER_DEFINED"
+                        ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-sortOrder"
                     }
                 ],
                 "responses": {
@@ -3998,6 +4012,20 @@
                     },
                     {
                         "$ref": "#/parameters/path-formId"
+                    },
+                    {
+                        "description": "Sort results by",
+                        "in": "query",
+                        "name": "sortBy",
+                        "type": "string",
+                        "required": false,
+                        "enum": [
+                            "NAME",
+                            "USER_DEFINED"
+                        ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-sortOrder"
                     }
                 ],
                 "responses": {
