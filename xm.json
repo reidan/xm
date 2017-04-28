@@ -11719,7 +11719,7 @@
             "required": false,
             "type": "string",
             "enum": [
-                "CUSTOM",
+                "PLAN",
                 "BUILT_IN"
             ]
         },
