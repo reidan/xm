@@ -7211,6 +7211,9 @@
                         "INFO"
                     ],
                     "default": "ERROR"
+                },
+                "agents": {
+                    "$ref": "#/definitions/Pagination(Agent)"
                 }
             },
             "required": [
@@ -7280,13 +7283,6 @@
                 "script": {
                     "type": "string"
                 },
-                "agents": {
-                    "description": "The agents on which an ONPREMISE integration will execute",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/AgentPointer"
-                    }
-                },
                 "integrationService": {
                     "description": "The integration service on which an ONPREMISE integration will execute",
                     "type": "string"
@@ -7305,6 +7301,13 @@
                         "ERROR",
                         "INFO"
                     ]
+                },
+                "agents": {
+                    "description": "The agents on which an ONPREMISE integration will execute",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AgentPointer"
+                    }
                 }
             }
         },
