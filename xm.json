@@ -2320,6 +2320,41 @@
                 ]
             }
         },
+        "/integration-services": {
+            "get": {
+                "summary": "List integration services",
+                "description": "List integration services",
+                "operationId": "getIntegrationServices",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(IntegrationService)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
         "/logs": {
             "post": {
                 "summary": "Logging",
@@ -5209,6 +5244,19 @@
                     "format": "date-time"
                 }
             }
+        },
+        "IntegrationService": {
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
         },
         "AndroidPushDevice": {
             "allOf": [
@@ -10722,6 +10770,32 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/IntegrationLog"
+                    }
+                }
+            },
+            "required": [
+                "count",
+                "total",
+                "data"
+            ]
+        },
+        "Pagination(IntegrationService)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IntegrationService"
                     }
                 }
             },
