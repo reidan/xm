@@ -4478,16 +4478,11 @@
                         ]
                     },
                     {
-                        "description": "recipientType",
+                        "description": "recipientType e.g. PERSON,DEVICE,GROUP,ROLE",
                         "in": "query",
                         "name": "recipientType",
                         "required": false,
-                        "type": "string",
-                        "enum": [
-                            "PERSON",
-                            "DEVICE",
-                            "GROUP"
-                        ]
+                        "type": "string"
                     },
                     {
                         "$ref": "#/parameters/query-offset"

@@ -21,8 +21,8 @@
                 "tags": [
                     "Customers"
                 ],
-                "summary": "Create or update a customer",
-                "description": "Create or update a customer",
+                "summary": "Create a customer",
+                "description": "Create a customer",
                 "operationId": "postCustomer",
                 "parameters": [
                     {
@@ -31,7 +31,7 @@
                         "description": "Customer definition",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/CustomerPost"
+                            "$ref": "#/definitions/CustomerInput"
                         }
                     }
                 ],
@@ -181,6 +181,188 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/Customer"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
+        "/organizations": {
+            "post": {
+                "tags": [
+                    "Organizations"
+                ],
+                "summary": "Create or update a organization",
+                "description": "Create or update a organization",
+                "operationId": "postOrganization",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Organization definition",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrganizationInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated",
+                        "schema": {
+                            "$ref": "#/definitions/Organization"
+                        }
+                    },
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Organization"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Organizations"
+                ],
+                "summary": "Retrieve organizations",
+                "description": "Retrieve organizations",
+                "operationId": "getOrganizations",
+                "parameters": [
+                    {
+                        "name": "deployment",
+                        "in": "query",
+                        "description": "Filter by deployment",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "domain",
+                        "in": "query",
+                        "description": "Filter by domain",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "env",
+                        "in": "query",
+                        "description": "Filter by environment",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Filter by region",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "site",
+                        "in": "query",
+                        "description": "Filter by site",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Organization)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/organizations/{organizationId}": {
+            "get": {
+                "tags": [
+                    "Organizations"
+                ],
+                "summary": "Retrieve an organization",
+                "description": "Retrieve an organization",
+                "operationId": "getOrganization",
+                "parameters": [
+                    {
+                        "name": "organizationId",
+                        "in": "path",
+                        "description": "Organization UUID or domain",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Organization"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Organizations"
+                ],
+                "summary": "Delete a organization",
+                "description": "Delete a organization",
+                "operationId": "deleteOrganization",
+                "parameters": [
+                    {
+                        "name": "organizationId",
+                        "in": "path",
+                        "description": "Organization UUID or domain",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Organization"
                         }
                     },
                     "204": {
@@ -1145,7 +1327,7 @@
                 "domains"
             ]
         },
-        "CustomerPost": {
+        "CustomerInput": {
             "description": "Customer",
             "type": "object",
             "properties": {
