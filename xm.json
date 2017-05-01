@@ -3314,7 +3314,7 @@
         },
         "/people/{personId}/groups": {
             "get": {
-                "summary": "Get users groups",
+                "summary": "Get user's groups",
                 "description": "Retrieves a list of a groups the user, or any of their devices is a member of",
                 "operationId": "getPersonGroups",
                 "parameters": [
@@ -3352,8 +3352,8 @@
         },
         "/people/{personId}/group-memberships": {
             "get": {
-                "summary": "Retrieves a list of a user's group memberships",
-                "description": "Retrieves a list of a user's group memberships. Use embed=group to embed the group",
+                "summary": "Get user's group memberships",
+                "description": "Retrieves a list of user's group memberships. Use embed=group to embed the group",
                 "operationId": "getPersonGroupMemberships",
                 "parameters": [
                     {
