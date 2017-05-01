@@ -3312,6 +3312,44 @@
                 ]
             }
         },
+        "/people/{personId}/groups": {
+            "get": {
+                "summary": "Get users groups",
+                "description": "Retrieves a list of a groups the user, or any of their devices is a member of",
+                "operationId": "getPersonGroups",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-personIdMatch"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Group)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "People"
+                ]
+            }
+        },
         "/people/{personId}/group-memberships": {
             "get": {
                 "summary": "Retrieves a list of a user's group memberships",
