@@ -8164,8 +8164,7 @@
                 }
             },
             "required": [
-                "id",
-                "trial"
+                "id"
             ]
         },
         "OrganizationInput": {
