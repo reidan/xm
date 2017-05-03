@@ -7369,11 +7369,20 @@
                 "description": {
                     "type": "string"
                 },
-                "senderOverrides": {
-                    "type": "object"
-                },
                 "status": {
                     "type": "string"
+                },
+                "mobileEnabled": {
+                    "type": "boolean"
+                },
+                "uiEnabled": {
+                    "type": "boolean"
+                },
+                "apiEnabled": {
+                    "type": "boolean"
+                },
+                "senderOverrides": {
+                    "type": "object"
                 },
                 "recipients": {
                     "$ref": "#/definitions/Pagination(Recipient)"
@@ -7403,6 +7412,15 @@
                 },
                 "description": {
                     "type": "string"
+                },
+                "mobileEnabled": {
+                    "type": "boolean"
+                },
+                "uiEnabled": {
+                    "type": "boolean"
+                },
+                "apiEnabled": {
+                    "type": "boolean"
                 },
                 "senderOverrides": {
                     "type": "object"
