@@ -3837,6 +3837,163 @@
                 ]
             }
         },
+        "/plans/{planId}/constants": {
+            "get": {
+                "summary": "List plan constants",
+                "description": "List plan constants",
+                "operationId": "getPlanConstants",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(PlanConstant)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
+            "post": {
+                "summary": "Add or update plan constants",
+                "description": "Add or update plan constants",
+                "operationId": "postPlanConstant",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "description": "Plan Constant",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanConstantInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanConstant"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
+        "/plans/{planId}/constants/{constantId}": {
+            "get": {
+                "summary": "Get communication plan constant",
+                "description": "Get communication plan constant",
+                "operationId": "getPlanConstant",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-constantId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanConstant"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
+            "delete": {
+                "summary": "Delete a plan constant",
+                "description": "Delete a plan constant",
+                "operationId": "deletePlanConstant",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-constantId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/PlanConstant"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/plans/{planId}/endpoints": {
             "get": {
                 "summary": "List plan endpoints",
@@ -5215,149 +5372,6 @@
                 "name"
             ]
         },
-        "AndroidPushDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "ANDROID_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "registrationId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "registrationId"
-            ],
-            "type": "object"
-        },
-        "AndroidPushDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "ANDROID_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "registrationId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "accountId",
-                "registrationId"
-            ],
-            "type": "object"
-        },
-        "ApplePushDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "alertSound": {
-                    "type": "string"
-                },
-                "apnToken": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "APPLE_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "soundStatus": {
-                    "type": "string"
-                },
-                "soundThreshold": {
-                    "enum": [
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "accountId",
-                "apnToken"
-            ],
-            "type": "object"
-        },
-        "ApplePushDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "alertSound": {
-                    "type": "string"
-                },
-                "apnToken": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "APPLE_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "soundStatus": {
-                    "type": "string"
-                },
-                "soundThreshold": {
-                    "enum": [
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "accountId",
-                "apnToken"
-            ],
-            "type": "object"
-        },
         "Audit": {
             "description": "An audit",
             "properties": {
@@ -5690,8 +5704,7 @@
             "required": [
                 "accountId",
                 "registrationId"
-            ],
-            "type": "object"
+            ]
         },
         "BlackberryPushDeviceInput": {
             "allOf": [
@@ -5719,8 +5732,7 @@
             "required": [
                 "accountId",
                 "registrationId"
-            ],
-            "type": "object"
+            ]
         },
         "Callback": {
             "properties": {
@@ -5968,8 +5980,7 @@
                 "code2",
                 "code3",
                 "name"
-            ],
-            "type": "object"
+            ]
         },
         "DeepLink": {
             "properties": {
@@ -6040,6 +6051,43 @@
                 "expiry",
                 "url",
                 "action"
+            ]
+        },
+        "DeviceName": {
+            "properties": {
+                "deviceType": {
+                    "description": "The type of the device",
+                    "type": "string",
+                    "enum": [
+                        "ANDROID_PUSH",
+                        "APPLE_PUSH",
+                        "BLACKBERRY_PUSH",
+                        "BROWSER",
+                        "EMAIL",
+                        "FAX",
+                        "GENERIC",
+                        "IM",
+                        "NUMERIC_PAGER",
+                        "TEXT_PAGER",
+                        "TEXT_PHONE",
+                        "VOICE",
+                        "VOICE_IVR"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "domains": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceType",
+                "name",
+                "description"
             ]
         },
         "Device": {
@@ -6133,8 +6181,7 @@
             "required": [
                 "owner",
                 "deviceType"
-            ],
-            "type": "object"
+            ]
         },
         "DeviceInput": {
             "allOf": [
@@ -6225,8 +6272,7 @@
                 "deviceType",
                 "name",
                 "owner"
-            ],
-            "type": "object"
+            ]
         },
         "DevicePointer": {
             "description": "A pointer to a device",
@@ -6240,44 +6286,6 @@
                     "type": "string"
                 }
             }
-        },
-        "DeviceName": {
-            "properties": {
-                "deviceType": {
-                    "description": "The type of the device",
-                    "type": "string",
-                    "enum": [
-                        "ANDROID_PUSH",
-                        "APPLE_PUSH",
-                        "BLACKBERRY_PUSH",
-                        "BROWSER",
-                        "EMAIL",
-                        "FAX",
-                        "GENERIC",
-                        "IM",
-                        "NUMERIC_PAGER",
-                        "TEXT_PAGER",
-                        "TEXT_PHONE",
-                        "VOICE",
-                        "VOICE_IVR"
-                    ]
-                },
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "domains": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "deviceType",
-                "name",
-                "description"
-            ],
-            "type": "object"
         },
         "DeviceReference": {
             "allOf": [
@@ -6331,6 +6339,587 @@
                 "id",
                 "targetName",
                 "deviceType"
+            ]
+        },
+        "AndroidPushDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "accountId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "ANDROID_PUSH"
+                    ],
+                    "type": "string"
+                },
+                "registrationId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "registrationId"
+            ]
+        },
+        "AndroidPushDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "accountId": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "ANDROID_PUSH"
+                    ],
+                    "type": "string"
+                },
+                "registrationId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "registrationId"
+            ]
+        },
+        "ApplePushDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "accountId": {
+                    "type": "string"
+                },
+                "alertSound": {
+                    "type": "string"
+                },
+                "apnToken": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "APPLE_PUSH"
+                    ],
+                    "type": "string"
+                },
+                "soundStatus": {
+                    "type": "string"
+                },
+                "soundThreshold": {
+                    "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "apnToken"
+            ]
+        },
+        "ApplePushDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "accountId": {
+                    "type": "string"
+                },
+                "alertSound": {
+                    "type": "string"
+                },
+                "apnToken": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "APPLE_PUSH"
+                    ],
+                    "type": "string"
+                },
+                "soundStatus": {
+                    "type": "string"
+                },
+                "soundThreshold": {
+                    "enum": [
+                        "LOW",
+                        "MEDIUM",
+                        "HIGH"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "accountId",
+                "apnToken"
+            ]
+        },
+        "EmailDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "EMAIL"
+                    ],
+                    "type": "string"
+                },
+                "emailAddress": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "emailAddress"
+            ]
+        },
+        "EmailDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "EMAIL"
+                    ],
+                    "type": "string"
+                },
+                "emailAddress": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "emailAddress"
+            ]
+        },
+        "FaxDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "country": {
+                    "enum": [
+                        "AR",
+                        "AU",
+                        "BR",
+                        "CA",
+                        "FR",
+                        "DE",
+                        "HK",
+                        "IN",
+                        "IT",
+                        "JP",
+                        "PT",
+                        "PR",
+                        "GB",
+                        "US"
+                    ],
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "FAX"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "pattern": "^\\d{5,20}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "FaxDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "country": {
+                    "enum": [
+                        "AR",
+                        "AU",
+                        "BR",
+                        "CA",
+                        "FR",
+                        "DE",
+                        "HK",
+                        "IN",
+                        "IT",
+                        "JP",
+                        "PT",
+                        "PR",
+                        "GB",
+                        "US"
+                    ],
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "FAX"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "pattern": "^\\d{5,20}$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "GenericDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "GENERIC"
+                    ],
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "GenericDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "GENERIC"
+                    ],
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "IMDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "IM"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "address"
+            ]
+        },
+        "IMDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "address": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "IM"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "address"
+            ]
+        },
+        "NumericPagerDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "areaCode": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "type": "string",
+                    "enum": [
+                        "NUMERIC_PAGER"
+                    ]
+                },
+                "pagerNumber": {
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "NumericPagerDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "areaCode": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "deviceType": {
+                    "enum": [
+                        "NUMERIC_PAGER"
+                    ],
+                    "type": "string"
+                },
+                "pagerNumber": {
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                }
+            }
+        },
+        "PublicAddressDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "description": "a.k.a. Voice IVR",
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "VOICE_IVR"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "E.164 international format phone number including +, country code, and extension",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "PublicAddressDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "description": "a.k.a. Voice IVR",
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "VOICE_IVR"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "E.164 international format phone number including country code and extension",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "SMSDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "TEXT_PHONE"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "E.164 international format phone number including + and country code",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "SMSDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "TEXT_PHONE"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "E.164 international format phone number including country code and extension",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "phoneNumber"
+            ]
+        },
+        "TextPagerDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "TEXT_PAGER"
+                    ],
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                },
+                "twoWayDevice": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "pin",
+                "twoWayDevice"
+            ]
+        },
+        "TextPagerDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "TEXT_PAGER"
+                    ],
+                    "type": "string"
+                },
+                "pin": {
+                    "type": "string"
+                },
+                "twoWayDevice": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "pin",
+                "twoWayDevice"
+            ]
+        },
+        "VoiceDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "VOICE"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "E.164 international format phone number including +, country code, and extension",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceType",
+                "phoneNumber"
+            ]
+        },
+        "VoiceDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                }
+            ],
+            "properties": {
+                "deviceType": {
+                    "enum": [
+                        "VOICE"
+                    ],
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "description": "E.164 international format phone number including country code and extension",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "deviceType",
+                "phoneNumber"
             ]
         },
         "DeviceTimeframe": {
@@ -6444,50 +7033,6 @@
                 "VOICE_IVR"
             ]
         },
-        "EmailDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "EMAIL"
-                    ],
-                    "type": "string"
-                },
-                "emailAddress": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "emailAddress"
-            ],
-            "type": "object"
-        },
-        "EmailDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "EMAIL"
-                    ],
-                    "type": "string"
-                },
-                "emailAddress": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "emailAddress"
-            ],
-            "type": "object"
-        },
         "Event": {
             "description": "Returns an event in the xMatters system",
             "properties": {
@@ -6593,8 +7138,7 @@
                 "status",
                 "priority",
                 "form"
-            ],
-            "type": "object"
+            ]
         },
         "EventInput": {
             "description": "A form submission",
@@ -6689,8 +7233,7 @@
             },
             "required": [
                 "form"
-            ],
-            "type": "object"
+            ]
         },
         "EventReference": {
             "properties": {
@@ -6760,90 +7303,6 @@
                     "type": "string"
                 }
             }
-        },
-        "FaxDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "country": {
-                    "enum": [
-                        "AR",
-                        "AU",
-                        "BR",
-                        "CA",
-                        "FR",
-                        "DE",
-                        "HK",
-                        "IN",
-                        "IT",
-                        "JP",
-                        "PT",
-                        "PR",
-                        "GB",
-                        "US"
-                    ],
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "FAX"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "pattern": "^\\d{5,20}$",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "phoneNumber"
-            ],
-            "type": "object"
-        },
-        "FaxDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "country": {
-                    "enum": [
-                        "AR",
-                        "AU",
-                        "BR",
-                        "CA",
-                        "FR",
-                        "DE",
-                        "HK",
-                        "IN",
-                        "IT",
-                        "JP",
-                        "PT",
-                        "PR",
-                        "GB",
-                        "US"
-                    ],
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "FAX"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "pattern": "^\\d{5,20}$",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "phoneNumber"
-            ],
-            "type": "object"
         },
         "FeatureToggle": {
             "description": "Feature toggle",
@@ -6963,44 +7422,6 @@
             "required": [
                 "id"
             ]
-        },
-        "GenericDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "GENERIC"
-                    ],
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "GenericDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "GENERIC"
-                    ],
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
         },
         "Group": {
             "allOf": [
@@ -7419,50 +7840,6 @@
                 "completed"
             ]
         },
-        "IMDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "address": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "IM"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "address"
-            ],
-            "type": "object"
-        },
-        "IMDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "address": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "IM"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "address"
-            ],
-            "type": "object"
-        },
         "LogEntryInput": {
             "description": "Log entry",
             "properties": {
@@ -7522,8 +7899,7 @@
             },
             "required": [
                 "id"
-            ],
-            "type": "object"
+            ]
         },
         "NotificationInput": {
             "description": "A notification",
@@ -7547,8 +7923,7 @@
             },
             "required": [
                 "id"
-            ],
-            "type": "object"
+            ]
         },
         "NotificationReference": {
             "properties": {
@@ -7669,62 +8044,6 @@
                     "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
                 }
             }
-        },
-        "NumericPagerDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "areaCode": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "type": "string",
-                    "enum": [
-                        "NUMERIC_PAGER"
-                    ]
-                },
-                "pagerNumber": {
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
-        },
-        "NumericPagerDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "areaCode": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "NUMERIC_PAGER"
-                    ],
-                    "type": "string"
-                },
-                "pagerNumber": {
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                }
-            },
-            "type": "object"
         },
         "OnCall": {
             "properties": {
@@ -8456,6 +8775,44 @@
                 "id"
             ]
         },
+        "PlanConstant": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "plan",
+                "name",
+                "value"
+            ]
+        },
+        "PlanConstantInput": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanPointer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
         "PlanEndpoint": {
             "properties": {
                 "id": {
@@ -8528,8 +8885,7 @@
                         "XM_FORM"
                     ]
                 }
-            },
-            "type": "object"
+            }
         },
         "PlanEndpointReference": {
             "properties": {
@@ -8568,54 +8924,6 @@
             "required": [
                 "id"
             ]
-        },
-        "PublicAddressDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "description": "a.k.a. Voice IVR",
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE_IVR"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including +, country code, and extension",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "phoneNumber"
-            ],
-            "type": "object"
-        },
-        "PublicAddressDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "description": "a.k.a. Voice IVR",
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE_IVR"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including country code and extension",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "phoneNumber"
-            ],
-            "type": "object"
         },
         "Recipient": {
             "discriminator": "recipientType",
@@ -8969,52 +9277,6 @@
                 "group",
                 "member"
             ]
-        },
-        "SMSDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PHONE"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including + and country code",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "phoneNumber"
-            ],
-            "type": "object"
-        },
-        "SMSDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PHONE"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including country code and extension",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "phoneNumber"
-            ],
-            "type": "object"
         },
         "Scenario": {
             "description": "A scenario",
@@ -9396,105 +9658,6 @@
                 "end",
                 "replacement"
             ]
-        },
-        "TextPagerDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PAGER"
-                    ],
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                },
-                "twoWayDevice": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "pin",
-                "twoWayDevice"
-            ]
-        },
-        "TextPagerDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PAGER"
-                    ],
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                },
-                "twoWayDevice": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "pin",
-                "twoWayDevice"
-            ],
-            "type": "object"
-        },
-        "VoiceDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including +, country code, and extension",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "deviceType",
-                "phoneNumber"
-            ],
-            "type": "object"
-        },
-        "VoiceDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including country code and extension",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "deviceType",
-                "phoneNumber"
-            ],
-            "type": "object"
         },
         "VoicemailOptions": {
             "description": "Voicemail Options",
@@ -10672,6 +10835,36 @@
                 "links"
             ]
         },
+        "Pagination(PlanConstant)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/PlanConstant"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
         "Pagination(PlanEndpoint)": {
             "properties": {
                 "count": {
@@ -11374,6 +11567,13 @@
             "description": "Conference identifier",
             "in": "path",
             "name": "conferenceId",
+            "required": true,
+            "type": "string"
+        },
+        "path-constantId": {
+            "description": "Constant identifier",
+            "in": "path",
+            "name": "constantId",
             "required": true,
             "type": "string"
         },
