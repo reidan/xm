@@ -8292,6 +8292,10 @@
                     "type": "boolean",
                     "description": "True if all authenticated callers are permitted"
                 },
+                "floodControl": {
+                    "type": "boolean",
+                    "description": "True if filtering and suppression is active"
+                },
                 "creator": {
                     "$ref": "#/definitions/PersonPointer"
                 },
