@@ -8377,6 +8377,9 @@
                 "forms": {
                     "$ref": "#/definitions/Pagination(Form)"
                 },
+                "integrations": {
+                    "$ref": "#/definitions/Pagination(Integration)"
+                },
                 "endpoints": {
                     "$ref": "#/definitions/Pagination(PlanEndpoint)"
                 },
