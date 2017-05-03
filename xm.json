@@ -8647,6 +8647,9 @@
                     "type": "boolean",
                     "description": "True if filtering and suppression is active"
                 },
+                "senderOverrides": {
+                    "type": "object"
+                },
                 "creator": {
                     "$ref": "#/definitions/PersonPointer"
                 },
