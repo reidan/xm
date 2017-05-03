@@ -8157,6 +8157,10 @@
                 "trial": {
                     "type": "boolean",
                     "description": "True if this is a trial organization"
+                },
+                "googleAnalyticsTrackingId": {
+                    "type": "string",
+                    "description": "Google Analytics tracking identifier"
                 }
             },
             "required": [
@@ -8169,6 +8173,10 @@
                 "trial": {
                     "type": "boolean",
                     "description": "True if this is a trial organization"
+                },
+                "googleAnalyticsTrackingId": {
+                    "type": "string",
+                    "description": "Google Analytics tracking identifier"
                 }
             }
         },
