@@ -7435,11 +7435,7 @@
                 "plan": {
                     "$ref": "#/definitions/PlanPointer"
                 }
-            },
-            "required": [
-                "name",
-                "description"
-            ]
+            }
         },
         "FormPointer": {
             "description": "A reference to a form resource",
