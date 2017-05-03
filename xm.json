@@ -4014,7 +4014,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(PlanEndpoint)"
+                            "$ref": "#/definitions/Pagination(Endpoint)"
                         }
                     },
                     "401": {
@@ -4045,7 +4045,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/PlanEndpointInput"
+                            "$ref": "#/definitions/EndpointInput"
                         }
                     }
                 ],
@@ -4053,7 +4053,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanEndpoint"
+                            "$ref": "#/definitions/Endpoint"
                         }
                     },
                     "400": {
@@ -4097,7 +4097,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanEndpoint"
+                            "$ref": "#/definitions/Endpoint"
                         }
                     },
                     "401": {
@@ -4130,7 +4130,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanEndpoint"
+                            "$ref": "#/definitions/Endpoint"
                         }
                     },
                     "204": {
@@ -7657,7 +7657,7 @@
                     ]
                 },
                 "endpoint": {
-                    "$ref": "#/definitions/PlanEndpointReference"
+                    "$ref": "#/definitions/EndpointReference"
                 },
                 "triggeredBy": {
                     "type": "string",
@@ -7760,7 +7760,7 @@
                     ]
                 },
                 "endpoint": {
-                    "$ref": "#/definitions/PlanEndpointPointer"
+                    "$ref": "#/definitions/EndpointPointer"
                 },
                 "deployed": {
                     "type": "boolean"
@@ -8741,7 +8741,7 @@
                     "$ref": "#/definitions/Pagination(Constant)"
                 },
                 "endpoints": {
-                    "$ref": "#/definitions/Pagination(PlanEndpoint)"
+                    "$ref": "#/definitions/Pagination(Endpoint)"
                 },
                 "permitted": {
                     "$ref": "#/definitions/Pagination(Recipient)"
@@ -8816,7 +8816,7 @@
                 "id"
             ]
         },
-        "PlanEndpoint": {
+        "Endpoint": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -8856,7 +8856,7 @@
                 "url"
             ]
         },
-        "PlanEndpointInput": {
+        "EndpointInput": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -8890,7 +8890,7 @@
                 }
             }
         },
-        "PlanEndpointReference": {
+        "EndpointReference": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -8908,7 +8908,7 @@
                 "name"
             ]
         },
-        "PlanEndpointPointer": {
+        "EndpointPointer": {
             "properties": {
                 "id": {
                     "type": "string"
@@ -10868,7 +10868,7 @@
                 "links"
             ]
         },
-        "Pagination(PlanEndpoint)": {
+        "Pagination(Endpoint)": {
             "properties": {
                 "count": {
                     "description": "The number of items in this page of results (the number of items in the data array)",
@@ -10878,7 +10878,7 @@
                 "data": {
                     "description": "An array that contains this page of resources",
                     "items": {
-                        "$ref": "#/definitions/PlanEndpoint"
+                        "$ref": "#/definitions/Endpoint"
                     },
                     "type": "array"
                 },
