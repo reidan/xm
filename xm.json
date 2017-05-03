@@ -7147,7 +7147,7 @@
                     "$ref": "#/definitions/Pagination(ResponseOption)"
                 },
                 "senderOverrides": {
-                    "$ref": "#/definitions/SenderOverrides"
+                    "type": "object"
                 },
                 "status": {
                     "enum": [
@@ -7255,7 +7255,7 @@
                     "type": "array"
                 },
                 "senderOverrides": {
-                    "$ref": "#/definitions/SenderOverrides"
+                    "type": "object"
                 },
                 "status": {
                     "enum": [
@@ -9300,17 +9300,6 @@
                 "description",
                 "status"
             ]
-        },
-        "SenderOverrides": {
-            "description": "Sender Overrides",
-            "properties": {
-                "callerId": {
-                    "type": "string"
-                },
-                "displayName": {
-                    "type": "string"
-                }
-            }
         },
         "ServiceProvider": {
             "description": "A service provider",
