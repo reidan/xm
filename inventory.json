@@ -28,7 +28,7 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Customer definition",
+                        "description": "Customer",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/CustomerInput"
@@ -71,7 +71,7 @@
                 "operationId": "getCustomers",
                 "parameters": [
                     {
-                        "name": "deployment",
+                        "name": "privacyRegion",
                         "in": "query",
                         "description": "Filter by deployment",
                         "required": false,
@@ -252,6 +252,13 @@
                 "description": "Retrieve organizations",
                 "operationId": "getOrganizations",
                 "parameters": [
+                    {
+                        "name": "customer",
+                        "in": "query",
+                        "description": "Filter by customer",
+                        "required": false,
+                        "type": "string"
+                    },
                     {
                         "name": "deployment",
                         "in": "query",
