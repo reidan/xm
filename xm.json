@@ -3857,7 +3857,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(PlanConstant)"
+                            "$ref": "#/definitions/Pagination(Constant)"
                         }
                     },
                     "401": {
@@ -3888,7 +3888,7 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/PlanConstantInput"
+                            "$ref": "#/definitions/ConstantInput"
                         }
                     }
                 ],
@@ -3896,7 +3896,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanConstant"
+                            "$ref": "#/definitions/Constant"
                         }
                     },
                     "400": {
@@ -3940,7 +3940,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanConstant"
+                            "$ref": "#/definitions/Constant"
                         }
                     },
                     "401": {
@@ -3973,7 +3973,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/PlanConstant"
+                            "$ref": "#/definitions/Constant"
                         }
                     },
                     "204": {
@@ -5959,6 +5959,44 @@
             "required": [
                 "conference"
             ]
+        },
+        "Constant": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanReference"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "plan",
+                "name",
+                "value"
+            ]
+        },
+        "ConstantInput": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "plan": {
+                    "$ref": "#/definitions/PlanPointer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
         },
         "Country": {
             "description": "A country",
@@ -8699,6 +8737,9 @@
                 "integrations": {
                     "$ref": "#/definitions/Pagination(Integration)"
                 },
+                "constants": {
+                    "$ref": "#/definitions/Pagination(Constant)"
+                },
                 "endpoints": {
                     "$ref": "#/definitions/Pagination(PlanEndpoint)"
                 },
@@ -8774,44 +8815,6 @@
             "required": [
                 "id"
             ]
-        },
-        "PlanConstant": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "plan": {
-                    "$ref": "#/definitions/PlanReference"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id",
-                "plan",
-                "name",
-                "value"
-            ]
-        },
-        "PlanConstantInput": {
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "plan": {
-                    "$ref": "#/definitions/PlanPointer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                }
-            }
         },
         "PlanEndpoint": {
             "properties": {
@@ -10835,7 +10838,7 @@
                 "links"
             ]
         },
-        "Pagination(PlanConstant)": {
+        "Pagination(Constant)": {
             "properties": {
                 "count": {
                     "description": "The number of items in this page of results (the number of items in the data array)",
@@ -10845,7 +10848,7 @@
                 "data": {
                     "description": "An array that contains this page of resources",
                     "items": {
-                        "$ref": "#/definitions/PlanConstant"
+                        "$ref": "#/definitions/Constant"
                     },
                     "type": "array"
                 },
