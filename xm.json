@@ -7161,7 +7161,18 @@
                     "$ref": "#/definitions/PersonReference"
                 },
                 "voicemailOptions": {
-                    "$ref": "#/definitions/VoicemailOptions"
+                    "description": "Voicemail Options",
+                    "properties": {
+                        "every": {
+                            "type": "integer"
+                        },
+                        "leave": {
+                            "type": "string"
+                        },
+                        "retry": {
+                            "type": "integer"
+                        }
+                    }
                 },
                 "revision": {
                     "description": "Integer that increases to indicate revision of this entity, unlikely to be sequential as it is generated from a table specific sequence",
@@ -7265,7 +7276,18 @@
                     "type": "string"
                 },
                 "voicemailOptions": {
-                    "$ref": "#/definitions/VoicemailOptions"
+                    "description": "Voicemail Options",
+                    "properties": {
+                        "every": {
+                            "type": "integer"
+                        },
+                        "leave": {
+                            "type": "string"
+                        },
+                        "retry": {
+                            "type": "integer"
+                        }
+                    }
                 }
             }
         },
@@ -9662,20 +9684,6 @@
                 "replacement"
             ]
         },
-        "VoicemailOptions": {
-            "description": "Voicemail Options",
-            "properties": {
-                "every": {
-                    "type": "integer"
-                },
-                "leave": {
-                    "type": "string"
-                },
-                "retry": {
-                    "type": "integer"
-                }
-            }
-        },
         "JobInput": {
             "description": "Job to schedule",
             "properties": {
@@ -9950,7 +9958,116 @@
                     ]
                 },
                 "event": {
-                    "$ref": "#/definitions/Event"
+                    "description": "Returns an event in the xMatters system",
+                    "properties": {
+                        "id": {
+                            "description": "An identifier (UUID) that represents this resource",
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "eventId": {
+                            "description": "A legacy identifier (numeric) that represents this resource",
+                            "type": "string"
+                        },
+                        "bypassPhoneIntro": {
+                            "type": "boolean"
+                        },
+                        "created": {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "escalationOverride": {
+                            "type": "boolean"
+                        },
+                        "expirationInMinutes": {
+                            "type": "integer"
+                        },
+                        "terminated": {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        "incident": {
+                            "type": "string"
+                        },
+                        "otherResponseCount": {
+                            "type": "integer"
+                        },
+                        "overrideDeviceRestrictions": {
+                            "type": "boolean"
+                        },
+                        "priority": {
+                            "type": "string",
+                            "enum": [
+                                "LOW",
+                                "MEDIUM",
+                                "HIGH"
+                            ]
+                        },
+                        "requirePhonePassword": {
+                            "type": "boolean"
+                        },
+                        "responseCountsEnabled": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "requestId": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "status": {
+                            "enum": [
+                                "ACTIVE",
+                                "SUSPENDED",
+                                "TERMINATED"
+                            ],
+                            "type": "string"
+                        },
+                        "voicemailOptions": {
+                            "description": "Voicemail Options",
+                            "properties": {
+                                "every": {
+                                    "type": "integer"
+                                },
+                                "leave": {
+                                    "type": "string"
+                                },
+                                "retry": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "senderOverrides": {
+                            "type": "object"
+                        },
+                        "properties": {
+                            "description": "Map of property names and values",
+                            "type": "object"
+                        },
+                        "conference": {
+                            "$ref": "#/definitions/ConferencePointer"
+                        },
+                        "form": {
+                            "$ref": "#/definitions/FormPointer"
+                        },
+                        "submitter": {
+                            "$ref": "#/definitions/PersonPointer"
+                        },
+                        "integration": {
+                            "$ref": "#/definitions/IntegrationPointer"
+                        },
+                        "revision": {
+                            "description": "Integer that increases to indicate revision of this entity, unlikely to be sequential as it is generated from a table specific sequence",
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "eventId",
+                        "created",
+                        "status",
+                        "priority"
+                    ]
                 }
             },
             "required": [
