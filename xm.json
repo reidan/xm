@@ -7174,8 +7174,7 @@
                 "eventId",
                 "created",
                 "status",
-                "priority",
-                "form"
+                "priority"
             ]
         },
         "EventInput": {
@@ -7268,10 +7267,7 @@
                 "voicemailOptions": {
                     "$ref": "#/definitions/VoicemailOptions"
                 }
-            },
-            "required": [
-                "form"
-            ]
+            }
         },
         "EventReference": {
             "properties": {
