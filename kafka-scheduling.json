@@ -1,0 +1,166 @@
+{
+    "swagger": "2.0",
+    "basePath": "/kafka",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        "https"
+    ],
+    "info": {
+        "title": "Paul's scheduling topic spec",
+        "description": "Paul's scheduling topic spec",
+        "version": "1"
+    },
+    "paths": {
+        "/scheduling": {
+            "post": {
+                "summary": "scheduling topic messages",
+                "description": "scheduling topic messages",
+                "operationId": "scheduling",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Job"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Job": {
+            "description": "Job to schedule",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique identifier (UUID) for this entity"
+                },
+                "reminder": {
+                    "$ref": "#/definitions/Reminder"
+                },
+                "trigger": {
+                    "description": "Defines the Quartz Trigger Schedule",
+                    "properties": {
+                        "startTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "The “startTime” property indicates when the trigger’s schedule first comes into affect. Defaults to now"
+                        },
+                        "endTime": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "The “endTime” property indicates when the trigger’s schedule should no longer be in effect"
+                        },
+                        "cron": {
+                            "type": "string",
+                            "description": "Cron-Expression string made up of seven sub-expressions, that describe individual details of the schedule. These sub-expression are separated with white-space, and represent: Seconds Minutes Hours Day-of-Month Month Day-of-Week Year (optional field)"
+                        }
+                    },
+                    "required": [
+                        "startTime"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "reminder",
+                "trigger"
+            ]
+        },
+        "Reminder": {
+            "description": "A reminder",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "SHIFT_START",
+                        "PERSON_ON_CALL",
+                        "TRIAL_EXPIRY",
+                        "TRIAL_DELETION"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        "PersonOnCallReminderInput": {
+            "description": "person on call reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ReminderInput"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON_ON_CALL"
+                    ]
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonPointer"
+                }
+            },
+            "required": [
+                "type",
+                "person"
+            ]
+        },
+        "TrialDeletionReminderInput": {
+            "description": "trial deletion reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ReminderInput"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_DELETION"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        "TrialExpiryReminderInput": {
+            "description": "trial expiry reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ReminderInput"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_EXPIRY"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        }
+    },
+    "parameters": {},
+    "responses": {}
+}

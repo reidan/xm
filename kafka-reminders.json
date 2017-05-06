@@ -1,0 +1,149 @@
+{
+    "swagger": "2.0",
+    "basePath": "/kafka",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        "https"
+    ],
+    "info": {
+        "title": "Paul's reminders topic spec",
+        "description": "Paul's reminders topic spec",
+        "version": "1"
+    },
+    "paths": {
+        "/reminders": {
+            "post": {
+                "summary": "reminders topic messages",
+                "description": "reminders topic messages",
+                "operationId": "reminders",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Reminder"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Accepted"
+                    }
+                },
+                "tags": [
+                    "Kafka"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "JobReference": {
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource",
+                    "type": "string",
+                    "format": "uuid"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "Reminder": {
+            "description": "A reminder",
+            "properties": {
+                "id": {
+                    "description": "The identifier of the resource",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "SHIFT_START",
+                        "PERSON_ON_CALL",
+                        "TRIAL_EXPIRY",
+                        "TRIAL_DELETION"
+                    ]
+                },
+                "job": {
+                    "$ref": "#/definitions/JobReference"
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "job"
+            ]
+        },
+        "PersonOnCallReminder": {
+            "description": "person on call reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Reminder"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "PERSON_ON_CALL"
+                    ]
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
+                }
+            },
+            "required": [
+                "type",
+                "person"
+            ]
+        },
+        "TrialDeletionReminder": {
+            "description": "trial deletion reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Reminder"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_DELETION"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
+        "TrialExpiryReminder": {
+            "description": "trial expiry reminder",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Reminder"
+                }
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "TRIAL_EXPIRY"
+                    ]
+                }
+            },
+            "required": [
+                "type"
+            ]
+        }
+    },
+    "parameters": {},
+    "responses": {}
+}
