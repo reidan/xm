@@ -11,8 +11,8 @@
         "https"
     ],
     "info": {
-        "title": "Paul's Object Store API Spec",
-        "description": "Paul's Object Store API Spec (specification scratch-pad)",
+        "title": "Paul's events topic spec",
+        "description": "Paul's events topic spec",
         "version": "1"
     },
     "paths": {
