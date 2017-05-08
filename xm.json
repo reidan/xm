@@ -2800,154 +2800,6 @@
                 ]
             }
         },
-        "/password-rules": {
-            "get": {
-                "summary": "Returns information about password rules",
-                "description": "Returns information about password rules",
-                "operationId": "getPasswordRules",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(PasswordRule)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "tags": [
-                    "Password Rules"
-                ]
-            },
-            "post": {
-                "summary": "Create or update a password rule",
-                "description": "Create or update a password rule",
-                "operationId": "postPasswordRule",
-                "parameters": [
-                    {
-                        "description": "A password rule",
-                        "in": "body",
-                        "name": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/PasswordRuleInput"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/PasswordRule"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/PasswordRule"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                },
-                "tags": [
-                    "Password Rules"
-                ]
-            }
-        },
-        "/password-rules/{passwordRuleId}": {
-            "get": {
-                "summary": "Get a password rule",
-                "description": "Get a password rule",
-                "operationId": "getPasswordRule",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-passwordRuleId"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/PasswordRule"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "tags": [
-                    "Password Rules"
-                ]
-            },
-            "delete": {
-                "summary": "Delete a password rule",
-                "description": "Delete a password rule",
-                "operationId": "deletePasswordRule",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/path-passwordRuleId"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/PasswordRule"
-                        }
-                    },
-                    "204": {
-                        "$ref": "#/responses/204"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                },
-                "tags": [
-                    "Password Rules"
-                ]
-            }
-        },
         "/people": {
             "get": {
                 "description": "Returns information about users",
@@ -8065,32 +7917,56 @@
                     "type": "boolean"
                 },
                 "mobilePINLockTimeout": {
-                    "description": "PIN lock timeout in minutes",
-                    "type": "integer"
+                    "description": "Mobile PIN lock timeout in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 10
                 },
                 "passwordUniqueHistory": {
-                    "type": "integer"
+                    "description": "Unique history requirement",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordMinimumLength": {
-                    "type": "integer"
+                    "description": "Minimum length",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordRequiredComplexity": {
-                    "type": "string"
+                    "description": "Password Complexity",
+                    "type": "string",
+                    "enum": [
+                        "NONE",
+                        "NON_ALPHA",
+                        "STRONG"
+                    ]
                 },
                 "passwordMaximumAge": {
-                    "type": "integer"
+                    "description": "Expiry period in days",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordMinimumAge": {
-                    "type": "integer"
+                    "description": "Minimum password age",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordLockoutThreshold": {
-                    "type": "integer"
+                    "description": "Lock threshold",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordLockoutDuration": {
-                    "type": "integer"
+                    "description": "Lockout duration in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 30
                 },
                 "passwordLockoutResetPeriod": {
-                    "type": "integer"
+                    "description": "Lockout reset in minutes",
+                    "type": "integer",
+                    "format": "int32",
+                    "default": 30
                 }
             }
         },
@@ -8101,32 +7977,53 @@
                     "type": "boolean"
                 },
                 "mobilePINLockTimeout": {
-                    "description": "PIN lock timeout in minutes",
-                    "type": "integer"
+                    "description": "Mobile PIN lock timeout in minutes",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordUniqueHistory": {
-                    "type": "integer"
+                    "description": "Unique history requirement",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordMinimumLength": {
-                    "type": "integer"
+                    "description": "Minimum length",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordRequiredComplexity": {
-                    "type": "string"
+                    "description": "Password Complexity",
+                    "type": "string",
+                    "enum": [
+                        "NONE",
+                        "NON_ALPHA",
+                        "STRONG"
+                    ]
                 },
                 "passwordMaximumAge": {
-                    "type": "integer"
+                    "description": "Expiry period in days",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordMinimumAge": {
-                    "type": "integer"
+                    "description": "Minimum password age",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordLockoutThreshold": {
-                    "type": "integer"
+                    "description": "Lock threshold",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordLockoutDuration": {
-                    "type": "integer"
+                    "description": "Lockout duration in minutes",
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "passwordLockoutResetPeriod": {
-                    "type": "integer"
+                    "description": "Lockout reset in minutes",
+                    "type": "integer",
+                    "format": "int32"
                 }
             }
         },
