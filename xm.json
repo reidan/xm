@@ -630,6 +630,98 @@
                 ]
             }
         },
+        "/conferences": {
+            "get": {
+                "summary": "Get conferences",
+                "description": "Returns information about conferences",
+                "operationId": "getConferences",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    },
+                    {
+                        "description": "Filter to conferences associated to these events",
+                        "in": "query",
+                        "name": "eventId",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Filter by status",
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "type": "string",
+                        "enum": [
+                            "INACTIVE",
+                            "WAITING",
+                            "ACTIVE"
+                        ]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Conference)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Conferences"
+                ]
+            }
+        },
+        "/conferences/{conferenceId}": {
+            "get": {
+                "summary": "Returns information about a conference",
+                "description": "Returns information about a conference",
+                "operationId": "getConference",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-conferenceId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Conference"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Conferences"
+                ]
+            }
+        },
         "/conferences/{conferenceId}/participants": {
             "post": {
                 "summary": "Add a conference participant",
@@ -5501,11 +5593,11 @@
                     "type": "string"
                 },
                 "type": {
+                    "type": "string",
                     "enum": [
                         "BRIDGE",
                         "EXTERNAL"
-                    ],
-                    "type": "string"
+                    ]
                 },
                 "sid": {
                     "type": "string"
@@ -5519,7 +5611,12 @@
                     "format": "date-time"
                 },
                 "status": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "INACTIVE",
+                        "WAITING",
+                        "ACTIVE"
+                    ]
                 }
             },
             "required": [
@@ -9983,6 +10080,36 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Plan"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(Conference)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/Conference"
                     },
                     "type": "array"
                 },
