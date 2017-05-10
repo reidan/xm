@@ -1178,6 +1178,13 @@
                         "$ref": "#/parameters/query-requestId"
                     },
                     {
+                        "description": "Filter by associated conferences",
+                        "in": "query",
+                        "name": "conferenceId",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "$ref": "#/parameters/query-from"
                     },
                     {
