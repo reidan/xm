@@ -646,7 +646,7 @@
                         "$ref": "#/parameters/query-embed"
                     },
                     {
-                        "description": "Filter to conferences associated to these events",
+                        "description": "Filter by associated events",
                         "in": "query",
                         "name": "eventId",
                         "required": false,
@@ -723,6 +723,42 @@
             }
         },
         "/conferences/{conferenceId}/participants": {
+            "get": {
+                "summary": "Get conference participants",
+                "description": "Returns information about conference participants",
+                "operationId": "getConferenceParticipants",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-conferenceId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(ConferenceParticipant)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Conferences"
+                ]
+            },
             "post": {
                 "summary": "Add a conference participant",
                 "description": "Add a conference participant",
@@ -10117,6 +10153,36 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/Conference"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(ConferenceParticipant)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/ConferenceParticipant"
                     },
                     "type": "array"
                 },
