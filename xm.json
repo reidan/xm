@@ -5660,6 +5660,9 @@
                         "WAITING",
                         "ACTIVE"
                     ]
+                },
+                "participants": {
+                    "$ref": "#/definitions/Pagination(ConferenceParticipant)"
                 }
             },
             "required": [
