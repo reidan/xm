@@ -3557,8 +3557,15 @@
                         "description": "Password",
                         "required": true,
                         "schema": {
-                            "type": "string",
-                            "description": "password"
+                            "description": "password",
+                            "properties": {
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "password"
+                            ]
                         }
                     }
                 ],
