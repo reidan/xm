@@ -5825,6 +5825,9 @@
                 },
                 "value": {
                     "type": "string"
+                },
+                "description": {
+                    "type": "string"
                 }
             },
             "required": [
@@ -5846,6 +5849,9 @@
                     "type": "string"
                 },
                 "value": {
+                    "type": "string"
+                },
+                "description": {
                     "type": "string"
                 }
             }
