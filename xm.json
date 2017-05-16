@@ -4862,6 +4862,46 @@
                     "Reports"
                 ]
             }
+        },
+        "/vendor-responses": {
+            "post": {
+                "summary": "Report a vendor response",
+                "description": "Report a vendor response",
+                "operationId": "postVendorResponse",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/VendorResponseInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/VendorResponse"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Responses"
+                ]
+            }
         }
     },
     "definitions": {
@@ -9005,6 +9045,80 @@
                 "text",
                 "description",
                 "prompt"
+            ]
+        },
+        "VendorResponse": {
+            "description": "A vendor response",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "notification": {
+                    "$ref": "#/definitions/NotificationReference"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DELIVERED",
+                        "FAILED",
+                        "BOUNCED",
+                        "QUERY_FAILED"
+                    ]
+                },
+                "at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "detail": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "notification",
+                "status",
+                "at"
+            ]
+        },
+        "VendorResponseInput": {
+            "description": "A vendor response",
+            "properties": {
+                "notification": {
+                    "$ref": "#/definitions/NotificationPointer"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "DELIVERED",
+                        "FAILED",
+                        "BOUNCED",
+                        "QUERY_FAILED"
+                    ]
+                },
+                "at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "detail": {
+                    "type": "string"
+                },
+                "errorCode": {
+                    "type": "string"
+                },
+                "errorMessage": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "notification",
+                "status",
+                "at"
             ]
         },
         "Role": {
