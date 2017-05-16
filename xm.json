@@ -586,50 +586,6 @@
                 ]
             }
         },
-        "/calendar": {
-            "get": {
-                "summary": "DEPRECATED use GET /on-call",
-                "description": "DEPRECATED use GET /on-call",
-                "operationId": "getCalendar",
-                "parameters": [
-                    {
-                        "$ref": "#/parameters/query-at"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    },
-                    {
-                        "$ref": "#/parameters/query-groups"
-                    },
-                    {
-                        "$ref": "#/parameters/query-from"
-                    },
-                    {
-                        "$ref": "#/parameters/query-to"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(ShiftOccurrence)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                },
-                "tags": [
-                    "Calendar"
-                ]
-            }
-        },
         "/conferences": {
             "get": {
                 "summary": "Get conferences",
