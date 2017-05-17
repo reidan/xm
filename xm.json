@@ -7235,6 +7235,10 @@
                 "id": {
                     "type": "string"
                 },
+                "formId": {
+                    "type": "string",
+                    "description": "Legacy numeric form identifier"
+                },
                 "name": {
                     "type": "string"
                 },
