@@ -2891,6 +2891,44 @@
                 ]
             }
         },
+        "/permissibles": {
+            "get": {
+                "summary": "Search permissible entities",
+                "description": "Search permissible entities",
+                "operationId": "getPermissibles",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Permissible)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Permissable"
+                ]
+            }
+        },
         "/people": {
             "get": {
                 "description": "Returns information about users",
@@ -4623,7 +4661,7 @@
                         ]
                     },
                     {
-                        "description": "recipientType e.g. PERSON,DEVICE,GROUP,ROLE",
+                        "description": "recipientType e.g. PERSON,DEVICE,GROUP",
                         "in": "query",
                         "name": "recipientType",
                         "required": false,
@@ -8382,6 +8420,28 @@
                 "lastName"
             ]
         },
+        "Permissible": {
+            "description": "Permission",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Permissible entity type",
+                    "enum": [
+                        "RECIPIENT",
+                        "ROLE"
+                    ]
+                },
+                "recipient": {
+                    "$ref": "#/definitions/RecipientReference"
+                },
+                "role": {
+                    "$ref": "#/definitions/RoleReference"
+                }
+            },
+            "required": [
+                "type"
+            ]
+        },
         "Permission": {
             "description": "Permission",
             "properties": {
@@ -8729,8 +8789,7 @@
                         "DEVICE",
                         "GROUP",
                         "DYNAMIC_TEAM",
-                        "SITE",
-                        "ROLE"
+                        "SITE"
                     ],
                     "type": "string"
                 },
@@ -8798,8 +8857,7 @@
                         "PERSON",
                         "DEVICE",
                         "DYNAMIC_TEAM",
-                        "SITE",
-                        "ROLE"
+                        "SITE"
                     ],
                     "type": "string"
                 },
@@ -8840,8 +8898,7 @@
                         "GROUP",
                         "PERSON",
                         "DEVICE",
-                        "SITE",
-                        "ROLE"
+                        "SITE"
                     ],
                     "type": "string"
                 }
@@ -8863,8 +8920,7 @@
                         "GROUP",
                         "PERSON",
                         "DEVICE",
-                        "SITE",
-                        "ROLE"
+                        "SITE"
                     ]
                 },
                 "targetName": {
@@ -10141,6 +10197,36 @@
                 "total",
                 "links"
             ]
+        },
+        "Pagination(Permissible)": {
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ],
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The number of items in this page of results (the number of items in the data array)"
+                },
+                "data": {
+                    "type": "array",
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/Permissible"
+                    }
+                },
+                "total": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "The total number of items in the result set"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                }
+            }
         },
         "Pagination(Permission)": {
             "required": [
