@@ -393,6 +393,39 @@
             }
         },
         "/agents/{agentId}/owners": {
+            "get": {
+                "summary": "Return agent owners",
+                "description": "Return agent owners",
+                "operationId": "getAgentOwners",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(AgentOwner)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            },
             "post": {
                 "summary": "Add an agent owner",
                 "description": "Add an agent owner",
@@ -426,6 +459,53 @@
                         "schema": {
                             "$ref": "#/definitions/AgentOwner"
                         }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Agents"
+                ]
+            }
+        },
+        "/agents/{agentId}/owners/{personId}": {
+            "delete": {
+                "summary": "Delete an agent owner",
+                "description": "Delete an agent owner",
+                "operationId": "deleteAgentOwner",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-agentId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/AgentOwner"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
                     },
                     "400": {
                         "$ref": "#/responses/400"
@@ -4952,12 +5032,12 @@
                 "addresses": {
                     "type": "string"
                 },
-                "owner": {
-                    "$ref": "#/definitions/PersonReference"
-                },
                 "created": {
                     "type": "string",
                     "format": "date-time"
+                },
+                "owners": {
+                    "$ref": "#/definitions/Pagination(AgentOwner)"
                 },
                 "monitors": {
                     "$ref": "#/definitions/Pagination(AgentMonitor)"
@@ -5000,8 +5080,12 @@
                 "addresses": {
                     "type": "string"
                 },
-                "owner": {
-                    "$ref": "#/definitions/PersonPointer"
+                "owners": {
+                    "description": "Owners of this agent",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/AgentOwnerInput"
+                    }
                 },
                 "monitors": {
                     "description": "Recipients monitoring this agent",
@@ -5032,6 +5116,33 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "AgentInstaller": {
+            "description": "Agent installation information",
+            "properties": {
+                "version": {
+                    "type": "string"
+                },
+                "minimumCompatibleVersion": {
+                    "type": "string"
+                },
+                "downloadURL": {
+                    "type": "string"
+                },
+                "host": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "version",
+                "minimumCompatibleVersion",
+                "downloadURL",
+                "host",
+                "key"
             ]
         },
         "AgentMonitor": {
@@ -5068,33 +5179,6 @@
                     "$ref": "#/definitions/RecipientPointer"
                 }
             }
-        },
-        "AgentInstaller": {
-            "description": "Agent installation information",
-            "properties": {
-                "version": {
-                    "type": "string"
-                },
-                "minimumCompatibleVersion": {
-                    "type": "string"
-                },
-                "downloadURL": {
-                    "type": "string"
-                },
-                "host": {
-                    "type": "string"
-                },
-                "key": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "version",
-                "minimumCompatibleVersion",
-                "downloadURL",
-                "host",
-                "key"
-            ]
         },
         "AgentOwner": {
             "description": "An agent owner",
@@ -9617,6 +9701,36 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/AgentMonitor"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(AgentOwner)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/AgentOwner"
                     },
                     "type": "array"
                 },
