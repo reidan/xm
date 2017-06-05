@@ -3753,6 +3753,9 @@
                         "required": false
                     },
                     {
+                        "$ref": "#/parameters/query-embed"
+                    },
+                    {
                         "description": "Sort results by",
                         "in": "query",
                         "name": "sortBy",
@@ -4370,6 +4373,9 @@
                         "$ref": "#/parameters/path-planId"
                     },
                     {
+                        "$ref": "#/parameters/query-embed"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
@@ -4456,6 +4462,9 @@
                     },
                     {
                         "$ref": "#/parameters/path-integrationId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
