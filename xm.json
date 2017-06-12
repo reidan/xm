@@ -7948,7 +7948,8 @@
                 },
                 "text": {
                     "description": "The log line text (should be formatted appropriately to key=value pairs by the caller)",
-                    "type": "string"
+                    "type": "string",
+                    "maxLength": 2000
                 }
             }
         },
