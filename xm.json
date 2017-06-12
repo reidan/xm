@@ -7937,6 +7937,15 @@
                         "DEBUG"
                     ]
                 },
+                "source": {
+                    "description": "Client that sent this log",
+                    "type": "string",
+                    "enum": [
+                        "BROWSER",
+                        "IOS",
+                        "ANDROID"
+                    ]
+                },
                 "text": {
                     "description": "The log line text (should be formatted appropriately to key=value pairs by the caller)",
                     "type": "string"
