@@ -7677,15 +7677,25 @@
                         "CREATE_EVENT_SIMPLE"
                     ]
                 },
-                "endpoint": {
-                    "$ref": "#/definitions/EndpointReference"
-                },
                 "triggeredBy": {
                     "type": "string",
                     "enum": [
                         "DELIVERYSTATUS",
                         "RESPONSE",
                         "STATUS"
+                    ]
+                },
+                "endpoint": {
+                    "$ref": "#/definitions/EndpointReference"
+                },
+                "authenticationType": {
+                    "type": "string",
+                    "enum": [
+                        "NONE",
+                        "URL",
+                        "BASIC",
+                        "API_KEY",
+                        "OAUTH"
                     ]
                 },
                 "deployed": {
@@ -7782,6 +7792,16 @@
                 },
                 "endpoint": {
                     "$ref": "#/definitions/EndpointPointer"
+                },
+                "authenticationType": {
+                    "type": "string",
+                    "enum": [
+                        "NONE",
+                        "URL",
+                        "BASIC",
+                        "API_KEY",
+                        "OAUTH"
+                    ]
                 },
                 "deployed": {
                     "type": "boolean"
