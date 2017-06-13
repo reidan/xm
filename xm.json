@@ -8823,19 +8823,10 @@
                         "username": {
                             "type": "string"
                         },
-                        "password": {
-                            "type": "string"
-                        },
                         "oauthClientId": {
                             "type": "string"
                         },
-                        "oauthClientSecret": {
-                            "type": "string"
-                        },
                         "oauthTokenUrl": {
-                            "type": "string"
-                        },
-                        "oauthAccessToken": {
                             "type": "string"
                         }
                     }
