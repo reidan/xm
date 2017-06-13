@@ -8856,19 +8856,19 @@
                 "endpointType": {
                     "type": "string",
                     "enum": [
-                        "NO_AUTH",
-                        "BASIC",
-                        "OAUTH2",
-                        "OAUTH2_FORCE",
-                        "OAUTH_SLACK"
+                        "XMATTERS",
+                        "EXTERNAL",
+                        "XM_FORM"
                     ]
                 },
                 "authenticationType": {
                     "type": "string",
                     "enum": [
-                        "XMATTERS",
-                        "EXTERNAL",
-                        "XM_FORM"
+                        "NO_AUTH",
+                        "BASIC",
+                        "OAUTH2",
+                        "OAUTH2_FORCE",
+                        "OAUTH_SLACK"
                     ]
                 },
                 "authentication": {
