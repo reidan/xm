@@ -8817,19 +8817,6 @@
                         "OAUTH2_FORCE",
                         "OAUTH_SLACK"
                     ]
-                },
-                "authentication": {
-                    "properties": {
-                        "username": {
-                            "type": "string"
-                        },
-                        "oauthClientId": {
-                            "type": "string"
-                        },
-                        "oauthTokenUrl": {
-                            "type": "string"
-                        }
-                    }
                 }
             },
             "required": [
