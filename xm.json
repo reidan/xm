@@ -5803,6 +5803,9 @@
                 },
                 "participants": {
                     "$ref": "#/definitions/Pagination(ConferenceParticipant)"
+                },
+                "events": {
+                    "$ref": "#/definitions/Pagination(Event)"
                 }
             },
             "required": [
