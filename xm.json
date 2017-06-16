@@ -1241,6 +1241,9 @@
                         "$ref": "#/parameters/query-submitterId"
                     },
                     {
+                        "$ref": "#/parameters/query-conferenceId"
+                    },
+                    {
                         "$ref": "#/parameters/query-propertyName"
                     },
                     {
@@ -11480,6 +11483,13 @@
                 "APP_DYNAMICS",
                 "SENSU"
             ]
+        },
+        "query-conferenceId": {
+            "description": "Conference identifiers",
+            "in": "query",
+            "name": "conferenceId",
+            "required": false,
+            "type": "string"
         },
         "query-deviceId": {
             "description": "The device uuid or name",
