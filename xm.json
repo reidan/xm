@@ -1241,9 +1241,6 @@
                         "$ref": "#/parameters/query-submitterId"
                     },
                     {
-                        "$ref": "#/parameters/query-conferenceId"
-                    },
-                    {
                         "$ref": "#/parameters/query-propertyName"
                     },
                     {
