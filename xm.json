@@ -5792,6 +5792,12 @@
                         "ACTIVE"
                     ]
                 },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
                 "participants": {
                     "$ref": "#/definitions/Pagination(ConferenceParticipant)"
                 }
