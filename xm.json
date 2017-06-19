@@ -8941,7 +8941,6 @@
             "required": [
                 "planType",
                 "builtInPlanType",
-                "recipients",
                 "senderOverrideName"
             ]
         },
@@ -8966,7 +8965,7 @@
                         "ICINGA"
                     ]
                 },
-                "apiBaseURL": {
+                "apiURL": {
                     "type": "string"
                 },
                 "apiUsername": {
@@ -8981,9 +8980,285 @@
                 "builtInPlanType",
                 "recipients",
                 "senderOverrideName",
-                "apiBaseURL",
+                "apiURL",
                 "apiUsername",
                 "apiPassword"
+            ]
+        },
+        "JiraBuiltInPlanInput": {
+            "description": "JIRA built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "JIRA"
+                    ]
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName"
+            ]
+        },
+        "NewRelicBuiltInPlanInput": {
+            "description": "NewRelic built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "NEW_RELIC"
+                    ]
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName"
+            ]
+        },
+        "PingdomBuiltInPlanInput": {
+            "description": "Pingdom built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "PINGDOM"
+                    ]
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName"
+            ]
+        },
+        "ScoutBuiltInPlanInput": {
+            "description": "Scout built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "SCOUT"
+                    ]
+                },
+                "apiKey": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName",
+                "apiKey"
+            ]
+        },
+        "SensuBuiltInPlanInput": {
+            "description": "Scout built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "SENSU"
+                    ]
+                },
+                "apiURL": {
+                    "type": "string"
+                },
+                "apiUsername": {
+                    "type": "string"
+                },
+                "apiPassword": {
+                    "type": "string"
+                },
+                "silenceDuration": {
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName",
+                "apiURL",
+                "apiUsername",
+                "apiPassword",
+                "silenceDuration"
+            ]
+        },
+        "SplunkITSIBuiltInPlanInput": {
+            "description": "Splunk ITSI built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "SPLUNK_ITSI"
+                    ]
+                },
+                "apiURL": {
+                    "type": "string"
+                },
+                "apiUsername": {
+                    "type": "string"
+                },
+                "apiPassword": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName",
+                "apiURL",
+                "apiUsername",
+                "apiPassword"
+            ]
+        },
+        "SumoLogicBuiltInPlanInput": {
+            "description": "SumoLogic built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "SUMO_LOGIC"
+                    ]
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName"
+            ]
+        },
+        "WebhookBuiltInPlanInput": {
+            "description": "Webhook built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "WEBHOOK"
+                    ]
+                },
+                "eventStatus": {
+                    "type": "string",
+                    "format": "url"
+                },
+                "notificationDeliveryStatus": {
+                    "type": "string",
+                    "format": "url"
+                },
+                "responseStatus": {
+                    "type": "string",
+                    "format": "url"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName"
             ]
         },
         "Endpoint": {
