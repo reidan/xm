@@ -9087,9 +9087,6 @@
                         },
                         "oauthTokenUrl": {
                             "type": "string"
-                        },
-                        "oauthAccessToken": {
-                            "type": "string"
                         }
                     }
                 }
