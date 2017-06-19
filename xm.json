@@ -5987,7 +5987,11 @@
                 "description": {
                     "type": "string"
                 }
-            }
+            },
+            "required": [
+                "name",
+                "value"
+            ]
         },
         "Country": {
             "description": "A country",
@@ -7440,10 +7444,10 @@
                 },
                 "recipients": {
                     "description": "Pre-configured recipients",
+                    "type": "array",
                     "items": {
                         "$ref": "#/definitions/RecipientPointer"
-                    },
-                    "type": "array"
+                    }
                 },
                 "plan": {
                     "$ref": "#/definitions/PlanPointer"
@@ -8596,60 +8600,6 @@
                 "id"
             ]
         },
-        "BuiltInPlanInput": {
-            "description": "Built-in communication plan",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "SUMO_LOGIC",
-                        "DATADOG",
-                        "NEW_RELIC",
-                        "PINGDOM",
-                        "HIPCHAT",
-                        "JIRA",
-                        "WEBHOOK",
-                        "APP_DYNAMICS",
-                        "SENSU"
-                    ]
-                },
-                "name": {
-                    "type": "string",
-                    "description": "User provided name for this plan"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "accessibleByAll": {
-                    "type": "boolean",
-                    "description": "True if all authenticated callers are permitted"
-                },
-                "floodControl": {
-                    "type": "boolean",
-                    "description": "True if filtering and suppression is active"
-                },
-                "form": {
-                    "properties": {
-                        "recipients": {
-                            "$ref": "#/definitions/Pagination(Recipient)"
-                        },
-                        "senderOverrides": {
-                            "type": "object"
-                        }
-                    }
-                },
-                "creator": {
-                    "$ref": "#/definitions/PersonPointer"
-                }
-            }
-        },
         "Plan": {
             "description": "A communication plan",
             "properties": {
@@ -8667,15 +8617,19 @@
                     "type": "string",
                     "description": "Built-in communication plan type",
                     "enum": [
-                        "SUMO_LOGIC",
+                        "APP_DYNAMICS",
+                        "BIG_PANDA",
                         "DATADOG",
+                        "HIPCHAT",
+                        "ICINGA",
+                        "JIRA",
                         "NEW_RELIC",
                         "PINGDOM",
-                        "HIPCHAT",
-                        "JIRA",
-                        "WEBHOOK",
-                        "APP_DYNAMICS",
-                        "SENSU"
+                        "SCOUT",
+                        "SENSU",
+                        "SPLUNK_ITSI",
+                        "SUMO_LOGIC",
+                        "WEBHOOK"
                     ]
                 },
                 "name": {
@@ -8745,19 +8699,39 @@
                 "id": {
                     "type": "string"
                 },
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "PLAN",
+                        "BUILT_IN"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "description": "User provided name for this specific plan"
+                },
                 "description": {
                     "type": "string"
                 },
                 "enabled": {
                     "type": "boolean"
                 },
-                "name": {
-                    "type": "string",
-                    "description": "User provided name for this specific plan"
-                },
                 "accessibleByAll": {
                     "type": "boolean",
                     "description": "True if all authenticated callers are permitted"
+                },
+                "floodControl": {
+                    "type": "boolean",
+                    "description": "True if filtering and suppression is active"
+                },
+                "constants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ConstantInput"
+                    }
+                },
+                "creator": {
+                    "$ref": "#/definitions/PersonPointer"
                 },
                 "loggingLevel": {
                     "type": "string",
@@ -8765,10 +8739,6 @@
                         "ERROR",
                         "INFO"
                     ]
-                },
-                "floodControl": {
-                    "type": "boolean",
-                    "description": "True if filtering and suppression is active"
                 },
                 "permitted": {
                     "type": "array",
@@ -8796,6 +8766,224 @@
             },
             "required": [
                 "id"
+            ]
+        },
+        "BuiltInPlanInput": {
+            "description": "Built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/PlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "APP_DYNAMICS",
+                        "BIG_PANDA",
+                        "DATADOG",
+                        "HIPCHAT",
+                        "ICINGA",
+                        "JIRA",
+                        "NEW_RELIC",
+                        "PINGDOM",
+                        "SCOUT",
+                        "SENSU",
+                        "SPLUNK_ITSI",
+                        "SUMO_LOGIC",
+                        "WEBHOOK"
+                    ]
+                },
+                "recipients": {
+                    "description": "Pre-configured recipients",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RecipientPointer"
+                    }
+                },
+                "senderOverrideName": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType"
+            ]
+        },
+        "AppDynamicsBuiltInPlanInput": {
+            "description": "AppDynamics built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "APP_DYNAMICS"
+                    ]
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName"
+            ]
+        },
+        "BigPandaBuiltInPlanInput": {
+            "description": "BigPanda built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "BIG_PANDA"
+                    ]
+                },
+                "bearerToken": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName",
+                "bearerToken"
+            ]
+        },
+        "DataDogBuiltInPlanInput": {
+            "description": "DataDog built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "DATADOG"
+                    ]
+                },
+                "apiKey": {
+                    "type": "string"
+                },
+                "applicationKey": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName",
+                "apiKey",
+                "applicationKey"
+            ]
+        },
+        "HipChatBuiltInPlanInput": {
+            "description": "HipChat built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "HIPCHAT"
+                    ]
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName"
+            ]
+        },
+        "IcingaBuiltInPlanInput": {
+            "description": "Icinga built-in communication plan",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/BuiltInPlanInput"
+                }
+            ],
+            "properties": {
+                "planType": {
+                    "type": "string",
+                    "enum": [
+                        "BUILT_IN"
+                    ]
+                },
+                "builtInPlanType": {
+                    "type": "string",
+                    "description": "Built-in communication plan type",
+                    "enum": [
+                        "ICINGA"
+                    ]
+                },
+                "apiBaseURL": {
+                    "type": "string"
+                },
+                "apiUsername": {
+                    "type": "string"
+                },
+                "apiPassword": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "planType",
+                "builtInPlanType",
+                "recipients",
+                "senderOverrideName",
+                "apiBaseURL",
+                "apiUsername",
+                "apiPassword"
             ]
         },
         "Endpoint": {
