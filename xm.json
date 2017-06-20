@@ -1081,6 +1081,18 @@
                     },
                     {
                         "$ref": "#/parameters/query-phoneNumberFormat"
+                    },
+                    {
+                        "description": "Recipient status",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE",
+                            "INVALID"
+                        ],
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
