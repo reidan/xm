@@ -3579,6 +3579,90 @@
                         "$ref": "#/responses/404"
                     }
                 }
+            },
+            "patch": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Add user roles",
+                "description": "Add user roles",
+                "operationId": "patchPersonRoles",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Role",
+                        "required": true,
+                        "schema": {
+                            "description": "An array containing the roles to add",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RolePointer"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Role)"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/people/{personId}/roles/{roleId}": {
+            "delete": {
+                "tags": [
+                    "Authorization"
+                ],
+                "summary": "Remove a person's role",
+                "description": "Remove a person's role",
+                "operationId": "deletePersonRole",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-personId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-roleId"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Role"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
             }
         },
         "/people/{personId}/functions": {
@@ -9762,12 +9846,10 @@
             ]
         },
         "Role": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Recipient"
-                }
-            ],
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "name": {
                     "type": "string",
                     "description": "Unique name. Also alias for targetName"
@@ -9777,6 +9859,7 @@
                 }
             },
             "required": [
+                "id",
                 "name"
             ]
         },
@@ -9799,11 +9882,12 @@
             "properties": {
                 "id": {
                     "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Unique name. Also alias for targetName"
                 }
-            },
-            "required": [
-                "id"
-            ]
+            }
         },
         "RosterMember": {
             "properties": {
@@ -11868,6 +11952,13 @@
             "description": "The plan uuid or name",
             "in": "path",
             "name": "planId",
+            "required": true,
+            "type": "string"
+        },
+        "path-roleId": {
+            "description": "The uuid or name of the role",
+            "in": "path",
+            "name": "roleId",
             "required": true,
             "type": "string"
         },
