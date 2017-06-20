@@ -1073,6 +1073,7 @@
         },
         "/devices": {
             "get": {
+                "summary": "Returns information about devices",
                 "description": "Returns information about devices",
                 "operationId": "getDevices",
                 "parameters": [
@@ -1112,7 +1113,6 @@
                         "$ref": "#/responses/404"
                     }
                 },
-                "summary": "Returns information about devices",
                 "tags": [
                     "Devices"
                 ]
