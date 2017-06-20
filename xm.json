@@ -1094,6 +1094,15 @@
                         "name": "status",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
@@ -4849,6 +4858,18 @@
                         "description": "recipientType e.g. PERSON,DEVICE,GROUP",
                         "in": "query",
                         "name": "recipientType",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Recipient status",
+                        "enum": [
+                            "ACTIVE",
+                            "INACTIVE",
+                            "INVALID"
+                        ],
+                        "in": "query",
+                        "name": "status",
                         "required": false,
                         "type": "string"
                     },
