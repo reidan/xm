@@ -1579,6 +1579,96 @@
                 ]
             }
         },
+        "/events/{eventId}/properties": {
+            "put": {
+                "summary": "Replace all event properties",
+                "description": "Replace all event properties",
+                "operationId": "putEventProperties",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "description": "Event properties",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "description": "Map of property names and values",
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "Map of property names and values",
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            },
+            "patch": {
+                "summary": "Update some event properties",
+                "description": "Update some event properties",
+                "operationId": "patchEventProperties",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "description": "Event properties",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "description": "Map of property names and values",
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "description": "Map of property names and values",
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            }
+        },
         "/events/{eventId}/annotations/{annotationId}": {
             "delete": {
                 "summary": "Remove an event annotation",
