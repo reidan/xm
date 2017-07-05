@@ -673,15 +673,6 @@
                 "operationId": "getConferences",
                 "parameters": [
                     {
-                        "$ref": "#/parameters/query-offset"
-                    },
-                    {
-                        "$ref": "#/parameters/query-limit"
-                    },
-                    {
-                        "$ref": "#/parameters/query-embed"
-                    },
-                    {
                         "description": "Filter by associated events",
                         "in": "query",
                         "name": "eventId",
@@ -699,6 +690,21 @@
                             "WAITING",
                             "ACTIVE"
                         ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-include"
+                    },
+                    {
+                        "$ref": "#/parameters/query-expand"
+                    },
+                    {
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
@@ -731,6 +737,12 @@
                 "parameters": [
                     {
                         "$ref": "#/parameters/path-conferenceId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-include"
+                    },
+                    {
+                        "$ref": "#/parameters/query-expand"
                     },
                     {
                         "$ref": "#/parameters/query-embed"
@@ -772,6 +784,12 @@
                     },
                     {
                         "$ref": "#/parameters/query-limit"
+                    },
+                    {
+                        "$ref": "#/parameters/query-include"
+                    },
+                    {
+                        "$ref": "#/parameters/query-expand"
                     }
                 ],
                 "responses": {
@@ -12138,6 +12156,20 @@
             "required": false,
             "type": "string"
         },
+        "query-exclude": {
+            "description": "Exclude these default attributes",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+        },
+        "query-expand": {
+            "description": "Expand this reference attribute into a full resource representation. Implicitly includes an optional attribute",
+            "in": "query",
+            "name": "exclude",
+            "required": false,
+            "type": "string"
+        },
         "query-formId": {
             "description": "The form uuid or name",
             "in": "query",
@@ -12162,6 +12194,13 @@
                 "type": "string"
             },
             "collectionFormat": "csv"
+        },
+        "query-include": {
+            "description": "Include these optional attributes",
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "type": "string"
         },
         "query-integrationId": {
             "description": "The integration id",
