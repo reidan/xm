@@ -5915,6 +5915,10 @@
                 "host": {
                     "$ref": "#/definitions/PersonReference"
                 },
+                "activeParticipantCount": {
+                    "description": "Count of active conference participants",
+                    "type": "integer"
+                },
                 "participants": {
                     "$ref": "#/definitions/Pagination(ConferenceParticipant)"
                 },
