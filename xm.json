@@ -746,9 +746,6 @@
                         "$ref": "#/parameters/query-include"
                     },
                     {
-                        "$ref": "#/parameters/query-expand"
-                    },
-                    {
                         "$ref": "#/parameters/query-embed"
                     }
                 ],
@@ -793,7 +790,7 @@
                         "$ref": "#/parameters/query-include"
                     },
                     {
-                        "$ref": "#/parameters/query-expand"
+                        "$ref": "#/parameters/query-embed"
                     }
                 ],
                 "responses": {
@@ -12247,13 +12244,6 @@
         },
         "query-exclude": {
             "description": "Exclude these default attributes",
-            "in": "query",
-            "name": "exclude",
-            "required": false,
-            "type": "string"
-        },
-        "query-expand": {
-            "description": "Expand this reference attribute into a full resource representation. Implicitly includes an optional attribute",
             "in": "query",
             "name": "exclude",
             "required": false,
