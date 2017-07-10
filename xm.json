@@ -692,6 +692,13 @@
                         ]
                     },
                     {
+                        "description": "Case insensitive substring match within name, description, number, host name. Search terms may be separated by spaces, results are returned that match ANY of the search terms",
+                        "in": "query",
+                        "name": "search",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
