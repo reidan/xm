@@ -708,9 +708,6 @@
                         "$ref": "#/parameters/query-include"
                     },
                     {
-                        "$ref": "#/parameters/query-expand"
-                    },
-                    {
                         "$ref": "#/parameters/query-embed"
                     }
                 ],
