@@ -5573,6 +5573,7 @@
         },
         "Audit": {
             "description": "An audit",
+            "discriminator": "type",
             "properties": {
                 "id": {
                     "description": "A unique identifier (UUID) for this entity",
@@ -6201,6 +6202,7 @@
             ]
         },
         "Device": {
+            "discriminator": "deviceType",
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
@@ -8791,6 +8793,7 @@
         },
         "Plan": {
             "description": "A communication plan",
+            "discriminator": "planType",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8884,6 +8887,7 @@
         },
         "PlanInput": {
             "description": "A communication plan",
+            "discriminator": "planType",
             "properties": {
                 "id": {
                     "type": "string"
@@ -8959,6 +8963,7 @@
         },
         "BuiltInPlanInput": {
             "description": "Built-in communication plan",
+            "discriminator": "builtInPlanType",
             "allOf": [
                 {
                     "$ref": "#/definitions/PlanInput"
