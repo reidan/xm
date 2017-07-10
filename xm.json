@@ -5553,45 +5553,24 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "EVENT_CREATED"
-                    ]
                 },
-                "event": {
-                    "$ref": "#/definitions/Event"
-                }
-            },
-            "required": [
-                "type",
-                "event"
-            ]
-        },
-        "EventCreatedAuditInput": {
-            "description": "An event created audit",
-            "allOf": [
                 {
-                    "$ref": "#/definitions/AuditInput"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "EVENT_CREATED"
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT_CREATED"
+                            ]
+                        },
+                        "event": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "event"
                     ]
-                },
-                "event": {
-                    "$ref": "#/definitions/EventPointer"
                 }
-            },
-            "required": [
-                "type",
-                "event"
             ]
         },
         "EventAnnotatedAudit": {
@@ -5599,45 +5578,24 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "EVENT_ANNOTATED"
-                    ]
                 },
-                "annotation": {
-                    "$ref": "#/definitions/EventAnnotation"
-                }
-            },
-            "required": [
-                "type",
-                "annotation"
-            ]
-        },
-        "EventAnnotatedAuditInput": {
-            "description": "An event annotated audit",
-            "allOf": [
                 {
-                    "$ref": "#/definitions/AuditInput"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "EVENT_ANNOTATED"
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT_ANNOTATED"
+                            ]
+                        },
+                        "annotation": {
+                            "$ref": "#/definitions/EventAnnotation"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "annotation"
                     ]
-                },
-                "annotation": {
-                    "$ref": "#/definitions/EventAnnotationInput"
                 }
-            },
-            "required": [
-                "type",
-                "annotation"
             ]
         },
         "ResponseReceivedAudit": {
@@ -5645,45 +5603,24 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "RESPONSE_RECEIVED"
-                    ]
                 },
-                "response": {
-                    "$ref": "#/definitions/Response"
-                }
-            },
-            "required": [
-                "type",
-                "response"
-            ]
-        },
-        "ResponseReceivedAuditInput": {
-            "description": "A response received audit",
-            "allOf": [
                 {
-                    "$ref": "#/definitions/AuditInput"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "RESPONSE_RECEIVED"
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "RESPONSE_RECEIVED"
+                            ]
+                        },
+                        "response": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "response"
                     ]
-                },
-                "response": {
-                    "$ref": "#/definitions/ResponseInput"
                 }
-            },
-            "required": [
-                "type",
-                "response"
             ]
         },
         "NotificationDeliveredAudit": {
@@ -5691,45 +5628,24 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "NOTIFICATION_DELIVERED"
-                    ]
                 },
-                "notification": {
-                    "$ref": "#/definitions/Notification"
-                }
-            },
-            "required": [
-                "type",
-                "notification"
-            ]
-        },
-        "NotificationDeliveredAuditInput": {
-            "description": "A notification delivered audit",
-            "allOf": [
                 {
-                    "$ref": "#/definitions/AuditInput"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "NOTIFICATION_DELIVERED"
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NOTIFICATION_DELIVERED"
+                            ]
+                        },
+                        "notification": {
+                            "$ref": "#/definitions/Notification"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "notification"
                     ]
-                },
-                "notification": {
-                    "$ref": "#/definitions/NotificationInput"
                 }
-            },
-            "required": [
-                "type",
-                "notification"
             ]
         },
         "NotificationSuppressedAudit": {
@@ -5737,101 +5653,24 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Audit"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "NOTIFICATION_SUPPRESSED"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "NOTIFICATION_SUPPRESSED"
+                            ]
+                        },
+                        "notification": {
+                            "$ref": "#/definitions/Notification"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "notification"
                     ]
-                },
-                "notification": {
-                    "$ref": "#/definitions/Notification"
                 }
-            },
-            "required": [
-                "type",
-                "notification"
-            ]
-        },
-        "NotificationSuppressedAuditInput": {
-            "description": "A notification suppressed audit",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/AuditInput"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "NOTIFICATION_SUPPRESSED"
-                    ]
-                },
-                "notification": {
-                    "$ref": "#/definitions/NotificationInput"
-                }
-            },
-            "required": [
-                "type",
-                "notification"
-            ]
-        },
-        "BlackberryPushDevice": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "BLACKBERRY_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "registrationId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "accountId",
-                "registrationId"
-            ]
-        },
-        "BlackberryPushDeviceInput": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "BLACKBERRY_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "registrationId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "accountId",
-                "registrationId"
             ]
         },
         "Callback": {
@@ -6266,184 +6105,188 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
-                }
-            ],
-            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts",
-            "discriminator": "deviceType",
-            "properties": {
-                "defaultDevice": {
-                    "description": "True if this device can receive notifications when the user has no active devices",
-                    "type": "boolean"
                 },
-                "delay": {
-                    "description": "The number of minutes to wait for a response before contacting the next device",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "description": {
-                    "description": "A description of the device",
-                    "type": "string"
-                },
-                "deviceType": {
-                    "description": "The type of the device",
-                    "type": "string",
-                    "enum": [
-                        "ANDROID_PUSH",
-                        "APPLE_PUSH",
-                        "BLACKBERRY_PUSH",
-                        "BROWSER",
-                        "EMAIL",
-                        "FAX",
-                        "GENERIC",
-                        "IM",
-                        "NUMERIC_PAGER",
-                        "TEXT_PAGER",
-                        "TEXT_PHONE",
-                        "VOICE",
-                        "VOICE_IVR"
+                {
+                    "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts",
+                    "discriminator": "deviceType",
+                    "properties": {
+                        "defaultDevice": {
+                            "description": "True if this device can receive notifications when the user has no active devices",
+                            "type": "boolean"
+                        },
+                        "delay": {
+                            "description": "The number of minutes to wait for a response before contacting the next device",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "description": {
+                            "description": "A description of the device",
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "description": "The type of the device",
+                            "type": "string",
+                            "enum": [
+                                "ANDROID_PUSH",
+                                "APPLE_PUSH",
+                                "BLACKBERRY_PUSH",
+                                "BROWSER",
+                                "EMAIL",
+                                "FAX",
+                                "GENERIC",
+                                "IM",
+                                "NUMERIC_PAGER",
+                                "TEXT_PAGER",
+                                "TEXT_PHONE",
+                                "VOICE",
+                                "VOICE_IVR"
+                            ]
+                        },
+                        "name": {
+                            "description": "The name of the device. Example: Work Email, Home Phone",
+                            "type": "string"
+                        },
+                        "notifications": {
+                            "$ref": "#/definitions/Pagination(Notification)"
+                        },
+                        "owner": {
+                            "$ref": "#/definitions/PersonReference"
+                        },
+                        "priorityThreshold": {
+                            "description": "The minimum priority of an event for it to be delivered to this device",
+                            "enum": [
+                                "LOW",
+                                "HIGH",
+                                "MEDIUM"
+                            ],
+                            "type": "string"
+                        },
+                        "provider": {
+                            "$ref": "#/definitions/ServiceProviderReference"
+                        },
+                        "recipientType": {
+                            "enum": [
+                                "DEVICE"
+                            ],
+                            "type": "string"
+                        },
+                        "sequence": {
+                            "description": "The order in which the device will be contacted, where 0 represents the first device contacted",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "testStatus": {
+                            "description": "Whether the device has been tested",
+                            "enum": [
+                                "TESTED",
+                                "UNTESTED",
+                                "PENDING",
+                                "INVALID"
+                            ],
+                            "type": "string"
+                        },
+                        "timeframes": {
+                            "$ref": "#/definitions/Pagination(DeviceTimeframe)"
+                        }
+                    },
+                    "required": [
+                        "owner",
+                        "deviceType"
                     ]
-                },
-                "name": {
-                    "description": "The name of the device. Example: Work Email, Home Phone",
-                    "type": "string"
-                },
-                "notifications": {
-                    "$ref": "#/definitions/Pagination(Notification)"
-                },
-                "owner": {
-                    "$ref": "#/definitions/PersonReference"
-                },
-                "priorityThreshold": {
-                    "description": "The minimum priority of an event for it to be delivered to this device",
-                    "enum": [
-                        "LOW",
-                        "HIGH",
-                        "MEDIUM"
-                    ],
-                    "type": "string"
-                },
-                "provider": {
-                    "$ref": "#/definitions/ServiceProviderReference"
-                },
-                "recipientType": {
-                    "enum": [
-                        "DEVICE"
-                    ],
-                    "type": "string"
-                },
-                "sequence": {
-                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "testStatus": {
-                    "description": "Whether the device has been tested",
-                    "enum": [
-                        "TESTED",
-                        "UNTESTED",
-                        "PENDING",
-                        "INVALID"
-                    ],
-                    "type": "string"
-                },
-                "timeframes": {
-                    "$ref": "#/definitions/Pagination(DeviceTimeframe)"
                 }
-            },
-            "required": [
-                "owner",
-                "deviceType"
             ]
         },
         "DeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientInput"
-                }
-            ],
-            "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts",
-            "discriminator": "deviceType",
-            "properties": {
-                "defaultDevice": {
-                    "description": "True if this device can receive notifications when the user has no active devices. a.k.a. Fail-safe device",
-                    "type": "boolean"
                 },
-                "delay": {
-                    "description": "The number of minutes to wait for a response before contacting the next device",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "deviceType": {
-                    "description": "The type of the device",
-                    "type": "string",
-                    "enum": [
-                        "ANDROID_PUSH",
-                        "APPLE_PUSH",
-                        "BLACKBERRY_PUSH",
-                        "BROWSER",
-                        "EMAIL",
-                        "FAX",
-                        "GENERIC",
-                        "IM",
-                        "NUMERIC_PAGER",
-                        "TEXT_PAGER",
-                        "TEXT_PHONE",
-                        "VOICE",
-                        "VOICE_IVR"
+                {
+                    "description": "A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts",
+                    "discriminator": "deviceType",
+                    "properties": {
+                        "defaultDevice": {
+                            "description": "True if this device can receive notifications when the user has no active devices. a.k.a. Fail-safe device",
+                            "type": "boolean"
+                        },
+                        "delay": {
+                            "description": "The number of minutes to wait for a response before contacting the next device",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "deviceType": {
+                            "description": "The type of the device",
+                            "type": "string",
+                            "enum": [
+                                "ANDROID_PUSH",
+                                "APPLE_PUSH",
+                                "BLACKBERRY_PUSH",
+                                "BROWSER",
+                                "EMAIL",
+                                "FAX",
+                                "GENERIC",
+                                "IM",
+                                "NUMERIC_PAGER",
+                                "TEXT_PAGER",
+                                "TEXT_PHONE",
+                                "VOICE",
+                                "VOICE_IVR"
+                            ]
+                        },
+                        "name": {
+                            "description": "The name of the device. Example: Work Email, Home Phone",
+                            "type": "string"
+                        },
+                        "owner": {
+                            "$ref": "#/definitions/PersonPointer"
+                        },
+                        "priorityThreshold": {
+                            "description": "The minimum priority of an event for it to be delivered to this device",
+                            "enum": [
+                                "LOW",
+                                "HIGH",
+                                "MEDIUM"
+                            ],
+                            "type": "string"
+                        },
+                        "provider": {
+                            "$ref": "#/definitions/ServiceProviderPointer"
+                        },
+                        "recipientType": {
+                            "enum": [
+                                "DEVICE"
+                            ],
+                            "type": "string"
+                        },
+                        "sequence": {
+                            "description": "The order in which the device will be contacted, where 0 represents the first device contacted",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "testStatus": {
+                            "description": "Whether the device has been tested",
+                            "enum": [
+                                "TESTED",
+                                "UNTESTED",
+                                "PENDING",
+                                "INVALID"
+                            ],
+                            "type": "string"
+                        },
+                        "timeframes": {
+                            "description": "Timeframes when this device is active",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/DeviceTimeframeInput"
+                            }
+                        }
+                    },
+                    "required": [
+                        "deviceType",
+                        "name",
+                        "owner"
                     ]
-                },
-                "name": {
-                    "description": "The name of the device. Example: Work Email, Home Phone",
-                    "type": "string"
-                },
-                "owner": {
-                    "$ref": "#/definitions/PersonPointer"
-                },
-                "priorityThreshold": {
-                    "description": "The minimum priority of an event for it to be delivered to this device",
-                    "enum": [
-                        "LOW",
-                        "HIGH",
-                        "MEDIUM"
-                    ],
-                    "type": "string"
-                },
-                "provider": {
-                    "$ref": "#/definitions/ServiceProviderPointer"
-                },
-                "recipientType": {
-                    "enum": [
-                        "DEVICE"
-                    ],
-                    "type": "string"
-                },
-                "sequence": {
-                    "description": "The order in which the device will be contacted, where 0 represents the first device contacted",
-                    "format": "int32",
-                    "type": "integer"
-                },
-                "testStatus": {
-                    "description": "Whether the device has been tested",
-                    "enum": [
-                        "TESTED",
-                        "UNTESTED",
-                        "PENDING",
-                        "INVALID"
-                    ],
-                    "type": "string"
-                },
-                "timeframes": {
-                    "description": "Timeframes when this device is active",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/DeviceTimeframeInput"
-                    }
                 }
-            },
-            "required": [
-                "deviceType",
-                "name",
-                "owner"
             ]
         },
         "DevicePointer": {
@@ -6463,635 +6306,741 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientReference"
-                }
-            ],
-            "properties": {
-                "id": {
-                    "description": "The identifier of the resource",
-                    "type": "string"
                 },
-                "targetName": {
-                    "description": "The target name of the resource",
-                    "type": "string"
-                },
-                "recipientType": {
-                    "type": "string",
-                    "enum": [
-                        "DEVICE"
+                {
+                    "properties": {
+                        "id": {
+                            "description": "The identifier of the resource",
+                            "type": "string"
+                        },
+                        "targetName": {
+                            "description": "The target name of the resource",
+                            "type": "string"
+                        },
+                        "recipientType": {
+                            "type": "string",
+                            "enum": [
+                                "DEVICE"
+                            ]
+                        },
+                        "deviceType": {
+                            "description": "The type of the device",
+                            "type": "string",
+                            "enum": [
+                                "ANDROID_PUSH",
+                                "APPLE_PUSH",
+                                "BLACKBERRY_PUSH",
+                                "BROWSER",
+                                "EMAIL",
+                                "FAX",
+                                "GENERIC",
+                                "IM",
+                                "NUMERIC_PAGER",
+                                "TEXT_PAGER",
+                                "TEXT_PHONE",
+                                "VOICE",
+                                "VOICE_IVR"
+                            ]
+                        },
+                        "name": {
+                            "description": "The name of the device. Example: Work Email, Home Phone",
+                            "type": "string"
+                        },
+                        "links": {
+                            "$ref": "#/definitions/SelfLink"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "targetName",
+                        "deviceType"
                     ]
-                },
-                "deviceType": {
-                    "description": "The type of the device",
-                    "type": "string",
-                    "enum": [
-                        "ANDROID_PUSH",
-                        "APPLE_PUSH",
-                        "BLACKBERRY_PUSH",
-                        "BROWSER",
-                        "EMAIL",
-                        "FAX",
-                        "GENERIC",
-                        "IM",
-                        "NUMERIC_PAGER",
-                        "TEXT_PAGER",
-                        "TEXT_PHONE",
-                        "VOICE",
-                        "VOICE_IVR"
-                    ]
-                },
-                "name": {
-                    "description": "The name of the device. Example: Work Email, Home Phone",
-                    "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/SelfLink"
                 }
-            },
-            "required": [
-                "id",
-                "targetName",
-                "deviceType"
             ]
         },
         "AndroidPushDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
+                },
+                {
+                    "properties": {
+                        "accountId": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "ANDROID_PUSH"
+                            ],
+                            "type": "string"
+                        },
+                        "registrationId": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "registrationId"
+                    ]
                 }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "ANDROID_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "registrationId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "registrationId"
             ]
         },
         "AndroidPushDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
+                },
+                {
+                    "properties": {
+                        "accountId": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "ANDROID_PUSH"
+                            ],
+                            "type": "string"
+                        },
+                        "registrationId": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "accountId",
+                        "registrationId"
+                    ]
                 }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "ANDROID_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "registrationId": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "accountId",
-                "registrationId"
             ]
         },
         "ApplePushDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
+                },
+                {
+                    "properties": {
+                        "accountId": {
+                            "type": "string"
+                        },
+                        "alertSound": {
+                            "type": "string"
+                        },
+                        "apnToken": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "APPLE_PUSH"
+                            ],
+                            "type": "string"
+                        },
+                        "soundStatus": {
+                            "type": "string"
+                        },
+                        "soundThreshold": {
+                            "enum": [
+                                "LOW",
+                                "MEDIUM",
+                                "HIGH"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "accountId",
+                        "apnToken"
+                    ]
                 }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
-                },
-                "alertSound": {
-                    "type": "string"
-                },
-                "apnToken": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "APPLE_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "soundStatus": {
-                    "type": "string"
-                },
-                "soundThreshold": {
-                    "enum": [
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH"
-                    ],
-                    "type": "string"
-                }
-            },
-            "required": [
-                "accountId",
-                "apnToken"
             ]
         },
         "ApplePushDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
+                },
+                {
+                    "properties": {
+                        "accountId": {
+                            "type": "string"
+                        },
+                        "alertSound": {
+                            "type": "string"
+                        },
+                        "apnToken": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "APPLE_PUSH"
+                            ],
+                            "type": "string"
+                        },
+                        "soundStatus": {
+                            "type": "string"
+                        },
+                        "soundThreshold": {
+                            "enum": [
+                                "LOW",
+                                "MEDIUM",
+                                "HIGH"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "accountId",
+                        "apnToken"
+                    ]
                 }
-            ],
-            "properties": {
-                "accountId": {
-                    "type": "string"
+            ]
+        },
+        "BlackberryPushDevice": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Device"
                 },
-                "alertSound": {
-                    "type": "string"
-                },
-                "apnToken": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "APPLE_PUSH"
-                    ],
-                    "type": "string"
-                },
-                "soundStatus": {
-                    "type": "string"
-                },
-                "soundThreshold": {
-                    "enum": [
-                        "LOW",
-                        "MEDIUM",
-                        "HIGH"
-                    ],
-                    "type": "string"
+                {
+                    "properties": {
+                        "accountId": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "BLACKBERRY_PUSH"
+                            ],
+                            "type": "string"
+                        },
+                        "registrationId": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "accountId",
+                        "registrationId"
+                    ]
                 }
-            },
-            "required": [
-                "accountId",
-                "apnToken"
+            ]
+        },
+        "BlackberryPushDeviceInput": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/DeviceInput"
+                },
+                {
+                    "properties": {
+                        "accountId": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "BLACKBERRY_PUSH"
+                            ],
+                            "type": "string"
+                        },
+                        "registrationId": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "accountId",
+                        "registrationId"
+                    ]
+                }
             ]
         },
         "EmailDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "EMAIL"
-                    ],
-                    "type": "string"
                 },
-                "emailAddress": {
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "EMAIL"
+                            ],
+                            "type": "string"
+                        },
+                        "emailAddress": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "emailAddress"
+                    ]
                 }
-            },
-            "required": [
-                "emailAddress"
             ]
         },
         "EmailDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "EMAIL"
-                    ],
-                    "type": "string"
                 },
-                "emailAddress": {
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "EMAIL"
+                            ],
+                            "type": "string"
+                        },
+                        "emailAddress": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "emailAddress"
+                    ]
                 }
-            },
-            "required": [
-                "emailAddress"
             ]
         },
         "FaxDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "country": {
-                    "enum": [
-                        "AR",
-                        "AU",
-                        "BR",
-                        "CA",
-                        "FR",
-                        "DE",
-                        "HK",
-                        "IN",
-                        "IT",
-                        "JP",
-                        "PT",
-                        "PR",
-                        "GB",
-                        "US"
-                    ],
-                    "type": "string"
                 },
-                "deviceType": {
-                    "enum": [
-                        "FAX"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "pattern": "^\\d{5,20}$",
-                    "type": "string"
+                {
+                    "properties": {
+                        "country": {
+                            "enum": [
+                                "AR",
+                                "AU",
+                                "BR",
+                                "CA",
+                                "FR",
+                                "DE",
+                                "HK",
+                                "IN",
+                                "IT",
+                                "JP",
+                                "PT",
+                                "PR",
+                                "GB",
+                                "US"
+                            ],
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "FAX"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "pattern": "^\\d{5,20}$",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "phoneNumber"
             ]
         },
         "FaxDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "country": {
-                    "enum": [
-                        "AR",
-                        "AU",
-                        "BR",
-                        "CA",
-                        "FR",
-                        "DE",
-                        "HK",
-                        "IN",
-                        "IT",
-                        "JP",
-                        "PT",
-                        "PR",
-                        "GB",
-                        "US"
-                    ],
-                    "type": "string"
                 },
-                "deviceType": {
-                    "enum": [
-                        "FAX"
-                    ],
-                    "type": "string"
-                },
-                "phoneNumber": {
-                    "pattern": "^\\d{5,20}$",
-                    "type": "string"
+                {
+                    "properties": {
+                        "country": {
+                            "enum": [
+                                "AR",
+                                "AU",
+                                "BR",
+                                "CA",
+                                "FR",
+                                "DE",
+                                "HK",
+                                "IN",
+                                "IT",
+                                "JP",
+                                "PT",
+                                "PR",
+                                "GB",
+                                "US"
+                            ],
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "FAX"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "pattern": "^\\d{5,20}$",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "phoneNumber"
             ]
         },
         "GenericDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "GENERIC"
-                    ],
-                    "type": "string"
                 },
-                "pin": {
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "GENERIC"
+                            ],
+                            "type": "string"
+                        },
+                        "pin": {
+                            "type": "string"
+                        }
+                    }
                 }
-            }
+            ]
         },
         "GenericDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "GENERIC"
-                    ],
-                    "type": "string"
                 },
-                "pin": {
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "GENERIC"
+                            ],
+                            "type": "string"
+                        },
+                        "pin": {
+                            "type": "string"
+                        }
+                    }
                 }
-            }
+            ]
         },
         "IMDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "address": {
-                    "type": "string"
                 },
-                "deviceType": {
-                    "enum": [
-                        "IM"
-                    ],
-                    "type": "string"
+                {
+                    "properties": {
+                        "address": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "IM"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "address"
+                    ]
                 }
-            },
-            "required": [
-                "address"
             ]
         },
         "IMDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "address": {
-                    "type": "string"
                 },
-                "deviceType": {
-                    "enum": [
-                        "IM"
-                    ],
-                    "type": "string"
+                {
+                    "properties": {
+                        "address": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "IM"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "address"
+                    ]
                 }
-            },
-            "required": [
-                "address"
             ]
         },
         "NumericPagerDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
+                },
+                {
+                    "properties": {
+                        "areaCode": {
+                            "type": "string"
+                        },
+                        "country": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "type": "string",
+                            "enum": [
+                                "NUMERIC_PAGER"
+                            ]
+                        },
+                        "pagerNumber": {
+                            "type": "string"
+                        },
+                        "pin": {
+                            "type": "string"
+                        }
+                    }
                 }
-            ],
-            "properties": {
-                "areaCode": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "type": "string",
-                    "enum": [
-                        "NUMERIC_PAGER"
-                    ]
-                },
-                "pagerNumber": {
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                }
-            }
+            ]
         },
         "NumericPagerDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
+                },
+                {
+                    "properties": {
+                        "areaCode": {
+                            "type": "string"
+                        },
+                        "country": {
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "enum": [
+                                "NUMERIC_PAGER"
+                            ],
+                            "type": "string"
+                        },
+                        "pagerNumber": {
+                            "type": "string"
+                        },
+                        "pin": {
+                            "type": "string"
+                        }
+                    }
                 }
-            ],
-            "properties": {
-                "areaCode": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "deviceType": {
-                    "enum": [
-                        "NUMERIC_PAGER"
-                    ],
-                    "type": "string"
-                },
-                "pagerNumber": {
-                    "type": "string"
-                },
-                "pin": {
-                    "type": "string"
-                }
-            }
+            ]
         },
         "PublicAddressDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "description": "a.k.a. Voice IVR",
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE_IVR"
-                    ],
-                    "type": "string"
                 },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including +, country code, and extension",
-                    "type": "string"
+                {
+                    "description": "a.k.a. Voice IVR",
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "VOICE_IVR"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "description": "E.164 international format phone number including +, country code, and extension",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "phoneNumber"
             ]
         },
         "PublicAddressDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "description": "a.k.a. Voice IVR",
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE_IVR"
-                    ],
-                    "type": "string"
                 },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including country code and extension",
-                    "type": "string"
+                {
+                    "description": "a.k.a. Voice IVR",
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "VOICE_IVR"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "description": "E.164 international format phone number including country code and extension",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "phoneNumber"
             ]
         },
         "SMSDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PHONE"
-                    ],
-                    "type": "string"
                 },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including + and country code",
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "TEXT_PHONE"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "description": "E.164 international format phone number including + and country code",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "phoneNumber"
             ]
         },
         "SMSDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PHONE"
-                    ],
-                    "type": "string"
                 },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including country code and extension",
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "TEXT_PHONE"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "description": "E.164 international format phone number including country code and extension",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "phoneNumber"
             ]
         },
         "TextPagerDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PAGER"
-                    ],
-                    "type": "string"
                 },
-                "pin": {
-                    "type": "string"
-                },
-                "twoWayDevice": {
-                    "type": "boolean"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "TEXT_PAGER"
+                            ],
+                            "type": "string"
+                        },
+                        "pin": {
+                            "type": "string"
+                        },
+                        "twoWayDevice": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "pin",
+                        "twoWayDevice"
+                    ]
                 }
-            },
-            "required": [
-                "pin",
-                "twoWayDevice"
             ]
         },
         "TextPagerDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "TEXT_PAGER"
-                    ],
-                    "type": "string"
                 },
-                "pin": {
-                    "type": "string"
-                },
-                "twoWayDevice": {
-                    "type": "boolean"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "TEXT_PAGER"
+                            ],
+                            "type": "string"
+                        },
+                        "pin": {
+                            "type": "string"
+                        },
+                        "twoWayDevice": {
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "pin",
+                        "twoWayDevice"
+                    ]
                 }
-            },
-            "required": [
-                "pin",
-                "twoWayDevice"
             ]
         },
         "VoiceDevice": {
             "allOf": [
                 {
                     "$ref": "#/definitions/Device"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE"
-                    ],
-                    "type": "string"
                 },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including +, country code, and extension",
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "VOICE"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "description": "E.164 international format phone number including +, country code, and extension",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "deviceType",
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "deviceType",
-                "phoneNumber"
             ]
         },
         "VoiceDeviceInput": {
             "allOf": [
                 {
                     "$ref": "#/definitions/DeviceInput"
-                }
-            ],
-            "properties": {
-                "deviceType": {
-                    "enum": [
-                        "VOICE"
-                    ],
-                    "type": "string"
                 },
-                "phoneNumber": {
-                    "description": "E.164 international format phone number including country code and extension",
-                    "type": "string"
+                {
+                    "properties": {
+                        "deviceType": {
+                            "enum": [
+                                "VOICE"
+                            ],
+                            "type": "string"
+                        },
+                        "phoneNumber": {
+                            "description": "E.164 international format phone number including country code and extension",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "deviceType",
+                        "phoneNumber"
+                    ]
                 }
-            },
-            "required": [
-                "deviceType",
-                "phoneNumber"
             ]
         },
         "DeviceTimeframe": {
@@ -7635,39 +7584,41 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
+                },
+                {
+                    "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
+                    "properties": {
+                        "recipientType": {
+                            "enum": [
+                                "GROUP"
+                            ],
+                            "type": "string"
+                        },
+                        "allowDuplicates": {
+                            "type": "boolean"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "observedByAll": {
+                            "type": "boolean"
+                        },
+                        "useDefaultDevices": {
+                            "type": "boolean"
+                        },
+                        "site": {
+                            "$ref": "#/definitions/SiteReference"
+                        },
+                        "supervisors": {
+                            "$ref": "#/definitions/Pagination(Person)"
+                        }
+                    },
+                    "required": [
+                        "allowDuplicates",
+                        "observedByAll",
+                        "useDefaultDevices"
+                    ]
                 }
-            ],
-            "description": "Groups are used for collecting users and devices and organizing them into notification schedules",
-            "properties": {
-                "recipientType": {
-                    "enum": [
-                        "GROUP"
-                    ],
-                    "type": "string"
-                },
-                "allowDuplicates": {
-                    "type": "boolean"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "observedByAll": {
-                    "type": "boolean"
-                },
-                "useDefaultDevices": {
-                    "type": "boolean"
-                },
-                "site": {
-                    "$ref": "#/definitions/SiteReference"
-                },
-                "supervisors": {
-                    "$ref": "#/definitions/Pagination(Person)"
-                }
-            },
-            "required": [
-                "allowDuplicates",
-                "observedByAll",
-                "useDefaultDevices"
             ]
         },
         "GroupInput": {
@@ -7675,44 +7626,46 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientInput"
+                },
+                {
+                    "properties": {
+                        "recipientType": {
+                            "enum": [
+                                "GROUP"
+                            ],
+                            "type": "string"
+                        },
+                        "allowDuplicates": {
+                            "description": "Whether the group allows a notification to be sent to a device multiple times",
+                            "type": "boolean"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "observedByAll": {
+                            "description": "Whether the group notifications are observed by all",
+                            "type": "boolean"
+                        },
+                        "timezone": {
+                            "type": "string"
+                        },
+                        "useDefaultDevices": {
+                            "description": "Whether the default user device should be used when sending out a notification to the group",
+                            "type": "boolean"
+                        },
+                        "site": {
+                            "$ref": "#/definitions/SitePointer"
+                        },
+                        "supervisors": {
+                            "description": "A list of group supervisors. Groups must have at least one supervisor",
+                            "items": {
+                                "$ref": "#/definitions/PersonPointer"
+                            },
+                            "type": "array"
+                        }
+                    }
                 }
-            ],
-            "properties": {
-                "recipientType": {
-                    "enum": [
-                        "GROUP"
-                    ],
-                    "type": "string"
-                },
-                "allowDuplicates": {
-                    "description": "Whether the group allows a notification to be sent to a device multiple times",
-                    "type": "boolean"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "observedByAll": {
-                    "description": "Whether the group notifications are observed by all",
-                    "type": "boolean"
-                },
-                "timezone": {
-                    "type": "string"
-                },
-                "useDefaultDevices": {
-                    "description": "Whether the default user device should be used when sending out a notification to the group",
-                    "type": "boolean"
-                },
-                "site": {
-                    "$ref": "#/definitions/SitePointer"
-                },
-                "supervisors": {
-                    "description": "A list of group supervisors. Groups must have at least one supervisor",
-                    "items": {
-                        "$ref": "#/definitions/PersonPointer"
-                    },
-                    "type": "array"
-                }
-            }
+            ]
         },
         "GroupMember": {
             "properties": {
@@ -7735,30 +7688,32 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientReference"
-                }
-            ],
-            "properties": {
-                "id": {
-                    "description": "The identifier of the resource",
-                    "type": "string"
                 },
-                "targetName": {
-                    "description": "The target name of the resource",
-                    "type": "string"
-                },
-                "recipientType": {
-                    "type": "string",
-                    "enum": [
-                        "GROUP"
+                {
+                    "properties": {
+                        "id": {
+                            "description": "The identifier of the resource",
+                            "type": "string"
+                        },
+                        "targetName": {
+                            "description": "The target name of the resource",
+                            "type": "string"
+                        },
+                        "recipientType": {
+                            "type": "string",
+                            "enum": [
+                                "GROUP"
+                            ]
+                        },
+                        "links": {
+                            "$ref": "#/definitions/SelfLink"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "targetName"
                     ]
-                },
-                "links": {
-                    "$ref": "#/definitions/SelfLink"
                 }
-            },
-            "required": [
-                "id",
-                "targetName"
             ]
         },
         "GroupPointer": {
@@ -8243,26 +8198,28 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/NotificationFilter"
-                }
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "PERSON_INTEGRATION_DEVICE_TYPE"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "PERSON_INTEGRATION_DEVICE_TYPE"
+                            ]
+                        },
+                        "count": {
+                            "type": "integer",
+                            "description": "Count of notifications before suppression is activated"
+                        },
+                        "minutes": {
+                            "type": "integer",
+                            "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
+                        }
+                    },
+                    "required": [
+                        "type"
                     ]
-                },
-                "count": {
-                    "type": "integer",
-                    "description": "Count of notifications before suppression is activated"
-                },
-                "minutes": {
-                    "type": "integer",
-                    "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
                 }
-            },
-            "required": [
-                "type"
             ]
         },
         "PersonIntegrationDeviceTypeNotificationFilterInput": {
@@ -8270,18 +8227,20 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/NotificationFilterInput"
-                }
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "description": "Count of notifications before suppression is activated"
                 },
-                "minutes": {
-                    "type": "integer",
-                    "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
+                {
+                    "properties": {
+                        "count": {
+                            "type": "integer",
+                            "description": "Count of notifications before suppression is activated"
+                        },
+                        "minutes": {
+                            "type": "integer",
+                            "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
+                        }
+                    }
                 }
-            }
+            ]
         },
         "OnCall": {
             "properties": {
@@ -8498,72 +8457,74 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
-                }
-            ],
-            "properties": {
-                "recipientType": {
-                    "enum": [
-                        "PERSON"
-                    ],
-                    "type": "string"
                 },
-                "firstName": {
-                    "description": "The first name of the user",
-                    "type": "string"
-                },
-                "language": {
-                    "description": "The preferred language of the user: Example: en",
-                    "type": "string"
-                },
-                "lastName": {
-                    "description": "The last name of the user",
-                    "type": "string"
-                },
-                "phoneLogin": {
-                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company",
-                    "type": "string"
-                },
-                "timezone": {
-                    "description": "The time zone of the user. Example:  US/Pacific",
-                    "type": "string"
-                },
-                "webLogin": {
-                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field",
-                    "type": "string"
-                },
-                "properties": {
-                    "description": "Key/Value map of custom properties",
-                    "type": "object"
-                },
-                "site": {
-                    "$ref": "#/definitions/SiteReference"
-                },
-                "devices": {
-                    "$ref": "#/definitions/Pagination(Device)"
-                },
-                "roles": {
-                    "$ref": "#/definitions/Pagination(Role)"
-                },
-                "deliveryStatus": {
-                    "description": "Delivery status. Derived from the status of all notifications to this person for this event",
-                    "type": "string",
-                    "enum": [
-                        "PENDING",
-                        "DELIVERED",
-                        "RESPONDED",
-                        "FAILED"
+                {
+                    "properties": {
+                        "recipientType": {
+                            "enum": [
+                                "PERSON"
+                            ],
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "description": "The first name of the user",
+                            "type": "string"
+                        },
+                        "language": {
+                            "description": "The preferred language of the user: Example: en",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "description": "The last name of the user",
+                            "type": "string"
+                        },
+                        "phoneLogin": {
+                            "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company",
+                            "type": "string"
+                        },
+                        "timezone": {
+                            "description": "The time zone of the user. Example:  US/Pacific",
+                            "type": "string"
+                        },
+                        "webLogin": {
+                            "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field",
+                            "type": "string"
+                        },
+                        "properties": {
+                            "description": "Key/Value map of custom properties",
+                            "type": "object"
+                        },
+                        "site": {
+                            "$ref": "#/definitions/SiteReference"
+                        },
+                        "devices": {
+                            "$ref": "#/definitions/Pagination(Device)"
+                        },
+                        "roles": {
+                            "$ref": "#/definitions/Pagination(Role)"
+                        },
+                        "deliveryStatus": {
+                            "description": "Delivery status. Derived from the status of all notifications to this person for this event",
+                            "type": "string",
+                            "enum": [
+                                "PENDING",
+                                "DELIVERED",
+                                "RESPONDED",
+                                "FAILED"
+                            ]
+                        },
+                        "notifications": {
+                            "$ref": "#/definitions/Pagination(Notification)"
+                        },
+                        "response": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "required": [
+                        "firstName",
+                        "lastName"
                     ]
-                },
-                "notifications": {
-                    "$ref": "#/definitions/Pagination(Notification)"
-                },
-                "response": {
-                    "$ref": "#/definitions/Response"
                 }
-            },
-            "required": [
-                "firstName",
-                "lastName"
             ]
         },
         "PersonInput": {
@@ -8571,68 +8532,70 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientInput"
-                }
-            ],
-            "properties": {
-                "recipientType": {
-                    "enum": [
-                        "PERSON"
-                    ],
-                    "type": "string"
                 },
-                "firstName": {
-                    "description": "The first name of the user",
-                    "type": "string"
-                },
-                "language": {
-                    "description": "The preferred language of the user: Example: en",
-                    "type": "string"
-                },
-                "lastName": {
-                    "description": "The last name of the user",
-                    "type": "string"
-                },
-                "phoneLogin": {
-                    "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company",
-                    "type": "string"
-                },
-                "properties": {
-                    "description": "Key/Value map of custom properties",
-                    "type": "object"
-                },
-                "roles": {
-                    "description": "A list of the user's roles. Users must have at least one role",
-                    "items": {
-                        "type": "string"
+                {
+                    "properties": {
+                        "recipientType": {
+                            "enum": [
+                                "PERSON"
+                            ],
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "description": "The first name of the user",
+                            "type": "string"
+                        },
+                        "language": {
+                            "description": "The preferred language of the user: Example: en",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "description": "The last name of the user",
+                            "type": "string"
+                        },
+                        "phoneLogin": {
+                            "description": "A numeric string that identifies users when they phone in to xMatters. This string may contain only digits and must be unique within the company",
+                            "type": "string"
+                        },
+                        "properties": {
+                            "description": "Key/Value map of custom properties",
+                            "type": "object"
+                        },
+                        "roles": {
+                            "description": "A list of the user's roles. Users must have at least one role",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "site": {
+                            "$ref": "#/definitions/SitePointer"
+                        },
+                        "supervisors": {
+                            "description": "A list of supervisors of this users. If this value is not provided, the XXX user becomes the supervisor. To assign a user as a supervisor, the authenticating user must have the appropriate permissions",
+                            "items": {
+                                "$ref": "#/definitions/PersonPointer"
+                            },
+                            "type": "array"
+                        },
+                        "timezone": {
+                            "description": "The time zone of the user. Example:  US/Pacific",
+                            "type": "string"
+                        },
+                        "webLogin": {
+                            "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field",
+                            "type": "string"
+                        }
                     },
-                    "type": "array"
-                },
-                "site": {
-                    "$ref": "#/definitions/SitePointer"
-                },
-                "supervisors": {
-                    "description": "A list of supervisors of this users. If this value is not provided, the XXX user becomes the supervisor. To assign a user as a supervisor, the authenticating user must have the appropriate permissions",
-                    "items": {
-                        "$ref": "#/definitions/PersonPointer"
-                    },
-                    "type": "array"
-                },
-                "timezone": {
-                    "description": "The time zone of the user. Example:  US/Pacific",
-                    "type": "string"
-                },
-                "webLogin": {
-                    "description": "The ID of the user when they log on to the web user interface. This value must be unique within the company and is often identical to the targetName field",
-                    "type": "string"
+                    "required": [
+                        "firstName",
+                        "lastName",
+                        "language",
+                        "timezone",
+                        "webLogin",
+                        "roles"
+                    ]
                 }
-            },
-            "required": [
-                "firstName",
-                "lastName",
-                "language",
-                "timezone",
-                "webLogin",
-                "roles"
             ]
         },
         "PersonPointer": {
@@ -8656,40 +8619,42 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/RecipientReference"
-                }
-            ],
-            "properties": {
-                "id": {
-                    "description": "The identifier of the resource",
-                    "type": "string"
                 },
-                "targetName": {
-                    "description": "The target name of the resource",
-                    "type": "string"
-                },
-                "recipientType": {
-                    "type": "string",
-                    "enum": [
-                        "PERSON"
+                {
+                    "properties": {
+                        "id": {
+                            "description": "The identifier of the resource",
+                            "type": "string"
+                        },
+                        "targetName": {
+                            "description": "The target name of the resource",
+                            "type": "string"
+                        },
+                        "recipientType": {
+                            "type": "string",
+                            "enum": [
+                                "PERSON"
+                            ]
+                        },
+                        "firstName": {
+                            "description": "The first name of the user",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "description": "The last name of the user",
+                            "type": "string"
+                        },
+                        "links": {
+                            "$ref": "#/definitions/SelfLink"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "targetName",
+                        "firstName",
+                        "lastName"
                     ]
-                },
-                "firstName": {
-                    "description": "The first name of the user",
-                    "type": "string"
-                },
-                "lastName": {
-                    "description": "The last name of the user",
-                    "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/SelfLink"
                 }
-            },
-            "required": [
-                "id",
-                "targetName",
-                "firstName",
-                "lastName"
             ]
         },
         "Permissible": {
@@ -8719,20 +8684,6 @@
             "properties": {
                 "id": {
                     "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "IntegrationConfig": {
-            "description": "Built-in communication plan",
-            "properties": {
-                "messages": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
                 }
             },
             "required": [
@@ -8912,48 +8863,50 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/PlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
+                },
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "APP_DYNAMICS",
+                                "BIG_PANDA",
+                                "DATADOG",
+                                "HIPCHAT",
+                                "ICINGA",
+                                "JIRA",
+                                "NEW_RELIC",
+                                "PINGDOM",
+                                "SCOUT",
+                                "SENSU",
+                                "SPLUNK_ITSI",
+                                "SUMO_LOGIC",
+                                "WEBHOOK"
+                            ]
+                        },
+                        "recipients": {
+                            "description": "Pre-configured recipients",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RecipientPointer"
+                            }
+                        },
+                        "senderOverrideName": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType"
                     ]
-                },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "APP_DYNAMICS",
-                        "BIG_PANDA",
-                        "DATADOG",
-                        "HIPCHAT",
-                        "ICINGA",
-                        "JIRA",
-                        "NEW_RELIC",
-                        "PINGDOM",
-                        "SCOUT",
-                        "SENSU",
-                        "SPLUNK_ITSI",
-                        "SUMO_LOGIC",
-                        "WEBHOOK"
-                    ]
-                },
-                "recipients": {
-                    "description": "Pre-configured recipients",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/RecipientPointer"
-                    }
-                },
-                "senderOverrideName": {
-                    "type": "string"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType"
             ]
         },
         "AppDynamicsBuiltInPlanInput": {
@@ -8961,28 +8914,30 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "APP_DYNAMICS"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "APP_DYNAMICS"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName"
                     ]
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName"
             ]
         },
         "BigPandaBuiltInPlanInput": {
@@ -8990,32 +8945,34 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "BIG_PANDA"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "BIG_PANDA"
+                            ]
+                        },
+                        "bearerToken": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName",
+                        "bearerToken"
                     ]
-                },
-                "bearerToken": {
-                    "type": "string"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName",
-                "bearerToken"
             ]
         },
         "DataDogBuiltInPlanInput": {
@@ -9023,36 +8980,38 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
+                },
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "DATADOG"
+                            ]
+                        },
+                        "apiKey": {
+                            "type": "string"
+                        },
+                        "applicationKey": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName",
+                        "apiKey",
+                        "applicationKey"
                     ]
-                },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "DATADOG"
-                    ]
-                },
-                "apiKey": {
-                    "type": "string"
-                },
-                "applicationKey": {
-                    "type": "string"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName",
-                "apiKey",
-                "applicationKey"
             ]
         },
         "HipChatBuiltInPlanInput": {
@@ -9060,27 +9019,29 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "HIPCHAT"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "HIPCHAT"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "senderOverrideName"
                     ]
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "senderOverrideName"
             ]
         },
         "IcingaBuiltInPlanInput": {
@@ -9088,40 +9049,42 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
+                },
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "ICINGA"
+                            ]
+                        },
+                        "apiURL": {
+                            "type": "string"
+                        },
+                        "apiUsername": {
+                            "type": "string"
+                        },
+                        "apiPassword": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName",
+                        "apiURL",
+                        "apiUsername",
+                        "apiPassword"
                     ]
-                },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "ICINGA"
-                    ]
-                },
-                "apiURL": {
-                    "type": "string"
-                },
-                "apiUsername": {
-                    "type": "string"
-                },
-                "apiPassword": {
-                    "type": "string"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName",
-                "apiURL",
-                "apiUsername",
-                "apiPassword"
             ]
         },
         "JiraBuiltInPlanInput": {
@@ -9129,28 +9092,30 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "JIRA"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "JIRA"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName"
                     ]
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName"
             ]
         },
         "NewRelicBuiltInPlanInput": {
@@ -9158,28 +9123,30 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "NEW_RELIC"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "NEW_RELIC"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName"
                     ]
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName"
             ]
         },
         "PingdomBuiltInPlanInput": {
@@ -9187,28 +9154,30 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "PINGDOM"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "PINGDOM"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName"
                     ]
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName"
             ]
         },
         "ScoutBuiltInPlanInput": {
@@ -9216,32 +9185,34 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "SCOUT"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "SCOUT"
+                            ]
+                        },
+                        "apiKey": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName",
+                        "apiKey"
                     ]
-                },
-                "apiKey": {
-                    "type": "string"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName",
-                "apiKey"
             ]
         },
         "SensuBuiltInPlanInput": {
@@ -9249,44 +9220,46 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
+                },
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "SENSU"
+                            ]
+                        },
+                        "apiURL": {
+                            "type": "string"
+                        },
+                        "apiUsername": {
+                            "type": "string"
+                        },
+                        "apiPassword": {
+                            "type": "string"
+                        },
+                        "silenceDuration": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName",
+                        "apiURL",
+                        "apiUsername",
+                        "apiPassword",
+                        "silenceDuration"
                     ]
-                },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "SENSU"
-                    ]
-                },
-                "apiURL": {
-                    "type": "string"
-                },
-                "apiUsername": {
-                    "type": "string"
-                },
-                "apiPassword": {
-                    "type": "string"
-                },
-                "silenceDuration": {
-                    "type": "integer"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName",
-                "apiURL",
-                "apiUsername",
-                "apiPassword",
-                "silenceDuration"
             ]
         },
         "SplunkITSIBuiltInPlanInput": {
@@ -9294,40 +9267,42 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
+                },
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "SPLUNK_ITSI"
+                            ]
+                        },
+                        "apiURL": {
+                            "type": "string"
+                        },
+                        "apiUsername": {
+                            "type": "string"
+                        },
+                        "apiPassword": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName",
+                        "apiURL",
+                        "apiUsername",
+                        "apiPassword"
                     ]
-                },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "SPLUNK_ITSI"
-                    ]
-                },
-                "apiURL": {
-                    "type": "string"
-                },
-                "apiUsername": {
-                    "type": "string"
-                },
-                "apiPassword": {
-                    "type": "string"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName",
-                "apiURL",
-                "apiUsername",
-                "apiPassword"
             ]
         },
         "SumoLogicBuiltInPlanInput": {
@@ -9335,28 +9310,30 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
-                    ]
                 },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "SUMO_LOGIC"
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "SUMO_LOGIC"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName"
                     ]
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName"
             ]
         },
         "WebhookBuiltInPlanInput": {
@@ -9364,40 +9341,42 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/BuiltInPlanInput"
-                }
-            ],
-            "properties": {
-                "planType": {
-                    "type": "string",
-                    "enum": [
-                        "BUILT_IN"
+                },
+                {
+                    "properties": {
+                        "planType": {
+                            "type": "string",
+                            "enum": [
+                                "BUILT_IN"
+                            ]
+                        },
+                        "builtInPlanType": {
+                            "type": "string",
+                            "description": "Built-in communication plan type",
+                            "enum": [
+                                "WEBHOOK"
+                            ]
+                        },
+                        "eventStatus": {
+                            "type": "string",
+                            "format": "url"
+                        },
+                        "notificationDeliveryStatus": {
+                            "type": "string",
+                            "format": "url"
+                        },
+                        "responseStatus": {
+                            "type": "string",
+                            "format": "url"
+                        }
+                    },
+                    "required": [
+                        "planType",
+                        "builtInPlanType",
+                        "recipients",
+                        "senderOverrideName"
                     ]
-                },
-                "builtInPlanType": {
-                    "type": "string",
-                    "description": "Built-in communication plan type",
-                    "enum": [
-                        "WEBHOOK"
-                    ]
-                },
-                "eventStatus": {
-                    "type": "string",
-                    "format": "url"
-                },
-                "notificationDeliveryStatus": {
-                    "type": "string",
-                    "format": "url"
-                },
-                "responseStatus": {
-                    "type": "string",
-                    "format": "url"
                 }
-            },
-            "required": [
-                "planType",
-                "builtInPlanType",
-                "recipients",
-                "senderOverrideName"
             ]
         },
         "Endpoint": {
@@ -10241,52 +10220,54 @@
             "allOf": [
                 {
                     "$ref": "#/definitions/Recipient"
+                },
+                {
+                    "description": "Site a group belongs to",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "address1": {
+                            "type": "string"
+                        },
+                        "address2": {
+                            "type": "string"
+                        },
+                        "city": {
+                            "type": "string"
+                        },
+                        "country": {
+                            "type": "string"
+                        },
+                        "language": {
+                            "type": "string"
+                        },
+                        "latitude": {
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "longitude": {
+                            "format": "double",
+                            "type": "number"
+                        },
+                        "postalCode": {
+                            "type": "string"
+                        },
+                        "state": {
+                            "type": "string"
+                        },
+                        "timezone": {
+                            "type": "string"
+                        },
+                        "links": {
+                            "$ref": "#/definitions/SelfLink"
+                        }
+                    },
+                    "required": [
+                        "id",
+                        "name"
+                    ]
                 }
-            ],
-            "description": "Site a group belongs to",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "address1": {
-                    "type": "string"
-                },
-                "address2": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "country": {
-                    "type": "string"
-                },
-                "language": {
-                    "type": "string"
-                },
-                "latitude": {
-                    "format": "double",
-                    "type": "number"
-                },
-                "longitude": {
-                    "format": "double",
-                    "type": "number"
-                },
-                "postalCode": {
-                    "type": "string"
-                },
-                "state": {
-                    "type": "string"
-                },
-                "timezone": {
-                    "type": "string"
-                },
-                "links": {
-                    "$ref": "#/definitions/SelfLink"
-                }
-            },
-            "required": [
-                "id",
-                "name"
             ]
         },
         "SitePointer": {
