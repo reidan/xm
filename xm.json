@@ -4391,6 +4391,99 @@
                 ]
             }
         },
+        "/plans/{planId}/forms/{formId}/recipients": {
+            "get": {
+                "description": "List of plan recipients",
+                "operationId": "getPlanFormRecipients",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-formId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Recipient)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "summary": "List of plan recipients",
+                "tags": [
+                    "Communication Plans"
+                ]
+            },
+            "put": {
+                "summary": "Replace form recipients",
+                "description": "Replace form recipients",
+                "operationId": "putPlanFormRecipients",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-planId"
+                    },
+                    {
+                        "$ref": "#/parameters/path-formId"
+                    },
+                    {
+                        "description": "Form recipients",
+                        "in": "body",
+                        "name": "body",
+                        "required": true,
+                        "schema": {
+                            "description": "An array containing the form recipients",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/RecipientPointer"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Recipient)"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Communication Plans"
+                ]
+            }
+        },
         "/plans/{planId}/forms/{formId}/scenarios": {
             "get": {
                 "description": "List of scenarios",
@@ -4415,6 +4508,12 @@
                     },
                     {
                         "$ref": "#/parameters/query-sortOrder"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
                     }
                 ],
                 "responses": {
