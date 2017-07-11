@@ -1666,6 +1666,85 @@
                 ]
             }
         },
+        "/events/{eventId}/file-attachments": {
+            "get": {
+                "summary": "Get file attachments",
+                "description": "Get file attachments",
+                "operationId": "getEventFileAttachments",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "$ref": "#/parameters/query-offset"
+                    },
+                    {
+                        "$ref": "#/parameters/query-limit"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(FileAttachment)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            },
+            "post": {
+                "summary": "Upload a file attachment",
+                "description": "Upload a file attachment",
+                "operationId": "postEventFileAttachment",
+                "consumes": ["multipart/form-data"],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/path-eventId"
+                    },
+                    {
+                        "description": "File attachment",
+                        "in": "formData",
+                        "type": "file",
+                        "name": "attachment",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/FileAttachment"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Events"
+                ]
+            }
+        },
         "/feature-toggles": {
             "get": {
                 "tags": [
@@ -7560,6 +7639,38 @@
                 "value"
             ]
         },
+        "FileAttachment": {
+            "description": "File attachment",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "description": "File name",
+                    "type": "string"
+                },
+                "ext": {
+                    "description": "File extension",
+                    "type": "string"
+                },
+                "mimeType": {
+                    "description": "MIME type",
+                    "type": "string"
+                },
+                "size": {
+                    "description": "File size in bytes",
+                    "type": "integer"
+                },
+                "url": {
+                    "description": "File download URL",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "url"
+            ]
+        },
         "Form": {
             "description": "A form",
             "properties": {
@@ -10818,6 +10929,36 @@
                     "description": "An array that contains this page of resources",
                     "items": {
                         "$ref": "#/definitions/FeatureToggle"
+                    },
+                    "type": "array"
+                },
+                "links": {
+                    "$ref": "#/definitions/PaginationLinks"
+                },
+                "total": {
+                    "description": "The total number of items in the result set",
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "count",
+                "data",
+                "total",
+                "links"
+            ]
+        },
+        "Pagination(FileAttachment)": {
+            "properties": {
+                "count": {
+                    "description": "The number of items in this page of results (the number of items in the data array)",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "data": {
+                    "description": "An array that contains this page of resources",
+                    "items": {
+                        "$ref": "#/definitions/FileAttachment"
                     },
                     "type": "array"
                 },
