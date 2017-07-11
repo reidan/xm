@@ -3956,7 +3956,11 @@
                         "required": false
                     },
                     {
-                        "$ref": "#/parameters/query-embed"
+                        "description": "Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted",
+                        "in": "query",
+                        "name": "embed",
+                        "required": false,
+                        "type": "string"
                     },
                     {
                         "description": "Sort results by",
@@ -4053,7 +4057,11 @@
                         "$ref": "#/parameters/path-planId"
                     },
                     {
-                        "$ref": "#/parameters/query-embed"
+                        "description": "Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted",
+                        "in": "query",
+                        "name": "embed",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
@@ -4675,7 +4683,11 @@
                         "$ref": "#/parameters/path-planId"
                     },
                     {
-                        "$ref": "#/parameters/query-embed"
+                        "description": "Comma separated list of linked domain entities to embed in the response. Includes ownerApiKey, agents",
+                        "in": "query",
+                        "name": "embed",
+                        "required": false,
+                        "type": "string"
                     },
                     {
                         "$ref": "#/parameters/query-offset"
@@ -4766,7 +4778,11 @@
                         "$ref": "#/parameters/path-integrationId"
                     },
                     {
-                        "$ref": "#/parameters/query-embed"
+                        "description": "Comma separated list of linked domain entities to embed in the response. Includes ownerApiKey, agents",
+                        "in": "query",
+                        "name": "embed",
+                        "required": false,
+                        "type": "string"
                     }
                 ],
                 "responses": {
