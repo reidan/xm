@@ -8052,6 +8052,10 @@
                     ],
                     "default": "ERROR"
                 },
+                "ownerApiKey": {
+                    "description": "API Key of the person who owns this integration, the creator of an integration becomes the owner",
+                    "type": "string"
+                },
                 "agents": {
                     "$ref": "#/definitions/Pagination(Agent)"
                 }
