@@ -5698,6 +5698,9 @@
                         "NOTIFICATION_SUPPRESSED",
                         "RESPONSE_RECEIVED"
                     ]
+                },
+                "by": {
+                    "$ref": "#/definitions/PersonReference"
                 }
             },
             "required": [
@@ -5736,6 +5739,9 @@
                         "NOTIFICATION_SUPPRESSED",
                         "RESPONSE_RECEIVED"
                     ]
+                },
+                "by": {
+                    "$ref": "#/definitions/PersonPointer"
                 }
             },
             "required": [
