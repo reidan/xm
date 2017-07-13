@@ -5744,6 +5744,56 @@
                 "type"
             ]
         },
+        "EventAnnotatedAudit": {
+            "description": "An event annotated audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT_ANNOTATED"
+                            ]
+                        },
+                        "annotation": {
+                            "$ref": "#/definitions/EventAnnotation"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "annotation"
+                    ]
+                }
+            ]
+        },
+        "EventCompletedAudit": {
+            "description": "An event completed audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT_COMPLETED"
+                            ]
+                        },
+                        "event": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "event"
+                    ]
+                }
+            ]
+        },
         "EventCreatedAudit": {
             "description": "An event created audit",
             "allOf": [
@@ -5765,6 +5815,106 @@
                     "required": [
                         "type",
                         "event"
+                    ]
+                }
+            ]
+        },
+        "EventResumedAudit": {
+            "description": "An event resumed audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT_RESUMED"
+                            ]
+                        },
+                        "event": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "event"
+                    ]
+                }
+            ]
+        },
+        "EventSuspendedAudit": {
+            "description": "An event suspended audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT_SUSPENDED"
+                            ]
+                        },
+                        "event": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "event"
+                    ]
+                }
+            ]
+        },
+        "EventTerminatedAudit": {
+            "description": "An event terminated audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT_TERMINATED"
+                            ]
+                        },
+                        "event": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "event"
+                    ]
+                }
+            ]
+        },
+        "ResponseReceivedAudit": {
+            "description": "A response received audit",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Audit"
+                },
+                {
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "enum": [
+                                "RESPONSE_RECEIVED"
+                            ]
+                        },
+                        "response": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "response"
                     ]
                 }
             ]
