@@ -5884,56 +5884,6 @@
                 }
             ]
         },
-        "EventAnnotatedAudit": {
-            "description": "An event annotated audit",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Audit"
-                },
-                {
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "EVENT_ANNOTATED"
-                            ]
-                        },
-                        "annotation": {
-                            "$ref": "#/definitions/EventAnnotation"
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "annotation"
-                    ]
-                }
-            ]
-        },
-        "ResponseReceivedAudit": {
-            "description": "A response received audit",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/Audit"
-                },
-                {
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "RESPONSE_RECEIVED"
-                            ]
-                        },
-                        "response": {
-                            "$ref": "#/definitions/Response"
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "response"
-                    ]
-                }
-            ]
-        },
         "NotificationDeliveredAudit": {
             "description": "A notification delivered audit",
             "allOf": [
