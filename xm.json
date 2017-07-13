@@ -12369,7 +12369,22 @@
             "in": "query",
             "name": "auditType",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "enum": [
+                "EVENT_ANNOTATED",
+                "EVENT_COMPLETED",
+                "EVENT_CREATED",
+                "EVENT_RESUMED",
+                "EVENT_SUSPENDED",
+                "EVENT_TERMINATED",
+                "NOTIFICATION_DELAYED",
+                "NOTIFICATION_DELIVERED",
+                "NOTIFICATION_DISCARDED",
+                "NOTIFICATION_ESCALATED",
+                "NOTIFICATION_FAILED",
+                "NOTIFICATION_SUPPRESSED",
+                "RESPONSE_RECEIVED"
+            ]
         },
         "query-after": {
             "description": "After this time or sequenced item identifier (exclusive)",
