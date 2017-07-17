@@ -4960,8 +4960,8 @@
         },
         "/plans/{planId}/permitted": {
             "get": {
-                "summary": "Get permitted recipients",
-                "description": "Get permitted recipients",
+                "summary": "Get permitted entities",
+                "description": "Get permitted entities",
                 "operationId": "getPlanPermitted",
                 "parameters": [
                     {
@@ -4996,8 +4996,8 @@
                 ]
             },
             "put": {
-                "summary": "Replace permitted recipients",
-                "description": "Replace permitted recipients",
+                "summary": "Replace permitted entities",
+                "description": "Replace permitted entities",
                 "operationId": "putPlanPermitted",
                 "parameters": [
                     {
