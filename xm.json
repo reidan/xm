@@ -4981,7 +4981,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(Recipient)"
+                            "$ref": "#/definitions/Pagination(Permissible)"
                         }
                     },
                     "401": {
@@ -5009,10 +5009,10 @@
                         "name": "body",
                         "required": true,
                         "schema": {
-                            "description": "An array containing the permitted recipients",
+                            "description": "An array containing the permitted entities",
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/RecipientPointer"
+                                "$ref": "#/definitions/PermissiblePointer"
                             }
                         }
                     }
@@ -5021,7 +5021,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Pagination(Recipient)"
+                            "$ref": "#/definitions/Pagination(Permissible)"
                         }
                     },
                     "400": {
@@ -8956,25 +8956,55 @@
             ]
         },
         "Permissible": {
-            "description": "Permission",
+            "description": "Permissible entity (GROUP, PERSON, ROLE)",
             "properties": {
-                "type": {
+                "permissibleType": {
                     "type": "string",
                     "description": "Permissible entity type",
                     "enum": [
-                        "RECIPIENT",
+                        "GROUP",
+                        "PERSON",
                         "ROLE"
                     ]
                 },
-                "recipient": {
-                    "$ref": "#/definitions/RecipientReference"
+                "group": {
+                    "$ref": "#/definitions/GroupReference"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonReference"
                 },
                 "role": {
                     "$ref": "#/definitions/RoleReference"
                 }
             },
             "required": [
-                "type"
+                "permissibleType"
+            ]
+        },
+        "PermissiblePointer": {
+            "description": "Permissible entity (GROUP, PERSON, ROLE)",
+            "properties": {
+                "permissibleType": {
+                    "type": "string",
+                    "description": "Permissible entity type",
+                    "enum": [
+                        "GROUP",
+                        "PERSON",
+                        "ROLE"
+                    ]
+                },
+                "group": {
+                    "$ref": "#/definitions/GroupPointer"
+                },
+                "person": {
+                    "$ref": "#/definitions/PersonPointer"
+                },
+                "role": {
+                    "$ref": "#/definitions/RolePointer"
+                }
+            },
+            "required": [
+                "permissibleType"
             ]
         },
         "Permission": {
@@ -9070,7 +9100,7 @@
                     "$ref": "#/definitions/Pagination(Endpoint)"
                 },
                 "permitted": {
-                    "$ref": "#/definitions/Pagination(Recipient)"
+                    "$ref": "#/definitions/Pagination(Permissible)"
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
@@ -9133,7 +9163,7 @@
                 "permitted": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/RecipientPointer"
+                        "$ref": "#/definitions/PermissiblePointer"
                     }
                 }
             }
