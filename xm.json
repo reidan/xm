@@ -8444,9 +8444,6 @@
                 "plan": {
                     "$ref": "#/definitions/PlanReference"
                 },
-                "form": {
-                    "$ref": "#/definitions/FormReference"
-                },
                 "integration": {
                     "$ref": "#/definitions/IntegrationReference"
                 },
@@ -8474,9 +8471,6 @@
                 },
                 "plan": {
                     "$ref": "#/definitions/PlanPointer"
-                },
-                "form": {
-                    "$ref": "#/definitions/FormPointer"
                 },
                 "integration": {
                     "$ref": "#/definitions/IntegrationPointer"
