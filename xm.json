@@ -8110,9 +8110,6 @@
                 "script": {
                     "type": "string"
                 },
-                "filters": {
-                    "$ref": "#/definitions/Pagination(NotificationFilter)"
-                },
                 "integrationService": {
                     "description": "The integration service on which an ONPREMISE integration will execute",
                     "type": "string"
@@ -8439,16 +8436,10 @@
             ]
         },
         "NotificationFilter": {
-            "description": "A notification filter, applied to notifications matching the specified attributes",
+            "description": "A notification filter",
             "properties": {
                 "id": {
                     "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "PERSON_INTEGRATION_DEVICE_TYPE"
-                    ]
                 },
                 "plan": {
                     "$ref": "#/definitions/PlanReference"
@@ -8458,11 +8449,21 @@
                 },
                 "integration": {
                     "$ref": "#/definitions/IntegrationReference"
+                },
+                "filterType": {
+                    "type": "string"
+                },
+                "config": {
+                    "description": "Configuration properties that will be passed to filter constructor. Stored as JSON",
+                    "type": "object"
+                },
+                "active": {
+                    "type": "boolean"
                 }
             },
             "required": [
                 "id",
-                "type"
+                "active"
             ]
         },
         "NotificationFilterInput": {
@@ -8470,12 +8471,6 @@
             "properties": {
                 "id": {
                     "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "PERSON_INTEGRATION_DEVICE_TYPE"
-                    ]
                 },
                 "plan": {
                     "$ref": "#/definitions/PlanPointer"
@@ -8485,60 +8480,18 @@
                 },
                 "integration": {
                     "$ref": "#/definitions/IntegrationPointer"
-                }
-            },
-            "required": [
-                "type"
-            ]
-        },
-        "PersonIntegrationDeviceTypeNotificationFilter": {
-            "description": "Cap notifications to a person within a specified number of minutes",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/NotificationFilter"
                 },
-                {
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "enum": [
-                                "PERSON_INTEGRATION_DEVICE_TYPE"
-                            ]
-                        },
-                        "count": {
-                            "type": "integer",
-                            "description": "Count of notifications before suppression is activated"
-                        },
-                        "minutes": {
-                            "type": "integer",
-                            "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
-                        }
-                    },
-                    "required": [
-                        "type"
-                    ]
-                }
-            ]
-        },
-        "PersonIntegrationDeviceTypeNotificationFilterInput": {
-            "description": "Filter notifications to any person within a specified number of minutes",
-            "allOf": [
-                {
-                    "$ref": "#/definitions/NotificationFilterInput"
+                "filterType": {
+                    "type": "string"
                 },
-                {
-                    "properties": {
-                        "count": {
-                            "type": "integer",
-                            "description": "Count of notifications before suppression is activated"
-                        },
-                        "minutes": {
-                            "type": "integer",
-                            "description": "Rolling time window in minutes within which only count notifications will pass through the filter"
-                        }
-                    }
+                "config": {
+                    "description": "Configuration properties that will be passed to filter constructor. Stored as JSON",
+                    "type": "object"
+                },
+                "active": {
+                    "type": "boolean"
                 }
-            ]
+            }
         },
         "OnCall": {
             "properties": {
