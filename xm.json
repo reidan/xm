@@ -699,6 +699,24 @@
                         "type": "string"
                     },
                     {
+                        "description": "Sort results by",
+                        "in": "query",
+                        "name": "sortBy",
+                        "type": "string",
+                        "required": false,
+                        "enum": [
+                            "STATUS",
+                            "NAME",
+                            "HOST",
+                            "START_TIME",
+                            "ACTIVE_PARTICIPANT_COUNT",
+                            "DURATION"
+                        ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-sortOrder"
+                    },
+                    {
                         "$ref": "#/parameters/query-offset"
                     },
                     {
@@ -7464,12 +7482,12 @@
                     "type": "boolean"
                 },
                 "priority": {
+                    "type": "string",
                     "enum": [
                         "LOW",
                         "MEDIUM",
                         "HIGH"
-                    ],
-                    "type": "string"
+                    ]
                 },
                 "properties": {
                     "description": "Map of property names and values",
@@ -7577,12 +7595,12 @@
                     "type": "boolean"
                 },
                 "priority": {
+                    "type": "string",
                     "enum": [
                         "LOW",
                         "MEDIUM",
                         "HIGH"
-                    ],
-                    "type": "string"
+                    ]
                 },
                 "properties": {
                     "description": "Map of property names and values",
