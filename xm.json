@@ -692,9 +692,30 @@
                         ]
                     },
                     {
-                        "description": "Case insensitive substring match within name, description, number, host name. Search terms may be separated by spaces, results are returned that match ANY of the search terms",
+                        "description": "Filter by case insensitive substring match within name",
                         "in": "query",
-                        "name": "search",
+                        "name": "name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Filter by case insensitive substring match within description",
+                        "in": "query",
+                        "name": "description",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Filter by case insensitive substring match within bridge number",
+                        "in": "query",
+                        "name": "bridgeId",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Filter by case insensitive substring match within host",
+                        "in": "query",
+                        "name": "host",
                         "required": false,
                         "type": "string"
                     },
