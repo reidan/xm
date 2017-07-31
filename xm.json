@@ -10113,18 +10113,28 @@
                 "status": {
                     "type": "string",
                     "enum": [
-                        "DELIVERED",
-                        "FAILED",
-                        "BOUNCED",
-                        "QUERY_FAILED"
+                        "CONNECTION_FAILURE",
+                        "PROXY_QUEUED",
+                        "CNS_PROVIDER_DELIVERED",
+                        "DEVICE_ATTEMPT_FAILURE",
+                        "PROVIDER_QUEUED",
+                        "PROVIDER_TIMEOUT",
+                        "VOICEMAIL_ATTEMPT_RETRY",
+                        "PROVIDER_DELIVERED",
+                        "DEVICE_DELIVERED",
+                        "DEVICE_READ",
+                        "PHONE_DELIVERY",
+                        "SMS_BOUNCED",
+                        "QUERY_FAILURE",
+                        "DELIVERY_FAILURE"
                     ]
                 },
                 "at": {
                     "type": "string",
                     "format": "date-time"
                 },
-                "detail": {
-                    "type": "string"
+                "properties": {
+                    "type": "object"
                 },
                 "errorCode": {
                     "type": "string"
@@ -10149,18 +10159,28 @@
                 "status": {
                     "type": "string",
                     "enum": [
-                        "DELIVERED",
-                        "FAILED",
-                        "BOUNCED",
-                        "QUERY_FAILED"
+                        "CONNECTION_FAILURE",
+                        "PROXY_QUEUED",
+                        "CNS_PROVIDER_DELIVERED",
+                        "DEVICE_ATTEMPT_FAILURE",
+                        "PROVIDER_QUEUED",
+                        "PROVIDER_TIMEOUT",
+                        "VOICEMAIL_ATTEMPT_RETRY",
+                        "PROVIDER_DELIVERED",
+                        "DEVICE_DELIVERED",
+                        "DEVICE_READ",
+                        "PHONE_DELIVERY",
+                        "SMS_BOUNCED",
+                        "QUERY_FAILURE",
+                        "DELIVERY_FAILURE"
                     ]
                 },
                 "at": {
                     "type": "string",
                     "format": "date-time"
                 },
-                "detail": {
-                    "type": "string"
+                "properties": {
+                    "type": "object"
                 },
                 "errorCode": {
                     "type": "string"
