@@ -1336,18 +1336,6 @@
                         "type": "string"
                     },
                     {
-                        "$ref": "#/parameters/query-from"
-                    },
-                    {
-                        "$ref": "#/parameters/query-to"
-                    },
-                    {
-                        "$ref": "#/parameters/query-before"
-                    },
-                    {
-                        "$ref": "#/parameters/query-after"
-                    },
-                    {
                         "description": "Event status",
                         "enum": [
                             "ACTIVE",
@@ -1358,6 +1346,31 @@
                         "name": "status",
                         "required": false,
                         "type": "string"
+                    },
+                    {
+                        "description": "Sort results by",
+                        "in": "query",
+                        "name": "sortBy",
+                        "type": "string",
+                        "required": false,
+                        "enum": [
+                            "STATUS",
+                            "EVENT_ID",
+                            "SUBMITTER",
+                            "START_TIME"
+                        ]
+                    },
+                    {
+                        "$ref": "#/parameters/query-from"
+                    },
+                    {
+                        "$ref": "#/parameters/query-to"
+                    },
+                    {
+                        "$ref": "#/parameters/query-before"
+                    },
+                    {
+                        "$ref": "#/parameters/query-after"
                     }
                 ],
                 "responses": {
