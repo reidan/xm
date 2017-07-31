@@ -8776,6 +8776,9 @@
                                 "FAILED"
                             ]
                         },
+                        "supervisors": {
+                            "$ref": "#/definitions/Pagination(Person)"
+                        },
                         "notifications": {
                             "$ref": "#/definitions/Pagination(Notification)"
                         },
