@@ -10195,12 +10195,6 @@
                 },
                 "properties": {
                     "type": "object"
-                },
-                "errorCode": {
-                    "type": "string"
-                },
-                "errorMessage": {
-                    "type": "string"
                 }
             },
             "required": [
@@ -10241,12 +10235,6 @@
                 },
                 "properties": {
                     "type": "object"
-                },
-                "errorCode": {
-                    "type": "string"
-                },
-                "errorMessage": {
-                    "type": "string"
                 }
             },
             "required": [
