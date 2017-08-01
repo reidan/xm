@@ -9756,6 +9756,10 @@
                             "type": "string"
                         }
                     }
+                },
+                "trustSelfSignedCertificates": {
+                    "type": "boolean",
+                    "default": false
                 }
             },
             "required": [
@@ -9815,6 +9819,10 @@
                             "type": "string"
                         }
                     }
+                },
+                "trustSelfSignedCertificates": {
+                    "type": "boolean",
+                    "default": false
                 }
             }
         },
