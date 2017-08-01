@@ -729,9 +729,7 @@
                             "STATUS",
                             "NAME",
                             "HOST",
-                            "START_TIME",
-                            "ACTIVE_PARTICIPANT_COUNT",
-                            "DURATION"
+                            "START_TIME"
                         ]
                     },
                     {
