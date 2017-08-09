@@ -5719,7 +5719,7 @@
         },
         "Audit": {
             "description": "An audit",
-            "discriminator": "type",
+            "discriminator": "auditType",
             "properties": {
                 "id": {
                     "description": "A unique identifier (UUID) for this entity",
@@ -5730,7 +5730,7 @@
                     "type": "string",
                     "format": "date-time"
                 },
-                "type": {
+                "auditType": {
                     "description": "Audit types",
                     "type": "string",
                     "enum": [
@@ -5756,7 +5756,7 @@
             "required": [
                 "id",
                 "at",
-                "type"
+                "auditType"
             ]
         },
         "EventAnnotatedAudit": {
@@ -5767,7 +5767,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "EVENT_ANNOTATED"
@@ -5778,7 +5778,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "annotation"
                     ]
                 }
@@ -5792,7 +5792,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "EVENT_COMPLETED"
@@ -5803,7 +5803,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "event"
                     ]
                 }
@@ -5817,7 +5817,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "EVENT_CREATED"
@@ -5828,7 +5828,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "event"
                     ]
                 }
@@ -5842,7 +5842,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "EVENT_RESUMED"
@@ -5853,7 +5853,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "event"
                     ]
                 }
@@ -5867,7 +5867,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "EVENT_SUSPENDED"
@@ -5878,7 +5878,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "event"
                     ]
                 }
@@ -5892,7 +5892,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "EVENT_TERMINATED"
@@ -5903,7 +5903,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "event"
                     ]
                 }
@@ -5917,7 +5917,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "RESPONSE_RECEIVED"
@@ -5928,7 +5928,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "response"
                     ]
                 }
@@ -5942,7 +5942,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "NOTIFICATION_DELIVERED"
@@ -5953,7 +5953,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "notification"
                     ]
                 }
@@ -5967,7 +5967,7 @@
                 },
                 {
                     "properties": {
-                        "type": {
+                        "auditType": {
                             "type": "string",
                             "enum": [
                                 "NOTIFICATION_SUPPRESSED"
@@ -5978,7 +5978,7 @@
                         }
                     },
                     "required": [
-                        "type",
+                        "auditType",
                         "notification"
                     ]
                 }
@@ -10027,6 +10027,66 @@
             },
             "required": [
                 "self"
+            ]
+        },
+        "Revision": {
+            "description": "A revision",
+            "discriminator": "revisionType",
+            "properties": {
+                "id": {
+                    "description": "A unique identifier (v1 UUID) for this entity",
+                    "type": "string",
+                    "format": "uuid"
+                },
+                "revisionType": {
+                    "description": "Revision types",
+                    "type": "string",
+                    "enum": [
+                        "EVENT",
+                        "PERSON",
+                        "DEVICE",
+                        "GROUP",
+                        "SITE"
+                    ]
+                },
+                "at": {
+                    "description": "Time this revision happened (UTC)",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "by": {
+                    "$ref": "#/definitions/PersonReference"
+                }
+            },
+            "required": [
+                "id",
+                "at",
+                "type"
+            ]
+        },
+        "EventRevision": {
+            "description": "An event revision",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Revision"
+                },
+                {
+                    "properties": {
+                        "revisionType": {
+                            "type": "string",
+                            "enum": [
+                                "EVENT"
+                            ]
+                        },
+                        "event": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "required": [
+                        "revisionType",
+                        "event"
+                    ]
+                }
             ]
         },
         "RefreshToken": {
