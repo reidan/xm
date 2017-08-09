@@ -7570,9 +7570,9 @@
                     }
                 },
                 "revision": {
-                    "description": "Integer that increases to indicate revision of this entity, unlikely to be sequential as it is generated from a table specific sequence",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "v1 UUID that increases to indicate revision of this entity",
+                    "type": "string",
+                    "format": "uuid"
                 }
             },
             "required": [
@@ -9908,9 +9908,9 @@
                     "minimum": 1
                 },
                 "revision": {
-                    "description": "Integer that increases to indicate revision of this entity, unlikely to be sequential as it is generated from a table specific sequence",
-                    "type": "integer",
-                    "format": "int64"
+                    "description": "v1 UUID that increases to indicate revision of this entity",
+                    "type": "string",
+                    "format": "uuid"
                 }
             },
             "required": [
@@ -10414,7 +10414,9 @@
                     "type": "string"
                 },
                 "revision": {
-                    "type": "integer"
+                    "description": "v1 UUID that increases to indicate revision of this entity",
+                    "type": "string",
+                    "format": "uuid"
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
