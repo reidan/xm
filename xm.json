@@ -10928,7 +10928,21 @@
 							]
 						},
 						"end": {
-							"$ref": "#/definitions/ShiftRecurrenceEnd"
+							"description": "Recurrence end details for a shift",
+							"properties": {
+								"endBy": {
+									"type": "string",
+									"enum": [
+										"NEVER",
+										"DATE"
+									]
+								},
+								"date": {
+									"description": "End at this date and time (UTC)",
+									"format": "date-time",
+									"type": "string"
+								}
+							}
 						}
 					}
 				}
