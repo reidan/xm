@@ -10479,10 +10479,24 @@
                 "name": {
                     "type": "string"
                 },
+                "description": {
+                    "type": "string"
+                },
                 "revision": {
                     "description": "v1 UUID that increases to indicate revision of this entity",
                     "type": "string",
                     "format": "uuid"
+                },
+                "start": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "end": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "recurrence": {
+                    "$ref": "#/definitions/ShiftRecurrence"
                 },
                 "links": {
                     "$ref": "#/definitions/SelfLink"
@@ -10504,6 +10518,20 @@
                 },
                 "name": {
                     "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "start": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "end": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "recurrence": {
+                    "$ref": "#/definitions/ShiftRecurrence"
                 }
             }
         },
@@ -10541,6 +10569,358 @@
                     "type": "string"
                 }
             }
+        },
+        "ShiftRecurrence": {
+            "description": "Recurrence details for a shift",
+            "discriminator": "frequency",
+            "properties": {
+                "frequency": {
+                    "type": "string",
+                    "enum": [
+                        "ONCE",
+                        "DAILY",
+                        "WEEKLY",
+                        "EVERY_WEEKDAY",
+                        "EVERY_WEEKEND_DAY",
+                        "MONTHLY",
+                        "YEARLY",
+                        "HOLIDAY"
+                    ]
+                }
+            }
+        },
+        "ShiftRecurrenceEnd": {
+            "description": "Recurrence end details for a shift",
+            "properties": {
+                "endBy": {
+                    "type": "string",
+                    "enum": [
+                        "NEVER",
+                        "DATE",
+                        "REPETITIONS"
+                    ]
+                },
+                "date": {
+                    "description": "End at this date and time (UTC)",
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "repetitions": {
+                    "description": "End after this many repetitions",
+                    "type": "integer"
+                }
+            }
+        },
+        "OnceShiftRecurrence": {
+            "description": "Recurrence details for a one time shift",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "ONCE"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "DailyShiftRecurrence": {
+            "description": "Recurrence details for a daily shift",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "DAILY"
+                            ]
+                        },
+                        "repeatEvery": {
+                            "description": "Repeat every X days",
+                            "type": "integer"
+                        },
+                        "end": {
+                            "$ref": "#/definitions/ShiftRecurrenceEnd"
+                        }
+                    }
+                }
+            ]
+        },
+        "WeeklyShiftRecurrence": {
+            "description": "Recurrence details for a weekly shift",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "WEEKLY"
+                            ]
+                        },
+                        "repeatEvery": {
+                            "description": "Repeat every X weeks",
+                            "type": "integer"
+                        },
+                        "onDays": {
+                            "description": "Repeat on these days of the week",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "SU", "MO", "TU", "WE", "TH", "FR", "SA"
+                                ]
+                            }
+                        },
+                        "end": {
+                            "$ref": "#/definitions/ShiftRecurrenceEnd"
+                        }
+                    }
+                }
+            ]
+        },
+        "EveryWeekdayShiftRecurrence": {
+            "description": "Recurrence details for an every weekday shift",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "EVERY_WEEKDAY"
+                            ]
+                        },
+                        "end": {
+                            "$ref": "#/definitions/ShiftRecurrenceEnd"
+                        }
+                    }
+                }
+            ]
+        },
+        "EveryWeekendDayShiftRecurrence": {
+            "description": "Recurrence details for an every weekend day shift",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "EVERY_WEEKEND_DAY"
+                            ]
+                        },
+                        "end": {
+                            "$ref": "#/definitions/ShiftRecurrenceEnd"
+                        }
+                    }
+                }
+            ]
+        },
+        "MonthlyShiftRecurrence": {
+            "description": "Recurrence details for a monthly shift",
+            "discriminator": "on",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "MONTHLY"
+                            ]
+                        },
+                        "on": {
+                            "description": "Repeat on date of month or day of week",
+                            "type": "string",
+                            "enum": [
+                                "DATE_OF_MONTH",
+                                "DAY_OF_WEEK"
+                            ]
+                        },
+                        "months": {
+                            "description": "Repeat on these months",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "JAN",
+                                    "FEB",
+                                    "MAR",
+                                    "APR",
+                                    "MAY",
+                                    "JUN",
+                                    "JUL",
+                                    "AUG",
+                                    "SEP",
+                                    "OCT",
+                                    "NOV",
+                                    "DEC"
+                                ]
+                            }
+                        },
+                        "end": {
+                            "$ref": "#/definitions/ShiftRecurrenceEnd"
+                        }
+                    }
+                }
+            ]
+        },
+        "MonthlyDateOfMonthShiftRecurrence": {
+            "description": "Recurrence details for a monthly shift on a specific date of the month",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/MonthlyShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "on": {
+                            "description": "Repeat on date of month",
+                            "type": "string",
+                            "enum": [
+                                "DATE_OF_MONTH"
+                            ]
+                        },
+                        "dateOfMonth": {
+                            "description": "Repeat on this day of month",
+                            "type": "string",
+                            "enum": [
+                                "1",
+                                "2",
+                                "3",
+                                "4",
+                                "5",
+                                "6",
+                                "7",
+                                "8",
+                                "9",
+                                "10",
+                                "11",
+                                "12",
+                                "13",
+                                "14",
+                                "15",
+                                "16",
+                                "17",
+                                "18",
+                                "19",
+                                "20",
+                                "21",
+                                "22",
+                                "23",
+                                "24",
+                                "25",
+                                "26",
+                                "27",
+                                "28",
+                                "29",
+                                "30",
+                                "31",
+                                "LAST"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "MonthlyDayOfWeekShiftRecurrence": {
+            "description": "Recurrence details for a monthly shift on a specific day of the week",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/MonthlyShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "on": {
+                            "description": "Repeat on day of week",
+                            "type": "string",
+                            "enum": [
+                                "DAY_OF_WEEK"
+                            ]
+                        },
+                        "dayOfWeekClassifier": {
+                            "description": "Classifier for day of the week within a month",
+                            "type": "string",
+                            "enum": [
+                                "FIRST", "SECOND", "THIRD", "FOURTH", "LAST"
+                            ]
+                        },
+                        "dayOfWeek": {
+                            "description": "Day of the week",
+                            "type": "string",
+                            "enum": [
+                                "SU", "MO", "TU", "WE", "TH", "FR", "SA"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "YearlyShiftRecurrence": {
+            "description": "Recurrence details for a one time shift",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "YEARLY"
+                            ]
+                        },
+                        "end": {
+                            "$ref": "#/definitions/ShiftRecurrenceEnd"
+                        }
+                    }
+                }
+            ]
+        },
+        "HolidayShiftRecurrence": {
+            "description": "Recurrence details for a holiday shift",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/ShiftRecurrence"
+                },
+                {
+                    "properties": {
+                        "frequency": {
+                            "description": "Repeat at this frequency",
+                            "type": "string",
+                            "enum": [
+                                "HOLIDAY"
+                            ]
+                        },
+                        "end": {
+                            "$ref": "#/definitions/ShiftRecurrenceEnd"
+                        }
+                    }
+                }
+            ]
         },
         "ShiftMember": {
             "properties": {
