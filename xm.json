@@ -10913,7 +10913,7 @@
 			]
 		},
 		"HolidayShiftRecurrence": {
-			"description": "Recurrence details for a holiday shift",
+			"description": "Recurrence details for a holiday",
 			"allOf": [
 				{
 					"$ref": "#/definitions/ShiftRecurrence"
