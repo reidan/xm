@@ -7580,11 +7580,6 @@
 							"type": "integer"
 						}
 					}
-				},
-				"revision": {
-					"description": "v1 UUID that increases to indicate revision of this entity",
-					"type": "string",
-					"format": "uuid"
 				}
 			},
 			"required": [
@@ -9918,11 +9913,6 @@
 					"description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
 					"type": "integer",
 					"minimum": 1
-				},
-				"revision": {
-					"description": "v1 UUID that increases to indicate revision of this entity",
-					"type": "string",
-					"format": "uuid"
 				}
 			},
 			"required": [
@@ -10050,6 +10040,11 @@
 					"type": "string",
 					"format": "uuid"
 				},
+				"at": {
+					"description": "Time this revision happened (UTC)",
+					"type": "string",
+					"format": "date-time"
+				},
 				"revisionType": {
 					"description": "Revision types",
 					"type": "string",
@@ -10061,10 +10056,10 @@
 						"SITE"
 					]
 				},
-				"at": {
-					"description": "Time this revision happened (UTC)",
+				"revision": {
+					"description": "v1 UUID that increases to indicate revision of this entity",
 					"type": "string",
-					"format": "date-time"
+					"format": "uuid"
 				},
 				"by": {
 					"$ref": "#/definitions/PersonReference"
@@ -10073,7 +10068,7 @@
 			"required": [
 				"id",
 				"at",
-				"type"
+				"revisionType"
 			]
 		},
 		"EventRevision": {
@@ -10487,11 +10482,6 @@
 				},
 				"description": {
 					"type": "string"
-				},
-				"revision": {
-					"description": "v1 UUID that increases to indicate revision of this entity",
-					"type": "string",
-					"format": "uuid"
 				},
 				"start": {
 					"format": "date-time",
