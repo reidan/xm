@@ -6615,16 +6615,19 @@
 		},
 		"DevicePointer": {
 			"description": "A pointer to a device",
-			"properties": {
-				"id": {
-					"description": "The identifier of the resource",
-					"type": "string"
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPointer"
 				},
-				"targetName": {
-					"description": "The target name of the resource",
-					"type": "string"
+				{
+					"properties": {
+						"targetName": {
+							"description": "The target name of the resource",
+							"type": "string"
+						}
+					}
 				}
-			}
+			]
 		},
 		"DeviceReference": {
 			"allOf": [
@@ -8068,16 +8071,19 @@
 			]
 		},
 		"GroupPointer": {
-			"properties": {
-				"id": {
-					"description": "The identifier of the resource",
-					"type": "string"
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPointer"
 				},
-				"targetName": {
-					"description": "The target name of the resource",
-					"type": "string"
+				{
+					"properties": {
+						"targetName": {
+							"description": "The target name of the resource",
+							"type": "string"
+						}
+					}
 				}
-			}
+			]
 		},
 		"Hierarchy": {
 			"description": "Hierarchy",
@@ -8905,20 +8911,23 @@
 		},
 		"PersonPointer": {
 			"description": "A reference to a person resource",
-			"properties": {
-				"id": {
-					"description": "The UUID or targetName of the resource",
-					"type": "string"
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPointer"
 				},
-				"targetName": {
-					"description": "The targetName of the resource",
-					"type": "string"
-				},
-				"key": {
-					"description": "API key used to identify a person",
-					"type": "string"
+				{
+					"properties": {
+						"targetName": {
+							"description": "The targetName of the resource",
+							"type": "string"
+						},
+						"key": {
+							"description": "API key used to identify a person",
+							"type": "string"
+						}
+					}
 				}
-			}
+			]
 		},
 		"PersonReference": {
 			"allOf": [
@@ -9977,18 +9986,17 @@
 					"type": "string"
 				},
 				"recipientType": {
+					"type": "string",
 					"enum": [
 						"GROUP",
 						"PERSON",
 						"DEVICE",
 						"SITE"
-					],
-					"type": "string"
+					]
 				}
 			},
 			"required": [
-				"id",
-				"recipientType"
+				"id"
 			]
 		},
 		"RecipientReference": {
@@ -11129,12 +11137,11 @@
 		},
 		"SitePointer": {
 			"description": "Site a group belongs to",
-			"properties": {
-				"id": {
-					"description": "The identifier of the resource",
-					"type": "string"
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientPointer"
 				}
-			}
+			]
 		},
 		"SiteReference": {
 			"properties": {
