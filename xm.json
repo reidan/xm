@@ -7492,6 +7492,10 @@
 					"description": "A legacy identifier (numeric) that represents this resource",
 					"type": "string"
 				},
+				"name": {
+					"description": "Presentation name derived from various data sources depending on the type of the event",
+					"type": "string"
+				},
 				"bypassPhoneIntro": {
 					"type": "boolean"
 				},
