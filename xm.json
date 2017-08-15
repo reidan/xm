@@ -7492,6 +7492,14 @@
 					"description": "A legacy identifier (numeric) that represents this resource",
 					"type": "string"
 				},
+				"eventType": {
+					"description": "User generated or System generated event",
+					"type": "string",
+					"enum": [
+						"USER",
+						"SYSTEM"
+					]
+				},
 				"name": {
 					"description": "Presentation name derived from various data sources depending on the type of the event",
 					"type": "string"
