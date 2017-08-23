@@ -1359,6 +1359,9 @@
 						]
 					},
 					{
+						"$ref": "#/parameters/query-sortOrder"
+					},
+					{
 						"$ref": "#/parameters/query-from"
 					},
 					{
