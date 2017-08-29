@@ -10227,6 +10227,9 @@
 				"contribution": {
 					"type": "string"
 				},
+				"redirectURL": {
+					"type": "string"
+				},
 				"joinConference": {
 					"type": "boolean"
 				}
@@ -10263,6 +10266,9 @@
 					"type": "string"
 				},
 				"contribution": {
+					"type": "string"
+				},
+				"redirectURL": {
 					"type": "string"
 				},
 				"joinConference": {
