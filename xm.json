@@ -7975,6 +7975,10 @@
 						"useDefaultDevices": {
 							"type": "boolean"
 						},
+						"timezone": {
+							"description": "The time zone used for calculation of day. Example: US/Pacific",
+							"type": "string"
+						},
 						"site": {
 							"$ref": "#/definitions/SiteReference"
 						},
@@ -10513,15 +10517,21 @@
 					"type": "string"
 				},
 				"start": {
+					"description": "UTC Timestamp",
 					"format": "date-time",
 					"type": "string"
 				},
 				"end": {
+					"description": "UTC Timestamp",
 					"format": "date-time",
 					"type": "string"
 				},
 				"recurrence": {
 					"$ref": "#/definitions/ShiftRecurrence"
+				},
+				"timezone": {
+					"description": "The time zone used for calculation of day. Example: US/Pacific",
+					"type": "string"
 				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
