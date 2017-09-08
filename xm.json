@@ -7766,19 +7766,13 @@
 		"EventAnnotationInput": {
 			"description": "An event annotation",
 			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"event": {
-					"$ref": "#/definitions/EventPointer"
-				},
-				"author": {
-					"$ref": "#/definitions/PersonPointer"
-				},
 				"comment": {
 					"type": "string"
 				}
-			}
+			},
+			"required": [
+				"comment"
+			]
 		},
 		"FeatureToggle": {
 			"description": "Feature toggle",
