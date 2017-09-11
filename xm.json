@@ -8713,6 +8713,11 @@
 					"type": "integer",
 					"format": "int32",
 					"default": 30
+				},
+				"partition": {
+					"type": "integer",
+					"format": "int32",
+					"default": 0
 				}
 			}
 		},
@@ -8770,6 +8775,12 @@
 					"description": "Lockout reset in minutes",
 					"type": "integer",
 					"format": "int32"
+				},
+				"partition": {
+					"type": "integer",
+					"format": "int32",
+					"default": 0,
+					"minimum": 0
 				}
 			}
 		},
