@@ -10305,7 +10305,7 @@
 				"contribution": {
 					"type": "string"
 				},
-				"redirectURL": {
+				"redirectUrl": {
 					"type": "string"
 				},
 				"joinConference": {
@@ -10346,7 +10346,7 @@
 				"contribution": {
 					"type": "string"
 				},
-				"redirectURL": {
+				"redirectUrl": {
 					"type": "string"
 				},
 				"joinConference": {
