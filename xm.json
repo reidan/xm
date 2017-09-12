@@ -6391,7 +6391,13 @@
 			]
 		},
 		"DeviceName": {
+			"description": "Customer defined Device categories e.g. Work Email",
 			"properties": {
+				"id": {
+					"description": "A unique identifier (UUID) for this entity",
+					"type": "string",
+					"format": "uuid"
+				},
 				"deviceType": {
 					"description": "The type of the device",
 					"type": "string",
@@ -6418,6 +6424,77 @@
 					"type": "string"
 				},
 				"domains": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"deviceType",
+				"name",
+				"description"
+			]
+		},
+		"DeviceNamePointer": {
+			"properties": {
+				"id": {
+					"description": "A unique identifier (UUID) for this entity",
+					"type": "string",
+					"format": "uuid"
+				},
+				"deviceType": {
+					"description": "The type of the device",
+					"type": "string",
+					"enum": [
+						"ANDROID_PUSH",
+						"APPLE_PUSH",
+						"BLACKBERRY_PUSH",
+						"BROWSER",
+						"EMAIL",
+						"FAX",
+						"GENERIC",
+						"IM",
+						"NUMERIC_PAGER",
+						"TEXT_PAGER",
+						"TEXT_PHONE",
+						"VOICE",
+						"VOICE_IVR"
+					]
+				},
+				"name": {
+					"type": "string"
+				}
+			}
+		},
+		"DeviceNameReference": {
+			"description": "Customer defined Device categories e.g. Work Email",
+			"properties": {
+				"id": {
+					"description": "A unique identifier (UUID) for this entity",
+					"type": "string",
+					"format": "uuid"
+				},
+				"deviceType": {
+					"description": "The type of the device",
+					"type": "string",
+					"enum": [
+						"ANDROID_PUSH",
+						"APPLE_PUSH",
+						"BLACKBERRY_PUSH",
+						"BROWSER",
+						"EMAIL",
+						"FAX",
+						"GENERIC",
+						"IM",
+						"NUMERIC_PAGER",
+						"TEXT_PAGER",
+						"TEXT_PHONE",
+						"VOICE",
+						"VOICE_IVR"
+					]
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
 					"type": "string"
 				}
 			},
@@ -7465,25 +7542,6 @@
 				"excludeHolidays"
 			]
 		},
-		"DeviceType": {
-			"description": "The type of the device",
-			"type": "string",
-			"enum": [
-				"ANDROID_PUSH",
-				"APPLE_PUSH",
-				"BLACKBERRY_PUSH",
-				"BROWSER",
-				"EMAIL",
-				"FAX",
-				"GENERIC",
-				"IM",
-				"NUMERIC_PAGER",
-				"TEXT_PAGER",
-				"TEXT_PHONE",
-				"VOICE",
-				"VOICE_IVR"
-			]
-		},
 		"Event": {
 			"description": "Returns an event in the xMatters system",
 			"properties": {
@@ -7575,12 +7633,23 @@
 					"type": "object"
 				},
 				"status": {
+					"type": "string",
 					"enum": [
 						"ACTIVE",
 						"SUSPENDED",
 						"TERMINATED"
-					],
-					"type": "string"
+					]
+				},
+				"targetAllDevices": {
+					"description": "Target all device types",
+					"type": "boolean"
+				},
+				"targetDeviceNames": {
+					"description": "Target specific device categories",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/DeviceName"
+					}
 				},
 				"submitter": {
 					"$ref": "#/definitions/PersonReference"
@@ -7688,12 +7757,23 @@
 					"type": "object"
 				},
 				"status": {
+					"type": "string",
 					"enum": [
 						"ACTIVE",
 						"SUSPENDED",
 						"TERMINATED"
-					],
-					"type": "string"
+					]
+				},
+				"targetAllDevices": {
+					"description": "Target all device types",
+					"type": "boolean"
+				},
+				"targetDeviceNames": {
+					"description": "Target specific device names",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/DeviceNamePointer"
+					}
 				},
 				"voicemailOptions": {
 					"description": "Voicemail Options",
@@ -11494,6 +11574,7 @@
 				},
 				"data": {
 					"description": "An array that contains this page of resources",
+					"type": "array",
 					"items": {
 						"description": "The type of the device",
 						"type": "string",
@@ -11512,8 +11593,7 @@
 							"VOICE",
 							"VOICE_IVR"
 						]
-					},
-					"type": "array"
+					}
 				},
 				"links": {
 					"$ref": "#/definitions/PaginationLinks"
