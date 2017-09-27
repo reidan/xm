@@ -7572,8 +7572,6 @@
 						"SUPERVISOR_RESET",
 						"TEMP_REPLACEMENT",
 						"TEMP_REPLACEMENT_SUP",
-						"TEMP_REPLACE_V2",
-						"TEMP_REPLACE_SUP_V2",
 						"SYSTEM_MESSAGE"
 					]
 				},
