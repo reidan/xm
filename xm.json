@@ -7543,7 +7543,7 @@
 			]
 		},
 		"Event": {
-			"description": "Returns an event in the xMatters system",
+			"description": "An event in the xMatters system",
 			"properties": {
 				"id": {
 					"description": "An identifier (UUID) that represents this resource",
