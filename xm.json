@@ -7561,6 +7561,22 @@
 						"SYSTEM"
 					]
 				},
+				"systemEventType": {
+					"description": "System event type",
+					"type": "string",
+					"enum": [
+						"DEVICE_VALIDATION",
+						"FORGOT_MY_PASSWORD",
+						"EPIC_NOTIFICATION",
+						"ON_CALL_START_SHIFT",
+						"SUPERVISOR_RESET",
+						"TEMP_REPLACEMENT",
+						"TEMP_REPLACEMENT_SUP",
+						"TEMP_REPLACE_V2",
+						"TEMP_REPLACE_SUP_V2",
+						"SYSTEM_MESSAGE"
+					]
+				},
 				"name": {
 					"description": "Presentation name derived from various data sources depending on the type of the event",
 					"type": "string"
