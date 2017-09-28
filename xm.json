@@ -1375,6 +1375,13 @@
 					},
 					{
 						"$ref": "#/parameters/query-at"
+					},
+					{
+						"description": "Domain entities to embed in the response (e.g. form,integration,recipients,responseOptions,submitter,annotations)",
+						"in": "query",
+						"name": "embed",
+						"required": false,
+						"type": "string"
 					}
 				],
 				"responses": {
@@ -1449,10 +1456,14 @@
 						"$ref": "#/parameters/path-eventId"
 					},
 					{
-						"$ref": "#/parameters/query-embed"
+						"$ref": "#/parameters/query-at"
 					},
 					{
-						"$ref": "#/parameters/query-at"
+						"description": "Domain entities to embed in the response (e.g. form,integration,recipients,responseOptions,submitter,annotations)",
+						"in": "query",
+						"name": "embed",
+						"required": false,
+						"type": "string"
 					}
 				],
 				"responses": {
@@ -13185,7 +13196,7 @@
 			"type": "string"
 		},
 		"query-embed": {
-			"description": "Comma separated list of linked domain entities to embed in the response",
+			"description": "List of linked domain entities to embed in the response",
 			"in": "query",
 			"name": "embed",
 			"required": false,
