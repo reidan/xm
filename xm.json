@@ -7676,6 +7676,10 @@
 						"$ref": "#/definitions/DeviceName"
 					}
 				},
+				"floodControl": {
+					"type": "boolean",
+					"description": "True if filtering and suppression was active"
+				},
 				"submitter": {
 					"$ref": "#/definitions/PersonReference"
 				},
