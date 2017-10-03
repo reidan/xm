@@ -7697,6 +7697,9 @@
 						}
 					}
 				},
+				"messages": {
+					"$ref": "#/definitions/Pagination(Message)"
+				},
 				"annotations": {
 					"$ref": "#/definitions/Pagination(EventAnnotation)"
 				}
@@ -7970,8 +7973,8 @@
 				"recipients": {
 					"$ref": "#/definitions/Pagination(Recipient)"
 				},
-				"messageTemplates": {
-					"$ref": "#/definitions/Pagination(MessageTemplate)"
+				"messages": {
+					"$ref": "#/definitions/Pagination(Message)"
 				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
@@ -8543,8 +8546,8 @@
 				}
 			}
 		},
-		"MessageTemplate": {
-			"description": "A message template",
+		"Message": {
+			"description": "A message",
 			"discriminator": "messageType",
 			"properties": {
 				"id": {
@@ -8563,8 +8566,33 @@
 				"language": {
 					"type": "string",
 					"enum": [
+						"ar",
+						"da",
+						"de",
+						"el",
 						"en",
-						"fr"
+						"en_GB",
+						"es",
+						"fi",
+						"fr",
+						"hi",
+						"is",
+						"it",
+						"iw",
+						"ja",
+						"ko",
+						"nl",
+						"no",
+						"pl",
+						"pt",
+						"pt_BR",
+						"ru",
+						"sk",
+						"sv",
+						"th",
+						"vi",
+						"zh_CN",
+						"zh_HK"
 					]
 				}
 			},
@@ -8572,11 +8600,11 @@
 				"id"
 			]
 		},
-		"SubjectAndBodyMessageTemplate": {
-			"description": "A subject and body message template",
+		"SubjectAndBodyMessage": {
+			"description": "A subject and body message",
 			"allOf": [
 				{
-					"$ref": "#/definitions/MessageTemplate"
+					"$ref": "#/definitions/Message"
 				},
 				{
 					"properties": {
@@ -8596,11 +8624,11 @@
 				}
 			]
 		},
-		"TextMessageTemplate": {
-			"description": "A text message template",
+		"TextMessage": {
+			"description": "A text message",
 			"allOf": [
 				{
-					"$ref": "#/definitions/MessageTemplate"
+					"$ref": "#/definitions/Message"
 				},
 				{
 					"properties": {
@@ -8646,6 +8674,9 @@
 						"RESPONDED",
 						"FAILED"
 					]
+				},
+				"message": {
+					"$ref": "#/definitions/Message"
 				},
 				"responses": {
 					"$ref": "#/definitions/Pagination(Response)"
@@ -12821,7 +12852,7 @@
 				"links"
 			]
 		},
-		"Pagination(MessageTemplate)": {
+		"Pagination(Message)": {
 			"properties": {
 				"count": {
 					"description": "The number of items in this page of results (the number of items in the data array)",
@@ -12831,7 +12862,7 @@
 				"data": {
 					"description": "An array that contains this page of resources",
 					"items": {
-						"$ref": "#/definitions/MessageTemplate"
+						"$ref": "#/definitions/Message"
 					},
 					"type": "array"
 				},
