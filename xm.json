@@ -5383,19 +5383,6 @@
 		}
 	},
 	"definitions": {
-		"i18n": {
-			"properties": {
-				"en": {
-					"type": "string"
-				},
-				"fr": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"en"
-			]
-		},
 		"AccessToken": {
 			"description": "Access token response",
 			"properties": {
@@ -8558,29 +8545,26 @@
 		},
 		"MessageTemplate": {
 			"description": "A message template",
-			"discriminator": "deviceType",
+			"discriminator": "messageType",
 			"properties": {
 				"id": {
 					"type": "string",
 					"format": "uuid"
 				},
-				"deviceType": {
-					"description": "The type of the device",
+				"messageType": {
+					"description": "The type of the message",
 					"type": "string",
 					"enum": [
-						"ANDROID_PUSH",
-						"APPLE_PUSH",
-						"BLACKBERRY_PUSH",
-						"BROWSER",
-						"EMAIL",
-						"FAX",
-						"GENERIC",
-						"IM",
-						"NUMERIC_PAGER",
-						"TEXT_PAGER",
-						"TEXT_PHONE",
-						"VOICE",
-						"VOICE_IVR"
+						"SUBJECT_AND_BODY",
+						"TEXT",
+						"VOICE"
+					]
+				},
+				"language": {
+					"type": "string",
+					"enum": [
+						"en",
+						"fr"
 					]
 				}
 			},
@@ -8588,46 +8572,46 @@
 				"id"
 			]
 		},
-		"EmailMessageTemplate": {
-			"description": "An email message template",
+		"SubjectAndBodyMessageTemplate": {
+			"description": "A subject and body message template",
 			"allOf": [
 				{
 					"$ref": "#/definitions/MessageTemplate"
 				},
 				{
 					"properties": {
-						"deviceType": {
+						"messageType": {
 							"type": "string",
 							"enum": [
-								"EMAIL"
+								"SUBJECT_AND_BODY"
 							]
 						},
 						"subject": {
-							"$ref": "#/definitions/i18n"
+							"type": "string"
 						},
 						"body": {
-							"$ref": "#/definitions/i18n"
+							"type": "string"
 						}
 					}
 				}
 			]
 		},
-		"SMSMessageTemplate": {
-			"description": "An SMS message template",
+		"TextMessageTemplate": {
+			"description": "A text message template",
 			"allOf": [
 				{
 					"$ref": "#/definitions/MessageTemplate"
 				},
 				{
 					"properties": {
-						"deviceType": {
+						"messageType": {
 							"type": "string",
 							"enum": [
-								"TEXT_PHONE"
+								"TEXT"
 							]
 						},
-						"sms": {
-							"$ref": "#/definitions/i18n"
+						"text": {
+							"type": "string"
 						}
 					}
 				}
