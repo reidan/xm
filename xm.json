@@ -5383,6 +5383,19 @@
 		}
 	},
 	"definitions": {
+		"i18n": {
+			"properties": {
+				"en": {
+					"type": "string"
+				},
+				"fr": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"en"
+			]
+		},
 		"AccessToken": {
 			"description": "Access token response",
 			"properties": {
@@ -7964,11 +7977,14 @@
 				"senderOverrides": {
 					"type": "object"
 				},
+				"plan": {
+					"$ref": "#/definitions/PlanReference"
+				},
 				"recipients": {
 					"$ref": "#/definitions/Pagination(Recipient)"
 				},
-				"plan": {
-					"$ref": "#/definitions/PlanReference"
+				"messageTemplates": {
+					"$ref": "#/definitions/Pagination(MessageTemplate)"
 				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
@@ -8540,11 +8556,89 @@
 				}
 			}
 		},
+		"MessageTemplate": {
+			"description": "A message template",
+			"discriminator": "deviceType",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				},
+				"deviceType": {
+					"description": "The type of the device",
+					"type": "string",
+					"enum": [
+						"ANDROID_PUSH",
+						"APPLE_PUSH",
+						"BLACKBERRY_PUSH",
+						"BROWSER",
+						"EMAIL",
+						"FAX",
+						"GENERIC",
+						"IM",
+						"NUMERIC_PAGER",
+						"TEXT_PAGER",
+						"TEXT_PHONE",
+						"VOICE",
+						"VOICE_IVR"
+					]
+				}
+			},
+			"required": [
+				"id"
+			]
+		},
+		"EmailMessageTemplate": {
+			"description": "An email message template",
+			"allOf": [
+				{
+					"$ref": "#/definitions/MessageTemplate"
+				},
+				{
+					"properties": {
+						"deviceType": {
+							"type": "string",
+							"enum": [
+								"EMAIL"
+							]
+						},
+						"subject": {
+							"$ref": "#/definitions/i18n"
+						},
+						"body": {
+							"$ref": "#/definitions/i18n"
+						}
+					}
+				}
+			]
+		},
+		"SMSMessageTemplate": {
+			"description": "An SMS message template",
+			"allOf": [
+				{
+					"$ref": "#/definitions/MessageTemplate"
+				},
+				{
+					"properties": {
+						"deviceType": {
+							"type": "string",
+							"enum": [
+								"TEXT_PHONE"
+							]
+						},
+						"sms": {
+							"$ref": "#/definitions/i18n"
+						}
+					}
+				}
+			]
+		},
 		"Notification": {
 			"description": "A notification",
 			"properties": {
 				"id": {
-					"type": "string"
+					"type": "string",
+					"format": "uuid"
 				},
 				"event": {
 					"$ref": "#/definitions/EventReference"
@@ -8581,7 +8675,8 @@
 			"description": "A notification",
 			"properties": {
 				"id": {
-					"type": "string"
+					"type": "string",
+					"format": "uuid"
 				},
 				"event": {
 					"$ref": "#/definitions/EventPointer"
@@ -8616,7 +8711,8 @@
 			"properties": {
 				"id": {
 					"description": "The identifier of the resource",
-					"type": "string"
+					"type": "string",
+					"format": "uuid"
 				}
 			},
 			"required": [
@@ -12722,6 +12818,36 @@
 					"description": "An array that contains this page of resources",
 					"items": {
 						"$ref": "#/definitions/TemporaryReplacement"
+					},
+					"type": "array"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				},
+				"total": {
+					"description": "The total number of items in the result set",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"count",
+				"data",
+				"total",
+				"links"
+			]
+		},
+		"Pagination(MessageTemplate)": {
+			"properties": {
+				"count": {
+					"description": "The number of items in this page of results (the number of items in the data array)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"description": "An array that contains this page of resources",
+					"items": {
+						"$ref": "#/definitions/MessageTemplate"
 					},
 					"type": "array"
 				},
