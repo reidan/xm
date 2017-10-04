@@ -6071,15 +6071,18 @@
 		},
 		"Conference": {
 			"properties": {
-				"bridgeId": {
-					"type": "string"
-				},
 				"type": {
 					"type": "string",
 					"enum": [
 						"BRIDGE",
 						"EXTERNAL"
 					]
+				},
+				"bridgeId": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
 				},
 				"sid": {
 					"type": "string"
@@ -6099,9 +6102,6 @@
 						"WAITING",
 						"ACTIVE"
 					]
-				},
-				"name": {
-					"type": "string"
 				},
 				"description": {
 					"type": "string"
@@ -6127,14 +6127,20 @@
 		},
 		"ConferencePointer": {
 			"properties": {
-				"bridgeId": {
-					"type": "string"
-				},
 				"type": {
 					"enum": [
 						"BRIDGE",
 						"EXTERNAL"
 					],
+					"type": "string"
+				},
+				"bridgeId": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"bridgeNumber": {
 					"type": "string"
 				}
 			},
