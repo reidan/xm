@@ -4534,10 +4534,6 @@ components:
             - owner
             - deviceType
           type: object
-      oneOf:
-        - $ref: '#/components/schemas/AndroidPushDevice'
-        - $ref: '#/components/schemas/ApplePushDevice'
-        - $ref: '#/components/schemas/BlackberryPushDevice'
     DeviceInput:
       allOf:
         - $ref: '#/components/schemas/RecipientInput'
