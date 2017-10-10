@@ -846,7 +846,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Device'
+                $ref: '#/components/schemas/MySchema'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4460,6 +4460,14 @@ components:
         - name
         - description
       type: object
+    MySchema:
+      oneOf:
+        - $ref: '#/components/schemas/AndroidPushDevice'
+        - $ref: '#/components/schemas/ApplePushDevice'
+        - $ref: '#/components/schemas/EmailDevice'
+        - $ref: '#/components/schemas/FaxDeviceDevice'
+      discriminator:
+        propertyName: deviceType
     Device:
       discriminator:
         propertyName: deviceType
