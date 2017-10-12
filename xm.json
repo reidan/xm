@@ -6071,6 +6071,10 @@
 		},
 		"Conference": {
 			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				},
 				"type": {
 					"type": "string",
 					"enum": [
@@ -6127,6 +6131,10 @@
 		},
 		"ConferencePointer": {
 			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				},
 				"type": {
 					"enum": [
 						"BRIDGE",
@@ -6150,6 +6158,10 @@
 		},
 		"ConferenceReference": {
 			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				},
 				"bridgeId": {
 					"type": "string"
 				},
