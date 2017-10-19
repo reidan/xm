@@ -4745,9 +4745,56 @@
 				]
 			}
 		},
+		"/plans/{planId}/forms/{formId}/events": {
+			"post": {
+				"summary": "Submit an event",
+				"description": "Submit an event (legacy alias for POST /events)",
+				"operationId": "postPlanFormEvent",
+				"parameters": [
+					{
+						"$ref": "#/parameters/path-planId"
+					},
+					{
+						"$ref": "#/parameters/path-formId"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/EventInput"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Communication Plans"
+				]
+			}
+		},
 		"/plans/{planId}/forms/{formId}/triggers": {
 			"post": {
-				"description": "Submit a form (intiates an event)",
+				"summary": "Submit a form",
+				"description": "Submit a form (legacy alias for POST /events)",
 				"operationId": "postTrigger",
 				"parameters": [
 					{
@@ -4785,7 +4832,6 @@
 						"$ref": "#/responses/409"
 					}
 				},
-				"summary": "Submit a form",
 				"tags": [
 					"Communication Plans"
 				]
