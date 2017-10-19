@@ -4548,6 +4548,53 @@
 				"tags": [
 					"Communication Plans"
 				]
+			},
+			"post": {
+				"summary": "Add or update form",
+				"description": "Add or update form",
+				"operationId": "postForm",
+				"parameters": [
+					{
+						"$ref": "#/parameters/path-planId"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/FormInput"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"schema": {
+							"$ref": "#/definitions/Form"
+						}
+					},
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Form"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Communication Plans"
+				]
 			}
 		},
 		"/plans/{planId}/forms/{formId}/recipients": {
