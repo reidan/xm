@@ -7730,9 +7730,6 @@
 				"integration": {
 					"$ref": "#/definitions/IntegrationReference"
 				},
-				"otherResponseCount": {
-					"type": "integer"
-				},
 				"overrideDeviceRestrictions": {
 					"default": false,
 					"type": "boolean"
@@ -7761,6 +7758,12 @@
 				"responseCountsEnabled": {
 					"default": false,
 					"type": "boolean"
+				},
+				"otherResponseCount": {
+					"type": "integer"
+				},
+				"otherResponseCountThreshold": {
+					"type": "integer"
 				},
 				"responseOptions": {
 					"$ref": "#/definitions/Pagination(ResponseOption)"
@@ -7859,9 +7862,6 @@
 				"integration": {
 					"$ref": "#/definitions/IntegrationPointer"
 				},
-				"otherResponseCount": {
-					"type": "integer"
-				},
 				"overrideDeviceRestrictions": {
 					"default": false,
 					"type": "boolean"
@@ -7891,6 +7891,11 @@
 				"requirePhonePassword": {
 					"default": false,
 					"type": "boolean"
+				},
+				"otherResponseCountThreshold": {
+					"description": "Response fill count threshold. Alias otherResponseCount will be mapped to this attribute",
+					"type": "integer",
+					"minimum": 1
 				},
 				"responseOptions": {
 					"description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID)",
@@ -10274,9 +10279,12 @@
 					}
 				},
 				"responseCount": {
+					"description": "Response count for targeted group or dynamic team",
+					"type": "integer"
+				},
+				"responseCountThreshold": {
 					"description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
-					"type": "integer",
-					"minimum": 1
+					"type": "integer"
 				}
 			},
 			"required": [
@@ -10322,8 +10330,8 @@
 				"externallyOwned": {
 					"type": "boolean"
 				},
-				"responseCount": {
-					"description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
+				"responseCountThreshold": {
+					"description": "Number of responses required before xMatters stops notifying targeted group or dynamic team. Alias responseCount will be mapped to this attribute",
 					"type": "integer",
 					"minimum": 1
 				}
