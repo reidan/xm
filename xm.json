@@ -7983,13 +7983,18 @@
 				},
 				"comment": {
 					"type": "string"
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time"
 				}
 			},
 			"required": [
 				"id",
 				"event",
 				"author",
-				"comment"
+				"comment",
+				"created"
 			]
 		},
 		"EventAnnotationInput": {
