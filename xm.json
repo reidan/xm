@@ -10416,7 +10416,8 @@
 						"PERSON",
 						"DEVICE",
 						"GROUP",
-						"SITE"
+						"SITE",
+						"ON_CALL_REMINDER_CONFIG"
 					]
 				},
 				"revision": {
