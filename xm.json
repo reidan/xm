@@ -745,7 +745,11 @@
 						"$ref": "#/parameters/query-include"
 					},
 					{
-						"$ref": "#/parameters/query-embed"
+						"description": "Domain entities to embed in the response (e.g. host,activeParticipantCount,participants,events)",
+						"in": "query",
+						"name": "embed",
+						"required": false,
+						"type": "string"
 					}
 				],
 				"responses": {
