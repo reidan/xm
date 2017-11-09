@@ -13045,8 +13045,7 @@
 				},
 				"subcode": {
 					"description": "An application-specific response sub-status",
-					"format": "int32",
-					"type": "integer"
+					"type": "string"
 				},
 				"message": {
 					"description": "A detailed description of the response or error",
@@ -13079,8 +13078,7 @@
 				},
 				"subcode": {
 					"description": "An application-specific response sub-status",
-					"format": "int32",
-					"type": "integer"
+					"type": "string"
 				},
 				"message": {
 					"description": "A detailed description of the response or error",
@@ -13113,8 +13111,7 @@
 				},
 				"subcode": {
 					"description": "An application-specific response sub-status",
-					"format": "int32",
-					"type": "integer"
+					"type": "string"
 				},
 				"message": {
 					"description": "A detailed description of the response or error",
@@ -13147,8 +13144,7 @@
 				},
 				"subcode": {
 					"description": "An application-specific response sub-status",
-					"format": "int32",
-					"type": "integer"
+					"type": "string"
 				},
 				"message": {
 					"description": "A detailed description of the response or error",
