@@ -10360,6 +10360,11 @@
 						"DEVICE",
 						"SITE"
 					]
+				},
+				"responseCountThreshold": {
+					"description": "Number of responses required before xMatters stops notifying targeted recipient. Alias responseCount will be mapped to this attribute",
+					"type": "integer",
+					"minimum": 1
 				}
 			},
 			"required": [
