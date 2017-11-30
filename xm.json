@@ -2337,6 +2337,42 @@
 				"tags": [
 					"Shifts"
 				]
+			},
+			"delete": {
+				"summary": "Delete a shift",
+				"description": "Delete a shift",
+				"operationId": "deleteShift",
+				"parameters": [
+					{
+						"$ref": "#/parameters/path-groupId"
+					},
+					{
+						"$ref": "#/parameters/path-shiftId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Shift"
+						}
+					},
+					"204": {
+						"$ref": "#/responses/204"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Shifts"
+				]
 			}
 		},
 		"/groups/{groupId}/shifts/{shiftId}/members": {
