@@ -10907,12 +10907,12 @@
 					"type": "string"
 				},
 				"start": {
-					"description": "UTC Timestamp",
+					"description": "Absolute boundary for this shift recurrence. Shift occurrences only appear after this time. UTC Timestamp",
 					"format": "date-time",
 					"type": "string"
 				},
 				"end": {
-					"description": "UTC Timestamp",
+					"description": "Absolute boundary for this shift recurrence. Shift occurrences only appear before this time. UTC Timestamp",
 					"format": "date-time",
 					"type": "string"
 				},
