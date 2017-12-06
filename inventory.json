@@ -16,214 +16,26 @@
         "application/json"
     ],
     "paths": {
-        "/customers": {
-            "post": {
-                "tags": [
-                    "Customers"
-                ],
-                "summary": "Create a customer",
-                "description": "Create a customer",
-                "operationId": "postCustomer",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "Customer",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/CustomerInput"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
-                    },
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
-                    },
-                    "400": {
-                        "$ref": "#/responses/400"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            },
-            "get": {
-                "tags": [
-                    "Customers"
-                ],
-                "summary": "Retrieve customers",
-                "description": "Retrieve customers",
-                "operationId": "getCustomers",
-                "parameters": [
-                    {
-                        "name": "privacyRegion",
-                        "in": "query",
-                        "description": "Filter by deployment",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "domain",
-                        "in": "query",
-                        "description": "Filter by domain",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "env",
-                        "in": "query",
-                        "description": "Filter by environment",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "region",
-                        "in": "query",
-                        "description": "Filter by region",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "site",
-                        "in": "query",
-                        "description": "Filter by site",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Pagination(Customer)"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            }
-        },
-        "/customers/{customerId}": {
-            "get": {
-                "tags": [
-                    "Customers"
-                ],
-                "summary": "Retrieve a customer",
-                "description": "Retrieve a customer",
-                "operationId": "getCustomer",
-                "parameters": [
-                    {
-                        "name": "customerId",
-                        "in": "path",
-                        "description": "Customer UUID or domain",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "404": {
-                        "$ref": "#/responses/404"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "Customers"
-                ],
-                "summary": "Delete a customer",
-                "description": "Delete a customer",
-                "operationId": "deleteCustomer",
-                "parameters": [
-                    {
-                        "name": "customerId",
-                        "in": "path",
-                        "description": "Customer UUID or domain",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Customer"
-                        }
-                    },
-                    "204": {
-                        "$ref": "#/responses/204"
-                    },
-                    "401": {
-                        "$ref": "#/responses/401"
-                    },
-                    "403": {
-                        "$ref": "#/responses/403"
-                    },
-                    "409": {
-                        "$ref": "#/responses/409"
-                    }
-                }
-            }
-        },
         "/organizations": {
             "post": {
                 "tags": [
                     "Organizations"
                 ],
-                "summary": "Create or update a organization",
-                "description": "Create or update a organization",
+                "summary": "Create an organization",
+                "description": "Create an organization",
                 "operationId": "postOrganization",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Organization definition",
+                        "description": "Organization",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/OrganizationInput"
+                            "$ref": "#/definitions/OrganizationPost"
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Organization"
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "schema": {
@@ -253,44 +65,37 @@
                 "operationId": "getOrganizations",
                 "parameters": [
                     {
-                        "name": "customer",
-                        "in": "query",
-                        "description": "Filter by customer",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "deployment",
-                        "in": "query",
-                        "description": "Filter by deployment",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
                         "name": "domain",
                         "in": "query",
-                        "description": "Filter by domain",
-                        "required": false,
-                        "type": "string"
-                    },
-                    {
-                        "name": "env",
-                        "in": "query",
-                        "description": "Filter by environment",
+                        "description": "Domain",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "region",
                         "in": "query",
-                        "description": "Filter by region",
+                        "description": "Region",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "site",
+                        "name": "service",
                         "in": "query",
-                        "description": "Filter by site",
+                        "description": "Filter by deployed service",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "territory",
+                        "in": "query",
+                        "description": "Territory",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "Filter by deployed service version",
                         "required": false,
                         "type": "string"
                     }
@@ -314,7 +119,7 @@
                 }
             }
         },
-        "/organizations/{organizationId}": {
+        "/organizations/{organization}": {
             "get": {
                 "tags": [
                     "Organizations"
@@ -324,9 +129,9 @@
                 "operationId": "getOrganization",
                 "parameters": [
                     {
-                        "name": "organizationId",
+                        "name": "organization",
                         "in": "path",
-                        "description": "Organization UUID or domain",
+                        "description": "Organization",
                         "required": true,
                         "type": "string"
                     }
@@ -358,9 +163,9 @@
                 "operationId": "deleteOrganization",
                 "parameters": [
                     {
-                        "name": "organizationId",
+                        "name": "organization",
                         "in": "path",
-                        "description": "Organization UUID or domain",
+                        "description": "Organization",
                         "required": true,
                         "type": "string"
                     }
@@ -392,14 +197,14 @@
                 "tags": [
                     "Deployments"
                 ],
-                "summary": "Create or update a deployment",
-                "description": "Create or update a deployment",
+                "summary": "Create a deployment",
+                "description": "Create a deployment",
                 "operationId": "postDeployment",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Deployment definition",
+                        "description": "Deployment",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/DeploymentPost"
@@ -407,12 +212,6 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Deployment"
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "schema": {
@@ -442,30 +241,37 @@
                 "operationId": "getDeployments",
                 "parameters": [
                     {
-                        "name": "env",
+                        "name": "environment",
                         "in": "query",
-                        "description": "Filter by environment",
+                        "description": "Environment",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "site",
+                        "name": "territory",
                         "in": "query",
-                        "description": "Filter by site",
+                        "description": "Territory",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "customer",
+                        "name": "service",
                         "in": "query",
-                        "description": "Filter by customer",
+                        "description": "Service",
                         "required": false,
                         "type": "string"
                     },
                     {
-                        "name": "region",
+                        "name": "version",
                         "in": "query",
-                        "description": "Filter by region",
+                        "description": "Service version",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "organization",
+                        "in": "query",
+                        "description": "Provisioned for this organization",
                         "required": false,
                         "type": "string"
                     }
@@ -489,7 +295,7 @@
                 }
             }
         },
-        "/deployments/{deploymentId}": {
+        "/deployments/{deployment}": {
             "get": {
                 "tags": [
                     "Deployments"
@@ -499,9 +305,9 @@
                 "operationId": "getDeployment",
                 "parameters": [
                     {
-                        "name": "deploymentId",
+                        "name": "deployment",
                         "in": "path",
-                        "description": "Deployment UUID",
+                        "description": "Deployment",
                         "required": true,
                         "type": "string"
                     }
@@ -533,9 +339,9 @@
                 "operationId": "deleteDeployment",
                 "parameters": [
                     {
-                        "name": "deploymentId",
+                        "name": "deployment",
                         "in": "path",
-                        "description": "Deployment UUID",
+                        "description": "Deployment",
                         "required": true,
                         "type": "string"
                     }
@@ -565,29 +371,23 @@
         "/domains": {
             "post": {
                 "tags": [
-                    "Customer Domains"
+                    "Domains"
                 ],
-                "summary": "Set a customer domain",
-                "description": "Set a customer domain",
+                "summary": "Create a domain",
+                "description": "Create a domain",
                 "operationId": "postDomain",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Customer domain definition",
+                        "description": "Domain",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/Domain"
+                            "$ref": "#/definitions/DomainPost"
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Domain"
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "schema": {
@@ -610,16 +410,30 @@
             },
             "get": {
                 "tags": [
-                    "Customer Domains"
+                    "Domains"
                 ],
-                "summary": "Retrieve customer domains",
-                "description": "Retrieve customer domains",
+                "summary": "Retrieve domains",
+                "description": "Retrieve domains",
                 "operationId": "getDomains",
                 "parameters": [
                     {
-                        "name": "customerId",
+                        "name": "organization",
                         "in": "query",
-                        "description": "Filter by Customer UUID",
+                        "description": "Organization",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Region",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "territory",
+                        "in": "query",
+                        "description": "Territory",
                         "required": false,
                         "type": "string"
                     }
@@ -643,19 +457,19 @@
                 }
             }
         },
-        "/domains/{domainId}": {
+        "/domains/{domain}": {
             "get": {
                 "tags": [
-                    "Customer Domains"
+                    "Domains"
                 ],
-                "summary": "Retrieve a customer domain",
-                "description": "Retrieve a customer domain",
+                "summary": "Retrieve a domain",
+                "description": "Retrieve a domain",
                 "operationId": "getDomain",
                 "parameters": [
                     {
-                        "name": "domainId",
+                        "name": "domain",
                         "in": "path",
-                        "description": "Unique domain string",
+                        "description": "Domain",
                         "required": true,
                         "type": "string"
                     }
@@ -684,14 +498,14 @@
                 "tags": [
                     "Environments"
                 ],
-                "summary": "Create or update an environment",
-                "description": "Create or update an environment",
+                "summary": "Create an environment",
+                "description": "Create an environment",
                 "operationId": "postEnvironment",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Environment definition",
+                        "description": "Environment",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/EnvironmentPost"
@@ -699,12 +513,6 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Environment"
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "schema": {
@@ -732,16 +540,12 @@
                 "summary": "Retrieve environments",
                 "description": "Returns environments",
                 "operationId": "getEnvironments",
-                "parameters": [ ],
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "description": "An array of Environments",
-                            "items": {
-                                "$ref": "#/definitions/Environment"
-                            }
+                            "$ref": "#/definitions/Pagination(Environment)"
                         }
                     },
                     "401": {
@@ -756,19 +560,19 @@
                 }
             }
         },
-        "/environments/{environmentId}": {
+        "/environments/{environment}": {
             "delete": {
                 "tags": [
                     "Environments"
                 ],
-                "summary": "Delete a environment",
-                "description": "Delete a environment",
+                "summary": "Delete an environment",
+                "description": "Delete an environment",
                 "operationId": "deleteEnvironment",
                 "parameters": [
                     {
-                        "name": "environmentId",
+                        "name": "environment",
                         "in": "path",
-                        "description": "Environment ID",
+                        "description": "Environment",
                         "required": true,
                         "type": "string"
                     }
@@ -800,14 +604,14 @@
                 "tags": [
                     "Regions"
                 ],
-                "summary": "Create or update a region",
-                "description": "Create or update a region",
+                "summary": "Create a region",
+                "description": "Create a region",
                 "operationId": "postRegion",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Region definition",
+                        "description": "Region",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/RegionPost"
@@ -815,12 +619,6 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Region"
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "schema": {
@@ -850,9 +648,9 @@
                 "operationId": "getRegions",
                 "parameters": [
                     {
-                        "name": "regionId",
+                        "name": "territory",
                         "in": "query",
-                        "description": "Region identifier",
+                        "description": "Territory",
                         "required": false,
                         "type": "string"
                     }
@@ -861,11 +659,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "description": "An array of regions",
-                            "items": {
-                                "$ref": "#/definitions/Region"
-                            }
+                            "$ref": "#/definitions/Pagination(Region)"
                         }
                     },
                     "401": {
@@ -880,7 +674,7 @@
                 }
             }
         },
-        "/regions/{regionId}": {
+        "/regions/{region}": {
             "get": {
                 "tags": [
                     "Regions"
@@ -890,9 +684,9 @@
                 "operationId": "getRegion",
                 "parameters": [
                     {
-                        "name": "regionId",
+                        "name": "region",
                         "in": "path",
-                        "description": "Region UUID",
+                        "description": "Region",
                         "required": true,
                         "type": "string"
                     }
@@ -924,9 +718,9 @@
                 "operationId": "deleteRegion",
                 "parameters": [
                     {
-                        "name": "regionId",
+                        "name": "region",
                         "in": "path",
-                        "description": "Region UUID",
+                        "description": "Region",
                         "required": true,
                         "type": "string"
                     }
@@ -953,19 +747,159 @@
                 }
             }
         },
+        "/territories": {
+            "post": {
+                "tags": [
+                    "Territories"
+                ],
+                "summary": "Create a Territory",
+                "description": "Create a Territory",
+                "operationId": "postTerritory",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Territory",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TerritoryPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Territory"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Territories"
+                ],
+                "summary": "Retrieve Territories",
+                "description": "Retrieve Territories",
+                "operationId": "getTerritories",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Territory)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/territories/{territory}": {
+            "get": {
+                "tags": [
+                    "Territories"
+                ],
+                "summary": "Retrieve a Territory",
+                "description": "Retrieve a Territory",
+                "operationId": "getTerritory",
+                "parameters": [
+                    {
+                        "name": "territory",
+                        "in": "path",
+                        "description": "Territory",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Territory"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete a Territory",
+                "description": "Delete a Territory",
+                "operationId": "deleteTerritory",
+                "parameters": [
+                    {
+                        "name": "territory",
+                        "in": "path",
+                        "description": "Territory",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Territory"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                },
+                "tags": [
+                    "Territories"
+                ]
+            }
+        },
         "/services": {
             "post": {
                 "tags": [
                     "Services"
                 ],
-                "summary": "Create or update a service",
-                "description": "Create or update a service",
+                "summary": "Create a service",
+                "description": "Create a service",
                 "operationId": "postService",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Service definition",
+                        "description": "Service",
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/ServicePost"
@@ -973,12 +907,6 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Service"
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "schema": {
@@ -1003,18 +931,10 @@
                 "tags": [
                     "Services"
                 ],
-                "summary": "Retrieve services",
-                "description": "Retrieve services",
+                "summary": "List services",
+                "description": "List services",
                 "operationId": "getServices",
-                "parameters": [
-                    {
-                        "name": "regionId",
-                        "in": "query",
-                        "description": "Region identifier",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
+                "parameters": [],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1034,7 +954,7 @@
                 }
             }
         },
-        "/services/{serviceId}": {
+        "/services/{service}": {
             "get": {
                 "tags": [
                     "Services"
@@ -1044,9 +964,9 @@
                 "operationId": "getService",
                 "parameters": [
                     {
-                        "name": "serviceId",
+                        "name": "service",
                         "in": "path",
-                        "description": "Service UUID",
+                        "description": "Service",
                         "required": true,
                         "type": "string"
                     }
@@ -1078,9 +998,9 @@
                 "operationId": "deleteService",
                 "parameters": [
                     {
-                        "name": "serviceId",
+                        "name": "service",
                         "in": "path",
-                        "description": "Service UUID",
+                        "description": "Service",
                         "required": true,
                         "type": "string"
                     }
@@ -1107,36 +1027,30 @@
                 }
             }
         },
-        "/sites": {
+        "/releases": {
             "post": {
                 "tags": [
-                    "Sites"
+                    "Releases"
                 ],
-                "summary": "Create or update a site",
-                "description": "Create or update a site",
-                "operationId": "postSite",
+                "summary": "Create a release",
+                "description": "Create a release",
+                "operationId": "postRelease",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "Customer domain definition",
+                        "description": "Release",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/SitePost"
+                            "$ref": "#/definitions/ReleasePost"
                         }
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Updated",
-                        "schema": {
-                            "$ref": "#/definitions/Site"
-                        }
-                    },
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/Site"
+                            "$ref": "#/definitions/Release"
                         }
                     },
                     "400": {
@@ -1155,16 +1069,16 @@
             },
             "get": {
                 "tags": [
-                    "Sites"
+                    "Releases"
                 ],
-                "summary": "Retrieve sites",
-                "description": "Retrieve sites",
-                "operationId": "getSites",
+                "summary": "List releases",
+                "description": "List releases",
+                "operationId": "getReleases",
                 "parameters": [
                     {
-                        "name": "regionId",
+                        "name": "service",
                         "in": "query",
-                        "description": "Filter by region",
+                        "description": "Service",
                         "required": false,
                         "type": "string"
                     }
@@ -1173,11 +1087,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "description": "An array of sites",
-                            "items": {
-                                "$ref": "#/definitions/Site"
-                            }
+                            "$ref": "#/definitions/Pagination(Release)"
                         }
                     },
                     "401": {
@@ -1192,19 +1102,19 @@
                 }
             }
         },
-        "/sites/{siteId}": {
+        "/releases/{release}": {
             "get": {
                 "tags": [
-                    "Sites"
+                    "Releases"
                 ],
-                "summary": "Retrieve a site",
-                "description": "Retrieve a site",
-                "operationId": "getSite",
+                "summary": "Retrieve a release",
+                "description": "Retrieve a release",
+                "operationId": "getRelease",
                 "parameters": [
                     {
-                        "name": "siteId",
+                        "name": "release",
                         "in": "path",
-                        "description": "Site UUID",
+                        "description": "Release",
                         "required": true,
                         "type": "string"
                     }
@@ -1213,7 +1123,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Site"
+                            "$ref": "#/definitions/Release"
                         }
                     },
                     "401": {
@@ -1229,16 +1139,16 @@
             },
             "delete": {
                 "tags": [
-                    "Sites"
+                    "Releases"
                 ],
-                "summary": "Delete a site",
-                "description": "Delete a site",
-                "operationId": "deleteSite",
+                "summary": "Delete a release",
+                "description": "Delete a release",
+                "operationId": "deleteRelease",
                 "parameters": [
                     {
-                        "name": "siteId",
+                        "name": "release",
                         "in": "path",
-                        "description": "Site UUID",
+                        "description": "Release",
                         "required": true,
                         "type": "string"
                     }
@@ -1247,7 +1157,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Site"
+                            "$ref": "#/definitions/Release"
                         }
                     },
                     "204": {
@@ -1267,143 +1177,59 @@
         }
     },
     "definitions": {
-        "IdReference": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "IdLink": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "Environment": {
-            "description": "Environment",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "EnvironmentPost": {
-            "description": "Environment",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
-        "Customer": {
-            "description": "Customer",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The uuid of the customer"
-                },
-                "domains": {
-                    "type": "array",
-                    "description": "An array containing the customer domains for this customer",
-                    "items": {
-                        "$ref": "#/definitions/Domain"
-                    }
-                }
-            },
-            "required": [
-                "id",
-                "domains"
-            ]
-        },
-        "CustomerInput": {
-            "description": "Customer",
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The uuid of the customer"
-                },
-                "domains": {
-                    "type": "array",
-                    "description": "An array containing the customer domains for this customer",
-                    "items": {
-                        "$ref": "#/definitions/DomainPost"
-                    }
-                }
-            },
-            "required": [
-                "id"
-            ]
-        },
         "Deployment": {
             "description": "Deployment",
             "type": "object",
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "Deployment identifier"
+                    "description": "v4 UUID"
                 },
-                "name": {
-                    "type": "string"
-                },
-                "service": {
-                    "$ref": "#/definitions/IdLink"
+                "release": {
+                    "$ref": "#/definitions/Release"
                 },
                 "environment": {
-                    "$ref": "#/definitions/IdLink"
-                },
-                "site": {
-                    "$ref": "#/definitions/IdLink"
+                    "$ref": "#/definitions/Environment"
                 }
             },
             "required": [
                 "id",
-                "name",
-                "service",
-                "environment",
-                "site"
+                "release",
+                "environment"
             ]
         },
         "DeploymentPost": {
+            "description": "Deployment",
             "type": "object",
             "properties": {
-                "name": {
-                    "type": "string"
+                "id": {
+                    "type": "string",
+                    "description": "v4 UUID"
                 },
-                "service": {
-                    "$ref": "#/definitions/IdReference"
+                "release": {
+                    "$ref": "#/definitions/ReleaseReference"
                 },
                 "environment": {
-                    "$ref": "#/definitions/IdReference"
-                },
-                "site": {
-                    "$ref": "#/definitions/IdReference"
+                    "$ref": "#/definitions/EnvironmentReference"
                 }
             },
             "required": [
-                "name",
-                "service",
-                "environment",
-                "site"
+                "id",
+                "release",
+                "environment"
+            ]
+        },
+        "DeploymentReference": {
+            "description": "Deployment",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "v4 UUID"
+                }
+            },
+            "required": [
+                "id"
             ]
         },
         "Domain": {
@@ -1412,19 +1238,24 @@
             "properties": {
                 "id": {
                     "type": "string",
-                    "description": "A unique domain string used by a customer"
+                    "description": "v4 UUID"
                 },
-                "customer": {
-                    "$ref": "#/definitions/IdLink"
+                "domain": {
+                    "type": "string",
+                    "description": "An HTTP domain string"
+                },
+                "organization": {
+                    "$ref": "#/definitions/OrganizationReference"
                 },
                 "primary": {
                     "type": "boolean",
-                    "description": "true if this is the primary domain for routing"
+                    "description": "true if this is the primary sub-domain"
                 }
             },
             "required": [
                 "id",
-                "customer",
+                "domain",
+                "organization",
                 "primary"
             ]
         },
@@ -1432,110 +1263,301 @@
             "description": "Domain",
             "type": "object",
             "properties": {
-                "id": {
+                "domain": {
                     "type": "string",
-                    "description": "A unique domain string used by a customer"
+                    "description": "An HTTP domain string"
                 },
-                "customer": {
-                    "$ref": "#/definitions/IdReference"
+                "organization": {
+                    "$ref": "#/definitions/OrganizationReference"
                 },
                 "primary": {
                     "type": "boolean",
-                    "description": "true if this is the primary domain for routing"
+                    "description": "true if this is the primary sub-domain"
                 }
             },
             "required": [
-                "id",
-                "customer",
+                "domain",
+                "organization",
                 "primary"
             ]
         },
-        "Site": {
+        "Environment": {
+            "description": "Environment",
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Site identifier"
-                },
-                "region": {
-                    "$ref": "#/definitions/IdLink"
-                }
-            },
-            "required": [
-                "id",
-                "region"
-            ]
-        },
-        "SitePost": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Site identifier"
-                },
-                "region": {
-                    "$ref": "#/definitions/IdReference"
-                }
-            },
-            "required": [
-                "id",
-                "region"
-            ]
-        },
-        "Service": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Service identifier"
-                },
                 "name": {
                     "type": "string"
                 }
             },
             "required": [
+                "name"
+            ]
+        },
+        "EnvironmentPost": {
+            "description": "Environment",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "EnvironmentReference": {
+            "description": "Environment",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "Organization": {
+            "description": "Organization",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Type 4 UUID"
+                },
+                "uname": {
+                    "type": "string",
+                    "description": "The unique short name of the organization. Used as the domain prefix and in monitoring"
+                },
+                "region": {
+                    "$ref": "#/definitions/Region"
+                }
+            },
+            "required": [
                 "id",
+                "uname",
+                "region"
+            ]
+        },
+        "OrganizationPost": {
+            "description": "Organization",
+            "type": "object",
+            "properties": {
+                "uname": {
+                    "type": "string",
+                    "description": "The unique short name of the organization. Used as the domain prefix and in monitoring"
+                },
+                "region": {
+                    "$ref": "#/definitions/RegionReference"
+                }
+            },
+            "required": [
+                "uname",
+                "region"
+            ]
+        },
+        "OrganizationReference": {
+            "description": "Organization",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Type 4 UUID"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "Provision": {
+            "description": "Provision",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "v4 UUID"
+                },
+                "organization": {
+                    "$ref": "#/definitions/Organization"
+                },
+                "deployment": {
+                    "$ref": "#/definitions/Deployment"
+                }
+            },
+            "required": [
+                "id",
+                "organization",
+                "deployment"
+            ]
+        },
+        "ProvisionPost": {
+            "description": "Provision",
+            "type": "object",
+            "properties": {
+                "organization": {
+                    "$ref": "#/definitions/OrganizationReference"
+                },
+                "deployment": {
+                    "$ref": "#/definitions/DeploymentReference"
+                }
+            },
+            "required": [
+                "organization",
+                "deployment"
+            ]
+        },
+        "Region": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "territory": {
+                    "$ref": "#/definitions/Territory"
+                }
+            },
+            "required": [
+                "name",
+                "territory"
+            ]
+        },
+        "RegionPost": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "territory": {
+                    "$ref": "#/definitions/TerritoryReference"
+                }
+            },
+            "required": [
+                "name",
+                "territory"
+            ]
+        },
+        "RegionReference": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "Release": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Type 4 UUID"
+                },
+                "service": {
+                    "$ref": "#/definitions/ServiceReference"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "service",
+                "version"
+            ]
+        },
+        "ReleasePost": {
+            "type": "object",
+            "properties": {
+                "service": {
+                    "$ref": "#/definitions/ServiceReference"
+                },
+                "version": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "service",
+                "version"
+            ]
+        },
+        "ReleaseReference": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Type 4 UUID"
+                }
+            },
+            "required": [
+                "id"
+            ]
+        },
+        "Service": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
                 "name"
             ]
         },
         "ServicePost": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Service identifier"
-                },
                 "name": {
                     "type": "string"
                 }
             },
             "required": [
-                "id",
                 "name"
             ]
         },
-        "Region": {
+        "ServiceReference": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Region identifier"
+                "name": {
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "name"
             ]
         },
-        "RegionPost": {
+        "Territory": {
             "type": "object",
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Region identifier"
+                "name": {
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "name"
+            ]
+        },
+        "TerritoryPost": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "TerritoryReference": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
             ]
         },
         "PaginationLinks": {
@@ -1552,30 +1574,14 @@
                     "type": "string",
                     "description": "A link to this page of results"
                 }
-            },
-            "required": [
-                "self"
-            ]
+            }
         },
-        "Pagination(Customer)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
+        "Pagination": {
             "properties": {
                 "count": {
                     "type": "integer",
                     "format": "int32",
                     "description": "The number of items in this page of results (the number of items in the data array)."
-                },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Customer"
-                    }
                 },
                 "total": {
                     "type": "integer",
@@ -1585,261 +1591,371 @@
                 "links": {
                     "$ref": "#/definitions/PaginationLinks"
                 }
-            }
+            },
+            "required": [
+                "count",
+                "total",
+                "links"
+            ]
         },
         "Pagination(Deployment)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
                 },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Domain"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Deployment"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
                 }
-            }
+            ]
         },
         "Pagination(Domain)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
                 },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Domain"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Domain"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
                 }
-            }
+            ]
+        },
+        "Pagination(Environment)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Environment"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
+                }
+            ]
+        },
+        "Pagination(Organization)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Organization"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
+                }
+            ]
+        },
+        "Pagination(Provision)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Provision"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
+                }
+            ]
+        },
+        "Pagination(Region)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Region"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
+                }
+            ]
+        },
+        "Pagination(Release)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Release"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
+                }
+            ]
         },
         "Pagination(Service)": {
-            "required": [
-                "count",
-                "data",
-                "total",
-                "links"
-            ],
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The number of items in this page of results (the number of items in the data array)."
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
                 },
-                "data": {
-                    "type": "array",
-                    "description": "An array that contains this page of resources.",
-                    "items": {
-                        "$ref": "#/definitions/Domain"
-                    }
-                },
-                "total": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The total number of items in the result set."
-                },
-                "links": {
-                    "$ref": "#/definitions/PaginationLinks"
-                }
-            }
-        },
-        "BadRequestResponse": {
-            "properties": {
-                "status": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The HTTP status code.",
-                    "enum": [
-                        400
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Service"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
                     ]
-                },
-                "reason": {
-                    "type": "string",
-                    "description": "A description of the response code.",
-                    "enum": [
-                        "Bad Request"
-                    ]
-                },
-                "code": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "An application-specific error code."
-                },
-                "message": {
-                    "type": "string",
-                    "description": "A detailed description of the response or error."
                 }
-            },
-            "required": [
-                "status",
-                "reason",
-                "message"
             ]
         },
-        "UnauthorizedResponse": {
-            "properties": {
-                "status": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The HTTP status code.",
-                    "enum": [
-                        401
+        "Pagination(Territory)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Territory"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
                     ]
-                },
-                "reason": {
-                    "type": "string",
-                    "description": "A description of the response code.",
-                    "enum": [
-                        "Unauthorized"
-                    ]
-                },
-                "code": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "An application-specific error code."
-                },
-                "message": {
-                    "type": "string",
-                    "description": "A detailed description of the response or error."
                 }
-            },
-            "required": [
-                "status",
-                "reason",
-                "message"
             ]
         },
-        "ForbiddenResponse": {
+        "RequestResponse": {
+            "discriminator": "status",
             "properties": {
                 "status": {
-                    "type": "integer",
-                    "format": "int32",
                     "description": "The HTTP status code.",
-                    "enum": [
-                        403
-                    ]
-                },
-                "reason": {
-                    "type": "string",
-                    "description": "A description of the response code.",
-                    "enum": [
-                        "Forbidden"
-                    ]
-                },
-                "code": {
                     "type": "integer",
                     "format": "int32",
-                    "description": "An application-specific error code."
-                },
-                "message": {
-                    "type": "string",
-                    "description": "A detailed description of the response or error."
-                }
-            },
-            "required": [
-                "status",
-                "reason",
-                "message"
-            ]
-        },
-        "NotFoundResponse": {
-            "properties": {
-                "status": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The HTTP status code.",
                     "enum": [
-                        404
-                    ]
-                },
-                "reason": {
-                    "type": "string",
-                    "description": "A description of the response code.",
-                    "enum": [
-                        "Not Found"
-                    ]
-                },
-                "code": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "An application-specific error code."
-                },
-                "message": {
-                    "type": "string",
-                    "description": "A detailed description of the response or error."
-                }
-            },
-            "required": [
-                "status",
-                "reason",
-                "message"
-            ]
-        },
-        "ConflictResponse": {
-            "properties": {
-                "status": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "The HTTP status code.",
-                    "enum": [
+                        400,
+                        401,
+                        403,
+                        404,
                         409
                     ]
                 },
-                "reason": {
-                    "type": "string",
-                    "description": "A description of the response status.",
-                    "enum": [
-                        "Conflict"
-                    ]
-                },
-                "code": {
-                    "type": "integer",
-                    "format": "int32",
-                    "description": "An application-specific error code."
+                "subcode": {
+                    "description": "An application-specific response sub-status",
+                    "type": "string"
                 },
                 "message": {
-                    "type": "string",
-                    "description": "A detailed description of the response or error."
+                    "description": "A detailed description of the response or error",
+                    "type": "string"
                 }
             },
             "required": [
                 "status",
-                "reason",
+                "subcode",
                 "message"
+            ]
+        },
+        "BadRequestResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RequestResponse"
+                },
+                {
+                    "properties": {
+                        "status": {
+                            "description": "The HTTP status code.",
+                            "type": "integer",
+                            "format": "int32",
+                            "enum": [
+                                400
+                            ]
+                        },
+                        "reason": {
+                            "description": "A description of the response code.",
+                            "type": "string",
+                            "enum": [
+                                "Bad Request"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "reason"
+                    ]
+                }
+            ]
+        },
+        "UnauthorizedResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RequestResponse"
+                },
+                {
+                    "properties": {
+                        "status": {
+                            "description": "The HTTP status code.",
+                            "type": "integer",
+                            "format": "int32",
+                            "enum": [
+                                401
+                            ]
+                        },
+                        "reason": {
+                            "description": "A description of the response code.",
+                            "type": "string",
+                            "enum": [
+                                "Unauthorized"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "reason"
+                    ]
+                }
+            ]
+        },
+        "ForbiddenResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RequestResponse"
+                },
+                {
+                    "properties": {
+                        "status": {
+                            "description": "The HTTP status code.",
+                            "type": "integer",
+                            "format": "int32",
+                            "enum": [
+                                403
+                            ]
+                        },
+                        "reason": {
+                            "description": "A description of the response code.",
+                            "type": "string",
+                            "enum": [
+                                "Forbidden"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "reason"
+                    ]
+                }
+            ]
+        },
+        "NotFoundResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RequestResponse"
+                },
+                {
+                    "properties": {
+                        "status": {
+                            "description": "The HTTP status code.",
+                            "type": "integer",
+                            "format": "int32",
+                            "enum": [
+                                404
+                            ]
+                        },
+                        "reason": {
+                            "description": "A description of the response code.",
+                            "type": "string",
+                            "enum": [
+                                "Not Found"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "reason"
+                    ]
+                }
+            ]
+        },
+        "ConflictResponse": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RequestResponse"
+                },
+                {
+                    "properties": {
+                        "status": {
+                            "description": "The HTTP status code.",
+                            "type": "integer",
+                            "format": "int32",
+                            "enum": [
+                                409
+                            ]
+                        },
+                        "reason": {
+                            "description": "A description of the response code.",
+                            "type": "string",
+                            "enum": [
+                                "Conflict"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "status",
+                        "reason"
+                    ]
+                }
             ]
         }
     },
