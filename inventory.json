@@ -16,6 +16,189 @@
         "application/json"
     ],
     "paths": {
+        "/configs": {
+            "post": {
+                "tags": [
+                    "Configs"
+                ],
+                "summary": "Create a config",
+                "description": "Create a config",
+                "operationId": "postConfig",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Config",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ConfigPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/Config"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Configs"
+                ],
+                "summary": "Retrieve configs",
+                "description": "Retrieve configs",
+                "operationId": "getConfigs",
+                "parameters": [
+                    {
+                        "name": "environment",
+                        "in": "query",
+                        "description": "Environment",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "organization",
+                        "in": "query",
+                        "description": "Organization",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Region",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "service",
+                        "in": "query",
+                        "description": "Service",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "territory",
+                        "in": "query",
+                        "description": "Territory",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "Service version",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(Config)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
+        "/configs/{config}": {
+            "get": {
+                "tags": [
+                    "Configs"
+                ],
+                "summary": "Retrieve a config",
+                "description": "Retrieve a config",
+                "operationId": "getConfig",
+                "parameters": [
+                    {
+                        "name": "config",
+                        "in": "path",
+                        "description": "Config",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Config"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Configs"
+                ],
+                "summary": "Delete a config",
+                "description": "Delete a config",
+                "operationId": "deleteConfig",
+                "parameters": [
+                    {
+                        "name": "config",
+                        "in": "path",
+                        "description": "Config",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Config"
+                        }
+                    },
+                    "204": {
+                        "$ref": "#/responses/204"
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "409": {
+                        "$ref": "#/responses/409"
+                    }
+                }
+            }
+        },
         "/organizations": {
             "post": {
                 "tags": [
@@ -1177,6 +1360,107 @@
         }
     },
     "definitions": {
+        "Config": {
+            "description": "Config",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "v4 UUID"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "STRING",
+                        "INTEGER",
+                        "FLOAT",
+                        "BOOLEAN"
+                    ]
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "environment": {
+                    "$ref": "#/definitions/Environment"
+                },
+                "release": {
+                    "$ref": "#/definitions/Release"
+                },
+                "territory": {
+                    "$ref": "#/definitions/Territory"
+                },
+                "service": {
+                    "$ref": "#/definitions/Service"
+                },
+                "organization": {
+                    "$ref": "#/definitions/Organization"
+                },
+                "priority": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "key",
+                "value",
+                "priority"
+            ]
+        },
+        "ConfigPost": {
+            "description": "Config",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "v4 UUID"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "STRING",
+                        "INTEGER",
+                        "FLOAT",
+                        "BOOLEAN"
+                    ]
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "environment": {
+                    "$ref": "#/definitions/EnvironmentReference"
+                },
+                "release": {
+                    "$ref": "#/definitions/ReleaseReference"
+                },
+                "territory": {
+                    "$ref": "#/definitions/TerritoryReference"
+                },
+                "service": {
+                    "$ref": "#/definitions/ServiceReference"
+                },
+                "organization": {
+                    "$ref": "#/definitions/OrganizationReference"
+                },
+                "priority": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0,
+                    "maximum": 9,
+                    "default": 0
+                }
+            },
+            "required": [
+                "type",
+                "key",
+                "value"
+            ]
+        },
         "Deployment": {
             "description": "Deployment",
             "type": "object",
@@ -1596,6 +1880,26 @@
                 "count",
                 "total",
                 "links"
+            ]
+        },
+        "Pagination(Config)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Config"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
+                }
             ]
         },
         "Pagination(Deployment)": {
