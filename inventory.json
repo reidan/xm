@@ -676,6 +676,84 @@
                 }
             }
         },
+        "/effective-configs": {
+            "get": {
+                "tags": [
+                    "Effective Configs"
+                ],
+                "summary": "Retrieve effective configs",
+                "description": "Retrieve effective configs",
+                "operationId": "getEffectiveConfigs",
+                "parameters": [
+                    {
+                        "name": "environment",
+                        "in": "query",
+                        "description": "Environment",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "organization",
+                        "in": "query",
+                        "description": "Organization",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Region",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "service",
+                        "in": "query",
+                        "description": "Service",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "territory",
+                        "in": "query",
+                        "description": "Territory",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "Service version",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "key",
+                        "in": "query",
+                        "description": "Config key",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Pagination(EffectiveConfig)"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/404"
+                    }
+                }
+            }
+        },
         "/environments": {
             "post": {
                 "tags": [
@@ -1601,6 +1679,21 @@
                 "name"
             ]
         },
+        "EffectiveConfig": {
+            "description": "Effective Config",
+            "properties": {
+                "config": {
+                    "$ref": "#/definitions/Config"
+                },
+                "overrides": {
+                    "$ref": "#/definitions/EffectiveConfig"
+                }
+            },
+            "required": [
+                "config",
+                "overrides"
+            ]
+        },
         "Organization": {
             "description": "Organization",
             "type": "object",
@@ -1933,6 +2026,26 @@
                             "type": "array",
                             "items": {
                                 "$ref": "#/definitions/Domain"
+                            }
+                        }
+                    },
+                    "required": [
+                        "data"
+                    ]
+                }
+            ]
+        },
+        "Pagination(EffectiveConfig)": {
+            "allOf" : [
+                {
+                    "$ref": "#/definitions/Pagination"
+                },
+                {
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/EffectiveConfig"
                             }
                         }
                     },
