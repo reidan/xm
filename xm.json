@@ -9635,6 +9635,7 @@
 								"PINGDOM_SM",
 								"SCOUT",
 								"SENSU",
+								"SOLAR_WINDS",
 								"SPLUNK",
 								"SPLUNK_ITSI",
 								"SUMO_LOGIC",
@@ -10077,6 +10078,57 @@
 						"apiUsername",
 						"apiPassword",
 						"silenceDuration"
+					]
+				}
+			]
+		},
+		"SolarWindsBuiltInPlanInput": {
+			"description": "Solar Winds built-in communication plan",
+			"allOf": [
+				{
+					"$ref": "#/definitions/BuiltInPlanInput"
+				},
+				{
+					"properties": {
+						"planType": {
+							"type": "string",
+							"enum": [
+								"BUILT_IN"
+							]
+						},
+						"builtInPlanType": {
+							"type": "string",
+							"description": "Built-in communication plan type",
+							"enum": [
+								"SOLAR_WINDS"
+							]
+						},
+						"apiURL": {
+							"type": "string"
+						},
+						"apiUsername": {
+							"type": "string"
+						},
+						"apiPassword": {
+							"type": "string"
+						},
+						"agents": {
+							"description": "The agents on which an ONPREMISE integration will execute",
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/AgentPointer"
+							}
+						}
+					},
+					"required": [
+						"planType",
+						"builtInPlanType",
+						"recipients",
+						"senderOverrideName",
+						"apiURL",
+						"apiUsername",
+						"apiPassword",
+						"agents"
 					]
 				}
 			]
