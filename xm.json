@@ -9635,6 +9635,7 @@
 								"PINGDOM_SM",
 								"SCOUT",
 								"SENSU",
+								"SPLUNK",
 								"SPLUNK_ITSI",
 								"SUMO_LOGIC",
 								"WEBHOOK"
@@ -9964,7 +9965,7 @@
 			]
 		},
 		"PingdomSMBuiltInPlanInput": {
-			"description": "Pingdom built-in communication plan",
+			"description": "Pingdom SM built-in communication plan",
 			"allOf": [
 				{
 					"$ref": "#/definitions/BuiltInPlanInput"
@@ -10076,6 +10077,36 @@
 						"apiUsername",
 						"apiPassword",
 						"silenceDuration"
+					]
+				}
+			]
+		},
+		"SplunkBuiltInPlanInput": {
+			"description": "Splunk built-in communication plan",
+			"allOf": [
+				{
+					"$ref": "#/definitions/BuiltInPlanInput"
+				},
+				{
+					"properties": {
+						"planType": {
+							"type": "string",
+							"enum": [
+								"BUILT_IN"
+							]
+						},
+						"builtInPlanType": {
+							"type": "string",
+							"description": "Built-in communication plan type",
+							"enum": [
+								"SPLUNK"
+							]
+						}
+					},
+					"required": [
+						"planType",
+						"builtInPlanType",
+						"senderOverrideName"
 					]
 				}
 			]
