@@ -10262,13 +10262,25 @@
 							"type": "string",
 							"format": "url"
 						},
+						"eventStatusDeployed": {
+							"type": "boolean",
+							"default": false
+						},
 						"notificationDeliveryStatus": {
 							"type": "string",
 							"format": "url"
 						},
+						"notificationDeliveryStatusDeployed": {
+							"type": "boolean",
+							"default": false
+						},
 						"responseStatus": {
 							"type": "string",
 							"format": "url"
+						},
+						"responseStatusDeployed": {
+							"type": "boolean",
+							"default": false
 						}
 					},
 					"required": [
