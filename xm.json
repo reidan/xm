@@ -9632,6 +9632,7 @@
 								"JIRA",
 								"NEW_RELIC",
 								"PINGDOM",
+								"PINGDOM_SM",
 								"SCOUT",
 								"SENSU",
 								"SPLUNK_ITSI",
@@ -9958,6 +9959,41 @@
 						"builtInPlanType",
 						"recipients",
 						"senderOverrideName"
+					]
+				}
+			]
+		},
+		"PingdomSMBuiltInPlanInput": {
+			"description": "Pingdom built-in communication plan",
+			"allOf": [
+				{
+					"$ref": "#/definitions/BuiltInPlanInput"
+				},
+				{
+					"properties": {
+						"planType": {
+							"type": "string",
+							"enum": [
+								"BUILT_IN"
+							]
+						},
+						"builtInPlanType": {
+							"type": "string",
+							"description": "Built-in communication plan type",
+							"enum": [
+								"PINGDOM_SM"
+							]
+						},
+						"apiKey": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"planType",
+						"builtInPlanType",
+						"recipients",
+						"senderOverrideName",
+						"apiKey"
 					]
 				}
 			]
