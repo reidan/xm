@@ -9454,6 +9454,7 @@
 					"enum": [
 						"APP_DYNAMICS",
 						"BIG_PANDA",
+						"CHEF",
 						"DATADOG",
 						"HIPCHAT",
 						"ICINGA",
@@ -9718,6 +9719,40 @@
 						"recipients",
 						"senderOverrideName",
 						"bearerToken"
+					]
+				}
+			]
+		},
+		"ChefBuiltInPlanInput": {
+			"description": "Chef built-in communication plan",
+			"allOf": [
+				{
+					"$ref": "#/definitions/BuiltInPlanInput"
+				},
+				{
+					"properties": {
+						"planType": {
+							"type": "string",
+							"enum": [
+								"BUILT_IN"
+							]
+						},
+						"builtInPlanType": {
+							"type": "string",
+							"description": "Built-in communication plan type",
+							"enum": [
+								"CHEF"
+							]
+						},
+						"bearerToken": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"planType",
+						"builtInPlanType",
+						"recipients",
+						"senderOverrideName"
 					]
 				}
 			]
