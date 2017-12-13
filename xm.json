@@ -8730,33 +8730,7 @@
 				"language": {
 					"type": "string",
 					"enum": [
-						"ar",
-						"da",
-						"de",
-						"el",
-						"en",
-						"en_GB",
-						"es",
-						"fi",
-						"fr",
-						"hi",
-						"is",
-						"it",
-						"iw",
-						"ja",
-						"ko",
-						"nl",
-						"no",
-						"pl",
-						"pt",
-						"pt_BR",
-						"ru",
-						"sk",
-						"sv",
-						"th",
-						"vi",
-						"zh_CN",
-						"zh_HK"
+						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
 				}
 			},
@@ -9179,8 +9153,10 @@
 							"type": "string"
 						},
 						"language": {
-							"description": "The preferred language of the user: Example: en",
-							"type": "string"
+							"type": "string",
+							"enum": [
+								"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+							]
 						},
 						"lastName": {
 							"description": "The last name of the user",
@@ -9257,8 +9233,10 @@
 							"type": "string"
 						},
 						"language": {
-							"description": "The preferred language of the user: Example: en",
-							"type": "string"
+							"type": "string",
+							"enum": [
+								"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+							]
 						},
 						"lastName": {
 							"description": "The last name of the user",
@@ -10726,6 +10704,12 @@
 				"received": {
 					"type": "string",
 					"format": "date-time"
+				},
+				"language": {
+					"type": "string",
+					"enum": [
+						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+					]
 				}
 			},
 			"required": [
@@ -10758,6 +10742,12 @@
 				},
 				"callMeAt": {
 					"type": "string"
+				},
+				"language": {
+					"type": "string",
+					"enum": [
+						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+					]
 				}
 			}
 		},
@@ -10792,6 +10782,12 @@
 				},
 				"joinConference": {
 					"type": "boolean"
+				},
+				"language": {
+					"type": "string",
+					"enum": [
+						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+					]
 				}
 			},
 			"required": [
@@ -10833,6 +10829,12 @@
 				},
 				"joinConference": {
 					"type": "boolean"
+				},
+				"language": {
+					"type": "string",
+					"enum": [
+						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+					]
 				}
 			}
 		},
@@ -11692,7 +11694,10 @@
 							"type": "string"
 						},
 						"language": {
-							"type": "string"
+							"type": "string",
+							"enum": [
+								"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+							]
 						},
 						"latitude": {
 							"format": "double",
