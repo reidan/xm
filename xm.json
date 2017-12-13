@@ -8260,6 +8260,9 @@
 						},
 						"supervisors": {
 							"$ref": "#/definitions/Pagination(Person)"
+						},
+						"observers": {
+							"$ref": "#/definitions/Pagination(Observer)"
 						}
 					},
 					"required": [
@@ -8309,6 +8312,13 @@
 							"description": "A list of group supervisors. Groups must have at least one supervisor",
 							"items": {
 								"$ref": "#/definitions/PersonPointer"
+							},
+							"type": "array"
+						},
+						"observers": {
+							"description": "A list of observers",
+							"items": {
+								"$ref": "#/definitions/ObserverPointer"
 							},
 							"type": "array"
 						}
@@ -8923,6 +8933,58 @@
 					"type": "boolean"
 				}
 			}
+		},
+		"Observer": {
+			"description": "Observer entity (GROUP, PERSON, ROLE)",
+			"properties": {
+				"observerType": {
+					"type": "string",
+					"description": "Observer entity type",
+					"enum": [
+						"GROUP",
+						"PERSON",
+						"ROLE"
+					]
+				},
+				"group": {
+					"$ref": "#/definitions/GroupReference"
+				},
+				"person": {
+					"$ref": "#/definitions/PersonReference"
+				},
+				"role": {
+					"$ref": "#/definitions/RoleReference"
+				}
+			},
+			"required": [
+				"observerType"
+			]
+		},
+		"ObserverPointer": {
+			"description": "Observer entity (GROUP, PERSON, ROLE)",
+			"properties": {
+				"observerType": {
+					"type": "string",
+					"description": "Observer entity type",
+					"enum": [
+						"GROUP",
+						"PERSON",
+						"ROLE"
+					]
+				},
+				"group": {
+					"$ref": "#/definitions/GroupPointer"
+				},
+				"person": {
+					"$ref": "#/definitions/PersonPointer"
+				},
+				"role": {
+					"$ref": "#/definitions/RolePointer"
+				}
+			},
+			"required": [
+				"observerType"
+			]
 		},
 		"OnCall": {
 			"properties": {
@@ -12409,6 +12471,36 @@
 					"description": "An array that contains this page of resources",
 					"items": {
 						"$ref": "#/definitions/NotificationFilter"
+					},
+					"type": "array"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				},
+				"total": {
+					"description": "The total number of items in the result set",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"count",
+				"data",
+				"total",
+				"links"
+			]
+		},
+		"Pagination(Observer)": {
+			"properties": {
+				"count": {
+					"description": "The number of items in this page of results (the number of items in the data array)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"description": "An array that contains this page of resources",
+					"items": {
+						"$ref": "#/definitions/Observer"
 					},
 					"type": "array"
 				},
