@@ -8935,19 +8935,15 @@
 			}
 		},
 		"Observer": {
-			"description": "Observer entity (GROUP, PERSON, ROLE)",
+			"description": "Observer entity (PERSON, ROLE)",
 			"properties": {
 				"observerType": {
 					"type": "string",
 					"description": "Observer entity type",
 					"enum": [
-						"GROUP",
 						"PERSON",
 						"ROLE"
 					]
-				},
-				"group": {
-					"$ref": "#/definitions/GroupReference"
 				},
 				"person": {
 					"$ref": "#/definitions/PersonReference"
@@ -8961,19 +8957,15 @@
 			]
 		},
 		"ObserverPointer": {
-			"description": "Observer entity (GROUP, PERSON, ROLE)",
+			"description": "Observer entity (PERSON, ROLE)",
 			"properties": {
 				"observerType": {
 					"type": "string",
 					"description": "Observer entity type",
 					"enum": [
-						"GROUP",
 						"PERSON",
 						"ROLE"
 					]
-				},
-				"group": {
-					"$ref": "#/definitions/GroupPointer"
 				},
 				"person": {
 					"$ref": "#/definitions/PersonPointer"
