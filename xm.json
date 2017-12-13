@@ -7934,8 +7934,7 @@
 				},
 				"otherResponseCountThreshold": {
 					"description": "Response fill count threshold. Alias otherResponseCount will be mapped to this attribute",
-					"type": "integer",
-					"minimum": 1
+					"type": "integer"
 				},
 				"responseOptions": {
 					"description": "A list of the response options to be displayed for the event. Response options are identified by a Universally Unique Identifier (UUID)",
