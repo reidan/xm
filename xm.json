@@ -5401,8 +5401,58 @@
 				]
 			}
 		},
+		"/sites": {
+			"get": {
+				"summary": "List sites",
+				"description": "List sites",
+				"operationId": "getSites",
+				"parameters": [
+					{
+						"description": "Country",
+						"in": "query",
+						"name": "country",
+						"type": "string",
+						"required": false
+					},
+					{
+						"description": "Language",
+						"in": "query",
+						"name": "language",
+						"type": "string",
+						"required": false
+					},
+					{
+						"$ref": "#/parameters/query-offset"
+					},
+					{
+						"$ref": "#/parameters/query-limit"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Pagination(Site)"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Sites"
+				]
+			}
+		},
 		"/sites/{siteId}": {
 			"get": {
+				"summary": "Returns information about a site",
 				"description": "Returns information about a site",
 				"operationId": "getSite",
 				"parameters": [
@@ -5427,7 +5477,6 @@
 						"$ref": "#/responses/404"
 					}
 				},
-				"summary": "Returns information about a site",
 				"tags": [
 					"Sites"
 				]
@@ -13230,6 +13279,36 @@
 					"description": "An array that contains this page of resources",
 					"items": {
 						"$ref": "#/definitions/ShiftOccurrenceMember"
+					},
+					"type": "array"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				},
+				"total": {
+					"description": "The total number of items in the result set",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"count",
+				"data",
+				"total",
+				"links"
+			]
+		},
+		"Pagination(Site)": {
+			"properties": {
+				"count": {
+					"description": "The number of items in this page of results (the number of items in the data array)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"description": "An array that contains this page of resources",
+					"items": {
+						"$ref": "#/definitions/Site"
 					},
 					"type": "array"
 				},
