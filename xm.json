@@ -8438,12 +8438,19 @@
 				}
 			]
 		},
+		"MultiHierarchy": {
+			"description": "MultiHierarchy",
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/Hierarchy"
+			}
+		},
 		"Hierarchy": {
 			"description": "Hierarchy",
+			"type": "array",
 			"items": {
 				"$ref": "#/definitions/HierarchyItem"
-			},
-			"type": "array"
+			}
 		},
 		"HierarchyItem": {
 			"description": "Hierarchy item",
