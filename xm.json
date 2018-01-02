@@ -6267,6 +6267,9 @@
 				"bridgeId": {
 					"type": "string"
 				},
+				"bridgeNumber": {
+					"type": "string"
+				},
 				"name": {
 					"type": "string"
 				},
@@ -6307,7 +6310,6 @@
 				}
 			},
 			"required": [
-				"bridgeId",
 				"type"
 			]
 		},
@@ -6327,10 +6329,10 @@
 				"bridgeId": {
 					"type": "string"
 				},
-				"name": {
+				"bridgeNumber": {
 					"type": "string"
 				},
-				"bridgeNumber": {
+				"name": {
 					"type": "string"
 				}
 			},
@@ -6344,20 +6346,22 @@
 					"type": "string",
 					"format": "uuid"
 				},
-				"bridgeId": {
-					"type": "string"
-				},
 				"type": {
 					"type": "string",
 					"enum": [
 						"BRIDGE",
 						"EXTERNAL"
 					]
+				},
+				"bridgeId": {
+					"type": "string"
+				},
+				"bridgeNumber": {
+					"type": "string"
 				}
 			},
 			"required": [
-				"type",
-				"bridgeId"
+				"type"
 			]
 		},
 		"ConferenceParticipant": {
