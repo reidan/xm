@@ -8078,6 +8078,20 @@
 				"author": {
 					"$ref": "#/definitions/PersonReference"
 				},
+				"response": {
+					"$ref": "#/definitions/ResponseReference"
+				},
+				"source": {
+					"type": "string",
+					"enum": [
+						"BROWSER",
+						"IOS",
+						"ANDROID"
+					]
+				},
+				"comment": {
+					"type": "string"
+				},
 				"comment": {
 					"type": "string"
 				},
