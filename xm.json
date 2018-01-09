@@ -7852,6 +7852,9 @@
 					"default": false,
 					"type": "boolean"
 				},
+				"oneWay": {
+					"type": "boolean"
+				},
 				"otherResponseCount": {
 					"type": "integer"
 				},
@@ -7889,6 +7892,9 @@
 				},
 				"submitter": {
 					"$ref": "#/definitions/PersonReference"
+				},
+				"subscription": {
+					"type": "boolean"
 				},
 				"voicemailOptions": {
 					"description": "Voicemail Options",
