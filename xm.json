@@ -9550,7 +9550,8 @@
 					"type": "string",
 					"enum": [
 						"PLAN",
-						"BUILT_IN"
+						"BUILT_IN",
+						"SYSTEM"
 					]
 				},
 				"builtInPlanType": {
@@ -9645,7 +9646,8 @@
 					"type": "string",
 					"enum": [
 						"PLAN",
-						"BUILT_IN"
+						"BUILT_IN",
+						"SYSTEM"
 					]
 				},
 				"name": {
