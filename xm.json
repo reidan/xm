@@ -1886,6 +1886,13 @@
 						"default": "OR"
 					},
 					{
+						"description": "Restrict search to these fields (comma separated list of attribute names, exact match)",
+						"in": "query",
+						"name": "fields",
+						"required": false,
+						"type": "string"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
