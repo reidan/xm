@@ -1886,7 +1886,7 @@
 						"default": "OR"
 					},
 					{
-						"description": "Restrict search to these fields (comma separated list of attribute names, exact match)",
+						"description": "Restrict search to these fields (comma separated list of attribute names, exact match). Supported attributes are name, description",
 						"in": "query",
 						"name": "fields",
 						"required": false,
