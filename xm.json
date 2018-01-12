@@ -10605,6 +10605,11 @@
 				"responseCountThreshold": {
 					"description": "Number of responses required before xMatters stops notifying targeted group or dynamic team",
 					"type": "integer"
+				},
+				"version": {
+					"description": "Version identifier (v1 UUID)",
+					"type": "string",
+					"format": "uuid"
 				}
 			},
 			"required": [
