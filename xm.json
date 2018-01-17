@@ -1359,7 +1359,8 @@
 							"STATUS",
 							"EVENT_ID",
 							"SUBMITTER",
-							"START_TIME"
+							"START_TIME",
+							"NAME"
 						]
 					},
 					{
