@@ -5330,6 +5330,85 @@
 				]
 			}
 		},
+		"/reminders": {
+			"get": {
+				"summary": "Fetch reminders in reverse chronological order",
+				"description": "Fetch reminders in reverse chronological order",
+				"operationId": "getReminders",
+				"parameters": [
+					{
+						"$ref": "#/parameters/query-offset"
+					},
+					{
+						"$ref": "#/parameters/query-limit"
+					},
+					{
+						"$ref": "#/parameters/query-from"
+					},
+					{
+						"$ref": "#/parameters/query-to"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Pagination(Reminder)"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Reminders"
+				]
+			},
+			"post": {
+				"summary": "Schedule a reminder",
+				"description": "Schedule a reminder",
+				"operationId": "postReminderJob",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ReminderJobInput"
+						}
+					}
+				],
+				"responses": {
+					"202": {
+						"description": "Accepted",
+						"schema": {
+							"$ref": "#/definitions/ReminderJob"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Reminders"
+				]
+			}
+		},
 		"/responses": {
 			"post": {
 				"summary": "Send a response",
@@ -10813,6 +10892,163 @@
 				"refresh_token"
 			]
 		},
+		"Reminder": {
+			"description": "A reminder",
+			"properties": {
+				"id": {
+					"description": "Reminder identifier",
+					"type": "string"
+				},
+				"at": {
+					"description": "UTC Time this reminder was triggered",
+					"type": "string",
+					"format": "date-time"
+				},
+				"reminderType": {
+					"description": "Reminder type",
+					"type": "string"
+				},
+				"message": {
+					"description": "The Base64 encoded message payload of the reminder",
+					"type": "string"
+				},
+				"job": {
+					"properties": {
+						"id": {
+							"description": "Job identifier",
+							"type": "string"
+						},
+						"name": {
+							"description": "A correlation identifier for this job",
+							"type": "string"
+						},
+						"trigger": {
+							"type": "object",
+							"properties": {
+								"startTime": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"endTime": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"cron": {
+									"type": "string"
+								},
+								"timezone": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"startTime"
+							]
+						}
+					},
+					"required": [
+						"id",
+						"trigger"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"at",
+				"reminderType",
+				"job"
+			]
+		},
+		"ReminderJob": {
+			"description": "A scheduled reminder job",
+			"properties": {
+				"id": {
+					"description": "Job identifier",
+					"type": "string"
+				},
+				"reminderType": {
+					"description": "Reminder type",
+					"type": "string"
+				},
+				"name": {
+					"description": "A correlation identifier for this job",
+					"type": "string"
+				},
+				"trigger": {
+					"type": "object",
+					"properties": {
+						"startTime": {
+							"type": "string",
+							"format": "date-time"
+						},
+						"endTime": {
+							"type": "string",
+							"format": "date-time"
+						},
+						"cron": {
+							"type": "string"
+						},
+						"timezone": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"startTime"
+					]
+				},
+				"message": {
+					"description": "The Base64 encoded message payload of the reminder",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"reminderType",
+				"trigger"
+			]
+		},
+		"ReminderJobInput": {
+			"description": "Schedule a reminder",
+			"properties": {
+				"reminderType": {
+					"description": "Reminder type",
+					"type": "string"
+				},
+				"name": {
+					"description": "A correlation identifier for this job",
+					"type": "string"
+				},
+				"trigger": {
+					"type": "object",
+					"properties": {
+						"startTime": {
+							"type": "string",
+							"format": "date-time"
+						},
+						"endTime": {
+							"type": "string",
+							"format": "date-time"
+						},
+						"cron": {
+							"type": "string"
+						},
+						"timezone": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"startTime"
+					]
+				},
+				"message": {
+					"description": "The Base64 encoded message payload of the reminder",
+					"type": "string"
+				}
+			},
+			"required": [
+				"reminderType",
+				"trigger"
+			]
+		},
 		"Response": {
 			"description": "A response",
 			"properties": {
@@ -13036,6 +13272,36 @@
 					"$ref": "#/definitions/PaginationLinks"
 				}
 			}
+		},
+		"Pagination(Reminder)": {
+			"properties": {
+				"count": {
+					"description": "The number of items in this page of results (the number of items in the data array)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"description": "An array that contains this page of resources",
+					"items": {
+						"$ref": "#/definitions/Reminder"
+					},
+					"type": "array"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				},
+				"total": {
+					"description": "The total number of items in the result set",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"count",
+				"data",
+				"total",
+				"links"
+			]
 		},
 		"Pagination(Response)": {
 			"properties": {
