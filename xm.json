@@ -10919,7 +10919,7 @@
 							"description": "Job identifier",
 							"type": "string"
 						},
-						"name": {
+						"jobName": {
 							"description": "A correlation identifier for this job",
 							"type": "string"
 						},
@@ -10944,6 +10944,12 @@
 							"required": [
 								"startTime"
 							]
+						},
+						"targets": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/ReminderTarget"
+							}
 						}
 					},
 					"required": [
@@ -10970,7 +10976,7 @@
 					"description": "Reminder type",
 					"type": "string"
 				},
-				"name": {
+				"jobName": {
 					"description": "A correlation identifier for this job",
 					"type": "string"
 				},
@@ -10995,6 +11001,12 @@
 					"required": [
 						"startTime"
 					]
+				},
+				"targets": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReminderTarget"
+					}
 				},
 				"message": {
 					"description": "The Base64 encoded message payload of the reminder",
@@ -11014,7 +11026,7 @@
 					"description": "Reminder type",
 					"type": "string"
 				},
-				"name": {
+				"jobName": {
 					"description": "A correlation identifier for this job",
 					"type": "string"
 				},
@@ -11040,6 +11052,12 @@
 						"startTime"
 					]
 				},
+				"targets": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/ReminderTarget"
+					}
+				},
 				"message": {
 					"description": "The Base64 encoded message payload of the reminder",
 					"type": "string"
@@ -11048,6 +11066,69 @@
 			"required": [
 				"reminderType",
 				"trigger"
+			]
+		},
+		"ReminderTarget": {
+			"description": "A reminder target",
+			"properties": {
+				"reminderTargetType": {
+					"type": "string",
+					"enum": [
+						"KAFKA",
+						"WEBHOOK"
+					]
+				}
+			},
+			"required": [
+				"reminderTargetType"
+			]
+		},
+		"KafkaReminderTarget": {
+			"allOf": [
+				{
+					"$ref": "#/definitions/ReminderTarget"
+				},
+				{
+					"properties": {
+						"reminderTargetType": {
+							"type": "string",
+							"enum": [
+								"KAFKA"
+							]
+						},
+						"topic": {
+							"type": "string",
+							"default": "reminders"
+						}
+					},
+					"required": [
+						"reminderTargetType"
+					]
+				}
+			]
+		},
+		"WebhookReminderTarget": {
+			"allOf": [
+				{
+					"$ref": "#/definitions/ReminderTarget"
+				},
+				{
+					"properties": {
+						"reminderTargetType": {
+							"type": "string",
+							"enum": [
+								"WEBHOOK"
+							]
+						},
+						"uri": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"reminderTargetType",
+						"uri"
+					]
+				}
 			]
 		},
 		"Response": {
