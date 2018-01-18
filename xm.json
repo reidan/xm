@@ -10945,10 +10945,10 @@
 								"startTime"
 							]
 						},
-						"targets": {
+						"vectors": {
 							"type": "array",
 							"items": {
-								"$ref": "#/definitions/ReminderTarget"
+								"$ref": "#/definitions/ReminderVector"
 							}
 						}
 					},
@@ -11002,10 +11002,10 @@
 						"startTime"
 					]
 				},
-				"targets": {
+				"vectors": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReminderTarget"
+						"$ref": "#/definitions/ReminderVector"
 					}
 				},
 				"message": {
@@ -11052,10 +11052,10 @@
 						"startTime"
 					]
 				},
-				"targets": {
+				"vectors": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReminderTarget"
+						"$ref": "#/definitions/ReminderVector"
 					}
 				},
 				"message": {
@@ -11068,10 +11068,10 @@
 				"trigger"
 			]
 		},
-		"ReminderTarget": {
+		"ReminderVector": {
 			"description": "Defines how a reminder is sent",
 			"properties": {
-				"reminderTargetType": {
+				"reminderVectorType": {
 					"type": "string",
 					"enum": [
 						"KAFKA",
@@ -11080,17 +11080,17 @@
 				}
 			},
 			"required": [
-				"reminderTargetType"
+				"reminderVectorType"
 			]
 		},
-		"KafkaReminderTarget": {
+		"KafkaReminderVector": {
 			"allOf": [
 				{
-					"$ref": "#/definitions/ReminderTarget"
+					"$ref": "#/definitions/ReminderVector"
 				},
 				{
 					"properties": {
-						"reminderTargetType": {
+						"reminderVectorType": {
 							"type": "string",
 							"enum": [
 								"KAFKA"
@@ -11102,19 +11102,19 @@
 						}
 					},
 					"required": [
-						"reminderTargetType"
+						"reminderVectorType"
 					]
 				}
 			]
 		},
-		"WebhookReminderTarget": {
+		"WebhookReminderVector": {
 			"allOf": [
 				{
-					"$ref": "#/definitions/ReminderTarget"
+					"$ref": "#/definitions/ReminderVector"
 				},
 				{
 					"properties": {
-						"reminderTargetType": {
+						"reminderVectorType": {
 							"type": "string",
 							"enum": [
 								"WEBHOOK"
@@ -11125,7 +11125,7 @@
 						}
 					},
 					"required": [
-						"reminderTargetType",
+						"reminderVectorType",
 						"uri"
 					]
 				}
