@@ -11069,7 +11069,7 @@
 			]
 		},
 		"ReminderTarget": {
-			"description": "A reminder target",
+			"description": "Defines how a reminder is sent",
 			"properties": {
 				"reminderTargetType": {
 					"type": "string",
