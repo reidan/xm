@@ -1587,6 +1587,67 @@
 				]
 			}
 		},
+		"/events/{eventId}/recipients/{recipientId}/notifications": {
+			"get": {
+				"summary": "Retrieve event recipient notifications",
+				"description": "Retrieve event recipient notifications",
+				"operationId": "getEventRecipientNotifications",
+				"parameters": [
+					{
+						"$ref": "#/parameters/path-eventId"
+					},
+					{
+						"$ref": "#/parameters/path-recipientId"
+					},
+					{
+						"description": "deliveryStatus",
+						"in": "query",
+						"name": "deliveryStatus",
+						"required": false,
+						"type": "string",
+						"enum": [
+							"PENDING",
+							"DELIVERED",
+							"RESPONDED",
+							"FAILED"
+						]
+					},
+					{
+						"$ref": "#/parameters/query-offset"
+					},
+					{
+						"$ref": "#/parameters/query-limit"
+					},
+					{
+						"description": "Domain entities to embed in the response (e.g. responseOptions)",
+						"in": "query",
+						"name": "embed",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Pagination(Notification)"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Events"
+				]
+			}
+		},
 		"/events/{eventId}/annotations": {
 			"get": {
 				"summary": "Get event annotations",
@@ -14086,6 +14147,13 @@
 			"description": "The plan uuid or name",
 			"in": "path",
 			"name": "planId",
+			"required": true,
+			"type": "string"
+		},
+		"path-recipientId": {
+			"description": "The uuid or targetName of the recipient",
+			"in": "path",
+			"name": "recipientId",
 			"required": true,
 			"type": "string"
 		},
