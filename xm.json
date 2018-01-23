@@ -11199,7 +11199,8 @@
 			"description": "A response",
 			"properties": {
 				"id": {
-					"type": "string"
+					"type": "string",
+					"format": "uuid"
 				},
 				"notification": {
 					"$ref": "#/definitions/NotificationReference"
@@ -11243,6 +11244,10 @@
 		"ResponseInput": {
 			"description": "A response",
 			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				},
 				"notification": {
 					"$ref": "#/definitions/NotificationPointer"
 				},
