@@ -11244,12 +11244,11 @@
 		"ResponseInput": {
 			"description": "A response",
 			"properties": {
-				"id": {
-					"type": "string",
-					"format": "uuid"
-				},
 				"notification": {
 					"$ref": "#/definitions/NotificationPointer"
+				},
+				"option": {
+					"$ref": "#/definitions/ResponseOptionPointer"
 				},
 				"response": {
 					"type": "string"
@@ -11365,6 +11364,18 @@
 					]
 				}
 			}
+		},
+		"ResponseOptionPointer": {
+			"description": "A reference to a response option",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				}
+			},
+			"required": [
+				"id"
+			]
 		},
 		"VendorResponse": {
 			"description": "A vendor response",
