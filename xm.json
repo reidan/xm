@@ -1322,6 +1322,9 @@
 						"$ref": "#/parameters/query-submitterId"
 					},
 					{
+						"$ref": "#/parameters/query-priority"
+					},
+					{
 						"$ref": "#/parameters/query-propertyName"
 					},
 					{
@@ -14475,6 +14478,18 @@
 			"enum": [
 				"PLAN",
 				"BUILT_IN"
+			]
+		},
+		"query-priority": {
+			"description": "Only records matching this priority",
+			"in": "query",
+			"name": "priority",
+			"required": false,
+			"type": "string",
+			"enum": [
+				"LOW",
+				"MEDIUM",
+				"HIGH"
 			]
 		},
 		"query-requestId": {
