@@ -67,18 +67,6 @@
 					"type": "string",
 					"format": "date-time"
 				},
-				"namespace": {
-					"description": "Reminder namespace",
-					"type": "string"
-				},
-				"version": {
-					"description": "Reminder version",
-					"type": "string"
-				},
-				"payload": {
-					"description": "The Base64 encoded message payload of the reminder",
-					"type": "string"
-				},
 				"job": {
 					"properties": {
 						"id": {
@@ -116,64 +104,22 @@
 						"id",
 						"trigger"
 					]
+				},
+				"payloadType": {
+					"description": "Payload schema identification. Namespace and version",
+					"type": "string"
+				},
+				"payload": {
+					"description": "The Base64 encoded payload of the reminder",
+					"type": "string"
 				}
 			},
 			"required": [
 				"id",
 				"at",
-				"namespace",
-				"version",
-				"payload",
-				"job"
-			]
-		},
-		"Pagination(Reminder)": {
-			"properties": {
-				"count": {
-					"description": "The number of items in this page of results (the number of items in the data array)",
-					"format": "int32",
-					"type": "integer"
-				},
-				"data": {
-					"description": "An array that contains this page of resources",
-					"items": {
-						"$ref": "#/definitions/Reminder"
-					},
-					"type": "array"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				},
-				"total": {
-					"description": "The total number of items in the result set",
-					"format": "int32",
-					"type": "integer"
-				}
-			},
-			"required": [
-				"count",
-				"data",
-				"total",
-				"links"
-			]
-		},
-		"PaginationLinks": {
-			"properties": {
-				"next": {
-					"description": "A link to the next page of results",
-					"type": "string"
-				},
-				"previous": {
-					"description": "A link to the previous page of results",
-					"type": "string"
-				},
-				"self": {
-					"description": "A link to this page of results",
-					"type": "string"
-				}
-			},
-			"required": [
-				"self"
+				"job",
+				"payloadType",
+				"payload"
 			]
 		},
 		"BadRequestResponse": {
