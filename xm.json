@@ -1958,6 +1958,9 @@
 						"type": "string"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -2042,6 +2045,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-groupId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
