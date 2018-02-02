@@ -16,57 +16,18 @@
 		"version": "1"
 	},
 	"paths": {
-		"/reminders": {
-			"get": {
-				"summary": "Fetch reminders in reverse chronological order",
-				"description": "Fetch reminders in reverse chronological order",
-				"operationId": "getReminders",
-				"parameters": [
-					{
-						"$ref": "#/parameters/query-offset"
-					},
-					{
-						"$ref": "#/parameters/query-limit"
-					},
-					{
-						"$ref": "#/parameters/query-from"
-					},
-					{
-						"$ref": "#/parameters/query-to"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Pagination(Reminder)"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				},
-				"tags": [
-					"Reminders"
-				]
-			},
+		"/jobs": {
 			"post": {
-				"summary": "Schedule a reminder",
-				"description": "Schedule a reminder",
-				"operationId": "postReminderJob",
+				"summary": "Schedule a reminder job",
+				"description": "Schedule a reminder job",
+				"operationId": "postJob",
 				"parameters": [
 					{
 						"in": "body",
 						"name": "body",
 						"required": true,
 						"schema": {
-							"$ref": "#/definitions/ReminderJobInput"
+							"$ref": "#/definitions/JobInput"
 						}
 					}
 				],
@@ -74,7 +35,7 @@
 					"202": {
 						"description": "Accepted",
 						"schema": {
-							"$ref": "#/definitions/ReminderJob"
+							"$ref": "#/definitions/Job"
 						}
 					},
 					"400": {
@@ -97,93 +58,13 @@
 		}
 	},
 	"definitions": {
-		"Reminder": {
-			"description": "A reminder",
-			"properties": {
-				"id": {
-					"description": "Reminder identifier",
-					"type": "string"
-				},
-				"at": {
-					"description": "UTC Time this reminder was triggered",
-					"type": "string",
-					"format": "date-time"
-				},
-				"namespace": {
-					"description": "Reminder namespace",
-					"type": "string"
-				},
-				"version": {
-					"description": "Reminder version",
-					"type": "string"
-				},
-				"message": {
-					"description": "The Base64 encoded message payload of the reminder",
-					"type": "string"
-				},
-				"job": {
-					"properties": {
-						"id": {
-							"description": "Job identifier",
-							"type": "string"
-						},
-						"jobName": {
-							"description": "A correlation identifier for this job",
-							"type": "string"
-						},
-						"trigger": {
-							"type": "object",
-							"properties": {
-								"startTime": {
-									"type": "string",
-									"format": "date-time"
-								},
-								"endTime": {
-									"type": "string",
-									"format": "date-time"
-								},
-								"cron": {
-									"type": "string"
-								},
-								"timezone": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"startTime"
-							]
-						},
-						"vectors": {
-							"type": "array",
-							"items": {
-								"$ref": "#/definitions/ReminderVector"
-							}
-						}
-					},
-					"required": [
-						"id",
-						"trigger"
-					]
-				}
-			},
-			"required": [
-				"id",
-				"at",
-				"reminderType",
-				"job"
-			]
-		},
-		"ReminderJob": {
+		"Job": {
 			"description": "A scheduled reminder job",
 			"properties": {
 				"id": {
 					"description": "Job identifier",
 					"type": "string"
 				},
-				"reminderType": {
-					"description": "Reminder type",
-					"type": "string"
-				},
 				"jobName": {
 					"description": "A correlation identifier for this job",
 					"type": "string"
@@ -213,27 +94,28 @@
 				"vectors": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReminderVector"
+						"$ref": "#/definitions/Vector"
 					}
 				},
-				"message": {
-					"description": "The Base64 encoded message payload of the reminder",
+				"payloadType": {
+					"description": "Payload schema identification. Namespace and version",
+					"type": "string"
+				},
+				"payload": {
+					"description": "The Base64 encoded payload of the reminder",
 					"type": "string"
 				}
 			},
 			"required": [
 				"id",
-				"reminderType",
-				"trigger"
+				"trigger",
+				"payloadType",
+				"payload"
 			]
 		},
-		"ReminderJobInput": {
-			"description": "Schedule a reminder",
+		"JobInput": {
+			"description": "Schedule a reminder job",
 			"properties": {
-				"reminderType": {
-					"description": "Reminder type",
-					"type": "string"
-				},
 				"jobName": {
 					"description": "A correlation identifier for this job",
 					"type": "string"
@@ -263,23 +145,28 @@
 				"vectors": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/ReminderVector"
+						"$ref": "#/definitions/Vector"
 					}
 				},
-				"message": {
-					"description": "The Base64 encoded message payload of the reminder",
+				"payloadType": {
+					"description": "Payload schema identification. Namespace and version",
+					"type": "string"
+				},
+				"payload": {
+					"description": "The Base64 encoded payload of the reminder",
 					"type": "string"
 				}
 			},
 			"required": [
-				"reminderType",
-				"trigger"
+				"trigger",
+				"payloadType",
+				"payload"
 			]
 		},
-		"ReminderVector": {
+		"Vector": {
 			"description": "Defines how a reminder is sent",
 			"properties": {
-				"reminderVectorType": {
+				"vectorType": {
 					"type": "string",
 					"enum": [
 						"KAFKA",
@@ -288,17 +175,17 @@
 				}
 			},
 			"required": [
-				"reminderVectorType"
+				"vectorType"
 			]
 		},
-		"KafkaReminderVector": {
+		"KafkaVector": {
 			"allOf": [
 				{
-					"$ref": "#/definitions/ReminderVector"
+					"$ref": "#/definitions/Vector"
 				},
 				{
 					"properties": {
-						"reminderVectorType": {
+						"vectorType": {
 							"type": "string",
 							"enum": [
 								"KAFKA"
@@ -310,19 +197,19 @@
 						}
 					},
 					"required": [
-						"reminderVectorType"
+						"vectorType"
 					]
 				}
 			]
 		},
-		"WebhookReminderVector": {
+		"WebhookVector": {
 			"allOf": [
 				{
-					"$ref": "#/definitions/ReminderVector"
+					"$ref": "#/definitions/Vector"
 				},
 				{
 					"properties": {
-						"reminderVectorType": {
+						"vectorType": {
 							"type": "string",
 							"enum": [
 								"WEBHOOK"
@@ -333,59 +220,10 @@
 						}
 					},
 					"required": [
-						"reminderVectorType",
+						"vectorType",
 						"uri"
 					]
 				}
-			]
-		},
-		"Pagination(Reminder)": {
-			"properties": {
-				"count": {
-					"description": "The number of items in this page of results (the number of items in the data array)",
-					"format": "int32",
-					"type": "integer"
-				},
-				"data": {
-					"description": "An array that contains this page of resources",
-					"items": {
-						"$ref": "#/definitions/Reminder"
-					},
-					"type": "array"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				},
-				"total": {
-					"description": "The total number of items in the result set",
-					"format": "int32",
-					"type": "integer"
-				}
-			},
-			"required": [
-				"count",
-				"data",
-				"total",
-				"links"
-			]
-		},
-		"PaginationLinks": {
-			"properties": {
-				"next": {
-					"description": "A link to the next page of results",
-					"type": "string"
-				},
-				"previous": {
-					"description": "A link to the previous page of results",
-					"type": "string"
-				},
-				"self": {
-					"description": "A link to this page of results",
-					"type": "string"
-				}
-			},
-			"required": [
-				"self"
 			]
 		},
 		"BadRequestResponse": {
