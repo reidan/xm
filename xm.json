@@ -567,7 +567,11 @@
 				"operationId": "getAudits",
 				"parameters": [
 					{
-						"$ref": "#/parameters/query-at"
+						"description": "The effect of this param is to trigger the use of the audit store and importantly act as an upper bound for recency. This is important because the auditstore is eventually consistent. Ask for the audits at=now, then make the same call a few seconds later and you may get a different result. Ask for the audits at=<a minute ago> and and the results will never change, because all the audits in transit would have arrived.",
+						"in": "query",
+						"name": "at",
+						"required": false,
+						"type": "string"
 					},
 					{
 						"$ref": "#/parameters/query-from"
