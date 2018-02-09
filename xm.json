@@ -567,6 +567,9 @@
 				"operationId": "getAudits",
 				"parameters": [
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-from"
 					},
 					{
@@ -736,6 +739,9 @@
 						"$ref": "#/parameters/query-sortOrder"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -787,6 +793,9 @@
 						"$ref": "#/parameters/query-include"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-embed"
 					}
 				],
@@ -820,6 +829,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-conferenceId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-offset"
@@ -911,6 +923,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/query-used"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-offset"
@@ -1156,6 +1171,9 @@
 						"type": "string"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -1242,6 +1260,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-embed"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-phoneNumberFormat"
@@ -1558,6 +1579,9 @@
 						]
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -1616,6 +1640,9 @@
 						]
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -1659,6 +1686,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-eventId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-offset"
@@ -1748,6 +1778,9 @@
 					},
 					{
 						"$ref": "#/parameters/path-annotationId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -1781,6 +1814,9 @@
 					},
 					{
 						"$ref": "#/parameters/path-annotationId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -1819,6 +1855,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-limit"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2078,6 +2117,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-groupId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2148,6 +2190,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-groupId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2263,6 +2308,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-groupId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2309,6 +2357,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-embed"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2392,6 +2443,9 @@
 					},
 					{
 						"$ref": "#/parameters/path-shiftId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2463,6 +2517,9 @@
 					},
 					{
 						"$ref": "#/parameters/path-shiftId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2623,6 +2680,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-embed"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -3327,6 +3387,18 @@
 						"type": "string"
 					},
 					{
+						"description": "Recipient status",
+						"enum": [
+							"ACTIVE",
+							"INACTIVE",
+							"INVALID"
+						],
+						"in": "query",
+						"name": "status",
+						"required": false,
+						"type": "string"
+					},
+					{
 						"$ref": "#/parameters/query-webLogin"
 					},
 					{
@@ -3339,6 +3411,9 @@
 						"$ref": "#/parameters/query-propertyValue"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -3346,18 +3421,6 @@
 					},
 					{
 						"$ref": "#/parameters/query-embed"
-					},
-					{
-						"description": "Recipient status",
-						"enum": [
-							"ACTIVE",
-							"INACTIVE",
-							"INVALID"
-						],
-						"in": "query",
-						"name": "status",
-						"required": false,
-						"type": "string"
 					}
 				],
 				"responses": {
@@ -3471,6 +3534,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-personIdMatch"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -3600,6 +3666,9 @@
 						"$ref": "#/parameters/query-phoneNumberFormat"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-embed"
 					}
 				],
@@ -3688,6 +3757,9 @@
 						"$ref": "#/parameters/query-personIdMatch"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-embed"
 					}
 				],
@@ -3724,6 +3796,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-personIdMatch"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-embed"
@@ -4091,6 +4166,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-personId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -4155,6 +4233,9 @@
 							"NAME",
 							"USER_DEFINED"
 						]
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-sortOrder"
@@ -4245,6 +4326,9 @@
 						"name": "embed",
 						"required": false,
 						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -4310,6 +4394,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-planId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-offset"
@@ -4399,6 +4486,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-embed"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -4467,6 +4557,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-planId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-offset"
@@ -4555,6 +4648,9 @@
 						"$ref": "#/parameters/path-endpointId"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-embed"
 					}
 				],
@@ -4637,6 +4733,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-sortOrder"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -4719,6 +4818,9 @@
 					},
 					{
 						"$ref": "#/parameters/path-formId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-offset"
@@ -4823,6 +4925,9 @@
 							"NAME",
 							"USER_DEFINED"
 						]
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					},
 					{
 						"$ref": "#/parameters/query-sortOrder"
@@ -5363,6 +5468,9 @@
 						"type": "string"
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -5448,6 +5556,9 @@
 					},
 					{
 						"$ref": "#/parameters/query-deviceType"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -5494,6 +5605,9 @@
 						"required": false
 					},
 					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
 						"$ref": "#/parameters/query-offset"
 					},
 					{
@@ -5530,6 +5644,9 @@
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-siteId"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
