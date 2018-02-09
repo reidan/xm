@@ -10883,6 +10883,10 @@
 					"description": "The identifier of the resource",
 					"type": "string"
 				},
+				"targetName": {
+					"description": "The target name of the recipient",
+					"type": "string"
+				},
 				"recipientType": {
 					"type": "string",
 					"enum": [
@@ -10900,10 +10904,6 @@
 						"INACTIVE",
 						"INVALID"
 					]
-				},
-				"targetName": {
-					"description": "The target name of the recipient",
-					"type": "string"
 				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
