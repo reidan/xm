@@ -3841,6 +3841,86 @@
 				]
 			}
 		},
+		"/people/{personId}/on-call-reminder-config": {
+			"get": {
+				"tags": [
+					"On-Call Reminders"
+				],
+				"summary": "Configuration for on-call reminders",
+				"description": "Configuration for on-call reminders",
+				"operationId": "getPersonOnCallReminderConfig",
+				"parameters": [
+					{
+						"$ref": "#/parameters/path-personId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/OnCallReminderConfig"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"On-Call Reminders"
+				],
+				"summary": "Creates configuration for on-call reminders.",
+				"description": "Creates configuration for on-call reminders.",
+				"operationId": "postPersonOnCallReminderConfig",
+				"parameters": [
+					{
+						"$ref": "#/parameters/path-personId"
+					},
+					{
+						"in": "body",
+						"name": "body",
+						"description": "An object that describes the configuration for on-call reminders.",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/OnCallReminderConfigInput"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"schema": {
+							"$ref": "#/definitions/OnCallReminderConfig"
+						}
+					},
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/OnCallReminderConfig"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				}
+			}
+		},
 		"/people/{personId}/refresh-tokens": {
 			"get": {
 				"tags": [
@@ -9282,8 +9362,8 @@
 				"group"
 			]
 		},
-		"OnCallReminderSchedule": {
-			"description": "On call reminder schedule configuration",
+		"OnCallReminderConfig": {
+			"description": "On call reminders configuration",
 			"properties": {
 				"id": {
 					"type": "string",
@@ -9291,14 +9371,31 @@
 				},
 				"person": {
 					"$ref": "#/definitions/PersonReference"
+				},
+				"remindersEnabled": {
+					"type": "boolean",
+					"description": "True if the person wants to receive reminders, false if they do not."
+				},
+				"remindOnShiftEnd": {
+					"type": "boolean",
+					"description": "True if the person wants to be notified when their shift ends, false if the person does not want to be notified."
+				},
+				"devices": {
+					"$ref": "#/definitions/Pagination(Device)"
+				},
+				"shiftStartConfigs": {
+					"$ref": "#/definitions/Pagination(OnCallReminderShiftStartConfig)"
 				}
 			},
 			"required": [
-				"id"
+				"id",
+				"person",
+				"remindersEnabled",
+				"remindOnShiftEnd"
 			]
 		},
-		"OnCallReminderScheduleInput": {
-			"description": "On call reminder schedule configuration",
+		"OnCallReminderConfigInput": {
+			"description": "On call reminders configuration",
 			"properties": {
 				"id": {
 					"type": "string",
@@ -9306,8 +9403,41 @@
 				},
 				"person": {
 					"$ref": "#/definitions/PersonPointer"
+				},
+				"remindersEnabled": {
+					"type": "boolean",
+					"description": "True if the person wants to receive reminders, false if they do not."
+				},
+				"remindOnShiftEnd": {
+					"type": "boolean",
+					"description": "True if the person wants to be notified when their shift ends, false if the person does not want to be notified."
+				},
+				"devices": {
+					"description": "Devices to target for reminders",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/DevicePointer"
+					}
+				},
+				"shiftStartConfigs": {
+					"description": "Devices to target for reminders",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/OnCallReminderShiftStartConfig"
+					}
 				}
 			}
+		},
+		"OnCallReminderShiftStartConfig": {
+			"properties": {
+				"remindTimeBeforeShiftStartInMinutes": {
+					"type": "integer",
+					"description": "The time in minutes to receive a reminder before a shift start."
+				}
+			},
+			"required": [
+				"remindTimeBeforeShiftStartInMinutes"
+			]
 		},
 		"Organization": {
 			"properties": {
@@ -12877,6 +13007,36 @@
 						"$ref": "#/definitions/OnCall"
 					},
 					"type": "array"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				},
+				"total": {
+					"description": "The total number of items in the result set",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"count",
+				"data",
+				"total",
+				"links"
+			]
+		},
+		"Pagination(OnCallReminderShiftStartConfig)": {
+			"properties": {
+				"count": {
+					"description": "The number of items in this page of results (the number of items in the data array)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"description": "An array that contains this page of resources",
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/OnCallReminderShiftStartConfig"
+					}
 				},
 				"links": {
 					"$ref": "#/definitions/PaginationLinks"
