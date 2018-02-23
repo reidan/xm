@@ -52,9 +52,81 @@
 					"Reminders"
 				]
 			}
+		},
+		"/events": {
+			"post": {
+				"summary": "Submit an event",
+				"description": "Submit an event",
+				"operationId": "postEvent",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Event"
+						}
+					}
+				],
+				"responses": {
+					"202": {
+						"description": "Accepted"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Events"
+				]
+			}
 		}
 	},
 	"definitions": {
+		"Event": {
+			"description": "Object containing only the data required to queue event processing",
+			"properties": {
+				"id": {
+					"description": "UUID for an Event",
+					"type": "string"
+				},
+				"eventId": {
+					"description": "A legacy identifier (numeric) for an Event",
+					"type": "string"
+				},
+				"eventType": {
+					"description": "User generated or System generated event",
+					"type": "string",
+					"enum": [
+						"USER",
+						"SYSTEM"
+					]
+				},
+				"priority": {
+					"type": "string",
+					"enum": [
+						"LOW",
+						"MEDIUM",
+						"HIGH"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"eventId",
+				"eventType",
+				"priority"
+			]
+		},
 		"Reminder": {
 			"description": "A reminder",
 			"properties": {
