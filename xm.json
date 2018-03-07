@@ -2597,10 +2597,10 @@
 				]
 			}
 		},
-		"/groups/{groupId}/shifts/{shiftId}/occurrences/{occurrenceId}": {
+		"/groups/{groupId}/shifts/{shiftId}/occurrences": {
 			"get": {
 				"summary": "List shift occurrences",
-				"description": "List shift occurrences",
+				"description": "List shift occurrences in reverse chronological order, by start time, before the given 'at' timestamp (this route is only available via the auditstore)",
 				"operationId": "getShiftOccurrences",
 				"parameters": [
 					{
@@ -2610,7 +2610,10 @@
 						"$ref": "#/parameters/path-shiftId"
 					},
 					{
-						"$ref": "#/parameters/path-occurrenceId"
+						"$ref": "#/parameters/query-embed"
+					},
+					{
+						"$ref": "#/parameters/query-at"
 					}
 				],
 				"responses": {
@@ -2618,44 +2621,6 @@
 						"description": "OK",
 						"schema": {
 							"$ref": "#/definitions/Pagination(ShiftOccurrence)"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				},
-				"tags": [
-					"Shift Occurrences"
-				]
-			}
-		},
-		"/groups/{groupId}/shifts/{shiftId}/occurrences/{occurrenceId}/members": {
-			"get": {
-				"summary": "List shift occurrence members",
-				"description": "List shift occurrence members",
-				"operationId": "getShiftOccurrenceMembers",
-				"parameters": [
-					{
-						"$ref": "#/parameters/path-groupId"
-					},
-					{
-						"$ref": "#/parameters/path-shiftId"
-					},
-					{
-						"$ref": "#/parameters/path-occurrenceId"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Pagination(ShiftOccurrenceMember)"
 						}
 					},
 					"401": {
@@ -12182,10 +12147,6 @@
 		},
 		"ShiftOccurrenceMember": {
 			"properties": {
-				"delay": {
-					"type": "integer",
-					"description": "How long, in minutes, to wait before notifying this shift member"
-				},
 				"member": {
 					"$ref": "#/definitions/Recipient"
 				},
@@ -12193,14 +12154,18 @@
 					"type": "integer",
 					"description": "Position in the escalation order"
 				},
+				"delay": {
+					"type": "integer",
+					"description": "How long, in minutes, to wait before notifying this shift member"
+				},
 				"escalationType": {
 					"description": "Identifies the type of escalation to use for Performance Report metrics. Note that if the delay is set to 0, this field must be set to NONE, or omitted. This setting cannot be applied to the first recipient in a list",
+					"type": "string",
 					"enum": [
 						"NONE",
 						"PEER",
 						"MANAGEMENT"
-					],
-					"type": "string"
+					]
 				},
 				"replacements": {
 					"$ref": "#/definitions/Pagination(TemporaryReplacement)"
