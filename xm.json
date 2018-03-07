@@ -11272,6 +11272,9 @@
 					"enum": [
 						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
+				},
+				"allowComments": {
+					"type": "boolean"
 				}
 			},
 			"required": [
@@ -11319,6 +11322,9 @@
 					"enum": [
 						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
+				},
+				"allowComments": {
+					"type": "boolean"
 				}
 			}
 		},
