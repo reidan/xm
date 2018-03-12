@@ -10044,6 +10044,7 @@
 								"PINGDOM_SM",
 								"SCOUT",
 								"SENSU",
+								"SIGNALFX",
 								"SOLAR_WINDS",
 								"SPLUNK",
 								"SPLUNK_ITSI",
@@ -10487,6 +10488,49 @@
 						"apiUsername",
 						"apiPassword",
 						"silenceDuration"
+					]
+				}
+			]
+		},
+		"SignalFxBuiltInPlanInput": {
+			"description": "SignalFx built-in communication plan",
+			"allOf": [
+				{
+					"$ref": "#/definitions/BuiltInPlanInput"
+				},
+				{
+					"properties": {
+						"planType": {
+							"type": "string",
+							"enum": [
+								"BUILT_IN"
+							]
+						},
+						"builtInPlanType": {
+							"type": "string",
+							"description": "Built-in communication plan type",
+							"enum": [
+								"SIGNALFX"
+							]
+						},
+						"apiToken": {
+							"type": "string"
+						},
+						"addNoteOnEventCreation": {
+							"type": "boolean",
+							"default": false
+						},
+						"notificationDeliveryStatusDeployed": {
+							"type": "boolean",
+							"default": false
+						}
+					},
+					"required": [
+						"planType",
+						"builtInPlanType",
+						"recipients",
+						"senderOverrideName",
+						"apiToken"
 					]
 				}
 			]
