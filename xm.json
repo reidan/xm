@@ -9345,6 +9345,15 @@
 					"type": "boolean",
 					"description": "True if the person wants to be notified when their shift ends, false if the person does not want to be notified."
 				},
+				"rotationPosition": {
+					"type": "string",
+					"enum": [
+						"ALL",
+						"PRIMARY",
+						"PRIMARY_OR_SECONDARY"
+					],
+					"default": "ALL"
+				},
 				"devices": {
 					"$ref": "#/definitions/Pagination(Device)"
 				},
@@ -9376,6 +9385,15 @@
 				"remindOnShiftEnd": {
 					"type": "boolean",
 					"description": "True if the person wants to be notified when their shift ends, false if the person does not want to be notified."
+				},
+				"rotationPosition": {
+					"type": "string",
+					"enum": [
+						"ALL",
+						"PRIMARY",
+						"PRIMARY_OR_SECONDARY"
+					],
+					"default": "ALL"
 				},
 				"devices": {
 					"description": "Devices to target for reminders",
