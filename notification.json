@@ -16,6 +16,43 @@
 		"version": "1"
 	},
 	"paths": {
+		"/audits": {
+			"post": {
+				"summary": "Audits",
+				"description": "Audits",
+				"operationId": "postAudit",
+				"parameters": [
+					{
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Audit"
+						}
+					}
+				],
+				"responses": {
+					"202": {
+						"description": "Accepted"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Audit"
+				]
+			}
+		},
 		"/reminders": {
 			"post": {
 				"summary": "Receive a reminder",
@@ -92,12 +129,89 @@
 		}
 	},
 	"definitions": {
+		"Audit": {
+			"description": "An audit",
+			"discriminator": "auditType",
+			"properties": {
+				"at": {
+					"description": "Time this event happened (UTC)",
+					"type": "string",
+					"format": "date-time"
+				},
+				"auditType": {
+					"description": "Audit types",
+					"type": "string",
+					"enum": [
+						"EVENT_ANNOTATED",
+						"EVENT_CREATED"
+					]
+				},
+				"by": {
+					"$ref": "#/definitions/PersonReference"
+				}
+			},
+			"required": [
+				"at",
+				"auditType"
+			]
+		},
+		"EventAnnotatedAudit": {
+			"description": "An event annotated audit",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Audit"
+				},
+				{
+					"properties": {
+						"auditType": {
+							"type": "string",
+							"enum": [
+								"EVENT_ANNOTATED"
+							]
+						},
+						"annotation": {
+							"$ref": "#/definitions/EventAnnotation"
+						}
+					},
+					"required": [
+						"auditType",
+						"annotation"
+					]
+				}
+			]
+		},
+		"EventCreatedAudit": {
+			"description": "An event created audit",
+			"allOf": [
+				{
+					"$ref": "#/definitions/Audit"
+				},
+				{
+					"properties": {
+						"auditType": {
+							"type": "string",
+							"enum": [
+								"EVENT_CREATED"
+							]
+						},
+						"event": {
+							"$ref": "#/definitions/Event"
+						}
+					},
+					"required": [
+						"auditType",
+						"event"
+					]
+				}
+			]
+		},
 		"Event": {
 			"description": "Object containing only the data required to queue event processing",
 			"properties": {
 				"id": {
 					"description": "UUID for an Event",
-					"type": "string"
+					"type": "string",
+					"format": "uuid"
 				},
 				"eventId": {
 					"description": "A legacy identifier (numeric) for an Event",
@@ -127,12 +241,161 @@
 				"priority"
 			]
 		},
+		"EventReference": {
+			"properties": {
+				"id": {
+					"description": "A unique identifier (UUID) for this entity",
+					"type": "string",
+					"format": "uuid"
+				},
+				"eventId": {
+					"description": "A legacy identifier (numeric) that represents this resource",
+					"type": "string"
+				},
+				"eventType": {
+					"description": "User generated or System generated event",
+					"type": "string",
+					"enum": [
+						"USER",
+						"SYSTEM"
+					]
+				},
+				"priority": {
+					"type": "string",
+					"enum": [
+						"LOW",
+						"MEDIUM",
+						"HIGH"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"eventId",
+				"eventType",
+				"priority"
+			]
+		},
+		"EventAnnotation": {
+			"description": "An event annotation",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				},
+				"event": {
+					"$ref": "#/definitions/EventReference"
+				},
+				"author": {
+					"$ref": "#/definitions/PersonReference"
+				},
+				"source": {
+					"type": "string",
+					"enum": [
+						"BROWSER",
+						"IOS",
+						"ANDROID"
+					]
+				},
+				"comment": {
+					"type": "string"
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time"
+				}
+			},
+			"required": [
+				"id",
+				"event",
+				"author",
+				"comment",
+				"created"
+			]
+		},
+		"RecipientReference": {
+			"properties": {
+				"id": {
+					"description": "The identifier of the resource",
+					"type": "string",
+					"format": "uuid"
+				},
+				"targetName": {
+					"description": "The target name of the recipient",
+					"type": "string"
+				},
+				"recipientType": {
+					"type": "string",
+					"enum": [
+						"GROUP",
+						"PERSON",
+						"DEVICE",
+						"SITE"
+					]
+				},
+				"status": {
+					"description": "Whether the recipient is active. Inactive recipients do not receive notifications",
+					"type": "string",
+					"enum": [
+						"ACTIVE",
+						"INACTIVE",
+						"INVALID"
+					]
+				}
+			},
+			"required": [
+				"id",
+				"recipientType",
+				"targetName"
+			]
+		},
+		"PersonReference": {
+			"allOf": [
+				{
+					"$ref": "#/definitions/RecipientReference"
+				},
+				{
+					"properties": {
+						"id": {
+							"description": "The identifier of the resource",
+							"type": "string",
+							"format": "uuid"
+						},
+						"targetName": {
+							"description": "The target name of the resource",
+							"type": "string"
+						},
+						"recipientType": {
+							"type": "string",
+							"enum": [
+								"PERSON"
+							]
+						},
+						"firstName": {
+							"description": "The first name of the user",
+							"type": "string"
+						},
+						"lastName": {
+							"description": "The last name of the user",
+							"type": "string"
+						}
+					},
+					"required": [
+						"id",
+						"targetName",
+						"firstName",
+						"lastName"
+					]
+				}
+			]
+		},
 		"Reminder": {
 			"description": "A reminder",
 			"properties": {
 				"id": {
 					"description": "Reminder identifier",
-					"type": "string"
+					"type": "string",
+					"format": "uuid"
 				},
 				"at": {
 					"description": "UTC Time this reminder was triggered",
@@ -143,7 +406,8 @@
 					"properties": {
 						"id": {
 							"description": "Job identifier",
-							"type": "string"
+							"type": "string",
+							"format": "uuid"
 						},
 						"jobName": {
 							"description": "A correlation identifier for this job",
