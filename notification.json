@@ -89,43 +89,6 @@
 					"Reminders"
 				]
 			}
-		},
-		"/events": {
-			"post": {
-				"summary": "Submit an event",
-				"description": "Submit an event",
-				"operationId": "postEvent",
-				"parameters": [
-					{
-						"in": "body",
-						"name": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Event"
-						}
-					}
-				],
-				"responses": {
-					"202": {
-						"description": "Accepted"
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				},
-				"tags": [
-					"Events"
-				]
-			}
 		}
 	},
 	"definitions": {
