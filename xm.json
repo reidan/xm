@@ -2045,7 +2045,7 @@
 				]
 			}
 		},
-		"/file-transforms/{fileTransformId}/import": {
+		"/file-transforms/{transformId}/import": {
 			"post": {
 				"summary": "Import a file",
 				"description": "Import a file",
@@ -2055,7 +2055,7 @@
 					{
 						"description": "File transform identifier",
 						"in": "path",
-						"name": "fileTransformId",
+						"name": "transformId",
 						"required": true,
 						"type": "string"
 					},
@@ -2130,7 +2130,7 @@
 				]
 			}
 		},
-		"/file-imports/{fileImportId}": {
+		"/file-imports/{importId}": {
 			"get": {
 				"summary": "File import",
 				"description": "File import",
@@ -2139,7 +2139,7 @@
 					{
 						"description": "File import identifier",
 						"in": "path",
-						"name": "fileImportId",
+						"name": "importId",
 						"required": true,
 						"type": "string"
 					},
