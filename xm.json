@@ -2721,7 +2721,7 @@
 		"/groups/{groupId}/shifts/{shiftId}/members": {
 			"get": {
 				"description": "List Shift members",
-				"operationId": "getShiftMembers",
+				"operationId": "getGroupShiftMembers",
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-groupId"
@@ -2808,7 +2808,7 @@
 			"get": {
 				"summary": "List shift occurrences",
 				"description": "List shift occurrences in reverse chronological order, by start time, before the given 'at' timestamp (this route is only available via the auditstore)",
-				"operationId": "getShiftOccurrences",
+				"operationId": "getGroupShiftOccurrences",
 				"parameters": [
 					{
 						"$ref": "#/parameters/path-groupId"
@@ -5851,6 +5851,62 @@
 				]
 			}
 		},
+		"/shift-occurrences": {
+			"get": {
+				"summary": "List shift occurrences",
+				"description": "List shift occurrences in reverse chronological order, by start time, before the given 'at' timestamp (this route is only available via the auditstore)",
+				"operationId": "getShiftOccurrences",
+				"parameters": [
+					{
+						"$ref": "#/parameters/query-at"
+					},
+					{
+						"$ref": "#/parameters/query-group"
+					},
+					{
+						"$ref": "#/parameters/query-shift"
+					},
+					{
+						"$ref": "#/parameters/query-members"
+					},
+					{
+						"$ref": "#/parameters/query-from"
+					},
+					{
+						"$ref": "#/parameters/query-to"
+					},
+					{
+						"$ref": "#/parameters/query-before"
+					},
+					{
+						"$ref": "#/parameters/query-after"
+					},
+					{
+						"$ref": "#/parameters/query-embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Pagination(ShiftOccurrence)"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Shift Occurrences"
+				]
+			}
+		},
 		"/sites": {
 			"get": {
 				"summary": "List sites",
@@ -8687,7 +8743,8 @@
 				}
 			},
 			"required": [
-				"id"
+				"id",
+				"fileTransform"
 			]
 		},
 		"FileImportRow": {
@@ -14822,6 +14879,17 @@
 			"required": false,
 			"type": "string"
 		},
+		"query-group": {
+			"description": "Comma separated list of group uuid or targetName",
+			"in": "query",
+			"name": "groups",
+			"required": false,
+			"type": "array",
+			"items": {
+				"type": "string"
+			},
+			"collectionFormat": "csv"
+		},
 		"query-groups": {
 			"description": "Comma separated list of group uuid or targetName",
 			"in": "query",
@@ -14863,6 +14931,13 @@
 			"required": false,
 			"type": "integer"
 		},
+		"query-members": {
+			"description": "Membership includes these people",
+			"in": "query",
+			"name": "members",
+			"required": false,
+			"type": "string"
+		},
 		"query-offset": {
 			"default": 0,
 			"description": "Skip this many results before returning the result set",
@@ -14870,6 +14945,13 @@
 			"name": "offset",
 			"required": false,
 			"type": "integer"
+		},
+		"query-person": {
+			"description": "The person's uuid or targetName",
+			"in": "query",
+			"name": "person",
+			"required": false,
+			"type": "string"
 		},
 		"query-personId": {
 			"description": "The person's uuid or targetName",
@@ -14926,6 +15008,13 @@
 			"description": "Request identifier",
 			"in": "query",
 			"name": "requestId",
+			"required": false,
+			"type": "string"
+		},
+		"query-shift": {
+			"description": "Shift identifier",
+			"in": "query",
+			"name": "shift",
 			"required": false,
 			"type": "string"
 		},
