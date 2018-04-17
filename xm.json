@@ -1328,6 +1328,41 @@
 				]
 			}
 		},
+		"/device-tests": {
+			"post": {
+				"summary": "Test a device",
+				"description": "Test a device",
+				"operationId": "postDeviceTest",
+				"parameters": [
+					{
+						"description": "Test a device",
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/DeviceTestInput"
+						}
+					}
+				],
+				"responses": {
+					"202": {
+						"description": "Accepted"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					}
+				},
+				"tags": [
+					"Devices"
+				]
+			}
+		},
 		"/events": {
 			"get": {
 				"summary": "Get Events",
@@ -7490,6 +7525,17 @@
 						"deviceType"
 					]
 				}
+			]
+		},
+		"DeviceTestInput": {
+			"description": "Test a device",
+			"properties": {
+				"device": {
+					"$ref": "#/definitions/DevicePointer"
+				}
+			},
+			"required": [
+				"device"
 			]
 		},
 		"AndroidPushDevice": {
