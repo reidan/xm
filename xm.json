@@ -10483,6 +10483,7 @@
 								"SCOUT",
 								"SENSU",
 								"SIGNALFX",
+								"SLACK_BOT",
 								"SOLAR_WINDS",
 								"SPLUNK",
 								"SPLUNK_ITSI",
@@ -10969,6 +10970,41 @@
 						"recipients",
 						"senderOverrideName",
 						"apiToken"
+					]
+				}
+			]
+		},
+		"SlackBotBuiltInPlanInput": {
+			"description": "Slack Bot built-in communication plan",
+			"allOf": [
+				{
+					"$ref": "#/definitions/BuiltInPlanInput"
+				},
+				{
+					"properties": {
+						"planType": {
+							"type": "string",
+							"enum": [
+								"BUILT_IN"
+							]
+						},
+						"builtInPlanType": {
+							"type": "string",
+							"description": "Built-in communication plan type",
+							"enum": [
+								"SLACK_BOT"
+							]
+						},
+						"teamDomain": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"planType",
+						"builtInPlanType",
+						"recipients",
+						"senderOverrideName",
+						"teamDomain"
 					]
 				}
 			]
