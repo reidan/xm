@@ -1,6 +1,6 @@
 {
 	"swagger": "2.0",
-	"basePath": "/api/etl/1",
+	"basePath": "/api/transfer/1",
 	"consumes": [
 		"application/json"
 	],
@@ -11,8 +11,8 @@
 		"https"
 	],
 	"info": {
-		"title": "Paul's ETL Service Spec",
-		"description": "Paul's ETL Spec (specification scratch-pad)",
+		"title": "Paul's Transfer Service Spec",
+		"description": "Paul's Transfer Service Spec (specification scratch-pad)",
 		"version": "1"
 	},
 	"paths": {
