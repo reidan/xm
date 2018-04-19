@@ -1413,6 +1413,20 @@
 						"type": "string"
 					},
 					{
+						"description": "Search string",
+						"in": "query",
+						"name": "search",
+						"required": false,
+						"type": "string"
+					},
+					{
+						"description": "Restrict search to these fields (comma separated list of attribute names, exact match). Supported attributes are name",
+						"in": "query",
+						"name": "fields",
+						"required": false,
+						"type": "string"
+					},
+					{
 						"description": "Sort results by",
 						"in": "query",
 						"name": "sortBy",
