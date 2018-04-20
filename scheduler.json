@@ -52,7 +52,34 @@
 					}
 				},
 				"tags": [
-					"Reminders"
+					"Jobs"
+				]
+			},
+			"delete": {
+				"summary": "Delete all jobs for an organization",
+				"description": "Delete all jobs for an organization",
+				"operationId": "deleteJobs",
+				"parameters": [
+				],
+				"responses": {
+					"202": {
+						"description": "Accepted"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Jobs"
 				]
 			}
 		}
