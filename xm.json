@@ -1328,6 +1328,45 @@
 				]
 			}
 		},
+		"/devices/{deviceId}/notifications": {
+			"delete": {
+				"summary": "De-link notifications for a device",
+				"description": "De-link notifications for a device",
+				"operationId": "deleteDeviceNotifications",
+				"parameters": [
+					{
+						"$ref": "#/parameters/path-deviceId"
+					},
+					{
+						"description": "Only repeat notifications",
+						"in": "query",
+						"name": "repeat",
+						"required": false,
+						"type": "boolean"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"204": {
+						"$ref": "#/responses/204"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Notifications"
+				]
+			}
+		},
 		"/device-tests": {
 			"post": {
 				"summary": "Test a device",
@@ -9605,6 +9644,9 @@
 						"RESPONDED",
 						"FAILED"
 					]
+				},
+				"repeatOf": {
+					"$ref": "#/definitions/NotificationReference"
 				},
 				"message": {
 					"$ref": "#/definitions/Message"
