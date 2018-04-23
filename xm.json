@@ -1437,7 +1437,8 @@
 							"EVENT_ID",
 							"SUBMITTER",
 							"START_TIME",
-							"NAME"
+							"NAME",
+							"PLAN"
 						]
 					},
 					{
