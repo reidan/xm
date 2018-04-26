@@ -2139,6 +2139,40 @@
 				"tags": [
 					"Event Schedules"
 				]
+			},
+			"delete": {
+				"summary": "Delete an event schedule",
+				"description": "Delete an event schedule",
+				"operationId": "deleteEventSchedule",
+				"parameters": [
+					{
+						"description": "Event schedule id or name",
+						"in": "path",
+						"name": "eventScheduleId",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/EventSchedule"
+						}
+					},
+					"204": {
+						"$ref": "#/responses/204"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					}
+				},
+				"tags": [
+					"Event Schedules"
+				]
 			}
 		},
 		"/feature-toggles": {
