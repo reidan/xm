@@ -129,7 +129,7 @@
 					"type": "string"
 				},
 				"payload": {
-					"description": "The Base64 encoded payload of the reminder",
+					"description": "The string (generally Base64 encoded JSON) payload of the reminder",
 					"type": "string"
 				}
 			},
@@ -180,7 +180,7 @@
 					"type": "string"
 				},
 				"payload": {
-					"description": "The Base64 encoded payload of the reminder",
+					"description": "The string (generally Base64 encoded JSON) payload of the reminder",
 					"type": "string"
 				}
 			},
