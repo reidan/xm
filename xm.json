@@ -7842,6 +7842,9 @@
 								"MEDIUM",
 								"HIGH"
 							]
+						},
+						"repeatingAlerts": {
+							"$ref": "#/definitions/RepeatingAlertConfig"
 						}
 					},
 					"required": [
@@ -7886,6 +7889,9 @@
 								"MEDIUM",
 								"HIGH"
 							]
+						},
+						"repeatingAlerts": {
+							"$ref": "#/definitions/RepeatingAlertConfig"
 						}
 					},
 					"required": [
@@ -8548,6 +8554,29 @@
 				"durationInMinutes",
 				"excludeHolidays"
 			]
+		},
+		"RepeatingAlertConfig": {
+			"type": "object",
+			"properties": {
+				"enabled": {
+					"type": "boolean"
+				},
+				"repetitions": {
+					"type": "integer"
+				},
+				"intervalInSeconds": {
+					"type": "integer"
+				},
+				"priorityThreshold": {
+					"description": "The minimum event priority to receive repeating alerts",
+					"type": "string",
+					"enum": [
+						"LOW",
+						"HIGH",
+						"MEDIUM"
+					]
+				}
+			}
 		},
 		"Event": {
 			"description": "An event in the xMatters system",
