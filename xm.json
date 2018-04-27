@@ -2208,213 +2208,6 @@
 				}
 			}
 		},
-		"/file-transforms": {
-			"get": {
-				"summary": "File transform definitions",
-				"description": "File transform definitions",
-				"operationId": "getFileTransforms",
-				"parameters": [
-					{
-						"$ref": "#/parameters/query-offset"
-					},
-					{
-						"$ref": "#/parameters/query-limit"
-					},
-					{
-						"$ref": "#/parameters/query-embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Pagination(FileTransform)"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				},
-				"tags": [
-					"File Import"
-				]
-			},
-			"post": {
-				"summary": "Set file transform definition",
-				"description": "Set file transform definition",
-				"operationId": "postFileTransform",
-				"parameters": [
-					{
-						"description": "File transform definition",
-						"in": "body",
-						"name": "body",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/FileTransformInput"
-						}
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"schema": {
-							"$ref": "#/definitions/FileTransform"
-						}
-					},
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/FileTransform"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				},
-				"tags": [
-					"File Import"
-				]
-			}
-		},
-		"/file-transforms/{transformId}/import": {
-			"post": {
-				"summary": "Import a file",
-				"description": "Import a file",
-				"operationId": "postFileTransformImport",
-				"consumes": ["multipart/form-data"],
-				"parameters": [
-					{
-						"description": "File transform identifier",
-						"in": "path",
-						"name": "transformId",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"description": "File upload",
-						"in": "formData",
-						"name": "file",
-						"type": "file",
-						"required": true
-					}
-				],
-				"responses": {
-					"201": {
-						"description": "Created",
-						"schema": {
-							"$ref": "#/definitions/FileImport"
-						}
-					},
-					"400": {
-						"$ref": "#/responses/400"
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"409": {
-						"$ref": "#/responses/409"
-					}
-				},
-				"tags": [
-					"File Import"
-				]
-			}
-		},
-		"/file-imports": {
-			"get": {
-				"summary": "File imports",
-				"description": "File imports",
-				"operationId": "getFileImports",
-				"parameters": [
-					{
-						"$ref": "#/parameters/query-offset"
-					},
-					{
-						"$ref": "#/parameters/query-limit"
-					},
-					{
-						"$ref": "#/parameters/query-embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/Pagination(FileImport)"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				},
-				"tags": [
-					"File Import"
-				]
-			}
-		},
-		"/file-imports/{importId}": {
-			"get": {
-				"summary": "File import",
-				"description": "File import",
-				"operationId": "getFileImport",
-				"parameters": [
-					{
-						"description": "File import identifier",
-						"in": "path",
-						"name": "importId",
-						"required": true,
-						"type": "string"
-					},
-					{
-						"$ref": "#/parameters/query-embed"
-					}
-				],
-				"responses": {
-					"200": {
-						"description": "OK",
-						"schema": {
-							"$ref": "#/definitions/FileImport"
-						}
-					},
-					"401": {
-						"$ref": "#/responses/401"
-					},
-					"403": {
-						"$ref": "#/responses/403"
-					},
-					"404": {
-						"$ref": "#/responses/404"
-					}
-				},
-				"tags": [
-					"File Import"
-				]
-			}
-		},
 		"/groups": {
 			"get": {
 				"description": "List Groups. Can embed group calendar e.g. embed=calendar(at: '2015-11-02T22:54:19Z') e.g. embed=calendar(from: '2015-11-02T22:54:19Z', to: '2015-11-03T22:54:19Z')",
@@ -3126,6 +2919,83 @@
 				},
 				"tags": [
 					"Group Supervisors"
+				]
+			}
+		},
+		"/imports": {
+			"get": {
+				"summary": "Imports",
+				"description": "Imports",
+				"operationId": "getImports",
+				"parameters": [
+					{
+						"$ref": "#/parameters/query-offset"
+					},
+					{
+						"$ref": "#/parameters/query-limit"
+					},
+					{
+						"$ref": "#/parameters/query-embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Pagination(Import)"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Import"
+				]
+			}
+		},
+		"/imports/{importId}": {
+			"get": {
+				"summary": "Import",
+				"description": "Import",
+				"operationId": "getImport",
+				"parameters": [
+					{
+						"description": "Import identifier",
+						"in": "path",
+						"name": "importId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"$ref": "#/parameters/query-embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Import"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Import"
 				]
 			}
 		},
@@ -6281,6 +6151,136 @@
 				]
 			}
 		},
+		"/transforms": {
+			"get": {
+				"summary": "Transform definitions",
+				"description": "Transform definitions",
+				"operationId": "getTransforms",
+				"parameters": [
+					{
+						"$ref": "#/parameters/query-offset"
+					},
+					{
+						"$ref": "#/parameters/query-limit"
+					},
+					{
+						"$ref": "#/parameters/query-embed"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Pagination(Transform)"
+						}
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Transforms"
+				]
+			},
+			"post": {
+				"summary": "Set transform definition",
+				"description": "Set transform definition",
+				"operationId": "postTransform",
+				"parameters": [
+					{
+						"description": "Transform definition",
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/TransformInput"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"schema": {
+							"$ref": "#/definitions/Transform"
+						}
+					},
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Transform"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Transforms"
+				]
+			}
+		},
+		"/transforms/{transformId}/imports": {
+			"post": {
+				"summary": "Import a file",
+				"description": "Import a file",
+				"operationId": "postTransformImport",
+				"consumes": ["multipart/form-data"],
+				"parameters": [
+					{
+						"description": "Transform identifier",
+						"in": "path",
+						"name": "transformId",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"description": "File upload",
+						"in": "formData",
+						"name": "file",
+						"type": "file",
+						"required": true
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Created",
+						"schema": {
+							"$ref": "#/definitions/Import"
+						}
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"409": {
+						"$ref": "#/responses/409"
+					}
+				},
+				"tags": [
+					"Import"
+				]
+			}
+		},
 		"/vendor-responses": {
 			"post": {
 				"summary": "Report a vendor response",
@@ -9033,115 +9033,19 @@
 				"url"
 			]
 		},
-		"FileTransform": {
-			"description": "File transform",
+		"Import": {
+			"description": "Import",
 			"properties": {
 				"id": {
 					"type": "string"
 				},
-				"name": {
-					"description": "Transform name",
-					"type": "string"
-				},
-				"url": {
-					"description": "File upload URL",
-					"type": "string"
+				"transform": {
+					"$ref": "#/definitions/TransformReference"
 				}
 			},
 			"required": [
 				"id",
-				"name",
-				"url"
-			]
-		},
-		"FileTransformInput": {
-			"description": "File transform",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"name": {
-					"description": "Transform name",
-					"type": "string"
-				}
-			}
-		},
-		"FileTransformReference": {
-			"description": "File transform",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"name": {
-					"description": "Transform name",
-					"type": "string"
-				},
-				"url": {
-					"description": "File upload URL",
-					"type": "string"
-				}
-			},
-			"required": [
-				"id",
-				"name",
-				"url"
-			]
-		},
-		"FileImport": {
-			"description": "File import",
-			"properties": {
-				"id": {
-					"type": "string"
-				},
-				"fileTransform": {
-					"$ref": "#/definitions/FileTransformReference"
-				}
-			},
-			"required": [
-				"id",
-				"fileTransform"
-			]
-		},
-		"FileImportRow": {
-			"description": "File import row",
-			"properties": {
-				"row": {
-					"description": "Row Number",
-					"type": "integer"
-				},
-				"raw": {
-					"description": "Raw string",
-					"type": "string"
-				},
-				"fields": {
-					"$ref": "#/definitions/Pagination(FileImportField)"
-				}
-			},
-			"required": [
-				"row",
-				"raw"
-			]
-		},
-		"FileImportField": {
-			"description": "File import row",
-			"properties": {
-				"row": {
-					"description": "Row Number",
-					"type": "integer"
-				},
-				"col": {
-					"description": "Column Number",
-					"type": "integer"
-				},
-				"raw": {
-					"description": "Raw string",
-					"type": "string"
-				}
-			},
-			"required": [
-				"row",
-				"col",
-				"raw"
+				"transform"
 			]
 		},
 		"Form": {
@@ -13116,6 +13020,60 @@
 				"replacement"
 			]
 		},
+		"Transform": {
+			"description": "Transform",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"description": "Transform name",
+					"type": "string"
+				},
+				"url": {
+					"description": "File upload URL",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"url"
+			]
+		},
+		"TransformInput": {
+			"description": "Transform",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"description": "Transform name",
+					"type": "string"
+				}
+			}
+		},
+		"TransformReference": {
+			"description": "Transform",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"name": {
+					"description": "Transform name",
+					"type": "string"
+				},
+				"url": {
+					"description": "File upload URL",
+					"type": "string"
+				}
+			},
+			"required": [
+				"id",
+				"name",
+				"url"
+			]
+		},
 		"Pagination(Agent)": {
 			"properties": {
 				"count": {
@@ -13588,126 +13546,6 @@
 				"links"
 			]
 		},
-		"Pagination(FileImport)": {
-			"properties": {
-				"count": {
-					"description": "The number of items in this page of results (the number of items in the data array)",
-					"format": "int32",
-					"type": "integer"
-				},
-				"data": {
-					"description": "An array that contains this page of resources",
-					"items": {
-						"$ref": "#/definitions/FileImport"
-					},
-					"type": "array"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				},
-				"total": {
-					"description": "The total number of items in the result set",
-					"format": "int32",
-					"type": "integer"
-				}
-			},
-			"required": [
-				"count",
-				"data",
-				"total",
-				"links"
-			]
-		},
-		"Pagination(FileImportRow)": {
-			"properties": {
-				"count": {
-					"description": "The number of items in this page of results (the number of items in the data array)",
-					"format": "int32",
-					"type": "integer"
-				},
-				"data": {
-					"description": "An array that contains this page of resources",
-					"items": {
-						"$ref": "#/definitions/FileImportRow"
-					},
-					"type": "array"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				},
-				"total": {
-					"description": "The total number of items in the result set",
-					"format": "int32",
-					"type": "integer"
-				}
-			},
-			"required": [
-				"count",
-				"data",
-				"total",
-				"links"
-			]
-		},
-		"Pagination(FileImportField)": {
-			"properties": {
-				"count": {
-					"description": "The number of items in this page of results (the number of items in the data array)",
-					"format": "int32",
-					"type": "integer"
-				},
-				"data": {
-					"description": "An array that contains this page of resources",
-					"items": {
-						"$ref": "#/definitions/FileImportField"
-					},
-					"type": "array"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				},
-				"total": {
-					"description": "The total number of items in the result set",
-					"format": "int32",
-					"type": "integer"
-				}
-			},
-			"required": [
-				"count",
-				"data",
-				"total",
-				"links"
-			]
-		},
-		"Pagination(FileTransform)": {
-			"properties": {
-				"count": {
-					"description": "The number of items in this page of results (the number of items in the data array)",
-					"format": "int32",
-					"type": "integer"
-				},
-				"data": {
-					"description": "An array that contains this page of resources",
-					"items": {
-						"$ref": "#/definitions/FileTransform"
-					},
-					"type": "array"
-				},
-				"links": {
-					"$ref": "#/definitions/PaginationLinks"
-				},
-				"total": {
-					"description": "The total number of items in the result set",
-					"format": "int32",
-					"type": "integer"
-				}
-			},
-			"required": [
-				"count",
-				"data",
-				"total",
-				"links"
-			]
-		},
 		"Pagination(Form)": {
 			"properties": {
 				"count": {
@@ -13809,6 +13647,36 @@
 					"description": "An array that contains this page of resources",
 					"items": {
 						"$ref": "#/definitions/GroupMember"
+					},
+					"type": "array"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				},
+				"total": {
+					"description": "The total number of items in the result set",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"count",
+				"data",
+				"total",
+				"links"
+			]
+		},
+		"Pagination(Import)": {
+			"properties": {
+				"count": {
+					"description": "The number of items in this page of results (the number of items in the data array)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"description": "An array that contains this page of resources",
+					"items": {
+						"$ref": "#/definitions/Import"
 					},
 					"type": "array"
 				},
@@ -14757,6 +14625,36 @@
 					"description": "An array that contains this page of resources",
 					"items": {
 						"$ref": "#/definitions/TemporaryReplacement"
+					},
+					"type": "array"
+				},
+				"links": {
+					"$ref": "#/definitions/PaginationLinks"
+				},
+				"total": {
+					"description": "The total number of items in the result set",
+					"format": "int32",
+					"type": "integer"
+				}
+			},
+			"required": [
+				"count",
+				"data",
+				"total",
+				"links"
+			]
+		},
+		"Pagination(Transform)": {
+			"properties": {
+				"count": {
+					"description": "The number of items in this page of results (the number of items in the data array)",
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"description": "An array that contains this page of resources",
+					"items": {
+						"$ref": "#/definitions/Transform"
 					},
 					"type": "array"
 				},
