@@ -3436,7 +3436,7 @@
 						"$ref": "#/parameters/query-groups"
 					},
 					{
-						"description": "Comma separated list of person uuid or targetName",
+						"description": "Comma separated list of person uuid or targetName, only group schedules that include these members should be returned",
 						"in": "query",
 						"name": "members",
 						"required": false,
