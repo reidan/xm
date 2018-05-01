@@ -1402,6 +1402,97 @@
 				]
 			}
 		},
+		"/email-delivery-status-notifications": {
+			"post": {
+				"summary": "Email delivery status notification",
+				"description": "Email delivery status notification",
+				"operationId": "postEmailDeliveryStatusNotification",
+				"parameters": [
+					{
+						"description": "Email delivery status notifications",
+						"in": "body",
+						"name": "body",
+						"required": true,
+						"schema": {
+							"description": "Email delivery status notifications",
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/EmailDeliveryStatus"
+							},
+							"minItems": 1,
+							"maxItems": 1000
+						}
+					}
+				],
+				"responses": {
+					"202": {
+						"description": "Accepted"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					}
+				},
+				"tags": [
+					"Email Delivery Status Notification"
+				]
+			}
+		},
+		"/email-delivery-status-notifications/mailgun-bounce": {
+			"post": {
+				"summary": "MailGun email delivery status notifications",
+				"description": "MailGun email delivery status notifications",
+				"operationId": "postEmailDeliveryStatusNotificationMailGun",
+				"parameters": [],
+				"responses": {
+					"202": {
+						"description": "Accepted"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					}
+				},
+				"tags": [
+					"Email Delivery Status Notification"
+				]
+			}
+		},
+		"/email-delivery-status-notifications/sendgrid": {
+			"post": {
+				"summary": "SendGrid email delivery status notifications",
+				"description": "SendGrid email delivery status notifications",
+				"operationId": "postEmailDeliveryStatusNotificationSendGrid",
+				"parameters": [],
+				"responses": {
+					"202": {
+						"description": "Accepted"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					}
+				},
+				"tags": [
+					"Email Delivery Status Notification"
+				]
+			}
+		},
 		"/events": {
 			"get": {
 				"summary": "Get Events",
@@ -8574,6 +8665,29 @@
 						"LOW",
 						"HIGH",
 						"MEDIUM"
+					]
+				}
+			}
+		},
+		"EmailDeliveryStatus": {
+			"description": "Email delivery status notification",
+			"type": "object",
+			"properties": {
+				"at": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"notification": {
+					"$ref": "#/definitions/NotificationPointer"
+				},
+				"emailAddress": {
+					"type": "string"
+				},
+				"status": {
+					"description": "Email delivery status",
+					"type": "string",
+					"enum": [
+						"BOUNCED"
 					]
 				}
 			}
