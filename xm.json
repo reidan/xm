@@ -10774,6 +10774,10 @@
 			"properties": {
 				"id": {
 					"type": "string"
+				},
+				"name": {
+					"type": "string",
+					"description": "User provided name for this plan"
 				}
 			},
 			"required": [
