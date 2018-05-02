@@ -9805,6 +9805,30 @@
 				}
 			}
 		},
+		"MessageTemplate": {
+			"description": "A message template",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				}
+			},
+			"required": [
+				"id"
+			]
+		},
+		"MessageTemplateReference": {
+			"description": "A message template",
+			"properties": {
+				"id": {
+					"type": "string",
+					"format": "uuid"
+				}
+			},
+			"required": [
+				"id"
+			]
+		},
 		"Message": {
 			"description": "A message",
 			"discriminator": "messageType",
@@ -9827,6 +9851,9 @@
 					"enum": [
 						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
+				},
+				"template": {
+					"$ref": "#/definitions/MessageTemplateReference"
 				}
 			},
 			"required": [
