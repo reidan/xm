@@ -8774,7 +8774,7 @@
 					]
 				},
 				"properties": {
-					"description": "Map of property names and values",
+					"description": "Map of property keys and values",
 					"type": "object"
 				},
 				"recipients": {
@@ -9037,6 +9037,10 @@
 				"created": {
 					"type": "string",
 					"format": "date-time"
+				},
+				"properties": {
+					"description": "Map of property keys and values",
+					"type": "object"
 				}
 			},
 			"required": [
@@ -9060,6 +9064,10 @@
 						"IOS",
 						"ANDROID"
 					]
+				},
+				"properties": {
+					"description": "Map of property keys and values",
+					"type": "object"
 				}
 			},
 			"required": [
@@ -12016,6 +12024,10 @@
 					"enum": [
 						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
+				},
+				"properties": {
+					"description": "Map of property keys and values",
+					"type": "object"
 				}
 			},
 			"required": [
@@ -12057,6 +12069,10 @@
 					"enum": [
 						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
+				},
+				"properties": {
+					"description": "Map of property keys and values",
+					"type": "object"
 				}
 			}
 		},
