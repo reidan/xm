@@ -1509,7 +1509,7 @@
 						"$ref": "#/parameters/query-integrationId"
 					},
 					{
-						"$ref": "#/parameters/query-submitterId"
+						"$ref": "#/parameters/query-submitter"
 					},
 					{
 						"$ref": "#/parameters/query-priority"
@@ -15530,10 +15530,10 @@
 				"DESCENDING"
 			]
 		},
-		"query-submitterId": {
+		"query-submitter": {
 			"description": "The id or targetName of the submitter",
 			"in": "query",
-			"name": "submitterId",
+			"name": "submitter",
 			"required": false,
 			"type": "string"
 		},
