@@ -11797,9 +11797,8 @@
 					"type": "integer"
 				},
 				"version": {
-					"description": "Version identifier (v1 UUID)",
-					"type": "string",
-					"format": "uuid"
+					"description": "Version identifier",
+					"type": "string"
 				}
 			},
 			"required": [
@@ -12863,6 +12862,9 @@
 					"description": "The time zone used for calculation of day. Example: US/Pacific",
 					"type": "string"
 				},
+				"version": {
+					"type": "string"
+				},
 				"links": {
 					"$ref": "#/definitions/SelfLink"
 				}
@@ -12983,6 +12985,9 @@
 				},
 				"shift": {
 					"$ref": "#/definitions/ShiftReference"
+				},
+				"version": {
+					"type": "string"
 				}
 			},
 			"required": [
