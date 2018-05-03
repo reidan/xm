@@ -9849,7 +9849,7 @@
 				"language": {
 					"type": "string",
 					"enum": [
-						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+						"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
 				},
 				"template": {
@@ -10395,7 +10395,7 @@
 						"language": {
 							"type": "string",
 							"enum": [
-								"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+								"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 							]
 						},
 						"lastName": {
@@ -10475,7 +10475,7 @@
 						"language": {
 							"type": "string",
 							"enum": [
-								"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+								"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 							]
 						},
 						"lastName": {
@@ -12049,7 +12049,7 @@
 				"language": {
 					"type": "string",
 					"enum": [
-						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+						"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
 				},
 				"properties": {
@@ -12094,7 +12094,7 @@
 				"language": {
 					"type": "string",
 					"enum": [
-						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+						"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
 				},
 				"properties": {
@@ -12138,7 +12138,7 @@
 				"language": {
 					"type": "string",
 					"enum": [
-						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+						"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
 				},
 				"allowComments": {
@@ -12188,7 +12188,7 @@
 				"language": {
 					"type": "string",
 					"enum": [
-						"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+						"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 					]
 				},
 				"allowComments": {
@@ -13109,7 +13109,7 @@
 						"language": {
 							"type": "string",
 							"enum": [
-								"ar","da","de","el","en","en_GB","es","fi","fr","hi","is","it","iw","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
+								"ar","da","de","el","en","en_GB","es","fi","fr","he","hi","is","it","ja","ko","nl","no","pl","pt","pt_BR","ru","sk","sv","th","vi","zh_CN","zh_HK"
 							]
 						},
 						"latitude": {
