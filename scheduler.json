@@ -92,6 +92,10 @@
 					"description": "Job identifier",
 					"type": "string"
 				},
+				"jobType": {
+					"description": "Payload schema identification",
+					"type": "string"
+				},
 				"jobName": {
 					"description": "A correlation identifier for this job",
 					"type": "string"
@@ -123,10 +127,6 @@
 					"items": {
 						"$ref": "#/definitions/Vector"
 					}
-				},
-				"payloadType": {
-					"description": "Payload schema identification. Namespace and version",
-					"type": "string"
 				},
 				"payload": {
 					"description": "The string (generally Base64 encoded JSON) payload of the reminder",
@@ -135,14 +135,18 @@
 			},
 			"required": [
 				"id",
+				"jobType",
 				"trigger",
-				"payloadType",
 				"payload"
 			]
 		},
 		"JobInput": {
 			"description": "Schedule a reminder job",
 			"properties": {
+				"jobType": {
+					"description": "Payload schema identification",
+					"type": "string"
+				},
 				"jobName": {
 					"description": "A correlation identifier for this job",
 					"type": "string"
@@ -175,18 +179,14 @@
 						"$ref": "#/definitions/Vector"
 					}
 				},
-				"payloadType": {
-					"description": "Payload schema identification. Namespace and version",
-					"type": "string"
-				},
 				"payload": {
 					"description": "The string (generally Base64 encoded JSON) payload of the reminder",
 					"type": "string"
 				}
 			},
 			"required": [
+				"jobType",
 				"trigger",
-				"payloadType",
 				"payload"
 			]
 		},
