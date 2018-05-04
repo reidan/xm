@@ -9266,9 +9266,30 @@ components:
       required:
         - id
     Plan:
-      description: A communication plan
+      oneOf:
+        - $ref: '#/components/schemas/CommunicationPlan'
+        - $ref: '#/components/schemas/BuiltInPlan'
+        - $ref: '#/components/schemas/SystemPlan'
       discriminator:
         propertyName: planType
+    PlanReference:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: User provided name for this plan
+      required:
+        - id
+    PlanPointer:
+      properties:
+        id:
+          type: string
+      required:
+        - id
+    AbstractPlan:
+      type: object
+      description: A communication plan
       properties:
         id:
           type: string
@@ -9278,24 +9299,6 @@ components:
             - PLAN
             - BUILT_IN
             - SYSTEM
-        builtInPlanType:
-          type: string
-          description: Built-in communication plan type
-          enum:
-            - APP_DYNAMICS
-            - BIG_PANDA
-            - CHEF
-            - DATADOG
-            - HIPCHAT
-            - ICINGA
-            - JIRA
-            - NEW_RELIC
-            - PINGDOM
-            - SCOUT
-            - SENSU
-            - SPLUNK_ITSI
-            - SUMO_LOGIC
-            - WEBHOOK
         name:
           type: string
           description: User provided name for this plan
@@ -9338,10 +9341,58 @@ components:
         - id
         - name
         - enabled
+    CommunicationPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPlan'
+        - properties:
+            planType:
+              type: string
+              enum:
+                - PLAN
+    SystemPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPlan'
+        - properties:
+            planType:
+              type: string
+              enum:
+                - SYSTEM
+    BuiltInPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPlan'
+        - properties:
+            planType:
+              type: string
+              enum:
+                - BUILT_IN
+            builtInPlanType:
+              type: string
+              description: Built-in communication plan type
+              enum:
+                - APP_DYNAMICS
+                - BIG_PANDA
+                - CHEF
+                - DATADOG
+                - HIPCHAT
+                - ICINGA
+                - JIRA
+                - NEW_RELIC
+                - PINGDOM
+                - SCOUT
+                - SENSU
+                - SPLUNK_ITSI
+                - SUMO_LOGIC
+                - WEBHOOK
     PlanInput:
-      description: A communication plan
+      oneOf:
+        - $ref: '#/components/schemas/CommunicationPlanInput'
+        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/SystemPlanInput'
       discriminator:
         propertyName: planType
+    AbstractPlanInput:
+      type: object
+      description: A communication plan
       properties:
         id:
           type: string
@@ -9379,27 +9430,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PermissiblePointer'
-    PlanReference:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          description: User provided name for this plan
-      required:
-        - id
-    PlanPointer:
-      properties:
-        id:
-          type: string
-      required:
-        - id
+    CommunicationPlanInput:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPlanInput'
+        - properties:
+            planType:
+              type: string
+              enum:
+                - PLAN
+    SystemPlanInput:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPlanInput'
+        - properties:
+            planType:
+              type: string
+              enum:
+                - SYSTEM
     BuiltInPlanInput:
-      description: Built-in communication plan
+      oneOf:
+        - $ref: '#/components/schemas/AppDynamicsBuiltInPlanInput'
+        - $ref: '#/components/schemas/BigPandaBuiltInPlanInput'
+        - $ref: '#/components/schemas/ChefBuiltInPlanInput'
+        - $ref: '#/components/schemas/DataDogBuiltInPlanInput'
+        - $ref: '#/components/schemas/HipChatBuiltInPlanInput'
+        - $ref: '#/components/schemas/IcingaBuiltInPlanInput'
+        - $ref: '#/components/schemas/JiraBuiltInPlanInput'
+        - $ref: '#/components/schemas/NewRelicBuiltInPlanInput'
+        - $ref: '#/components/schemas/PingdomBuiltInPlanInput'
+        - $ref: '#/components/schemas/PingdomSMBuiltInPlanInput'
+        - $ref: '#/components/schemas/ScoutBuiltInPlanInput'
+        - $ref: '#/components/schemas/SensuBuiltInPlanInput'
+        - $ref: '#/components/schemas/SignalFxBuiltInPlanInput'
+        - $ref: '#/components/schemas/SlackBotBuiltInPlanInput'
+        - $ref: '#/components/schemas/SolarWindsBuiltInPlanInput'
+        - $ref: '#/components/schemas/SplunkBuiltInPlanInput'
+        - $ref: '#/components/schemas/SplunkITSIBuiltInPlanInput'
+        - $ref: '#/components/schemas/SumoLogicBuiltInPlanInput'
+        - $ref: '#/components/schemas/WebhookBuiltInPlanInput'
       discriminator:
         propertyName: builtInPlanType
+    AbstractBuiltInPlanInput:
+      description: Built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/PlanInput'
+        - $ref: '#/components/schemas/AbstractPlanInput'
         - properties:
             planType:
               type: string
@@ -9440,31 +9513,22 @@ components:
     AppDynamicsBuiltInPlanInput:
       description: AppDynamics built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
               enum:
                 - APP_DYNAMICS
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
     BigPandaBuiltInPlanInput:
       description: BigPanda built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9473,7 +9537,6 @@ components:
             bearerToken:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9481,12 +9544,8 @@ components:
     ChefBuiltInPlanInput:
       description: Chef built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9495,19 +9554,14 @@ components:
             bearerToken:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
     DataDogBuiltInPlanInput:
       description: DataDog built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9518,7 +9572,6 @@ components:
             applicationKey:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9527,30 +9580,21 @@ components:
     HipChatBuiltInPlanInput:
       description: HipChat built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
               enum:
                 - HIPCHAT
           required:
-            - planType
             - builtInPlanType
             - senderOverrideName
     IcingaBuiltInPlanInput:
       description: Icinga built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9563,7 +9607,6 @@ components:
             apiPassword:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9573,69 +9616,50 @@ components:
     JiraBuiltInPlanInput:
       description: JIRA built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
               enum:
                 - JIRA
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
     NewRelicBuiltInPlanInput:
       description: NewRelic built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
               enum:
                 - NEW_RELIC
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
     PingdomBuiltInPlanInput:
       description: Pingdom built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
               enum:
                 - PINGDOM
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
     PingdomSMBuiltInPlanInput:
       description: Pingdom SM built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9644,7 +9668,6 @@ components:
             apiKey:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9652,12 +9675,8 @@ components:
     ScoutBuiltInPlanInput:
       description: Scout built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9666,7 +9685,6 @@ components:
             apiKey:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9674,12 +9692,8 @@ components:
     SensuBuiltInPlanInput:
       description: Scout built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9694,7 +9708,6 @@ components:
             silenceDuration:
               type: integer
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9705,12 +9718,8 @@ components:
     SignalFxBuiltInPlanInput:
       description: SignalFx built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9725,7 +9734,6 @@ components:
               type: boolean
               default: false
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9733,12 +9741,8 @@ components:
     SlackBotBuiltInPlanInput:
       description: Slack Bot built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9747,7 +9751,6 @@ components:
             teamDomain:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9755,12 +9758,8 @@ components:
     SolarWindsBuiltInPlanInput:
       description: Solar Winds built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9778,7 +9777,6 @@ components:
               items:
                 $ref: '#/components/schemas/AgentPointer'
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9789,30 +9787,21 @@ components:
     SplunkBuiltInPlanInput:
       description: Splunk built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
               enum:
                 - SPLUNK
           required:
-            - planType
             - builtInPlanType
             - senderOverrideName
     SplunkITSIBuiltInPlanInput:
       description: Splunk ITSI built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9825,7 +9814,6 @@ components:
             apiPassword:
               type: string
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
@@ -9835,31 +9823,22 @@ components:
     SumoLogicBuiltInPlanInput:
       description: SumoLogic built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
               enum:
                 - SUMO_LOGIC
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
     WebhookBuiltInPlanInput:
       description: Webhook built-in communication plan
       allOf:
-        - $ref: '#/components/schemas/BuiltInPlanInput'
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
         - properties:
-            planType:
-              type: string
-              enum:
-                - BUILT_IN
             builtInPlanType:
               type: string
               description: Built-in communication plan type
@@ -9884,7 +9863,6 @@ components:
               type: boolean
               default: false
           required:
-            - planType
             - builtInPlanType
             - recipients
             - senderOverrideName
