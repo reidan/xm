@@ -3470,23 +3470,109 @@
 				]
 			}
 		},
-		"/oauth2/token": {
+		"/oauth2/authorize": {
 			"post": {
-				"tags": [
-					"Authentication"
-				],
-				"summary": "Generate a token",
-				"description": "Generate a token",
-				"operationId": "postAccessToken",
+				"summary": "Authorize",
+				"description": "Authorize",
+				"operationId": "postOauth2Code",
 				"parameters": [
 					{
-						"in": "body",
-						"name": "body",
-						"description": "Authentication credentials",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Credentials"
-						}
+						"in": "formData",
+						"name": "client_id",
+						"type": "string"
+					},
+					{
+						"in": "formData",
+						"name": "response_type",
+						"type": "string",
+						"enum": [
+							"code"
+						]
+					},
+					{
+						"in": "formData",
+						"name": "redirect_uri",
+						"type": "string",
+						"format": "url"
+					},
+					{
+						"in": "formData",
+						"name": "scope",
+						"type": "string"
+					},
+					{
+						"in": "formData",
+						"name": "state",
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK"
+					},
+					"400": {
+						"$ref": "#/responses/400"
+					},
+					"401": {
+						"$ref": "#/responses/401"
+					},
+					"403": {
+						"$ref": "#/responses/403"
+					},
+					"404": {
+						"$ref": "#/responses/404"
+					}
+				},
+				"tags": [
+					"Authentication"
+				]
+			}
+		},
+		"/oauth2/token": {
+			"post": {
+				"summary": "Generate a token",
+				"description": "Generate a token",
+				"operationId": "postOauth2Token",
+				"parameters": [
+					{
+						"in": "formData",
+						"name": "grant_type",
+						"type": "string",
+						"enum": [
+							"password",
+							"refresh_token",
+							"authorization_code"
+						]
+					},
+					{
+						"in": "formData",
+						"name": "client_id",
+						"type": "string"
+					},
+					{
+						"in": "formData",
+						"name": "client_secret",
+						"type": "string"
+					},
+					{
+						"in": "formData",
+						"name": "username",
+						"type": "string"
+					},
+					{
+						"in": "formData",
+						"name": "password",
+						"type": "string"
+					},
+					{
+						"in": "formData",
+						"name": "refresh_token",
+						"type": "string"
+					},
+					{
+						"in": "formData",
+						"name": "code",
+						"type": "string"
 					}
 				],
 				"responses": {
@@ -3508,7 +3594,10 @@
 					"404": {
 						"$ref": "#/responses/404"
 					}
-				}
+				},
+				"tags": [
+					"Authentication"
+				]
 			}
 		},
 		"/on-call": {
@@ -4302,9 +4391,6 @@
 		},
 		"/people/{personId}/refresh-tokens": {
 			"get": {
-				"tags": [
-					"Authentication"
-				],
 				"summary": "Returns refresh tokens for a user",
 				"description": "Returns refresh tokens for a user",
 				"operationId": "getPersonRefreshTokens",
@@ -4329,12 +4415,12 @@
 					"404": {
 						"$ref": "#/responses/404"
 					}
-				}
-			},
-			"delete": {
+				},
 				"tags": [
 					"Authentication"
-				],
+				]
+			},
+			"delete": {
 				"summary": "Revoke all refresh tokens for a user",
 				"description": "Revoke all refresh tokens for a user",
 				"operationId": "deletePersonRefreshTokens",
@@ -4359,14 +4445,14 @@
 					"404": {
 						"$ref": "#/responses/404"
 					}
-				}
+				},
+				"tags": [
+					"Authentication"
+				]
 			}
 		},
 		"/people/{personId}/refresh-tokens/{tokenId}": {
 			"delete": {
-				"tags": [
-					"Authentication"
-				],
 				"summary": "Invalidates a person's refresh token",
 				"description": "Invalidates a person's refresh token",
 				"operationId": "deletePersonRefreshToken",
@@ -4397,14 +4483,14 @@
 					"409": {
 						"$ref": "#/responses/409"
 					}
-				}
+				},
+				"tags": [
+					"Authentication"
+				]
 			}
 		},
 		"/people/{personId}/roles": {
 			"get": {
-				"tags": [
-					"Authorization"
-				],
 				"summary": "Retrieves a list of a user's roles",
 				"description": "Retrieves a list of a user's roles",
 				"operationId": "getPersonRoles",
@@ -4429,12 +4515,12 @@
 					"404": {
 						"$ref": "#/responses/404"
 					}
-				}
-			},
-			"patch": {
+				},
 				"tags": [
 					"Authorization"
-				],
+				]
+			},
+			"patch": {
 				"summary": "Add user roles",
 				"description": "Add user roles",
 				"operationId": "patchPersonRoles",
@@ -4475,7 +4561,10 @@
 					"404": {
 						"$ref": "#/responses/404"
 					}
-				}
+				},
+				"tags": [
+					"Authorization"
+				]
 			}
 		},
 		"/people/{personId}/roles/{roleId}": {
@@ -4551,7 +4640,7 @@
 		"/people/{personId}/password": {
 			"post": {
 				"tags": [
-					"Authentication"
+					"Auth"
 				],
 				"summary": "Set user password",
 				"description": "Set user password",
