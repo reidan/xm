@@ -5774,9 +5774,9 @@ components:
         - $ref: '#/components/schemas/SMSDevice'
         - $ref: '#/components/schemas/TextPagerDevice'
         - $ref: '#/components/schemas/VoiceDevice'
-    AbstractDevice:
       discriminator:
         propertyName: deviceType
+    AbstractDevice:
       allOf:
         - $ref: '#/components/schemas/AbstractRecipient'
         - description: A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts
@@ -5854,11 +5854,25 @@ components:
             - owner
             - deviceType
     DeviceInput:
+      oneOf:
+        - $ref: '#/components/schemas/AndroidPushDeviceInput'
+        - $ref: '#/components/schemas/ApplePushDeviceInput'
+        - $ref: '#/components/schemas/BlackberryPushDeviceInput'
+        - $ref: '#/components/schemas/EmailDeviceInput'
+        - $ref: '#/components/schemas/FaxDeviceInput'
+        - $ref: '#/components/schemas/GenericDeviceInput'
+        - $ref: '#/components/schemas/IMDeviceInput'
+        - $ref: '#/components/schemas/NumericPagerDeviceInput'
+        - $ref: '#/components/schemas/PublicAddressDeviceInput'
+        - $ref: '#/components/schemas/SMSDeviceInput'
+        - $ref: '#/components/schemas/TextPagerDeviceInput'
+        - $ref: '#/components/schemas/VoiceDeviceInput'
+      discriminator:
+        propertyName: deviceType
+    AbstractDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/RecipientInput'
+        - $ref: '#/components/schemas/AbstractRecipientInput'
         - description: A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts
-          discriminator:
-            propertyName: deviceType
           properties:
             defaultDevice:
               description: >-
@@ -6003,7 +6017,7 @@ components:
             - registrationId
     AndroidPushDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             accountId:
               type: string
@@ -6049,7 +6063,7 @@ components:
             - apnToken
     ApplePushDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             accountId:
               type: string
@@ -6095,7 +6109,7 @@ components:
             - registrationId
     BlackberryPushDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             accountId:
               type: string
@@ -6124,7 +6138,7 @@ components:
             - emailAddress
     EmailDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             deviceType:
               enum:
@@ -6166,7 +6180,7 @@ components:
             - phoneNumber
     FaxDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             country:
               type: string
@@ -6206,7 +6220,7 @@ components:
               type: string
     GenericDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             deviceType:
               type: string
@@ -6228,7 +6242,7 @@ components:
             - address
     IMDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             address:
               type: string
@@ -6506,7 +6520,7 @@ components:
               type: string
     NumericPagerDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             areaCode:
               type: string
@@ -7040,7 +7054,7 @@ components:
             - phoneNumber
     PublicAddressDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - description: a.k.a. Voice IVR
           properties:
             deviceType:
@@ -7323,7 +7337,7 @@ components:
             - phoneNumber
     SMSDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             deviceType:
               enum:
@@ -7353,7 +7367,7 @@ components:
             - twoWayDevice
     TextPagerDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             deviceType:
               enum:
@@ -7636,7 +7650,7 @@ components:
             - phoneNumber
     VoiceDeviceInput:
       allOf:
-        - $ref: '#/components/schemas/DeviceInput'
+        - $ref: '#/components/schemas/AbstractDeviceInput'
         - properties:
             deviceType:
               enum:
@@ -8226,7 +8240,7 @@ components:
         Groups are used for collecting users and devices and organizing them
         into notification schedules
       allOf:
-        - $ref: '#/components/schemas/RecipientInput'
+        - $ref: '#/components/schemas/AbstractRecipientInput'
         - properties:
             recipientType:
               enum:
@@ -8260,9 +8274,9 @@ components:
               type: array
             observers:
               description: A list of observers
+              type: array
               items:
                 $ref: '#/components/schemas/ObserverPointer'
-              type: array
     GroupMember:
       properties:
         group:
@@ -9087,7 +9101,7 @@ components:
         'Person'. Every person in the xMatters system is a user defined by a set
         of details, including ID number, user name, login password, and so on
       allOf:
-        - $ref: '#/components/schemas/RecipientInput'
+        - $ref: '#/components/schemas/AbstractRecipientInput'
         - properties:
             recipientType:
               enum:
@@ -9976,9 +9990,10 @@ components:
         - $ref: '#/components/schemas/Group'
         - $ref: '#/components/schemas/Person'
         - $ref: '#/components/schemas/Device'
-    AbstractRecipient:
       discriminator:
         propertyName: recipientType
+    AbstractRecipient:
+      type: object
       properties:
         id:
           description: A unique identifier (UUID) for this entity
@@ -10043,11 +10058,17 @@ components:
         - externallyOwned
         - status
     RecipientInput:
+      oneOf:
+        - $ref: '#/components/schemas/GroupInput'
+        - $ref: '#/components/schemas/PersonInput'
+        - $ref: '#/components/schemas/DeviceInput'
+      discriminator:
+        propertyName: recipientType
+    AbstractRecipientInput:
+      type: object
       description: >-
         A Recipient can be the target of a notification. Groups, People and
         Devices are all Recipients
-      discriminator:
-        propertyName: recipientType
       properties:
         id:
           description: A unique identifier (UUID) for this entity
