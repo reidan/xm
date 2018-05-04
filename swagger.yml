@@ -5778,7 +5778,7 @@ components:
       discriminator:
         propertyName: deviceType
       allOf:
-        - $ref: '#/components/schemas/Recipient'
+        - $ref: '#/components/schemas/AbstractRecipient'
         - description: A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts
           properties:
             defaultDevice:
@@ -8193,7 +8193,7 @@ components:
         - id
     Group:
       allOf:
-        - $ref: '#/components/schemas/Recipient'
+        - $ref: '#/components/schemas/AbstractRecipient'
         - description: Groups are used for collecting users and devices and organizing them into notification schedules
           properties:
             recipientType:
@@ -8996,7 +8996,7 @@ components:
         attributes and will only appear when viewing the person as an event
         recipient
       allOf:
-        - $ref: '#/components/schemas/Recipient'
+        - $ref: '#/components/schemas/AbstractRecipient'
         - properties:
             recipientType:
               enum:
@@ -9972,6 +9972,11 @@ components:
       required:
         - id
     Recipient:
+      oneOf:
+        - $ref: '#/components/schemas/Group'
+        - $ref: '#/components/schemas/Person'
+        - $ref: '#/components/schemas/Device'
+    AbstractRecipient:
       discriminator:
         propertyName: recipientType
       properties:
@@ -11068,7 +11073,6 @@ components:
         - delay
     Site:
       allOf:
-        - $ref: '#/components/schemas/Recipient'
         - description: Site a group belongs to
           properties:
             name:
