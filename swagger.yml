@@ -30,7 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Agent_'
+                $ref: '#/components/schemas/AgentPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -129,7 +129,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Integration_'
+                $ref: '#/components/schemas/IntegrationPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -152,7 +152,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_AgentMonitor_'
+                $ref: '#/components/schemas/AgentMonitorPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -211,7 +211,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_AgentMonitor_'
+                $ref: '#/components/schemas/AgentMonitorPagination'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -278,7 +278,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_AgentOwner_'
+                $ref: '#/components/schemas/AgentOwnerPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -384,14 +384,7 @@ paths:
       description: Audit records
       operationId: getAudits
       parameters:
-        - description: >-
-            The effect of this param is to trigger the use of the audit store
-            and importantly act as an upper bound for recency. This is important
-            because the auditstore is eventually consistent. Ask for the audits
-            at=, then make the same call a few seconds later and you may
-            get a different result. Ask for the audits at= and and
-            the results will never change, because all the audits in transit
-            would have arrived.
+        - description: The effect of this param is to trigger the use of the audit store and importantly act as an upper bound for recency. This is important because the auditstore is eventually consistent. Ask for the audits at=, then make the same call a few seconds later and you may get a different result. Ask for the audits at= and and the results will never change, because all the audits in transit would have arrived.
           in: query
           name: at
           required: false
@@ -412,7 +405,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Audit_'
+                $ref: '#/components/schemas/AuditPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -520,9 +513,7 @@ paths:
         - $ref: '#/components/parameters/query-offset'
         - $ref: '#/components/parameters/query-limit'
         - $ref: '#/components/parameters/query-include'
-        - description: >-
-            Domain entities to embed in the response (e.g.
-            host,activeParticipantCount,participants,events)
+        - description: Domain entities to embed in the response (e.g. host,activeParticipantCount,participants,events)
           in: query
           name: embed
           required: false
@@ -534,7 +525,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Conference_'
+                $ref: '#/components/schemas/ConferencePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -586,7 +577,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ConferenceParticipant_'
+                $ref: '#/components/schemas/ConferenceParticipantPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -646,7 +637,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Country_'
+                $ref: '#/components/schemas/CountryPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -675,7 +666,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_DeepLink_'
+                $ref: '#/components/schemas/DeepLinkPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -755,7 +746,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_DeviceName_'
+                $ref: '#/components/schemas/DeviceNamePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -778,7 +769,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_DeviceType_'
+                $ref: '#/components/schemas/DeviceTypePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -816,7 +807,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Device_'
+                $ref: '#/components/schemas/DevicePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -876,7 +867,7 @@ paths:
           content:
             application/json:
               schema:
-                - $ref: '#/components/schemas/Device'
+                $ref: '#/components/schemas/Device'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1054,9 +1045,7 @@ paths:
           required: false
           schema:
             type: string
-        - description: >-
-            Restrict search to these fields (comma separated list of attribute
-            names, exact match). Supported attributes are name
+        - description: Restrict search to these fields (comma separated list of attribute names, exact match). Supported attributes are name
           in: query
           name: fields
           required: false
@@ -1081,9 +1070,7 @@ paths:
         - $ref: '#/components/parameters/query-before'
         - $ref: '#/components/parameters/query-after'
         - $ref: '#/components/parameters/query-at'
-        - description: >-
-            Domain entities to embed in the response (e.g.
-            form,integration,recipients,responseOptions,submitter,annotations)
+        - description: Domain entities to embed in the response (e.g. form,integration,recipients,responseOptions,submitter,annotations)
           in: query
           name: embed
           required: false
@@ -1095,7 +1082,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Event_'
+                $ref: '#/components/schemas/EventPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1140,9 +1127,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/path-eventId'
         - $ref: '#/components/parameters/query-at'
-        - description: >-
-            Domain entities to embed in the response (e.g.
-            form,integration,recipients,responseOptions,submitter,annotations)
+        - description: Domain entities to embed in the response (e.g. form,integration,recipients,responseOptions,submitter,annotations)
           in: query
           name: embed
           required: false
@@ -1170,11 +1155,7 @@ paths:
       operationId: getEventRecipients
       parameters:
         - $ref: '#/components/parameters/path-eventId'
-        - description: >-
-            Case insensitive substring match within firstName, lastName, id,
-            targetName, webLogin, email, phoneNumber. Search terms may be
-            separated by spaces, results are returned that match ANY of the
-            search terms
+        - description: Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms
           in: query
           name: search
           required: false
@@ -1228,7 +1209,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Recipient_'
+                $ref: '#/components/schemas/RecipientPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1272,7 +1253,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Notification_'
+                $ref: '#/components/schemas/NotificationPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1297,7 +1278,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_EventAnnotation_'
+                $ref: '#/components/schemas/EventAnnotationPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1405,7 +1386,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_FileAttachment_'
+                $ref: '#/components/schemas/FileAttachmentPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1475,7 +1456,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_EventSchedule_'
+                $ref: '#/components/schemas/EventSchedulePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1586,7 +1567,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_FeatureToggle_'
+                $ref: '#/components/schemas/FeatureTogglePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1599,11 +1580,7 @@ paths:
         '2015-11-02T22:54:19Z', to: '2015-11-03T22:54:19Z')
       operationId: getGroups
       parameters:
-        - description: >-
-            Case insensitive substring match within name, description. Search
-            terms may be separated by spaces, results are returned that match
-            ALL if the search terms of the operand is set to AND, or ANY of the
-            search terms if the operand is set to OR
+        - description: Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ALL if the search terms of the operand is set to AND, or ANY of the search terms if the operand is set to OR
           in: query
           name: search
           required: false
@@ -1625,9 +1602,7 @@ paths:
               - OR
               - AND
             default: OR
-        - description: >-
-            Restrict search to these fields (comma separated list of attribute
-            names, exact match). Supported attributes are name, description
+        - description: Restrict search to these fields (comma separated list of attribute names, exact match). Supported attributes are name, description
           in: query
           name: fields
           required: false
@@ -1643,7 +1618,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Group_'
+                $ref: '#/components/schemas/GroupPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1746,7 +1721,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ShiftOccurrence_'
+                $ref: '#/components/schemas/ShiftOccurrencePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1769,7 +1744,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_GroupMember_'
+                $ref: '#/components/schemas/GroupMemberPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1853,7 +1828,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_RosterMember_'
+                $ref: '#/components/schemas/RosterMemberPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1886,7 +1861,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Shift_'
+                $ref: '#/components/schemas/ShiftPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1994,7 +1969,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ShiftMember_'
+                $ref: '#/components/schemas/ShiftMemberPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2056,7 +2031,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ShiftOccurrence_'
+                $ref: '#/components/schemas/ShiftOccurrencePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2080,7 +2055,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Person_'
+                $ref: '#/components/schemas/PersonPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2104,7 +2079,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Import_'
+                $ref: '#/components/schemas/ImportPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2164,7 +2139,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_IntegrationAgent_'
+                $ref: '#/components/schemas/IntegrationAgentPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2262,7 +2237,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_IntegrationService_'
+                $ref: '#/components/schemas/IntegrationServicePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2312,7 +2287,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_NotificationFilter_'
+                $ref: '#/components/schemas/NotificationFilterPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2491,9 +2466,7 @@ paths:
         - $ref: '#/components/parameters/query-at'
         - $ref: '#/components/parameters/query-embed'
         - $ref: '#/components/parameters/query-groups'
-        - description: >-
-            Comma separated list of person uuid or targetName, only group
-            schedules that include these members should be returned
+        - description: Comma separated list of person uuid or targetName, only group schedules that include these members should be returned
           in: query
           name: members
           required: false
@@ -2517,7 +2490,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_OnCall_'
+                $ref: '#/components/schemas/OnCallPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2654,7 +2627,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Permissible_'
+                $ref: '#/components/schemas/PermissiblePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2668,11 +2641,7 @@ paths:
       description: Returns information about users
       operationId: getPeople
       parameters:
-        - description: >-
-            Case insensitive substring match within firstName, lastName, id,
-            targetName, webLogin, email, phoneNumber. Search terms may be
-            separated by spaces, results are returned that match ANY of the
-            search terms
+        - description: Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms
           in: query
           name: search
           required: false
@@ -2702,7 +2671,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Person_'
+                $ref: '#/components/schemas/PersonPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2807,7 +2776,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_APIKey_'
+                $ref: '#/components/schemas/APIKeyPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2872,7 +2841,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Device_'
+                $ref: '#/components/schemas/DevicePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2894,7 +2863,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Device_'
+                $ref: '#/components/schemas/DevicePagination'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -2934,7 +2903,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Group_'
+                $ref: '#/components/schemas/GroupPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -2961,7 +2930,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_GroupMember_'
+                $ref: '#/components/schemas/GroupMemberPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3041,7 +3010,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_RefreshToken_'
+                $ref: '#/components/schemas/RefreshTokenPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3062,7 +3031,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_RefreshToken_'
+                $ref: '#/components/schemas/RefreshTokenPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3109,7 +3078,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Role_'
+                $ref: '#/components/schemas/RolePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3130,7 +3099,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Role_'
+                $ref: '#/components/schemas/RolePagination'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -3191,7 +3160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Function_'
+                $ref: '#/components/schemas/FunctionPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3245,7 +3214,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Permission_'
+                $ref: '#/components/schemas/PermissionPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3268,7 +3237,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Person_'
+                $ref: '#/components/schemas/PersonPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3283,9 +3252,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/query-planType'
         - $ref: '#/components/parameters/query-builtInPlanType'
-        - description: >-
-            Is a custom integration (Has email initiation, or is webservice
-            enabled, or has an inbound, or outbound integration)
+        - description: Is a custom integration (Has email initiation, or is webservice enabled, or has an inbound, or outbound integration)
           in: query
           name: customIntegration
           required: false
@@ -3297,10 +3264,7 @@ paths:
           required: false
           schema:
             type: string
-        - description: >-
-            Comma separated list of linked domain entities to embed in the
-            response. Includes constants, endpoints, forms, integrations,
-            integrations.ownerApiKey, integrations.agents, permitted
+        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted
           in: query
           name: embed
           required: false
@@ -3325,7 +3289,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Plan_'
+                $ref: '#/components/schemas/PlanPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3371,10 +3335,7 @@ paths:
       operationId: getPlan
       parameters:
         - $ref: '#/components/parameters/path-planId'
-        - description: >-
-            Comma separated list of linked domain entities to embed in the
-            response. Includes constants, endpoints, forms, integrations,
-            integrations.ownerApiKey, integrations.agents, permitted
+        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted
           in: query
           name: embed
           required: false
@@ -3435,7 +3396,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Constant_'
+                $ref: '#/components/schemas/ConstantPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3541,7 +3502,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Endpoint_'
+                $ref: '#/components/schemas/EndpointPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3654,7 +3615,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Form_'
+                $ref: '#/components/schemas/FormPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3715,7 +3676,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Recipient_'
+                $ref: '#/components/schemas/RecipientPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3738,7 +3699,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Recipient_'
+                $ref: '#/components/schemas/RecipientPagination'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -3787,7 +3748,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Scenario_'
+                $ref: '#/components/schemas/ScenarioPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3858,9 +3819,7 @@ paths:
       operationId: getPlanIntegrations
       parameters:
         - $ref: '#/components/parameters/path-planId'
-        - description: >-
-            Comma separated list of linked domain entities to embed in the
-            response. Includes ownerApiKey, agents
+        - description: Comma separated list of linked domain entities to embed in the response. Includes ownerApiKey, agents
           in: query
           name: embed
           required: false
@@ -3874,7 +3833,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Integration_'
+                $ref: '#/components/schemas/IntegrationPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3926,9 +3885,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/path-planId'
         - $ref: '#/components/parameters/path-integrationId'
-        - description: >-
-            Comma separated list of linked domain entities to embed in the
-            response. Includes ownerApiKey, agents
+        - description: Comma separated list of linked domain entities to embed in the response. Includes ownerApiKey, agents
           in: query
           name: embed
           required: false
@@ -3987,7 +3944,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Agent_'
+                $ref: '#/components/schemas/AgentPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4010,7 +3967,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_IntegrationLog_'
+                $ref: '#/components/schemas/IntegrationLogPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4062,7 +4019,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Permissible_'
+                $ref: '#/components/schemas/PermissiblePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4081,7 +4038,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Permissible_'
+                $ref: '#/components/schemas/PermissiblePagination'
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -4107,11 +4064,7 @@ paths:
       description: Returns information about potential recipients
       operationId: getRecipients
       parameters:
-        - description: >-
-            Case insensitive substring match within firstName, lastName, id,
-            targetName, webLogin, email, phoneNumber. Search terms may be
-            separated by spaces, results are returned that match ANY of the
-            search terms
+        - description: Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms
           in: query
           name: search
           required: false
@@ -4154,7 +4107,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Recipient_'
+                $ref: '#/components/schemas/RecipientPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4207,7 +4160,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ServiceProvider_'
+                $ref: '#/components/schemas/ServiceProviderPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4220,10 +4173,7 @@ paths:
   /shift-occurrences:
     get:
       summary: List shift occurrences
-      description: >-
-        List shift occurrences in reverse chronological order, by start time,
-        before the given 'at' timestamp (this route is only available via the
-        auditstore)
+      description: List shift occurrences in reverse chronological order, by start time, before the given 'at' timestamp (this route is only available via the auditstore)
       operationId: getShiftOccurrences
       parameters:
         - $ref: '#/components/parameters/query-at'
@@ -4241,7 +4191,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_ShiftOccurrence_'
+                $ref: '#/components/schemas/ShiftOccurrencePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4277,7 +4227,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Site_'
+                $ref: '#/components/schemas/SitePagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4325,7 +4275,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Event_'
+                $ref: '#/components/schemas/EventPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -4349,7 +4299,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Transform_'
+                $ref: '#/components/schemas/TransformPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -5071,9 +5021,9 @@ components:
           type: string
           format: date-time
         owners:
-          $ref: '#/components/schemas/Pagination_AgentOwner_'
+          $ref: '#/components/schemas/AgentOwnerPagination'
         monitors:
-          $ref: '#/components/schemas/Pagination_AgentMonitor_'
+          $ref: '#/components/schemas/AgentMonitorPagination'
       required:
         - id
         - externalId
@@ -5513,9 +5463,9 @@ components:
           description: Count of active conference participants
           type: integer
         participants:
-          $ref: '#/components/schemas/Pagination_ConferenceParticipant_'
+          $ref: '#/components/schemas/ConferenceParticipantPagination'
         events:
-          $ref: '#/components/schemas/Pagination_Event_'
+          $ref: '#/components/schemas/EventPagination'
       required:
         - type
     ConferencePointer:
@@ -5820,20 +5770,16 @@ components:
         - $ref: '#/components/schemas/GenericDevice'
         - $ref: '#/components/schemas/IMDevice'
         - $ref: '#/components/schemas/NumericPagerDevice'
-        - $ref: '#/components/schemas/PublicAdressDevice'
+        - $ref: '#/components/schemas/PublicAddressDevice'
         - $ref: '#/components/schemas/SMSDevice'
         - $ref: '#/components/schemas/TextPagerDevice'
-        - $ref: '#/components/schemas/VoicePagerDevice'
+        - $ref: '#/components/schemas/VoiceDevice'
     AbstractDevice:
-      type: object
       discriminator:
         propertyName: deviceType
       allOf:
         - $ref: '#/components/schemas/Recipient'
-        - description: >-
-            A device in xMatters is any means of receiving a notification
-            message. Devices can include physical items like phones, or
-            intangible items such as email accounts
+        - description: A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts
           properties:
             defaultDevice:
               description: >-
@@ -5870,7 +5816,7 @@ components:
               description: 'The name of the device. Example: Work Email, Home Phone'
               type: string
             notifications:
-              $ref: '#/components/schemas/Pagination_Notification_'
+              $ref: '#/components/schemas/NotificationPagination'
             owner:
               $ref: '#/components/schemas/PersonReference'
             priorityThreshold:
@@ -5903,17 +5849,14 @@ components:
                 - INVALID
               type: string
             timeframes:
-              $ref: '#/components/schemas/Pagination_DeviceTimeframe_'
+              $ref: '#/components/schemas/DeviceTimeframePagination'
           required:
             - owner
             - deviceType
     DeviceInput:
       allOf:
         - $ref: '#/components/schemas/RecipientInput'
-        - description: >-
-            A device in xMatters is any means of receiving a notification
-            message. Devices can include physical items like phones, or
-            intangible items such as email accounts
+        - description: A device in xMatters is any means of receiving a notification message. Devices can include physical items like phones, or intangible items such as email accounts
           discriminator:
             propertyName: deviceType
           properties:
@@ -7881,7 +7824,7 @@ components:
           description: Map of property keys and values
           type: object
         recipients:
-          $ref: '#/components/schemas/Pagination_Recipient_'
+          $ref: '#/components/schemas/RecipientPagination'
         requestId:
           type: string
         requirePhonePassword:
@@ -7896,7 +7839,7 @@ components:
         otherResponseCountThreshold:
           type: integer
         responseOptions:
-          $ref: '#/components/schemas/Pagination_ResponseOption_'
+          $ref: '#/components/schemas/ResponseOptionPagination'
         senderOverrides:
           type: object
         status:
@@ -7930,9 +7873,9 @@ components:
             retry:
               type: integer
         messages:
-          $ref: '#/components/schemas/Pagination_Message_'
+          $ref: '#/components/schemas/MessagePagination'
         annotations:
-          $ref: '#/components/schemas/Pagination_EventAnnotation_'
+          $ref: '#/components/schemas/EventAnnotationPagination'
       required:
         - id
         - eventId
@@ -8189,9 +8132,9 @@ components:
         plan:
           $ref: '#/components/schemas/PlanReference'
         recipients:
-          $ref: '#/components/schemas/Pagination_Recipient_'
+          $ref: '#/components/schemas/RecipientPagination'
         messages:
-          $ref: '#/components/schemas/Pagination_Message_'
+          $ref: '#/components/schemas/MessagePagination'
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
@@ -8245,15 +8188,13 @@ components:
         id:
           type: string
         functions:
-          $ref: '#/components/schemas/Pagination_Permission_'
+          $ref: '#/components/schemas/PermissionPagination'
       required:
         - id
     Group:
       allOf:
         - $ref: '#/components/schemas/Recipient'
-        - description: >-
-            Groups are used for collecting users and devices and organizing them
-            into notification schedules
+        - description: Groups are used for collecting users and devices and organizing them into notification schedules
           properties:
             recipientType:
               enum:
@@ -8273,9 +8214,9 @@ components:
             site:
               $ref: '#/components/schemas/SiteReference'
             supervisors:
-              $ref: '#/components/schemas/Pagination_Person_'
+              $ref: '#/components/schemas/PersonPagination'
             observers:
-              $ref: '#/components/schemas/Pagination_Observer_'
+              $ref: '#/components/schemas/ObserverPagination'
           required:
             - allowDuplicates
             - observedByAll
@@ -8329,7 +8270,7 @@ components:
         member:
           $ref: '#/components/schemas/RecipientReference'
         shifts:
-          $ref: '#/components/schemas/Pagination_Shift_'
+          $ref: '#/components/schemas/ShiftPagination'
       required:
         - group
         - member
@@ -8453,7 +8394,7 @@ components:
             integration becomes the owner
           type: string
         agents:
-          $ref: '#/components/schemas/Pagination_Agent_'
+          $ref: '#/components/schemas/AgentPagination'
       required:
         - id
         - plan
@@ -8731,9 +8672,9 @@ components:
         message:
           $ref: '#/components/schemas/Message'
         responseOptions:
-          $ref: '#/components/schemas/Pagination_ResponseOption_'
+          $ref: '#/components/schemas/ResponseOptionPagination'
         responses:
-          $ref: '#/components/schemas/Pagination_Response_'
+          $ref: '#/components/schemas/ResponsePagination'
       required:
         - id
     NotificationInput:
@@ -8852,7 +8793,7 @@ components:
           format: date-time
           type: string
         members:
-          $ref: '#/components/schemas/Pagination_ShiftOccurrenceMember_'
+          $ref: '#/components/schemas/ShiftOccurrenceMemberPagination'
       required:
         - group
     OnCallReminderConfig:
@@ -8879,9 +8820,9 @@ components:
             - PRIMARY_OR_SECONDARY
           default: ALL
         devices:
-          $ref: '#/components/schemas/Pagination_Device_'
+          $ref: '#/components/schemas/DevicePagination'
         shiftStartConfigs:
-          $ref: '#/components/schemas/Pagination_OnCallReminderShiftStartConfig_'
+          $ref: '#/components/schemas/OnCallReminderShiftStartConfigPagination'
       required:
         - id
         - person
@@ -9118,9 +9059,9 @@ components:
             site:
               $ref: '#/components/schemas/SiteReference'
             devices:
-              $ref: '#/components/schemas/Pagination_Device_'
+              $ref: '#/components/schemas/DevicePagination'
             roles:
-              $ref: '#/components/schemas/Pagination_Role_'
+              $ref: '#/components/schemas/RolePagination'
             deliveryStatus:
               description: >-
                 Delivery status. Derived from the status of all notifications to
@@ -9132,9 +9073,9 @@ components:
                 - RESPONDED
                 - FAILED
             supervisors:
-              $ref: '#/components/schemas/Pagination_PersonReference_'
+              $ref: '#/components/schemas/PersonReferencePagination'
             notifications:
-              $ref: '#/components/schemas/Pagination_Notification_'
+              $ref: '#/components/schemas/NotificationPagination'
             response:
               $ref: '#/components/schemas/Response'
           required:
@@ -9368,15 +9309,15 @@ components:
         creator:
           $ref: '#/components/schemas/PersonReference'
         forms:
-          $ref: '#/components/schemas/Pagination_Form_'
+          $ref: '#/components/schemas/FormPagination'
         integrations:
-          $ref: '#/components/schemas/Pagination_Integration_'
+          $ref: '#/components/schemas/IntegrationPagination'
         constants:
-          $ref: '#/components/schemas/Pagination_Constant_'
+          $ref: '#/components/schemas/ConstantPagination'
         endpoints:
-          $ref: '#/components/schemas/Pagination_Endpoint_'
+          $ref: '#/components/schemas/EndpointPagination'
         permitted:
-          $ref: '#/components/schemas/Pagination_Permissible_'
+          $ref: '#/components/schemas/PermissiblePagination'
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
@@ -10564,7 +10505,7 @@ components:
           type: string
           description: Unique name. Also alias for targetName
         functions:
-          $ref: '#/components/schemas/Pagination_Function_'
+          $ref: '#/components/schemas/FunctionPagination'
       required:
         - id
         - name
@@ -10879,7 +10820,6 @@ components:
         id:
           type: string
         deviceType:
-          description: The type of the device
           type: string
           enum:
             - ANDROID_PUSH
@@ -11094,7 +11034,7 @@ components:
           format: date-time
           type: string
         members:
-          $ref: '#/components/schemas/Pagination_ShiftOccurrenceMember_'
+          $ref: '#/components/schemas/ShiftOccurrenceMemberPagination'
       required:
         - shift
         - start
@@ -11121,7 +11061,7 @@ components:
             - PEER
             - MANAGEMENT
         replacements:
-          $ref: '#/components/schemas/Pagination_TemporaryReplacement_'
+          $ref: '#/components/schemas/TemporaryReplacementPagination'
       required:
         - member
         - position
@@ -11412,1352 +11352,569 @@ components:
         - total
         - links
     AgentPagination:
-      type: object
       allOf:
         - $ref: '#/components/schemas/AbstractPagination'
-      properties:
-        data:
-          description: An array that contains a page of data items
-          type: array
-          items:
-            $ref: '#/components/schemas/Agent'
-      required:
-        - data
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Agent'
+          required:
+            - data
     AgentMonitorPagination:
-      type: object
       allOf:
         - $ref: '#/components/schemas/AbstractPagination'
-      properties:
-        data:
-          description: An array that contains a page of data items
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentMonitor'
-      required:
-        - data
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/AgentMonitor'
+          required:
+            - data
     AgentOwnerPagination:
-      type: object
       allOf:
         - $ref: '#/components/schemas/AbstractPagination'
-      properties:
-        data:
-          description: An array that contains a page of data items
-          type: array
-          items:
-            $ref: '#/components/schemas/AgentOwner'
-      required:
-        - data
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/AgentOwner'
+          required:
+            - data
     AuditPagination:
       type: object
+      properties:
+        data:
+          description: An array that contains this page of resources
+          items:
+            $ref: '#/components/schemas/Audit'
+          type: array
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+      required:
+        - data
+        - links
+    APIKeyPagination:
       allOf:
         - $ref: '#/components/schemas/AbstractPagination'
-      properties:
-        data:
-          description: An array that contains a page of data items
-          type: array
-          items:
-            $ref: '#/components/schemas/Audit'
-      required:
-        - data
-    Pagination_Agent_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Agent'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_AgentMonitor_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/AgentMonitor'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_AgentOwner_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/AgentOwner'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Audit_:
-      properties:
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Audit'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-      required:
-        - data
-        - links
-    Pagination_APIKey_:
-      properties:
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/APIKey'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-      required:
-        - data
-        - links
-    Pagination_Country_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Country'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_DeepLink_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/DeepLink'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Device_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Device'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_DeviceName_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/DeviceName'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_DeviceTimeframe_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/DeviceTimeframe'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_DeviceType_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          type: array
-          items:
-            description: The type of the device
-            type: string
-            enum:
-              - ANDROID_PUSH
-              - APPLE_PUSH
-              - BLACKBERRY_PUSH
-              - BROWSER
-              - EMAIL
-              - FAX
-              - GENERIC
-              - IM
-              - NUMERIC_PAGER
-              - TEXT_PAGER
-              - TEXT_PHONE
-              - VOICE
-              - VOICE_IVR
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Event_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Event'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_EventAnnotation_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/EventAnnotation'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_EventSchedule_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/EventSchedule'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_FeatureToggle_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/FeatureToggle'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_FileAttachment_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/FileAttachment'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Form_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Form'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Function_:
-      required:
-        - count
-        - data
-        - total
-        - links
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-        data:
-          type: array
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Function'
-        total:
-          type: integer
-          format: int32
-          description: The total number of items in the result set
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-    Pagination_Group_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Group'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_GroupMember_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/GroupMember'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Import_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Import'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_IntegrationAgent_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/IntegrationAgent'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Notification_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Notification'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_NotificationFilter_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/NotificationFilter'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Observer_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Observer'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_OnCall_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/OnCall'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_OnCallReminderShiftStartConfig_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          type: array
-          items:
-            $ref: '#/components/schemas/OnCallReminderShiftStartConfig'
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Permissible_:
-      required:
-        - count
-        - data
-        - total
-        - links
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-        data:
-          type: array
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Permissible'
-        total:
-          type: integer
-          format: int32
-          description: The total number of items in the result set
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-    Pagination_Permission_:
-      required:
-        - count
-        - data
-        - total
-        - links
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-        data:
-          type: array
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Permission'
-        total:
-          type: integer
-          format: int32
-          description: The total number of items in the result set
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-    Pagination_Person_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Person'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_PersonReference_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/PersonReference'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Plan_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Plan'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Conference_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Conference'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_ConferenceParticipant_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ConferenceParticipant'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Constant_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Constant'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Endpoint_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Endpoint'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Integration_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        total:
-          description: The total number of items in the result set
-          type: integer
-          format: int32
-        data:
-          description: An array that contains this page of resources
-          type: array
-          items:
-            $ref: '#/components/schemas/Integration'
-      required:
-        - count
-        - total
-        - data
-    Pagination_IntegrationLog_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        total:
-          description: The total number of items in the result set
-          type: integer
-          format: int32
-        data:
-          description: An array that contains this page of resources
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationLog'
-      required:
-        - count
-        - total
-        - data
-    Pagination_IntegrationService_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        total:
-          description: The total number of items in the result set
-          type: integer
-          format: int32
-        data:
-          description: An array that contains this page of resources
-          type: array
-          items:
-            $ref: '#/components/schemas/IntegrationService'
-      required:
-        - count
-        - total
-        - data
-    Pagination_Recipient_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Recipient'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_RefreshToken_:
-      required:
-        - count
-        - data
-        - total
-        - links
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-        data:
-          type: array
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/RefreshToken'
-        total:
-          type: integer
-          format: int32
-          description: The total number of items in the result set
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-    Pagination_Response_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Response'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_ResponseOption_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ResponseOption'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Role_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Role'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_RosterMember_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/RosterMember'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Scenario_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Scenario'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_ServiceProvider_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ServiceProvider'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Shift_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Shift'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_ShiftMember_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ShiftMember'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_ShiftOccurrence_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ShiftOccurrence'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_ShiftOccurrenceMember_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ShiftOccurrenceMember'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Site_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Site'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_TemporaryReplacement_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/TemporaryReplacement'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Transform_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Transform'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Message_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Message'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/APIKey'
+          required:
+            - data
+    CountryPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Country'
+          required:
+            - data
+    DeepLinkPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeepLink'
+          required:
+            - data
+    DevicePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Device'
+          required:
+            - data
+    DeviceNamePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeviceName'
+          required:
+            - data
+    DeviceTimeframePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/DeviceTimeframe'
+          required:
+            - data
+    DeviceTypePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                type: string
+                enum:
+                  - ANDROID_PUSH
+                  - APPLE_PUSH
+                  - BLACKBERRY_PUSH
+                  - BROWSER
+                  - EMAIL
+                  - FAX
+                  - GENERIC
+                  - IM
+                  - NUMERIC_PAGER
+                  - TEXT_PAGER
+                  - TEXT_PHONE
+                  - VOICE
+                  - VOICE_IVR
+          required:
+            - data
+    EventPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Event'
+          required:
+            - data
+    EventAnnotationPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventAnnotation'
+          required:
+            - data
+    EventSchedulePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventSchedule'
+          required:
+            - data
+    FeatureTogglePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/FeatureToggle'
+          required:
+            - data
+    FileAttachmentPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/FileAttachment'
+          required:
+            - data
+    FormPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Form'
+          required:
+            - data
+    FunctionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Function'
+          required:
+            - data
+    GroupPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Group'
+          required:
+            - data
+    GroupMemberPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/GroupMember'
+          required:
+            - data
+    ImportPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Import'
+          required:
+            - data
+    IntegrationAgentPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/IntegrationAgent'
+          required:
+            - data
+    NotificationPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Notification'
+          required:
+            - data
+    NotificationFilterPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/NotificationFilter'
+          required:
+            - data
+    ObserverPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Observer'
+          required:
+            - data
+    OnCallPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/OnCall'
+          required:
+            - data
+    OnCallReminderShiftStartConfigPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/OnCallReminderShiftStartConfig'
+          required:
+            - data
+    PermissiblePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Permissible'
+          required:
+            - data
+    PermissionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Permission'
+          required:
+            - data
+    PersonPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Person'
+          required:
+            - data
+    PersonReferencePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/PersonReference'
+          required:
+            - data
+    PlanPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Plan'
+          required:
+            - data
+    ConferencePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Conference'
+          required:
+            - data
+    ConferenceParticipantPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/ConferenceParticipant'
+          required:
+            - data
+    ConstantPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Constant'
+          required:
+            - data
+    EndpointPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Endpoint'
+          required:
+            - data
+    IntegrationPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Integration'
+          required:
+            - data
+    IntegrationLogPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/IntegrationLog'
+          required:
+            - data
+    IntegrationServicePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/IntegrationService'
+          required:
+            - data
+    RecipientPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Recipient'
+          required:
+            - data
+    RefreshTokenPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/RefreshToken'
+          required:
+            - data
+    ResponsePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Response'
+          required:
+            - data
+    ResponseOptionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResponseOption'
+          required:
+            - data
+    RolePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Role'
+          required:
+            - data
+    RosterMemberPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/RosterMember'
+          required:
+            - data
+    ScenarioPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Scenario'
+          required:
+            - data
+    ServiceProviderPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceProvider'
+          required:
+            - data
+    ShiftPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Shift'
+          required:
+            - data
+    ShiftMemberPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/ShiftMember'
+          required:
+            - data
+    ShiftOccurrencePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/ShiftOccurrence'
+          required:
+            - data
+    ShiftOccurrenceMemberPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/ShiftOccurrenceMember'
+          required:
+            - data
+    SitePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Site'
+          required:
+            - data
+    TemporaryReplacementPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/TemporaryReplacement'
+          required:
+            - data
+    TransformPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transform'
+          required:
+            - data
+    MessagePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Message'
+          required:
+            - data
