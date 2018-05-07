@@ -3268,7 +3268,7 @@ paths:
   '/people/{personId}/password':
     post:
       tags:
-        - Auth
+        - Authorization
       summary: Set user password
       description: Set user password
       operationId: postPersonPassword
