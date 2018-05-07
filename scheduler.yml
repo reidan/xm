@@ -1,0 +1,366 @@
+openapi: 3.0.0
+servers:
+  - url: /api/scheduler/1
+info:
+  title: Scheduler API Spec
+  description: Scheduler API Spec (Detailed specs for stories. May or may not be implemented)
+  version: '1'
+paths:
+  /jobs:
+    post:
+      summary: Schedule a reminder job
+      description: Schedule a reminder job
+      operationId: postJob
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Jobs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobInput'
+        required: true
+    delete:
+      summary: Delete all jobs for an organization
+      description: Delete all jobs for an organization
+      operationId: deleteJobs
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Jobs
+components:
+  parameters:
+    query-after:
+      description: After this time or sequenced item identifier (exclusive)
+      in: query
+      name: after
+      required: false
+      schema:
+        type: string
+    query-before:
+      description: Before this time or sequenced item identifier (exclusive)
+      in: query
+      name: before
+      required: false
+      schema:
+        type: string
+    query-from:
+      description: After this time or sequenced item identifier (inclusive)
+      in: query
+      name: from
+      required: false
+      schema:
+        type: string
+    query-limit:
+      description: Maximum result size to return
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        maximum: 1000
+        default: 100
+    query-offset:
+      description: Skip this many results before returning the result set
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+        default: 0
+    query-to:
+      description: Before this time or sequenced item identifier (inclusive)
+      in: query
+      name: to
+      required: false
+      schema:
+        type: string
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: Bad Request - The request is malformed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    '401':
+      description: Unauthorized - The caller cannot be identified
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+    '403':
+      description: >-
+        Forbidden - The authenticated user does not have permission to perform
+        this action
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    '404':
+      description: Not Found - The requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    '409':
+      description: Conflict - The action cannot be performed in the system
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+  schemas:
+    Job:
+      description: A scheduled reminder job
+      properties:
+        id:
+          description: Job identifier
+          type: string
+        jobType:
+          description: Payload schema identification
+          type: string
+        jobName:
+          description: A correlation identifier for this job
+          type: string
+        trigger:
+          type: object
+          properties:
+            startTime:
+              type: string
+              format: date-time
+            endTime:
+              type: string
+              format: date-time
+            cron:
+              type: string
+            timezone:
+              type: string
+          required:
+            - startTime
+        vectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector'
+        payload:
+          description: The string (generally Base64 encoded JSON) payload of the reminder
+          type: string
+      required:
+        - id
+        - jobType
+        - trigger
+        - payload
+    JobInput:
+      description: Schedule a reminder job
+      properties:
+        jobType:
+          description: Payload schema identification
+          type: string
+        jobName:
+          description: A correlation identifier for this job
+          type: string
+        trigger:
+          type: object
+          properties:
+            startTime:
+              type: string
+              format: date-time
+            endTime:
+              type: string
+              format: date-time
+            cron:
+              type: string
+            timezone:
+              type: string
+          required:
+            - startTime
+        vectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector'
+        payload:
+          description: The string (generally Base64 encoded JSON) payload of the reminder
+          type: string
+      required:
+        - jobType
+        - trigger
+        - payload
+    Vector:
+      description: Defines how a reminder is sent
+      properties:
+        vectorType:
+          type: string
+          enum:
+            - KAFKA
+            - WEBHOOK
+      required:
+        - vectorType
+    KafkaVector:
+      allOf:
+        - $ref: '#/components/schemas/Vector'
+        - properties:
+            vectorType:
+              type: string
+              enum:
+                - KAFKA
+            topic:
+              type: string
+              default: reminders
+          required:
+            - vectorType
+    WebhookVector:
+      allOf:
+        - $ref: '#/components/schemas/Vector'
+        - properties:
+            vectorType:
+              type: string
+              enum:
+                - WEBHOOK
+            uri:
+              type: string
+          required:
+            - vectorType
+            - uri
+    BadRequestResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 400
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Bad Request
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    UnauthorizedResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 401
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Unauthorized
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    ForbiddenResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 403
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Forbidden
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    NotFoundResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 404
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Not Found
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    ConflictResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 409
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response status
+          enum:
+            - Conflict
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
