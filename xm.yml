@@ -8255,6 +8255,10 @@ components:
               type: string
               enum:
                 - EVENT
+            plan:
+              $ref: '#/components/schemas/PlanReference'
+            integration:
+              $ref: '#/components/schemas/IntegrationReference'
     EventFilterInput:
       description: An event filter
       allOf:
@@ -8264,6 +8268,10 @@ components:
               type: string
               enum:
                 - EVENT
+            plan:
+              $ref: '#/components/schemas/PlanPointer'
+            integration:
+              $ref: '#/components/schemas/IntegrationPointer'
     NotificationFilter:
       description: A notification filter
       allOf:
