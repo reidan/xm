@@ -30,6 +30,34 @@ paths:
             schema:
               $ref: '#/components/schemas/Audit'
         required: true
+  /recovery:
+    post:
+      summary: Recover event processing
+      description: Recover event processing
+      operationId: postRecover
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Recovery
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                at:
+                  description: Recover event processing from this time (UTC)
+                  type: string
+                  format: date-time
+        required: true
   /reminders:
     post:
       summary: Receive a reminder
