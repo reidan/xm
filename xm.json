@@ -7,7 +7,7 @@
 	],
 	"info": {
 		"title": "xM API Spec",
-		"description": "xM API Spec (specification scratch-pad, not necessarily implemented)",
+		"description": "xM API Spec (specification scratch-pad, detailed specs for stories. May or may not be implemented)",
 		"version": "1"
 	},
 	"paths": {
