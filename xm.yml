@@ -2,8 +2,8 @@ openapi: 3.0.0
 servers:
   - url: /api/xm/1
 info:
-  title: Paul's xM API Spec
-  description: Paul's xM API Spec (specification scratch-pad)
+  title: xM API Spec
+  description: xM API Spec (Detailed specs for stories. May or may not be implemented)
   version: '1'
 paths:
   /agents:
