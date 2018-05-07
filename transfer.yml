@@ -21,7 +21,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Transform_'
+                $ref: '#/components/schemas/TransformPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -120,7 +120,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Pagination_Import_'
+                $ref: '#/components/schemas/ImportPagination'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -295,36 +295,6 @@ components:
       required:
         - id
         - transform
-    ImportRow:
-      description: Import row
-      properties:
-        row:
-          description: Row Number
-          type: integer
-        raw:
-          description: Raw string
-          type: string
-        fields:
-          $ref: '#/components/schemas/Pagination_ImportField_'
-      required:
-        - row
-        - raw
-    ImportField:
-      description: Import row
-      properties:
-        row:
-          description: Row Number
-          type: integer
-        col:
-          description: Column Number
-          type: integer
-        raw:
-          description: Raw string
-          type: string
-      required:
-        - row
-        - col
-        - raw
     PaginationLinks:
       properties:
         next:
@@ -338,7 +308,7 @@ components:
           type: string
       required:
         - self
-    BadRequestResponse:
+    AbstractResponse:
       properties:
         code:
           description: HTTP status code
@@ -346,101 +316,9 @@ components:
           type: integer
           enum:
             - 400
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Bad Request
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    UnauthorizedResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 401
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Unauthorized
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    ForbiddenResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 403
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Forbidden
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    NotFoundResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 404
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Not Found
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    ConflictResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 409
         subcode:
           description: An application-specific response sub-status
@@ -449,16 +327,96 @@ components:
           description: A detailed description of the response or error
           type: string
         reason:
-          description: A description of the response status
-          enum:
-            - Conflict
+          description: A description of the response code
           type: string
+          enum:
+            - Bad Request
+            - Unauthorized
+            - Forbidden
+            - Not Found
+            - Conflict
       required:
         - code
         - subcode
         - reason
         - message
-    Pagination_Import_:
+    BadRequestResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 400
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Bad Request
+    UnauthorizedResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 401
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Unauthorized
+    ForbiddenResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 403
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Forbidden
+    NotFoundResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 404
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Not Found
+    ConflictResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 409
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Conflict
+    AbstractPagination:
+      type: object
       properties:
         count:
           description: >-
@@ -466,11 +424,6 @@ components:
             the data array)
           format: int32
           type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Import'
-          type: array
         links:
           $ref: '#/components/schemas/PaginationLinks'
         total:
@@ -482,75 +435,23 @@ components:
         - data
         - total
         - links
-    Pagination_ImportRow_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ImportRow'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_ImportField_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/ImportField'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
-    Pagination_Transform_:
-      properties:
-        count:
-          description: >-
-            The number of items in this page of results (the number of items in
-            the data array)
-          format: int32
-          type: integer
-        data:
-          description: An array that contains this page of resources
-          items:
-            $ref: '#/components/schemas/Transform'
-          type: array
-        links:
-          $ref: '#/components/schemas/PaginationLinks'
-        total:
-          description: The total number of items in the result set
-          format: int32
-          type: integer
-      required:
-        - count
-        - data
-        - total
-        - links
+    TransformPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Transform'
+          required:
+            - data
+    ImportPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Import'
+          required:
+            - data
