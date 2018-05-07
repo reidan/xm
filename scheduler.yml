@@ -210,6 +210,13 @@ components:
         - payload
     Vector:
       description: Defines how a reminder is sent
+      oneOf:
+        - $ref: '#/components/schemas/KafkaVector'
+        - $ref: '#/components/schemas/WebhookVector'
+      discriminator:
+        propertyName: vectorType
+    AbstractVector:
+      description: Defines how a reminder is sent
       properties:
         vectorType:
           type: string
@@ -220,7 +227,7 @@ components:
         - vectorType
     KafkaVector:
       allOf:
-        - $ref: '#/components/schemas/Vector'
+        - $ref: '#/components/schemas/AbstractVector'
         - properties:
             vectorType:
               type: string
@@ -233,7 +240,7 @@ components:
             - vectorType
     WebhookVector:
       allOf:
-        - $ref: '#/components/schemas/Vector'
+        - $ref: '#/components/schemas/AbstractVector'
         - properties:
             vectorType:
               type: string
