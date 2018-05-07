@@ -2087,7 +2087,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Import
+        - File Import
   '/imports/{importId}':
     get:
       summary: Import
@@ -2115,7 +2115,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Import
+        - File Import
   /integration-agents:
     get:
       summary: Returns information about agents
@@ -4405,7 +4405,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Transforms
+        - File Import
     post:
       summary: Set transform definition
       description: Set transform definition
@@ -4432,7 +4432,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Transforms
+        - File Import
       requestBody:
         content:
           application/json:
@@ -4468,7 +4468,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Import
+        - File Import
       requestBody:
         content:
           multipart/form-data:
