@@ -6064,7 +6064,7 @@ components:
               type: string
     DeviceReference:
       allOf:
-        - $ref: '#/components/schemas/RecipientReference'
+        - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
             id:
               description: The identifier of the resource
@@ -8489,7 +8489,7 @@ components:
         - member
     GroupReference:
       allOf:
-        - $ref: '#/components/schemas/RecipientReference'
+        - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
             id:
               description: The identifier of the resource
@@ -9355,7 +9355,7 @@ components:
               type: string
     PersonReference:
       allOf:
-        - $ref: '#/components/schemas/RecipientReference'
+        - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
             id:
               description: The identifier of the resource
@@ -10269,6 +10269,13 @@ components:
       required:
         - id
     RecipientReference:
+      oneOf:
+        - $ref: '#/components/schemas/GroupReference'
+        - $ref: '#/components/schemas/PersonReference'
+        - $ref: '#/components/schemas/DeviceReference'
+      discriminator:
+        propertyName: recipientType
+    AbstractRecipientReference:
       properties:
         id:
           description: The identifier of the resource
