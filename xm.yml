@@ -5099,6 +5099,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         externalId:
           type: string
           description: Legacy non-UUID identifier
@@ -5133,6 +5134,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         externalId:
           type: string
           description: Legacy non-UUID identifier
@@ -5164,6 +5166,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     AgentPointer:
@@ -5171,6 +5174,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     AgentInstaller:
@@ -5197,6 +5201,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
           description: The unique identifier for this specific monitoring subscription
         agent:
           $ref: '#/components/schemas/AgentReference'
@@ -5211,6 +5216,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
           description: The unique identifier for this specific monitoring subscription
         agent:
           $ref: '#/components/schemas/AgentPointer'
@@ -5221,6 +5227,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         agent:
           $ref: '#/components/schemas/AgentReference'
         owner:
@@ -5247,6 +5254,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         key:
           type: string
         person:
@@ -5258,12 +5266,14 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         key:
           type: string
     IntegrationAgent:
       properties:
         id:
           type: string
+          format: uuid
         externalId:
           type: string
           description: Legacy non-UUID identifier
@@ -5293,6 +5303,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         externalId:
           type: string
           description: Legacy non-UUID identifier
@@ -5338,8 +5349,8 @@ components:
       type: object
       properties:
         id:
-          description: A unique identifier (UUID) for this entity
           type: string
+          format: uuid
         at:
           description: Time this event happened (UTC)
           type: string
@@ -5684,6 +5695,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         plan:
           $ref: '#/components/schemas/PlanReference'
         name:
@@ -5783,7 +5795,6 @@ components:
       description: Customer defined Device categories e.g. Work Email
       properties:
         id:
-          description: A unique identifier (UUID) for this entity
           type: string
           format: uuid
         deviceType:
@@ -5816,7 +5827,6 @@ components:
     DeviceNamePointer:
       properties:
         id:
-          description: A unique identifier (UUID) for this entity
           type: string
           format: uuid
         deviceType:
@@ -5842,7 +5852,6 @@ components:
       description: Customer defined Device categories e.g. Work Email
       properties:
         id:
-          description: A unique identifier (UUID) for this entity
           type: string
           format: uuid
         deviceType:
@@ -6067,8 +6076,8 @@ components:
         - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
             id:
-              description: The identifier of the resource
               type: string
+              format: uuid
             targetName:
               description: The target name of the resource
               type: string
@@ -7885,8 +7894,8 @@ components:
       description: An event in the xMatters system
       properties:
         id:
-          description: An identifier (UUID) that represents this resource
           type: string
+          format: uuid
         eventId:
           description: A legacy identifier (numeric) that represents this resource
           type: string
@@ -8010,8 +8019,8 @@ components:
       description: A form submission
       properties:
         id:
-          description: An identifier (UUID) that represents this resource
           type: string
+          format: uuid
         bypassPhoneIntro:
           default: false
           type: boolean
@@ -8097,8 +8106,8 @@ components:
     EventReference:
       properties:
         id:
-          description: A unique identifier (UUID) for this entity
           type: string
+          format: uuid
         eventId:
           description: A legacy identifier (numeric) that represents this resource
           type: string
@@ -8109,8 +8118,8 @@ components:
     EventPointer:
       properties:
         id:
-          description: An identifier that represents this resource
           type: string
+          format: uuid
       required:
         - id
     EventAnnotation:
@@ -8203,6 +8212,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           description: File name
           type: string
@@ -8226,6 +8236,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         filterType:
           type: string
           enum:
@@ -8247,6 +8258,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         filterType:
           type: string
           enum:
@@ -8315,6 +8327,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         transform:
           $ref: '#/components/schemas/TransformReference'
       required:
@@ -8325,6 +8338,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         formId:
           type: string
           description: Legacy numeric form identifier
@@ -8360,6 +8374,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           type: string
         description:
@@ -8383,13 +8398,13 @@ components:
       description: A reference to a form resource
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
     FormReference:
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
         name:
           type: string
       required:
@@ -8400,6 +8415,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         functions:
           $ref: '#/components/schemas/PermissionPagination'
       required:
@@ -8492,8 +8508,8 @@ components:
         - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
             id:
-              description: The identifier of the resource
               type: string
+              format: uuid
             targetName:
               description: The target name of the resource
               type: string
@@ -8536,6 +8552,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         plan:
           $ref: '#/components/schemas/PlanReference'
         form:
@@ -8621,6 +8638,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         plan:
           $ref: '#/components/schemas/PlanPointer'
         form:
@@ -8692,8 +8710,8 @@ components:
     IntegrationReference:
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
         plan:
           $ref: '#/components/schemas/PlanReference'
         name:
@@ -8706,12 +8724,14 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     IntegrationLog:
       properties:
         id:
           type: string
+          format: uuid
         integration:
           $ref: '#/components/schemas/IntegrationReference'
         completed:
@@ -8925,14 +8945,13 @@ components:
     NotificationReference:
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
       required:
         - id
     NotificationPointer:
       properties:
         id:
-          description: The identifier of the resource
           type: string
           format: uuid
       required:
@@ -8988,7 +9007,7 @@ components:
       properties:
         id:
           type: string
-          description: A unique identifier (UUID) for this entity
+          format: uuid
         person:
           $ref: '#/components/schemas/PersonReference'
         remindersEnabled:
@@ -9020,7 +9039,7 @@ components:
       properties:
         id:
           type: string
-          description: A unique identifier (UUID) for this entity
+          format: uuid
         person:
           $ref: '#/components/schemas/PersonPointer'
         remindersEnabled:
@@ -9059,7 +9078,7 @@ components:
       properties:
         id:
           type: string
-          description: A unique identifier (UUID) for this entity
+          format: uuid
         trial:
           type: boolean
           description: True if this is a trial organization
@@ -9080,7 +9099,7 @@ components:
       properties:
         id:
           type: string
-          description: A unique identifier (UUID) for this entity
+          format: uuid
       required:
         - id
     OrganizationConfig:
@@ -9373,8 +9392,8 @@ components:
         - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
             id:
-              description: The identifier of the resource
               type: string
+              format: uuid
             targetName:
               description: The target name of the resource
               type: string
@@ -9436,6 +9455,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     Plan:
@@ -9449,6 +9469,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           type: string
           description: User provided name for this plan
@@ -9458,6 +9479,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     AbstractPlan:
@@ -9466,6 +9488,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         planType:
           type: string
           enum:
@@ -9569,6 +9592,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         planType:
           type: string
           enum:
@@ -10043,6 +10067,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         plan:
           $ref: '#/components/schemas/PlanReference'
         name:
@@ -10083,6 +10108,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         plan:
           $ref: '#/components/schemas/PlanPointer'
         name:
@@ -10122,6 +10148,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         plan:
           $ref: '#/components/schemas/PlanReference'
         name:
@@ -10134,6 +10161,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     Recipient:
@@ -10147,7 +10175,6 @@ components:
       type: object
       properties:
         id:
-          description: A unique identifier (UUID) for this entity
           type: string
           format: uuid
         targetName:
@@ -10222,8 +10249,8 @@ components:
         Devices are all Recipients
       properties:
         id:
-          description: A unique identifier (UUID) for this entity
           type: string
+          format: uuid
         targetName:
           type: string
         recipientType:
@@ -10265,8 +10292,9 @@ components:
       description: A reference to a recipient resource
       properties:
         id:
-          description: The identifier of the resource. Can be either UUID or targetName
+          description: UUID or targetName
           type: string
+          format: uuid
         recipientType:
           type: string
           enum:
@@ -10293,8 +10321,8 @@ components:
     AbstractRecipientReference:
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
         targetName:
           description: The target name of the recipient
           type: string
@@ -10581,6 +10609,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         notification:
           $ref: '#/components/schemas/NotificationReference'
         status:
@@ -10645,6 +10674,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           type: string
           description: Unique name. Also alias for targetName
@@ -10657,6 +10687,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           type: string
           description: Unique name. Also alias for targetName
@@ -10667,6 +10698,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           type: string
           description: Unique name. Also alias for targetName
@@ -10963,6 +10995,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           type: string
         description:
@@ -10981,6 +11014,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         deviceType:
           type: string
           enum:
@@ -11007,6 +11041,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     ServiceProviderPointer:
@@ -11014,12 +11049,14 @@ components:
       properties:
         id:
           type: string
+          format: uuid
       required:
         - id
     Shift:
       properties:
         id:
           type: string
+          format: uuid
         group:
           $ref: '#/components/schemas/GroupReference'
         name:
@@ -11070,6 +11107,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         group:
           $ref: '#/components/schemas/GroupPointer'
         name:
@@ -11102,8 +11140,8 @@ components:
     ShiftReference:
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
         group:
           $ref: '#/components/schemas/GroupReference'
         name:
@@ -11116,8 +11154,8 @@ components:
     ShiftPointer:
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
         group:
           $ref: '#/components/schemas/GroupPointer'
         name:
@@ -11330,6 +11368,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           description: Transform name
           type: string
@@ -11345,6 +11384,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           description: Transform name
           type: string
@@ -11353,6 +11393,7 @@ components:
       properties:
         id:
           type: string
+          format: uuid
         name:
           description: Transform name
           type: string
