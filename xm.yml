@@ -10801,8 +10801,13 @@ components:
               $ref: '#/components/schemas/RecurrenceEnd'
     MonthlyRecurrence:
       description: Recurrence details for a monthly occurrence
+      oneOf:
+        - $ref: '#/components/schemas/MonthlyDateOfMonthRecurrence'
+        - $ref: '#/components/schemas/MonthlyDayOfWeekRecurrence'
       discriminator:
         propertyName: 'on'
+    AbstractMonthlyRecurrence:
+      description: Recurrence details for a monthly occurrence
       allOf:
         - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
@@ -10837,12 +10842,14 @@ components:
                   - DEC
             end:
               $ref: '#/components/schemas/RecurrenceEnd'
+          required:
+            - 'on'
     MonthlyDateOfMonthRecurrence:
       description: >-
         Recurrence details for a monthly occurrence on a specific date of the
         month
       allOf:
-        - $ref: '#/components/schemas/MonthlyRecurrence'
+        - $ref: '#/components/schemas/AbstractMonthlyRecurrence'
         - properties:
             'on':
               description: Repeat on date of month
@@ -10890,7 +10897,7 @@ components:
         Recurrence details for a monthly occurrence on a specific day of the
         week
       allOf:
-        - $ref: '#/components/schemas/MonthlyRecurrence'
+        - $ref: '#/components/schemas/AbstractMonthlyRecurrence'
         - properties:
             'on':
               description: Repeat on day of week
