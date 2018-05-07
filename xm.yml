@@ -394,9 +394,9 @@ paths:
         - $ref: '#/components/parameters/query-to'
         - $ref: '#/components/parameters/query-after'
         - $ref: '#/components/parameters/query-before'
-        - $ref: '#/components/parameters/query-eventId'
-        - $ref: '#/components/parameters/query-personId'
-        - $ref: '#/components/parameters/query-deviceId'
+        - $ref: '#/components/parameters/query-event'
+        - $ref: '#/components/parameters/query-person'
+        - $ref: '#/components/parameters/query-device'
         - $ref: '#/components/parameters/query-auditType'
         - $ref: '#/components/parameters/query-embed'
       responses:
@@ -653,7 +653,7 @@ paths:
       description: Returns information about deep links
       operationId: getDeepLinks
       parameters:
-        - $ref: '#/components/parameters/query-personId'
+        - $ref: '#/components/parameters/query-person'
         - description: Deep link code
           in: query
           name: code
@@ -1015,14 +1015,14 @@ paths:
       description: Returns a list of event resources in the xMatters system
       operationId: getEvents
       parameters:
-        - $ref: '#/components/parameters/query-planId'
-        - $ref: '#/components/parameters/query-formId'
-        - $ref: '#/components/parameters/query-integrationId'
+        - $ref: '#/components/parameters/query-plan'
+        - $ref: '#/components/parameters/query-form'
+        - $ref: '#/components/parameters/query-integration'
         - $ref: '#/components/parameters/query-submitter'
         - $ref: '#/components/parameters/query-priority'
         - $ref: '#/components/parameters/query-propertyName'
         - $ref: '#/components/parameters/query-propertyValue'
-        - $ref: '#/components/parameters/query-requestId'
+        - $ref: '#/components/parameters/query-request'
         - description: Filter by associated conferences
           in: query
           name: conferenceId
@@ -2375,9 +2375,9 @@ paths:
       description: Get notification filters
       operationId: getNotificationFilters
       parameters:
-        - $ref: '#/components/parameters/query-planId'
-        - $ref: '#/components/parameters/query-formId'
-        - $ref: '#/components/parameters/query-integrationId'
+        - $ref: '#/components/parameters/query-plan'
+        - $ref: '#/components/parameters/query-form'
+        - $ref: '#/components/parameters/query-integration'
         - $ref: '#/components/parameters/query-offset'
         - $ref: '#/components/parameters/query-limit'
         - $ref: '#/components/parameters/query-embed'
@@ -2575,7 +2575,7 @@ paths:
               type: string
         - $ref: '#/components/parameters/query-from'
         - $ref: '#/components/parameters/query-to'
-        - $ref: '#/components/parameters/query-shiftId'
+        - $ref: '#/components/parameters/query-shift'
         - description: Limit number of shift occurrence members returned
           in: query
           name: membersPerShift
@@ -2817,7 +2817,7 @@ paths:
       operationId: deletePerson
       parameters:
         - $ref: '#/components/parameters/path-personId'
-        - $ref: '#/components/parameters/query-personIdMatch'
+        - $ref: '#/components/parameters/query-personMatch'
       responses:
         '200':
           description: OK
@@ -2841,7 +2841,7 @@ paths:
       operationId: getPerson
       parameters:
         - $ref: '#/components/parameters/path-personId'
-        - $ref: '#/components/parameters/query-personIdMatch'
+        - $ref: '#/components/parameters/query-personMatch'
         - $ref: '#/components/parameters/query-at'
       responses:
         '200':
@@ -2929,7 +2929,7 @@ paths:
       operationId: getPersonDevices
       parameters:
         - $ref: '#/components/parameters/path-personId'
-        - $ref: '#/components/parameters/query-personIdMatch'
+        - $ref: '#/components/parameters/query-personMatch'
         - $ref: '#/components/parameters/query-phoneNumberFormat'
         - $ref: '#/components/parameters/query-at'
         - $ref: '#/components/parameters/query-embed'
@@ -2954,7 +2954,7 @@ paths:
       operationId: putPersonDevices
       parameters:
         - $ref: '#/components/parameters/path-personId'
-        - $ref: '#/components/parameters/query-personIdMatch'
+        - $ref: '#/components/parameters/query-personMatch'
       responses:
         '200':
           description: OK
@@ -2992,7 +2992,7 @@ paths:
       operationId: getPersonGroups
       parameters:
         - $ref: '#/components/parameters/path-personId'
-        - $ref: '#/components/parameters/query-personIdMatch'
+        - $ref: '#/components/parameters/query-personMatch'
         - $ref: '#/components/parameters/query-at'
         - $ref: '#/components/parameters/query-embed'
       responses:
@@ -3019,7 +3019,7 @@ paths:
       operationId: getPersonGroupMemberships
       parameters:
         - $ref: '#/components/parameters/path-personId'
-        - $ref: '#/components/parameters/query-personIdMatch'
+        - $ref: '#/components/parameters/query-personMatch'
         - $ref: '#/components/parameters/query-at'
         - $ref: '#/components/parameters/query-embed'
       responses:
@@ -4363,8 +4363,8 @@ paths:
       description: Returns a list of timeline events
       operationId: getTimeline
       parameters:
-        - $ref: '#/components/parameters/query-incidentId'
-        - $ref: '#/components/parameters/query-eventId'
+        - $ref: '#/components/parameters/query-incident'
+        - $ref: '#/components/parameters/query-event'
         - $ref: '#/components/parameters/query-from'
         - $ref: '#/components/parameters/query-to'
       responses:
@@ -4745,17 +4745,17 @@ components:
           - WEBHOOK
           - APP_DYNAMICS
           - SENSU
-    query-conferenceId:
-      description: Conference identifiers
+    query-conference:
+      description: Conference identifier
       in: query
-      name: conferenceId
+      name: conference
       required: false
       schema:
         type: string
-    query-deviceId:
+    query-device:
       description: The device uuid or name
       in: query
-      name: deviceId
+      name: device
       required: false
       schema:
         type: string
@@ -4794,10 +4794,10 @@ components:
       required: false
       schema:
         type: string
-    query-eventId:
-      description: Event id
+    query-event:
+      description: Event identifier
       in: query
-      name: eventId
+      name: event
       required: false
       schema:
         type: string
@@ -4808,10 +4808,10 @@ components:
       required: false
       schema:
         type: string
-    query-formId:
+    query-form:
       description: The form uuid or name
       in: query
-      name: formId
+      name: form
       required: false
       schema:
         type: string
@@ -4849,17 +4849,17 @@ components:
       required: false
       schema:
         type: string
-    query-integrationId:
+    query-integration:
       description: The integration id
       in: query
-      name: integrationId
+      name: integration
       required: false
       schema:
         type: string
-    query-incidentId:
+    query-incident:
       description: Incident id
       in: query
-      name: incidentId
+      name: incident
       required: false
       schema:
         type: string
@@ -4894,13 +4894,6 @@ components:
       required: false
       schema:
         type: string
-    query-personId:
-      description: The person's uuid or targetName
-      in: query
-      name: personId
-      required: false
-      schema:
-        type: string
     query-phoneNumberFormat:
       description: Modify the format of the returned phoneNumber
       in: query
@@ -4914,10 +4907,10 @@ components:
           - COUNTRY_CODE
           - CALLER_LOCALE
         default: E164
-    query-planId:
+    query-plan:
       description: The plan uuid or name
       in: query
-      name: planId
+      name: plan
       required: false
       schema:
         type: string
@@ -4942,10 +4935,10 @@ components:
           - LOW
           - MEDIUM
           - HIGH
-    query-requestId:
+    query-request:
       description: Request identifier
       in: query
-      name: requestId
+      name: request
       required: false
       schema:
         type: string
@@ -4953,13 +4946,6 @@ components:
       description: Shift identifier
       in: query
       name: shift
-      required: false
-      schema:
-        type: string
-    query-shiftId:
-      description: Shift identifier
-      in: query
-      name: shiftId
       required: false
       schema:
         type: string
@@ -4994,10 +4980,10 @@ components:
       required: false
       schema:
         type: boolean
-    query-personIdMatch:
+    query-personMatch:
       description: Determines the attribute used to match the personId
       in: query
-      name: personIdMatch
+      name: personMatch
       required: false
       schema:
         type: string
