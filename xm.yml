@@ -8248,7 +8248,7 @@ components:
     EventFilter:
       description: An event filter
       allOf:
-        - $ref: '#/components/schemas/AbstractRecipient'
+        - $ref: '#/components/schemas/AbstractFilter'
         - properties:
             filterType:
               type: string
@@ -8257,7 +8257,7 @@ components:
     EventFilterInput:
       description: An event filter
       allOf:
-        - $ref: '#/components/schemas/AbstractRecipient'
+        - $ref: '#/components/schemas/AbstractFilterInput'
         - properties:
             filterType:
               type: string
@@ -8266,7 +8266,7 @@ components:
     NotificationFilter:
       description: A notification filter
       allOf:
-        - $ref: '#/components/schemas/AbstractRecipient'
+        - $ref: '#/components/schemas/AbstractFilter'
         - properties:
             filterType:
               type: string
@@ -8279,7 +8279,7 @@ components:
     NotificationFilterInput:
       description: A notification filter
       allOf:
-        - $ref: '#/components/schemas/AbstractRecipient'
+        - $ref: '#/components/schemas/AbstractFilterInput'
         - properties:
             filterType:
               type: string
