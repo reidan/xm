@@ -10680,9 +10680,20 @@ components:
         - group
         - member
     Recurrence:
-      description: Recurrence details
+      oneOf:
+        - $ref: '#/components/schemas/DailyRecurrence'
+        - $ref: '#/components/schemas/WeeklyRecurrence'
+        - $ref: '#/components/schemas/EveryWeekdayRecurrence'
+        - $ref: '#/components/schemas/EveryWeekendDayRecurrence'
+        - $ref: '#/components/schemas/MonthlyRecurrence'
+        - $ref: '#/components/schemas/MonthlyDateOfMonthRecurrence'
+        - $ref: '#/components/schemas/MonthlyDayOfWeekRecurrence'
+        - $ref: '#/components/schemas/YearlyRecurrence'
+        - $ref: '#/components/schemas/HolidayRecurrence'
       discriminator:
         propertyName: frequency
+    AbstractRecurrence:
+      description: Recurrence details
       properties:
         frequency:
           type: string
@@ -10714,7 +10725,7 @@ components:
     OnceRecurrence:
       description: Recurrence details for a one time occurrence
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
@@ -10724,7 +10735,7 @@ components:
     DailyRecurrence:
       description: Recurrence details for a daily occurrence
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
@@ -10739,7 +10750,7 @@ components:
     WeeklyRecurrence:
       description: Recurrence details for a weekly occurrence
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
@@ -10767,7 +10778,7 @@ components:
     EveryWeekdayRecurrence:
       description: Recurrence details for an every weekday occurrence
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
@@ -10779,7 +10790,7 @@ components:
     EveryWeekendDayRecurrence:
       description: Recurrence details for an every weekend day occurrence
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
@@ -10793,7 +10804,7 @@ components:
       discriminator:
         propertyName: 'on'
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
@@ -10909,7 +10920,7 @@ components:
     YearlyRecurrence:
       description: Recurrence details for a one time occurrence
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
@@ -10921,7 +10932,7 @@ components:
     HolidayRecurrence:
       description: Recurrence details for a holiday
       allOf:
-        - $ref: '#/components/schemas/Recurrence'
+        - $ref: '#/components/schemas/AbstractRecurrence'
         - properties:
             frequency:
               description: Repeat at this frequency
