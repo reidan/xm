@@ -2269,6 +2269,106 @@ paths:
               $ref: '#/components/schemas/LogEntryInput'
         description: A log entry
         required: true
+  /event-filters:
+    get:
+      summary: Get event filters
+      description: Get event filters
+      operationId: getEventFilters
+      parameters:
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilterPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Filters
+    post:
+      summary: Add or update event filters
+      description: Add or update event filters
+      operationId: postEventFilter
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventFilterInput'
+        required: true
+      tags:
+        - Filters
+  '/event-filters/{filterId}':
+    parameters:
+      - $ref: '#/components/parameters/path-filterId'
+    get:
+      summary: Get event filter
+      description: Get event filter
+      operationId: getEventFilter
+      parameters:
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Filters
+    delete:
+      summary: Delete event filter
+      description: Delete event filter
+      operationId: deleteEventFilter
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Filters
   /notification-filters:
     get:
       summary: Get notification filters
@@ -2293,7 +2393,7 @@ paths:
         '403':
           $ref: '#/components/responses/403'
       tags:
-        - Notification Filters
+        - Filters
     post:
       summary: Add or update notification filters
       description: Add or update notification filters
@@ -2319,22 +2419,22 @@ paths:
           $ref: '#/components/responses/403'
         '409':
           $ref: '#/components/responses/409'
-      tags:
-        - Notification Filters
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/NotificationFilterInput'
-        description: A insert or update
         required: true
-  '/notification-filters/{notificationFilterId}':
+      tags:
+        - Filters
+  '/notification-filters/{filterId}':
+    parameters:
+      - $ref: '#/components/parameters/path-filterId'
     get:
       summary: Get notification filter
       description: Get notification filter
       operationId: getNotificationFilter
       parameters:
-        - $ref: '#/components/parameters/path-notificationFilterId'
         - $ref: '#/components/parameters/query-embed'
       responses:
         '200':
@@ -2350,13 +2450,11 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Notification Filters
+        - Filters
     delete:
       summary: Delete notification filter
       description: Delete notification filter
       operationId: deleteNotificationFilter
-      parameters:
-        - $ref: '#/components/parameters/path-notificationFilterId'
       responses:
         '200':
           description: OK
@@ -2373,7 +2471,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Notification Filters
+        - Filters
   /oauth2/authorize:
     post:
       summary: Authorize
@@ -4469,6 +4567,13 @@ components:
       required: true
       schema:
         type: string
+    path-filterId:
+      description: A filter identifier
+      in: path
+      name: filterId
+      required: true
+      schema:
+        type: string
     path-formId:
       description: The form uuid or name
       in: path
@@ -4507,13 +4612,6 @@ components:
       description: The monitor's uuid or targetName
       in: path
       name: monitorId
-      required: true
-      schema:
-        type: string
-    path-notificationFilterId:
-      description: The notification filter identifier
-      in: path
-      name: notificationFilterId
       required: true
       schema:
         type: string
@@ -8111,6 +8209,86 @@ components:
       required:
         - id
         - url
+    AbstractFilter:
+      description: A filter
+      properties:
+        id:
+          type: string
+        filterType:
+          type: string
+          enum:
+            - EVENT
+            - NOTIFICATION
+        config:
+          description: >-
+            Configuration properties that will be passed to filter constructor
+          type: object
+        active:
+          type: boolean
+      required:
+        - id
+        - filterType
+        - active
+    AbstractFilterInput:
+      description: A filter
+      properties:
+        id:
+          type: string
+        filterType:
+          type: string
+          enum:
+            - EVENT
+            - NOTIFICATION
+        config:
+          description: >-
+            Configuration properties that will be passed to filter constructor
+          type: object
+        active:
+          type: boolean
+    EventFilter:
+      description: An event filter
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipient'
+        - properties:
+            filterType:
+              type: string
+              enum:
+                - EVENT
+    EventFilterInput:
+      description: An event filter
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipient'
+        - properties:
+            filterType:
+              type: string
+              enum:
+                - EVENT
+    NotificationFilter:
+      description: A notification filter
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipient'
+        - properties:
+            filterType:
+              type: string
+              enum:
+                - NOTIFICATION
+            plan:
+              $ref: '#/components/schemas/PlanReference'
+            integration:
+              $ref: '#/components/schemas/IntegrationReference'
+    NotificationFilterInput:
+      description: A notification filter
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipient'
+        - properties:
+            filterType:
+              type: string
+              enum:
+                - NOTIFICATION
+            plan:
+              $ref: '#/components/schemas/PlanPointer'
+            integration:
+              $ref: '#/components/schemas/IntegrationPointer'
     Import:
       description: Import
       properties:
@@ -8723,47 +8901,6 @@ components:
           format: uuid
       required:
         - id
-    NotificationFilter:
-      description: A notification filter
-      properties:
-        id:
-          type: string
-        plan:
-          $ref: '#/components/schemas/PlanReference'
-        integration:
-          $ref: '#/components/schemas/IntegrationReference'
-        filterType:
-          type: string
-        config:
-          description: >-
-            Configuration properties that will be passed to filter constructor.
-            Stored as JSON
-          type: object
-        active:
-          type: boolean
-      required:
-        - id
-        - active
-    NotificationFilterInput:
-      description: >-
-        A notification filter, applied to notifications matching the specified
-        attributes
-      properties:
-        id:
-          type: string
-        plan:
-          $ref: '#/components/schemas/PlanPointer'
-        integration:
-          $ref: '#/components/schemas/IntegrationPointer'
-        filterType:
-          type: string
-        config:
-          description: >-
-            Configuration properties that will be passed to filter constructor.
-            Stored as JSON
-          type: object
-        active:
-          type: boolean
     Observer:
       description: 'Observer entity (PERSON, ROLE)'
       properties:
@@ -11509,6 +11646,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/EventSchedule'
+          required:
+            - data
+    EventFilterPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventFilter'
           required:
             - data
     FeatureTogglePagination:
