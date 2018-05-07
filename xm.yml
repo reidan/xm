@@ -11360,7 +11360,7 @@ components:
           type: string
       required:
         - self
-    BadRequestResponse:
+    AbstractResponse:
       properties:
         code:
           description: HTTP status code
@@ -11368,101 +11368,9 @@ components:
           type: integer
           enum:
             - 400
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Bad Request
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    UnauthorizedResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 401
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Unauthorized
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    ForbiddenResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 403
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Forbidden
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    NotFoundResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 404
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Not Found
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    ConflictResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 409
         subcode:
           description: An application-specific response sub-status
@@ -11471,15 +11379,94 @@ components:
           description: A detailed description of the response or error
           type: string
         reason:
-          description: A description of the response status
-          enum:
-            - Conflict
+          description: A description of the response code
           type: string
+          enum:
+            - Bad Request
+            - Unauthorized
+            - Forbidden
+            - Not Found
+            - Conflict
       required:
         - code
         - subcode
         - reason
         - message
+    BadRequestResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 400
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Bad Request
+    UnauthorizedResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 401
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Unauthorized
+    ForbiddenResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 403
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Forbidden
+    NotFoundResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 404
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Not Found
+    ConflictResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 409
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Conflict
     AbstractPagination:
       type: object
       properties:
