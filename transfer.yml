@@ -1,0 +1,556 @@
+openapi: 3.0.0
+servers:
+  - url: /api/transfer/1
+info:
+  title: Transfer API Spec
+  description: Transfer API Spec (Detailed specs for stories. May or may not be implemented)
+  version: '1'
+paths:
+  /transforms:
+    get:
+      summary: Transform definitions
+      description: Transform definitions
+      operationId: getTransforms
+      parameters:
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_Transform_'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Transforms
+    post:
+      summary: Set transform definition
+      description: Set transform definition
+      operationId: postTransform
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transform'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transform'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Transforms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransformInput'
+        description: Transform definition
+        required: true
+  '/transforms/{transformId}/imports':
+    post:
+      summary: Import a file
+      description: Import a file
+      operationId: postTransformImport
+      parameters:
+        - description: Transform identifier
+          in: path
+          name: transformId
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Import
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  description: File upload
+                  type: string
+                  format: binary
+              required:
+                - file
+  /imports:
+    get:
+      summary: Imports
+      description: Imports
+      operationId: getImports
+      parameters:
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pagination_Import_'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Import
+  '/imports/{importId}':
+    get:
+      summary: Import
+      description: Import
+      operationId: getImport
+      parameters:
+        - description: Import identifier
+          in: path
+          name: importId
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Import
+components:
+  parameters:
+    query-after:
+      description: After this time or sequenced item identifier (exclusive)
+      in: query
+      name: after
+      required: false
+      schema:
+        type: string
+    query-before:
+      description: Before this time or sequenced item identifier (exclusive)
+      in: query
+      name: before
+      required: false
+      schema:
+        type: string
+    query-embed:
+      description: List of linked domain entities to embed in the response
+      in: query
+      name: embed
+      required: false
+      schema:
+        type: string
+    query-from:
+      description: After this time or sequenced item identifier (inclusive)
+      in: query
+      name: from
+      required: false
+      schema:
+        type: string
+    query-limit:
+      description: Maximum result size to return
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        maximum: 1000
+        default: 100
+    query-offset:
+      description: Skip this many results before returning the result set
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+        default: 0
+    query-to:
+      description: Before this time or sequenced item identifier (inclusive)
+      in: query
+      name: to
+      required: false
+      schema:
+        type: string
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: Bad Request - The request is malformed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    '401':
+      description: Unauthorized - The caller cannot be identified
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+    '403':
+      description: >-
+        Forbidden - The authenticated user does not have permission to perform
+        this action
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    '404':
+      description: Not Found - The requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    '409':
+      description: Conflict - The action cannot be performed in the system
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+  schemas:
+    Transform:
+      description: Transform
+      properties:
+        id:
+          type: string
+        name:
+          description: Transform name
+          type: string
+        url:
+          description: File upload URL
+          type: string
+      required:
+        - id
+        - name
+        - url
+    TransformInput:
+      description: Transform
+      properties:
+        id:
+          type: string
+        name:
+          description: Transform name
+          type: string
+    TransformReference:
+      description: Transform
+      properties:
+        id:
+          type: string
+        name:
+          description: Transform name
+          type: string
+        url:
+          description: File upload URL
+          type: string
+      required:
+        - id
+        - name
+        - url
+    Import:
+      description: Import
+      properties:
+        id:
+          type: string
+        transform:
+          $ref: '#/components/schemas/TransformReference'
+      required:
+        - id
+        - transform
+    ImportRow:
+      description: Import row
+      properties:
+        row:
+          description: Row Number
+          type: integer
+        raw:
+          description: Raw string
+          type: string
+        fields:
+          $ref: '#/components/schemas/Pagination_ImportField_'
+      required:
+        - row
+        - raw
+    ImportField:
+      description: Import row
+      properties:
+        row:
+          description: Row Number
+          type: integer
+        col:
+          description: Column Number
+          type: integer
+        raw:
+          description: Raw string
+          type: string
+      required:
+        - row
+        - col
+        - raw
+    PaginationLinks:
+      properties:
+        next:
+          description: A link to the next page of results
+          type: string
+        previous:
+          description: A link to the previous page of results
+          type: string
+        self:
+          description: A link to this page of results
+          type: string
+      required:
+        - self
+    BadRequestResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 400
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Bad Request
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    UnauthorizedResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 401
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Unauthorized
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    ForbiddenResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 403
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Forbidden
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    NotFoundResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 404
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          enum:
+            - Not Found
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    ConflictResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 409
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response status
+          enum:
+            - Conflict
+          type: string
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    Pagination_Import_:
+      properties:
+        count:
+          description: >-
+            The number of items in this page of results (the number of items in
+            the data array)
+          format: int32
+          type: integer
+        data:
+          description: An array that contains this page of resources
+          items:
+            $ref: '#/components/schemas/Import'
+          type: array
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        total:
+          description: The total number of items in the result set
+          format: int32
+          type: integer
+      required:
+        - count
+        - data
+        - total
+        - links
+    Pagination_ImportRow_:
+      properties:
+        count:
+          description: >-
+            The number of items in this page of results (the number of items in
+            the data array)
+          format: int32
+          type: integer
+        data:
+          description: An array that contains this page of resources
+          items:
+            $ref: '#/components/schemas/ImportRow'
+          type: array
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        total:
+          description: The total number of items in the result set
+          format: int32
+          type: integer
+      required:
+        - count
+        - data
+        - total
+        - links
+    Pagination_ImportField_:
+      properties:
+        count:
+          description: >-
+            The number of items in this page of results (the number of items in
+            the data array)
+          format: int32
+          type: integer
+        data:
+          description: An array that contains this page of resources
+          items:
+            $ref: '#/components/schemas/ImportField'
+          type: array
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        total:
+          description: The total number of items in the result set
+          format: int32
+          type: integer
+      required:
+        - count
+        - data
+        - total
+        - links
+    Pagination_Transform_:
+      properties:
+        count:
+          description: >-
+            The number of items in this page of results (the number of items in
+            the data array)
+          format: int32
+          type: integer
+        data:
+          description: An array that contains this page of resources
+          items:
+            $ref: '#/components/schemas/Transform'
+          type: array
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+        total:
+          description: The total number of items in the result set
+          format: int32
+          type: integer
+      required:
+        - count
+        - data
+        - total
+        - links
