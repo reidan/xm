@@ -6057,7 +6057,7 @@ components:
     DevicePointer:
       description: A pointer to a device
       allOf:
-        - $ref: '#/components/schemas/RecipientPointer'
+        - $ref: '#/components/schemas/AbstractRecipientPointer'
         - properties:
             targetName:
               description: The target name of the resource
@@ -8508,7 +8508,7 @@ components:
             - targetName
     GroupPointer:
       allOf:
-        - $ref: '#/components/schemas/RecipientPointer'
+        - $ref: '#/components/schemas/AbstractRecipientPointer'
         - properties:
             targetName:
               description: The target name of the resource
@@ -9345,7 +9345,7 @@ components:
     PersonPointer:
       description: A reference to a person resource
       allOf:
-        - $ref: '#/components/schemas/RecipientPointer'
+        - $ref: '#/components/schemas/AbstractRecipientPointer'
         - properties:
             targetName:
               description: The targetName of the resource
@@ -10240,6 +10240,13 @@ components:
         - recipientType
         - targetName
     RecipientPointer:
+      oneOf:
+        - $ref: '#/components/schemas/GroupPointer'
+        - $ref: '#/components/schemas/PersonPointer'
+        - $ref: '#/components/schemas/DevicePointer'
+      discriminator:
+        propertyName: recipientType
+    AbstractRecipientPointer:
       description: A reference to a recipient resource
       properties:
         id:
@@ -11229,75 +11236,79 @@ components:
         - position
         - delay
     Site:
-      allOf:
-        - description: Site a group belongs to
-          properties:
-            name:
-              type: string
-            address1:
-              type: string
-            address2:
-              type: string
-            city:
-              type: string
-            country:
-              type: string
-            language:
-              type: string
-              enum:
-                - ar
-                - da
-                - de
-                - el
-                - en
-                - en_GB
-                - es
-                - fi
-                - fr
-                - he
-                - hi
-                - is
-                - it
-                - ja
-                - ko
-                - nl
-                - 'no'
-                - pl
-                - pt
-                - pt_BR
-                - ru
-                - sk
-                - sv
-                - th
-                - vi
-                - zh_CN
-                - zh_HK
-            latitude:
-              format: double
-              type: number
-            longitude:
-              format: double
-              type: number
-            postalCode:
-              type: string
-            state:
-              type: string
-            timezone:
-              type: string
-            links:
-              $ref: '#/components/schemas/SelfLink'
-          required:
-            - id
-            - name
+      description: Site a group belongs to
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        language:
+          type: string
+          enum:
+            - ar
+            - da
+            - de
+            - el
+            - en
+            - en_GB
+            - es
+            - fi
+            - fr
+            - he
+            - hi
+            - is
+            - it
+            - ja
+            - ko
+            - nl
+            - 'no'
+            - pl
+            - pt
+            - pt_BR
+            - ru
+            - sk
+            - sv
+            - th
+            - vi
+            - zh_CN
+            - zh_HK
+        latitude:
+          format: double
+          type: number
+        longitude:
+          format: double
+          type: number
+        postalCode:
+          type: string
+        state:
+          type: string
+        timezone:
+          type: string
+        links:
+          $ref: '#/components/schemas/SelfLink'
+      required:
+        - id
+        - name
     SitePointer:
       description: Site a group belongs to
-      allOf:
-        - $ref: '#/components/schemas/RecipientPointer'
+      properties:
+        id:
+          type: string
+          format: uuid
     SiteReference:
       properties:
         id:
-          description: The identifier of the resource
           type: string
+          format: uuid
         name:
           type: string
         links:
