@@ -5321,9 +5321,21 @@ components:
       required:
         - name
     Audit:
-      description: An audit
+      oneOf:
+        - $ref: '#/components/schemas/EventAnnotatedAudit'
+        - $ref: '#/components/schemas/EventCompletedAudit'
+        - $ref: '#/components/schemas/EventCreatedAudit'
+        - $ref: '#/components/schemas/EventResumedAudit'
+        - $ref: '#/components/schemas/EventSuspendedAudit'
+        - $ref: '#/components/schemas/EventTerminatedAudit'
+        - $ref: '#/components/schemas/ResponseReceivedAudit'
+        - $ref: '#/components/schemas/NotificationDeliveredAudit'
+        - $ref: '#/components/schemas/NotificationSuppressedAudit'
       discriminator:
         propertyName: auditType
+    AbstractAudit:
+      description: An audit
+      type: object
       properties:
         id:
           description: A unique identifier (UUID) for this entity
@@ -5358,7 +5370,7 @@ components:
     EventAnnotatedAudit:
       description: An event annotated audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5372,7 +5384,7 @@ components:
     EventCompletedAudit:
       description: An event completed audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5386,7 +5398,7 @@ components:
     EventCreatedAudit:
       description: An event created audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5400,7 +5412,7 @@ components:
     EventResumedAudit:
       description: An event resumed audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5414,7 +5426,7 @@ components:
     EventSuspendedAudit:
       description: An event suspended audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5428,7 +5440,7 @@ components:
     EventTerminatedAudit:
       description: An event terminated audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5442,7 +5454,7 @@ components:
     ResponseReceivedAudit:
       description: A response received audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5456,7 +5468,7 @@ components:
     NotificationDeliveredAudit:
       description: A notification delivered audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
@@ -5470,7 +5482,7 @@ components:
     NotificationSuppressedAudit:
       description: A notification suppressed audit
       allOf:
-        - $ref: '#/components/schemas/Audit'
+        - $ref: '#/components/schemas/AbstractAudit'
         - properties:
             auditType:
               type: string
