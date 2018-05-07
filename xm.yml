@@ -8785,9 +8785,15 @@ components:
       required:
         - id
     Message:
-      description: A message
+      oneOf:
+        - $ref: '#/components/schemas/SubjectAndBodyMessage'
+        - $ref: '#/components/schemas/TextMessage'
+        - $ref: '#/components/schemas/VoiceMessage'
       discriminator:
         propertyName: messageType
+    AbstractMessage:
+      description: A message
+      type: object
       properties:
         id:
           type: string
@@ -8836,7 +8842,7 @@ components:
     SubjectAndBodyMessage:
       description: A subject and body message
       allOf:
-        - $ref: '#/components/schemas/Message'
+        - $ref: '#/components/schemas/AbstractMessage'
         - properties:
             messageType:
               type: string
@@ -8849,7 +8855,7 @@ components:
     TextMessage:
       description: A text message
       allOf:
-        - $ref: '#/components/schemas/Message'
+        - $ref: '#/components/schemas/AbstractMessage'
         - properties:
             messageType:
               type: string
@@ -8857,6 +8863,15 @@ components:
                 - TEXT
             text:
               type: string
+    VoiceMessage:
+      description: A text message
+      allOf:
+        - $ref: '#/components/schemas/AbstractMessage'
+        - properties:
+            messageType:
+              type: string
+              enum:
+                - VOICE
     Notification:
       description: A notification
       properties:
@@ -10312,53 +10327,6 @@ components:
           type: string
       required:
         - self
-    Revision:
-      description: A revision
-      discriminator:
-        propertyName: revisionType
-      properties:
-        id:
-          description: A unique identifier (v1 UUID) for this entity
-          type: string
-          format: uuid
-        at:
-          description: Time this revision happened (UTC)
-          type: string
-          format: date-time
-        revisionType:
-          description: Revision types
-          type: string
-          enum:
-            - EVENT
-            - PERSON
-            - DEVICE
-            - GROUP
-            - SITE
-            - ON_CALL_REMINDER_CONFIG
-        revision:
-          description: v1 UUID that increases to indicate revision of this entity
-          type: string
-          format: uuid
-        by:
-          $ref: '#/components/schemas/PersonReference'
-      required:
-        - id
-        - at
-        - revisionType
-    EventRevision:
-      description: An event revision
-      allOf:
-        - $ref: '#/components/schemas/Revision'
-        - properties:
-            revisionType:
-              type: string
-              enum:
-                - EVENT
-            event:
-              $ref: '#/components/schemas/Event'
-          required:
-            - revisionType
-            - event
     RefreshToken:
       description: Refresh token response
       properties:
