@@ -147,21 +147,7 @@ components:
           description: A correlation identifier for this job
           type: string
         trigger:
-          type: object
-          properties:
-            startTime:
-              type: string
-              format: date-time
-            endTime:
-              type: string
-              format: date-time
-            cron:
-              type: string
-            timezone:
-              type: string
-              example: US/Pacific
-          required:
-            - startTime
+          $ref: '#/components/schemas/Trigger'
         vectors:
           type: array
           items:
@@ -184,21 +170,7 @@ components:
           description: A correlation identifier for this job
           type: string
         trigger:
-          type: object
-          properties:
-            startTime:
-              type: string
-              format: date-time
-            endTime:
-              type: string
-              format: date-time
-            cron:
-              type: string
-            timezone:
-              type: string
-              example: US/Pacific
-          required:
-            - startTime
+          $ref: '#/components/schemas/Trigger'
         vectors:
           type: array
           items:
@@ -214,7 +186,7 @@ components:
       description: Defines timing for triggering a reminder
       oneOf:
         - $ref: '#/components/schemas/OnceTrigger'
-        - $ref: '#/components/schemas/WebhookVector'
+        - $ref: '#/components/schemas/RecurringTrigger'
     AbstractTrigger:
       type: object
       properties:
