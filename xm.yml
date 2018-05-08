@@ -8101,6 +8101,33 @@ components:
           $ref: '#/components/schemas/SelfLink'
       required:
         - id
+    EventReference:
+      properties:
+        id:
+          type: string
+          format: uuid
+        eventId:
+          description: A legacy identifier (numeric) that represents this resource
+          type: string
+        eventType:
+          description: User generated or System generated event
+          type: string
+          enum:
+            - USER
+            - SYSTEM
+        priority:
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+        links:
+          $ref: '#/components/schemas/SelfLink'
+      required:
+        - id
+        - eventId
+        - eventType
+        - priority
     EventPointer:
       properties:
         id:
@@ -10172,7 +10199,6 @@ components:
             - DEVICE
             - GROUP
             - DYNAMIC_TEAM
-            - SITE
           type: string
         status:
           description: >-
@@ -10245,7 +10271,6 @@ components:
             - PERSON
             - DEVICE
             - DYNAMIC_TEAM
-            - SITE
           type: string
         status:
           type: string
@@ -10287,7 +10312,6 @@ components:
             - GROUP
             - PERSON
             - DEVICE
-            - SITE
         responseCountThreshold:
           description: >-
             Number of responses required before xMatters stops notifying
@@ -10318,7 +10342,6 @@ components:
             - GROUP
             - PERSON
             - DEVICE
-            - SITE
         status:
           description: >-
             Whether the recipient is active. Inactive recipients do not receive
