@@ -10298,9 +10298,11 @@ components:
       description: A reference to a recipient resource
       properties:
         id:
-          description: UUID or targetName
           type: string
           format: uuid
+        targetName:
+          description: The target name of the recipient
+          type: string
         recipientType:
           type: string
           enum:
