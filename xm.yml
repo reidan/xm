@@ -7940,8 +7940,7 @@ components:
             - MEDIUM
             - HIGH
         properties:
-          description: Map of property keys and values
-          type: object
+          $ref: '#/components/schemas/Properties'
         recipients:
           $ref: '#/components/schemas/RecipientPagination'
         requestId:
@@ -8037,8 +8036,7 @@ components:
             - MEDIUM
             - HIGH
         properties:
-          description: Map of property names and values
-          type: object
+          $ref: '#/components/schemas/Properties'
         recipients:
           description: 'Note: required if pre-configured recipients do not exist'
           items:
@@ -8145,8 +8143,7 @@ components:
           type: string
           format: date-time
         properties:
-          description: Map of property keys and values
-          type: object
+          $ref: '#/components/schemas/Properties'
       required:
         - id
         - event
@@ -8165,8 +8162,7 @@ components:
             - IOS
             - ANDROID
         properties:
-          description: Map of property keys and values
-          type: object
+          $ref: '#/components/schemas/Properties'
       required:
         - comment
     EventSchedule:
@@ -8532,25 +8528,6 @@ components:
             targetName:
               description: The target name of the resource
               type: string
-    MultiHierarchy:
-      description: MultiHierarchy
-      type: array
-      items:
-        $ref: '#/components/schemas/Hierarchy'
-    Hierarchy:
-      description: Hierarchy
-      type: array
-      items:
-        $ref: '#/components/schemas/HierarchyItem'
-    HierarchyItem:
-      description: Hierarchy item
-      properties:
-        category:
-          type: string
-        value:
-          type: string
-      required:
-        - value
     Integration:
       properties:
         id:
@@ -9263,8 +9240,7 @@ components:
                 identical to the targetName field
               type: string
             properties:
-              description: Key/Value map of custom properties
-              type: object
+              $ref: '#/components/schemas/Properties'
             site:
               $ref: '#/components/schemas/SiteReference'
             devices:
@@ -9345,8 +9321,7 @@ components:
                 within the company
               type: string
             properties:
-              description: Key/Value map of custom properties
-              type: object
+              $ref: '#/components/schemas/Properties'
             roles:
               description: A list of the user's roles. Users must have at least one role
               items:
@@ -9468,23 +9443,6 @@ components:
         - $ref: '#/components/schemas/SystemPlan'
       discriminator:
         propertyName: planType
-    PlanReference:
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-          description: User provided name for this plan
-      required:
-        - id
-    PlanPointer:
-      properties:
-        id:
-          type: string
-          format: uuid
-      required:
-        - id
     AbstractPlan:
       type: object
       description: A communication plan
@@ -9534,12 +9492,31 @@ components:
           $ref: '#/components/schemas/EndpointPagination'
         permitted:
           $ref: '#/components/schemas/PermissiblePagination'
+        properties:
+          $ref: '#/components/schemas/Properties'
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
         - id
         - name
         - enabled
+    PlanReference:
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: User provided name for this plan
+      required:
+        - id
+    PlanPointer:
+      properties:
+        id:
+          type: string
+          format: uuid
+      required:
+        - id
     CommunicationPlan:
       allOf:
         - $ref: '#/components/schemas/AbstractPlan'
@@ -10066,6 +10043,34 @@ components:
             - builtInPlanType
             - recipients
             - senderOverrideName
+    Properties:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Property'
+    Property:
+      anyOf:
+        - type: string
+        - type: number
+        - type: integer
+        - type: boolean
+        - $ref: '#/components/schemas/NestedHierarchy'
+        - $ref: '#/components/schemas/Hierarchy'
+    NestedHierarchy:
+      type: array
+      items:
+        $ref: '#/components/schemas/Hierarchy'
+    Hierarchy:
+      type: array
+      items:
+        $ref: '#/components/schemas/HierarchyItem'
+    HierarchyItem:
+      properties:
+        category:
+          type: string
+        value:
+          type: string
+      required:
+        - value
     Endpoint:
       properties:
         id:
@@ -10420,8 +10425,7 @@ components:
             - zh_CN
             - zh_HK
         properties:
-          description: Map of property keys and values
-          type: object
+          $ref: '#/components/schemas/Properties'
       required:
         - response
         - received
@@ -10477,8 +10481,7 @@ components:
             - zh_CN
             - zh_HK
         properties:
-          description: Map of property keys and values
-          type: object
+          $ref: '#/components/schemas/Properties'
     ResponseOption:
       description: A response option
       properties:
