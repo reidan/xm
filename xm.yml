@@ -7801,8 +7801,9 @@ components:
             timezone
           type: string
         timezone:
-          description: 'The time zone of the device owner. Example:  US/Pacific'
+          description: The time zone of the device owner
           type: string
+          example: US/Pacific
       required:
         - name
         - startTime
@@ -7832,13 +7833,13 @@ components:
           description: True if the timeframe is not active on holidays
           type: boolean
         name:
-          description: 'Name of the Timeframe. Example: "After hours"'
+          description: 'Name of the Timeframe'
           type: string
+          example: 'After hours'
         startTime:
-          description: >-
-            The time of day that the timeframe begins, in the device owners
-            timezone
+          description: The time of day that the timeframe begins, in the device owners timezone
           type: string
+          format: date-time
       required:
         - name
         - startTime
@@ -8089,18 +8090,6 @@ components:
               type: integer
         by:
           $ref: '#/components/schemas/PersonPointer'
-    EventReference:
-      properties:
-        id:
-          type: string
-          format: uuid
-        eventId:
-          description: A legacy identifier (numeric) that represents this resource
-          type: string
-        links:
-          $ref: '#/components/schemas/SelfLink'
-      required:
-        - id
     EventReference:
       properties:
         id:
@@ -8451,8 +8440,9 @@ components:
             useDefaultDevices:
               type: boolean
             timezone:
-              description: 'The time zone used for calculation of day. Example: US/Pacific'
+              description: 'The time zone used for calculation of day'
               type: string
+              example: US/Pacific
             site:
               $ref: '#/components/schemas/SiteReference'
             supervisors:
@@ -8486,6 +8476,7 @@ components:
               type: boolean
             timezone:
               type: string
+              example: US/Pacific
             useDefaultDevices:
               description: >-
                 Whether the default user device should be used when sending out
@@ -9264,8 +9255,8 @@ components:
                 within the company
               type: string
             timezone:
-              description: 'The time zone of the user. Example:  US/Pacific'
               type: string
+              example: US/Pacific
             webLogin:
               description: >-
                 The ID of the user when they log on to the web user interface.
@@ -9374,8 +9365,8 @@ components:
                 $ref: '#/components/schemas/PersonPointer'
               type: array
             timezone:
-              description: 'The time zone of the user. Example:  US/Pacific'
               type: string
+              example: US/Pacific
             webLogin:
               description: >-
                 The ID of the user when they log on to the web user interface.
@@ -11102,8 +11093,8 @@ components:
         recurrence:
           $ref: '#/components/schemas/Recurrence'
         timezone:
-          description: 'The time zone used for calculation of day. Example: US/Pacific'
           type: string
+          example: US/Pacific
         version:
           type: string
         links:
@@ -11333,6 +11324,7 @@ components:
           type: string
         timezone:
           type: string
+          example: US/Pacific
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
@@ -11413,20 +11405,7 @@ components:
         - id
         - name
         - url
-    PaginationLinks:
-      properties:
-        next:
-          description: A link to the next page of results
-          type: string
-        previous:
-          description: A link to the previous page of results
-          type: string
-        self:
-          description: A link to this page of results
-          type: string
-      required:
-        - self
-    AbstractResponse:
+    AbstractHTTPResponse:
       properties:
         code:
           description: HTTP status code
@@ -11460,7 +11439,7 @@ components:
         - message
     BadRequestResponse:
       allOf:
-        - $ref: '#/components/schemas/AbstractResponse'
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
         - properties:
             code:
               description: HTTP status code
@@ -11475,7 +11454,7 @@ components:
                 - Bad Request
     UnauthorizedResponse:
       allOf:
-        - $ref: '#/components/schemas/AbstractResponse'
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
         - properties:
             code:
               description: HTTP status code
@@ -11490,7 +11469,7 @@ components:
                 - Unauthorized
     ForbiddenResponse:
       allOf:
-        - $ref: '#/components/schemas/AbstractResponse'
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
         - properties:
             code:
               description: HTTP status code
@@ -11505,7 +11484,7 @@ components:
                 - Forbidden
     NotFoundResponse:
       allOf:
-        - $ref: '#/components/schemas/AbstractResponse'
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
         - properties:
             code:
               description: HTTP status code
@@ -11520,7 +11499,7 @@ components:
                 - Not Found
     ConflictResponse:
       allOf:
-        - $ref: '#/components/schemas/AbstractResponse'
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
         - properties:
             code:
               description: HTTP status code
@@ -11533,6 +11512,19 @@ components:
               type: string
               enum:
                 - Conflict
+    PaginationLinks:
+      properties:
+        next:
+          description: A link to the next page of results
+          type: string
+        previous:
+          description: A link to the previous page of results
+          type: string
+        self:
+          description: A link to this page of results
+          type: string
+      required:
+        - self
     AbstractPagination:
       type: object
       properties:

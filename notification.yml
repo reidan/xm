@@ -400,11 +400,93 @@ components:
         - id
         - recipientType
         - targetName
+    Job:
+      description: A scheduled reminder job
+      properties:
+        id:
+          description: Job identifier
+          type: string
+        jobType:
+          description: Payload schema identification
+          type: string
+        jobName:
+          description: A correlation identifier for this job
+          type: string
+        trigger:
+          type: object
+          properties:
+            startTime:
+              type: string
+              format: date-time
+            endTime:
+              type: string
+              format: date-time
+            cron:
+              type: string
+            timezone:
+              type: string
+              example: US/Pacific
+          required:
+            - startTime
+        vectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector'
+        payload:
+          description: The string (generally Base64 encoded JSON) payload of the reminder
+          type: string
+      required:
+        - id
+        - jobType
+        - trigger
+        - payload
+    Vector:
+      description: Defines how a reminder is sent
+      oneOf:
+        - $ref: '#/components/schemas/KafkaVector'
+        - $ref: '#/components/schemas/WebhookVector'
+      discriminator:
+        propertyName: vectorType
+    AbstractVector:
+      description: Defines how a reminder is sent
+      properties:
+        vectorType:
+          type: string
+          enum:
+            - KAFKA
+            - WEBHOOK
+      required:
+        - vectorType
+    KafkaVector:
+      allOf:
+        - $ref: '#/components/schemas/AbstractVector'
+        - properties:
+            vectorType:
+              type: string
+              enum:
+                - KAFKA
+            topic:
+              type: string
+              default: reminders
+          required:
+            - vectorType
+    WebhookVector:
+      allOf:
+        - $ref: '#/components/schemas/AbstractVector'
+        - properties:
+            vectorType:
+              type: string
+              enum:
+                - WEBHOOK
+            uri:
+              type: string
+          required:
+            - vectorType
+            - uri
     Reminder:
       description: A reminder
       properties:
         id:
-          description: Reminder identifier
           type: string
           format: uuid
         at:
@@ -412,44 +494,11 @@ components:
           type: string
           format: date-time
         job:
-          properties:
-            id:
-              description: Job identifier
-              type: string
-              format: uuid
-            jobName:
-              description: A correlation identifier for this job
-              type: string
-            trigger:
-              type: object
-              properties:
-                startTime:
-                  type: string
-                  format: date-time
-                endTime:
-                  type: string
-                  format: date-time
-                cron:
-                  type: string
-                timezone:
-                  type: string
-              required:
-                - startTime
-          required:
-            - id
-            - trigger
-        payloadType:
-          description: Payload schema identification. Namespace and version
-          type: string
-        payload:
-          description: The Base64 encoded payload of the reminder
-          type: string
+          $ref: '#/components/schemas/Job'
       required:
         - id
         - at
         - job
-        - payloadType
-        - payload
     SelfLink:
       properties:
         self:
@@ -457,7 +506,7 @@ components:
           type: string
       required:
         - self
-    BadRequestResponse:
+    AbstractHTTPResponse:
       properties:
         code:
           description: HTTP status code
@@ -465,101 +514,9 @@ components:
           type: integer
           enum:
             - 400
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Bad Request
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    UnauthorizedResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 401
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Unauthorized
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    ForbiddenResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 403
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Forbidden
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    NotFoundResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 404
-        subcode:
-          description: An application-specific response sub-status
-          type: string
-        message:
-          description: A detailed description of the response or error
-          type: string
-        reason:
-          description: A description of the response code
-          enum:
-            - Not Found
-          type: string
-      required:
-        - code
-        - subcode
-        - reason
-        - message
-    ConflictResponse:
-      properties:
-        code:
-          description: HTTP status code
-          format: int32
-          type: integer
-          enum:
             - 409
         subcode:
           description: An application-specific response sub-status
@@ -568,12 +525,91 @@ components:
           description: A detailed description of the response or error
           type: string
         reason:
-          description: A description of the response status
-          enum:
-            - Conflict
+          description: A description of the response code
           type: string
+          enum:
+            - Bad Request
+            - Unauthorized
+            - Forbidden
+            - Not Found
+            - Conflict
       required:
         - code
         - subcode
         - reason
         - message
+    BadRequestResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 400
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Bad Request
+    UnauthorizedResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 401
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Unauthorized
+    ForbiddenResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 403
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Forbidden
+    NotFoundResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 404
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Not Found
+    ConflictResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 409
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Conflict
