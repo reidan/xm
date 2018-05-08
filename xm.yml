@@ -5918,8 +5918,8 @@ components:
                 - VOICE
                 - VOICE_IVR
             name:
-              description: 'The name of the device. Example: Work Email, Home Phone'
               type: string
+              example: Work Email, Home Phone
             notifications:
               $ref: '#/components/schemas/NotificationPagination'
             owner:
@@ -6007,8 +6007,8 @@ components:
                 - VOICE
                 - VOICE_IVR
             name:
-              description: 'The name of the device. Example: Work Email, Home Phone'
               type: string
+              example: Work Email, Home Phone
             owner:
               $ref: '#/components/schemas/PersonPointer'
             priorityThreshold:
@@ -6089,8 +6089,8 @@ components:
                 - VOICE
                 - VOICE_IVR
             name:
-              description: 'The name of the device. Example: Work Email, Home Phone'
               type: string
+              example: Work Email, Home Phone
             links:
               $ref: '#/components/schemas/SelfLink'
           required:
@@ -7793,8 +7793,8 @@ components:
           description: True if the timeframe is not active on holidays
           type: boolean
         name:
-          description: 'Name of the Timeframe. Example: "After hours"'
           type: string
+          example: After hours
         startTime:
           description: >-
             The time of day that the timeframe begins, in the device owners
@@ -7833,9 +7833,8 @@ components:
           description: True if the timeframe is not active on holidays
           type: boolean
         name:
-          description: 'Name of the Timeframe'
           type: string
-          example: 'After hours'
+          example: After hours
         startTime:
           description: The time of day that the timeframe begins, in the device owners timezone
           type: string
