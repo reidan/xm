@@ -949,6 +949,32 @@ paths:
               $ref: '#/components/schemas/DeviceTestInput'
         description: Test a device
         required: true
+  '/downloads/{downloadId}':
+    get:
+      summary: Download a file
+      description: Download a file
+      operationId: getDownload
+      parameters:
+        - description: Download identifier
+          in: path
+          name: downloadId
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: A file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - File Transfer
   /email-delivery-status-notifications:
     post:
       summary: Email delivery status notification
@@ -1430,6 +1456,106 @@ paths:
                   format: binary
               required:
                 - attachment
+  /event-filters:
+    get:
+      summary: Get event filters
+      description: Get event filters
+      operationId: getEventFilters
+      parameters:
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilterPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Filters
+    post:
+      summary: Add or update event filters
+      description: Add or update event filters
+      operationId: postEventFilter
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventFilterInput'
+        required: true
+      tags:
+        - Filters
+  '/event-filters/{filterId}':
+    parameters:
+      - $ref: '#/components/parameters/path-filterId'
+    get:
+      summary: Get event filter
+      description: Get event filter
+      operationId: getEventFilter
+      parameters:
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Filters
+    delete:
+      summary: Delete event filter
+      description: Delete event filter
+      operationId: deleteEventFilter
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventFilter'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Filters
   /event-schedules:
     get:
       summary: Get event schedules
@@ -2087,7 +2213,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - File Import
+        - File Transfer
   '/imports/{importId}':
     get:
       summary: Import
@@ -2115,7 +2241,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - File Import
+        - File Transfer
   /integration-agents:
     get:
       summary: Returns information about agents
@@ -2269,106 +2395,6 @@ paths:
               $ref: '#/components/schemas/LogEntryInput'
         description: A log entry
         required: true
-  /event-filters:
-    get:
-      summary: Get event filters
-      description: Get event filters
-      operationId: getEventFilters
-      parameters:
-        - $ref: '#/components/parameters/query-offset'
-        - $ref: '#/components/parameters/query-limit'
-        - $ref: '#/components/parameters/query-embed'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventFilterPagination'
-        '401':
-          $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-      tags:
-        - Filters
-    post:
-      summary: Add or update event filters
-      description: Add or update event filters
-      operationId: postEventFilter
-      responses:
-        '200':
-          description: Updated
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventFilter'
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventFilter'
-        '400':
-          $ref: '#/components/responses/400'
-        '401':
-          $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-        '409':
-          $ref: '#/components/responses/409'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EventFilterInput'
-        required: true
-      tags:
-        - Filters
-  '/event-filters/{filterId}':
-    parameters:
-      - $ref: '#/components/parameters/path-filterId'
-    get:
-      summary: Get event filter
-      description: Get event filter
-      operationId: getEventFilter
-      parameters:
-        - $ref: '#/components/parameters/query-embed'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventFilter'
-        '401':
-          $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
-      tags:
-        - Filters
-    delete:
-      summary: Delete event filter
-      description: Delete event filter
-      operationId: deleteEventFilter
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventFilter'
-        '204':
-          $ref: '#/components/responses/204'
-        '401':
-          $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-        '409':
-          $ref: '#/components/responses/409'
-      tags:
-        - Filters
   '/notifications/{notificationId}':
     delete:
       description: De-links a Notification
@@ -4427,7 +4453,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - File Import
+        - File Transfer
     post:
       summary: Set transform definition
       description: Set transform definition
@@ -4454,7 +4480,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - File Import
+        - File Transfer
       requestBody:
         content:
           application/json:
@@ -4462,11 +4488,11 @@ paths:
               $ref: '#/components/schemas/TransformInput'
         description: Transform definition
         required: true
-  '/transforms/{transformId}/imports':
+  '/uploads/{transformId}':
     post:
-      summary: Import a file
-      description: Import a file
-      operationId: postTransformImport
+      summary: Upload a file
+      description: Upload a file
+      operationId: postUpload
       parameters:
         - description: Transform identifier
           in: path
@@ -4474,6 +4500,15 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                file:
+                  description: File upload
+                  type: string
+                  format: binary
       responses:
         '201':
           description: Created
@@ -4490,19 +4525,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - File Import
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  description: File upload
-                  type: string
-                  format: binary
-              required:
-                - file
+        - File Transfer
   /vendor-responses:
     post:
       summary: Report a vendor response
