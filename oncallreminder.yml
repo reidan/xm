@@ -1,0 +1,606 @@
+openapi: 3.0.0
+servers:
+  - url: /api/oncallreminder/1
+info:
+  title: On-Call Reminder API Spec
+  description: On-Call Reminder API Spec (Detailed specs for stories. May or may not be implemented)
+  version: '1'
+paths:
+  /audits:
+    post:
+      summary: Audits
+      description: Audits
+      operationId: postAudit
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Audit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Audit'
+        required: true
+  /reminders:
+    post:
+      summary: Receive a reminder
+      description: Receive a reminder
+      operationId: postReminder
+      responses:
+        '202':
+          description: Accepted
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Reminders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reminder'
+        required: true
+components:
+  parameters:
+    query-after:
+      description: After this time or sequenced item identifier (exclusive)
+      in: query
+      name: after
+      required: false
+      schema:
+        type: string
+    query-before:
+      description: Before this time or sequenced item identifier (exclusive)
+      in: query
+      name: before
+      required: false
+      schema:
+        type: string
+    query-from:
+      description: After this time or sequenced item identifier (inclusive)
+      in: query
+      name: from
+      required: false
+      schema:
+        type: string
+    query-limit:
+      description: Maximum result size to return
+      in: query
+      name: limit
+      required: false
+      schema:
+        type: integer
+        maximum: 1000
+        default: 100
+    query-offset:
+      description: Skip this many results before returning the result set
+      in: query
+      name: offset
+      required: false
+      schema:
+        type: integer
+        default: 0
+    query-to:
+      description: Before this time or sequenced item identifier (inclusive)
+      in: query
+      name: to
+      required: false
+      schema:
+        type: string
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: Bad Request - The request is malformed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    '401':
+      description: Unauthorized - The caller cannot be identified
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedResponse'
+    '403':
+      description: >-
+        Forbidden - The authenticated user does not have permission to perform
+        this action
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenResponse'
+    '404':
+      description: Not Found - The requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    '409':
+      description: Conflict - The action cannot be performed in the system
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ConflictResponse'
+  schemas:
+    Audit:
+      oneOf:
+        - $ref: '#/components/schemas/EventAnnotatedAudit'
+        - $ref: '#/components/schemas/EventCompletedAudit'
+        - $ref: '#/components/schemas/EventCreatedAudit'
+        - $ref: '#/components/schemas/EventResumedAudit'
+        - $ref: '#/components/schemas/EventSuspendedAudit'
+        - $ref: '#/components/schemas/EventTerminatedAudit'
+      discriminator:
+        propertyName: auditType
+    AbstractAudit:
+      description: An audit
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        at:
+          description: Time this event happened (UTC)
+          type: string
+          format: date-time
+        auditType:
+          description: Audit types
+          type: string
+          enum:
+            - EVENT_ANNOTATED
+            - EVENT_COMPLETED
+            - EVENT_CREATED
+            - EVENT_RESUMED
+            - EVENT_SUSPENDED
+            - EVENT_TERMINATED
+        by:
+          $ref: '#/components/schemas/PersonReference'
+      required:
+        - id
+        - at
+        - auditType
+    EventAnnotatedAudit:
+      description: An event annotated audit
+      allOf:
+        - $ref: '#/components/schemas/AbstractAudit'
+        - properties:
+            auditType:
+              type: string
+              enum:
+                - EVENT_ANNOTATED
+            annotation:
+              $ref: '#/components/schemas/EventAnnotation'
+          required:
+            - auditType
+            - annotation
+    EventCompletedAudit:
+      description: An event completed audit
+      allOf:
+        - $ref: '#/components/schemas/AbstractAudit'
+        - properties:
+            auditType:
+              type: string
+              enum:
+                - EVENT_COMPLETED
+            event:
+              $ref: '#/components/schemas/EventReference'
+          required:
+            - auditType
+            - event
+    EventCreatedAudit:
+      description: An event created audit
+      allOf:
+        - $ref: '#/components/schemas/AbstractAudit'
+        - properties:
+            auditType:
+              type: string
+              enum:
+                - EVENT_CREATED
+            event:
+              $ref: '#/components/schemas/EventReference'
+          required:
+            - auditType
+            - event
+    EventResumedAudit:
+      description: An event resumed audit
+      allOf:
+        - $ref: '#/components/schemas/AbstractAudit'
+        - properties:
+            auditType:
+              type: string
+              enum:
+                - EVENT_RESUMED
+            event:
+              $ref: '#/components/schemas/EventReference'
+          required:
+            - auditType
+            - event
+    EventSuspendedAudit:
+      description: An event suspended audit
+      allOf:
+        - $ref: '#/components/schemas/AbstractAudit'
+        - properties:
+            auditType:
+              type: string
+              enum:
+                - EVENT_SUSPENDED
+            event:
+              $ref: '#/components/schemas/EventReference'
+          required:
+            - auditType
+            - event
+    EventTerminatedAudit:
+      description: An event terminated audit
+      allOf:
+        - $ref: '#/components/schemas/AbstractAudit'
+        - properties:
+            auditType:
+              type: string
+              enum:
+                - EVENT_TERMINATED
+            event:
+              $ref: '#/components/schemas/EventReference'
+          required:
+            - auditType
+            - event
+    EventReference:
+      properties:
+        id:
+          description: A unique identifier (UUID) for this entity
+          type: string
+          format: uuid
+        eventId:
+          description: A legacy identifier (numeric) that represents this resource
+          type: string
+        eventType:
+          description: User generated or System generated event
+          type: string
+          enum:
+            - USER
+            - SYSTEM
+        priority:
+          type: string
+          enum:
+            - LOW
+            - MEDIUM
+            - HIGH
+      required:
+        - id
+        - eventId
+        - eventType
+        - priority
+    EventAnnotation:
+      description: An event annotation
+      properties:
+        id:
+          type: string
+          format: uuid
+        event:
+          $ref: '#/components/schemas/EventReference'
+        author:
+          $ref: '#/components/schemas/PersonReference'
+        source:
+          type: string
+          enum:
+            - BROWSER
+            - IOS
+            - ANDROID
+        comment:
+          type: string
+        created:
+          type: string
+          format: date-time
+      required:
+        - id
+        - event
+        - author
+        - comment
+        - created
+    PersonReference:
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipientReference'
+        - properties:
+            id:
+              type: string
+              format: uuid
+            targetName:
+              description: The target name of the resource
+              type: string
+            recipientType:
+              type: string
+              enum:
+                - PERSON
+            firstName:
+              description: The first name of the user
+              type: string
+            lastName:
+              description: The last name of the user
+              type: string
+            links:
+              $ref: '#/components/schemas/SelfLink'
+          required:
+            - id
+            - targetName
+            - firstName
+            - lastName
+    RecipientReference:
+      oneOf:
+        - $ref: '#/components/schemas/PersonReference'
+      discriminator:
+        propertyName: recipientType
+    AbstractRecipientReference:
+      properties:
+        id:
+          type: string
+          format: uuid
+        targetName:
+          description: The target name of the recipient
+          type: string
+        recipientType:
+          type: string
+          enum:
+            - GROUP
+            - PERSON
+            - DEVICE
+        status:
+          description: >-
+            Whether the recipient is active. Inactive recipients do not receive
+            notifications
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+            - INVALID
+        links:
+          $ref: '#/components/schemas/SelfLink'
+      required:
+        - id
+        - recipientType
+        - targetName
+    Job:
+      description: A scheduled reminder job
+      properties:
+        id:
+          description: Job identifier
+          type: string
+        jobType:
+          description: Payload schema identification
+          type: string
+        jobName:
+          description: A correlation identifier for this job
+          type: string
+        trigger:
+          $ref: '#/components/schemas/Trigger'
+        vectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vector'
+        payload:
+          description: The string (generally Base64 encoded JSON) payload of the reminder
+          type: string
+      required:
+        - id
+        - jobType
+        - trigger
+        - payload
+    Trigger:
+      description: Defines timing for triggering a reminder
+      oneOf:
+        - $ref: '#/components/schemas/OnceTrigger'
+        - $ref: '#/components/schemas/RecurringTrigger'
+    AbstractTrigger:
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+          example: US/Pacific
+      required:
+        - timezone
+        - startTime
+    OnceTrigger:
+      description: Trigger that fires only once
+      allOf:
+       - $ref: '#/components/schemas/AbstractTrigger'
+    RecurringTrigger:
+      description: Trigger that fires on a recurring schedule
+      allOf:
+        - $ref: '#/components/schemas/AbstractTrigger'
+        - properties:
+            endTime:
+              type: string
+              format: date-time
+            cron:
+              type: string
+          required:
+            - cron
+    Vector:
+      description: Defines how a reminder is sent
+      oneOf:
+        - $ref: '#/components/schemas/KafkaVector'
+        - $ref: '#/components/schemas/WebhookVector'
+      discriminator:
+        propertyName: vectorType
+    AbstractVector:
+      description: Defines how a reminder is sent
+      properties:
+        vectorType:
+          type: string
+          enum:
+            - KAFKA
+            - WEBHOOK
+      required:
+        - vectorType
+    KafkaVector:
+      allOf:
+        - $ref: '#/components/schemas/AbstractVector'
+        - properties:
+            vectorType:
+              type: string
+              enum:
+                - KAFKA
+            topic:
+              type: string
+              default: reminders
+          required:
+            - vectorType
+    WebhookVector:
+      allOf:
+        - $ref: '#/components/schemas/AbstractVector'
+        - properties:
+            vectorType:
+              type: string
+              enum:
+                - WEBHOOK
+            uri:
+              type: string
+          required:
+            - vectorType
+            - uri
+    Reminder:
+      description: A reminder
+      properties:
+        id:
+          type: string
+          format: uuid
+        at:
+          description: UTC Time this reminder was triggered
+          type: string
+          format: date-time
+        job:
+          $ref: '#/components/schemas/Job'
+      required:
+        - id
+        - at
+        - job
+    SelfLink:
+      properties:
+        self:
+          description: A link to this resource
+          type: string
+      required:
+        - self
+    AbstractHTTPResponse:
+      properties:
+        code:
+          description: HTTP status code
+          format: int32
+          type: integer
+          enum:
+            - 400
+            - 401
+            - 403
+            - 404
+            - 409
+        subcode:
+          description: An application-specific response sub-status
+          type: string
+        message:
+          description: A detailed description of the response or error
+          type: string
+        reason:
+          description: A description of the response code
+          type: string
+          enum:
+            - Bad Request
+            - Unauthorized
+            - Forbidden
+            - Not Found
+            - Conflict
+      required:
+        - code
+        - subcode
+        - reason
+        - message
+    BadRequestResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 400
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Bad Request
+    UnauthorizedResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 401
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Unauthorized
+    ForbiddenResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 403
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Forbidden
+    NotFoundResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 404
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Not Found
+    ConflictResponse:
+      allOf:
+        - $ref: '#/components/schemas/AbstractHTTPResponse'
+        - properties:
+            code:
+              description: HTTP status code
+              format: int32
+              type: integer
+              enum:
+                - 409
+            reason:
+              description: A description of the response code
+              type: string
+              enum:
+                - Conflict
