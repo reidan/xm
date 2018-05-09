@@ -34,6 +34,26 @@ paths:
             schema:
               $ref: '#/components/schemas/JobInput'
         required: true
+      callbacks:
+        reminderCallback:
+          '{$request.body#/vectors/1/uri}':
+            post:
+              requestBody:
+                content:
+                  application/json:
+                    schema:
+                      $ref: '#/components/schemas/Reminder'
+              responses:
+                '202':
+                  description: Accepted
+                '400':
+                  $ref: '#/components/responses/400'
+                '401':
+                  $ref: '#/components/responses/401'
+                '403':
+                  $ref: '#/components/responses/403'
+                '409':
+                  $ref: '#/components/responses/409'
     delete:
       summary: Delete all jobs for an organization
       description: Delete all jobs for an organization
@@ -182,6 +202,22 @@ components:
         - jobType
         - trigger
         - payload
+    Reminder:
+      description: A reminder
+      properties:
+        id:
+          type: string
+          format: uuid
+        at:
+          description: UTC Time this reminder was triggered
+          type: string
+          format: date-time
+        job:
+          $ref: '#/components/schemas/Job'
+      required:
+        - id
+        - at
+        - job
     Trigger:
       description: Defines timing for triggering a reminder
       oneOf:
