@@ -2369,6 +2369,28 @@ paths:
           $ref: '#/components/responses/409'
       tags:
         - Filters
+  '/notifications/{notificationId}':
+    delete:
+      description: De-links a Notification
+      operationId: deleteNotification
+      parameters:
+        - $ref: '#/components/parameters/path-notificationId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      summary: De-links a Notification
+      tags:
+        - Notifications
   /notification-filters:
     get:
       summary: Get notification filters
@@ -4615,6 +4637,14 @@ components:
       required: true
       schema:
         type: string
+    path-notificationId:
+      description: Notification identifier
+      in: path
+      name: notificationId
+      required: true
+      schema:
+        type: string
+        format: uuid
     path-personId:
       description: The person's uuid or targetName
       in: path
