@@ -8382,8 +8382,6 @@ components:
           format: uuid
         transform:
           $ref: '#/components/schemas/TransformReference'
-        name:
-          type: string
         status:
           type: string
           enum:
