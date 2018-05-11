@@ -8375,7 +8375,7 @@ components:
             integration:
               $ref: '#/components/schemas/IntegrationPointer'
     Import:
-      description: Import
+      description: An import is the process of uploading a file or files into xMatters systems via a transform. It tracks the status of the upload and transformation of the data.
       properties:
         id:
           type: string
@@ -11429,7 +11429,7 @@ components:
         - end
         - replacement
     Transform:
-      description: Transform
+      description: A Transform defines how a file or files will be mapped to xMatters systems from files in the case of import, or from xMatters systems to files in the case of export and reporting.
       properties:
         id:
           type: string
@@ -11445,7 +11445,7 @@ components:
         - name
         - url
     TransformInput:
-      description: Transform
+      description: A Transform defines how a file or files will be mapped to xMatters systems from files in the case of import, or from xMatters systems to files in the case of export and reporting.
       properties:
         id:
           type: string
@@ -11454,7 +11454,7 @@ components:
           description: Transform name
           type: string
     TransformReference:
-      description: Transform
+      description: A Transform defines how a file or files will be mapped to xMatters systems from files in the case of import, or from xMatters systems to files in the case of export and reporting.
       properties:
         id:
           type: string
