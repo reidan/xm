@@ -8397,11 +8397,6 @@ components:
         - id
         - transform
         - status
-    FileReference:
-      properties:
-        id:
-          type: string
-          format: uuid
     Form:
       description: A form
       properties:
