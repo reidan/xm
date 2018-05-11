@@ -10302,9 +10302,6 @@ components:
             Number of responses required before xMatters stops notifying
             targeted group or dynamic team
           type: integer
-        version:
-          description: Version identifier
-          type: string
       required:
         - id
         - targetName
@@ -11168,8 +11165,6 @@ components:
         timezone:
           type: string
           example: US/Pacific
-        version:
-          type: string
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
@@ -11259,8 +11254,6 @@ components:
           $ref: '#/components/schemas/RecipientReference'
         shift:
           $ref: '#/components/schemas/ShiftReference'
-        version:
-          type: string
       required:
         - shift
         - recipient
