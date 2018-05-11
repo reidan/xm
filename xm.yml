@@ -8049,6 +8049,8 @@ components:
           $ref: '#/components/schemas/MessagePagination'
         annotations:
           $ref: '#/components/schemas/EventAnnotationPagination'
+        revision:
+          $ref: '#/components/schemas/Revision'
       required:
         - id
         - eventId
@@ -8426,6 +8428,8 @@ components:
           $ref: '#/components/schemas/RecipientPagination'
         messages:
           $ref: '#/components/schemas/MessagePagination'
+        revision:
+          $ref: '#/components/schemas/Revision'
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
@@ -9076,6 +9080,8 @@ components:
           $ref: '#/components/schemas/DevicePagination'
         shiftStartConfigs:
           $ref: '#/components/schemas/OnCallReminderShiftStartConfigPagination'
+        revision:
+          $ref: '#/components/schemas/Revision'
       required:
         - id
         - person
@@ -9561,6 +9567,8 @@ components:
           $ref: '#/components/schemas/PermissiblePagination'
         properties:
           $ref: '#/components/schemas/Properties'
+        revision:
+          $ref: '#/components/schemas/Revision'
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
@@ -10300,6 +10308,8 @@ components:
             Number of responses required before xMatters stops notifying
             targeted group or dynamic team
           type: integer
+        revision:
+          $ref: '#/components/schemas/Revision'
       required:
         - id
         - targetName
@@ -10672,6 +10682,29 @@ components:
           format: uuid
       required:
         - id
+    Revision:
+      description: Only included on calls to the auditstore (calls with at=<time> query param)
+      properties:
+        id:
+          description: UUID for this specific revision
+          type: string
+          format: uuid
+        at:
+          description: The time this revision was commited to the database
+          type: string
+          format: date-time
+        seq:
+          description: >-
+            An integer value used to sort revisions at a given time by commit order
+            Always increasing within an 'at' timestamp
+            Taken from the lsn or the kafka offset
+            Likely to be non-sequential
+            Will roll over occasionally so only a valid sorting attribute in combination with 'at' timestamp
+          type: integer
+      required:
+        - id
+        - at
+        - seq
     VendorResponse:
       description: A vendor response
       properties:
@@ -11163,6 +11196,8 @@ components:
         timezone:
           type: string
           example: US/Pacific
+        revision:
+          $ref: '#/components/schemas/Revision'
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
@@ -11389,6 +11424,8 @@ components:
         timezone:
           type: string
           example: US/Pacific
+        revision:
+          $ref: '#/components/schemas/Revision'
         links:
           $ref: '#/components/schemas/SelfLink'
       required:
