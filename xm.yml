@@ -8380,9 +8380,28 @@ components:
           format: uuid
         transform:
           $ref: '#/components/schemas/TransformReference'
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+            - PENDING
+            - PROCESSING
+            - COMPLETE
+        at:
+          type: string
+          format: date-time
+        by:
+          $ref: '#/components/schemas/PersonReference'
       required:
         - id
         - transform
+        - status
+    FileReference:
+      properties:
+        id:
+          type: string
+          format: uuid
     Form:
       description: A form
       properties:
