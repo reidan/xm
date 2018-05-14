@@ -1120,14 +1120,14 @@ paths:
       description: Submit or update an event
       operationId: postEvent
       responses:
-        '201':
-          description: Created
+        '200':
+          description: Updated
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Event'
-        '202':
-          description: Accepted
+        '201':
+          description: Created
           content:
             application/json:
               schema:
