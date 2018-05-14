@@ -1051,7 +1051,7 @@ paths:
         - $ref: '#/components/parameters/query-request'
         - description: Filter by associated conferences
           in: query
-          name: conferenceId
+          name: conference
           required: false
           schema:
             type: string
