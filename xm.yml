@@ -459,7 +459,7 @@ paths:
       parameters:
         - description: Filter by associated events
           in: query
-          name: eventId
+          name: event
           required: false
           schema:
             type: string
