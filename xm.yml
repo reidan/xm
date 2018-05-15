@@ -3416,7 +3416,7 @@ paths:
           required: false
           schema:
             type: string
-        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted
+        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted, propertyDefinitions
           in: query
           name: embed
           required: false
@@ -3487,7 +3487,7 @@ paths:
       operationId: getPlan
       parameters:
         - $ref: '#/components/parameters/path-planId'
-        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted
+        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted, propertyDefinitions
           in: query
           name: embed
           required: false
