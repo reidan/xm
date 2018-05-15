@@ -1126,8 +1126,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Event'
-        '201':
-          description: Created
+        '202':
+          description: Accepted
           content:
             application/json:
               schema:
