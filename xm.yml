@@ -4211,6 +4211,30 @@ paths:
                 $ref: '#/components/schemas/PermissiblePointer'
         description: Permitted recipients
         required: true
+  '/plans/{planId}/property-definitions':
+    get:
+      summary: List plan property definitions
+      description: List plan property definitions
+      operationId: getPlanpropertyDefinitions
+      parameters:
+        - $ref: '#/components/parameters/path-planId'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyDefinitionPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Communication Plans
   /recipients:
     get:
       description: Returns information about potential recipients
@@ -9573,6 +9597,8 @@ components:
           $ref: '#/components/schemas/EndpointPagination'
         permitted:
           $ref: '#/components/schemas/PermissiblePagination'
+        propertyDefinitions:
+          $ref: '#/components/schemas/PropertyDefinitionPagination'
         properties:
           $ref: '#/components/schemas/Properties'
         revision:
@@ -10134,18 +10160,17 @@ components:
       anyOf:
         - type: string
         - type: number
-        - type: integer
         - type: boolean
-        - $ref: '#/components/schemas/NestedHierarchy'
+        - type: array
+          items:
+            type: string
         - $ref: '#/components/schemas/Hierarchy'
-    NestedHierarchy:
-      type: array
-      items:
-        $ref: '#/components/schemas/Hierarchy'
     Hierarchy:
       type: array
       items:
-        $ref: '#/components/schemas/HierarchyItem'
+        oneOf:
+          - $ref: '#/components/schemas/Hierarchy'
+          - $ref: '#/components/schemas/HierarchyItem'
     HierarchyItem:
       properties:
         category:
@@ -10154,6 +10179,130 @@ components:
           type: string
       required:
         - value
+    PropertyDefinition:
+      anyOf:
+        - $ref: '#/components/schemas/StringPropertyDefinition'
+        - $ref: '#/components/schemas/NumberPropertyDefinition'
+        - $ref: '#/components/schemas/BooleanPropertyDefinition'
+        - $ref: '#/components/schemas/PasswordPropertyDefinition'
+        - $ref: '#/components/schemas/SingleSelectPropertyDefinition'
+        - $ref: '#/components/schemas/MultiSelectPropertyDefinition'
+        - $ref: '#/components/schemas/HierarchyPropertyDefinition'
+      discriminator:
+        propertyName: propertyDefinitionType
+    AbstractPropertyDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        propertyDefinitionType:
+          type: string
+          enum:
+            - STRING
+            - BOOLEAN
+            - NUMBER
+            - PASSWORD
+            - SINGLE_SELECT
+            - MULTI_SELECT
+            - HIERARCHY
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        helpText:
+          type: string
+        default:
+          $ref: '#/components/schemas/Property'
+    StringPropertyDefinition:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPropertyDefinition'
+        - properties:
+            propertyDefinitionType:
+              type: string
+              enum:
+                - STRING
+            maxLength:
+              type: integer
+            minLength:
+              type: integer
+            pattern:
+              description: Must match this regular expression
+              type: string
+            validate:
+              type: boolean
+    NumberPropertyDefinition:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPropertyDefinition'
+        - properties:
+            propertyDefinitionType:
+              type: string
+              enum:
+                - NUMBER
+            maximum:
+              type: integer
+            minimum:
+              type: integer
+            units:
+              type: string
+    BooleanPropertyDefinition:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPropertyDefinition'
+        - properties:
+            propertyDefinitionType:
+              type: string
+              enum:
+                - BOOLEAN
+    PasswordPropertyDefinition:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPropertyDefinition'
+        - properties:
+            propertyDefinitionType:
+              type: string
+              enum:
+                - PASSWORD
+    SingleSelectPropertyDefinition:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPropertyDefinition'
+        - properties:
+            propertyDefinitionType:
+              type: string
+              enum:
+                - SINGLE_SELECT
+            items:
+              description: Select value from these items
+              type: array
+              items:
+                type: string
+    MultiSelectPropertyDefinition:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPropertyDefinition'
+        - properties:
+            propertyDefinitionType:
+              type: string
+              enum:
+                - MULTI_SELECT
+            items:
+              description: Select values from these items
+              type: array
+              items:
+                type: string
+    HierarchyPropertyDefinition:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPropertyDefinition'
+        - properties:
+            propertyDefinitionType:
+              type: string
+              enum:
+                - HIERARCHY
+            categories:
+              type: array
+              items:
+                type: string
+            items:
+              $ref: '#/components/schemas/Hierarchy'
     Endpoint:
       properties:
         id:
@@ -11999,6 +12148,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Plan'
+          required:
+            - data
+    PropertyDefinitionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/PropertyDefinition'
           required:
             - data
     ConferencePagination:
