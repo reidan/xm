@@ -10180,7 +10180,7 @@ components:
       required:
         - value
     PropertyDefinition:
-      anyOf:
+      oneOf:
         - $ref: '#/components/schemas/StringPropertyDefinition'
         - $ref: '#/components/schemas/NumberPropertyDefinition'
         - $ref: '#/components/schemas/BooleanPropertyDefinition'
