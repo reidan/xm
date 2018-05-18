@@ -4821,15 +4821,25 @@ components:
       schema:
         type: string
         enum:
-          - SUMO_LOGIC
+          - APP_DYNAMICS
+          - BIG_PANDA
           - DATADOG
+          - DYNATRACE
+          - HIPCHAT
+          - ICINGA
+          - JIRA
           - NEW_RELIC
           - PINGDOM
-          - HIPCHAT
-          - JIRA
-          - WEBHOOK
-          - APP_DYNAMICS
+          - PINGDOM_SM
+          - SCOUT
           - SENSU
+          - SIGNALFX
+          - SLACK_BOT
+          - SOLAR_WINDS
+          - SPLUNK
+          - SPLUNK_ITSI
+          - SUMO_LOGIC
+          - WEBHOOK
     query-conference:
       description: Conference identifier
       in: query
@@ -9656,15 +9666,20 @@ components:
               enum:
                 - APP_DYNAMICS
                 - BIG_PANDA
-                - CHEF
                 - DATADOG
+                - DYNATRACE
                 - HIPCHAT
                 - ICINGA
                 - JIRA
                 - NEW_RELIC
                 - PINGDOM
+                - PINGDOM_SM
                 - SCOUT
                 - SENSU
+                - SIGNALFX
+                - SLACK_BOT
+                - SOLAR_WINDS
+                - SPLUNK
                 - SPLUNK_ITSI
                 - SUMO_LOGIC
                 - WEBHOOK
@@ -9738,6 +9753,7 @@ components:
         - $ref: '#/components/schemas/BigPandaBuiltInPlanInput'
         - $ref: '#/components/schemas/ChefBuiltInPlanInput'
         - $ref: '#/components/schemas/DataDogBuiltInPlanInput'
+        - $ref: '#/components/schemas/DynatraceBuiltInPlanInput'
         - $ref: '#/components/schemas/HipChatBuiltInPlanInput'
         - $ref: '#/components/schemas/IcingaBuiltInPlanInput'
         - $ref: '#/components/schemas/JiraBuiltInPlanInput'
@@ -9771,6 +9787,7 @@ components:
                 - APP_DYNAMICS
                 - BIG_PANDA
                 - DATADOG
+                - DYNATRACE
                 - HIPCHAT
                 - ICINGA
                 - JIRA
@@ -9863,6 +9880,26 @@ components:
             - senderOverrideName
             - apiKey
             - applicationKey
+    DynatraceBuiltInPlanInput:
+      description: Dynatrace built-in communication plan
+      allOf:
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
+        - properties:
+            builtInPlanType:
+              type: string
+              description: Built-in communication plan type
+              enum:
+                - DYNATRACE
+            apiToken:
+              type: string
+            addCommentOnEventCreation:
+              type: boolean
+              default: true
+            notificationDeliveryStatusDeployed:
+              type: boolean
+              default: true
+          required:
+            - apiToken
     HipChatBuiltInPlanInput:
       description: HipChat built-in communication plan
       allOf:
