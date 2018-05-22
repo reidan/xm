@@ -4412,6 +4412,39 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - Sites
+    post:
+      summary: Insert or update a site
+      description: Insert or update a site
+      operationId: postSite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteInput'
+        required: true
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Sites
   '/sites/{siteId}':
     get:
       summary: Returns information about a site
@@ -11584,7 +11617,7 @@ components:
         - position
         - delay
     Site:
-      description: Site a group belongs to
+      description: Site
       properties:
         id:
           type: string
@@ -11649,6 +11682,65 @@ components:
       required:
         - id
         - name
+    SiteInput:
+      description: Site
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        language:
+          type: string
+          enum:
+            - ar
+            - da
+            - de
+            - el
+            - en
+            - en_GB
+            - es
+            - fi
+            - fr
+            - he
+            - hi
+            - is
+            - it
+            - ja
+            - ko
+            - nl
+            - 'no'
+            - pl
+            - pt
+            - pt_BR
+            - ru
+            - sk
+            - sv
+            - th
+            - vi
+            - zh_CN
+            - zh_HK
+        latitude:
+          format: double
+          type: number
+        longitude:
+          format: double
+          type: number
+        postalCode:
+          type: string
+        state:
+          type: string
+        timezone:
+          type: string
+          example: US/Pacific
     SitePointer:
       description: Site a group belongs to
       properties:
