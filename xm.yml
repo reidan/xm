@@ -4435,6 +4435,30 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - Sites
+  /targetable:
+    get:
+      summary: Search targetable entities
+      description: Search targetable entities
+      operationId: getTargetable
+      parameters:
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetablePagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Targetable
   /timeline:
     get:
       summary: Get Timeline
@@ -11642,6 +11666,36 @@ components:
           $ref: '#/components/schemas/SelfLink'
       required:
         - id
+    Targetable:
+      description: 'Targetable entity (RECIPIENT, SITE)'
+      properties:
+        targetableType:
+          type: string
+          description: Targetable entity type
+          enum:
+            - RECIPIENT
+            - SITE
+        recipient:
+          $ref: '#/components/schemas/RecipientReference'
+        site:
+          $ref: '#/components/schemas/SiteReference'
+      required:
+        - targetableType
+    TargetablePointer:
+      description: 'Targetable entity (RECIPIENT, SITE)'
+      properties:
+        targetableType:
+          type: string
+          description: Targetable entity type
+          enum:
+            - RECIPIENT
+            - SITE
+        recipient:
+          $ref: '#/components/schemas/RecipientPointer'
+        site:
+          $ref: '#/components/schemas/SitePointer'
+      required:
+        - targetableType
     TemporaryReplacement:
       description: object
       properties:
@@ -12395,6 +12449,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Site'
+          required:
+            - data
+    TargetablePagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Targetable'
           required:
             - data
     TemporaryReplacementPagination:
