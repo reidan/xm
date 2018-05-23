@@ -5058,6 +5058,7 @@ components:
         type: integer
         maximum: 1000
         default: 100
+      example: 100
     query-members:
       description: Membership includes these people
       in: query
@@ -5073,6 +5074,7 @@ components:
       schema:
         type: integer
         default: 0
+      example: 0
     query-person:
       description: The person's uuid or targetName
       in: query
