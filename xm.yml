@@ -3420,9 +3420,9 @@ paths:
           in: query
           name: embed
           required: false
+          example: constants,endpoints,forms,integrations,integrations.ownerApiKey,integrations.agents,permitted,propertyDefinitions
           schema:
             type: string
-            example: constants,endpoints,forms,integrations,integrations.ownerApiKey,integrations.agents,permitted,propertyDefinitions
         - description: Sort results by
           in: query
           name: sortBy
@@ -3492,9 +3492,9 @@ paths:
           in: query
           name: embed
           required: false
+          example: constants,endpoints,forms,integrations,integrations.ownerApiKey,integrations.agents,permitted,propertyDefinitions
           schema:
             type: string
-            example: constants,endpoints,forms,integrations,integrations.ownerApiKey,integrations.agents,permitted,propertyDefinitions
         - $ref: '#/components/parameters/query-at'
       responses:
         '200':
@@ -3826,9 +3826,9 @@ paths:
           in: query
           name: embed
           required: false
+          example: responseOptions
           schema:
             type: string
-            example: responseOptions
       responses:
         '200':
           description: OK
@@ -4007,9 +4007,9 @@ paths:
           in: query
           name: embed
           required: false
+          example: ownerApiKey,agents
           schema:
             type: string
-            example: ownerApiKey,agents
         - $ref: '#/components/parameters/query-offset'
         - $ref: '#/components/parameters/query-limit'
       responses:
@@ -4074,9 +4074,9 @@ paths:
           in: query
           name: embed
           required: false
+          example: ownerApiKey,agents
           schema:
             type: string
-            example: ownerApiKey,agents
       responses:
         '200':
           description: OK
