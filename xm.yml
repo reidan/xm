@@ -3761,6 +3761,13 @@ paths:
             enum:
               - NAME
               - USER_DEFINED
+        - description: Comma separated list of linked domain entities to embed in the response
+          in: query
+          name: embed
+          required: false
+          example: responseOptions
+          schema:
+            type: string
         - $ref: '#/components/parameters/query-sortOrder'
         - $ref: '#/components/parameters/query-at'
       responses:
