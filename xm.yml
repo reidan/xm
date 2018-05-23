@@ -4003,6 +4003,12 @@ paths:
       operationId: getPlanIntegrations
       parameters:
         - $ref: '#/components/parameters/path-planId'
+        - $ref: '#/components/parameters/query-integrationType'
+        - in: query
+          name: deployed
+          required: false
+          schema:
+            type: boolean
         - description: Comma separated list of linked domain entities to embed in the response
           in: query
           name: embed
@@ -5042,6 +5048,16 @@ components:
       required: false
       schema:
         type: string
+    query-integrationType:
+      description: Integration type
+      in: query
+      name: integrationType
+      required: false
+      schema:
+        type: string
+        enum:
+          - INBOUND_WEBHOOK
+          - OUTBOUND_WEBHOOK
     query-incident:
       description: Incident id
       in: query
@@ -8745,7 +8761,7 @@ components:
           $ref: '#/components/schemas/FormReference'
         name:
           type: string
-        type:
+        integrationType:
           type: string
           enum:
             - INBOUND_WEBHOOK
@@ -8831,7 +8847,7 @@ components:
           $ref: '#/components/schemas/FormPointer'
         name:
           type: string
-        type:
+        integrationType:
           type: string
           enum:
             - INBOUND_WEBHOOK
