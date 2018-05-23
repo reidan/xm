@@ -3846,8 +3846,8 @@ paths:
         - Forms
   '/plans/{planId}/forms/{formId}/recipients':
     get:
-      summary: List of plan recipients
-      description: List of plan recipients
+      summary: List of form recipients
+      description: List of form recipients
       operationId: getPlanFormRecipients
       parameters:
         - $ref: '#/components/parameters/path-planId'
@@ -3904,6 +3904,32 @@ paths:
           $ref: '#/components/responses/404'
         '409':
           $ref: '#/components/responses/409'
+      tags:
+        - Forms
+  '/plans/{planId}/forms/{formId}/response-options':
+    get:
+      summary: List of form response options
+      description: List of form response options
+      operationId: getPlanFormResponseOptions
+      parameters:
+        - $ref: '#/components/parameters/path-planId'
+        - $ref: '#/components/parameters/path-formId'
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseOptionPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
       tags:
         - Forms
   '/plans/{planId}/forms/{formId}/scenarios':
