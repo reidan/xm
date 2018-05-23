@@ -3416,10 +3416,11 @@ paths:
           required: false
           schema:
             type: string
-        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted, propertyDefinitions
+        - description: Comma separated list of linked domain entities to embed in the response
           in: query
           name: embed
           required: false
+          example: constants,endpoints,forms,integrations,integrations.ownerApiKey,integrations.agents,permitted,propertyDefinitions
           schema:
             type: string
         - description: Sort results by
@@ -3487,10 +3488,11 @@ paths:
       operationId: getPlan
       parameters:
         - $ref: '#/components/parameters/path-planId'
-        - description: Comma separated list of linked domain entities to embed in the response. Includes constants, endpoints, forms, integrations, integrations.ownerApiKey, integrations.agents, permitted, propertyDefinitions
+        - description: Comma separated list of linked domain entities to embed in the response
           in: query
           name: embed
           required: false
+          example: constants,endpoints,forms,integrations,integrations.ownerApiKey,integrations.agents,permitted,propertyDefinitions
           schema:
             type: string
         - $ref: '#/components/parameters/query-at'
@@ -3776,7 +3778,7 @@ paths:
           $ref: '#/components/responses/404'
       summary: List of forms
       tags:
-        - Communication Plans
+        - Forms
     post:
       summary: Add or update form
       description: Add or update form
@@ -3805,15 +3807,46 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Communication Plans
+        - Forms
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/FormInput'
         required: true
+  '/plans/{planId}/forms/{formId}':
+    get:
+      summary: Get a form
+      description: Get a form
+      operationId: getPlanForm
+      parameters:
+        - $ref: '#/components/parameters/path-planId'
+        - $ref: '#/components/parameters/path-formId'
+        - description: Comma separated list of linked domain entities to embed in the response
+          in: query
+          name: embed
+          required: false
+          example: responseOptions
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Forms
   '/plans/{planId}/forms/{formId}/recipients':
     get:
+      summary: List of plan recipients
       description: List of plan recipients
       operationId: getPlanFormRecipients
       parameters:
@@ -3835,9 +3868,8 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
-      summary: List of plan recipients
       tags:
-        - Communication Plans
+        - Forms
     put:
       summary: Replace form recipients
       description: Replace form recipients
@@ -3845,6 +3877,16 @@ paths:
       parameters:
         - $ref: '#/components/parameters/path-planId'
         - $ref: '#/components/parameters/path-formId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: An array containing the form recipients
+              type: array
+              items:
+                $ref: '#/components/schemas/RecipientPointer'
+        description: Form recipients
+        required: true
       responses:
         '200':
           description: OK
@@ -3863,19 +3905,10 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Communication Plans
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: An array containing the form recipients
-              type: array
-              items:
-                $ref: '#/components/schemas/RecipientPointer'
-        description: Form recipients
-        required: true
+        - Forms
   '/plans/{planId}/forms/{formId}/scenarios':
     get:
+      summary: List of scenarios
       description: List of scenarios
       operationId: getPlanFormScenarios
       parameters:
@@ -3907,9 +3940,8 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
-      summary: List of scenarios
       tags:
-        - Communication Plans
+        - Forms
   '/plans/{planId}/forms/{formId}/events':
     post:
       summary: Submit an event
@@ -3918,6 +3950,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/path-planId'
         - $ref: '#/components/parameters/path-formId'
+      requestBody:
+        $ref: '#/components/requestBodies/EventInput'
       responses:
         '201':
           description: Created
@@ -3934,9 +3968,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Communication Plans
-      requestBody:
-        $ref: '#/components/requestBodies/EventInput'
+        - Forms
   '/plans/{planId}/forms/{formId}/triggers':
     post:
       summary: Submit a form
@@ -3945,6 +3977,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/path-planId'
         - $ref: '#/components/parameters/path-formId'
+      requestBody:
+        $ref: '#/components/requestBodies/EventInput'
       responses:
         '201':
           description: Created
@@ -3961,9 +3995,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Communication Plans
-      requestBody:
-        $ref: '#/components/requestBodies/EventInput'
+        - Forms
   '/plans/{planId}/integrations':
     get:
       summary: List plan integrations
@@ -3971,10 +4003,11 @@ paths:
       operationId: getPlanIntegrations
       parameters:
         - $ref: '#/components/parameters/path-planId'
-        - description: Comma separated list of linked domain entities to embed in the response. Includes ownerApiKey, agents
+        - description: Comma separated list of linked domain entities to embed in the response
           in: query
           name: embed
           required: false
+          example: ownerApiKey,agents
           schema:
             type: string
         - $ref: '#/components/parameters/query-offset'
@@ -4037,10 +4070,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/path-planId'
         - $ref: '#/components/parameters/path-integrationId'
-        - description: Comma separated list of linked domain entities to embed in the response. Includes ownerApiKey, agents
+        - description: Comma separated list of linked domain entities to embed in the response
           in: query
           name: embed
           required: false
+          example: ownerApiKey,agents
           schema:
             type: string
       responses:
