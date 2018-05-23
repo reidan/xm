@@ -4032,7 +4032,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Communication Plans
+        - Integrations
     post:
       summary: Insert or update an integration
       description: Insert or update an integration
@@ -4061,7 +4061,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Communication Plans
+        - Integrations
       requestBody:
         content:
           application/json:
@@ -4097,7 +4097,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Communication Plans
+        - Integrations
     delete:
       summary: Delete an integration
       description: Delete an integration
@@ -4121,7 +4121,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Communication Plans
+        - Integrations
   '/plans/{planId}/integrations/{integrationId}/agents':
     get:
       summary: Get agents that can execute this integration
@@ -4144,7 +4144,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Communication Plans
+        - Integrations
   '/plans/{planId}/integrations/{integrationId}/logs':
     get:
       summary: Get integration logs
@@ -4167,7 +4167,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Communication Plans
+        - Integrations
   '/plans/{planId}/integrations/{integrationId}/logs/{logId}':
     get:
       summary: Get integration log
@@ -4194,7 +4194,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Communication Plans
+        - Integrations
   '/plans/{planId}/permitted':
     get:
       summary: Get permitted entities
