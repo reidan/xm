@@ -3765,9 +3765,9 @@ paths:
           in: query
           name: embed
           required: false
-          example: responseOptions
           schema:
             type: string
+          example: plan,recipients,responseOptions,messages
         - $ref: '#/components/parameters/query-sortOrder'
         - $ref: '#/components/parameters/query-at'
       responses:
@@ -3833,9 +3833,9 @@ paths:
           in: query
           name: embed
           required: false
-          example: responseOptions
           schema:
             type: string
+          example: plan,recipients,responseOptions,messages
       responses:
         '200':
           description: OK
