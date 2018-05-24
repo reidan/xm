@@ -11098,6 +11098,7 @@ components:
             Likely to be non-sequential
             Will roll over occasionally so only a valid sorting attribute in combination with 'at' timestamp
           type: integer
+          format: int64
       required:
         - id
         - at
