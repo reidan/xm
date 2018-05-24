@@ -2828,7 +2828,8 @@ paths:
         - Permissable
   /people:
     get:
-      description: Returns information about users
+      summary: Retrieve information about users
+      description: Retrieve information about users
       operationId: getPeople
       parameters:
         - description: Case insensitive substring match within firstName, lastName, id, targetName, webLogin, email, phoneNumber. Search terms may be separated by spaces, results are returned that match ANY of the search terms
@@ -2847,6 +2848,7 @@ paths:
               - ACTIVE
               - INACTIVE
               - INVALID
+        - $ref: '#/components/parameters/query-site'
         - $ref: '#/components/parameters/query-webLogin'
         - $ref: '#/components/parameters/query-role'
         - $ref: '#/components/parameters/query-propertyName'
@@ -2866,7 +2868,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-      summary: Returns information about users
       tags:
         - People
     post:
@@ -5223,6 +5224,13 @@ components:
       description: Shift identifier
       in: query
       name: shift
+      required: false
+      schema:
+        type: string
+    query-site:
+      description: Site identifier
+      in: query
+      name: site
       required: false
       schema:
         type: string
