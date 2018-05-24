@@ -11679,7 +11679,7 @@ components:
           description: Indicates whether the team member is included in the rotation cycle
           type: boolean
         position:
-          description: Position in the rotation sequence
+          description: Current position in the escalation sequence (rotation effects this position)
           type: integer
         recipient:
           $ref: '#/components/schemas/RecipientReference'
