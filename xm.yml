@@ -8652,6 +8652,8 @@ components:
         id:
           type: string
           format: uuid
+        name:
+          type: string
     FormReference:
       properties:
         id:
@@ -9789,6 +9791,15 @@ components:
               enum:
                 - PLAN
     SystemPlan:
+      oneOf:
+        - $ref: '#/components/schemas/DeviceValidationSystemPlan'
+        - $ref: '#/components/schemas/ForgotMyPasswordSystemPlan'
+        - $ref: '#/components/schemas/SupervisorResetSystemPlan'
+        - $ref: '#/components/schemas/TemporaryReplacementSystemPlan'
+        - $ref: '#/components/schemas/OnCallShiftStartSystemPlan'
+      discriminator:
+        propertyName: systemPlanType
+    AbstractSystemPlan:
       allOf:
         - $ref: '#/components/schemas/AbstractPlan'
         - properties:
@@ -9796,6 +9807,54 @@ components:
               type: string
               enum:
                 - SYSTEM
+            systemPlanType:
+              type: string
+              enum:
+                - DEVICE_VALIDATION
+                - FORGOT_MY_PASSWORD
+                - SUPERVISOR_RESET
+                - TEMP_REPLACEMENT
+                - ON_CALL_START_SHIFT
+    DeviceValidationSystemPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemPlan'
+        - properties:
+            systemPlanType:
+              type: string
+              enum:
+                - DEVICE_VALIDATION
+    ForgotMyPasswordSystemPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemPlan'
+        - properties:
+            systemPlanType:
+              type: string
+              enum:
+                - FORGOT_MY_PASSWORD
+    SupervisorResetSystemPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemPlan'
+        - properties:
+            systemPlanType:
+              type: string
+              enum:
+                - SUPERVISOR_RESET
+    TemporaryReplacementSystemPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemPlan'
+        - properties:
+            systemPlanType:
+              type: string
+              enum:
+                - TEMP_REPLACEMENT
+    OnCallShiftStartSystemPlan:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemPlan'
+        - properties:
+            systemPlanType:
+              type: string
+              enum:
+                - ON_CALL_START_SHIFT
     BuiltInPlan:
       allOf:
         - $ref: '#/components/schemas/AbstractPlan'
