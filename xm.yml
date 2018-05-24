@@ -1704,12 +1704,51 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
+  /forms:
+    get:
+      summary: List forms
+      description: List forms
+      operationId: getForms
+      parameters:
+        - description: Sort results by
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+            enum:
+              - NAME
+              - USER_DEFINED
+        - description: Comma separated list of linked domain entities to embed in the response
+          in: query
+          name: embed
+          required: false
+          schema:
+            type: string
+          example: plan,recipients,responseOptions,messages
+        - $ref: '#/components/parameters/query-sortOrder'
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Forms
   /groups:
     get:
-      description: >-
-        List Groups. Can embed group calendar e.g. embed=calendar(at:
-        '2015-11-02T22:54:19Z') e.g. embed=calendar(from:
-        '2015-11-02T22:54:19Z', to: '2015-11-03T22:54:19Z')
+      summary: List Groups
+      description: List Groups
       operationId: getGroups
       parameters:
         - description: Case insensitive substring match within name, description. Search terms may be separated by spaces, results are returned that match ALL if the search terms of the operand is set to AND, or ANY of the search terms if the operand is set to OR
@@ -1757,7 +1796,6 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
-      summary: List Groups
       tags:
         - Groups
     post:
@@ -3748,6 +3786,7 @@ paths:
         - Communication Plans
   '/plans/{planId}/forms':
     get:
+      summary: List of forms
       description: List of forms
       operationId: getPlanForms
       parameters:
@@ -3770,6 +3809,8 @@ paths:
           example: plan,recipients,responseOptions,messages
         - $ref: '#/components/parameters/query-sortOrder'
         - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
       responses:
         '200':
           description: OK
@@ -3783,7 +3824,6 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
-      summary: List of forms
       tags:
         - Forms
     post:
