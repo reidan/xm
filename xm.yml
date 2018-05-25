@@ -11686,6 +11686,10 @@ components:
           type: integer
         recurrence:
           $ref: '#/components/schemas/Recurrence'
+        members:
+          type: array
+            items:
+              $ref: '#/components/schemas/ShiftMemberInput'
     ShiftReference:
       properties:
         id:
