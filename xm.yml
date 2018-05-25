@@ -1426,7 +1426,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Events
+        - Messages
   '/events/{eventId}/messages/{messageId}':
     get:
       summary: Get a message
@@ -1450,7 +1450,7 @@ paths:
         '404':
           $ref: '#/components/responses/404'
       tags:
-        - Events
+        - Messages
   '/events/{eventId}/file-attachments':
     get:
       summary: Get file attachments
@@ -2488,6 +2488,54 @@ paths:
               $ref: '#/components/schemas/LogEntryInput'
         description: A log entry
         required: true
+  '/messages':
+    get:
+      summary: Get messages
+      description: Get messages
+      operationId: getMessages
+      parameters:
+        - $ref: '#/components/parameters/query-event'
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagePagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Messages
+  '/messages/{messageId}':
+    get:
+      summary: Get a message
+      description: Get a message
+      operationId: getMessage
+      parameters:
+        - $ref: '#/components/parameters/path-messageId'
+        - $ref: '#/components/parameters/query-at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Messages
   '/notifications/{notificationId}':
     delete:
       description: De-links a Notification
