@@ -1402,6 +1402,55 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - Events
+  '/events/{eventId}/messages':
+    get:
+      summary: Get messages
+      description: Get messages
+      operationId: getEventMessages
+      parameters:
+        - $ref: '#/components/parameters/path-eventId'
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagePagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Events
+  '/events/{eventId}/messages/{messageId}':
+    get:
+      summary: Get a message
+      description: Get a message
+      operationId: getEventMessage
+      parameters:
+        - $ref: '#/components/parameters/path-eventId'
+        - $ref: '#/components/parameters/path-messageId'
+        - $ref: '#/components/parameters/query-at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Events
   '/events/{eventId}/file-attachments':
     get:
       summary: Get file attachments
@@ -4860,6 +4909,13 @@ components:
       description: The monitor's uuid or targetName
       in: path
       name: monitorId
+      required: true
+      schema:
+        type: string
+    path-messageId:
+      description: Message indentifier
+      in: path
+      name: messageId
       required: true
       schema:
         type: string
