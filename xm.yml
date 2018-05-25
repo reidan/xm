@@ -11642,6 +11642,8 @@ components:
         timezone:
           type: string
           example: US/Pacific
+        members:
+          $ref: '#/components/schemas/ShiftMemberPagination'
         revision:
           $ref: '#/components/schemas/Revision'
         links:
