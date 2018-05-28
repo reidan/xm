@@ -10567,8 +10567,6 @@ components:
           type: string
         value:
           type: string
-        default:
-          type: boolean
       required:
         - value
     PropertyDefinition:
@@ -10694,6 +10692,8 @@ components:
               items:
                 type: string
             items:
+              $ref: '#/components/schemas/Hierarchy'
+            default:
               $ref: '#/components/schemas/Hierarchy'
     Endpoint:
       properties:
