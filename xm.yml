@@ -10581,14 +10581,14 @@ components:
         - $ref: '#/components/schemas/MultiSelectPropertyDefinition'
         - $ref: '#/components/schemas/HierarchyPropertyDefinition'
       discriminator:
-        propertyName: propertyDefinitionType
+        propertyName: propertyType
     AbstractPropertyDefinition:
       type: object
       properties:
         id:
           type: string
           format: uuid
-        propertyDefinitionType:
+        propertyType:
           type: string
           enum:
             - STRING
@@ -10612,7 +10612,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractPropertyDefinition'
         - properties:
-            propertyDefinitionType:
+            propertyType:
               type: string
               enum:
                 - STRING
@@ -10629,7 +10629,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractPropertyDefinition'
         - properties:
-            propertyDefinitionType:
+            propertyType:
               type: string
               enum:
                 - NUMBER
@@ -10643,7 +10643,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractPropertyDefinition'
         - properties:
-            propertyDefinitionType:
+            propertyType:
               type: string
               enum:
                 - BOOLEAN
@@ -10651,7 +10651,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractPropertyDefinition'
         - properties:
-            propertyDefinitionType:
+            propertyType:
               type: string
               enum:
                 - PASSWORD
@@ -10659,7 +10659,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractPropertyDefinition'
         - properties:
-            propertyDefinitionType:
+            propertyType:
               type: string
               enum:
                 - SINGLE_SELECT
@@ -10672,7 +10672,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractPropertyDefinition'
         - properties:
-            propertyDefinitionType:
+            propertyType:
               type: string
               enum:
                 - MULTI_SELECT
@@ -10685,7 +10685,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractPropertyDefinition'
         - properties:
-            propertyDefinitionType:
+            propertyType:
               type: string
               enum:
                 - HIERARCHY
