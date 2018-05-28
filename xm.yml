@@ -10567,6 +10567,8 @@ components:
           type: string
         value:
           type: string
+        default:
+          type: boolean
       required:
         - value
     PropertyDefinition:
