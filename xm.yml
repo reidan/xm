@@ -10560,7 +10560,7 @@ components:
     Hierarchy:
       type: array
       items:
-        - $ref: '#/components/schemas/HierarchyItem'
+        $ref: '#/components/schemas/HierarchyItem'
     HierarchyItem:
       properties:
         category:
