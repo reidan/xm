@@ -6450,12 +6450,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
-            id:
-              type: string
-              format: uuid
-            targetName:
-              description: The target name of the resource
-              type: string
             recipientType:
               type: string
               enum:
@@ -6480,11 +6474,16 @@ components:
             name:
               type: string
               example: Work Email, Home Phone
+            status:
+              description: Whether the recipient is active. Inactive recipients do not receive notifications
+              type: string
+              enum:
+                - ACTIVE
+                - INACTIVE
+                - INVALID
             links:
               $ref: '#/components/schemas/SelfLink'
           required:
-            - id
-            - targetName
             - deviceType
     DeviceTestInput:
       description: Test a device
@@ -8915,21 +8914,19 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
-            id:
-              type: string
-              format: uuid
-            targetName:
-              description: The target name of the resource
-              type: string
             recipientType:
               type: string
               enum:
                 - GROUP
+            status:
+              description: Whether the recipient is active. Inactive recipients do not receive notifications
+              type: string
+              enum:
+                - ACTIVE
+                - INACTIVE
+                - INVALID
             links:
               $ref: '#/components/schemas/SelfLink'
-          required:
-            - id
-            - targetName
     GroupPointer:
       allOf:
         - $ref: '#/components/schemas/AbstractRecipientPointer'
@@ -9782,12 +9779,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractRecipientReference'
         - properties:
-            id:
-              type: string
-              format: uuid
-            targetName:
-              description: The target name of the resource
-              type: string
             recipientType:
               type: string
               enum:
@@ -9798,11 +9789,16 @@ components:
             lastName:
               description: The last name of the user
               type: string
+            status:
+              description: Whether the recipient is active. Inactive recipients do not receive notifications
+              type: string
+              enum:
+                - ACTIVE
+                - INACTIVE
+                - INVALID
             links:
               $ref: '#/components/schemas/SelfLink'
           required:
-            - id
-            - targetName
             - firstName
             - lastName
     Permissible:
@@ -10946,6 +10942,7 @@ components:
         - $ref: '#/components/schemas/GroupReference'
         - $ref: '#/components/schemas/PersonReference'
         - $ref: '#/components/schemas/DeviceReference'
+        - $ref: '#/components/schemas/TeamReference'
       discriminator:
         propertyName: recipientType
     AbstractRecipientReference:
@@ -10962,17 +10959,7 @@ components:
             - GROUP
             - PERSON
             - DEVICE
-        status:
-          description: >-
-            Whether the recipient is active. Inactive recipients do not receive
-            notifications
-          type: string
-          enum:
-            - ACTIVE
-            - INACTIVE
-            - INVALID
-        links:
-          $ref: '#/components/schemas/SelfLink'
+            - TEAM
       required:
         - id
         - recipientType
@@ -12093,6 +12080,14 @@ components:
           $ref: '#/components/schemas/SitePointer'
       required:
         - targetableType
+    TeamReference:
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipientReference'
+        - properties:
+            recipientType:
+              type: string
+              enum:
+                - TEAM
     TemporaryReplacement:
       description: object
       properties:
