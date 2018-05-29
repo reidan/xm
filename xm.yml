@@ -2307,6 +2307,33 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - File Transfer
+    post:
+      summary: Update an import
+      description: Update an import
+      operationId: postImport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportInput'
+        required: true
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - File Transfer
   '/imports/{importId}':
     get:
       summary: Import
@@ -8740,6 +8767,18 @@ components:
         - id
         - transform
         - status
+    ImportInput:
+      description: An import is the process of uploading a file or files into xMatters systems via a transform. It tracks the status of the upload and transformation of the data.
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+            - PENDING
+            - PROCESSING
+            - COMPLETE
     Form:
       description: A form
       properties:
