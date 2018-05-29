@@ -8232,6 +8232,14 @@ components:
         - startTime
         - durationInMinutes
         - excludeHolidays
+    DynamicTeamReference:
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipientReference'
+        - properties:
+            recipientType:
+              type: string
+              enum:
+                - DYNAMIC_TEAM
     RepeatingAlertConfig:
       type: object
       properties:
@@ -10943,6 +10951,7 @@ components:
         - $ref: '#/components/schemas/PersonReference'
         - $ref: '#/components/schemas/DeviceReference'
         - $ref: '#/components/schemas/TeamReference'
+        - $ref: '#/components/schemas/DynamicTeamReference'
       discriminator:
         propertyName: recipientType
     AbstractRecipientReference:
@@ -10960,10 +10969,11 @@ components:
             - PERSON
             - DEVICE
             - TEAM
+            - DYNAMIC_TEAM
       required:
         - id
-        - recipientType
         - targetName
+        - recipientType
     SelfLink:
       properties:
         self:
