@@ -12138,7 +12138,7 @@ components:
               enum:
                 - TEAM
     TemporaryReplacement:
-      description: object
+      description: Temporary replacement or temporary absence if replacement is not specified.
       properties:
         start:
           format: date-time
