@@ -12153,7 +12153,7 @@ components:
       required:
         - start
         - end
-        - replacement
+        - member
     Transform:
       description: A Transform defines how a file or files will be mapped to xMatters systems from files in the case of import, or from xMatters systems to files in the case of export and reporting.
       properties:
