@@ -12137,9 +12137,23 @@ components:
               type: string
               enum:
                 - TEAM
-    TemporaryReplacement:
-      description: Temporary replacement or temporary absence if replacement is not specified.
+    TemporarySubstitution:
+      oneOf:
+        - $ref: '#/components/schemas/TemporaryAbsence'
+        - $ref: '#/components/schemas/TemporaryReplacement'
+      discriminator:
+        propertyName: substitutionType
+    AbstractTemporarySubstitution:
+      description: Temporary substitution
       properties:
+        id:
+          type: string
+          format: uuid
+        substitutionType:
+          type: string
+          enum:
+            - ABSCENCE
+            - REPLACEMENT
         start:
           format: date-time
           type: string
@@ -12148,12 +12162,91 @@ components:
           type: string
         member:
           $ref: '#/components/schemas/PersonReference'
-        replacement:
-          $ref: '#/components/schemas/PersonReference'
+        group:
+          $ref: '#/components/schemas/GroupReference'
       required:
+        - substitutionType
         - start
         - end
         - member
+    AbstractTemporarySubstitutionInput:
+      description: Temporary substitution
+      properties:
+        id:
+          type: string
+          format: uuid
+        substitutionType:
+          type: string
+          enum:
+            - ABSCENCE
+            - REPLACEMENT
+        start:
+          format: date-time
+          type: string
+        end:
+          format: date-time
+          type: string
+        member:
+          $ref: '#/components/schemas/PersonPointer'
+        group:
+          $ref: '#/components/schemas/GroupPointer'
+      required:
+        - substitutionType
+        - start
+        - end
+        - member
+    TemporaryAbsence:
+      description: Temporary absence
+      allOf:
+        - $ref: '#/components/schemas/AbstractTemporarySubstitution'
+        - properties:
+            substitutionType:
+              type: string
+              enum:
+                - ABSCENCE
+            directNotificationEnabled:
+              type: boolean
+          required:
+            - directNotificationEnabled
+    TemporaryAbsenceInput:
+      description: Temporary absence
+      allOf:
+        - $ref: '#/components/schemas/AbstractTemporarySubstitutionInput'
+        - properties:
+            substitutionType:
+              type: string
+              enum:
+                - ABSCENCE
+            directNotificationEnabled:
+              type: boolean
+          required:
+            - directNotificationEnabled
+    TemporaryReplacement:
+      description: Temporary replacement
+      allOf:
+        - $ref: '#/components/schemas/AbstractTemporarySubstitution'
+        - properties:
+            substitutionType:
+              type: string
+              enum:
+                - REPLACEMENT
+            replacement:
+              $ref: '#/components/schemas/PersonReference'
+          required:
+            - replacement
+    TemporaryReplacementInput:
+      description: Temporary replacement
+      allOf:
+        - $ref: '#/components/schemas/AbstractTemporarySubstitution'
+        - properties:
+            substitutionType:
+              type: string
+              enum:
+                - REPLACEMENT
+            replacement:
+              $ref: '#/components/schemas/PersonPointer'
+          required:
+            - replacement
     Transform:
       description: A Transform defines how a file or files will be mapped to xMatters systems from files in the case of import, or from xMatters systems to files in the case of export and reporting.
       properties:
@@ -12910,6 +13003,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/TemporaryReplacement'
+          required:
+            - data
+    TemporarySubstitutionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/TemporarySubstitution'
           required:
             - data
     TransformPagination:
