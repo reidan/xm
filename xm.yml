@@ -4690,6 +4690,87 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - Targetable
+  /temporary-absences:
+    get:
+      summary: Temporary Absences
+      description: Temporary Absences
+      operationId: getTemporaryAbsences
+      parameters:
+        - $ref: '#/components/parameters/query-group'
+        - $ref: '#/components/parameters/query-member'
+        - $ref: '#/components/parameters/query-absenceType'
+        - $ref: '#/components/parameters/query-from'
+        - $ref: '#/components/parameters/query-to'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-offset'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryAbsencePagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Temporary Absences
+    post:
+      summary: Insert or update Temporary Absences
+      description: Insert or update Temporary Absences
+      operationId: postTemporaryAbsence
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TemporaryAbsenceInput'
+        required: true
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryAbsence'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryAbsence'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Temporary Absences
+  /temporary-absences/{temporaryAbsenceId}:
+    get:
+      summary: Temporary Absences
+      description: Temporary Absences
+      operationId: getTemporaryAbsences
+      parameters:
+        - $ref: '#/components/parameters/path-temporaryAbsenceId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryAbsence'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Temporary Absences
   /timeline:
     get:
       summary: Get Timeline
@@ -4739,6 +4820,13 @@ paths:
       summary: Set transform definition
       description: Set transform definition
       operationId: postTransform
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransformInput'
+        description: Transform definition
+        required: true
       responses:
         '200':
           description: Updated
@@ -4762,13 +4850,6 @@ paths:
           $ref: '#/components/responses/409'
       tags:
         - File Transfer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TransformInput'
-        description: Transform definition
-        required: true
   '/uploads/{transformId}':
     post:
       summary: Upload a file
@@ -5014,6 +5095,13 @@ components:
       required: true
       schema:
         type: string
+    path-temporaryAbsenceId:
+      description: Temporary Absence identifier
+      name: temporaryAbsenceId
+      in: path
+      required: true
+      schema:
+        type: string
     path-tokenId:
       name: tokenId
       in: path
@@ -5028,6 +5116,16 @@ components:
       required: true
       schema:
         type: string
+    query-absenceType:
+      description: Absence Type
+      in: query
+      name: absenceType
+      required: false
+      schema:
+        type: string
+        enum:
+          - VACANCY
+          - REPLACEMENT
     query-auditType:
       description: Audit type
       in: query
@@ -5236,6 +5334,13 @@ components:
         maximum: 1000
         default: 100
       example: 100
+    query-member:
+      description: Member
+      in: query
+      name: member
+      required: false
+      schema:
+        type: string
     query-members:
       description: Membership includes these people
       in: query
@@ -12099,6 +12204,12 @@ components:
         - $ref: '#/components/schemas/TemporaryReplacement'
       discriminator:
         propertyName: absenceType
+    TemporaryAbsenceInput:
+      oneOf:
+        - $ref: '#/components/schemas/TemporaryVacancyInput'
+        - $ref: '#/components/schemas/TemporaryReplacementInput'
+      discriminator:
+        propertyName: absenceType
     AbstractTemporaryAbsence:
       description: Temporary absence
       properties:
@@ -12121,6 +12232,7 @@ components:
         group:
           $ref: '#/components/schemas/GroupReference'
       required:
+        - id
         - absenceType
         - start
         - end
