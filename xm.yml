@@ -12014,6 +12014,8 @@ components:
             - MANAGEMENT
         replacements:
           $ref: '#/components/schemas/TemporaryReplacementPagination'
+        absences:
+          $ref: '#/components/schemas/TemporaryAbsencePagination'
       required:
         - member
         - position
