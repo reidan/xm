@@ -12306,7 +12306,7 @@ components:
     TemporaryReplacementInput:
       description: Temporary replacement
       allOf:
-        - $ref: '#/components/schemas/AbstractTemporaryAbsence'
+        - $ref: '#/components/schemas/AbstractTemporaryAbsenceInput'
         - properties:
             absenceType:
               type: string
