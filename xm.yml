@@ -35,8 +35,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Agents
     post:
@@ -410,8 +408,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Audit
   /built-in-plans:
@@ -438,8 +434,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
         '409':
           $ref: '#/components/responses/409'
       tags:
@@ -530,8 +524,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Conferences
   '/conferences/{conferenceId}':
@@ -642,8 +634,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       summary: List of countries
       tags:
         - Countries
@@ -804,8 +794,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Devices
     post:
@@ -1782,8 +1770,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Forms
   /groups:
@@ -1835,8 +1821,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Groups
     post:
@@ -2382,8 +2366,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Agents
     post:
@@ -2528,8 +2510,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Messages
   '/messages/{messageId}':
@@ -2938,8 +2918,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Permissable
   /people:
@@ -3602,8 +3580,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Communication Plans
     post:
@@ -4518,8 +4494,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       summary: Returns information about event recipients
       tags:
         - Recipients
@@ -4571,8 +4545,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       summary: Returns information about configured service providers
       tags:
         - Service Providers
@@ -4602,8 +4574,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Shift Occurrences
   /sites:
@@ -4638,8 +4608,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Sites
     post:
@@ -4743,8 +4711,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - Reports
   /transforms:
@@ -4767,8 +4733,6 @@ paths:
           $ref: '#/components/responses/401'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - File Transfer
     post:
