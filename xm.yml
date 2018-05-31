@@ -4751,8 +4751,8 @@ paths:
         - Temporary Absences
   /temporary-absences/{temporaryAbsenceId}:
     get:
-      summary: Temporary Absences
-      description: Temporary Absences
+      summary: Get Temporary Absences
+      description: Get Temporary Absences
       operationId: getTemporaryAbsences
       parameters:
         - $ref: '#/components/parameters/path-temporaryAbsenceId'
@@ -4769,6 +4769,29 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+      tags:
+        - Temporary Absences
+    delete:
+      summary: Delete a Temporary Absence
+      description: Delete a Temporary Absence
+      operationId: deleteTemporaryAbsence
+      parameters:
+        - $ref: '#/components/parameters/path-temporaryAbsenceId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryAbsence'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
       tags:
         - Temporary Absences
   /timeline:
