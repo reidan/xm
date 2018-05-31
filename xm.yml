@@ -12231,12 +12231,15 @@ components:
           $ref: '#/components/schemas/PersonReference'
         group:
           $ref: '#/components/schemas/GroupReference'
+        directNotificationEnabled:
+          type: boolean
       required:
         - id
         - absenceType
         - start
         - end
         - member
+        - directNotificationEnabled
     AbstractTemporaryAbsenceInput:
       description: Temporary absence
       properties:
@@ -12258,11 +12261,15 @@ components:
           $ref: '#/components/schemas/PersonPointer'
         group:
           $ref: '#/components/schemas/GroupPointer'
+        directNotificationEnabled:
+          type: boolean
+          default: false
       required:
         - absenceType
         - start
         - end
         - member
+        - directNotificationEnabled
     TemporaryVacancy:
       description: Temporary vacancy
       allOf:
@@ -12272,10 +12279,6 @@ components:
               type: string
               enum:
                 - VACANCY
-            directNotificationEnabled:
-              type: boolean
-          required:
-            - directNotificationEnabled
     TemporaryVacancyInput:
       description: Temporary vacancy
       allOf:
@@ -12285,10 +12288,6 @@ components:
               type: string
               enum:
                 - VACANCY
-            directNotificationEnabled:
-              type: boolean
-          required:
-            - directNotificationEnabled
     TemporaryReplacement:
       description: Temporary replacement
       allOf:
