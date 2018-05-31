@@ -12093,22 +12093,22 @@ components:
               type: string
               enum:
                 - TEAM
-    TemporarySubstitution:
+    TemporaryAbsence:
       oneOf:
-        - $ref: '#/components/schemas/TemporaryAbsence'
+        - $ref: '#/components/schemas/TemporaryVacancy'
         - $ref: '#/components/schemas/TemporaryReplacement'
       discriminator:
-        propertyName: substitutionType
-    AbstractTemporarySubstitution:
-      description: Temporary substitution
+        propertyName: absenceType
+    AbstractTemporaryAbsence:
+      description: Temporary absence
       properties:
         id:
           type: string
           format: uuid
-        substitutionType:
+        absenceType:
           type: string
           enum:
-            - ABSCENCE
+            - VACANCY
             - REPLACEMENT
         start:
           format: date-time
@@ -12121,20 +12121,20 @@ components:
         group:
           $ref: '#/components/schemas/GroupReference'
       required:
-        - substitutionType
+        - absenceType
         - start
         - end
         - member
-    AbstractTemporarySubstitutionInput:
-      description: Temporary substitution
+    AbstractTemporaryAbsenceInput:
+      description: Temporary absence
       properties:
         id:
           type: string
           format: uuid
-        substitutionType:
+        absenceType:
           type: string
           enum:
-            - ABSCENCE
+            - VACANCY
             - REPLACEMENT
         start:
           format: date-time
@@ -12147,32 +12147,32 @@ components:
         group:
           $ref: '#/components/schemas/GroupPointer'
       required:
-        - substitutionType
+        - absenceType
         - start
         - end
         - member
-    TemporaryAbsence:
-      description: Temporary absence
+    TemporaryVacancy:
+      description: Temporary vacancy
       allOf:
-        - $ref: '#/components/schemas/AbstractTemporarySubstitution'
+        - $ref: '#/components/schemas/AbstractTemporaryAbsence'
         - properties:
-            substitutionType:
+            absenceType:
               type: string
               enum:
-                - ABSCENCE
+                - VACANCY
             directNotificationEnabled:
               type: boolean
           required:
             - directNotificationEnabled
-    TemporaryAbsenceInput:
-      description: Temporary absence
+    TemporaryVacancyInput:
+      description: Temporary vacancy
       allOf:
-        - $ref: '#/components/schemas/AbstractTemporarySubstitutionInput'
+        - $ref: '#/components/schemas/AbstractTemporaryAbsenceInput'
         - properties:
-            substitutionType:
+            absenceType:
               type: string
               enum:
-                - ABSCENCE
+                - VACANCY
             directNotificationEnabled:
               type: boolean
           required:
@@ -12180,9 +12180,9 @@ components:
     TemporaryReplacement:
       description: Temporary replacement
       allOf:
-        - $ref: '#/components/schemas/AbstractTemporarySubstitution'
+        - $ref: '#/components/schemas/AbstractTemporaryAbsence'
         - properties:
-            substitutionType:
+            absenceType:
               type: string
               enum:
                 - REPLACEMENT
@@ -12193,9 +12193,9 @@ components:
     TemporaryReplacementInput:
       description: Temporary replacement
       allOf:
-        - $ref: '#/components/schemas/AbstractTemporarySubstitution'
+        - $ref: '#/components/schemas/AbstractTemporaryAbsence'
         - properties:
-            substitutionType:
+            absenceType:
               type: string
               enum:
                 - REPLACEMENT
@@ -12961,14 +12961,14 @@ components:
                 $ref: '#/components/schemas/TemporaryReplacement'
           required:
             - data
-    TemporarySubstitutionPagination:
+    TemporaryAbsencePagination:
       allOf:
         - $ref: '#/components/schemas/AbstractPagination'
         - properties:
             data:
               type: array
               items:
-                $ref: '#/components/schemas/TemporarySubstitution'
+                $ref: '#/components/schemas/TemporaryAbsence'
           required:
             - data
     TransformPagination:
