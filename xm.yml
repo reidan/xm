@@ -749,10 +749,6 @@ paths:
                 $ref: '#/components/schemas/DeviceNamePagination'
         '401':
           $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       summary: Returns information about device names
       tags:
         - Device Names
@@ -772,10 +768,6 @@ paths:
                 $ref: '#/components/schemas/DeviceTypePagination'
         '401':
           $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       summary: Returns device types
       tags:
         - Device Types
