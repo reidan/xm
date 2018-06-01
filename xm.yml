@@ -12256,7 +12256,7 @@ components:
           $ref: '#/components/schemas/PersonReference'
         group:
           $ref: '#/components/schemas/GroupReference'
-        directNotificationEnabled:
+        includeDirectNotifications:
           type: boolean
       required:
         - id
@@ -12264,7 +12264,7 @@ components:
         - start
         - end
         - member
-        - directNotificationEnabled
+        - includeDirectNotifications
     AbstractTemporaryAbsenceInput:
       description: Temporary absence
       properties:
@@ -12286,7 +12286,7 @@ components:
           $ref: '#/components/schemas/PersonPointer'
         group:
           $ref: '#/components/schemas/GroupPointer'
-        directNotificationEnabled:
+        includeDirectNotifications:
           type: boolean
           default: false
       required:
@@ -12294,7 +12294,7 @@ components:
         - start
         - end
         - member
-        - directNotificationEnabled
+        - includeDirectNotifications
     TemporaryVacancy:
       description: Temporary vacancy
       allOf:
