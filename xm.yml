@@ -9799,7 +9799,7 @@ components:
                 - RESPONDED
                 - FAILED
             supervisors:
-              $ref: '#/components/schemas/PersonReferencePagination'
+              $ref: '#/components/schemas/PersonPagination'
             notifications:
               $ref: '#/components/schemas/NotificationPagination'
             response:
@@ -12845,16 +12845,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Person'
-          required:
-            - data
-    PersonReferencePagination:
-      allOf:
-        - $ref: '#/components/schemas/AbstractPagination'
-        - properties:
-            data:
-              type: array
-              items:
-                $ref: '#/components/schemas/PersonReference'
           required:
             - data
     PlanPagination:
