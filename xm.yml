@@ -6781,6 +6781,7 @@ components:
               pattern: '^\d{5,20}$'
               type: string
           required:
+            - country
             - phoneNumber
     FaxDeviceInput:
       allOf:
@@ -6811,6 +6812,7 @@ components:
               pattern: '^\d{5,20}$'
               type: string
           required:
+            - country
             - phoneNumber
     GenericDevice:
       allOf:
