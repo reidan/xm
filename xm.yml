@@ -3544,6 +3544,12 @@ paths:
           required: false
           schema:
             type: string
+        - description: Case insensitive contains within name, description. Search terms may be separated by spaces, results are returned that match ANY of the search terms
+          in: query
+          name: search
+          required: false
+          schema:
+            type: string
         - description: Comma separated list of linked domain entities to embed in the response
           in: query
           name: embed
