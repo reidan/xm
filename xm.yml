@@ -1603,12 +1603,7 @@ paths:
           required: false
           schema:
             type: string
-        - description: Event identifier
-          in: query
-          name: event
-          required: false
-          schema:
-            type: string
+        - $ref: '#/components/parameters/query-event'
         - $ref: '#/components/parameters/query-offset'
         - $ref: '#/components/parameters/query-limit'
       responses:
@@ -11486,13 +11481,12 @@ components:
         - member
     Recurrence:
       oneOf:
+        - $ref: '#/components/schemas/OnceRecurrence'
         - $ref: '#/components/schemas/DailyRecurrence'
         - $ref: '#/components/schemas/WeeklyRecurrence'
         - $ref: '#/components/schemas/EveryWeekdayRecurrence'
         - $ref: '#/components/schemas/EveryWeekendDayRecurrence'
         - $ref: '#/components/schemas/MonthlyRecurrence'
-        - $ref: '#/components/schemas/MonthlyDateOfMonthRecurrence'
-        - $ref: '#/components/schemas/MonthlyDayOfWeekRecurrence'
         - $ref: '#/components/schemas/YearlyRecurrence'
         - $ref: '#/components/schemas/HolidayRecurrence'
       discriminator:
