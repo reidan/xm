@@ -12120,6 +12120,8 @@ components:
       required:
         - id
         - name
+        - language
+        - timezone
     SiteInput:
       description: Site
       properties:
@@ -12179,6 +12181,10 @@ components:
         timezone:
           type: string
           example: US/Pacific
+      required:
+        - name
+        - language
+        - timezone
     SitePointer:
       description: Site a group belongs to
       properties:
