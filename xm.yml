@@ -2278,15 +2278,40 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - File Transfer
-    post:
+  '/imports/{importId}':
+    get:
+      summary: Import
+      description: Import
+      operationId: getImport
+      parameters:
+        - $ref: '#/components/parameters/path-importId'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - File Transfer
+    patch:
       summary: Update an import
       description: Update an import
-      operationId: postImport
+      operationId: patchImport
+      parameters:
+        - $ref: '#/components/parameters/path-importId'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ImportInput'
+              $ref: '#/components/schemas/ImportUpdate'
         required: true
       responses:
         '200':
@@ -2303,34 +2328,6 @@ paths:
           $ref: '#/components/responses/403'
         '409':
           $ref: '#/components/responses/409'
-      tags:
-        - File Transfer
-  '/imports/{importId}':
-    get:
-      summary: Import
-      description: Import
-      operationId: getImport
-      parameters:
-        - description: Import identifier
-          in: path
-          name: importId
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/query-embed'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Import'
-        '401':
-          $ref: '#/components/responses/401'
-        '403':
-          $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
       tags:
         - File Transfer
   /integration-agents:
@@ -5018,6 +5015,13 @@ components:
     path-groupId:
       in: path
       name: groupId
+      required: true
+      schema:
+        type: string
+    path-importId:
+      description: Import identifier
+      in: path
+      name: importId
       required: true
       schema:
         type: string
@@ -8869,6 +8873,15 @@ components:
         id:
           type: string
           format: uuid
+        status:
+          type: string
+          enum:
+            - PENDING
+            - PROCESSING
+            - COMPLETE
+    ImportUpdate:
+      description: An import is the process of uploading a file or files into xMatters systems via a transform. It tracks the status of the upload and transformation of the data.
+      properties:
         status:
           type: string
           enum:
