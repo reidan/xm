@@ -5025,6 +5025,7 @@ components:
       required: true
       schema:
         type: string
+        format: uuid
     path-integrationId:
       description: Integration identifier
       in: path
