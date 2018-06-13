@@ -11049,8 +11049,15 @@ components:
             - INACTIVE
           default: ACTIVE
         externalKey:
+          description: >-
+            Identifies this resource in an external system. Used when
+            externallyOwned is true
           type: string
         externallyOwned:
+          description: >-
+            True if this resource is managed by an external system.
+            Externally-owned resources cannot be deleted in the xMatters user
+            interface
           type: boolean
         responseCountThreshold:
           description: >-
@@ -12126,6 +12133,17 @@ components:
         timezone:
           type: string
           example: US/Pacific
+        externalKey:
+          description: >-
+            Identifies this resource in an external system. Used when
+            externallyOwned is true
+          type: string
+        externallyOwned:
+          description: >-
+            True if this resource is managed by an external system.
+            Externally-owned resources cannot be deleted in the xMatters user
+            interface
+          type: boolean
         revision:
           $ref: '#/components/schemas/Revision'
         links:
