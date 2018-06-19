@@ -1021,6 +1021,7 @@ paths:
       description: Returns a list of event resources in the xMatters system
       operationId: getEvents
       parameters:
+        - $ref: '#/components/parameters/query-eventType'
         - $ref: '#/components/parameters/query-plan'
         - $ref: '#/components/parameters/query-form'
         - $ref: '#/components/parameters/query-integration'
@@ -5282,6 +5283,16 @@ components:
       required: false
       schema:
         type: string
+    query-eventType:
+      description: Event type
+      in: query
+      name: eventType
+      required: false
+      schema:
+        type: string
+        enum:
+          - USER
+          - SYSTEM
     query-exclude:
       description: Exclude these default attributes
       in: query
@@ -8410,7 +8421,7 @@ components:
           description: A legacy identifier (numeric) that represents this resource
           type: string
         eventType:
-          description: User generated or System generated event
+          description: Event type
           type: string
           enum:
             - USER
