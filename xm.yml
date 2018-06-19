@@ -12154,6 +12154,7 @@ components:
         - name
         - language
         - timezone
+        - country
     SiteInput:
       description: Site
       properties:
@@ -12217,6 +12218,7 @@ components:
         - name
         - language
         - timezone
+        - country
     SitePointer:
       description: Site a group belongs to
       properties:
