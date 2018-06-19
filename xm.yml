@@ -11385,14 +11385,16 @@ components:
       required:
         - id
     Revision:
-      description: Only included on calls to the auditstore (calls with at=<time> query param)
+      description: Revision information
       properties:
         id:
           description: UUID for this specific revision
           type: string
           format: uuid
         at:
-          description: The time this revision was commited to the database
+          description: >-
+            The time this revision was commited to the database
+            Only included on calls to the auditstore (calls with at=<time> query param)
           type: string
           format: date-time
         seq:
@@ -11402,6 +11404,7 @@ components:
             Taken from the lsn or the kafka offset
             Likely to be non-sequential
             Will roll over occasionally so only a valid sorting attribute in combination with 'at' timestamp
+            Only included on calls to the auditstore (calls with at=<time> query param)
           type: integer
           format: int64
       required:
