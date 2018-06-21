@@ -8901,88 +8901,266 @@ components:
             - PROCESSING
             - COMPLETE
     Form:
-      description: A form
+      oneOf:
+        - $ref: '#/components/schemas/CommunicationForm'
+        - $ref: '#/components/schemas/SystemForm'
+      discriminator:
+        propertyName: formType
+    AbstractForm:
       properties:
-        id:
+        formType:
           type: string
-          format: uuid
-        formId:
-          type: string
-          description: Legacy numeric form identifier
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-        mobileEnabled:
-          type: boolean
-        uiEnabled:
-          type: boolean
-        apiEnabled:
-          type: boolean
-        senderOverrides:
-          type: object
-        plan:
-          $ref: '#/components/schemas/PlanReference'
-        recipients:
-          $ref: '#/components/schemas/RecipientPagination'
-        responseOptions:
-          $ref: '#/components/schemas/ResponseOptionPagination'
-        messages:
-          $ref: '#/components/schemas/MessagePagination'
-        revision:
-          $ref: '#/components/schemas/Revision'
-        links:
-          $ref: '#/components/schemas/SelfLink'
+          enum:
+            - FORM
+            - SYSTEM
+          default: FORM
       required:
-        - id
-        - name
-        - description
-        - status
+        - formType
+    CommunicationForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractForm'
+        - description: A form
+          properties:
+            formType:
+              type: string
+              enum:
+                - PLAN
+            id:
+              type: string
+              format: uuid
+            formId:
+              type: string
+              description: Legacy numeric form identifier
+            name:
+              type: string
+            description:
+              type: string
+            status:
+              type: string
+            mobileEnabled:
+              type: boolean
+            uiEnabled:
+              type: boolean
+            apiEnabled:
+              type: boolean
+            senderOverrides:
+              type: object
+            plan:
+              $ref: '#/components/schemas/PlanReference'
+            recipients:
+              $ref: '#/components/schemas/RecipientPagination'
+            responseOptions:
+              $ref: '#/components/schemas/ResponseOptionPagination'
+            messages:
+              $ref: '#/components/schemas/MessagePagination'
+            revision:
+              $ref: '#/components/schemas/Revision'
+            links:
+              $ref: '#/components/schemas/SelfLink'
+          required:
+            - id
+            - name
+            - description
+            - status
+    SystemForm:
+      oneOf:
+        - $ref: '#/components/schemas/DeviceValidationSystemForm'
+        - $ref: '#/components/schemas/ForgotMyPasswordSystemForm'
+        - $ref: '#/components/schemas/SupervisorResetSystemForm'
+        - $ref: '#/components/schemas/TemporaryReplacementSystemForm'
+        - $ref: '#/components/schemas/OnCallShiftStartSystemForm'
+      discriminator:
+        propertyName: systemFormType
+    AbstractSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractForm'
+        - properties:
+            formType:
+              type: string
+              enum:
+                - SYSTEM
+            systemFormType:
+              type: string
+              enum:
+                - DEVICE_VALIDATION
+                - FORGOT_MY_PASSWORD
+                - SUPERVISOR_RESET
+                - TEMP_REPLACEMENT
+                - ON_CALL_START_SHIFT
+    DeviceValidationSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemForm'
+        - properties:
+            systemFormType:
+              type: string
+              enum:
+                - DEVICE_VALIDATION
+    ForgotMyPasswordSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemForm'
+        - properties:
+            systemFormType:
+              type: string
+              enum:
+                - FORGOT_MY_PASSWORD
+    SupervisorResetSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemForm'
+        - properties:
+            systemFormType:
+              type: string
+              enum:
+                - SUPERVISOR_RESET
+    TemporaryReplacementSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemForm'
+        - properties:
+            systemFormType:
+              type: string
+              enum:
+                - TEMP_REPLACEMENT
+    OnCallShiftStartSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemForm'
+        - properties:
+            systemFormType:
+              type: string
+              enum:
+                - ON_CALL_START_SHIFT
     FormInput:
-      description: A form
+      oneOf:
+        - $ref: '#/components/schemas/CommunicationFormInput'
+      discriminator:
+        propertyName: formType
+    AbstractFormInput:
       properties:
-        id:
+        formType:
           type: string
-          format: uuid
-        name:
-          type: string
-        description:
-          type: string
-        mobileEnabled:
-          type: boolean
-        uiEnabled:
-          type: boolean
-        apiEnabled:
-          type: boolean
-        senderOverrides:
-          type: object
-        recipients:
-          description: Pre-configured recipients
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientPointer'
-        plan:
-          $ref: '#/components/schemas/PlanPointer'
-    FormPointer:
-      description: A reference to a form resource
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-    FormReference:
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
+          enum:
+            - FORM
+          default: FORM
       required:
-        - id
-        - name
+        - formType
+    CommunicationFormInput:
+      allOf:
+        - $ref: '#/components/schemas/AbstractFormInput'
+        - description: A form
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            description:
+              type: string
+            mobileEnabled:
+              type: boolean
+            uiEnabled:
+              type: boolean
+            apiEnabled:
+              type: boolean
+            senderOverrides:
+              type: object
+            recipients:
+              description: Pre-configured recipients
+              type: array
+              items:
+                $ref: '#/components/schemas/RecipientPointer'
+            plan:
+              $ref: '#/components/schemas/PlanPointer'
+    FormPointer:
+      oneOf:
+        - $ref: '#/components/schemas/CommunicationFormPointer'
+        - $ref: '#/components/schemas/SystemFormPointer'
+      discriminator:
+        propertyName: formType
+    AbstractFormPointer:
+      properties:
+        formType:
+          type: string
+          enum:
+            - FORM
+            - SYSTEM
+          default: FORM
+      required:
+        - formType
+    CommunicationFormPointer:
+      allOf:
+        - $ref: '#/components/schemas/AbstractFormPointer'
+        - properties:
+            formType:
+              type: string
+              enum:
+                - FORM
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+    SystemFormPointer:
+      allOf:
+        - $ref: '#/components/schemas/AbstractFormPointer'
+        - properties:
+            formType:
+              type: string
+              enum:
+                - SYSTEM
+            systemFormType:
+              type: string
+              enum:
+                - DEVICE_VALIDATION
+                - FORGOT_MY_PASSWORD
+                - SUPERVISOR_RESET
+                - TEMP_REPLACEMENT
+                - ON_CALL_START_SHIFT
+    FormReference:
+      oneOf:
+        - $ref: '#/components/schemas/CommunicationFormReference'
+        - $ref: '#/components/schemas/SystemFormReference'
+      discriminator:
+        propertyName: formType
+    AbstractFormReference:
+      properties:
+        formType:
+          type: string
+          enum:
+            - FORM
+            - SYSTEM
+          default: FORM
+      required:
+        - formType
+    CommunicationFormReference:
+      allOf:
+        - $ref: '#/components/schemas/AbstractFormReference'
+        - properties:
+            formType:
+              type: string
+              enum:
+                - FORM
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+          required:
+            - id
+            - name
+    SystemFormReference:
+      allOf:
+        - $ref: '#/components/schemas/AbstractFormReference'
+        - properties:
+            formType:
+              type: string
+              enum:
+                - SYSTEM
+            systemFormType:
+              type: string
+              enum:
+                - DEVICE_VALIDATION
+                - FORGOT_MY_PASSWORD
+                - SUPERVISOR_RESET
+                - TEMP_REPLACEMENT
+                - ON_CALL_START_SHIFT
     Function:
       description: Function
       properties:
@@ -10107,15 +10285,6 @@ components:
               enum:
                 - PLAN
     SystemPlan:
-      oneOf:
-        - $ref: '#/components/schemas/DeviceValidationSystemPlan'
-        - $ref: '#/components/schemas/ForgotMyPasswordSystemPlan'
-        - $ref: '#/components/schemas/SupervisorResetSystemPlan'
-        - $ref: '#/components/schemas/TemporaryReplacementSystemPlan'
-        - $ref: '#/components/schemas/OnCallShiftStartSystemPlan'
-      discriminator:
-        propertyName: systemPlanType
-    AbstractSystemPlan:
       allOf:
         - $ref: '#/components/schemas/AbstractPlan'
         - properties:
@@ -10123,54 +10292,6 @@ components:
               type: string
               enum:
                 - SYSTEM
-            systemPlanType:
-              type: string
-              enum:
-                - DEVICE_VALIDATION
-                - FORGOT_MY_PASSWORD
-                - SUPERVISOR_RESET
-                - TEMP_REPLACEMENT
-                - ON_CALL_START_SHIFT
-    DeviceValidationSystemPlan:
-      allOf:
-        - $ref: '#/components/schemas/AbstractSystemPlan'
-        - properties:
-            systemPlanType:
-              type: string
-              enum:
-                - DEVICE_VALIDATION
-    ForgotMyPasswordSystemPlan:
-      allOf:
-        - $ref: '#/components/schemas/AbstractSystemPlan'
-        - properties:
-            systemPlanType:
-              type: string
-              enum:
-                - FORGOT_MY_PASSWORD
-    SupervisorResetSystemPlan:
-      allOf:
-        - $ref: '#/components/schemas/AbstractSystemPlan'
-        - properties:
-            systemPlanType:
-              type: string
-              enum:
-                - SUPERVISOR_RESET
-    TemporaryReplacementSystemPlan:
-      allOf:
-        - $ref: '#/components/schemas/AbstractSystemPlan'
-        - properties:
-            systemPlanType:
-              type: string
-              enum:
-                - TEMP_REPLACEMENT
-    OnCallShiftStartSystemPlan:
-      allOf:
-        - $ref: '#/components/schemas/AbstractSystemPlan'
-        - properties:
-            systemPlanType:
-              type: string
-              enum:
-                - ON_CALL_START_SHIFT
     BuiltInPlan:
       allOf:
         - $ref: '#/components/schemas/AbstractPlan'
