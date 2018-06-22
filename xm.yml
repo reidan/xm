@@ -9039,8 +9039,6 @@ components:
           enum:
             - FORM
           default: FORM
-      required:
-        - formType
     CommunicationFormInput:
       allOf:
         - $ref: '#/components/schemas/AbstractFormInput'
@@ -9082,8 +9080,6 @@ components:
             - FORM
             - SYSTEM
           default: FORM
-      required:
-        - formType
     CommunicationFormPointer:
       allOf:
         - $ref: '#/components/schemas/AbstractFormPointer'
@@ -9127,8 +9123,6 @@ components:
             - FORM
             - SYSTEM
           default: FORM
-      required:
-        - formType
     CommunicationFormReference:
       allOf:
         - $ref: '#/components/schemas/AbstractFormReference'
