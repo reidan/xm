@@ -4441,6 +4441,30 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - Communication Plans
+  '/plans/{planId}/shared-libraries':
+    get:
+      summary: List plan shared libraries
+      description: List plan shared libraries
+      operationId: getPlanSharedLibraries
+      parameters:
+        - $ref: '#/components/parameters/path-planId'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedLibraryPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Integrations
   /recipients:
     get:
       description: Returns information about potential recipients
@@ -4548,6 +4572,85 @@ paths:
       summary: Returns information about configured service providers
       tags:
         - Service Providers
+  '/shared-libraries':
+    post:
+      summary: Insert or update a shared library
+      description: Insert or update a shared library
+      operationId: postSharedLibrary
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedLibraryInput'
+        required: true
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedLibrary'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedLibrary'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Integrations
+  '/shared-libraries/{sharedLibraryId}':
+    get:
+      summary: Get a shared library
+      description: Get a shared library
+      operationId: getSharedLibrary
+      parameters:
+        - $ref: '#/components/parameters/path-sharedLibraryId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedLibrary'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Integrations
+    delete:
+      summary: Delete a shared library
+      description: Delete a shared library
+      operationId: deleteSharedLibrary
+      parameters:
+        - $ref: '#/components/parameters/path-sharedLibraryId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedLibrary'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Integrations
   /shift-occurrences:
     get:
       summary: List shift occurrences
@@ -5123,6 +5226,13 @@ components:
       description: The site uuid or name
       in: path
       name: siteId
+      required: true
+      schema:
+        type: string
+    path-sharedLibraryId:
+      description: The shared library uuid
+      in: path
+      name: sharedLibraryId
       required: true
       schema:
         type: string
@@ -11990,6 +12100,22 @@ components:
           format: uuid
       required:
         - id
+    SharedLibrary:
+      properties:
+        id:
+          type: string
+          format: uuid
+        plan:
+          $ref: '#/components/schemas/PlanReference'
+      required:
+        - id
+    SharedLibraryInput:
+      properties:
+        id:
+          type: string
+          format: uuid
+        plan:
+          $ref: '#/components/schemas/PlanPointer'
     Shift:
       properties:
         id:
@@ -13201,6 +13327,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/ServiceProvider'
+          required:
+            - data
+    SharedLibraryPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/SharedLibrary'
           required:
             - data
     ShiftPagination:
