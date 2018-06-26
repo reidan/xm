@@ -12106,6 +12106,9 @@ components:
         id:
           type: string
           format: uuid
+        script:
+          type: string
+          description: Base64 encoded script source code
         plan:
           $ref: '#/components/schemas/PlanReference'
       required:
@@ -12115,6 +12118,9 @@ components:
         id:
           type: string
           format: uuid
+        script:
+          type: string
+          description: Base64 encoded script source code
         plan:
           $ref: '#/components/schemas/PlanPointer'
     Shift:
