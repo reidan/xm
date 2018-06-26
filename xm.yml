@@ -4612,7 +4612,7 @@ paths:
       description: Get a shared library
       operationId: getSharedLibrary
       parameters:
-        - $ref: '#/components/parameters/path-sharedLibraryId'
+        - $ref: '#/components/parameters/path-libraryId'
       responses:
         '200':
           description: OK
@@ -4633,7 +4633,7 @@ paths:
       description: Delete a shared library
       operationId: deleteSharedLibrary
       parameters:
-        - $ref: '#/components/parameters/path-sharedLibraryId'
+        - $ref: '#/components/parameters/path-libraryId'
       responses:
         '200':
           description: OK
@@ -5229,13 +5229,14 @@ components:
       required: true
       schema:
         type: string
-    path-sharedLibraryId:
-      description: The shared library uuid
+    path-libraryId:
+      description: The library uuid
       in: path
-      name: sharedLibraryId
+      name: libraryId
       required: true
       schema:
         type: string
+        format: uuid
     path-temporaryAbsenceId:
       description: Temporary Absence identifier
       name: temporaryAbsenceId
