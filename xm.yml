@@ -5230,12 +5230,13 @@ components:
       schema:
         type: string
     path-libraryId:
-      description: The library uuid or name
+      description: The library uuid
       in: path
       name: libraryId
       required: true
       schema:
         type: string
+        format: uuid
     path-temporaryAbsenceId:
       description: Temporary Absence identifier
       name: temporaryAbsenceId
