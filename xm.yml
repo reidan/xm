@@ -5230,7 +5230,7 @@ components:
       schema:
         type: string
     path-libraryId:
-      description: The library uuid
+      description: The library uuid or name
       in: path
       name: libraryId
       required: true
