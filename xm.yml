@@ -12106,6 +12106,8 @@ components:
         id:
           type: string
           format: uuid
+        name:
+          type: string
         script:
           type: string
           description: Base64 encoded script source code
@@ -12113,11 +12115,15 @@ components:
           $ref: '#/components/schemas/PlanReference'
       required:
         - id
+        - name
+        - script
     SharedLibraryInput:
       properties:
         id:
           type: string
           format: uuid
+        name:
+          type: string
         script:
           type: string
           description: Base64 encoded script source code
