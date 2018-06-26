@@ -4606,7 +4606,7 @@ paths:
           $ref: '#/components/responses/409'
       tags:
         - Integrations
-  '/shared-libraries/{sharedLibraryId}':
+  '/shared-libraries/{libraryId}':
     get:
       summary: Get a shared library
       description: Get a shared library
