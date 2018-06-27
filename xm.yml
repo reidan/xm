@@ -8825,10 +8825,13 @@ components:
           $ref: '#/components/schemas/EventInput'
         recurrence:
           $ref: '#/components/schemas/Recurrence'
+        owner:
+          $ref: '#/components/schemas/PersonReference'
       required:
         - name
         - event
         - recurrence
+        - owner
     EventScheduleInput:
       description: A scheduled event or series of events
       properties:
@@ -8838,6 +8841,8 @@ components:
           $ref: '#/components/schemas/EventInput'
         recurrence:
           $ref: '#/components/schemas/Recurrence'
+        owner:
+          $ref: '#/components/schemas/PersonPointer'
       required:
         - name
         - event
