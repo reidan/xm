@@ -4820,8 +4820,8 @@ paths:
       tags:
         - Temporary Absences
     post:
-      summary: Insert or update Temporary Absences
-      description: Insert or update Temporary Absences
+      summary: Insert or update Temporary Absence
+      description: Insert or update Temporary Absence
       operationId: postTemporaryAbsence
       requestBody:
         content:
@@ -4842,6 +4842,35 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TemporaryAbsence'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Temporary Absences
+    patch:
+      summary: Insert or update Temporary Absences
+      description: Insert or update Temporary Absences
+      operationId: patchTemporaryAbsences
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+                items:
+                  $ref: '#/components/schemas/TemporaryAbsenceInput'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemporaryAbsencePagination'
         '400':
           $ref: '#/components/responses/400'
         '401':
