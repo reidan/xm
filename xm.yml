@@ -12752,8 +12752,13 @@ components:
             - 404
             - 409
         subcode:
-          description: An application-specific response sub-status
+          description: An application-specific response sub-status provided for client side localization of message
           type: string
+        arguments:
+          description: String replacement positional arguments provided for client side localization of message
+          type: array
+          items:
+            type: string
         message:
           description: A detailed description of the response or error
           type: string
