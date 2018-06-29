@@ -4861,8 +4861,8 @@ paths:
           application/json:
             schema:
               type: array
-                items:
-                  $ref: '#/components/schemas/TemporaryAbsenceInput'
+              items:
+                $ref: '#/components/schemas/TemporaryAbsenceInput'
         required: true
       responses:
         '200':
