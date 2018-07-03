@@ -9015,6 +9015,7 @@ components:
             - PENDING
             - PROCESSING
             - COMPLETE
+            - FAILED
         at:
           type: string
           format: date-time
@@ -9036,6 +9037,7 @@ components:
             - PENDING
             - PROCESSING
             - COMPLETE
+            - FAILED
     ImportUpdate:
       description: An import is the process of uploading a file or files into xMatters systems via a transform. It tracks the status of the upload and transformation of the data.
       properties:
@@ -9045,6 +9047,7 @@ components:
             - PENDING
             - PROCESSING
             - COMPLETE
+            - FAILED
     Form:
       oneOf:
         - $ref: '#/components/schemas/CommunicationForm'
