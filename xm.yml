@@ -4769,6 +4769,29 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - Sites
+    delete:
+      summary: Delete a Site
+      description: Delete a Site
+      operationId: deleteSite
+      parameters:
+        - $ref: '#/components/parameters/path-siteId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Site'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Sites
   /targetable:
     get:
       summary: Search targetable entities
