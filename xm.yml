@@ -8946,6 +8946,8 @@ components:
           enum:
             - PROPERTY
             - ATTRIBUTE
+      required:
+        - eventCorrelationType
     PropertyEventCorrelator:
       properties:
         eventCorrelationType:
@@ -8955,6 +8957,9 @@ components:
         property:
           description: Case insensitive property name
           type: string
+      required:
+        - eventCorrelationType
+        - property
     AttributeEventCorrelator:
       properties:
         eventCorrelationType:
@@ -8970,6 +8975,9 @@ components:
             - incident
             - integration
             - submitter
+      required:
+        - eventCorrelationType
+        - attribute
     Filter:
       oneOf:
         - $ref: '#/components/schemas/EventFilter'
