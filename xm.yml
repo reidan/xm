@@ -9106,7 +9106,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractEventFilterInput'
         - properties:
-            filterType:
+            eventFilterType:
               type: string
               enum:
                 - CORRELATION
@@ -9124,7 +9124,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractEventFilterInput'
         - properties:
-            filterType:
+            eventFilterType:
               type: string
               enum:
                 - FLOOD_CONTROL
