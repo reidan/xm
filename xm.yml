@@ -9064,10 +9064,8 @@ components:
                   type: integer
                 maxDurationSeconds:
                   type: integer
-                correlators:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/EventCorrelator'
+                correlationFilters:
+                  $ref: '#/components/schemas/CorrelationEventFilterPagination'
     FilterInput:
       oneOf:
         - $ref: '#/components/schemas/EventFilterInput'
@@ -9150,10 +9148,10 @@ components:
                   type: integer
                 maxDurationSeconds:
                   type: integer
-                correlators:
+                correlationFilters:
                   type: array
                   items:
-                    $ref: '#/components/schemas/EventCorrelator'
+                    $ref: '#/components/schemas/FilterPointer'
     NotificationFilter:
       oneOf:
         - $ref: '#/components/schemas/DefaultNotificationFilter'
@@ -9205,6 +9203,14 @@ components:
               type: string
               enum:
                 - DEFAULT
+    FilterPointer:
+      description: A reference pointer to a filter
+      properties:
+        id:
+          type: string
+          format: uuid
+      required:
+        - id
     Import:
       description: An import is the process of uploading a file or files into xMatters systems via a transform. It tracks the status of the upload and transformation of the data.
       properties:
@@ -13436,6 +13442,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/PropertyDefinition'
+          required:
+            - data
+    CorrelationEventFilterPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/CorrelationEventFilter'
           required:
             - data
     ConferencePagination:
