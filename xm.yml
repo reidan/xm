@@ -9097,6 +9097,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/AbstractFilter'
         - properties:
+            filterType:
+              type: string
+              enum:
+                - EVENT
             eventFilterType:
               type: string
               enum:
