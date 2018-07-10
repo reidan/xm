@@ -8933,72 +8933,221 @@ components:
       required:
         - id
         - url
+    EventCorrelator:
+      oneOf:
+        - $ref: '#/components/schemas/PropertyEventCorrelator'
+        - $ref: '#/components/schemas/AttributeEventCorrelator'
+      discriminator:
+        propertyName: eventCorrelationType
+    AbstractEventCorrelator:
+      properties:
+        eventCorrelationType:
+          type: string
+          enum:
+            - PROPERTY
+            - ATTRIBUTE
+    PropertyEventCorrelator:
+      properties:
+        eventCorrelationType:
+          type: string
+          enum:
+            - PROPERTY
+        property:
+          description: Case insensitive property name
+          type: string
+    AttributeEventCorrelator:
+      properties:
+        eventCorrelationType:
+          type: string
+          enum:
+            - ATTRIBUTE
+        attribute:
+          description: Case sensitive attribute name
+          type: string
+          enum:
+            - recipients
+            - priority
+            - incident
+            - integration
+            - submitter
+    Filter:
+      oneOf:
+        - $ref: '#/components/schemas/EventFilter'
+        - $ref: '#/components/schemas/NotificationFilter'
+      discriminator:
+        propertyName: filterType
     AbstractFilter:
       description: A filter
       properties:
         id:
           type: string
           format: uuid
+        name:
+          type: string
         filterType:
           type: string
           enum:
             - EVENT
             - NOTIFICATION
-        config:
-          description: >-
-            Configuration properties that will be passed to filter constructor
-          type: object
         active:
           type: boolean
+        plan:
+          $ref: '#/components/schemas/PlanReference'
+        integration:
+          $ref: '#/components/schemas/IntegrationReference'
       required:
         - id
+        - name
         - filterType
         - active
+    EventFilter:
+      oneOf:
+        - $ref: '#/components/schemas/CorrelationEventFilter'
+        - $ref: '#/components/schemas/FloodControlEventFilter'
+      discriminator:
+        propertyName: eventFilterType
+    AbstractEventFilter:
+      description: An event filter
+      allOf:
+        - $ref: '#/components/schemas/AbstractFilter'
+        - properties:
+            eventFilterType:
+              type: string
+              enum:
+                - CORRELATION
+                - FLOOD_CONTROL
+          required:
+            - eventFilterType
+    CorrelationEventFilter:
+      description: An event filter
+      allOf:
+        - $ref: '#/components/schemas/AbstractEventFilter'
+        - properties:
+            eventFilterType:
+              type: string
+              enum:
+                - CORRELATION
+            config:
+              description: Configuration properties that will be passed to filter constructor
+              type: object
+              properties:
+                windowDurationSeconds:
+                  type: integer
+                correlators:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EventCorrelator'
+    FloodControlEventFilter:
+      description: An event filter
+      allOf:
+        - $ref: '#/components/schemas/AbstractEventFilter'
+        - properties:
+            eventFilterType:
+              type: string
+              enum:
+                - FLOOD_CONTROL
+            config:
+              description: Configuration properties that will be passed to filter constructor
+              type: object
+              properties:
+                floodThreshold:
+                  type: integer
+                maxEventCount:
+                  type: integer
+                maxDurationSeconds:
+                  type: integer
+                correlators:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EventCorrelator'
+    FilterInput:
+      oneOf:
+        - $ref: '#/components/schemas/EventFilterInput'
+        - $ref: '#/components/schemas/NotificationFilterInput'
+      discriminator:
+        propertyName: filterType
     AbstractFilterInput:
-      description: A filter
+      description: An event filter
       type: object
       properties:
         id:
           type: string
           format: uuid
+        name:
+          type: string
         filterType:
           type: string
           enum:
             - EVENT
             - NOTIFICATION
-        config:
-          description: >-
-            Configuration properties that will be passed to filter constructor
-          type: object
         active:
           type: boolean
-    EventFilter:
-      description: An event filter
-      allOf:
-        - $ref: '#/components/schemas/AbstractFilter'
-        - properties:
-            filterType:
-              type: string
-              enum:
-                - EVENT
-            plan:
-              $ref: '#/components/schemas/PlanReference'
-            integration:
-              $ref: '#/components/schemas/IntegrationReference'
+        plan:
+          $ref: '#/components/schemas/PlanPointer'
+        integration:
+          $ref: '#/components/schemas/IntegrationPointer'
     EventFilterInput:
+      oneOf:
+        - $ref: '#/components/schemas/CorrelationEventFilterInput'
+        - $ref: '#/components/schemas/FloodControlEventFilterInput'
+      discriminator:
+        propertyName: eventFilterType
+    AbstractEventFilterInput:
       description: An event filter
       allOf:
-        - $ref: '#/components/schemas/AbstractFilterInput'
+        - $ref: '#/components/schemas/AbstractFilter'
+        - properties:
+            eventFilterType:
+              type: string
+              enum:
+                - CORRELATION
+                - FLOOD_CONTROL
+    CorrelationEventFilterInput:
+      allOf:
+        - $ref: '#/components/schemas/AbstractEventFilterInput'
         - properties:
             filterType:
               type: string
               enum:
-                - EVENT
-            plan:
-              $ref: '#/components/schemas/PlanPointer'
-            integration:
-              $ref: '#/components/schemas/IntegrationPointer'
+                - CORRELATION
+            config:
+              description: Configuration properties that will be passed to filter constructor
+              type: object
+              properties:
+                windowDurationSeconds:
+                  type: integer
+                correlators:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EventCorrelator'
+    FloodControlEventFilterInput:
+      allOf:
+        - $ref: '#/components/schemas/AbstractEventFilterInput'
+        - properties:
+            filterType:
+              type: string
+              enum:
+                - FLOOD_CONTROL
+            config:
+              description: Configuration properties that will be passed to filter constructor
+              type: object
+              properties:
+                floodThreshold:
+                  type: integer
+                maxEventCount:
+                  type: integer
+                maxDurationSeconds:
+                  type: integer
+                correlators:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/EventCorrelator'
     NotificationFilter:
+      oneOf:
+        - $ref: '#/components/schemas/DefaultNotificationFilter'
+      discriminator:
+        propertyName: notificationFilterType
+    AbstractNotificationFilter:
       description: A notification filter
       allOf:
         - $ref: '#/components/schemas/AbstractFilter'
@@ -9007,12 +9156,24 @@ components:
               type: string
               enum:
                 - NOTIFICATION
-            plan:
-              $ref: '#/components/schemas/PlanReference'
-            integration:
-              $ref: '#/components/schemas/IntegrationReference'
+            notificationfilterType:
+              type: string
+              enum:
+                - DEFAULT
+    DefaultNotificationFilter:
+      allOf:
+        - $ref: '#/components/schemas/AbstractNotificationFilter'
+        - properties:
+            notificationfilterType:
+              type: string
+              enum:
+                - DEFAULT
     NotificationFilterInput:
-      description: A notification filter
+      oneOf:
+        - $ref: '#/components/schemas/DefaultNotificationFilterInput'
+      discriminator:
+        propertyName: notificationFilterType
+    AbstractNotificationFilterInput:
       allOf:
         - $ref: '#/components/schemas/AbstractFilterInput'
         - properties:
@@ -9020,10 +9181,18 @@ components:
               type: string
               enum:
                 - NOTIFICATION
-            plan:
-              $ref: '#/components/schemas/PlanPointer'
-            integration:
-              $ref: '#/components/schemas/IntegrationPointer'
+            notificationfilterType:
+              type: string
+              enum:
+                - DEFAULT
+    DefaultNotificationFilterInput:
+      allOf:
+        - $ref: '#/components/schemas/AbstractNotificationFilterInput'
+        - properties:
+            notificationfilterType:
+              type: string
+              enum:
+                - DEFAULT
     Import:
       description: An import is the process of uploading a file or files into xMatters systems via a transform. It tracks the status of the upload and transformation of the data.
       properties:
