@@ -955,6 +955,103 @@ paths:
           $ref: '#/components/responses/403'
       tags:
         - File Transfer
+  /dynamic-teams:
+    get:
+      summary: Get dynamic teams
+      description: Get dynamic teams
+      operationId: getDynamicTeams
+      parameters:
+        - $ref: '#/components/parameters/query-name'
+        - $ref: '#/components/parameters/query-site'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicTeamPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Dynamic Teams
+    post:
+      summary: Add or update a dynamic team
+      description: Add or update a dynamic team
+      operationId: postDynamicTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DynamicTeamInput'
+        required: true
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicTeam'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicTeam'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Dynamic Teams
+  '/dynamic-teams/{dynamicTeamId}':
+    get:
+      summary: Get a dynamic team
+      description: Get a dynamic team
+      operationId: getDynamicTeam
+      parameters:
+        - $ref: '#/components/parameters/path-dynamicTeamId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicTeam'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Dynamic Teams
+    delete:
+      summary: Delete a dynamic team
+      description: Delete a dynamic team
+      operationId: deleteDynamicTeam
+      parameters:
+        - $ref: '#/components/parameters/path-dynamicTeamId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicTeam'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Dynamic Teams
   /email-delivery-status-notifications:
     post:
       summary: Email delivery status notification
@@ -1100,6 +1197,8 @@ paths:
       summary: Submit or update an event
       description: Submit or update an event
       operationId: postEvent
+      requestBody:
+        $ref: '#/components/requestBodies/EventInput'
       responses:
         '200':
           description: Updated
@@ -1129,8 +1228,6 @@ paths:
           $ref: '#/components/responses/409'
       tags:
         - Events
-      requestBody:
-        $ref: '#/components/requestBodies/EventInput'
   '/events/{eventId}':
     get:
       description: >-
@@ -5140,6 +5237,13 @@ components:
       required: true
       schema:
         type: string
+    path-dynamicTeamId:
+      description: The dynamic team uuid or name
+      in: path
+      name: dynamicTeamId
+      required: true
+      schema:
+        type: string
     path-eventId:
       description: The event id
       in: path
@@ -8534,6 +8638,48 @@ components:
         - startTime
         - durationInMinutes
         - excludeHolidays
+    DynamicTeam:
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipient'
+        - description: Dynamic teams are used for collecting users and devices and organizing them into notification schedules
+          properties:
+            recipientType:
+              type: string
+              enum:
+                - DYNAMIC_TEAM
+            site:
+              $ref: '#/components/schemas/SiteReference'
+            supervisors:
+              $ref: '#/components/schemas/PersonPagination'
+            observers:
+              $ref: '#/components/schemas/ObserverPagination'
+          required:
+            - recipientType
+    DynamicTeamInput:
+      description: Dynamic teams are used for collecting users and devices and organizing them into notification schedules
+      allOf:
+        - $ref: '#/components/schemas/AbstractRecipientInput'
+        - properties:
+            recipientType:
+              type: string
+              enum:
+                - GROUP
+            description:
+              type: string
+            site:
+              $ref: '#/components/schemas/SitePointer'
+            supervisors:
+              description: >-
+                A list of group supervisors. Groups must have at least one
+                supervisor
+              items:
+                $ref: '#/components/schemas/PersonPointer'
+              type: array
+            observers:
+              description: A list of observers
+              type: array
+              items:
+                $ref: '#/components/schemas/ObserverPointer'
     DynamicTeamReference:
       allOf:
         - $ref: '#/components/schemas/AbstractRecipientReference'
@@ -13222,6 +13368,16 @@ components:
                   - TEXT_PHONE
                   - VOICE
                   - VOICE_IVR
+          required:
+            - data
+    DynamicTeamPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/DynamicTeam'
           required:
             - data
     EventPagination:
