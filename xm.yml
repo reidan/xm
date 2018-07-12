@@ -9581,7 +9581,9 @@ components:
         - $ref: '#/components/schemas/DeviceValidationSystemForm'
         - $ref: '#/components/schemas/ForgotMyPasswordSystemForm'
         - $ref: '#/components/schemas/SupervisorResetSystemForm'
-        - $ref: '#/components/schemas/TemporaryReplacementSystemForm'
+        - $ref: '#/components/schemas/TemporaryReplacementSupervisorsSystemForm'
+        - $ref: '#/components/schemas/TemporaryReplacementReplacerSystemForm'
+        - $ref: '#/components/schemas/TemporaryVacancySupervisorsSystemForm'
         - $ref: '#/components/schemas/OnCallShiftStartSystemForm'
       discriminator:
         propertyName: systemFormType
@@ -9599,7 +9601,9 @@ components:
                 - DEVICE_VALIDATION
                 - FORGOT_MY_PASSWORD
                 - SUPERVISOR_RESET
-                - TEMP_REPLACEMENT
+                - TEMP_REPLACEMENT_SUPERVISORS
+                - TEMP_REPLACEMENT_REPLACER
+                - TEMP_VACANCY_SUPERVISORS
                 - ON_CALL_START_SHIFT
     DeviceValidationSystemForm:
       allOf:
@@ -9625,14 +9629,30 @@ components:
               type: string
               enum:
                 - SUPERVISOR_RESET
-    TemporaryReplacementSystemForm:
+    TemporaryReplacementSupervisorsSystemForm:
       allOf:
         - $ref: '#/components/schemas/AbstractSystemForm'
         - properties:
             systemFormType:
               type: string
               enum:
-                - TEMP_REPLACEMENT
+                - TEMP_REPLACEMENT_SUPERVISORS
+    TemporaryReplacementReplacerSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemForm'
+        - properties:
+            systemFormType:
+              type: string
+              enum:
+                - TEMP_REPLACEMENT_REPLACER
+    TemporaryVacancySupervisorsSystemForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSystemForm'
+        - properties:
+            systemFormType:
+              type: string
+              enum:
+                - TEMP_VACANCY_SUPERVISORS
     OnCallShiftStartSystemForm:
       allOf:
         - $ref: '#/components/schemas/AbstractSystemForm'
