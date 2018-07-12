@@ -9605,6 +9605,8 @@ components:
                 - TEMP_REPLACEMENT_REPLACER
                 - TEMP_VACANCY_SUPERVISORS
                 - ON_CALL_START_SHIFT
+          required:
+            - systemFormType
     DeviceValidationSystemForm:
       allOf:
         - $ref: '#/components/schemas/AbstractSystemForm'
