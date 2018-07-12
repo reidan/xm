@@ -8647,6 +8647,10 @@ components:
               type: string
               enum:
                 - DYNAMIC_TEAM
+            useDefaultDevices:
+              type: boolean
+            criteria:
+              $ref: '#/components/schemas/SearchCriteria'
             site:
               $ref: '#/components/schemas/SiteReference'
             supervisors:
@@ -8666,15 +8670,19 @@ components:
                 - GROUP
             description:
               type: string
+            useDefaultDevices:
+              type: boolean
+            criteria:
+              type: array
+              items:
+                $ref: '#/components/schemas/SearchCriteriaInput'
             site:
               $ref: '#/components/schemas/SitePointer'
             supervisors:
-              description: >-
-                A list of group supervisors. Groups must have at least one
-                supervisor
+              description: A list of group supervisors. Groups must have at least one supervisor
+              type: array
               items:
                 $ref: '#/components/schemas/PersonPointer'
-              type: array
             observers:
               description: A list of observers
               type: array
@@ -8688,6 +8696,108 @@ components:
               type: string
               enum:
                 - DYNAMIC_TEAM
+    SearchCriteria:
+      properties:
+        operand:
+          type: string
+          enum:
+            - AND
+            - OR
+        criteria:
+          $ref: '#/components/schemas/SearchCriterionPagination'
+    SearchCriteriaInput:
+      properties:
+        operand:
+          type: string
+          enum:
+            - AND
+            - OR
+        criteria:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchCriterion'
+    SearchCriterion:
+      oneOf:
+        - $ref: '#/components/schemas/FieldSearchCriterion'
+        - $ref: '#/components/schemas/CustomFieldSearchCriterion'
+        - $ref: '#/components/schemas/CustomAttributeSearchCriterion'
+      discriminator:
+        propertyName: searchCriterionType
+    AbstractSearchCriterion:
+      properties:
+        searchCriterionType:
+          type: string
+          enum:
+            - FIELD
+            - CUSTOM_FIELD
+            - CUSTOM_ATTRIBUTE
+      required:
+        - searchCriterionType
+    FieldSearchCriterion:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSearchCriterion'
+        - properties:
+            searchCriterionType:
+              type: string
+              enum:
+                - FIELD
+            field:
+              type: string
+            operand:
+              type: string
+              enum:
+                - EQUALS
+                - BEGINS_WITH
+                - ENDS_WITH
+                - CONTAINS
+            value:
+              type: string
+          required:
+            - field
+            - operand
+            - value
+    CustomFieldSearchCriterion:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSearchCriterion'
+        - properties:
+            searchCriterionType:
+              type: string
+              enum:
+                - CUSTOM_FIELD
+            field:
+              type: string
+            operand:
+              type: string
+              enum:
+                - EQUALS
+                - BEGINS_WITH
+                - ENDS_WITH
+                - CONTAINS
+                - TRUE
+                - FALSE
+            value:
+              type: string
+          required:
+            - field
+            - operand
+            - value
+    CustomAttributeSearchCriterion:
+      allOf:
+        - $ref: '#/components/schemas/AbstractSearchCriterion'
+        - properties:
+            searchCriterionType:
+              type: string
+              enum:
+                - CUSTOM_ATTRIBUTE
+            category:
+              type: string
+            values:
+              type: array
+              items:
+                type: string
+          required:
+            - category
+            - values
     RepeatingAlertConfig:
       type: object
       properties:
@@ -13748,6 +13858,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Scenario'
+          required:
+            - data
+    SearchCriterionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/SearchCriterion'
           required:
             - data
     ServiceProviderPagination:
