@@ -1801,6 +1801,52 @@ paths:
           $ref: '#/components/responses/403'
       tags:
         - Event Schedules
+  /event-suppressions:
+    get:
+      summary: Get event suppressions
+      description: Get event suppressions
+      operationId: getEventSuppressions
+      parameters:
+        - $ref: '#/components/parameters/query-event'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSuppressionPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Event Suppressions
+  '/event-suppressions/{eventSuppressionId}':
+    get:
+      summary: Get event suppression
+      description: Get event suppression
+      operationId: getEventSuppression
+      parameters:
+        - $ref: '#/components/parameters/path-eventSuppressionId'
+        - $ref: '#/components/parameters/query-embed'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventSuppression'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+      tags:
+        - Event Suppressions
   /feature-toggles:
     get:
       tags:
@@ -5248,6 +5294,13 @@ components:
       description: The event id
       in: path
       name: eventId
+      required: true
+      schema:
+        type: string
+    path-eventSuppressionId:
+      description: Event suppression id
+      in: path
+      name: eventSuppressionId
       required: true
       schema:
         type: string
@@ -9155,6 +9208,23 @@ components:
         - name
         - event
         - recurrence
+    EventSuppression:
+      description: An event suppression
+      properties:
+        event:
+          $ref: '#/components/schemas/EventReference'
+        match:
+          $ref: '#/components/schemas/EventReference'
+        at:
+          type: string
+          format: date-time
+        filter:
+          $ref: '#/components/schemas/FilterReference'
+      required:
+        - event
+        - match
+        - at
+        - filter
     FeatureToggle:
       description: Feature toggle
       properties:
@@ -9459,6 +9529,23 @@ components:
               type: string
               enum:
                 - DEFAULT
+    FilterReference:
+      description: A reference to a filter
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        filterType:
+          type: string
+          enum:
+            - EVENT
+            - NOTIFICATION
+      required:
+        - id
+        - name
+        - filterType
     FilterPointer:
       description: A reference pointer to a filter
       properties:
@@ -13553,6 +13640,16 @@ components:
                 $ref: '#/components/schemas/EventSchedule'
           required:
             - data
+    EventSuppressionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/EventSuppression'
+          required:
+            - data
     EventFilterPagination:
       allOf:
         - $ref: '#/components/schemas/AbstractPagination'
@@ -13581,6 +13678,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/FileAttachment'
+          required:
+            - data
+    FilterPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Filter'
           required:
             - data
     FormPagination:
