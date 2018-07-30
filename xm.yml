@@ -11898,6 +11898,13 @@ components:
             - DEVICE
             - TEAM
             - DYNAMIC_TEAM
+        status:
+          description: Whether the recipient is active. Inactive recipients do not receive notifications
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+            - INVALID
       required:
         - id
         - targetName
