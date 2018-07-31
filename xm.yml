@@ -9574,6 +9574,12 @@ components:
           format: date-time
         by:
           $ref: '#/components/schemas/PersonReference'
+        processedCount:
+          type: integer
+        warningCount:
+          type: integer
+        errorCount:
+          type: integer
       required:
         - id
         - transform
@@ -9601,6 +9607,12 @@ components:
             - PROCESSING
             - COMPLETE
             - FAILED
+        processedCount:
+          type: integer
+        warningCount:
+          type: integer
+        errorCount:
+          type: integer
     Form:
       oneOf:
         - $ref: '#/components/schemas/CommunicationForm'
