@@ -9576,10 +9576,6 @@ components:
           $ref: '#/components/schemas/PersonReference'
         processedCount:
           type: integer
-        warningCount:
-          type: integer
-        errorCount:
-          type: integer
       required:
         - id
         - transform
@@ -9608,10 +9604,6 @@ components:
             - COMPLETE
             - FAILED
         processedCount:
-          type: integer
-        warningCount:
-          type: integer
-        errorCount:
           type: integer
     Form:
       oneOf:
