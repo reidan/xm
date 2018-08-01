@@ -9218,13 +9218,13 @@ components:
         at:
           type: string
           format: date-time
-        filter:
-          $ref: '#/components/schemas/FilterReference'
+        filters:
+          $ref: '#/components/schemas/FilterPagination'
       required:
         - event
         - match
         - at
-        - filter
+        - filters
     FeatureToggle:
       description: Feature toggle
       properties:
