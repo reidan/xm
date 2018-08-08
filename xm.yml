@@ -9590,9 +9590,6 @@ components:
         id:
           type: string
           format: uuid
-        name:
-          description: Display name derived from transform, upload time and uploader
-          type: string
         transform:
           $ref: '#/components/schemas/TransformReference'
         status:
@@ -9602,7 +9599,7 @@ components:
             - PROCESSING
             - COMPLETE
             - FAILED
-        at:
+        started:
           type: string
           format: date-time
         by:
