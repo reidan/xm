@@ -1878,6 +1878,12 @@ paths:
       description: List forms
       operationId: getForms
       parameters:
+        - description: Search
+          in: query
+          name: search
+          required: false
+          schema:
+            type: string
         - description: Sort results by
           in: query
           name: sortBy
