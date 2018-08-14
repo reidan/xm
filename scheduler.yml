@@ -223,9 +223,16 @@ components:
       oneOf:
         - $ref: '#/components/schemas/OnceTrigger'
         - $ref: '#/components/schemas/RecurringTrigger'
+      discriminator:
+        propertyName: triggerType
     AbstractTrigger:
       type: object
       properties:
+        triggerType:
+          type: string
+          enum:
+            - ONCE
+            - RECURRING
         startTime:
           type: string
           format: date-time
@@ -233,23 +240,36 @@ components:
           type: string
           example: US/Pacific
       required:
+        - triggerType
         - timezone
         - startTime
     OnceTrigger:
       description: Trigger that fires only once
       allOf:
-       - $ref: '#/components/schemas/AbstractTrigger'
+        - $ref: '#/components/schemas/AbstractTrigger'
+        - properties:
+            triggerType:
+              type: string
+              enum:
+                - ONCE
+          required:
+            - triggerType
     RecurringTrigger:
       description: Trigger that fires on a recurring schedule
       allOf:
         - $ref: '#/components/schemas/AbstractTrigger'
         - properties:
+            triggerType:
+              type: string
+              enum:
+                - RECURRING
             endTime:
               type: string
               format: date-time
             cron:
               type: string
           required:
+            - triggerType
             - cron
     Vector:
       description: Defines how a reminder is sent
