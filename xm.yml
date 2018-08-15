@@ -11883,16 +11883,19 @@ components:
             refresh_token:
               type: string
             client_id:
+              description: The OAuth client id. This is the id by which the OAuth provider identifies your client.
               type: string
             client_secret:
               type: string
-            url:
+            accessTokenUri:
+              description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
-            scheme:
+            clientAuthenticationScheme:
+              description: The scheme used by your client to authenticate to the access token endpoint. Suggested values: http_basic and form. Default: http_basic. See section 2.1 of the OAuth 2 spec.
               type: string
               enum:
-                - FORM
-                - HEADER
+                - form
+                - http_basic
           required:
             - authenticationType
     ForceOAuth2Authentication:
@@ -11915,11 +11918,19 @@ components:
             refresh_token:
               type: string
             client_id:
+              description: The OAuth client id. This is the id by which the OAuth provider identifies your client.
               type: string
             client_secret:
               type: string
-            url:
+            accessTokenUri:
+              description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
+            clientAuthenticationScheme:
+              description: The scheme used by your client to authenticate to the access token endpoint. Suggested values: http_basic and form. Default: http_basic. See section 2.1 of the OAuth 2 spec.
+              type: string
+              enum:
+                - form
+                - http_basic
           required:
             - authenticationType
     SlackOAuth2Authentication:
@@ -11942,11 +11953,19 @@ components:
             refresh_token:
               type: string
             client_id:
+              description: The OAuth client id. This is the id by which the OAuth provider identifies your client.
               type: string
             client_secret:
               type: string
-            url:
+            accessTokenUri:
+              description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
+            clientAuthenticationScheme:
+              description: The scheme used by your client to authenticate to the access token endpoint. Suggested values: http_basic and form. Default: http_basic. See section 2.1 of the OAuth 2 spec.
+              type: string
+              enum:
+                - form
+                - http_basic
           required:
             - authenticationType
     EndpointInput:
