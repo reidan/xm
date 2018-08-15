@@ -11893,11 +11893,13 @@ components:
               description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
             clientAuthenticationScheme:
-              description: The scheme used by your client to authenticate to the access token endpoint. Suggested values: http_basic and form. Default: http_basic. See section 2.1 of the OAuth 2 spec.
+              description: The scheme used by your client to authenticate to the access token endpoint.
               type: string
               enum:
                 - form
-                - http_basic
+                - header
+                - query
+                - none
           required:
             - authenticationType
     ForceOAuth2Authentication:
@@ -11930,11 +11932,13 @@ components:
               description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
             clientAuthenticationScheme:
-              description: The scheme used by your client to authenticate to the access token endpoint. Suggested values: http_basic and form. Default: http_basic. See section 2.1 of the OAuth 2 spec.
+              description: The scheme used by your client to authenticate to the access token endpoint.
               type: string
               enum:
                 - form
-                - http_basic
+                - header
+                - query
+                - none
           required:
             - authenticationType
     SlackOAuth2Authentication:
@@ -11967,11 +11971,13 @@ components:
               description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
             clientAuthenticationScheme:
-              description: The scheme used by your client to authenticate to the access token endpoint. Suggested values: http_basic and form. Default: http_basic. See section 2.1 of the OAuth 2 spec.
+              description: The scheme used by your client to authenticate to the access token endpoint.
               type: string
               enum:
                 - form
-                - http_basic
+                - header
+                - query
+                - none
           required:
             - authenticationType
     EndpointInput:
