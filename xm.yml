@@ -11808,22 +11808,8 @@ components:
             - XMATTERS
             - EXTERNAL
             - XM_FORM
-        authenticationType:
-          type: string
-          enum:
-            - NO_AUTH
-            - BASIC
-            - OAUTH2
-            - OAUTH2_FORCE
-            - OAUTH_SLACK
         authentication:
-          properties:
-            username:
-              type: string
-            oauthClientId:
-              type: string
-            oauthTokenUrl:
-              type: string
+          $ref: '#/components/schemas/Authentication'
         trustSelfSignedCertificates:
           type: boolean
           default: false
@@ -11832,6 +11818,132 @@ components:
         - plan
         - name
         - url
+    Authentication:
+      oneOf:
+        - $ref: '#/components/schemas/NoAuthentication'
+        - $ref: '#/components/schemas/BasicAuthentication'
+        - $ref: '#/components/schemas/OAuth2Authentication'
+        - $ref: '#/components/schemas/ForceOAuth2Authentication'
+        - $ref: '#/components/schemas/SlackOAuth2Authentication'
+      discriminator:
+        propertyName: authenticationType
+    AbstractAuthentication:
+      properties:
+        authenticationType:
+          type: string
+          enum:
+            - NONE
+            - BASIC
+            - OAUTH2
+            - OAUTH2_FORCE
+            - OAUTH2_SLACK
+      required:
+        - authenticationType
+    NoAuthentication:
+      allOf:
+        - $ref: '#/components/schemas/AbstractAuthentication'
+        - properties:
+            authenticationType:
+              type: string
+              enum:
+                - NONE
+          required:
+            - authenticationType
+    BasicAuthentication:
+      allOf:
+        - $ref: '#/components/schemas/AbstractAuthentication'
+        - properties:
+            authenticationType:
+              type: string
+              enum:
+                - BASIC
+            username:
+              type: string
+            password:
+              type: string
+          required:
+            - authenticationType
+    OAuth2Authentication:
+      allOf:
+        - $ref: '#/components/schemas/AbstractAuthentication'
+        - properties:
+            authenticationType:
+              type: string
+              enum:
+                - OAUTH2
+            grant_type:
+              type: string
+              enum:
+                - password
+                - refresh_token
+            username:
+              type: string
+            password:
+              type: string
+            refresh_token:
+              type: string
+            client_id:
+              type: string
+            client_secret:
+              type: string
+            url:
+              type: string
+          required:
+            - authenticationType
+    ForceOAuth2Authentication:
+      allOf:
+        - $ref: '#/components/schemas/AbstractAuthentication'
+        - properties:
+            authenticationType:
+              type: string
+              enum:
+                - OAUTH2_FORCE
+            grant_type:
+              type: string
+              enum:
+                - password
+                - refresh_token
+            username:
+              type: string
+            password:
+              type: string
+            refresh_token:
+              type: string
+            client_id:
+              type: string
+            client_secret:
+              type: string
+            url:
+              type: string
+          required:
+            - authenticationType
+    SlackOAuth2Authentication:
+      allOf:
+        - $ref: '#/components/schemas/AbstractAuthentication'
+        - properties:
+            authenticationType:
+              type: string
+              enum:
+                - OAUTH2_SLACK
+            grant_type:
+              type: string
+              enum:
+                - password
+                - refresh_token
+            username:
+              type: string
+            password:
+              type: string
+            refresh_token:
+              type: string
+            client_id:
+              type: string
+            client_secret:
+              type: string
+            url:
+              type: string
+          required:
+            - authenticationType
     EndpointInput:
       properties:
         id:
@@ -11849,26 +11961,8 @@ components:
             - XMATTERS
             - EXTERNAL
             - XM_FORM
-        authenticationType:
-          type: string
-          enum:
-            - NO_AUTH
-            - BASIC
-            - OAUTH2
-            - OAUTH2_FORCE
-            - OAUTH_SLACK
         authentication:
-          properties:
-            username:
-              type: string
-            password:
-              type: string
-            oauthClientId:
-              type: string
-            oauthClientSecret:
-              type: string
-            oauthTokenUrl:
-              type: string
+          $ref: '#/components/schemas/Authentication'
         trustSelfSignedCertificates:
           type: boolean
           default: false
