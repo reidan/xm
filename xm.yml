@@ -11880,6 +11880,7 @@ components:
               type: string
             password:
               type: string
+              format: password
             refresh_token:
               type: string
             client_id:
@@ -11887,6 +11888,7 @@ components:
               type: string
             client_secret:
               type: string
+              format: password
             accessTokenUri:
               description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
@@ -11915,6 +11917,7 @@ components:
               type: string
             password:
               type: string
+              format: password
             refresh_token:
               type: string
             client_id:
@@ -11922,6 +11925,7 @@ components:
               type: string
             client_secret:
               type: string
+              format: password
             accessTokenUri:
               description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
@@ -11950,6 +11954,7 @@ components:
               type: string
             password:
               type: string
+              format: password
             refresh_token:
               type: string
             client_id:
@@ -11957,6 +11962,7 @@ components:
               type: string
             client_secret:
               type: string
+              format: password
             accessTokenUri:
               description: The URI of the provider OAuth endpoint that provides the access token.
               type: string
