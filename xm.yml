@@ -2412,6 +2412,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/query-offset'
         - $ref: '#/components/parameters/query-limit'
+        - $ref: '#/components/parameters/query-from'
+        - $ref: '#/components/parameters/query-to'
         - $ref: '#/components/parameters/query-embed'
       responses:
         '200':
