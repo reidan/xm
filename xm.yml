@@ -3706,6 +3706,7 @@ paths:
       description: List subscriptions for a person
       operationId: getPersonSubscriptions
       parameters:
+        - $ref: '#/components/parameters/path-personId'
         - description: Filter by name
           in: query
           name: name
@@ -4737,6 +4738,7 @@ paths:
       description: List subscription forms for a plan
       operationId: getPlanSubscriptionForms
       parameters:
+        - $ref: '#/components/parameters/path-planId'
         - description: Sort results by
           in: query
           name: sortBy
@@ -5185,7 +5187,7 @@ paths:
         '409':
           $ref: '#/components/responses/409'
       tags:
-        - Subscriptions        
+        - Subscriptions
   '/subscriptions/{subscriptionId}':
     get:
       summary: Returns information about a subscription
@@ -5268,6 +5270,7 @@ paths:
       description: Returns information about a subscription form
       operationId: getSubscriptionForm
       parameters:
+        - $ref: '#/components/parameters/path-subscriptionFormId'
         - $ref: '#/components/parameters/query-at'
       responses:
         '200':
