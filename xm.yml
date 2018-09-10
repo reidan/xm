@@ -3700,6 +3700,72 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+  '/people/{personId}/subscriptions':
+    get:
+      summary: List subscriptions for a person
+      description: List subscriptions for a person
+      operationId: getPersonSubscriptions
+      parameters:
+        - $ref: '#/components/parameters/path-personId'
+        - description: Filter by name
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+        - description: Filter by case insensitive substring match within description
+          in: query
+          name: description
+          required: false
+          schema:
+            type: string
+        - description: Filter subscription form name
+          in: query
+          name: subscriptionFormName
+          required: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Subscriptions
+  '/people/{personId}/subscriptions/{subscriptionId}':
+    delete:
+      summary: Delete a subscription for a person
+      description: Delete the subscription if the person is the owner. Otherwise remove the person from the subscription recipients.
+      operationId: deletePersonSubscription
+      parameters:
+        - $ref: '#/components/parameters/path-personId'
+        - $ref: '#/components/parameters/path-subscriptionId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Subscriptions
   '/people/{personId}/supervisors':
     get:
       tags:
@@ -4666,6 +4732,39 @@ paths:
           $ref: '#/components/responses/404'
       tags:
         - Integrations
+  '/plans/{planId}/subscription-forms':
+    get:
+      summary: List subscription forms for a plan
+      description: List subscription forms for a plan
+      operationId: getPlanSubscriptionForms
+      parameters:
+        - $ref: '#/components/parameters/path-planId'
+        - description: Sort results by
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+            enum:
+              - NAME
+              - DESCRIPTION
+        - $ref: '#/components/parameters/query-sortOrder'
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionFormPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Subscriptions
   '/property-definitions':
     get:
       summary: List property definitions
@@ -5016,6 +5115,176 @@ paths:
           $ref: '#/components/responses/409'
       tags:
         - Sites
+  /subscriptions:
+    get:
+      summary: List subscriptions
+      description: List subscriptions
+      operationId: getSubscriptions
+      parameters:
+        - description: Filter by name
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+        - description: Filter by case insensitive substring match within description
+          in: query
+          name: description
+          required: false
+          schema:
+            type: string
+        - description: Filter subscription form name
+          in: query
+          name: subscriptionFormName
+          required: false
+          schema:
+            type: string
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Subscriptions
+    post:
+      summary: Insert or update a subscription
+      description: Insert or update a subscription
+      operationId: postSubscription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionInput'
+        required: true
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Subscriptions
+  '/subscriptions/{subscriptionId}':
+    get:
+      summary: Returns information about a subscription
+      description: Returns information about a subscription
+      operationId: getSubscription
+      parameters:
+        - $ref: '#/components/parameters/path-subscriptionId'
+        - $ref: '#/components/parameters/query-at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Subscriptions
+    delete:
+      summary: Delete a subscription
+      description: Delete the subscription if the current user is the owner. Otherwise remove the current user from the subscription recipients.
+      operationId: deleteSubscription
+      parameters:
+        - $ref: '#/components/parameters/path-subscriptionId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+        '204':
+          $ref: '#/components/responses/204'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '409':
+          $ref: '#/components/responses/409'
+      tags:
+        - Subscriptions
+  /subscription-forms:
+    get:
+      summary: List subscription forms
+      description: List subscription forms
+      operationId: getSubscriptionForms
+      parameters:
+        - description: Sort results by
+          in: query
+          name: sortBy
+          required: false
+          schema:
+            type: string
+            enum:
+              - NAME
+              - DESCRIPTION
+        - $ref: '#/components/parameters/query-sortOrder'
+        - $ref: '#/components/parameters/query-at'
+        - $ref: '#/components/parameters/query-offset'
+        - $ref: '#/components/parameters/query-limit'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionFormPagination'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Subscriptions
+  '/subscription-forms/{subscriptionFormId}':
+    get:
+      summary: Returns information about a subscription form
+      description: Returns information about a subscription form
+      operationId: getSubscriptionForm
+      parameters:
+        - $ref: '#/components/parameters/path-subscriptionFormId'
+        - $ref: '#/components/parameters/query-at'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionForm'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+      tags:
+        - Subscriptions
   /targetable:
     get:
       summary: Search targetable entities
@@ -5517,6 +5786,20 @@ components:
       description: The site uuid or name
       in: path
       name: siteId
+      required: true
+      schema:
+        type: string
+    path-subscriptionId:
+      description: The subscription uuid
+      in: path
+      name: subscriptionId
+      required: true
+      schema:
+        type: string
+    path-subscriptionFormId:
+      description: The subscription form uuid or name
+      in: path
+      name: subscriptionFormId
       required: true
       schema:
         type: string
@@ -9691,6 +9974,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/CommunicationForm'
         - $ref: '#/components/schemas/SystemForm'
+        - $ref: '#/components/schemas/SubscriptionForm'
       discriminator:
         propertyName: formType
     AbstractForm:
@@ -9700,6 +9984,7 @@ components:
           enum:
             - FORM
             - SYSTEM
+            - SUBSCRIPTION
           default: FORM
       required:
         - formType
@@ -9930,6 +10215,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/CommunicationFormReference'
         - $ref: '#/components/schemas/SystemFormReference'
+        - $ref: '#/components/schemas/SubscriptionFormReference'
       discriminator:
         propertyName: formType
     AbstractFormReference:
@@ -9958,6 +10244,25 @@ components:
           required:
             - id
             - name
+    SubscriptionFormReference:
+      allOf:
+        - $ref: '#/components/schemas/AbstractFormReference'
+        - properties:
+            formType:
+              type: string
+              enum:
+                - SUBSCRIPTION
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            plan:
+              $ref: '#/components/schemas/PlanReference'
+          required:
+            - id
+            - name
+            - plan
     SystemFormReference:
       allOf:
         - $ref: '#/components/schemas/AbstractFormReference'
@@ -13349,6 +13654,160 @@ components:
           $ref: '#/components/schemas/SelfLink'
       required:
         - id
+    Subscription:
+      description: Subscription
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        form:
+          $ref: '#/components/schemas/SubscriptionFormReference'
+        owner:
+          $ref: '#/components/schemas/PersonReference'
+        created:
+          type: string
+          format: date-time
+        notificationDelay:
+          format: int32
+          type: integer
+        properties:
+          $ref: '#/components/schemas/Properties'
+        recipients:
+          $ref: '#/components/schemas/RecipientPagination'
+        targetAllDevices:
+          description: Target all device types
+          type: boolean
+        targetDeviceNames:
+          description: Target specific device categories
+          $ref: '#/components/schemas/DeviceNamePagination'
+        revision:
+          $ref: '#/components/schemas/Revision'
+        links:
+          $ref: '#/components/schemas/SelfLink'
+      required:
+        - id
+        - name
+    SubscriptionInput:
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        form:
+          $ref: '#/components/schemas/SubscriptionFormPointer'
+        notificationDelay:
+          format: int32
+          type: integer
+        owner:
+          $ref: '#/components/schemas/PersonPointer'
+        properties:
+          $ref: '#/components/schemas/Properties'
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientPointer'
+        targetAllDevices:
+          description: Target all device types
+          type: boolean
+        targetDeviceNames:
+          description: Target specific device names
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceNamePointer'
+      required:
+        - name
+        - form
+        - owner
+        - properties
+        - recipients
+        - targetDeviceNames
+    SubscriptionForm:
+      allOf:
+        - $ref: '#/components/schemas/AbstractForm'
+        - description: Subscription Form
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            formType:
+              type: string
+              enum:
+                - SUBSCRIPTION
+            description:
+              type: string
+            plan:
+              $ref: '#/components/schemas/PlanReference'
+            owner:
+              $ref: '#/components/schemas/PersonReference'
+            scope:
+              type: string
+              enum:
+                - ALL_FORMS
+                - FORM
+            form:
+              description: FormReference if the Scope is FORM
+              $ref: '#/components/schemas/FormReference'
+            created:
+              type: string
+              format: date-time
+            oneWay:
+              type: boolean
+            subscribeOthers:
+              type: boolean
+            notificationDelay:
+              format: int32
+              type: integer
+            properties:
+              $ref: '#/components/schemas/Properties'
+            roles:
+              $ref: '#/components/schemas/RolePagination'
+            targetAllDevices:
+              description: Target all device types
+              type: boolean
+            isTargetAllDevicesVisible:
+              type: boolean
+            targetDeviceNames:
+              description: Target specific device names
+              $ref: '#/components/schemas/DeviceNamePagination'
+            visibleTargetDeviceNames:
+              description: List of device names visible in the subscription form
+              $ref: '#/components/schemas/DeviceNamePagination'
+            revision:
+              $ref: '#/components/schemas/Revision'
+            links:
+              $ref: '#/components/schemas/SelfLink'
+          required:
+            - id
+            - name
+            - plan
+            - owner
+            - created
+            - scope
+            - oneWay
+            - subscribeOthers
+            - notificationDelay
+            - targetAllDevices
+            - isTargetAllDevicesVisible
+            - targetDeviceNames
+            - visibleTargetDeviceNames
+    SubscriptionFormPointer:
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+      required:
+        - id
     Targetable:
       description: 'Targetable entity (RECIPIENT, SITE)'
       properties:
@@ -14294,6 +14753,26 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/Site'
+          required:
+            - data
+    SubscriptionPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Subscription'
+          required:
+            - data
+    SubscriptionFormPagination:
+      allOf:
+        - $ref: '#/components/schemas/AbstractPagination'
+        - properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionForm'
           required:
             - data
     TargetablePagination:
