@@ -9974,6 +9974,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/CommunicationForm'
         - $ref: '#/components/schemas/SystemForm'
+        - $ref: '#/components/schemas/SubscriptionForm'
       discriminator:
         propertyName: formType
     AbstractForm:
@@ -9983,6 +9984,7 @@ components:
           enum:
             - FORM
             - SYSTEM
+            - SUBSCRIPTION
           default: FORM
       required:
         - formType
@@ -10213,6 +10215,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/CommunicationFormReference'
         - $ref: '#/components/schemas/SystemFormReference'
+        - $ref: '#/components/schemas/SubscriptionFormReference'
       discriminator:
         propertyName: formType
     AbstractFormReference:
@@ -10241,6 +10244,25 @@ components:
           required:
             - id
             - name
+    SubscriptionFormReference:
+      allOf:
+        - $ref: '#/components/schemas/AbstractFormReference'
+        - properties:
+            formType:
+              type: string
+              enum:
+                - SUBSCRIPTION
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            plan:
+              $ref: '#/components/schemas/PlanReference'
+          required:
+            - id
+            - name
+            - plan
     SystemFormReference:
       allOf:
         - $ref: '#/components/schemas/AbstractFormReference'
@@ -11365,19 +11387,6 @@ components:
           description: User provided name for this plan
       required:
         - id
-    SubscriptionFormReference:
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        plan:
-          $ref: '#/components/schemas/PlanReference'
-      required:
-        - id
-        - name
-        - plan
     PlanPointer:
       properties:
         id:
@@ -13674,9 +13683,7 @@ components:
           type: boolean
         targetDeviceNames:
           description: Target specific device categories
-          type: array
-          items:
-            $ref: '#/components/schemas/DeviceName'
+          $ref: '#/components/schemas/DeviceNamePagination'
         revision:
           $ref: '#/components/schemas/Revision'
         links:
@@ -13722,69 +13729,76 @@ components:
         - recipients
         - targetDeviceNames
     SubscriptionForm:
-      description: Subscription Form
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        description:
-          type: string
-        plan:
-          $ref: '#/components/schemas/PlanReference'
-        owner:
-          $ref: '#/components/schemas/PersonReference'
-        scope:
-          description: Scope is All Forms if null
-          $ref: '#/components/schemas/FormReference'
-        created:
-          type: string
-          format: date-time
-        oneWay:
-          type: boolean
-        subscribeOthers:
-          type: boolean
-        notificationDelay:
-          format: int32
-          type: integer
-        properties:
-          $ref: '#/components/schemas/Properties'
-        roles:
-          $ref: '#/components/schemas/RolePagination'
-        targetAllDevices:
-          description: Target all device types
-          type: boolean
-        isTargetAllDevicesVisible:
-          type: boolean
-        targetDeviceNames:
-          description: Target specific device names
-          type: array
-          items:
-            $ref: '#/components/schemas/DeviceName'
-        visibleTargetDeviceNames:
-          description: List of device names visible in the subscription form
-          type: array
-          items:
-            $ref: '#/components/schemas/DeviceName'
-        revision:
-          $ref: '#/components/schemas/Revision'
-        links:
-          $ref: '#/components/schemas/SelfLink'
-      required:
-        - id
-        - name
-        - plan
-        - owner
-        - created
-        - scope
-        - oneWay
-        - subscribeOthers
-        - notificationDelay
-        - targetAllDevices
-        - isTargetAllDevicesVisible
-        - targetDeviceNames
-        - visibleTargetDeviceNames
+      allOf:
+        - $ref: '#/components/schemas/AbstractForm'
+        - description: Subscription Form
+          properties:
+            id:
+              type: string
+              format: uuid
+            name:
+              type: string
+            formType:
+              type: string
+              enum:
+                - SUBSCRIPTION
+            description:
+              type: string
+            plan:
+              $ref: '#/components/schemas/PlanReference'
+            owner:
+              $ref: '#/components/schemas/PersonReference'
+            scope:
+              type: string
+              enum:
+                - ALL_FORMS
+                - FORM
+            form:
+              description: FormReference if the Scope is FORM
+              $ref: '#/components/schemas/FormReference'
+            created:
+              type: string
+              format: date-time
+            oneWay:
+              type: boolean
+            subscribeOthers:
+              type: boolean
+            notificationDelay:
+              format: int32
+              type: integer
+            properties:
+              $ref: '#/components/schemas/Properties'
+            roles:
+              $ref: '#/components/schemas/RolePagination'
+            targetAllDevices:
+              description: Target all device types
+              type: boolean
+            isTargetAllDevicesVisible:
+              type: boolean
+            targetDeviceNames:
+              description: Target specific device names
+              $ref: '#/components/schemas/DeviceNamePagination'
+            visibleTargetDeviceNames:
+              description: List of device names visible in the subscription form
+              $ref: '#/components/schemas/DeviceNamePagination'
+            revision:
+              $ref: '#/components/schemas/Revision'
+            links:
+              $ref: '#/components/schemas/SelfLink'
+          required:
+            - id
+            - name
+            - plan
+            - owner
+            - created
+            - scope
+            - oneWay
+            - subscribeOthers
+            - notificationDelay
+            - targetAllDevices
+            - isTargetAllDevicesVisible
+            - targetDeviceNames
+            - visibleTargetDeviceNames
     SubscriptionFormPointer:
       properties:
         id:
