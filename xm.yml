@@ -12542,6 +12542,10 @@ components:
           format: uuid
         notification:
           $ref: '#/components/schemas/NotificationReference'
+        event:
+          $ref: '#/components/schemas/EventReference'
+        recipient:
+          $ref: '#/components/schemas/RecipientReference'
         option:
           $ref: '#/components/schemas/ResponseOption'
         response:
