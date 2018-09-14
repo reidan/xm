@@ -10285,7 +10285,7 @@ components:
         id:
           type: string
           format: uuid
-        functions:
+        permissions:
           $ref: '#/components/schemas/PermissionPagination'
       required:
         - id
