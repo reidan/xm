@@ -9937,9 +9937,17 @@ components:
         started:
           type: string
           format: date-time
+        processingAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
         by:
           $ref: '#/components/schemas/PersonReference'
         processedCount:
+          type: integer
+        totalCount:
           type: integer
       required:
         - id
