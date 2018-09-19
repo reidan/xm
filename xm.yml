@@ -11523,6 +11523,7 @@ components:
         - $ref: '#/components/schemas/HipChatBuiltInPlanInput'
         - $ref: '#/components/schemas/IcingaBuiltInPlanInput'
         - $ref: '#/components/schemas/JiraBuiltInPlanInput'
+        - $ref: '#/components/schemas/MSTeamsBuiltInPlanInput'
         - $ref: '#/components/schemas/NewRelicBuiltInPlanInput'
         - $ref: '#/components/schemas/PingdomBuiltInPlanInput'
         - $ref: '#/components/schemas/PingdomSMBuiltInPlanInput'
@@ -11557,6 +11558,7 @@ components:
                 - HIPCHAT
                 - ICINGA
                 - JIRA
+                - MS_TEAMS
                 - NEW_RELIC
                 - PINGDOM
                 - PINGDOM_SM
@@ -11729,6 +11731,21 @@ components:
           required:
             - builtInPlanType
             - recipients
+            - senderOverrideName
+    MSTeamsBuiltInPlanInput:
+      description: MS Teams built-in communication plan
+      allOf:
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
+        - properties:
+            builtInPlanType:
+              type: string
+              description: Built-in communication plan type
+              enum:
+                - MS_TEAMS
+            appURL:
+              type: string
+          required:
+            - builtInPlanType
             - senderOverrideName
     PingdomBuiltInPlanInput:
       description: Pingdom built-in communication plan
