@@ -11718,6 +11718,23 @@ components:
             - builtInPlanType
             - recipients
             - senderOverrideName
+    MSTeamsBuiltInPlanInput:
+      description: MS Teams built-in communication plan
+      allOf:
+        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
+        - properties:
+            builtInPlanType:
+              type: string
+              description: Built-in communication plan type
+              enum:
+                - MS_TEAMS
+            appURL:
+              type: string
+            eventPriority:
+              type: string
+          required:
+            - builtInPlanType
+            - senderOverrideName
     NewRelicBuiltInPlanInput:
       description: NewRelic built-in communication plan
       allOf:
@@ -11731,21 +11748,6 @@ components:
           required:
             - builtInPlanType
             - recipients
-            - senderOverrideName
-    MSTeamsBuiltInPlanInput:
-      description: MS Teams built-in communication plan
-      allOf:
-        - $ref: '#/components/schemas/AbstractBuiltInPlanInput'
-        - properties:
-            builtInPlanType:
-              type: string
-              description: Built-in communication plan type
-              enum:
-                - MS_TEAMS
-            appURL:
-              type: string
-          required:
-            - builtInPlanType
             - senderOverrideName
     PingdomBuiltInPlanInput:
       description: Pingdom built-in communication plan
